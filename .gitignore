@@ -15,3 +15,6 @@ database/exodus.db*
 # Obsidian: estado local del workspace, no contenido
 vault/.obsidian/workspace*.json
 vault/.trash/
+
+# Scripts que calculan las flags: solo en local, nunca al repositorio
+.soluciones/
