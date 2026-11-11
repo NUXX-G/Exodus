@@ -1,0 +1,140 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import FlagForm from "@/components/FlagForm";
+import { AREAS } from "@/lib/areas";
+import { getCurrentUser } from "@/lib/db";
+import { linkResolverFor, renderMarkdown } from "@/lib/markdown";
+import { getCompleted, getRevealedLevels, recordOpen, stateOf } from "@/lib/progress";
+import { loadVault } from "@/lib/vault";
+import { revealHintAction } from "./actions";
+
+export const dynamic = "force-dynamic";
+
+type Props = { params: Promise<{ id: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+  return { title: loadVault().nodes.get(id)?.title ?? "Nodo no encontrado" };
+}
+
+/** Las pistas van de menos a más concretas; el orden en el frontmatter es este. */
+const TIPO_PISTA = ["Concepto", "Herramienta o comando", "Documentación oficial"] as const;
+
+const ESTADO = {
+  completed: { titulo: "Completado", detalle: "Flag validada." },
+  available: { titulo: "Disponible", detalle: "Prerequisitos cumplidos." },
+  locked: { titulo: "Bloqueado", detalle: "Puedes leerlo; la flag se valida al completar los prerequisitos." },
+} as const;
+
+export default async function PaginaNodo({ params }: Props) {
+  const { id } = await params;
+  const vault = loadVault();
+  const node = vault.nodes.get(id);
+  if (!node) notFound();
+
+  const user = getCurrentUser();
+  recordOpen(user.id, node.id);
+
+  const completed = getCompleted(user.id);
+  const state = stateOf(node, completed);
+  const revealed = getRevealedLevels(user.id, node.id);
+  const html = await renderMarkdown(node.body, linkResolverFor(vault));
+  const area = AREAS[node.area];
+  const nextHint = revealed.length + 1;
+
+  return (
+    <main className="pagina nodo-pagina">
+      <div>
+        <p className="migas">
+          <Link href="/">Árbol</Link> / {area.label} / nivel {node.trunkLevel}
+        </p>
+        {/* HTML generado en el servidor a partir del vault; el HTML crudo del Markdown se descarta. */}
+        <article className="prosa" dangerouslySetInnerHTML={{ __html: html }} />
+      </div>
+
+      <aside className="lateral" aria-label="Progreso del nodo">
+        <div className="estado-nodo" data-estado={state}>
+          <strong>{ESTADO[state].titulo}</strong>
+          <span>{ESTADO[state].detalle}</span>
+        </div>
+
+        {node.prerequisites.length > 0 && (
+          <section>
+            <h2>Prerequisitos</h2>
+            <ul className="lista">
+              {node.prerequisites.map((pre) => {
+                const p = vault.nodes.get(pre);
+                return (
+                  <li key={pre}>
+                    {p ? (
+                      <Link href={`/nodo/${p.id}`} prefetch={false}>
+                        <span>{p.title}</span>
+                        <small>{completed.has(p.id) ? "completado" : "pendiente"}</small>
+                      </Link>
+                    ) : (
+                      <span className="fila">
+                        <span>{pre}</span>
+                        <small>no existe</small>
+                      </span>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        )}
+
+        <section>
+          <h2>Reto</h2>
+          {node.ctfFlag === null ? (
+            <p className="nota">Este nodo aún no tiene reto. Se completa cuando se publique su flag.</p>
+          ) : state === "completed" ? (
+            <p className="mensaje" data-tono="ok">
+              Flag validada{revealed.length > 0 ? ` con ${revealed.length} de ${node.hints.length} pistas` : " sin pistas"}.
+            </p>
+          ) : (
+            <FlagForm nodeId={node.id} locked={state === "locked"} />
+          )}
+        </section>
+
+        {node.hints.length > 0 && (
+          <section>
+            <h2>
+              Pistas ({revealed.length} de {node.hints.length} reveladas)
+            </h2>
+            {revealed.length > 0 && (
+              <ol className="pistas">
+                {revealed.map((level) => (
+                  <li key={level}>
+                    <strong>{TIPO_PISTA[level - 1]}.</strong> {node.hints[level - 1]}
+                  </li>
+                ))}
+              </ol>
+            )}
+            {nextHint <= node.hints.length && state !== "completed" && (
+              <form action={revealHintAction}>
+                <input type="hidden" name="nodeId" value={node.id} />
+                <button type="submit" className="boton boton-secundario">
+                  Revelar pista {nextHint}: {TIPO_PISTA[nextHint - 1].toLowerCase()}
+                </button>
+                <p className="nota">Cada pista revelada queda registrada en tu progreso.</p>
+              </form>
+            )}
+          </section>
+        )}
+
+        {node.academicSources.length > 0 && (
+          <section>
+            <h2>Bibliografía</h2>
+            <ul className="fuentes">
+              {node.academicSources.map((s, i) => (
+                <li key={i}>{s}</li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </aside>
+    </main>
+  );
+}
