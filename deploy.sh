@@ -20,7 +20,8 @@ PORT="${EXODUS_PORT:-3210}"
 COMPOSE="docker compose -f docker/docker-compose.yml"
 
 if [ -n "${EXODUS_DOMAIN:-}" ]; then
-  export EXODUS_DOMAIN
+  EXODUS_TRUST_PROXY=1
+  export EXODUS_DOMAIN EXODUS_TRUST_PROXY
   COMPOSE="$COMPOSE --profile https"
   URL="https://$EXODUS_DOMAIN"
 else

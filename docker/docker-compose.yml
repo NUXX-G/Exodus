@@ -27,6 +27,8 @@ services:
       - "${EXODUS_BIND:-127.0.0.1}:${EXODUS_PORT:-3210}:3000"
     environment:
       TZ: ${TZ:-Europe/Madrid}
+      # Con el proxy Caddy delante (perfil https) se confía en su X-Forwarded-For.
+      EXODUS_TRUST_PROXY: ${EXODUS_TRUST_PROXY:-0}
     volumes:
       # Vault de Obsidian, solo lectura. Se actualiza con `git pull` en el host, sin reconstruir.
       - ../vault:/vault:ro

@@ -10,6 +10,7 @@ import { redirect } from "next/navigation";
 import { and, eq, gt, isNotNull, lt, sql } from "drizzle-orm";
 import { getDb, schema } from "./db";
 import { hashPassword, verifyPassword } from "./password";
+import { clientKeyFrom, FailureLimiter } from "./rate-limit";
 import type { User } from "@db/schema";
 
 const { users, sessions } = schema;
@@ -83,17 +84,27 @@ function setupCodeMatches(code: string): boolean {
   return crypto.timingSafeEqual(a, b);
 }
 
+// Freno a la fuerza bruta (ver rate-limit.ts). Cinco fallos por cliente en diez minutos; el tope
+// global solo salta ante un ataque distribuido y entonces ralentiza a todos, también al dueño.
+const limits = { maxPerClient: 5, maxGlobal: 200, windowMs: 10 * 60_000, maxTracked: 5_000 };
+const loginLimiter = new FailureLimiter(limits);
+const setupLimiter = new FailureLimiter(limits);
+
+/** X-Forwarded-For solo es fiable si hay un proxy propio delante (perfil https del compose). */
+async function clientKey(): Promise<string> {
+  return clientKeyFrom((await headers()).get("x-forwarded-for"), process.env.EXODUS_TRUST_PROXY === "1");
+}
+
 export type SetupResult = "ok" | "codigo" | "existe" | "espera";
 
 /** Crea la cuenta de la instancia. Falla si ya existe: no hay registro abierto. */
 export async function createOwner(username: string, password: string, code: string): Promise<SetupResult> {
-  const now = Date.now();
-  const key = `setup:${await clientKey()}`;
-  const fails = (failsByClient.get(key) ?? []).filter((t) => t > now - WINDOW_MS);
-  if (fails.length >= MAX_FAILS) return "espera";
+  if (hasOwner()) return "existe";
+  const client = await clientKey();
+  if (setupLimiter.blocked(client)) return "espera";
   if (!setupCodeMatches(code)) {
-    failsByClient.set(key, [...fails, now]);
-    return hasOwner() ? "existe" : "codigo";
+    setupLimiter.fail(client);
+    return "codigo";
   }
 
   const db = getDb();
@@ -108,39 +119,20 @@ export async function createOwner(username: string, password: string, code: stri
   return "ok";
 }
 
-// Freno a la fuerza bruta, por dirección de cliente: un atacante agota SUS intentos sin poder
-// bloquear al dueño, que entra desde otra dirección. En memoria: basta para un único proceso.
-const MAX_FAILS = 5;
-const WINDOW_MS = 10 * 60_000;
-const MAX_TRACKED = 10_000;
-const failsByClient = new Map<string, number[]>();
-
-/**
- * Dirección del cliente. Detrás de Caddy es la última entrada de X-Forwarded-For (la que añade
- * el proxy, no falsificable por el cliente). Sin proxy solo se llega por localhost o túnel SSH.
- */
-async function clientKey(): Promise<string> {
-  const forwarded = (await headers()).get("x-forwarded-for");
-  return forwarded?.split(",").pop()?.trim() || "directo";
-}
-
 export type LoginResult = "ok" | "credenciales" | "espera";
 
 export async function login(username: string, password: string): Promise<LoginResult> {
-  const now = Date.now();
-  const key = await clientKey();
-  const fails = (failsByClient.get(key) ?? []).filter((t) => t > now - WINDOW_MS);
-  if (fails.length >= MAX_FAILS) return "espera";
+  const client = await clientKey();
+  if (loginLimiter.blocked(client)) return "espera";
 
   const user = getDb().select().from(users).where(eq(users.username, username)).get();
   // Se calcula el hash aunque el usuario no exista para no revelarlo por el tiempo de respuesta.
   const ok = verifyPassword(password, user?.passwordHash ?? "scrypt$15$AAAAAAAAAAAAAAAAAAAAAA==$AA==") && !!user;
   if (!ok) {
-    if (failsByClient.size >= MAX_TRACKED) failsByClient.clear(); // cota de memoria
-    failsByClient.set(key, [...fails, now]);
+    loginLimiter.fail(client);
     return "credenciales";
   }
-  failsByClient.delete(key);
+  loginLimiter.succeed(client);
   await startSession(user.id);
   return "ok";
 }
