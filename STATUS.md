@@ -8,7 +8,7 @@ junto con `CLAUDE.md` y `README.md`.
 ## Estado en una línea
 
 Plataforma completa y verificada (árbol, lectura, flags, pistas, heatmap, cuenta con contraseña,
-Docker, CI). 10 de 27 nodos tienen teoría completa y reto: la raíz y los niveles 1 y 2 enteros.
+Docker, CI). 14 de 27 nodos tienen teoría completa y reto: la raíz y los niveles 1, 2 y 3 enteros.
 
 ## Ramas y pull requests
 
@@ -20,8 +20,9 @@ fusionar):
 | #1 | `ci/pipeline` | `main` | CI, tests, arreglo de la imagen Docker, filtros de seguridad del render |
 | #2 | `feat/auth` | `ci/pipeline` | Cuenta única, sesiones, código de configuración, HTTPS con Caddy |
 | #3 | `content/nivel-2` | `feat/auth` | Seis nodos de nivel 2 y este documento |
+| #4 | `content/nivel-3` | `content/nivel-2` | Cuatro nodos de nivel 3 |
 
-Al fusionar #1 borrando su rama, GitHub reapunta #2 a `main`, y lo mismo con #3.
+Al fusionar #1 borrando su rama, GitHub reapunta #2 a `main`, y así sucesivamente.
 
 ## Completado
 
@@ -61,6 +62,10 @@ Al fusionar #1 borrando su rama, GitHub reapunta #2 a `main`, y lo mismo con #3.
 | 2 | `ing-logica-digital` | Implicantes primos y estado de un LFSR |
 | 2 | `sys-sistemas-operativos` | Fallos de página con FIFO, LRU y OPT |
 | 2 | `sec-web` | Recuperar la clave de un JWT y falsificar un token |
+| 3 | `mat-probabilidad` | Suma de dados, espera de un patrón y coincidencias, exactos |
+| 3 | `fis-mecanica-clasica` | Periodo exacto del péndulo, ecuación de Kepler, modos normales |
+| 3 | `ing-senales-sistemas` | Aliasing, energía de una convolución y pico de una DFT |
+| 3 | `ing-arquitectura-computadores` | Fallos de caché en el producto de matrices |
 
 ## Verificado y no verificado
 
@@ -69,8 +74,8 @@ Al fusionar #1 borrando su rama, GitHub reapunta #2 a `main`, y lo mismo con #3.
   incorrecta, acceso, redirecciones sin sesión.
 - **Docker**: imagen construida y arrancada en local; escribe `database/exodus.db` en el host;
   creación de cuenta probada contra el contenedor. CI lo repite en cada push.
-- **Flags**: las diez se calculan con scripts que contrastan cada resultado por un segundo
-  método. Los dos retos en C (`nodo-ejemplo`, `sys-c-memoria`) se compilaron además con GCC 14.
+- **Flags**: las catorce se calculan con scripts que contrastan cada resultado por un segundo
+  método, y `.soluciones/verificar.ts` comprueba que cada una valida contra el hash de su nodo. Los dos retos en C (`nodo-ejemplo`, `sys-c-memoria`) se compilaron además con GCC 14.
   Los scripts están en `.soluciones/` (ignorada por git, solo en la máquina de desarrollo).
 - **Sin probar**: el perfil `https` con un dominio real (solo `caddy validate`), y `deploy.bat`
   ejecutado como tal (se probaron sus comandos por separado).
@@ -79,12 +84,6 @@ Al fusionar #1 borrando su rama, GitHub reapunta #2 a `main`, y lo mismo con #3.
 ## Pendiente, por orden
 
 ### 1. Contenido: nodos base sin teoría ni reto
-
-Nivel 3
-- [ ] `mat-probabilidad`
-- [ ] `fis-mecanica-clasica`
-- [ ] `ing-senales-sistemas`
-- [ ] `ing-arquitectura-computadores`
 
 Nivel 4
 - [ ] `fis-electromagnetismo`
@@ -124,7 +123,8 @@ Transformers, LLMs locales (Ollama / vLLM).
    método. Incluir valores de control en el enunciado, también verificados por el script.
 3. `npm run vault:flag -- "EXODUS{...}"` y pegar el `ctf_flag: "sha256:..."` resultante.
 4. Tres pistas en este orden: concepto, herramienta o comando, documentación oficial.
-5. `npm run vault:check` (valida también LaTeX y wikilinks).
+5. `npm run vault:check` (valida también LaTeX y wikilinks) y `npx tsx .soluciones/verificar.ts`
+   (confirma que la flag calculada valida contra el hash pegado en el nodo).
 6. Un commit por nodo: `content(<area>): <tema> con reto de <tipo>`.
 
 ## Convenciones
