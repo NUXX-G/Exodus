@@ -1,6 +1,6 @@
 # STATUS — Exodus
 
-Última actualización: 2026-11-11
+Última actualización: 2026-11-11 (sesión: nivel 4 + adjuntos)
 
 Documento de continuidad. Quien retome el proyecto (persona o agente) debe leer esto primero,
 junto con `CLAUDE.md` y `README.md`.
@@ -8,7 +8,8 @@ junto con `CLAUDE.md` y `README.md`.
 ## Estado en una línea
 
 Plataforma completa y verificada (árbol, lectura, flags, pistas, heatmap, cuenta con contraseña,
-Docker, CI). 22 de 27 nodos tienen teoría completa y reto: la raíz y los niveles 1 a 4 enteros.
+Docker, CI, adjuntos de reto). 22 de 27 nodos tienen teoría completa y reto: la raíz y los
+niveles 1 a 4 enteros. Faltan 5 nodos (niveles 5 y 6) y varias áreas del prompt sin nodo.
 
 ## Ramas y pull requests
 
@@ -36,6 +37,14 @@ al fusionar, o se apunta cada PR directamente a `main`.
       servidor escribe en su log; scrypt; sesiones por cookie HttpOnly (solo el hash en la base de
       datos); limitador de intentos por cliente y global (`src/lib/rate-limit.ts`).
 - [x] Sin chat de IA en ninguna parte de la plataforma.
+
+### Plataforma: adjuntos de reto (nuevo esta sesión)
+- [x] Los nodos declaran `attachments: [...]` en el frontmatter; los archivos viven en
+      `vault/_adjuntos/<id>/` (binarios, pcaps, volcados: lo que no cabe en el Markdown).
+- [x] `GET /api/adjunto/<id>/<nombre>`: exige sesión, solo sirve lo declarado, no sigue enlaces
+      simbólicos, archivo normal, máx. 20 MiB, siempre `application/octet-stream` con `nosniff`.
+- [x] La página del nodo lista cada archivo con su tamaño y su SHA-256.
+- [x] `vault:check` valida los adjuntos; tests de rutas de escape y de enlaces simbólicos.
 
 ### Infraestructura
 - [x] `docker/Dockerfile` multi-etapa y `docker/docker-compose.yml` (vault en solo lectura,
@@ -101,8 +110,8 @@ sockets, forense y logs, diseño de PCB, redes neuronales desde cero en Python, 
 Transformers, LLMs locales (Ollama / vLLM).
 
 ### 3. Plataforma
-- [ ] Retos con artefactos descargables (binarios, pcaps): hoy todo reto debe caber en el
-      Markdown. Imprescindible para `sec-explotacion-binaria` y forense.
+- [x] ~~Retos con artefactos descargables~~: hecho esta sesión (ver arriba). Ya desbloquea
+      `sec-explotacion-binaria` y forense.
 - [ ] Cambio de contraseña y cierre de otras sesiones desde la interfaz.
 - [ ] Tests de `progress.ts` y `auth.ts` (necesitan una base de datos temporal).
 - [ ] Probar el perfil `https` en un VPS con dominio.
