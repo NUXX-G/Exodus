@@ -46,14 +46,19 @@ npm run dev          # http://localhost:3000
 
 La base de datos SQLite se crea y migra sola en `database/exodus.db` al primer arranque.
 
+En la primera visita, `/configurar` pide crear la única cuenta de la instancia. Exige un **código
+de configuración** que el servidor escribe en su registro (la terminal de `npm run dev`): así solo
+quien controla la máquina puede crear la cuenta.
+
 | Comando | Qué hace |
 | --- | --- |
-| `npm run vault:check` | Valida el vault: frontmatter, ids duplicados, prerequisitos inexistentes, ciclos |
+| `npm run vault:check` | Valida el vault: frontmatter, grafo de prerequisitos y render de cada nodo (LaTeX, wikilinks) |
+| `npm test` | Tests del parser, el render, las contraseñas y el limitador de intentos |
 | `npm run vault:flag -- "EXODUS{...}"` | Genera el `ctf_flag: "sha256:..."` para el frontmatter sin dejar la flag en claro |
 | `npm run db:generate` | Genera una migración SQL tras cambiar `database/schema.ts` |
 | `npm run typecheck` | Comprobación de tipos |
 
-### VPS (Docker)
+### Docker (local o VPS)
 
 ```bash
 ./deploy.sh        # Linux / macOS
@@ -61,9 +66,25 @@ deploy.bat         # Windows
 # equivalente: docker compose -f docker/docker-compose.yml up -d --build
 ```
 
-La Fase 1 no incluye autenticación: el puerto se publica solo en `127.0.0.1`. Accede por túnel SSH
-(`ssh -L 3210:127.0.0.1:3210 usuario@vps`) o detrás de un proxy inverso con autenticación.
+El script construye la imagen, espera a que la app responda en `http://127.0.0.1:3210` y, en el
+primer arranque, muestra el código de configuración para crear la cuenta en `/configurar`.
+
+Hay dos formas de acceder a un VPS:
+
+- **Túnel SSH** (por defecto, sin dominio): el puerto solo se publica en `127.0.0.1`.
+  `ssh -L 3210:127.0.0.1:3210 usuario@vps` y abre `http://127.0.0.1:3210`.
+- **Dominio con HTTPS automático**: `EXODUS_DOMAIN=exodus.midominio.com ./deploy.sh` arranca
+  además Caddy, que obtiene el certificado de Let's Encrypt. Requiere que el dominio apunte al VPS
+  y los puertos 80 y 443 abiertos.
+
 El vault se monta en solo lectura; para publicar contenido nuevo basta `git pull` en el host.
+La base de datos vive en `database/exodus.db`: copiar ese archivo es la copia de seguridad.
+
+| Variable | Por defecto | Uso |
+| --- | --- | --- |
+| `EXODUS_PORT` | `3210` | Puerto local publicado |
+| `EXODUS_DOMAIN` | (vacío) | Activa el perfil `https` con Caddy |
+| `TZ` | `Europe/Madrid` | Zona horaria del heatmap y la racha |
 
 ## Formato de un nodo
 
