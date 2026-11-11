@@ -658,3 +658,55 @@ h3 {
     height: 64vh;
   }
 }
+
+/* ───────── Cuenta ───────── */
+.cuenta {
+  max-width: 26rem;
+  padding-top: 8vh;
+}
+
+.cuenta h1 {
+  font-size: 1.75rem;
+  font-stretch: 112%;
+  margin-bottom: 1rem;
+}
+
+.cuenta p {
+  color: var(--tiza-tenue);
+  margin: 0 0 1.5rem;
+}
+
+.cuenta-form {
+  gap: 6px;
+}
+
+.cuenta-form input {
+  margin-bottom: 12px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.cuenta-form .boton {
+  margin-top: 6px;
+}
+
+.enlace-boton {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--tiza-tenue);
+  font: inherit;
+  font-size: 0.9375rem;
+  cursor: pointer;
+}
+
+.enlace-boton:hover {
+  color: var(--tiza);
+}
+
+.cabecera nav {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+}

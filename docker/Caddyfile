@@ -1,0 +1,13 @@
+# Proxy inverso con HTTPS automático (Let's Encrypt). Solo se usa con el perfil `https`:
+#   EXODUS_DOMAIN=exodus.midominio.com docker compose -f docker/docker-compose.yml --profile https up -d --build
+# Requisitos: el dominio apunta a la IP del VPS y los puertos 80 y 443 están abiertos.
+{$EXODUS_DOMAIN} {
+	encode zstd gzip
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "same-origin"
+	}
+	reverse_proxy web:3000
+}

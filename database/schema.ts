@@ -24,11 +24,25 @@ export const users = sqliteTable(
     id: integer("id").primaryKey({ autoIncrement: true }),
     username: text("username").notNull(),
     displayName: text("display_name"),
-    /** Reservado para autenticación (fase posterior). Null = usuario local sin contraseña. */
+    /** scrypt con sal por usuario; ver src/lib/password.ts. */
     passwordHash: text("password_hash"),
     createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(now),
   },
   (t) => [uniqueIndex("users_username_uq").on(t.username)],
+);
+
+/** Sesiones de navegador. `id` es el SHA-256 del token de la cookie: la base de datos nunca guarda el token. */
+export const sessions = sqliteTable(
+  "sessions",
+  {
+    id: text("id").primaryKey(),
+    userId: integer("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    expiresAt: integer("expires_at", { mode: "timestamp" }).notNull(),
+    createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(now),
+  },
+  (t) => [index("sessions_user_idx").on(t.userId)],
 );
 
 /** Estado de cada nodo por usuario. La ausencia de fila significa "nunca abierto". */
