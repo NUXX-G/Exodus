@@ -10,7 +10,7 @@ if errorlevel 1 (
   exit /b 1
 )
 
-if "%EXODUS_PORT%"=="" set EXODUS_PORT=3000
+if "%EXODUS_PORT%"=="" set EXODUS_PORT=3210
 
 docker compose -f docker\docker-compose.yml up -d --build
 if errorlevel 1 exit /b 1

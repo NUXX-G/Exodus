@@ -15,7 +15,7 @@ EXODUS_UID="${EXODUS_UID:-$(id -u)}"
 EXODUS_GID="${EXODUS_GID:-$(id -g)}"
 export EXODUS_UID EXODUS_GID
 
-PORT="${EXODUS_PORT:-3000}"
+PORT="${EXODUS_PORT:-3210}"
 
 docker compose -f docker/docker-compose.yml up -d --build
 

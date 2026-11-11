@@ -4,7 +4,7 @@
 #   docker compose -f docker/docker-compose.yml up -d --build
 #
 # La app NO tiene autenticación todavía, por eso el puerto se publica solo en
-# 127.0.0.1. En un VPS accede por túnel SSH (ssh -L 3000:127.0.0.1:3000 usuario@vps)
+# 127.0.0.1. En un VPS accede por túnel SSH (ssh -L 3210:127.0.0.1:3210 usuario@vps)
 # o detrás de un proxy inverso con autenticación. No pongas EXODUS_BIND=0.0.0.0 sin eso.
 
 name: exodus
@@ -20,7 +20,7 @@ services:
     # del repositorio. deploy.sh exporta EXODUS_UID/EXODUS_GID automáticamente.
     user: "${EXODUS_UID:-1000}:${EXODUS_GID:-1000}"
     ports:
-      - "${EXODUS_BIND:-127.0.0.1}:${EXODUS_PORT:-3000}:3000"
+      - "${EXODUS_BIND:-127.0.0.1}:${EXODUS_PORT:-3210}:3000"
     environment:
       EXODUS_USER: ${EXODUS_USER:-exodus}
       TZ: ${TZ:-Europe/Madrid}
