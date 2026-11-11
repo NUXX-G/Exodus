@@ -24,7 +24,12 @@ export async function setupAction(_prev: FormState | null, form: FormData): Prom
   }
   if (password !== repeat) return { message: "Las dos contraseñas no coinciden." };
 
-  if (!(await createOwner(username, password))) redirect("/entrar");
+  const result = await createOwner(username, password, String(form.get("code") ?? ""));
+  if (result === "espera") return { message: "Demasiados intentos fallidos. Espera 10 minutos." };
+  if (result === "codigo") {
+    return { message: "Código de configuración incorrecto. Cópialo del registro del servidor tal como aparece." };
+  }
+  if (result === "existe") redirect("/entrar");
   redirect("/");
 }
 

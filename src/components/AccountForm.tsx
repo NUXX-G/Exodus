@@ -10,6 +10,13 @@ export default function AccountForm({ mode, minLength }: { mode: "entrar" | "con
 
   return (
     <form action={action} className="campo cuenta-form">
+      {setup && (
+        <>
+          <label htmlFor="code">Código de configuración</label>
+          <input id="code" name="code" type="text" autoComplete="off" autoCapitalize="none" spellCheck={false} required />
+        </>
+      )}
+
       <label htmlFor="username">Usuario</label>
       <input id="username" name="username" type="text" autoComplete="username" autoCapitalize="none" spellCheck={false} required />
 

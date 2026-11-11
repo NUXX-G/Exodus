@@ -35,7 +35,11 @@ while [ "$i" -lt 60 ]; do
   status="$(docker inspect --format '{{.State.Health.Status}}' "$($COMPOSE ps -q web)" 2>/dev/null || echo starting)"
   if [ "$status" = "healthy" ]; then
     printf '\nExodus está en marcha: %s\n' "$URL"
-    printf 'Si es el primer arranque, crea ahora la cuenta en %s/configurar\n' "$URL"
+    code="$($COMPOSE logs web 2>/dev/null | sed -n 's/.*de configuración: \([0-9a-f]*\).*/\1/p' | tail -n 1)"
+    if [ -n "$code" ]; then
+      printf 'Primer arranque: crea la cuenta en %s/configurar\n' "$URL"
+      printf 'Código de configuración: %s\n' "$code"
+    fi
     exit 0
   fi
   printf '.'

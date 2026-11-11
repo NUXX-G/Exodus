@@ -1,4 +1,5 @@
 import { sql } from "drizzle-orm";
+import { announceSetupCode } from "@/lib/auth";
 import { getDb } from "@/lib/db";
 import { loadVault } from "@/lib/vault";
 
@@ -8,6 +9,8 @@ export const dynamic = "force-dynamic";
 export function GET() {
   try {
     getDb().run(sql`select 1`);
+    // Primer arranque: deja el código de configuración en el registro sin esperar a una visita.
+    announceSetupCode();
     const { nodes, issues } = loadVault();
     if (issues.length) console.warn(`[health] ${issues.length} problemas en el vault`);
     return Response.json({ ok: true, nodes: nodes.size });

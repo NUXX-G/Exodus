@@ -27,7 +27,10 @@ goto wait
 
 :ready
 echo Exodus esta en marcha: http://127.0.0.1:%EXODUS_PORT%
-echo Si es el primer arranque, crea ahora la cuenta en http://127.0.0.1:%EXODUS_PORT%/configurar
+echo.
+echo Si es el primer arranque, crea la cuenta en http://127.0.0.1:%EXODUS_PORT%/configurar
+echo con el codigo que aparece a continuacion (si no aparece nada, la cuenta ya existe):
+docker compose -f docker\docker-compose.yml logs web 2>nul | findstr /C:"[exodus]"
 exit /b 0
 
 :failed

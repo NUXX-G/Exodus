@@ -61,38 +61,86 @@ export async function requireUser(): Promise<User> {
   redirect(hasOwner() ? "/entrar" : "/configurar");
 }
 
+/**
+ * Código de configuración de un solo uso. Mientras no exista la cuenta, el servidor genera un
+ * código aleatorio y lo escribe en su registro: solo quien puede leer los logs del servidor
+ * (el dueño de la máquina) puede crear la cuenta, aunque /configurar sea alcanzable desde fuera.
+ */
+const setupState = globalThis as unknown as { __exodusSetupCode?: string };
+
+export function announceSetupCode(): void {
+  if (setupState.__exodusSetupCode || hasOwner()) return;
+  setupState.__exodusSetupCode = crypto.randomBytes(10).toString("hex");
+  console.log(`[exodus] Código de configuración: ${setupState.__exodusSetupCode}`);
+  console.log("[exodus] Úsalo en /configurar para crear la cuenta de esta instancia.");
+}
+
+function setupCodeMatches(code: string): boolean {
+  const expected = setupState.__exodusSetupCode;
+  if (!expected) return false;
+  const a = crypto.createHash("sha256").update(code.trim().toLowerCase()).digest();
+  const b = crypto.createHash("sha256").update(expected).digest();
+  return crypto.timingSafeEqual(a, b);
+}
+
+export type SetupResult = "ok" | "codigo" | "existe" | "espera";
+
 /** Crea la cuenta de la instancia. Falla si ya existe: no hay registro abierto. */
-export async function createOwner(username: string, password: string): Promise<boolean> {
+export async function createOwner(username: string, password: string, code: string): Promise<SetupResult> {
+  const now = Date.now();
+  const key = `setup:${await clientKey()}`;
+  const fails = (failsByClient.get(key) ?? []).filter((t) => t > now - WINDOW_MS);
+  if (fails.length >= MAX_FAILS) return "espera";
+  if (!setupCodeMatches(code)) {
+    failsByClient.set(key, [...fails, now]);
+    return hasOwner() ? "existe" : "codigo";
+  }
+
   const db = getDb();
   const created = db.transaction((tx) => {
     const exists = tx.select({ n: sql<number>`count(*)` }).from(users).where(isNotNull(users.passwordHash)).get()!.n;
     if (exists > 0) return null;
     return tx.insert(users).values({ username, passwordHash: hashPassword(password) }).returning({ id: users.id }).get();
   });
-  if (!created) return false;
+  if (!created) return "existe";
+  setupState.__exodusSetupCode = undefined;
   await startSession(created.id);
-  return true;
+  return "ok";
 }
 
-// Freno a la fuerza bruta. En memoria: basta para un único proceso y se reinicia con él.
+// Freno a la fuerza bruta, por dirección de cliente: un atacante agota SUS intentos sin poder
+// bloquear al dueño, que entra desde otra dirección. En memoria: basta para un único proceso.
 const MAX_FAILS = 5;
 const WINDOW_MS = 10 * 60_000;
-const fails: number[] = [];
+const MAX_TRACKED = 10_000;
+const failsByClient = new Map<string, number[]>();
+
+/**
+ * Dirección del cliente. Detrás de Caddy es la última entrada de X-Forwarded-For (la que añade
+ * el proxy, no falsificable por el cliente). Sin proxy solo se llega por localhost o túnel SSH.
+ */
+async function clientKey(): Promise<string> {
+  const forwarded = (await headers()).get("x-forwarded-for");
+  return forwarded?.split(",").pop()?.trim() || "directo";
+}
 
 export type LoginResult = "ok" | "credenciales" | "espera";
 
 export async function login(username: string, password: string): Promise<LoginResult> {
   const now = Date.now();
-  while (fails.length && fails[0] < now - WINDOW_MS) fails.shift();
+  const key = await clientKey();
+  const fails = (failsByClient.get(key) ?? []).filter((t) => t > now - WINDOW_MS);
   if (fails.length >= MAX_FAILS) return "espera";
 
   const user = getDb().select().from(users).where(eq(users.username, username)).get();
   // Se calcula el hash aunque el usuario no exista para no revelarlo por el tiempo de respuesta.
   const ok = verifyPassword(password, user?.passwordHash ?? "scrypt$15$AAAAAAAAAAAAAAAAAAAAAA==$AA==") && !!user;
   if (!ok) {
-    fails.push(now);
+    if (failsByClient.size >= MAX_TRACKED) failsByClient.clear(); // cota de memoria
+    failsByClient.set(key, [...fails, now]);
     return "credenciales";
   }
+  failsByClient.delete(key);
   await startSession(user.id);
   return "ok";
 }
