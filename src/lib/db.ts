@@ -4,7 +4,6 @@ import path from "node:path";
 import Database from "better-sqlite3";
 import { drizzle, type BetterSQLite3Database } from "drizzle-orm/better-sqlite3";
 import { migrate } from "drizzle-orm/better-sqlite3/migrator";
-import { eq } from "drizzle-orm";
 import * as schema from "@db/schema";
 
 type Db = BetterSQLite3Database<typeof schema>;
@@ -29,17 +28,6 @@ function open(): Db {
 
 export function getDb(): Db {
   return (globalForDb.__exodusDb ??= open());
-}
-
-/**
- * Fase 1: instancia privada de un solo estudiante. Se crea (si no existe) el usuario
- * local y todas las operaciones se asocian a él. El esquema ya soporta varios usuarios.
- */
-export function getCurrentUser(): schema.User {
-  const db = getDb();
-  const username = process.env.EXODUS_USER ?? "exodus";
-  db.insert(schema.users).values({ username }).onConflictDoNothing().run();
-  return db.select().from(schema.users).where(eq(schema.users.username, username)).get()!;
 }
 
 export { schema };
