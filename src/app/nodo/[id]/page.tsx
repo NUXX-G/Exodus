@@ -6,8 +6,11 @@ import { AREAS } from "@/lib/areas";
 import { getSessionUser, requireUser } from "@/lib/auth";
 import { linkResolverFor, renderMarkdown } from "@/lib/markdown";
 import { getCompleted, getRevealedLevels, recordOpen, stateOf } from "@/lib/progress";
-import { loadVault } from "@/lib/vault";
+import { attachmentInfo, loadVault } from "@/lib/vault";
 import { revealHintAction } from "./actions";
+
+const formatBytes = (n: number) =>
+  n < 1024 ? `${n} B` : n < 1024 * 1024 ? `${(n / 1024).toFixed(1)} KiB` : `${(n / 1024 / 1024).toFixed(1)} MiB`;
 
 export const dynamic = "force-dynamic";
 
@@ -44,6 +47,7 @@ export default async function PaginaNodo({ params }: Props) {
   const html = await renderMarkdown(node.body, linkResolverFor(vault));
   const area = AREAS[node.area];
   const nextHint = revealed.length + 1;
+  const attachments = attachmentInfo(node);
 
   return (
     <main className="pagina nodo-pagina">
@@ -99,6 +103,26 @@ export default async function PaginaNodo({ params }: Props) {
             <FlagForm nodeId={node.id} locked={state === "locked"} />
           )}
         </section>
+
+        {attachments.length > 0 && (
+          <section>
+            <h2>Archivos del reto</h2>
+            <ul className="lista adjuntos">
+              {attachments.map((a) => (
+                <li key={a.name}>
+                  <a href={`/api/adjunto/${node.id}/${encodeURIComponent(a.name)}`} download>
+                    <span>{a.name}</span>
+                    <small>{formatBytes(a.size)}</small>
+                  </a>
+                  <code className="hash" title="SHA-256">
+                    {a.sha256}
+                  </code>
+                </li>
+              ))}
+            </ul>
+            <p className="nota">Ejecútalos solo en una máquina virtual o un contenedor desechable.</p>
+          </section>
+        )}
 
         {node.hints.length > 0 && (
           <section>

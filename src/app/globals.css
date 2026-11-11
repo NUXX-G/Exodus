@@ -458,6 +458,19 @@ h3 {
   margin-top: 8px;
 }
 
+.adjuntos .hash {
+  display: block;
+  padding-bottom: 9px;
+  color: var(--tiza-tenue);
+  font-family: var(--fuente-codigo), monospace;
+  font-size: 0.6875rem;
+  overflow-wrap: anywhere;
+}
+
+.adjuntos a {
+  padding-bottom: 4px;
+}
+
 .fuentes {
   margin: 0;
   padding-left: 18px;
