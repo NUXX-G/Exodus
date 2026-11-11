@@ -8,21 +8,16 @@ junto con `CLAUDE.md` y `README.md`.
 ## Estado en una línea
 
 Plataforma completa y verificada (árbol, lectura, flags, pistas, heatmap, cuenta con contraseña,
-Docker, CI). 14 de 27 nodos tienen teoría completa y reto: la raíz y los niveles 1, 2 y 3 enteros.
+Docker, CI). 22 de 27 nodos tienen teoría completa y reto: la raíz y los niveles 1 a 4 enteros.
 
 ## Ramas y pull requests
 
-El trabajo va en PR apilados; **hay que fusionarlos en orden** (el agente no tiene permiso para
-fusionar):
+Los PR #1 a #5 están fusionados en `main`. Cada unidad de trabajo nueva va en su rama y su PR
+contra `main`, y se fusiona con CI en verde.
 
-| PR | Rama | Base | Contenido |
-|---|---|---|---|
-| #1 | `ci/pipeline` | `main` | CI, tests, arreglo de la imagen Docker, filtros de seguridad del render |
-| #2 | `feat/auth` | `ci/pipeline` | Cuenta única, sesiones, código de configuración, HTTPS con Caddy |
-| #3 | `content/nivel-2` | `feat/auth` | Seis nodos de nivel 2 y este documento |
-| #4 | `content/nivel-3` | `content/nivel-2` | Cuatro nodos de nivel 3 |
-
-Al fusionar #1 borrando su rama, GitHub reapunta #2 a `main`, y así sucesivamente.
+Lección aprendida: con PR apilados, fusionar uno **sin borrar su rama** no reapunta el siguiente a
+`main`, y este acaba fusionado en la rama intermedia. Por eso hizo falta el #5. O se borra la rama
+al fusionar, o se apunta cada PR directamente a `main`.
 
 ## Completado
 
@@ -66,6 +61,14 @@ Al fusionar #1 borrando su rama, GitHub reapunta #2 a `main`, y así sucesivamen
 | 3 | `fis-mecanica-clasica` | Periodo exacto del péndulo, ecuación de Kepler, modos normales |
 | 3 | `ing-senales-sistemas` | Aliasing, energía de una convolución y pico de una DFT |
 | 3 | `ing-arquitectura-computadores` | Fallos de caché en el producto de matrices |
+| 4 | `sec-criptografia` | Fermat contra RSA, Pohlig-Hellman y conteo de puntos de una curva elíptica |
+| 4 | `sys-ensamblador-x86-64` | Leer un hash y una recursión en System V AMD64 |
+| 4 | `fis-electromagnetismo` | Potencial de una placa, espira hexagonal y Fresnel |
+| 4 | `fis-termo-estadistica` | Sólidos de Einstein, Ising 4×4 y anomalía de Schottky |
+| 4 | `fis-mecanica-cuantica` | Pozo finito, oscilaciones de Rabi y entropía de entrelazamiento |
+| 4 | `rob-cinematica` | Ángulo de rotación, inversa de un brazo 3R y manipulabilidad |
+| 4 | `rob-control` | Margen de fase, pico de la respuesta a escalón y LQR |
+| 4 | `ia-aprendizaje-estadistico` | Regresión polinómica, LOOCV y regresión logística |
 
 ## Verificado y no verificado
 
@@ -74,8 +77,8 @@ Al fusionar #1 borrando su rama, GitHub reapunta #2 a `main`, y así sucesivamen
   incorrecta, acceso, redirecciones sin sesión.
 - **Docker**: imagen construida y arrancada en local; escribe `database/exodus.db` en el host;
   creación de cuenta probada contra el contenedor. CI lo repite en cada push.
-- **Flags**: las catorce se calculan con scripts que contrastan cada resultado por un segundo
-  método, y `.soluciones/verificar.ts` comprueba que cada una valida contra el hash de su nodo. Los dos retos en C (`nodo-ejemplo`, `sys-c-memoria`) se compilaron además con GCC 14.
+- **Flags**: las veintidós se calculan con scripts que contrastan cada resultado por un segundo
+  método, y `.soluciones/verificar.ts` comprueba que cada una valida contra el hash de su nodo. Los dos retos en C (`nodo-ejemplo`, `sys-c-memoria`) y el listado de `sys-ensamblador-x86-64` se compilaron además con GCC 14 (imagen Docker `gcc:14`; en Windows no hay GCC nativo).
   Los scripts están en `.soluciones/` (ignorada por git, solo en la máquina de desarrollo).
 - **Sin probar**: el perfil `https` con un dominio real (solo `caddy validate`), y `deploy.bat`
   ejecutado como tal (se probaron sus comandos por separado).
@@ -84,16 +87,6 @@ Al fusionar #1 borrando su rama, GitHub reapunta #2 a `main`, y así sucesivamen
 ## Pendiente, por orden
 
 ### 1. Contenido: nodos base sin teoría ni reto
-
-Nivel 4
-- [ ] `fis-electromagnetismo`
-- [ ] `fis-termo-estadistica`
-- [ ] `fis-mecanica-cuantica`
-- [ ] `rob-control`
-- [ ] `rob-cinematica`
-- [ ] `sys-ensamblador-x86-64`
-- [ ] `sec-criptografia`
-- [ ] `ia-aprendizaje-estadistico`
 
 Nivel 5 y 6
 - [ ] `ing-circuitos`
