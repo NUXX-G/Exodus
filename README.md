@@ -22,7 +22,11 @@ Plataforma privada, autohospedada y de conocimiento absoluto diseñada para el d
 .
 ├── vault/            # Archivos Markdown de temarios y retos (Sincronizado con Obsidian)
 ├── src/              # Código fuente de la plataforma web (Frontend y Backend)
+│   ├── app/          #   Rutas Next.js: árbol (/), nodo (/nodo/[id]), /api/health
+│   ├── components/   #   Árbol de habilidades, heatmap, formulario de flag
+│   └── lib/          #   Parser del vault, render Markdown, progreso, conexión SQLite
 ├── database/         # Esquemas y migraciones de base de datos
+├── scripts/          # Utilidades de línea de comandos para el vault
 ├── docker/           # Configuración de contenedores y despliegue
 ├── CLAUDE.md         # Contexto permanente y directrices para agentes de IA
 └── FASE_1.md         # Especificación de arranque y arquitectura base
@@ -31,10 +35,51 @@ Plataforma privada, autohospedada y de conocimiento absoluto diseñada para el d
 
 ## Puesta en Marcha
 
-1. Clonar el repositorio en tu entorno local o VPS.
-2. Configurar las variables de entorno necesarias para el despliegue.
-3. Levantar los servicios mediante Docker Compose:
-```bash
-docker compose -f docker/docker-compose.yml up -d
+### Desarrollo local
 
+```bash
+npm install
+npm run dev          # http://localhost:3000
 ```
+
+La base de datos SQLite se crea y migra sola en `database/exodus.db` al primer arranque.
+
+| Comando | Qué hace |
+| --- | --- |
+| `npm run vault:check` | Valida el vault: frontmatter, ids duplicados, prerequisitos inexistentes, ciclos |
+| `npm run vault:flag -- "EXODUS{...}"` | Genera el `ctf_flag: "sha256:..."` para el frontmatter sin dejar la flag en claro |
+| `npm run db:generate` | Genera una migración SQL tras cambiar `database/schema.ts` |
+| `npm run typecheck` | Comprobación de tipos |
+
+### VPS (Docker)
+
+```bash
+./deploy.sh        # Linux / macOS
+deploy.bat         # Windows
+# equivalente: docker compose -f docker/docker-compose.yml up -d --build
+```
+
+La Fase 1 no incluye autenticación: el puerto se publica solo en `127.0.0.1`. Accede por túnel SSH
+(`ssh -L 3000:127.0.0.1:3000 usuario@vps`) o detrás de un proxy inverso con autenticación.
+El vault se monta en solo lectura; para publicar contenido nuevo basta `git pull` en el host.
+
+## Formato de un nodo
+
+Cualquier `.md` del vault con `id` en su frontmatter es un nodo del árbol. Las notas sin `id` se ignoran.
+
+```yaml
+---
+id: sys-c-memoria              # único, kebab-case
+title: C y el modelo de memoria
+area: bajo-nivel               # troncal | matematicas | fisica | ingenieria | robotica | bajo-nivel | ciberseguridad | ia-cuantica
+trunk_level: 1                 # fila en el árbol (0 = raíz)
+prerequisites: [nodo-ejemplo]  # ids de otros nodos
+academic_sources:
+  - "Kernighan & Ritchie. The C Programming Language, 2ª ed."
+ctf_flag: "sha256:<hex>"       # o la flag en claro; null = nodo sin reto todavía
+hints: ["pista 1", "pista 2", "pista 3"]   # opcional, máximo 3, se revelan en orden
+---
+```
+
+El cuerpo admite GFM, LaTeX (`$...$`, `$$...$$`), bloques de código en cualquier lenguaje,
+`[[wikilinks]]` y callouts de Obsidian (`> [!warning] Título`).
