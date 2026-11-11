@@ -1,0 +1,146 @@
+/**
+ * Motor de renderizado: Markdown de Obsidian → HTML en el servidor.
+ *  - GFM (tablas, listas de tareas, notas al pie)
+ *  - LaTeX ($…$ y $$…$$) compuesto con MathJax a SVG: sin JS ni fuentes en el cliente
+ *  - Resaltado de código con Shiki (gramáticas de TextMate, cualquier lenguaje, carga perezosa)
+ *  - Sintaxis de Obsidian: [[wikilinks]] / [[destino|alias]] y callouts `> [!tipo] Título`
+ * El HTML crudo incrustado en el Markdown se descarta (remark-rehype sin allowDangerousHtml).
+ */
+import { unified, type Processor } from "unified";
+import remarkParse from "remark-parse";
+import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+import remarkRehype from "remark-rehype";
+import rehypeMathjax from "rehype-mathjax";
+import rehypeShiki from "@shikijs/rehype";
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
+import rehypeSlug from "rehype-slug";
+import rehypeStringify from "rehype-stringify";
+import { visit, SKIP } from "unist-util-visit";
+import type { Blockquote, Link, PhrasingContent, Root, Text } from "mdast";
+import type { Vault } from "./vault";
+
+/** Resuelve el destino de un wikilink a un id de nodo (por id o por nombre de archivo). */
+export type LinkResolver = (target: string) => { id: string; title: string } | null;
+
+export function linkResolverFor(vault: Vault): LinkResolver {
+  const byName = new Map<string, string>();
+  for (const node of vault.nodes.values()) {
+    byName.set(node.id.toLowerCase(), node.id);
+    const base = node.file.split("/").pop()!.replace(/\.md$/i, "").toLowerCase();
+    if (!byName.has(base)) byName.set(base, node.id);
+  }
+  return (target) => {
+    const key = target.split("#")[0].split("/").pop()!.replace(/\.md$/i, "").trim().toLowerCase();
+    const id = byName.get(key);
+    return id ? { id, title: vault.nodes.get(id)!.title } : null;
+  };
+}
+
+const WIKILINK = /\[\[([^\[\]|]+)(?:\|([^\[\]]+))?\]\]/g;
+
+function remarkWikilinks(options: { resolve: () => LinkResolver }) {
+  return (tree: Root) => {
+    const resolve = options.resolve();
+    visit(tree, "text", (node: Text, index, parent) => {
+      if (!parent || index === undefined || !node.value.includes("[[")) return;
+      const out: PhrasingContent[] = [];
+      let last = 0;
+      for (const m of node.value.matchAll(WIKILINK)) {
+        if (m.index > last) out.push({ type: "text", value: node.value.slice(last, m.index) });
+        const hit = resolve(m[1]);
+        const label = (m[2] ?? hit?.title ?? m[1]).trim();
+        const link: Link = {
+          type: "link",
+          url: hit ? `/nodo/${hit.id}` : "#",
+          children: [{ type: "text", value: label }],
+          data: {
+            hProperties: hit
+              ? { className: ["wikilink"] }
+              : { className: ["wikilink", "wikilink-rota"], title: `Nota no encontrada: ${m[1]}`, ariaDisabled: "true" },
+          },
+        };
+        out.push(link);
+        last = m.index + m[0].length;
+      }
+      if (out.length === 0) return;
+      if (last < node.value.length) out.push({ type: "text", value: node.value.slice(last) });
+      parent.children.splice(index, 1, ...out);
+      return [SKIP, index + out.length];
+    });
+  };
+}
+
+const CALLOUT = /^\[!([a-zA-Z-]+)\][+-]?[ \t]*(.*)(?:\n|$)/;
+
+function remarkCallouts() {
+  return (tree: Root) => {
+    visit(tree, "blockquote", (node: Blockquote) => {
+      const first = node.children[0];
+      if (first?.type !== "paragraph") return;
+      const head = first.children[0];
+      if (head?.type !== "text") return;
+      const m = CALLOUT.exec(head.value);
+      if (!m) return;
+
+      const kind = m[1].toLowerCase();
+      // El título es el resto de la primera línea; el contenido sigue en la línea siguiente.
+      const title = m[2].trim() || kind.charAt(0).toUpperCase() + kind.slice(1);
+      head.value = head.value.slice(m[0].length);
+      if (head.value === "" && first.children.length === 1) node.children.shift();
+
+      node.children.unshift({
+        type: "paragraph",
+        children: [{ type: "text", value: title }],
+        data: { hProperties: { className: ["callout-titulo"] } },
+      });
+      node.data = { hName: "aside", hProperties: { className: ["callout", `callout-${kind}`] } };
+    });
+  };
+}
+
+const sanitizeSchema = {
+  ...defaultSchema,
+  clobberPrefix: "",
+  tagNames: [...(defaultSchema.tagNames ?? []), "aside"],
+  attributes: {
+    ...defaultSchema.attributes,
+    code: [["className", /^language-./, "math-inline", "math-display"]],
+    aside: [["className", /^callout/]],
+    p: [...(defaultSchema.attributes?.p ?? []), ["className", "callout-titulo"]],
+    a: [...(defaultSchema.attributes?.a ?? []), ["className", "wikilink", "wikilink-rota"], "title", "ariaDisabled"],
+  },
+} satisfies typeof defaultSchema;
+
+// El resolver cambia en cada render (el vault se relee); el pipeline se construye una sola vez.
+let currentResolver: LinkResolver = () => null;
+let processor: Processor<any, any, any, any, any> | undefined;
+
+function getProcessor() {
+  return (processor ??= unified()
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkMath)
+    .use(remarkCallouts)
+    .use(remarkWikilinks, { resolve: () => currentResolver })
+    .use(remarkRehype)
+    // Saneado ANTES de MathJax/Shiki: filtra URLs peligrosas (javascript:) y atributos no previstos
+    // del Markdown, sin tocar el SVG y los estilos que generan después los plugins de confianza.
+    .use(rehypeSanitize, sanitizeSchema)
+    .use(rehypeSlug)
+    // MathJax antes que Shiki: consume los bloques `math` para que no se traten como código.
+    .use(rehypeMathjax)
+    .use(rehypeShiki, {
+      theme: "night-owl",
+      lazy: true,
+      defaultLanguage: "text",
+      fallbackLanguage: "text",
+    })
+    .use(rehypeStringify));
+}
+
+export async function renderMarkdown(markdown: string, resolve: LinkResolver): Promise<string> {
+  currentResolver = resolve;
+  const file = await getProcessor().process(markdown);
+  return String(file);
+}
