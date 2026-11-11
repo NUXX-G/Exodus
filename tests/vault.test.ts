@@ -111,3 +111,17 @@ test("adjuntos: valida existencia, nombres y que la ruta no salga de la carpeta 
   for (const bad of ["../x", "a/b", "..", ".env", ""]) assert.throws(() => attachmentPath("con", bad));
   assert.throws(() => attachmentPath("../con", "reto.bin"));
 });
+
+test("adjuntos: un enlace simbólico no se sirve aunque apunte a un archivo real", async (t) => {
+  const { readAttachment } = await import("../src/lib/vault");
+  const dir = tempVault({ "s.md": node("s", "attachments: [ok.bin, enlace.bin]\n"), "_adjuntos/s/ok.bin": "ok", "secreto.txt": "no" });
+  try {
+    fs.symlinkSync(path.join(dir, "secreto.txt"), path.join(dir, "_adjuntos", "s", "enlace.bin"));
+  } catch {
+    t.skip("el sistema no permite crear enlaces simbólicos");
+    return;
+  }
+  assert.equal(readAttachment("s", "ok.bin")?.toString(), "ok");
+  assert.equal(readAttachment("s", "enlace.bin"), null);
+  assert.ok(loadVault().issues.some((i) => /enlace\.bin no es un archivo normal/.test(i.message)));
+});

@@ -1,6 +1,5 @@
-import fs from "node:fs";
 import { getSessionUser } from "@/lib/auth";
-import { attachmentPath, loadVault } from "@/lib/vault";
+import { loadVault, readAttachment } from "@/lib/vault";
 
 export const dynamic = "force-dynamic";
 
@@ -16,12 +15,9 @@ export async function GET(_req: Request, { params }: Ctx) {
   const node = loadVault().nodes.get(id);
   if (!node || !node.attachments.includes(name)) return new Response("No encontrado", { status: 404 });
 
-  let data: Buffer;
-  try {
-    data = fs.readFileSync(attachmentPath(node.id, name));
-  } catch {
-    return new Response("No encontrado", { status: 404 });
-  }
+  // Comprueba de nuevo en el momento de servir: sin enlaces simbólicos, archivo normal, tamaño máximo.
+  const data = readAttachment(node.id, name);
+  if (!data) return new Response("No encontrado", { status: 404 });
   return new Response(new Uint8Array(data), {
     headers: {
       // Siempre como descarga opaca: un adjunto nunca se interpreta ni se ejecuta en el navegador.

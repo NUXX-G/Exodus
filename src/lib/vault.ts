@@ -154,7 +154,7 @@ export function loadVault(): Vault {
         issues.push({ file: node.file, message: `adjunto inexistente: ${ATTACHMENTS_DIR}/${node.id}/${name}` });
         continue;
       }
-      if (!st.isFile()) issues.push({ file: node.file, message: `el adjunto ${name} no es un archivo normal` });
+      if (!st.isFile()) issues.push({ file: node.file, message: `el adjunto ${name} no es un archivo normal (¿enlace simbólico?)` });
       else if (st.size > MAX_ATTACHMENT_BYTES) issues.push({ file: node.file, message: `el adjunto ${name} supera ${MAX_ATTACHMENT_BYTES} bytes` });
     }
   }
@@ -202,16 +202,39 @@ export interface AttachmentInfo {
   sha256: string;
 }
 
-/** Tamaño y SHA-256 de cada adjunto existente, para mostrarlos junto al enlace de descarga. */
+/**
+ * Lee un adjunto repitiendo en el momento de servirlo todas las comprobaciones de vault:check
+ * (que solo avisa): no sigue enlaces simbólicos (O_NOFOLLOW en el archivo, realpath para los
+ * directorios intermedios), exige un archivo normal y respeta el tamaño máximo. Devuelve null si
+ * algo falla.
+ */
+export function readAttachment(nodeId: string, name: string): Buffer | null {
+  let fd: number | undefined;
+  try {
+    const full = attachmentPath(nodeId, name);
+    const root = fs.realpathSync(vaultRoot());
+    const dir = fs.realpathSync(path.dirname(full));
+    if (dir !== path.join(root, ATTACHMENTS_DIR, nodeId)) return null;
+    // O_NOFOLLOW no existe en Windows (vale 0); allí el lstat previo rechaza los enlaces.
+    if (!fs.lstatSync(full).isFile()) return null;
+    fd = fs.openSync(full, fs.constants.O_RDONLY | (fs.constants.O_NOFOLLOW ?? 0));
+    const st = fs.fstatSync(fd);
+    if (!st.isFile() || st.size > MAX_ATTACHMENT_BYTES) return null;
+    return fs.readFileSync(fd);
+  } catch {
+    return null;
+  } finally {
+    if (fd !== undefined) fs.closeSync(fd);
+  }
+}
+
+/** Tamaño y SHA-256 de cada adjunto servible, para mostrarlos junto al enlace de descarga. */
 export function attachmentInfo(node: VaultNode): AttachmentInfo[] {
   const out: AttachmentInfo[] = [];
   for (const name of node.attachments) {
-    try {
-      const data = fs.readFileSync(attachmentPath(node.id, name));
-      out.push({ name, size: data.length, sha256: crypto.createHash("sha256").update(data).digest("hex") });
-    } catch {
-      // Un adjunto que falta ya aparece como problema en vault:check; aquí simplemente no se lista.
-    }
+    const data = readAttachment(node.id, name);
+    // Un adjunto inválido ya aparece en vault:check; aquí simplemente no se lista.
+    if (data) out.push({ name, size: data.length, sha256: crypto.createHash("sha256").update(data).digest("hex") });
   }
   return out;
 }
