@@ -1,0 +1,48 @@
+# Despliegue (local o VPS), desde la raíz del repositorio:
+#   ./deploy.sh            (Linux / macOS)
+#   deploy.bat             (Windows)
+#   docker compose -f docker/docker-compose.yml up -d --build
+#
+# La app NO tiene autenticación todavía, por eso el puerto se publica solo en
+# 127.0.0.1. En un VPS accede por túnel SSH (ssh -L 3000:127.0.0.1:3000 usuario@vps)
+# o detrás de un proxy inverso con autenticación. No pongas EXODUS_BIND=0.0.0.0 sin eso.
+
+name: exodus
+
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: exodus-web:latest
+    restart: unless-stopped
+    # El proceso escribe database/exodus.db en el host: debe correr con el UID del dueño
+    # del repositorio. deploy.sh exporta EXODUS_UID/EXODUS_GID automáticamente.
+    user: "${EXODUS_UID:-1000}:${EXODUS_GID:-1000}"
+    ports:
+      - "${EXODUS_BIND:-127.0.0.1}:${EXODUS_PORT:-3000}:3000"
+    environment:
+      EXODUS_USER: ${EXODUS_USER:-exodus}
+      TZ: ${TZ:-Europe/Madrid}
+    volumes:
+      # Vault de Obsidian, solo lectura. Se actualiza con `git pull` en el host, sin reconstruir.
+      - ../vault:/vault:ro
+      # SQLite: el archivo vive en el host como database/exodus.db (progreso, flags, actividad).
+      - ../database:/data
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /app/.next/cache
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
