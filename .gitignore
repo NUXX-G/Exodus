@@ -1,0 +1,17 @@
+node_modules/
+.next/
+next-env.d.ts
+*.tsbuildinfo
+
+# Base de datos local (el esquema y las migraciones sí se versionan)
+database/exodus.db*
+
+.playwright-mcp/
+
+# Entorno
+.env
+.env.local
+
+# Obsidian: estado local del workspace, no contenido
+vault/.obsidian/workspace*.json
+vault/.trash/
