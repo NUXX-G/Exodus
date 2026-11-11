@@ -3,9 +3,13 @@
 #   deploy.bat             (Windows)
 #   docker compose -f docker/docker-compose.yml up -d --build
 #
-# La app NO tiene autenticación todavía, por eso el puerto se publica solo en
-# 127.0.0.1. En un VPS accede por túnel SSH (ssh -L 3210:127.0.0.1:3210 usuario@vps)
-# o detrás de un proxy inverso con autenticación. No pongas EXODUS_BIND=0.0.0.0 sin eso.
+# Acceso:
+#   - Local o por túnel SSH (por defecto): el puerto se publica solo en 127.0.0.1.
+#       ssh -L 3210:127.0.0.1:3210 usuario@vps
+#   - VPS con dominio y HTTPS automático: perfil `https` (ver docker/Caddyfile).
+#       EXODUS_DOMAIN=exodus.midominio.com ./deploy.sh
+# La primera visita crea la cuenta de la instancia en /configurar: hazla nada más desplegar.
+# No publiques el puerto con EXODUS_BIND=0.0.0.0: las contraseñas viajarían sin cifrar.
 
 name: exodus
 
@@ -22,12 +26,11 @@ services:
     ports:
       - "${EXODUS_BIND:-127.0.0.1}:${EXODUS_PORT:-3210}:3000"
     environment:
-      EXODUS_USER: ${EXODUS_USER:-exodus}
       TZ: ${TZ:-Europe/Madrid}
     volumes:
       # Vault de Obsidian, solo lectura. Se actualiza con `git pull` en el host, sin reconstruir.
       - ../vault:/vault:ro
-      # SQLite: el archivo vive en el host como database/exodus.db (progreso, flags, actividad).
+      # SQLite: el archivo vive en el host como database/exodus.db (cuenta, progreso, flags, actividad).
       - ../database:/data
     read_only: true
     tmpfs:
@@ -46,3 +49,31 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+
+  # Proxy inverso con certificado de Let's Encrypt. Solo arranca con `--profile https`.
+  caddy:
+    profiles: ["https"]
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      - web
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      EXODUS_DOMAIN: ${EXODUS_DOMAIN:-localhost}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_BIND_SERVICE
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  caddy-data:
+  caddy-config:

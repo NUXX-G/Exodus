@@ -27,6 +27,7 @@ goto wait
 
 :ready
 echo Exodus esta en marcha: http://127.0.0.1:%EXODUS_PORT%
+echo Si es el primer arranque, crea ahora la cuenta en http://127.0.0.1:%EXODUS_PORT%/configurar
 exit /b 0
 
 :failed
