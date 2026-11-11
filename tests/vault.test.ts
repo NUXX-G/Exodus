@@ -88,3 +88,40 @@ test("render: LaTeX, código, wikilinks, callouts y descarte de HTML peligroso",
   assert.doesNotMatch(html, /javascript:/);
   assert.ok(html.includes('href="https://example.org"'));
 });
+
+test("adjuntos: valida existencia, nombres y que la ruta no salga de la carpeta del nodo", async () => {
+  const { attachmentInfo, attachmentPath } = await import("../src/lib/vault");
+  const dir = tempVault({
+    "con.md": node("con", "attachments: [reto.bin]\n"),
+    "falta.md": node("falta", "attachments: [no-esta.bin]\n"),
+    "malo.md": node("malo", 'attachments: ["../con.md"]\n'),
+    "oculto.md": node("oculto", "attachments: [.env]\n"),
+    "_adjuntos/con/reto.bin": "\x7fELF",
+  });
+  const { nodes, issues } = loadVault();
+  assert.deepEqual(nodes.get("con")?.attachments, ["reto.bin"]);
+  assert.ok(issues.some((i) => i.file === "falta.md" && /adjunto inexistente/.test(i.message)));
+  assert.ok(!nodes.has("malo") && issues.some((i) => i.file === "malo.md" && /adjunto inválido/.test(i.message)));
+  assert.ok(!nodes.has("oculto"));
+
+  const [info] = attachmentInfo(nodes.get("con")!);
+  assert.equal(info.size, 4);
+  assert.equal(info.sha256, sha256("\x7fELF"));
+  assert.equal(attachmentPath("con", "reto.bin"), path.join(dir, "_adjuntos", "con", "reto.bin"));
+  for (const bad of ["../x", "a/b", "..", ".env", ""]) assert.throws(() => attachmentPath("con", bad));
+  assert.throws(() => attachmentPath("../con", "reto.bin"));
+});
+
+test("adjuntos: un enlace simbólico no se sirve aunque apunte a un archivo real", async (t) => {
+  const { readAttachment } = await import("../src/lib/vault");
+  const dir = tempVault({ "s.md": node("s", "attachments: [ok.bin, enlace.bin]\n"), "_adjuntos/s/ok.bin": "ok", "secreto.txt": "no" });
+  try {
+    fs.symlinkSync(path.join(dir, "secreto.txt"), path.join(dir, "_adjuntos", "s", "enlace.bin"));
+  } catch {
+    t.skip("el sistema no permite crear enlaces simbólicos");
+    return;
+  }
+  assert.equal(readAttachment("s", "ok.bin")?.toString(), "ok");
+  assert.equal(readAttachment("s", "enlace.bin"), null);
+  assert.ok(loadVault().issues.some((i) => /enlace\.bin no es un archivo normal/.test(i.message)));
+});

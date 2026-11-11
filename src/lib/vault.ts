@@ -16,6 +16,8 @@
  *     - "Concepto"
  *     - "Herramienta o comando"
  *     - "Documentación oficial"
+ *   attachments:                   # opcional: archivos del reto (binarios, capturas...), servidos
+ *     - reto.elf                   # desde vault/_adjuntos/<id>/ solo a usuarios con sesión
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -23,6 +25,13 @@ import crypto from "node:crypto";
 import matter from "gray-matter";
 import { z } from "zod";
 import { AREA_IDS, type AreaId } from "./areas";
+
+/** Directorio, dentro del vault, con una carpeta de adjuntos por id de nodo. */
+export const ATTACHMENTS_DIR = "_adjuntos";
+/** Sin barras ni punto inicial: un nombre válido no puede salir de la carpeta del nodo. */
+const ATTACHMENT_NAME = /^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/;
+const MAX_ATTACHMENTS = 10;
+export const MAX_ATTACHMENT_BYTES = 20 * 1024 * 1024;
 
 const frontmatterSchema = z.object({
   id: z
@@ -35,6 +44,11 @@ const frontmatterSchema = z.object({
   academic_sources: z.array(z.string()).nullish().transform((v) => v ?? []),
   ctf_flag: z.string().min(1).nullish().transform((v) => v ?? null),
   hints: z.array(z.string().min(1)).max(3).nullish().transform((v) => v ?? []),
+  attachments: z
+    .array(z.string().regex(ATTACHMENT_NAME, "nombre de adjunto inválido: solo letras, cifras, '.', '_' y '-', sin empezar por '.'"))
+    .max(MAX_ATTACHMENTS)
+    .nullish()
+    .transform((v) => v ?? []),
 });
 
 export interface VaultNode {
@@ -48,6 +62,8 @@ export interface VaultNode {
   ctfFlag: string | null;
   /** Solo servidor. Se entregan al cliente de una en una al revelarlas. */
   hints: string[];
+  /** Nombres de los archivos del reto, en vault/_adjuntos/<id>/. */
+  attachments: string[];
   /** Ruta relativa al vault, con `/`. */
   file: string;
   /** Cuerpo Markdown sin frontmatter. */
@@ -118,9 +134,29 @@ export function loadVault(): Vault {
       academicSources: fm.data.academic_sources,
       ctfFlag: fm.data.ctf_flag,
       hints: fm.data.hints,
+      attachments: fm.data.attachments,
       file,
       body: parsed.content,
     });
+  }
+
+  // Adjuntos: deben existir, ser archivos normales y no superar el tamaño máximo.
+  for (const node of nodes.values()) {
+    if (new Set(node.attachments).size !== node.attachments.length) {
+      issues.push({ file: node.file, message: "adjuntos repetidos" });
+    }
+    for (const name of node.attachments) {
+      const full = attachmentPath(node.id, name);
+      let st: fs.Stats;
+      try {
+        st = fs.lstatSync(full);
+      } catch {
+        issues.push({ file: node.file, message: `adjunto inexistente: ${ATTACHMENTS_DIR}/${node.id}/${name}` });
+        continue;
+      }
+      if (!st.isFile()) issues.push({ file: node.file, message: `el adjunto ${name} no es un archivo normal (¿enlace simbólico?)` });
+      else if (st.size > MAX_ATTACHMENT_BYTES) issues.push({ file: node.file, message: `el adjunto ${name} supera ${MAX_ATTACHMENT_BYTES} bytes` });
+    }
   }
 
   // Integridad del grafo: prerequisitos existentes y sin ciclos.
@@ -144,6 +180,63 @@ export function loadVault(): Vault {
   for (const id of nodes.keys()) visit(id, []);
 
   return { nodes, issues };
+}
+
+/**
+ * Ruta en disco de un adjunto. Solo acepta nombres que pasan ATTACHMENT_NAME, y comprueba
+ * además que el resultado queda dentro de la carpeta del nodo.
+ */
+export function attachmentPath(nodeId: string, name: string): string {
+  if (!ATTACHMENT_NAME.test(name) || !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(nodeId)) {
+    throw new Error("nombre de adjunto inválido");
+  }
+  const dir = path.join(vaultRoot(), ATTACHMENTS_DIR, nodeId);
+  const full = path.join(dir, name);
+  if (path.dirname(full) !== dir) throw new Error("nombre de adjunto inválido");
+  return full;
+}
+
+export interface AttachmentInfo {
+  name: string;
+  size: number;
+  sha256: string;
+}
+
+/**
+ * Lee un adjunto repitiendo en el momento de servirlo todas las comprobaciones de vault:check
+ * (que solo avisa): no sigue enlaces simbólicos (O_NOFOLLOW en el archivo, realpath para los
+ * directorios intermedios), exige un archivo normal y respeta el tamaño máximo. Devuelve null si
+ * algo falla.
+ */
+export function readAttachment(nodeId: string, name: string): Buffer | null {
+  let fd: number | undefined;
+  try {
+    const full = attachmentPath(nodeId, name);
+    const root = fs.realpathSync(vaultRoot());
+    const dir = fs.realpathSync(path.dirname(full));
+    if (dir !== path.join(root, ATTACHMENTS_DIR, nodeId)) return null;
+    // O_NOFOLLOW no existe en Windows (vale 0); allí el lstat previo rechaza los enlaces.
+    if (!fs.lstatSync(full).isFile()) return null;
+    fd = fs.openSync(full, fs.constants.O_RDONLY | (fs.constants.O_NOFOLLOW ?? 0));
+    const st = fs.fstatSync(fd);
+    if (!st.isFile() || st.size > MAX_ATTACHMENT_BYTES) return null;
+    return fs.readFileSync(fd);
+  } catch {
+    return null;
+  } finally {
+    if (fd !== undefined) fs.closeSync(fd);
+  }
+}
+
+/** Tamaño y SHA-256 de cada adjunto servible, para mostrarlos junto al enlace de descarga. */
+export function attachmentInfo(node: VaultNode): AttachmentInfo[] {
+  const out: AttachmentInfo[] = [];
+  for (const name of node.attachments) {
+    const data = readAttachment(node.id, name);
+    // Un adjunto inválido ya aparece en vault:check; aquí simplemente no se lista.
+    if (data) out.push({ name, size: data.length, sha256: crypto.createHash("sha256").update(data).digest("hex") });
+  }
+  return out;
 }
 
 export const sha256 = (s: string) => crypto.createHash("sha256").update(s, "utf8").digest("hex");
