@@ -29,6 +29,8 @@ Plataforma privada, autohospedada y de conocimiento absoluto diseñada para el d
 ├── scripts/          # Utilidades de línea de comandos para el vault
 ├── docker/           # Configuración de contenedores y despliegue
 ├── CLAUDE.md         # Contexto permanente y directrices para agentes de IA
+├── STATUS.md         # Estado del proyecto y cola de pendientes entre sesiones
+├── deploy.sh / .bat  # Despliegue en una línea
 └── FASE_1.md         # Especificación de arranque y arquitectura base
 
 ```
