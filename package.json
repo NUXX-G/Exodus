@@ -11,7 +11,8 @@
     "db:generate": "drizzle-kit generate",
     "db:studio": "drizzle-kit studio",
     "vault:check": "tsx scripts/vault-check.ts",
-    "vault:flag": "tsx scripts/flag-hash.ts"
+    "vault:flag": "tsx scripts/flag-hash.ts",
+    "test": "tsx --test tests/*.test.ts"
   },
   "dependencies": {
     "@shikijs/rehype": "^4.6.0",

@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  app:
+    name: Tipos, vault, tests y build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run vault:check
+      - run: npm test
+      - run: npm run build
+
+  docker:
+    name: Imagen Docker
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Construir y arrancar
+        run: |
+          export EXODUS_UID="$(id -u)" EXODUS_GID="$(id -g)"
+          docker compose -f docker/docker-compose.yml up -d --build
+      - name: Esperar a la comprobación de salud
+        run: |
+          for i in $(seq 1 45); do
+            if curl -fsS http://127.0.0.1:3210/api/health; then exit 0; fi
+            sleep 2
+          done
+          docker compose -f docker/docker-compose.yml logs web
+          exit 1

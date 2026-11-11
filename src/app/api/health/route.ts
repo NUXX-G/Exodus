@@ -11,6 +11,8 @@ export function GET() {
     const { nodes, issues } = loadVault();
     return Response.json({ ok: true, nodes: nodes.size, vaultIssues: issues.length });
   } catch (e) {
-    return Response.json({ ok: false, error: (e as Error).message }, { status: 503 });
+    // El detalle (rutas, errores de SQLite) se queda en el log del servidor.
+    console.error("[health]", e);
+    return Response.json({ ok: false }, { status: 503 });
   }
 }

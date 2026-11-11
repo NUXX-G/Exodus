@@ -18,6 +18,7 @@ import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
 import { visit, SKIP } from "unist-util-visit";
 import type { Blockquote, Link, PhrasingContent, Root, Text } from "mdast";
+import type { Element, Root as HastRoot } from "hast";
 import type { Vault } from "./vault";
 
 /** Resuelve el destino de un wikilink a un id de nodo (por id o por nombre de archivo). */
@@ -99,6 +100,20 @@ function remarkCallouts() {
   };
 }
 
+const SAFE_URL = /^(https?:|mailto:|\/|#)/i;
+
+/** Elimina href / xlink:href que no sean http(s), mailto, rutas internas o anclas (HTML y SVG). */
+function rehypeSafeLinks() {
+  return (tree: HastRoot) => {
+    visit(tree, "element", (el: Element) => {
+      for (const key of ["href", "xLinkHref"]) {
+        const value = el.properties?.[key];
+        if (typeof value === "string" && !SAFE_URL.test(value.trim())) delete el.properties[key];
+      }
+    });
+  };
+}
+
 const sanitizeSchema = {
   ...defaultSchema,
   clobberPrefix: "",
@@ -108,7 +123,13 @@ const sanitizeSchema = {
     code: [["className", /^language-./, "math-inline", "math-display"]],
     aside: [["className", /^callout/]],
     p: [...(defaultSchema.attributes?.p ?? []), ["className", "callout-titulo"]],
-    a: [...(defaultSchema.attributes?.a ?? []), ["className", "wikilink", "wikilink-rota"], "title", "ariaDisabled"],
+    // La primera definición de `className` gana: se sustituye la del esquema por defecto.
+    a: [
+      ["className", "wikilink", "wikilink-rota", "data-footnote-backref"],
+      ...(defaultSchema.attributes?.a ?? []).filter((d) => !(Array.isArray(d) && d[0] === "className")),
+      "title",
+      "ariaDisabled",
+    ],
   },
 } satisfies typeof defaultSchema;
 
@@ -136,6 +157,8 @@ function getProcessor() {
       defaultLanguage: "text",
       fallbackLanguage: "text",
     })
+    // MathJax corre después del saneado y admite \href{...}: segundo filtro solo de URLs.
+    .use(rehypeSafeLinks)
     .use(rehypeStringify));
 }
 

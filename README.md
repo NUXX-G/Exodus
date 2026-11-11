@@ -62,7 +62,7 @@ deploy.bat         # Windows
 ```
 
 La Fase 1 no incluye autenticación: el puerto se publica solo en `127.0.0.1`. Accede por túnel SSH
-(`ssh -L 3000:127.0.0.1:3000 usuario@vps`) o detrás de un proxy inverso con autenticación.
+(`ssh -L 3210:127.0.0.1:3210 usuario@vps`) o detrás de un proxy inverso con autenticación.
 El vault se monta en solo lectura; para publicar contenido nuevo basta `git pull` en el host.
 
 ## Formato de un nodo

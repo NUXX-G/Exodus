@@ -3,6 +3,11 @@
 
 FROM node:24-bookworm-slim AS deps
 WORKDIR /app
+# better-sqlite3 compila su binario nativo con node-gyp: hacen falta Python y un compilador de C++
+# solo en esta etapa; la imagen final no los lleva.
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends python3 make g++ \
+ && rm -rf /var/lib/apt/lists/*
 COPY package.json package-lock.json ./
 RUN --mount=type=cache,target=/root/.npm npm ci
 
