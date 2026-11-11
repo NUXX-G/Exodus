@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { getCurrentUser } from "@/lib/db";
+import { requireUser } from "@/lib/auth";
 import { revealNextHint, submitFlag } from "@/lib/progress";
 import { loadVault } from "@/lib/vault";
 
@@ -18,6 +18,7 @@ const MENSAJES = {
 } as const;
 
 export async function submitFlagAction(_prev: FlagFormState | null, form: FormData): Promise<FlagFormState> {
+  const user = await requireUser();
   const nodeId = String(form.get("nodeId") ?? "");
   const flag = String(form.get("flag") ?? "");
   const node = loadVault().nodes.get(nodeId);
@@ -25,7 +26,7 @@ export async function submitFlagAction(_prev: FlagFormState | null, form: FormDa
   if (!flag.trim()) return { tone: "error", message: "Escribe la flag antes de validar." };
   if (flag.length > 512) return { tone: "error", message: "La flag supera los 512 caracteres." };
 
-  const result = submitFlag(getCurrentUser().id, node, flag);
+  const result = submitFlag(user.id, node, flag);
   if (!result.ok) return { tone: "error", message: MENSAJES[result.reason] };
 
   revalidatePath("/");
@@ -34,9 +35,10 @@ export async function submitFlagAction(_prev: FlagFormState | null, form: FormDa
 }
 
 export async function revealHintAction(form: FormData): Promise<void> {
+  const user = await requireUser();
   const nodeId = String(form.get("nodeId") ?? "");
   const node = loadVault().nodes.get(nodeId);
   if (!node) return;
-  revealNextHint(getCurrentUser().id, node);
+  revealNextHint(user.id, node);
   revalidatePath(`/nodo/${nodeId}`);
 }

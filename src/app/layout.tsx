@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Archivo, JetBrains_Mono, STIX_Two_Text } from "next/font/google";
+import { getSessionUser } from "@/lib/auth";
+import { logoutAction } from "./(cuenta)/actions";
 import "./globals.css";
 
 const ui = Archivo({ subsets: ["latin"], variable: "--fuente-ui", display: "swap" });
@@ -8,11 +10,14 @@ const lectura = STIX_Two_Text({ subsets: ["latin"], variable: "--fuente-lectura"
 const codigo = JetBrains_Mono({ subsets: ["latin"], variable: "--fuente-codigo", display: "swap" });
 
 export const metadata: Metadata = {
-  title: { default: "Exodus", template: "%s · Exodus" },
+  title: { default: "Exodus", template: "%s | Exodus" },
   description: "Árbol de conocimiento troncal con validación por retos.",
+  robots: { index: false, follow: false },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const user = await getSessionUser();
+
   return (
     <html lang="es" className={`${ui.variable} ${lectura.variable} ${codigo.variable}`}>
       <body>
@@ -20,9 +25,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Link href="/" className="marca">
             Exodus
           </Link>
-          <nav aria-label="Principal">
-            <Link href="/">Árbol</Link>
-          </nav>
+          {user && (
+            <nav aria-label="Principal">
+              <Link href="/">Árbol</Link>
+              <form action={logoutAction}>
+                <button type="submit" className="enlace-boton">
+                  Cerrar sesión
+                </button>
+              </form>
+            </nav>
+          )}
         </header>
         {children}
       </body>

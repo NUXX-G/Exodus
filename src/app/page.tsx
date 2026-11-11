@@ -2,15 +2,15 @@ import Link from "next/link";
 import SkillGraph, { type GraphNode } from "@/components/SkillGraph";
 import Heatmap from "@/components/Heatmap";
 import { AREAS, AREA_IDS } from "@/lib/areas";
-import { getCurrentUser } from "@/lib/db";
+import { requireUser } from "@/lib/auth";
 import { computeStates, getActivity, getCompleted } from "@/lib/progress";
 import { loadVault } from "@/lib/vault";
 
 export const dynamic = "force-dynamic";
 
-export default function Inicio() {
+export default async function Inicio() {
   const vault = loadVault();
-  const user = getCurrentUser();
+  const user = await requireUser();
   const completed = getCompleted(user.id);
   const states = computeStates(vault, completed);
   const activity = getActivity(user.id, 26 * 7);

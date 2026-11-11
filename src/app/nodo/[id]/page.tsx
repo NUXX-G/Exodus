@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import FlagForm from "@/components/FlagForm";
 import { AREAS } from "@/lib/areas";
-import { getCurrentUser } from "@/lib/db";
+import { getSessionUser, requireUser } from "@/lib/auth";
 import { linkResolverFor, renderMarkdown } from "@/lib/markdown";
 import { getCompleted, getRevealedLevels, recordOpen, stateOf } from "@/lib/progress";
 import { loadVault } from "@/lib/vault";
@@ -14,6 +14,8 @@ export const dynamic = "force-dynamic";
 type Props = { params: Promise<{ id: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  // Sin sesión no se revela ni el título: la página redirige a /entrar.
+  if (!(await getSessionUser())) return {};
   const { id } = await params;
   return { title: loadVault().nodes.get(id)?.title ?? "Nodo no encontrado" };
 }
@@ -28,12 +30,12 @@ const ESTADO = {
 } as const;
 
 export default async function PaginaNodo({ params }: Props) {
+  const user = await requireUser();
   const { id } = await params;
   const vault = loadVault();
   const node = vault.nodes.get(id);
   if (!node) notFound();
 
-  const user = getCurrentUser();
   recordOpen(user.id, node.id);
 
   const completed = getCompleted(user.id);
