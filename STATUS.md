@@ -26,10 +26,10 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta con cambio de contraseña y cierre de otras sesiones, Docker, HTTPS con Caddy, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **62 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **63 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 todo el troncal de `docs/CURRICULO.md`, de 1º ESO a final de grado: matemáticas hasta análisis real, álgebra lineal avanzada y
 estadística; física hasta electromagnetismo, termodinámica estadística y circuitos con semiconductores; computación hasta sistemas
-operativos, redes y bases de datos) y **6 nodos comprimidos** anteriores (cada uno con un reto con
+operativos, redes y bases de datos) y **5 nodos comprimidos** anteriores (cada uno con un reto con
 flag), ya enlazados a la escalera pero pendientes de desdoblar.
 
 ## 3. Qué hacer ahora, por orden
@@ -38,7 +38,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
    flag conservada y comprobada en el spec) son nodos de escalera. Cada nodo nuevo sigue la plantilla de `docs/PEDAGOGIA.md`, ≥ 8
    ejercicios (lo normal: 14 a 16) y 3 niveles de pistas si lleva flag.
 2. **Ramas N4 → N6 (lo siguiente)** por prerrequisitos (lista en `docs/CURRICULO.md`: topología, EDP, C++, Rust, ARM, forense y logs, PCB,
-   PyTorch, Transformers, LLM locales…). Los nodos comprimidos antiguos se desdoblan en ellas. Hechos: `fis-mecanica-cuantica`, `cua-computacion-cuantica`, `rob-cinematica`, `rob-control`, `rob-microcontroladores`
+   PyTorch, Transformers, LLM locales…). Los nodos comprimidos antiguos se desdoblan en ellas. Hechos: `fis-mecanica-cuantica`, `cua-computacion-cuantica`, `rob-cinematica`, `rob-control`, `rob-microcontroladores`, `ia-aprendizaje-estadistico`
    (reescrito como nodo de escalera en `vault/02-fisica/`, conserva su flag). Las ramas se quedan en su carpeta (`vault/02-fisica/`, etc.).
 3. **Plataforma (MVP cerrado el 2026-11-12)**: `/cuenta` permite cambiar la contraseña (pide la actual; al cambiarla se cierran las
    demás sesiones) y cerrar las demás sesiones; probado en navegador con dos contextos. La lógica de sesiones está en
@@ -49,7 +49,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
    interno de Caddy, cabeceras HSTS/nosniff/DENY y salud correctas, mapeando el 443 a otro puerto porque el 80 de Windows está
    ocupado). Lo único sin probar es Let's Encrypt con un dominio real, que exige un VPS y un DNS del usuario:
    `EXODUS_DOMAIN=exodus.midominio.com ./deploy.sh` (ver `docker/Caddyfile`).
-4. Revisar la bibliografía de los 6 nodos antiguos (se escribió de memoria) contra la web. Los nodos de la escalera llevan
+4. Revisar la bibliografía de los 5 nodos antiguos (se escribió de memoria) contra la web. Los nodos de la escalera llevan
    referencias verificadas en la web o citadas solo por libro/capítulo sin número.
 5. Tras añadir o enlazar nodos: `npm run vault:relevel`, `npm run vault:check`, `npm test`, `npx tsc --noEmit`.
 
@@ -229,6 +229,7 @@ y construye la imagen Docker.
 | 12 | `rob-cinematica` | 16 |
 | 12 | `rob-control` | 16 |
 | 13 | `fis-mecanica-cuantica` | 16 |
+| 13 | `ia-aprendizaje-estadistico` | 16 |
 | 13 | `ing-circuitos` | 16 |
 | 13 | `ing-medidas-laboratorio` | 16 |
 | 14 | `cua-computacion-cuantica` | 16 |
@@ -288,6 +289,8 @@ antiwindup, Routh simulado) se ejecuta en Docker.
 `rob-microcontroladores` (rama, reescrito, conserva su reto): búsquedas exhaustivas en los registros (PSC/ARR, BRR), contadores y
 cargas RC simulados, CRC bit a bit frente a tabla, SNR por cuantificación simulada; el programa C del texto se compila en `gcc:14`
 con ASan/UBSan y -O2. Se corrigió el texto antiguo: el tiempo de subida de I²C se mide entre 0,3 y 0,7 VDD (de ahí 0,8473 = ln 7/3).
+`ia-aprendizaje-estadistico` (rama, reescrito, conserva su reto): QR frente a ecuaciones normales, atajo LOOCV frente a reajustes,
+Newton frente a ascenso de gradiente, potencias para ACP, partición exhaustiva para k-medias, Mann-Whitney frente a trapecios para AUC.
 
 ### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 
@@ -297,7 +300,6 @@ con ASan/UBSan y -O2. Se corrigió el texto antiguo: el tiempo de subida de I²C
 | 10 | `sys-ensamblador-x86-64` |
 | 11 | `sec-explotacion-binaria` |
 | 12 | `sec-criptografia` |
-| 13 | `ia-aprendizaje-estadistico` |
 | 14 | `ia-redes-profundas` |
 
 Los scripts que calculan y contrastan estas flags están en `.soluciones/` (`nivel-*.mjs`,
