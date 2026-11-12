@@ -96,7 +96,7 @@ Cada rama exige los nodos troncales que cita.
   ⬜ `ing-diseno-asic`.
 
 ## Robótica (≈ 12 nodos)
-- **N4**: ✳️ `rob-microcontroladores` · ⬜ `rob-sensores-actuadores` · ✅ `rob-cinematica` ·
+- **N4**: ✅ `rob-microcontroladores` · ⬜ `rob-sensores-actuadores` · ✅ `rob-cinematica` ·
   ✅ `rob-control` · ⬜ `rob-dinamica` · ⬜ `rob-ros2`.
 - **N5-N6**: ⬜ `rob-percepcion-slam` · ⬜ `rob-planificacion-movimiento` · ⬜ `rob-control-optimo-mpc` ·
   ⬜ `rob-aprendizaje-robots`.
