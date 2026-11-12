@@ -45,7 +45,7 @@ Cuatro pilares, que se estudian entrelazados por nivel, no uno detrás de otro.
   ✅ `mat-combinatoria-probabilidad-basica` · ✅ `mat-logica-demostraciones` (reescrito: técnicas de demostración con ejemplos que se desvanecen).
 - **N2**: ✅ `mat-calculo-1` · ✅ `mat-calculo-2` · ✅ `mat-algebra-lineal-1` · ✅ `mat-algebra-lineal` (ahora «Álgebra lineal II», abstracto) · ✅ `mat-matematica-discreta`.
 - **N3**: ✳️ `mat-analisis-real` · ✅ `mat-calculo-multivariable` · ✅ `mat-ecuaciones-diferenciales` ·
-  ✳️ `mat-estructuras-algebraicas` · ✅ `mat-probabilidad` · ✅ `mat-estadistica-inferencia` ·
+  ✅ `mat-estructuras-algebraicas` · ✅ `mat-probabilidad` · ✅ `mat-estadistica-inferencia` ·
   ✅ `mat-analisis-numerico` · ✅ `mat-algebra-lineal-avanzada`.
 
 ## T-C. Computación fundamental (≈ 17 nodos)
