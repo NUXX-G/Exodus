@@ -62,7 +62,7 @@ Cuatro pilares, que se estudian entrelazados por nivel, no uno detrás de otro.
 
 - **N1 (hechos)**: ✅ `fis-medida-movimiento` · ✅ `fis-fuerzas-energia` · ✅ `fis-ondas-calor-fluidos` (sustituye a `fis-ondas-calor-carga`;
   la carga eléctrica está en el siguiente) · ✅ `ing-electricidad-basica`.
-- **N2**: ⬜ `fis-mecanica-newtoniana` · ⬜ `fis-electricidad-magnetismo-1` · ⬜ `ing-circuitos-dc-ac` ·
+- **N2**: ✅ `fis-mecanica-newtoniana` · ⬜ `fis-electricidad-magnetismo-1` · ⬜ `ing-circuitos-dc-ac` ·
   ⬜ `ing-medidas-laboratorio`.
 - **N3**: ✳️ `fis-mecanica-clasica` · ✳️ `fis-electromagnetismo` · ✳️ `fis-termo-estadistica` ·
   ⬜ `fis-ondas-optica` · ✳️ `ing-circuitos` · ✳️ `ing-senales-sistemas`.
