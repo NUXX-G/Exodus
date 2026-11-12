@@ -26,7 +26,7 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta, Docker, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **43 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **44 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 matemáticas hasta cálculo 2, álgebra lineal I, matemática discreta y lógica y demostración, física hasta mecánica newtoniana, electricidad básica,
 programación hasta algoritmos y fundamentos de seguridad) y **21 nodos comprimidos** anteriores (cada uno con un reto con
 flag), ya enlazados a la escalera pero pendientes de desdoblar.
@@ -35,7 +35,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
 
 1. **Seguir escribiendo el troncal** en el orden de `docs/CURRICULO.md` (los ✅ ya están hechos). Faltan, entre otros:
    `mat-algebra-lineal-avanzada`, `ing-medidas-laboratorio`, `fis-ondas-optica`,
-   `tro-lectura-tecnica`; después, reescribir como nodos de escalera los ✳️ del troncal que quedan (`mat-analisis-real`,
+   después, reescribir como nodos de escalera los ✳️ del troncal que quedan (`mat-analisis-real`,
    `mat-estructuras-algebraicas`, `mat-algebra-lineal`, `ing-logica-digital`, `ing-arquitectura-computadores`, `fis-mecanica-clasica`,
    `fis-electromagnetismo`, `fis-termo-estadistica`, `ing-circuitos`, `ing-senales-sistemas`), moviéndolos a `vault/00-troncal/`,
    conservando su flag y comprobándola en el spec (como se hizo con `mat-probabilidad` o `sys-sistemas-operativos`). Cada nodo con la plantilla de `docs/PEDAGOGIA.md`, ≥ 8 ejercicios
@@ -197,6 +197,7 @@ y construye la imagen Docker.
 | 8 | `sec-redes-tcpip` | 16 |
 | 8 | `sys-bases-datos` | 17 |
 | 8 | `sys-c-memoria` | 16 |
+| 8 | `tro-lectura-tecnica` | 14 |
 | 9 | `mat-calculo-2` | 16 |
 | 9 | `prog-algoritmos` | 16 |
 | 9 | `sys-procesos-planificacion` | 16 |

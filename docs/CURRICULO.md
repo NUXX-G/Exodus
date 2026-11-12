@@ -35,7 +35,7 @@ Cuatro pilares, que se estudian entrelazados por nivel, no uno detrás de otro.
 - ✅ `tro-aprender-a-aprender` (N0): práctica de recuperación, espaciado, ejemplos resueltos, cómo usar Exodus.
 - ✅ `tro-razonamiento-cientifico` (N1): método científico, estimación de Fermi, orden de magnitud, errores
   y cifras significativas, leer una fuente crítica.
-- ⬜ `tro-lectura-tecnica` (N2): leer manuales, estándares y artículos; buscar y verificar fuentes.
+- ✅ `tro-lectura-tecnica` (N2): leer manuales, estándares y artículos; buscar y verificar fuentes.
 
 ## T-B. Matemáticas fundamentales (≈ 22 nodos)
 
