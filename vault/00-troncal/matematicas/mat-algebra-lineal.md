@@ -328,5 +328,5 @@ Formato de la flag, con los tres valores en decimal separados por guiones bajos 
 
 ## Siguiente
 
-`mat-algebra-lineal-avanzada` (teorema espectral, descomposición en valores singulares, forma de Jordan, exponencial de matrices),
+[[mat-algebra-lineal-avanzada]] (teorema espectral, descomposición en valores singulares, forma de Jordan, exponencial de matrices),
 [[mat-estructuras-algebraicas]] (grupos, anillos y cuerpos) y [[fis-mecanica-cuantica]].
