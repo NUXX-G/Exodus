@@ -102,7 +102,7 @@ exercises:
 [[mat-combinatoria-probabilidad-basica]] contó casos igualmente probables. Este nodo construye la teoría completa: los axiomas de
 Kolmogorov, la probabilidad condicionada y el teorema de Bayes, las variables aleatorias discretas y continuas con sus distribuciones
 principales, la esperanza y la varianza, las desigualdades y los **teoremas límite** que justifican la estadística, y las cadenas de
-Markov. Es el lenguaje de la estadística (`mat-estadistica-inferencia` la usa en cada línea), del aprendizaje automático, de la física
+Markov. Es el lenguaje de la estadística ([[mat-estadistica-inferencia]] la usa en cada línea), del aprendizaje automático, de la física
 estadística, de la criptografía y de la teoría de colas.
 
 ## Objetivos
@@ -379,5 +379,5 @@ Formato de la flag, en decimal: `EXODUS{a-b-c}`
 
 ## Siguiente
 
-`mat-estadistica-inferencia` (de la probabilidad a los datos), [[fis-termo-estadistica]], [[ia-aprendizaje-estadistico]] y
+[[mat-estadistica-inferencia]] (de la probabilidad a los datos), [[fis-termo-estadistica]], [[ia-aprendizaje-estadistico]] y
 [[sec-criptografia]].
