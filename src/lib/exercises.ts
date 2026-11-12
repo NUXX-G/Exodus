@@ -24,7 +24,9 @@ export function normalizeAnswer(s: string): string {
     .replace(/(\d),(\d)/g, "$1.$2") // coma decimal antes de quitar espacios: «1, 2» sigue siendo una lista
     .replace(/[\s ]+/g, "")
     .replace(/[−–—]/g, "-")
-    .replace(/^\+/, "");
+    .replace(/^\+/, "")
+    .replace(/^(-?\d+\.\d*?)0+$/, "$1") // 25.40 = 25.4 = 25.400
+    .replace(/^(-?\d+)\.$/, "$1"); // «3.» = 3
 }
 
 export const hashAnswer = (s: string): string =>

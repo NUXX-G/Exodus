@@ -21,6 +21,15 @@ test("normaliza espacios, mayúsculas, coma decimal, signo menos y + inicial", (
   assert.equal(normalizeAnswer("1, 2"), "1,2");
 });
 
+test("los decimales con ceros finales son equivalentes", () => {
+  assert.equal(normalizeAnswer("25.40"), "25.4");
+  assert.equal(normalizeAnswer("25,400"), "25.4");
+  assert.equal(normalizeAnswer("3.0"), "3");
+  assert.equal(normalizeAnswer("-0.090"), "-0.09");
+  assert.equal(normalizeAnswer("100"), "100"); // un entero con ceros finales no se toca
+  assert.equal(normalizeAnswer("8:30"), "8:30");
+});
+
 test("checkAnswer acepta cualquiera de las respuestas y rechaza el resto", () => {
   const acc = [hashAnswer("3/4"), hashAnswer("0.75")];
   assert.equal(checkAnswer(acc, " 3 / 4"), true);
