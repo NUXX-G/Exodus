@@ -65,7 +65,7 @@ Cuatro pilares, que se estudian entrelazados por nivel, no uno detrás de otro.
 - **N2**: ✅ `fis-mecanica-newtoniana` · ✅ `fis-electricidad-magnetismo-1` · ✅ `ing-circuitos-dc-ac` ·
   ✅ `ing-medidas-laboratorio`.
 - **N3**: ✅ `fis-mecanica-clasica` · ✳️ `fis-electromagnetismo` · ✳️ `fis-termo-estadistica` ·
-  ✅ `fis-ondas-optica` · ✳️ `ing-circuitos` · ✳️ `ing-senales-sistemas`.
+  ✅ `fis-ondas-optica` · ✳️ `ing-circuitos` · ✅ `ing-senales-sistemas`.
 
 **Criterio de «fin del troncal»**: con solo el troncal, la persona resuelve problemas de nivel de grado en
 matemáticas, programa con soltura en Python y C, entiende un ordenador de la lógica digital al sistema

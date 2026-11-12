@@ -26,16 +26,16 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta, Docker, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **53 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **54 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 matemáticas hasta cálculo 2, álgebra lineal I, matemática discreta y lógica y demostración, física hasta mecánica newtoniana, electricidad básica,
-programación hasta algoritmos y fundamentos de seguridad) y **15 nodos comprimidos** anteriores (cada uno con un reto con
+programación hasta algoritmos y fundamentos de seguridad) y **14 nodos comprimidos** anteriores (cada uno con un reto con
 flag), ya enlazados a la escalera pero pendientes de desdoblar.
 
 ## 3. Qué hacer ahora, por orden
 
 1. **Seguir escribiendo el troncal** en el orden de `docs/CURRICULO.md` (los ✅ ya están hechos). Todos los nodos nuevos (⬜) del troncal
    están escritos. Falta reescribir como nodos de escalera los ✳️ del troncal que quedan
-   (`fis-electromagnetismo`, `fis-termo-estadistica`, `ing-circuitos`, `ing-senales-sistemas`), moviéndolos a `vault/00-troncal/`,
+   (`fis-electromagnetismo`, `fis-termo-estadistica`, `ing-circuitos`), moviéndolos a `vault/00-troncal/`,
    conservando su flag y comprobándola en el spec (como se hizo con `mat-probabilidad` o `sys-sistemas-operativos`). Cada nodo con la plantilla de `docs/PEDAGOGIA.md`, ≥ 8 ejercicios
    (lo normal: 14 a 16) y 3 niveles de pistas si lleva flag.
 2. **Ramas N4 → N6** por prerrequisitos (lista en `docs/CURRICULO.md`: topología, EDP, C++, Rust, ARM, forense y logs, PCB,
@@ -43,7 +43,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
 3. Plataforma, cuando haga falta: cambio de contraseña y cierre de otras sesiones; tests de `progress.ts` y `auth.ts`
    (`server-only` impide importarlos en `tsx --test`, habrá que aislarlo); perfil `https` probado en un VPS real y
    `deploy.bat` ejecutado como tal.
-4. Revisar la bibliografía de los 15 nodos antiguos (se escribió de memoria) contra la web. Los nodos de la escalera llevan
+4. Revisar la bibliografía de los 14 nodos antiguos (se escribió de memoria) contra la web. Los nodos de la escalera llevan
    referencias verificadas en la web o citadas solo por libro/capítulo sin número.
 5. Tras añadir o enlazar nodos: `npm run vault:relevel`, `npm run vault:check`, `npm test`, `npx tsc --noEmit`.
 
@@ -211,6 +211,7 @@ y construye la imagen Docker.
 | 10 | `sys-sistemas-operativos` | 16 |
 | 11 | `fis-electricidad-magnetismo-1` | 17 |
 | 11 | `fis-mecanica-clasica` | 16 |
+| 11 | `ing-senales-sistemas` | 16 |
 | 11 | `mat-analisis-numerico` | 16 |
 | 11 | `mat-probabilidad` | 16 |
 | 12 | `fis-ondas-optica` | 16 |
@@ -247,6 +248,9 @@ en JS; ley de Little contrastada con una simulación.
 `fis-mecanica-clasica` (reescrito, conserva su reto y recalcula la flag): cada fórmula (órbitas, rodadura, modos normales, péndulo
 exacto por AGM, precesión, masa reducida) se contrasta con RK4, Euler simpléctico, autovalores por Jacobi, Simpson o sección áurea en JS;
 el bloque Python del texto (RK4 frente a AGM, Newton frente a bisección en Kepler, deriva de Euler explícito) se ejecuta en Docker.
+`ing-senales-sistemas` (reescrito, conserva su reto y recalcula la flag): DFT directa frente a FFT propia, convolución directa frente a
+producto en frecuencia, filtros simulados (RK4 para el RC y el segundo orden, ecuación en diferencias para FIR/IIR) frente a fórmulas,
+polos por Durand-Kerner; el bloque Python del texto se ejecuta en Docker.
 
 ### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 
@@ -254,7 +258,6 @@ el bloque Python del texto (RK4 frente a AGM, Newton frente a bisección en Kepl
 |:---:|---|
 | 9 | `sec-web` |
 | 10 | `sys-ensamblador-x86-64` |
-| 11 | `ing-senales-sistemas` |
 | 11 | `sec-explotacion-binaria` |
 | 12 | `fis-electromagnetismo` |
 | 12 | `fis-mecanica-cuantica` |
