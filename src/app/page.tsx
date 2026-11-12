@@ -3,7 +3,7 @@ import SkillGraph, { type GraphNode } from "@/components/SkillGraph";
 import Heatmap from "@/components/Heatmap";
 import { AREAS } from "@/lib/areas";
 import { requireUser } from "@/lib/auth";
-import { computeStates, getActivity, getCompleted } from "@/lib/progress";
+import { computeStates, getActivity, getCompleted, getDueReviews } from "@/lib/progress";
 import { areaProgress, estimateMinutes, formatMinutes, recommendedNext } from "@/lib/study";
 import { loadVault } from "@/lib/vault";
 
@@ -34,6 +34,7 @@ export default async function Inicio() {
     .sort((a, b) => a.trunkLevel - b.trunkLevel);
   const areas = areaProgress(vault, completed);
   const siguiente = recommendedNext(vault, states);
+  const repasos = getDueReviews(user.id).length;
   const minutosRestantes = areas.reduce((s, a) => s + a.minutesLeft, 0);
 
   return (
@@ -83,6 +84,7 @@ export default async function Inicio() {
 
       <nav className="atajos" aria-label="Accesos">
         <Link href="/temario">Temario completo</Link>
+        <Link href="/repaso">{repasos > 0 ? `Repaso (${repasos} pendientes)` : "Repaso"}</Link>
         <Link href="/buscar">Buscar</Link>
       </nav>
 

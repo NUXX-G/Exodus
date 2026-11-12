@@ -12,6 +12,7 @@
     "db:studio": "drizzle-kit studio",
     "vault:check": "tsx scripts/vault-check.ts",
     "vault:flag": "tsx scripts/flag-hash.ts",
+    "vault:ex": "tsx scripts/ex-hash.ts",
     "test": "tsx --test tests/*.test.ts"
   },
   "dependencies": {

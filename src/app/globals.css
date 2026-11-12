@@ -976,3 +976,90 @@ h3 {
   color: var(--tiza-tenue);
   font-size: 0.9375rem;
 }
+
+/* ───────── Ejercicios y repaso ───────── */
+.visualmente-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.ejercicios {
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: 1px solid var(--trazo-fuerte);
+}
+
+.ejercicios-cabecera h2 {
+  font-size: 1.5rem;
+}
+
+.dominio {
+  margin: 6px 0 8px;
+  color: var(--tiza-tenue);
+  font-size: 0.9375rem;
+}
+
+.dominio[data-dominado="true"] {
+  color: var(--menta);
+}
+
+.ejercicios-lista,
+.repasos {
+  list-style: none;
+  margin: 22px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 22px;
+}
+
+.ejercicios-lista > li,
+.repasos > li {
+  padding: 18px 20px;
+  border: 1px solid var(--trazo);
+  border-radius: var(--radio);
+  background: rgba(8, 26, 48, 0.45);
+}
+
+.ejercicios-lista > li[data-resuelto="true"] {
+  border-color: rgba(127, 227, 196, 0.5);
+}
+
+.ejercicios-lista .meta,
+.repasos .meta {
+  margin: 0 0 8px;
+  color: var(--tiza-tenue);
+  font-size: 0.8125rem;
+}
+
+.ejercicio-enunciado > :first-child {
+  margin-top: 0;
+}
+
+.ejercicio-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.ejercicio-form input[type="text"] {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px 12px;
+  background: var(--tinta-honda);
+  color: var(--tiza);
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: var(--radio);
+  font-family: var(--fuente-codigo), monospace;
+  font-size: 0.9375rem;
+}
+
+.ejercicio-form .mensaje {
+  flex-basis: 100%;
+  margin: 0;
+}

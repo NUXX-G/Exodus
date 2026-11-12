@@ -26,6 +26,16 @@ import matter from "gray-matter";
 import { z } from "zod";
 import { AREA_IDS, type AreaId } from "./areas";
 
+const exerciseSchema = z.object({
+  id: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "id de ejercicio en kebab-case"),
+  /** 1 = a completar (guiado), 2 = problema propio, 3 = difícil / integrador. */
+  tier: z.number().int().min(1).max(3).default(2),
+  prompt: z.string().min(1),
+  /** Respuestas aceptadas, cada una `sha256:<hex>` del texto normalizado (npm run vault:ex). */
+  answers: z.array(z.string().regex(/^sha256:[0-9a-f]{64}$/)).min(1).max(8),
+});
+
+
 /** Directorio, dentro del vault, con una carpeta de adjuntos por id de nodo. */
 export const ATTACHMENTS_DIR = "_adjuntos";
 /** Sin barras ni punto inicial: un nombre válido no puede salir de la carpeta del nodo. */
@@ -44,12 +54,21 @@ const frontmatterSchema = z.object({
   academic_sources: z.array(z.string()).nullish().transform((v) => v ?? []),
   ctf_flag: z.string().min(1).nullish().transform((v) => v ?? null),
   hints: z.array(z.string().min(1)).max(3).nullish().transform((v) => v ?? []),
+  exercises: z.array(exerciseSchema).max(60).nullish().transform((v) => v ?? []),
   attachments: z
     .array(z.string().regex(ATTACHMENT_NAME, "nombre de adjunto inválido: solo letras, cifras, '.', '_' y '-', sin empezar por '.'"))
     .max(MAX_ATTACHMENTS)
     .nullish()
     .transform((v) => v ?? []),
 });
+
+export interface VaultExercise {
+  id: string;
+  tier: number;
+  prompt: string;
+  /** Solo servidor: hashes de las respuestas aceptadas. */
+  answers: string[];
+}
 
 export interface VaultNode {
   id: string;
@@ -62,6 +81,8 @@ export interface VaultNode {
   ctfFlag: string | null;
   /** Solo servidor. Se entregan al cliente de una en una al revelarlas. */
   hints: string[];
+  /** Ejercicios autocorregidos; el dominio del nodo exige resolver el 80 %. */
+  exercises: VaultExercise[];
   /** Nombres de los archivos del reto, en vault/_adjuntos/<id>/. */
   attachments: string[];
   /** Ruta relativa al vault, con `/`. */
@@ -134,10 +155,16 @@ export function loadVault(): Vault {
       academicSources: fm.data.academic_sources,
       ctfFlag: fm.data.ctf_flag,
       hints: fm.data.hints,
+      exercises: fm.data.exercises,
       attachments: fm.data.attachments,
       file,
       body: parsed.content,
     });
+  }
+
+  for (const node of nodes.values()) {
+    const ids = node.exercises.map((e) => e.id);
+    if (new Set(ids).size !== ids.length) issues.push({ file: node.file, message: "ids de ejercicio repetidos" });
   }
 
   // Adjuntos: deben existir, ser archivos normales y no superar el tamaño máximo.
