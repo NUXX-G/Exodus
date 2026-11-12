@@ -1063,3 +1063,13 @@ h3 {
   flex-basis: 100%;
   margin: 0;
 }
+
+/* React Flow deja los nodos con pointer-events: none cuando no son arrastrables ni seleccionables:
+   el enlace interior no recibía clics y el panel los interceptaba. */
+.plano .react-flow__node {
+  pointer-events: all;
+}
+
+.plano .nodo {
+  pointer-events: auto;
+}
