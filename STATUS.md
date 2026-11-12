@@ -353,8 +353,9 @@ comprueba que cada flag valida contra el hash de su nodo.
 ## 8. Sin probar todavía
 
 - El perfil `https` con un dominio real y `deploy.bat` ejecutado como tal.
-- El usuario reportó que no podía hacer clic en los nodos del árbol (React Flow) en `npm run dev`; no se llegó a reproducir. El
-  panel y el temario navegan con enlaces de servidor y no dependen de ese componente.
+- **Resuelto (PR #29)**: el usuario no podía hacer clic en los nodos del árbol. Se reprodujo en el navegador (Playwright contra la imagen
+  Docker): `.react-flow__pane` interceptaba los clics porque React Flow deja los nodos con `pointer-events: none` si no son
+  arrastrables ni seleccionables. Corregido con CSS; el clic abre `/nodo/<id>`. Probado también el temario y el buscador con los 50 nodos.
 - Probado en navegador (imagen Docker, base temporal): creación de cuenta, panel, página de nodo con ejercicios, respuesta
   incorrecta y correcta, normalización (espacios), dominio del 80 % que completa el nodo, calendario de repaso (fallo a mañana,
   acierto a 3 días) y feedback del repaso.
