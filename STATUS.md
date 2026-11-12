@@ -26,7 +26,7 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta, Docker, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **29 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **30 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 matemáticas hasta cálculo 2, álgebra lineal I, matemática discreta y lógica y demostración, física hasta mecánica newtoniana, electricidad básica,
 programación hasta algoritmos y fundamentos de seguridad) y **25 nodos comprimidos** anteriores (cada uno con un reto con
 flag), ya enlazados a la escalera pero pendientes de desdoblar.
@@ -34,7 +34,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
 ## 3. Qué hacer ahora, por orden
 
 1. **Seguir escribiendo el troncal** en el orden de `docs/CURRICULO.md` (los ✅ ya están hechos). Faltan, entre otros:
-   `sys-c-memoria` y `sys-sistemas-operativos` (desdoblar), `prog-poo-diseno`, `sys-bases-datos`,
+   `sys-c-memoria` y `sys-sistemas-operativos` (desdoblar), `sys-bases-datos`,
    `sys-redes-sockets`, `mat-calculo-multivariable`, `mat-ecuaciones-diferenciales`, `mat-estadistica-inferencia`,
    `mat-analisis-numerico`, `mat-algebra-lineal-avanzada`, `ing-medidas-laboratorio`, `fis-ondas-optica`,
    `tro-razonamiento-cientifico`, `tro-lectura-tecnica`. Cada nodo con la plantilla de `docs/PEDAGOGIA.md`, ≥ 8 ejercicios
@@ -190,6 +190,7 @@ y construye la imagen Docker.
 | 7 | `sec-fundamentos` | 16 |
 | 8 | `mat-algebra-lineal-1` | 16 |
 | 8 | `mat-calculo-1` | 16 |
+| 8 | `prog-poo-diseno` | 17 |
 | 9 | `mat-calculo-2` | 16 |
 | 9 | `prog-algoritmos` | 16 |
 | 10 | `fis-mecanica-newtoniana` | 16 |
@@ -202,7 +203,9 @@ RFC 6238); `fis-mecanica-newtoniana` compara RK4 con la solución analítica; `m
 usan fuerza bruta o BFS como segundo método. `mat-logica-demostraciones` (reescrito sobre el nodo comprimido, conserva su flag y la
 comprueba en el spec) contrasta cada fórmula de conteo con enumeración exhaustiva y las tautologías con tablas completas.
 `ing-circuitos-dc-ac` contrasta cada fasor con una simulación temporal RK4 del circuito, el análisis nodal con superposición y
-Thévenin con vacío/cortocircuito; su código Python (Gauss-Jordan con fracciones y complejos) se ejecutó en Docker.
+Thévenin con vacío/cortocircuito; su código Python (Gauss-Jordan con fracciones y complejos) se ejecutó en Docker. `prog-poo-diseno`: cada ejercicio es un
+programa cuya salida real (Python 3.12 en Docker, un solo contenedor para todos) se contrasta con una reimplementación en
+JavaScript (incluida la linealización C3 del MRO); cada bloque ```python del texto se ejecuta por separado.
 
 ### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 
