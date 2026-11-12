@@ -26,7 +26,7 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta, Docker, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **36 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **37 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 matemáticas hasta cálculo 2, álgebra lineal I, matemática discreta y lógica y demostración, física hasta mecánica newtoniana, electricidad básica,
 programación hasta algoritmos y fundamentos de seguridad) y **22 nodos comprimidos** anteriores (cada uno con un reto con
 flag), ya enlazados a la escalera pero pendientes de desdoblar.
@@ -34,7 +34,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
 ## 3. Qué hacer ahora, por orden
 
 1. **Seguir escribiendo el troncal** en el orden de `docs/CURRICULO.md` (los ✅ ya están hechos). Faltan, entre otros:
-   `sys-redes-sockets`, `mat-calculo-multivariable`, `mat-ecuaciones-diferenciales`, `mat-estadistica-inferencia`,
+   `mat-calculo-multivariable`, `mat-ecuaciones-diferenciales`, `mat-estadistica-inferencia`,
    `mat-analisis-numerico`, `mat-algebra-lineal-avanzada`, `ing-medidas-laboratorio`, `fis-ondas-optica`,
    `tro-razonamiento-cientifico`, `tro-lectura-tecnica`. Cada nodo con la plantilla de `docs/PEDAGOGIA.md`, ≥ 8 ejercicios
    (lo normal: 14 a 16) y 3 niveles de pistas si lleva flag.
@@ -198,6 +198,7 @@ y construye la imagen Docker.
 | 9 | `prog-algoritmos` | 16 |
 | 9 | `sys-procesos-planificacion` | 16 |
 | 10 | `fis-mecanica-newtoniana` | 16 |
+| 10 | `sys-redes-sockets` | 14 |
 | 10 | `sys-sistemas-operativos` | 16 |
 | 11 | `fis-electricidad-magnetismo-1` | 17 |
 | 12 | `ing-circuitos-dc-ac` | 17 |
@@ -225,6 +226,8 @@ versionado) y cada respuesta sale de SQL real en SQLite (Python en Docker) y de 
 (cierres, claves, B-árboles) se calcula por fuerza bruta en Python y JS. Los adjuntos se muestran como «Archivos adjuntos».
 `sec-redes-tcpip` (reescrito, conserva su reto): subredes con `ipaddress` de Python frente a bits en JS, sumas de comprobación en
 C frente a JS (la flag se recalcula), fragmentación y ventana de congestión simuladas en Python y JS.
+`sys-redes-sockets`: servidores y clientes reales (TCP, UDP, `select`) en Python sobre 127.0.0.1 dentro de Docker frente a modelos
+en JS; ley de Little contrastada con una simulación.
 
 ### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 

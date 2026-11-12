@@ -478,4 +478,4 @@ Formato de la flag, cada suma en hexadecimal, minúsculas y 4 dígitos: `EXODUS{
 
 ## Siguiente
 
-`sys-redes-sockets` (programar clientes y servidores sobre esta pila) y [[sec-web]] (HTTP y la seguridad de las aplicaciones web).
+[[sys-redes-sockets]] (programar clientes y servidores sobre esta pila) y [[sec-web]] (HTTP y la seguridad de las aplicaciones web).
