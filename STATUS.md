@@ -26,7 +26,7 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta, Docker, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **34 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **35 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 matemáticas hasta cálculo 2, álgebra lineal I, matemática discreta y lógica y demostración, física hasta mecánica newtoniana, electricidad básica,
 programación hasta algoritmos y fundamentos de seguridad) y **23 nodos comprimidos** anteriores (cada uno con un reto con
 flag), ya enlazados a la escalera pero pendientes de desdoblar.
@@ -34,8 +34,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
 ## 3. Qué hacer ahora, por orden
 
 1. **Seguir escribiendo el troncal** en el orden de `docs/CURRICULO.md` (los ✅ ya están hechos). Faltan, entre otros:
-   `sys-bases-datos`,
-   `sys-redes-sockets`, `mat-calculo-multivariable`, `mat-ecuaciones-diferenciales`, `mat-estadistica-inferencia`,
+      `sys-redes-sockets`, `mat-calculo-multivariable`, `mat-ecuaciones-diferenciales`, `mat-estadistica-inferencia`,
    `mat-analisis-numerico`, `mat-algebra-lineal-avanzada`, `ing-medidas-laboratorio`, `fis-ondas-optica`,
    `tro-razonamiento-cientifico`, `tro-lectura-tecnica`. Cada nodo con la plantilla de `docs/PEDAGOGIA.md`, ≥ 8 ejercicios
    (lo normal: 14 a 16) y 3 niveles de pistas si lleva flag.
@@ -192,6 +191,7 @@ y construye la imagen Docker.
 | 8 | `mat-algebra-lineal-1` | 16 |
 | 8 | `mat-calculo-1` | 16 |
 | 8 | `prog-poo-diseno` | 17 |
+| 8 | `sys-bases-datos` | 17 |
 | 8 | `sys-c-memoria` | 16 |
 | 9 | `mat-calculo-2` | 16 |
 | 9 | `prog-algoritmos` | 16 |
@@ -219,6 +219,9 @@ además recalcula la flag del reto en C y en JavaScript (disposición de la estr
 un archivo (búfer completo de stdio) y se contrastan con un modelo en JS; la planificación se simula en Python y en JS.
 `sys-sistemas-operativos` (reescrito, conserva su reto): reemplazo de páginas simulado en C y en JS (la flag se recalcula),
 banquero en Python y JS, hilos/enlaces/`mmap` ejecutados en `gcc:14`.
+`sys-bases-datos`: el spec genera de forma determinista la base `vault/_adjuntos/sys-bases-datos/tienda.sql` (adjunto del nodo,
+versionado) y cada respuesta sale de SQL real en SQLite (Python en Docker) y de un recorrido de los datos en JavaScript; la teoría
+(cierres, claves, B-árboles) se calcula por fuerza bruta en Python y JS. Los adjuntos se muestran como «Archivos adjuntos».
 
 ### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 
