@@ -1,6 +1,6 @@
 # STATUS — Exodus
 
-Última actualización: 2026-11-11 (sesión: nivel 4 + adjuntos)
+Última actualización: 2026-11-12 (sesión: niveles 5 y 6)
 
 Documento de continuidad. Quien retome el proyecto (persona o agente) debe leer esto primero,
 junto con `CLAUDE.md` y `README.md`.
@@ -8,12 +8,12 @@ junto con `CLAUDE.md` y `README.md`.
 ## Estado en una línea
 
 Plataforma completa y verificada (árbol, lectura, flags, pistas, heatmap, cuenta con contraseña,
-Docker, CI, adjuntos de reto). 22 de 27 nodos tienen teoría completa y reto: la raíz y los
-niveles 1 a 4 enteros. Faltan 5 nodos (niveles 5 y 6) y varias áreas del prompt sin nodo.
+Docker, CI, adjuntos de reto). Los 27 nodos base tienen ya teoría completa y reto. Falta ampliar:
+varias áreas del prompt maestro todavía no tienen nodo (ver «Pendiente»).
 
 ## Ramas y pull requests
 
-Los PR #1 a #5 están fusionados en `main`. Cada unidad de trabajo nueva va en su rama y su PR
+Los PR #1 a #13 están fusionados en `main`. Cada unidad de trabajo nueva va en su rama y su PR
 contra `main`, y se fusiona con CI en verde.
 
 Lección aprendida: con PR apilados, fusionar uno **sin borrar su rama** no reapunta el siguiente a
@@ -78,6 +78,11 @@ al fusionar, o se apunta cada PR directamente a `main`.
 | 4 | `rob-cinematica` | Ángulo de rotación, inversa de un brazo 3R y manipulabilidad |
 | 4 | `rob-control` | Margen de fase, pico de la respuesta a escalón y LQR |
 | 4 | `ia-aprendizaje-estadistico` | Regresión polinómica, LOOCV y regresión logística |
+| 5 | `ing-circuitos` | Nodos exactos (racionales), RLC, Sallen-Key y diodo de Shockley |
+| 5 | `ia-redes-profundas` | Gradiente exacto (backprop vs dual), Adam, atención y recuento de parámetros |
+| 5 | `cua-computacion-cuantica` | Grover (simulación), orden y estimación de fase tipo Shor, CHSH |
+| 5 | `sec-explotacion-binaria` | Auditoría de un ELF adjunto (cabeceras), entropía de ASLR y desbordamiento de enteros |
+| 6 | `rob-microcontroladores` | PSC/ARR, BRR de la USART, vector de IRQ y CRC-32 de hardware |
 
 ## Verificado y no verificado
 
@@ -95,14 +100,11 @@ al fusionar, o se apunta cada PR directamente a `main`.
 
 ## Pendiente, por orden
 
-### 1. Contenido: nodos base sin teoría ni reto
-
-Nivel 5 y 6
-- [ ] `ing-circuitos`
-- [ ] `sec-explotacion-binaria`
-- [ ] `ia-redes-profundas`
-- [ ] `cua-computacion-cuantica`
-- [ ] `rob-microcontroladores`
+### 1. Contenido: nodos base
+Hechos los 27. Nota sobre `sec-explotacion-binaria`: se planteó como análisis y defensa (formato ELF,
+mitigaciones, errores de memoria, fuzzing, divulgación) y no incluye construcción de exploits; un
+filtro de seguridad cortó una sesión al preparar ese nodo con otro enfoque. Si se quiere ampliar,
+hacerlo en nodos nuevos y pequeños.
 
 ### 2. Áreas del prompt maestro sin nodo todavía
 Topología, ecuaciones diferenciales, análisis numérico, algoritmos (CLRS), C++, Rust, ARM,
