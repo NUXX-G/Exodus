@@ -26,7 +26,7 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta, Docker, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **26 nodos de la escalera del troncal** (8 a 16 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **27 nodos de la escalera del troncal** (8 a 16 ejercicios cada uno, verificados por doble método; cubren
 matemáticas hasta cálculo 2, álgebra lineal I y matemática discreta, física hasta mecánica newtoniana, electricidad básica,
 programación hasta algoritmos y fundamentos de seguridad) y **26 nodos comprimidos** anteriores (cada uno con un reto con
 flag), ya enlazados a la escalera pero pendientes de desdoblar.
@@ -34,7 +34,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
 ## 3. Qué hacer ahora, por orden
 
 1. **Seguir escribiendo el troncal** en el orden de `docs/CURRICULO.md` (los ✅ ya están hechos). Faltan, entre otros:
-   `mat-logica-demostraciones` (reescribir como nodo de escalera con demostraciones guiadas), `fis-electricidad-magnetismo-1`,
+   `mat-logica-demostraciones` (reescribir como nodo de escalera con demostraciones guiadas),
    `ing-circuitos-dc-ac`, `sys-c-memoria` y `sys-sistemas-operativos` (desdoblar), `prog-poo-diseno`, `sys-bases-datos`,
    `sys-redes-sockets`, `mat-calculo-multivariable`, `mat-ecuaciones-diferenciales`, `mat-estadistica-inferencia`,
    `mat-analisis-numerico`, `mat-algebra-lineal-avanzada`, `ing-medidas-laboratorio`, `fis-ondas-optica`,
@@ -187,6 +187,7 @@ y construye la imagen Docker.
 | 9 | `mat-calculo-2` | 16 |
 | 9 | `prog-algoritmos` | 16 |
 | 10 | `fis-mecanica-newtoniana` | 16 |
+| 11 | `fis-electricidad-magnetismo-1` | 17 |
 
 Notas de verificación: los nodos de programación se validaron ejecutando Python 3.12 real en Docker; `prog-terminal-linux-git` en un
 contenedor Debian con git; `sec-fundamentos` con hashes/HMAC/TOTP calculados en Python y Node (TOTP contrastado con el vector del
