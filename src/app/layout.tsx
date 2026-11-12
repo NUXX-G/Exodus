@@ -27,7 +27,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           </Link>
           {user && (
             <nav aria-label="Principal">
-              <Link href="/">Árbol</Link>
+              <Link href="/">Inicio</Link>
+              <Link href="/temario">Temario</Link>
+              <Link href="/buscar">Buscar</Link>
               <form action={logoutAction}>
                 <button type="submit" className="enlace-boton">
                   Cerrar sesión

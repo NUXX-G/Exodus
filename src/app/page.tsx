@@ -1,9 +1,10 @@
 import Link from "next/link";
 import SkillGraph, { type GraphNode } from "@/components/SkillGraph";
 import Heatmap from "@/components/Heatmap";
-import { AREAS, AREA_IDS } from "@/lib/areas";
+import { AREAS } from "@/lib/areas";
 import { requireUser } from "@/lib/auth";
 import { computeStates, getActivity, getCompleted } from "@/lib/progress";
+import { areaProgress, estimateMinutes, formatMinutes, recommendedNext } from "@/lib/study";
 import { loadVault } from "@/lib/vault";
 
 export const dynamic = "force-dynamic";
@@ -31,10 +32,9 @@ export default async function Inicio() {
   const next = nodes
     .filter((n) => states.get(n.id) === "available" && n.ctfFlag)
     .sort((a, b) => a.trunkLevel - b.trunkLevel);
-  const areas = AREA_IDS.map((id) => {
-    const own = nodes.filter((n) => n.area === id);
-    return { id, total: own.length, done: own.filter((n) => completed.has(n.id)).length };
-  }).filter((a) => a.total > 0);
+  const areas = areaProgress(vault, completed);
+  const siguiente = recommendedNext(vault, states);
+  const minutosRestantes = areas.reduce((s, a) => s + a.minutesLeft, 0);
 
   return (
     <main className="pagina">
@@ -53,8 +53,38 @@ export default async function Inicio() {
               {activity.streak} {activity.streak === 1 ? "día" : "días"}
             </dd>
           </div>
+          <div>
+            <dt>Estudio restante</dt>
+            <dd>{formatMinutes(minutosRestantes)}</dd>
+          </div>
         </dl>
       </section>
+
+      {siguiente ? (
+        <section className="continuar" aria-label="Siguiente paso">
+          <div>
+            <p className="etiqueta">{done === 0 ? "Empieza aquí" : "Siguiente paso"}</p>
+            <h2>{siguiente.title}</h2>
+            <p className="nota">
+              {AREAS[siguiente.area].label} · nivel {siguiente.trunkLevel} · unas {formatMinutes(estimateMinutes(siguiente))}
+            </p>
+          </div>
+          <Link href={`/nodo/${siguiente.id}`} prefetch={false} className="boton">
+            {done === 0 ? "Empezar" : "Continuar"}
+          </Link>
+        </section>
+      ) : (
+        done === nodes.length && (
+          <section className="continuar">
+            <h2>Has completado todos los nodos con reto disponibles.</h2>
+          </section>
+        )
+      )}
+
+      <nav className="atajos" aria-label="Accesos">
+        <Link href="/temario">Temario completo</Link>
+        <Link href="/buscar">Buscar</Link>
+      </nav>
 
       {vault.issues.length > 0 && (
         <div className="aviso" role="alert">
@@ -110,18 +140,23 @@ export default async function Inicio() {
 
         <section>
           <h2>Áreas</h2>
-          <ul className="lista">
+          <ul className="lista areas">
             {areas.map((a) => (
               <li key={a.id}>
-                <span className="fila">
-                  <span>
-                    <i className="punto" style={{ "--color-area": AREAS[a.id].color } as React.CSSProperties} />
-                    {AREAS[a.id].label}
+                <Link href={`/temario?area=${a.id}`} prefetch={false}>
+                  <span className="fila-area">
+                    <span>
+                      <i className="punto" style={{ "--color-area": AREAS[a.id].color } as React.CSSProperties} />
+                      {AREAS[a.id].label}
+                    </span>
+                    <small>
+                      {a.done} de {a.total}
+                    </small>
                   </span>
-                  <small>
-                    {a.done} de {a.total}
-                  </small>
-                </span>
+                  <span className="barra" aria-hidden="true">
+                    <i style={{ width: `${(a.done / a.total) * 100}%`, background: AREAS[a.id].color }} />
+                  </span>
+                </Link>
               </li>
             ))}
           </ul>

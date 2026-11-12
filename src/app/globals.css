@@ -723,3 +723,256 @@ h3 {
   align-items: baseline;
   gap: 24px;
 }
+
+/* ───────── Navegación, panel y temario ───────── */
+.cabecera nav {
+  display: flex;
+  align-items: baseline;
+  gap: 22px;
+}
+
+.continuar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 32px;
+  padding: 22px 26px;
+  margin: 4px 0 18px;
+  border: 1px solid var(--ambar);
+  border-radius: var(--radio);
+  background: rgba(245, 185, 66, 0.06);
+}
+
+.continuar h2 {
+  font-size: 1.5rem;
+  margin: 2px 0 4px;
+}
+
+.etiqueta {
+  margin: 0;
+  color: var(--ambar);
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.boton {
+  display: inline-block;
+  padding: 11px 22px;
+  background: var(--ambar);
+  color: var(--tinta-honda);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: var(--radio);
+}
+
+.boton:hover {
+  filter: brightness(1.08);
+}
+
+.atajos {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.atajos a {
+  padding: 7px 14px;
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: var(--radio);
+  text-decoration: none;
+  font-size: 0.9375rem;
+}
+
+.atajos a:hover {
+  border-color: var(--ambar);
+  color: var(--ambar);
+}
+
+.lista.areas a {
+  display: block;
+}
+
+.fila-area {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.barra {
+  display: block;
+  height: 4px;
+  margin-top: 6px;
+  background: rgba(214, 228, 243, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.barra i {
+  display: block;
+  height: 100%;
+}
+
+.filtros {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 26px;
+}
+
+.filtros div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.filtros span {
+  width: 52px;
+  color: var(--tiza-tenue);
+  font-size: 0.8125rem;
+}
+
+.filtros a {
+  padding: 4px 12px;
+  border: 1px solid var(--trazo);
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.875rem;
+  color: var(--tiza-tenue);
+}
+
+.filtros a:hover {
+  color: var(--tiza);
+  border-color: var(--trazo-fuerte);
+}
+
+.filtros a[aria-current="true"] {
+  background: var(--tiza);
+  color: var(--tinta-honda);
+  border-color: var(--tiza);
+}
+
+.temario-nivel {
+  margin-bottom: 26px;
+}
+
+.temario-nivel h2 {
+  font-size: 1.0625rem;
+  margin-bottom: 8px;
+  color: var(--tiza-tenue);
+}
+
+.temario-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.temario-lista li {
+  border-top: 1px solid var(--trazo);
+}
+
+.temario-lista li:last-child {
+  border-bottom: 1px solid var(--trazo);
+}
+
+.temario-lista a {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) 110px;
+  gap: 16px;
+  align-items: baseline;
+  padding: 11px 0;
+  text-decoration: none;
+}
+
+.temario-lista a:hover .titulo {
+  color: var(--ambar);
+}
+
+.temario-lista .meta {
+  color: var(--tiza-tenue);
+  font-size: 0.875rem;
+}
+
+.temario-lista .estado {
+  text-align: right;
+  font-size: 0.8125rem;
+  color: var(--tiza-tenue);
+}
+
+.temario-lista .estado[data-estado="completed"] {
+  color: var(--menta);
+}
+
+.temario-lista .estado[data-estado="available"] {
+  color: var(--ambar);
+}
+
+@media (max-width: 720px) {
+  .temario-lista a {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+  .temario-lista .estado {
+    text-align: left;
+  }
+}
+
+.buscador {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.buscador input {
+  flex: 1;
+  padding: 11px 14px;
+  background: var(--tinta-honda);
+  color: var(--tiza);
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: var(--radio);
+  font: inherit;
+}
+
+.buscador button {
+  padding: 11px 22px;
+  background: var(--ambar);
+  color: var(--tinta-honda);
+  border: 0;
+  border-radius: var(--radio);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.resultados {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+}
+
+.resultados li {
+  border-top: 1px solid var(--trazo);
+}
+
+.resultados a {
+  display: grid;
+  gap: 3px;
+  padding: 14px 0;
+  text-decoration: none;
+}
+
+.resultados a:hover strong {
+  color: var(--ambar);
+}
+
+.resultados .meta {
+  color: var(--tiza-tenue);
+  font-size: 0.8125rem;
+}
+
+.resultados .fragmento {
+  color: var(--tiza-tenue);
+  font-size: 0.9375rem;
+}
