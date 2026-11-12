@@ -26,7 +26,7 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta, Docker, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **44 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **45 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 matemáticas hasta cálculo 2, álgebra lineal I, matemática discreta y lógica y demostración, física hasta mecánica newtoniana, electricidad básica,
 programación hasta algoritmos y fundamentos de seguridad) y **21 nodos comprimidos** anteriores (cada uno con un reto con
 flag), ya enlazados a la escalera pero pendientes de desdoblar.
@@ -34,7 +34,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
 ## 3. Qué hacer ahora, por orden
 
 1. **Seguir escribiendo el troncal** en el orden de `docs/CURRICULO.md` (los ✅ ya están hechos). Faltan, entre otros:
-   `mat-algebra-lineal-avanzada`, `ing-medidas-laboratorio`, `fis-ondas-optica`,
+   `mat-algebra-lineal-avanzada`, `fis-ondas-optica`,
    después, reescribir como nodos de escalera los ✳️ del troncal que quedan (`mat-analisis-real`,
    `mat-estructuras-algebraicas`, `mat-algebra-lineal`, `ing-logica-digital`, `ing-arquitectura-computadores`, `fis-mecanica-clasica`,
    `fis-electromagnetismo`, `fis-termo-estadistica`, `ing-circuitos`, `ing-senales-sistemas`), moviéndolos a `vault/00-troncal/`,
@@ -211,6 +211,7 @@ y construye la imagen Docker.
 | 11 | `mat-probabilidad` | 16 |
 | 12 | `ing-circuitos-dc-ac` | 17 |
 | 12 | `mat-estadistica-inferencia` | 15 |
+| 13 | `ing-medidas-laboratorio` | 16 |
 
 Notas de verificación: los nodos de programación se validaron ejecutando Python 3.12 real en Docker; `prog-terminal-linux-git` en un
 contenedor Debian con git; `sec-fundamentos` con hashes/HMAC/TOTP calculados en Python y Node (TOTP contrastado con el vector del
