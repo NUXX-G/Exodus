@@ -33,7 +33,7 @@ Cuatro pilares, que se estudian entrelazados por nivel, no uno detrás de otro.
 ## T-A. Método y razonamiento (3 nodos)
 
 - ✅ `tro-aprender-a-aprender` (N0): práctica de recuperación, espaciado, ejemplos resueltos, cómo usar Exodus.
-- ⬜ `tro-razonamiento-cientifico` (N1): método científico, estimación de Fermi, orden de magnitud, errores
+- ✅ `tro-razonamiento-cientifico` (N1): método científico, estimación de Fermi, orden de magnitud, errores
   y cifras significativas, leer una fuente crítica.
 - ⬜ `tro-lectura-tecnica` (N2): leer manuales, estándares y artículos; buscar y verificar fuentes.
 
