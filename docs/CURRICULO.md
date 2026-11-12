@@ -53,7 +53,7 @@ Cuatro pilares, que se estudian entrelazados por nivel, no uno detrás de otro.
 - **N0-N1**: ✅ `prog-pensamiento-computacional` · ✅ `prog-python-fundamentos` · ✅ `prog-estructuras-datos` ·
   ✅ `prog-terminal-linux-git`.
 - **N2**: ✅ `prog-algoritmos` (complejidad, ordenación, dividir y vencer, programación dinámica, voraces; CLRS) ·
-  ✅ `sys-c-fundamentos` (tipos, representación, operadores, cadenas) · ✅ `sys-c-memoria` (punteros, disposición, memoria dinámica, UB) · ✅ `prog-poo-diseno` · ✳️ `ing-logica-digital`.
+  ✅ `sys-c-fundamentos` (tipos, representación, operadores, cadenas) · ✅ `sys-c-memoria` (punteros, disposición, memoria dinámica, UB) · ✅ `prog-poo-diseno` · ✅ `ing-logica-digital`.
 - **N3**: ✳️ `ing-arquitectura-computadores` · ✅ `sys-procesos-planificacion` (núcleo, procesos, descriptores, señales, planificación) · ✅ `sys-sistemas-operativos` (memoria virtual, reemplazo, concurrencia, archivos) · ✅ `sys-bases-datos` ·
   ✅ `sec-redes-tcpip` · ✅ `sys-redes-sockets` · ✅ `sec-fundamentos` (seguridad básica: toda persona que
   programa la necesita).
