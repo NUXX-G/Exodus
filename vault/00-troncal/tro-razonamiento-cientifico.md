@@ -323,5 +323,5 @@ assert 0.08 < p < 0.10
 
 ## Siguiente
 
-`tro-lectura-tecnica` (leer manuales, estándares y artículos y verificar fuentes), [[mat-estadistica-inferencia]] (las herramientas
+[[tro-lectura-tecnica]] (leer manuales, estándares y artículos y verificar fuentes), [[mat-estadistica-inferencia]] (las herramientas
 cuantitativas del contraste) y `ing-medidas-laboratorio` (la incertidumbre en el banco de trabajo).
