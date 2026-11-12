@@ -26,17 +26,17 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta, Docker, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **9 nodos de la nueva escalera del troncal** (con 8 a 16 ejercicios cada uno, verificados por doble método) y
+Contenido: **17 nodos de la nueva escalera del troncal** (con 8 a 16 ejercicios cada uno, verificados por doble método) y
 **27 nodos troncales comprimidos** anteriores, pendientes de reubicar y desdoblar. Escalera nueva hecha: `tro-aprender-a-aprender`,
 matemáticas N0 completas (6 nodos), `prog-pensamiento-computacional` y `prog-python-fundamentos`.
 
 ## 3. Qué hacer ahora, por orden
 
-1. **Seguir escribiendo el troncal** en el orden de `docs/CURRICULO.md` (los ✅ ya están hechos): lo siguiente es
-   `fis-medida-movimiento`, `fis-fuerzas-energia`, `fis-ondas-calor-carga`, `ing-electricidad-basica` (N0-N1 de física y electricidad),
-   después N1 de matemáticas (`mat-algebra-secundaria`, `mat-trigonometria`, `mat-geometria-analitica`,
-   `mat-combinatoria-probabilidad-basica`, y desdoblar `mat-logica-demostraciones`), `prog-estructuras-datos`,
-   `prog-terminal-linux-git`. Cada nodo con la plantilla de `docs/PEDAGOGIA.md`, ≥ 8 ejercicios (lo normal: 14 a 16), 3 niveles.
+1. **Seguir escribiendo el troncal** en el orden de `docs/CURRICULO.md` (los ✅ ya están hechos). Hechos N0 y N1 de matemáticas
+   (salvo desdoblar `mat-logica-demostraciones`), de física y de electricidad, y los dos nodos iniciales de programación. Siguen:
+   `mat-logica-demostraciones` (reescribir como N1 con demostraciones guiadas), `prog-estructuras-datos`, `prog-terminal-linux-git`,
+   y el **N2**: `mat-calculo-1`, `mat-calculo-2`, `mat-algebra-lineal` (desdoblar), `mat-matematica-discreta`, `prog-algoritmos`,
+   `fis-mecanica-newtoniana`, `fis-electricidad-magnetismo-1`, `ing-circuitos-dc-ac`, `sys-c-memoria` (desdoblar), `prog-poo-diseno`. Cada nodo con la plantilla de `docs/PEDAGOGIA.md`, ≥ 8 ejercicios (lo normal: 14 a 16), 3 niveles.
 2. **Reubicar los 27 nodos existentes** en la escalera: cambiar `trunk_level` y `prerequisites`, y desdoblarlos donde falte
    profundidad. `nodo-ejemplo` (raíz huérfana, «Enteros en máquina y aritmética modular») debe desaparecer; su reto pasa a un nodo
    de teoría de números. Los nodos nuevos de N0 no dependen de él.
@@ -160,6 +160,14 @@ y construye la imagen Docker.
 | 0 | `mat-funciones-basicas` (con estadística descriptiva) | 16 |
 | 0 | `prog-pensamiento-computacional` | 14 |
 | 1 | `prog-python-fundamentos` | 16 |
+| 1 | `fis-medida-movimiento` | 16 |
+| 1 | `fis-fuerzas-energia` | 15 |
+| 1 | `fis-ondas-calor-fluidos` | 16 |
+| 1 | `ing-electricidad-basica` | 16 |
+| 1 | `mat-algebra-secundaria` | 16 |
+| 1 | `mat-trigonometria` | 16 |
+| 1 | `mat-geometria-analitica` | 16 |
+| 1 | `mat-combinatoria-probabilidad-basica` | 16 |
 
 ### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 

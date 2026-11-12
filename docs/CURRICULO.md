@@ -41,8 +41,8 @@ Cuatro pilares, que se estudian entrelazados por nivel, no uno detrás de otro.
 
 - **N0** (hechos): ✅ `mat-numeros-naturales` · ✅ `mat-enteros-fracciones` · ✅ `mat-proporcionalidad-porcentajes` ·
   ✅ `mat-algebra-basica` · ✅ `mat-geometria-basica` · ✅ `mat-funciones-basicas` (incluye estadística descriptiva).
-- **N1**: ⬜ `mat-algebra-secundaria` · ⬜ `mat-trigonometria` · ⬜ `mat-geometria-analitica` ·
-  ⬜ `mat-combinatoria-probabilidad-basica` · ✳️ `mat-logica-demostraciones`.
+- **N1** (hechos salvo la lógica): ✅ `mat-algebra-secundaria` · ✅ `mat-trigonometria` · ✅ `mat-geometria-analitica` ·
+  ✅ `mat-combinatoria-probabilidad-basica` · ✳️ `mat-logica-demostraciones` (desdoblar).
 - **N2**: ⬜ `mat-calculo-1` · ⬜ `mat-calculo-2` · ✳️ `mat-algebra-lineal` · ⬜ `mat-matematica-discreta`.
 - **N3**: ✳️ `mat-analisis-real` · ⬜ `mat-calculo-multivariable` · ⬜ `mat-ecuaciones-diferenciales` ·
   ✳️ `mat-estructuras-algebraicas` · ✳️ `mat-probabilidad` · ⬜ `mat-estadistica-inferencia` ·
@@ -60,8 +60,8 @@ Cuatro pilares, que se estudian entrelazados por nivel, no uno detrás de otro.
 
 ## T-D. Ciencias físicas e ingeniería básica (≈ 16 nodos)
 
-- **N0-N1**: ⬜ `fis-medida-movimiento` · ⬜ `fis-fuerzas-energia` · ⬜ `fis-ondas-calor-carga` ·
-  ⬜ `ing-electricidad-basica`.
+- **N1 (hechos)**: ✅ `fis-medida-movimiento` · ✅ `fis-fuerzas-energia` · ✅ `fis-ondas-calor-fluidos` (sustituye a `fis-ondas-calor-carga`;
+  la carga eléctrica está en el siguiente) · ✅ `ing-electricidad-basica`.
 - **N2**: ⬜ `fis-mecanica-newtoniana` · ⬜ `fis-electricidad-magnetismo-1` · ⬜ `ing-circuitos-dc-ac` ·
   ⬜ `ing-medidas-laboratorio`.
 - **N3**: ✳️ `fis-mecanica-clasica` · ✳️ `fis-electromagnetismo` · ✳️ `fis-termo-estadistica` ·
