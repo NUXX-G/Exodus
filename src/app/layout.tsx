@@ -31,6 +31,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               <Link href="/temario">Temario</Link>
               <Link href="/repaso">Repaso</Link>
               <Link href="/buscar">Buscar</Link>
+              <Link href="/cuenta">Cuenta</Link>
               <form action={logoutAction}>
                 <button type="submit" className="enlace-boton">
                   Cerrar sesión

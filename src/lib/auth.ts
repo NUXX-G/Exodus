@@ -1,24 +1,30 @@
 /**
  * Autenticación de instancia privada: una única cuenta (la primera que se crea en /configurar)
- * y sesiones por cookie HttpOnly. El token solo existe en la cookie; en la base de datos se
- * guarda su SHA-256, de modo que una copia de la base de datos no permite suplantar sesiones.
+ * y sesiones por cookie HttpOnly. La lógica de base de datos (sesiones y contraseña) vive en
+ * sessions.ts; aquí solo se conecta con las cookies, las cabeceras y las redirecciones de Next.
  */
 import "server-only";
 import crypto from "node:crypto";
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { and, eq, gt, isNotNull, lt, sql } from "drizzle-orm";
+import { eq, isNotNull, sql } from "drizzle-orm";
 import { getDb, schema } from "./db";
 import { hashPassword, verifyPassword } from "./password";
 import { clientKeyFrom, FailureLimiter } from "./rate-limit";
+import {
+  changePassword as changePasswordCore,
+  countSessions,
+  createSession,
+  revokeOtherSessions,
+  revokeSession,
+  userForToken,
+  type PasswordChange,
+} from "./sessions";
 import type { User } from "@db/schema";
 
-const { users, sessions } = schema;
+const { users } = schema;
 
 const COOKIE = "exodus_session";
-const SESSION_DAYS = 30;
-
-const tokenId = (token: string) => crypto.createHash("sha256").update(token).digest("hex");
 
 /** ¿Existe ya la cuenta de la instancia? */
 export function hasOwner(): boolean {
@@ -26,11 +32,7 @@ export function hasOwner(): boolean {
 }
 
 async function startSession(userId: number) {
-  const db = getDb();
-  const token = crypto.randomBytes(32).toString("base64url");
-  const expiresAt = new Date(Date.now() + SESSION_DAYS * 86_400_000);
-  db.delete(sessions).where(lt(sessions.expiresAt, new Date())).run();
-  db.insert(sessions).values({ id: tokenId(token), userId, expiresAt }).run();
+  const { token, expiresAt } = createSession(userId);
 
   // `Secure` cuando la petición llegó por HTTPS (directo o a través del proxy inverso).
   const https = (await headers()).get("x-forwarded-proto") === "https";
@@ -43,16 +45,13 @@ async function startSession(userId: number) {
   });
 }
 
+async function currentToken(): Promise<string | null> {
+  return (await cookies()).get(COOKIE)?.value ?? null;
+}
+
 export async function getSessionUser(): Promise<User | null> {
-  const token = (await cookies()).get(COOKIE)?.value;
-  if (!token) return null;
-  const row = getDb()
-    .select({ user: users })
-    .from(sessions)
-    .innerJoin(users, eq(users.id, sessions.userId))
-    .where(and(eq(sessions.id, tokenId(token)), gt(sessions.expiresAt, new Date())))
-    .get();
-  return row?.user ?? null;
+  const token = await currentToken();
+  return token ? userForToken(token) : null;
 }
 
 /** Para páginas y acciones protegidas: devuelve el usuario o redirige a /configurar o /entrar. */
@@ -89,6 +88,8 @@ function setupCodeMatches(code: string): boolean {
 const limits = { maxPerClient: 5, maxGlobal: 200, windowMs: 10 * 60_000, maxTracked: 5_000 };
 const loginLimiter = new FailureLimiter(limits);
 const setupLimiter = new FailureLimiter(limits);
+// La contraseña actual tampoco se puede adivinar a ciegas desde una sesión robada.
+const passwordLimiter = new FailureLimiter(limits);
 
 /** X-Forwarded-For solo es fiable si hay un proxy propio delante (perfil https del compose). */
 async function clientKey(): Promise<string> {
@@ -140,6 +141,35 @@ export async function login(username: string, password: string): Promise<LoginRe
 export async function logout() {
   const jar = await cookies();
   const token = jar.get(COOKIE)?.value;
-  if (token) getDb().delete(sessions).where(eq(sessions.id, tokenId(token))).run();
+  if (token) revokeSession(token);
   jar.delete(COOKIE);
+}
+
+/* ───────── Cuenta: contraseña y sesiones ───────── */
+
+/** Sesiones abiertas del usuario actual (incluida esta). */
+export async function activeSessions(): Promise<number> {
+  const user = await requireUser();
+  return countSessions(user.id);
+}
+
+/** Cambia la contraseña del usuario actual y cierra sus demás sesiones. */
+export async function changeOwnPassword(current: string, next: string): Promise<PasswordChange | "espera"> {
+  const user = await requireUser();
+  const token = await currentToken();
+  if (!token) redirect("/entrar");
+  const key = `usuario-${user.id}`;
+  if (passwordLimiter.blocked(key)) return "espera";
+  const result = changePasswordCore(user.id, current, next, token);
+  if (result === "actual") passwordLimiter.fail(key);
+  else if (result === "ok") passwordLimiter.succeed(key);
+  return result;
+}
+
+/** Cierra todas las sesiones salvo la actual. Devuelve cuántas cerró. */
+export async function closeOtherSessions(): Promise<number> {
+  const user = await requireUser();
+  const token = await currentToken();
+  if (!token) redirect("/entrar");
+  return revokeOtherSessions(user.id, token);
 }

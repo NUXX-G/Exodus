@@ -25,7 +25,7 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 ## 2. Estado en una línea
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
-repaso espaciado**, heatmap, cuenta, Docker, CI), probada de extremo a extremo en navegador contra la imagen Docker.
+repaso espaciado**, heatmap, cuenta con cambio de contraseña y cierre de otras sesiones, Docker, HTTPS con Caddy, CI), probada de extremo a extremo en navegador contra la imagen Docker.
 Contenido: **58 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 todo el troncal de `docs/CURRICULO.md`, de 1º ESO a final de grado: matemáticas hasta análisis real, álgebra lineal avanzada y
 estadística; física hasta electromagnetismo, termodinámica estadística y circuitos con semiconductores; computación hasta sistemas
@@ -40,9 +40,15 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
 2. **Ramas N4 → N6 (lo siguiente)** por prerrequisitos (lista en `docs/CURRICULO.md`: topología, EDP, C++, Rust, ARM, forense y logs, PCB,
    PyTorch, Transformers, LLM locales…). Los nodos comprimidos antiguos se desdoblan en ellas. Empezado: `fis-mecanica-cuantica`
    (reescrito como nodo de escalera en `vault/02-fisica/`, conserva su flag). Las ramas se quedan en su carpeta (`vault/02-fisica/`, etc.).
-3. Plataforma, cuando haga falta: cambio de contraseña y cierre de otras sesiones; tests de `progress.ts` y `auth.ts`
-   (`server-only` impide importarlos en `tsx --test`, habrá que aislarlo); perfil `https` probado en un VPS real y
-   `deploy.bat` ejecutado como tal.
+3. **Plataforma (MVP cerrado el 2026-11-12)**: `/cuenta` permite cambiar la contraseña (pide la actual; al cambiarla se cierran las
+   demás sesiones) y cerrar las demás sesiones; probado en navegador con dos contextos. La lógica de sesiones está en
+   `src/lib/sessions.ts` (sin dependencias de Next) y tiene tests, igual que `progress.ts` (`tests/sessions.test.ts`,
+   `tests/progress.test.ts`): `npm test` usa `--conditions=react-server` para que `server-only` resuelva a su versión vacía, y
+   `tests/db-temporal.ts` abre una base SQLite temporal con las migraciones. `deploy.bat` se ejecutó tal cual (se corrigió la espera:
+   `timeout` falla sin consola, ahora usa `ping`). El perfil `https` se probó en local con `EXODUS_DOMAIN=localhost` (certificado
+   interno de Caddy, cabeceras HSTS/nosniff/DENY y salud correctas, mapeando el 443 a otro puerto porque el 80 de Windows está
+   ocupado). Lo único sin probar es Let's Encrypt con un dominio real, que exige un VPS y un DNS del usuario:
+   `EXODUS_DOMAIN=exodus.midominio.com ./deploy.sh` (ver `docker/Caddyfile`).
 4. Revisar la bibliografía de los 10 nodos antiguos (se escribió de memoria) contra la web. Los nodos de la escalera llevan
    referencias verificadas en la web o citadas solo por libro/capítulo sin número.
 5. Tras añadir o enlazar nodos: `npm run vault:relevel`, `npm run vault:check`, `npm test`, `npx tsc --noEmit`.
