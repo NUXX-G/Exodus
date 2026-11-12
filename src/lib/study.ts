@@ -3,11 +3,11 @@ import { AREA_IDS, type AreaId } from "./areas";
 import type { NodeState } from "./progress";
 import type { Vault, VaultNode } from "./vault";
 
-/** Minutos de lectura: ~180 palabras/min para texto técnico, más un margen fijo para el reto. */
+/** Minutos: lectura (~180 palabras/min), 30 por reto con flag y 4 por ejercicio. */
 export function estimateMinutes(node: VaultNode): number {
   const words = node.body.replace(/```[\s\S]*?```/g, " código ").split(/\s+/).filter(Boolean).length;
   const reading = Math.round(words / 180);
-  return reading + (node.ctfFlag ? 30 : 0);
+  return reading + (node.ctfFlag ? 30 : 0) + node.exercises.length * 4;
 }
 
 export function formatMinutes(min: number): string {
@@ -29,7 +29,7 @@ export function studyOrder(vault: Vault): VaultNode[] {
 
 /** Siguiente nodo recomendado: el primero disponible, con reto, en orden de estudio. */
 export function recommendedNext(vault: Vault, states: Map<string, NodeState>): VaultNode | null {
-  return studyOrder(vault).find((n) => states.get(n.id) === "available" && n.ctfFlag) ?? null;
+  return studyOrder(vault).find((n) => states.get(n.id) === "available" && (n.ctfFlag || n.exercises.length > 0)) ?? null;
 }
 
 export interface AreaProgress {

@@ -1,6 +1,5 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { requireUser } from "@/lib/auth";
 import { submitReview } from "@/lib/progress";
 import { loadVault } from "@/lib/vault";
@@ -8,6 +7,8 @@ import { loadVault } from "@/lib/vault";
 export interface ReviewState {
   tone: "ok" | "error";
   message: string;
+  /** El repaso ya se procesó: el formulario se bloquea y el resultado queda visible. */
+  done?: boolean;
 }
 
 export async function submitReviewAction(_prev: ReviewState | null, form: FormData): Promise<ReviewState> {
@@ -23,9 +24,7 @@ export async function submitReviewAction(_prev: ReviewState | null, form: FormDa
   const r = submitReview(user.id, node, exerciseId, answer);
   if (r === "sin-repaso") return { tone: "error", message: "Este repaso ya no está pendiente." };
   if (r === "espera") return { tone: "error", message: "Demasiados intentos fallidos. Espera un minuto." };
-  revalidatePath("/repaso");
-  revalidatePath("/");
   return r === "ok"
-    ? { tone: "ok", message: "Correcto. Volverá a pedirse más adelante, con más separación." }
-    : { tone: "error", message: "Incorrecta. Repasa el nodo: este ejercicio se repetirá mañana." };
+    ? { tone: "ok", done: true, message: "Correcto. Volverá a pedirse más adelante, con más separación." }
+    : { tone: "error", done: true, message: "Incorrecta. Repasa el nodo: este ejercicio se repetirá mañana." };
 }
