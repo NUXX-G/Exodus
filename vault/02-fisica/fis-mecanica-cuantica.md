@@ -2,7 +2,7 @@
 id: fis-mecanica-cuantica
 title: "Mecánica cuántica"
 area: fisica
-trunk_level: 11
+trunk_level: 12
 prerequisites: [fis-mecanica-clasica, mat-algebra-lineal]
 academic_sources:
   - "Sakurai, J. J.; Napolitano, J. Modern Quantum Mechanics, 3ª ed. Cambridge University Press, 2020."
