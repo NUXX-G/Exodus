@@ -2,8 +2,8 @@
 id: ing-circuitos
 title: "Análisis de circuitos y electrónica"
 area: ingenieria
-trunk_level: 12
-prerequisites: [ing-electricidad-basica, fis-electromagnetismo]
+trunk_level: 13
+prerequisites: [ing-circuitos-dc-ac, fis-electromagnetismo]
 academic_sources:
   - "Horowitz, P.; Hill, W. The Art of Electronics, 3ª ed. Cambridge University Press, 2015."
   - "Agarwal, A.; Lang, J. H. Foundations of Analog and Digital Electronic Circuits. Morgan Kaufmann, 2005."
