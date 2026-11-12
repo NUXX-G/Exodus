@@ -1,6 +1,6 @@
 # STATUS — Exodus
 
-Última actualización: 2026-11-12 (sesión: panel, ejercicios, escalera del troncal hasta mecánica newtoniana)
+Última actualización: 2026-11-12 (sesión: escalera del troncal; lógica y demostración reescrita; callouts plegables)
 
 **Documento de traspaso.** Quien retome el proyecto (persona o agente, sin contexto previo) lee esto
 primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso puede continuar solo.
@@ -26,15 +26,14 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta, Docker, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **27 nodos de la escalera del troncal** (8 a 16 ejercicios cada uno, verificados por doble método; cubren
-matemáticas hasta cálculo 2, álgebra lineal I y matemática discreta, física hasta mecánica newtoniana, electricidad básica,
-programación hasta algoritmos y fundamentos de seguridad) y **26 nodos comprimidos** anteriores (cada uno con un reto con
+Contenido: **28 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+matemáticas hasta cálculo 2, álgebra lineal I, matemática discreta y lógica y demostración, física hasta mecánica newtoniana, electricidad básica,
+programación hasta algoritmos y fundamentos de seguridad) y **25 nodos comprimidos** anteriores (cada uno con un reto con
 flag), ya enlazados a la escalera pero pendientes de desdoblar.
 
 ## 3. Qué hacer ahora, por orden
 
 1. **Seguir escribiendo el troncal** en el orden de `docs/CURRICULO.md` (los ✅ ya están hechos). Faltan, entre otros:
-   `mat-logica-demostraciones` (reescribir como nodo de escalera con demostraciones guiadas),
    `ing-circuitos-dc-ac`, `sys-c-memoria` y `sys-sistemas-operativos` (desdoblar), `prog-poo-diseno`, `sys-bases-datos`,
    `sys-redes-sockets`, `mat-calculo-multivariable`, `mat-ecuaciones-diferenciales`, `mat-estadistica-inferencia`,
    `mat-analisis-numerico`, `mat-algebra-lineal-avanzada`, `ing-medidas-laboratorio`, `fis-ondas-optica`,
@@ -45,7 +44,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
 3. Plataforma, cuando haga falta: cambio de contraseña y cierre de otras sesiones; tests de `progress.ts` y `auth.ts`
    (`server-only` impide importarlos en `tsx --test`, habrá que aislarlo); perfil `https` probado en un VPS real y
    `deploy.bat` ejecutado como tal.
-4. Revisar la bibliografía de los 26 nodos antiguos (se escribió de memoria) contra la web. Los nodos de la escalera llevan
+4. Revisar la bibliografía de los 25 nodos antiguos (se escribió de memoria) contra la web. Los nodos de la escalera llevan
    referencias verificadas en la web o citadas solo por libro/capítulo sin número.
 5. Tras añadir o enlazar nodos: `npm run vault:relevel`, `npm run vault:check`, `npm test`, `npx tsc --noEmit`.
 
@@ -106,6 +105,12 @@ Reglas:
 3. Validar los fragmentos de código del texto ejecutándolos (los ejemplos de Python se probaron con `assert` en Docker; así se
    cazó un resultado erróneo en el contador de palabras).
 4. `npm run vault:check` y `npm test`; commit; PR; esperar el CI; fusionar.
+
+**Ejemplos que se desvanecen**: tras cada ejemplo resuelto, un «Ahora tú» con huecos y la solución en un callout plegable
+(`> [!tip]- Solución`, se renderiza como `<details>` cerrado; `[!tipo]+` empieza abierto). Modelo: `mat-logica-demostraciones`.
+
+**Tablas de STATUS §7**: se regeneran desde el vault con un script de apoyo (cargar `src/lib/vault.ts` con `tsx`, ordenar por
+`trunkLevel` e `id`, escalera = nodos con ejercicios). Los contadores de §2 se ajustan a mano.
 
 Verificación antes de cada PR: `npm run vault:check`, `npm test`, `npx tsc --noEmit`. El CI repite todo
 y construye la imagen Docker.
@@ -179,6 +184,7 @@ y construye la imagen Docker.
 | 7 | `fis-ondas-calor-fluidos` | 16 |
 | 7 | `ing-electricidad-basica` | 16 |
 | 7 | `mat-geometria-analitica` | 16 |
+| 7 | `mat-logica-demostraciones` | 17 |
 | 7 | `mat-matematica-discreta` | 16 |
 | 7 | `prog-estructuras-datos` | 16 |
 | 7 | `sec-fundamentos` | 16 |
@@ -192,7 +198,8 @@ y construye la imagen Docker.
 Notas de verificación: los nodos de programación se validaron ejecutando Python 3.12 real en Docker; `prog-terminal-linux-git` en un
 contenedor Debian con git; `sec-fundamentos` con hashes/HMAC/TOTP calculados en Python y Node (TOTP contrastado con el vector del
 RFC 6238); `fis-mecanica-newtoniana` compara RK4 con la solución analítica; `mat-matematica-discreta` y `prog-algoritmos`
-usan fuerza bruta o BFS como segundo método.
+usan fuerza bruta o BFS como segundo método. `mat-logica-demostraciones` (reescrito sobre el nodo comprimido, conserva su flag y la
+comprueba en el spec) contrasta cada fórmula de conteo con enumeración exhaustiva y las tautologías con tablas completas.
 
 ### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 
@@ -200,19 +207,17 @@ usan fuerza bruta o BFS como segundo método.
 |:---:|---|
 | 3 | `sys-c-memoria` |
 | 4 | `sys-sistemas-operativos` |
-| 6 | `mat-logica-demostraciones` |
-| 7 | `ing-logica-digital` |
-| 7 | `mat-estructuras-algebraicas` |
-| 8 | `ing-arquitectura-computadores` |
+| 8 | `ing-logica-digital` |
+| 8 | `mat-estructuras-algebraicas` |
 | 8 | `sec-redes-tcpip` |
+| 9 | `ing-arquitectura-computadores` |
 | 9 | `mat-algebra-lineal` |
 | 9 | `sec-web` |
-| 9 | `sys-ensamblador-x86-64` |
 | 10 | `fis-mecanica-clasica` |
 | 10 | `ing-senales-sistemas` |
 | 10 | `mat-analisis-real` |
 | 10 | `mat-probabilidad` |
-| 10 | `sec-explotacion-binaria` |
+| 10 | `sys-ensamblador-x86-64` |
 | 11 | `fis-electromagnetismo` |
 | 11 | `fis-mecanica-cuantica` |
 | 11 | `fis-termo-estadistica` |
@@ -220,6 +225,7 @@ usan fuerza bruta o BFS como segundo método.
 | 11 | `rob-cinematica` |
 | 11 | `rob-control` |
 | 11 | `sec-criptografia` |
+| 11 | `sec-explotacion-binaria` |
 | 12 | `cua-computacion-cuantica` |
 | 12 | `ia-redes-profundas` |
 | 12 | `ing-circuitos` |

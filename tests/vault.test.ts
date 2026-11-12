@@ -84,6 +84,12 @@ test("render: LaTeX, código, wikilinks, callouts y descarte de HTML peligroso",
   assert.match(html, />alias</);
   assert.match(html, /wikilink-rota/);
   assert.match(html, /<aside class="callout callout-warning">/);
+  const folded = await renderMarkdown(
+    ["> [!tip]- Solución", "> Oculta.", "", "> [!note]+ Abierta", "> Visible."].join("\n"),
+    linkResolverFor(vault),
+  );
+  assert.match(folded, /<details class="callout callout-tip">\s*<summary class="callout-titulo">Solución<\/summary>/);
+  assert.match(folded, /<details class="callout callout-note" open>/);
   assert.doesNotMatch(html, /<script/);
   assert.doesNotMatch(html, /javascript:/);
   assert.ok(html.includes('href="https://example.org"'));

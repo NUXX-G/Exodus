@@ -619,6 +619,20 @@ h3 {
   margin-bottom: 0.5rem !important;
 }
 
+details.callout > summary.callout-titulo {
+  display: list-item;
+  cursor: pointer;
+  margin-bottom: 0.75rem !important;
+}
+
+details.callout:not([open]) {
+  padding-bottom: 14px;
+}
+
+details.callout:not([open]) > summary.callout-titulo {
+  margin-bottom: 0 !important;
+}
+
 .callout-warning,
 .callout-caution,
 .callout-danger {
