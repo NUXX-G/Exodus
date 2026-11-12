@@ -26,7 +26,7 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta, Docker, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **32 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **33 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 matemáticas hasta cálculo 2, álgebra lineal I, matemática discreta y lógica y demostración, física hasta mecánica newtoniana, electricidad básica,
 programación hasta algoritmos y fundamentos de seguridad) y **24 nodos comprimidos** anteriores (cada uno con un reto con
 flag), ya enlazados a la escalera pero pendientes de desdoblar.
@@ -34,7 +34,8 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
 ## 3. Qué hacer ahora, por orden
 
 1. **Seguir escribiendo el troncal** en el orden de `docs/CURRICULO.md` (los ✅ ya están hechos). Faltan, entre otros:
-   `sys-sistemas-operativos` (desdoblar), `sys-bases-datos`,
+   `sys-sistemas-operativos` (reescribir sobre `sys-procesos-planificacion`, ya hecho: memoria virtual, reemplazo, concurrencia,
+   archivos; conservar su flag), `sys-bases-datos`,
    `sys-redes-sockets`, `mat-calculo-multivariable`, `mat-ecuaciones-diferenciales`, `mat-estadistica-inferencia`,
    `mat-analisis-numerico`, `mat-algebra-lineal-avanzada`, `ing-medidas-laboratorio`, `fis-ondas-optica`,
    `tro-razonamiento-cientifico`, `tro-lectura-tecnica`. Cada nodo con la plantilla de `docs/PEDAGOGIA.md`, ≥ 8 ejercicios
@@ -195,6 +196,7 @@ y construye la imagen Docker.
 | 8 | `sys-c-memoria` | 16 |
 | 9 | `mat-calculo-2` | 16 |
 | 9 | `prog-algoritmos` | 16 |
+| 9 | `sys-procesos-planificacion` | 16 |
 | 10 | `fis-mecanica-newtoniana` | 16 |
 | 11 | `fis-electricidad-magnetismo-1` | 17 |
 | 12 | `ing-circuitos-dc-ac` | 17 |
@@ -213,6 +215,8 @@ JavaScript (incluida la linealización C3 del MRO); cada bloque ```python del te
 y se compilan y ejecutan igual (script de apoyo: extraer cada bloque a un archivo y compilarlo en el contenedor; los bloques sin
 `main` se tratan como fragmentos). `sys-c-memoria` (reescrito sobre el nodo comprimido, conserva su reto) usa el mismo método y
 además recalcula la flag del reto en C y en JavaScript (disposición de la estructura calculada con las reglas de la ABI).
+`sys-procesos-planificacion`: los programas con `fork`/`exec`/`pipe`/señales se ejecutan en `gcc:14` con la salida redirigida a
+un archivo (búfer completo de stdio) y se contrastan con un modelo en JS; la planificación se simula en Python y en JS.
 
 ### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 
