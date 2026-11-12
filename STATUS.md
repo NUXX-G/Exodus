@@ -26,7 +26,7 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta, Docker, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **30 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **31 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 matemáticas hasta cálculo 2, álgebra lineal I, matemática discreta y lógica y demostración, física hasta mecánica newtoniana, electricidad básica,
 programación hasta algoritmos y fundamentos de seguridad) y **25 nodos comprimidos** anteriores (cada uno con un reto con
 flag), ya enlazados a la escalera pero pendientes de desdoblar.
@@ -34,7 +34,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
 ## 3. Qué hacer ahora, por orden
 
 1. **Seguir escribiendo el troncal** en el orden de `docs/CURRICULO.md` (los ✅ ya están hechos). Faltan, entre otros:
-   `sys-c-memoria` y `sys-sistemas-operativos` (desdoblar), `sys-bases-datos`,
+   `sys-c-memoria` (reescribir sobre `sys-c-fundamentos`, ya hecho, conservando su flag) y `sys-sistemas-operativos` (desdoblar), `sys-bases-datos`,
    `sys-redes-sockets`, `mat-calculo-multivariable`, `mat-ecuaciones-diferenciales`, `mat-estadistica-inferencia`,
    `mat-analisis-numerico`, `mat-algebra-lineal-avanzada`, `ing-medidas-laboratorio`, `fis-ondas-optica`,
    `tro-razonamiento-cientifico`, `tro-lectura-tecnica`. Cada nodo con la plantilla de `docs/PEDAGOGIA.md`, ≥ 8 ejercicios
@@ -175,6 +175,7 @@ y construye la imagen Docker.
 | 2 | `prog-python-fundamentos` | 16 |
 | 2 | `prog-terminal-linux-git` | 16 |
 | 3 | `mat-geometria-basica` | 16 |
+| 3 | `sys-c-fundamentos` | 17 |
 | 4 | `mat-funciones-basicas` | 16 |
 | 5 | `fis-medida-movimiento` | 16 |
 | 5 | `mat-algebra-secundaria` | 16 |
@@ -206,6 +207,9 @@ comprueba en el spec) contrasta cada fórmula de conteo con enumeración exhaust
 Thévenin con vacío/cortocircuito; su código Python (Gauss-Jordan con fracciones y complejos) se ejecutó en Docker. `prog-poo-diseno`: cada ejercicio es un
 programa cuya salida real (Python 3.12 en Docker, un solo contenedor para todos) se contrasta con una reimplementación en
 JavaScript (incluida la linealización C3 del MRO); cada bloque ```python del texto se ejecuta por separado.
+`sys-c-fundamentos`: cada ejercicio es un programa C compilado con GCC 14 (imagen `gcc:14`) en `-O0` con ASan y UBSan y en
+`-O2`; ambas salidas deben coincidir entre sí y con JavaScript. Los bloques ```c del texto son programas completos con `assert`
+y se compilan y ejecutan igual (script de apoyo: extraer cada bloque a un archivo y compilarlo en el contenedor).
 
 ### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 
