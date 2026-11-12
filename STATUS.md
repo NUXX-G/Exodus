@@ -26,9 +26,9 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta, Docker, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **40 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **41 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 matemáticas hasta cálculo 2, álgebra lineal I, matemática discreta y lógica y demostración, física hasta mecánica newtoniana, electricidad básica,
-programación hasta algoritmos y fundamentos de seguridad) y **22 nodos comprimidos** anteriores (cada uno con un reto con
+programación hasta algoritmos y fundamentos de seguridad) y **21 nodos comprimidos** anteriores (cada uno con un reto con
 flag), ya enlazados a la escalera pero pendientes de desdoblar.
 
 ## 3. Qué hacer ahora, por orden
@@ -43,7 +43,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
 3. Plataforma, cuando haga falta: cambio de contraseña y cierre de otras sesiones; tests de `progress.ts` y `auth.ts`
    (`server-only` impide importarlos en `tsx --test`, habrá que aislarlo); perfil `https` probado en un VPS real y
    `deploy.bat` ejecutado como tal.
-4. Revisar la bibliografía de los 22 nodos antiguos (se escribió de memoria) contra la web. Los nodos de la escalera llevan
+4. Revisar la bibliografía de los 21 nodos antiguos (se escribió de memoria) contra la web. Los nodos de la escalera llevan
    referencias verificadas en la web o citadas solo por libro/capítulo sin número.
 5. Tras añadir o enlazar nodos: `npm run vault:relevel`, `npm run vault:check`, `npm test`, `npx tsc --noEmit`.
 
@@ -204,6 +204,7 @@ y construye la imagen Docker.
 | 10 | `sys-sistemas-operativos` | 16 |
 | 11 | `fis-electricidad-magnetismo-1` | 17 |
 | 11 | `mat-analisis-numerico` | 16 |
+| 11 | `mat-probabilidad` | 16 |
 | 12 | `ing-circuitos-dc-ac` | 17 |
 
 Notas de verificación: los nodos de programación se validaron ejecutando Python 3.12 real en Docker; `prog-terminal-linux-git` en un
@@ -242,20 +243,19 @@ en JS; ley de Little contrastada con una simulación.
 | 9 | `mat-algebra-lineal` |
 | 9 | `sec-web` |
 | 10 | `mat-analisis-real` |
-| 10 | `mat-probabilidad` |
 | 10 | `sys-ensamblador-x86-64` |
 | 11 | `fis-mecanica-clasica` |
-| 11 | `ia-aprendizaje-estadistico` |
 | 11 | `ing-senales-sistemas` |
-| 11 | `sec-criptografia` |
 | 11 | `sec-explotacion-binaria` |
 | 12 | `fis-electromagnetismo` |
 | 12 | `fis-mecanica-cuantica` |
 | 12 | `fis-termo-estadistica` |
-| 12 | `ia-redes-profundas` |
+| 12 | `ia-aprendizaje-estadistico` |
 | 12 | `rob-cinematica` |
 | 12 | `rob-control` |
+| 12 | `sec-criptografia` |
 | 13 | `cua-computacion-cuantica` |
+| 13 | `ia-redes-profundas` |
 | 13 | `ing-circuitos` |
 | 14 | `rob-microcontroladores` |
 
