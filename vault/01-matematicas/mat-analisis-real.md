@@ -2,8 +2,8 @@
 id: mat-analisis-real
 title: "Análisis real"
 area: matematicas
-trunk_level: 2
-prerequisites: [mat-logica-demostraciones]
+trunk_level: 10
+prerequisites: [mat-logica-demostraciones, mat-calculo-2]
 academic_sources:
   - "Rudin, W. Principles of Mathematical Analysis, 3ª ed. McGraw-Hill, 1976."
   - "Spivak, M. Calculus, 4ª ed. Publish or Perish, 2008."

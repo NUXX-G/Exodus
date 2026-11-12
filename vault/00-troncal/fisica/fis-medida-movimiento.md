@@ -2,7 +2,7 @@
 id: fis-medida-movimiento
 title: "Medida y movimiento: unidades, error y cinemática"
 area: fisica
-trunk_level: 1
+trunk_level: 5
 prerequisites: [mat-algebra-basica, mat-funciones-basicas]
 academic_sources:
   - "Halliday, D.; Resnick, R.; Walker, J. Fundamentals of Physics, 11ª ed. Wiley, 2018."

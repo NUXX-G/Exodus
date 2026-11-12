@@ -2,7 +2,7 @@
 id: mat-geometria-analitica
 title: "Geometría analítica: rectas, vectores, circunferencias y cónicas"
 area: matematicas
-trunk_level: 1
+trunk_level: 7
 prerequisites: [mat-geometria-basica, mat-algebra-secundaria, mat-trigonometria]
 academic_sources:
   - "Gelfand, I. M.; Glagoleva, E. G.; Kirillov, A. A. The Method of Coordinates. Birkhäuser, 1990."

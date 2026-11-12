@@ -2,7 +2,7 @@
 id: mat-trigonometria
 title: "Trigonometría: ángulos, ondas y triángulos"
 area: matematicas
-trunk_level: 1
+trunk_level: 6
 prerequisites: [mat-geometria-basica, mat-algebra-secundaria]
 academic_sources:
   - "Gelfand, I. M.; Saul, M. Trigonometry. Birkhäuser, 2001."

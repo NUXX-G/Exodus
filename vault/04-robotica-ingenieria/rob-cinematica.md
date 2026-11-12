@@ -2,7 +2,7 @@
 id: rob-cinematica
 title: "Cinemática de robots"
 area: robotica
-trunk_level: 4
+trunk_level: 11
 prerequisites: [mat-algebra-lineal, fis-mecanica-clasica]
 academic_sources:
   - "Lynch, K. M.; Park, F. C. Modern Robotics: Mechanics, Planning, and Control. Cambridge University Press, 2017."

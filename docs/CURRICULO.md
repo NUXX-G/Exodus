@@ -43,15 +43,15 @@ Cuatro pilares, que se estudian entrelazados por nivel, no uno detrás de otro.
   ✅ `mat-algebra-basica` · ✅ `mat-geometria-basica` · ✅ `mat-funciones-basicas` (incluye estadística descriptiva).
 - **N1** (hechos salvo la lógica): ✅ `mat-algebra-secundaria` · ✅ `mat-trigonometria` · ✅ `mat-geometria-analitica` ·
   ✅ `mat-combinatoria-probabilidad-basica` · ✳️ `mat-logica-demostraciones` (desdoblar).
-- **N2**: ⬜ `mat-calculo-1` · ⬜ `mat-calculo-2` · ✳️ `mat-algebra-lineal` · ⬜ `mat-matematica-discreta`.
+- **N2**: ✅ `mat-calculo-1` · ✅ `mat-calculo-2` · ✳️ `mat-algebra-lineal` · ⬜ `mat-matematica-discreta`.
 - **N3**: ✳️ `mat-analisis-real` · ⬜ `mat-calculo-multivariable` · ⬜ `mat-ecuaciones-diferenciales` ·
   ✳️ `mat-estructuras-algebraicas` · ✳️ `mat-probabilidad` · ⬜ `mat-estadistica-inferencia` ·
   ⬜ `mat-analisis-numerico` · ⬜ `mat-algebra-lineal-avanzada`.
 
 ## T-C. Computación fundamental (≈ 17 nodos)
 
-- **N0-N1**: ✅ `prog-pensamiento-computacional` · ✅ `prog-python-fundamentos` · ⬜ `prog-estructuras-datos` ·
-  ⬜ `prog-terminal-linux-git`.
+- **N0-N1**: ✅ `prog-pensamiento-computacional` · ✅ `prog-python-fundamentos` · ✅ `prog-estructuras-datos` ·
+  ✅ `prog-terminal-linux-git`.
 - **N2**: ⬜ `prog-algoritmos` (complejidad, ordenación, grafos, programación dinámica; CLRS) ·
   ✳️ `sys-c-memoria` · ⬜ `prog-poo-diseno` · ✳️ `ing-logica-digital`.
 - **N3**: ✳️ `ing-arquitectura-computadores` · ✳️ `sys-sistemas-operativos` · ⬜ `sys-bases-datos` ·

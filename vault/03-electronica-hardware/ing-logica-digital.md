@@ -2,8 +2,8 @@
 id: ing-logica-digital
 title: "Lógica digital"
 area: ingenieria
-trunk_level: 2
-prerequisites: [nodo-ejemplo, mat-logica-demostraciones]
+trunk_level: 7
+prerequisites: [mat-logica-demostraciones, prog-pensamiento-computacional]
 academic_sources:
   - "Harris, S. L.; Harris, D. Digital Design and Computer Architecture: RISC-V Edition. Morgan Kaufmann, 2021. Caps. 1–5."
   - "Mano, M. M.; Ciletti, M. D. Digital Design, 6ª ed. Pearson, 2018."

@@ -2,7 +2,7 @@
 id: mat-algebra-secundaria
 title: "Álgebra de secundaria: polinomios, radicales y logaritmos"
 area: matematicas
-trunk_level: 1
+trunk_level: 5
 prerequisites: [mat-algebra-basica, mat-funciones-basicas]
 academic_sources:
   - "Stewart, J.; Redlin, L.; Watson, S. Precalculus: Mathematics for Calculus, 7ª ed. Cengage Learning, 2016."

@@ -2,8 +2,8 @@
 id: sys-c-memoria
 title: "C y el modelo de memoria"
 area: bajo-nivel
-trunk_level: 1
-prerequisites: [nodo-ejemplo]
+trunk_level: 3
+prerequisites: [prog-python-fundamentos, prog-terminal-linux-git]
 academic_sources:
   - "Kernighan, B. W.; Ritchie, D. M. The C Programming Language, 2ª ed. Prentice Hall, 1988."
   - "ISO/IEC 9899:2018. Programming languages — C. §6.2.4–6.2.8, §6.5, §7.22.3."
@@ -22,7 +22,7 @@ hints:
 C no describe una máquina, sino una *máquina abstracta* cuyo comportamiento fija el estándar. Un
 compilador puede transformar el programa como quiera mientras conserve el comportamiento
 observable de los programas **correctos**. Entender C es entender dónde termina esa abstracción y
-dónde empieza el hardware visto en [[nodo-ejemplo]].
+dónde empieza el hardware (ver [[ing-logica-digital]] y [[prog-pensamiento-computacional]]).
 
 ## 1. Objetos, tipos y representación
 

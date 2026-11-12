@@ -2,7 +2,7 @@
 id: sec-criptografia
 title: "Criptografía"
 area: ciberseguridad
-trunk_level: 4
+trunk_level: 11
 prerequisites: [mat-estructuras-algebraicas, mat-probabilidad]
 academic_sources:
   - "Katz, J.; Lindell, Y. Introduction to Modern Cryptography, 3ª ed. CRC Press, 2020."

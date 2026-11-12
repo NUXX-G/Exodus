@@ -2,7 +2,7 @@
 id: fis-ondas-calor-fluidos
 title: "Ondas, luz, calor y fluidos"
 area: fisica
-trunk_level: 1
+trunk_level: 7
 prerequisites: [fis-fuerzas-energia]
 academic_sources:
   - "Halliday, D.; Resnick, R.; Walker, J. Fundamentals of Physics, 11ª ed. Wiley, 2018."

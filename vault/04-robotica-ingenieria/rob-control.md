@@ -2,7 +2,7 @@
 id: rob-control
 title: "Teoría de control"
 area: robotica
-trunk_level: 4
+trunk_level: 11
 prerequisites: [ing-senales-sistemas]
 academic_sources:
   - "Åström, K. J.; Murray, R. M. Feedback Systems: An Introduction for Scientists and Engineers, 2ª ed. Princeton University Press, 2021."
