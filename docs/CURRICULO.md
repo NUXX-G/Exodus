@@ -32,15 +32,15 @@ Cuatro pilares, que se estudian entrelazados por nivel, no uno detrás de otro.
 
 ## T-A. Método y razonamiento (3 nodos)
 
-- ⬜ `tro-aprender-a-aprender` (N0): práctica de recuperación, espaciado, ejemplos resueltos, cómo usar Exodus.
+- ✅ `tro-aprender-a-aprender` (N0): práctica de recuperación, espaciado, ejemplos resueltos, cómo usar Exodus.
 - ⬜ `tro-razonamiento-cientifico` (N1): método científico, estimación de Fermi, orden de magnitud, errores
   y cifras significativas, leer una fuente crítica.
 - ⬜ `tro-lectura-tecnica` (N2): leer manuales, estándares y artículos; buscar y verificar fuentes.
 
 ## T-B. Matemáticas fundamentales (≈ 22 nodos)
 
-- **N0**: ⬜ `mat-numeros-aritmetica` · ⬜ `mat-algebra-basica` · ⬜ `mat-geometria-basica` ·
-  ⬜ `mat-funciones-basicas`.
+- **N0** (hechos): ✅ `mat-numeros-naturales` · ✅ `mat-enteros-fracciones` · ✅ `mat-proporcionalidad-porcentajes` ·
+  ✅ `mat-algebra-basica` · ✅ `mat-geometria-basica` · ✅ `mat-funciones-basicas` (incluye estadística descriptiva).
 - **N1**: ⬜ `mat-algebra-secundaria` · ⬜ `mat-trigonometria` · ⬜ `mat-geometria-analitica` ·
   ⬜ `mat-combinatoria-probabilidad-basica` · ✳️ `mat-logica-demostraciones`.
 - **N2**: ⬜ `mat-calculo-1` · ⬜ `mat-calculo-2` · ✳️ `mat-algebra-lineal` · ⬜ `mat-matematica-discreta`.
@@ -50,7 +50,7 @@ Cuatro pilares, que se estudian entrelazados por nivel, no uno detrás de otro.
 
 ## T-C. Computación fundamental (≈ 17 nodos)
 
-- **N0-N1**: ⬜ `prog-pensamiento-computacional` · ⬜ `prog-python-fundamentos` · ⬜ `prog-estructuras-datos` ·
+- **N0-N1**: ✅ `prog-pensamiento-computacional` · ✅ `prog-python-fundamentos` · ⬜ `prog-estructuras-datos` ·
   ⬜ `prog-terminal-linux-git`.
 - **N2**: ⬜ `prog-algoritmos` (complejidad, ordenación, grafos, programación dinámica; CLRS) ·
   ✳️ `sys-c-memoria` · ⬜ `prog-poo-diseno` · ✳️ `ing-logica-digital`.

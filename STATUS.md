@@ -1,6 +1,6 @@
 # STATUS — Exodus
 
-Última actualización: 2026-11-12 (sesión: panel, pedagogía, currículo, motor de ejercicios)
+Última actualización: 2026-11-12 (sesión: panel, ejercicios, troncal N0 de matemáticas y computación)
 
 **Documento de traspaso.** Quien retome el proyecto (persona o agente, sin contexto previo) lee esto
 primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso puede continuar solo.
@@ -24,25 +24,28 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 ## 2. Estado en una línea
 
-Plataforma funcional con árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con
-dominio del 80 % y repaso espaciado**, heatmap, cuenta con contraseña, Docker y CI. Contenido: **27 nodos
-troncales comprimidos** (cada uno con teoría y un reto) que habrá que reubicar y desdoblar en la escalera
-completa. La escalera N0 → N3 del troncal **está sin escribir**: es lo siguiente.
+Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
+repaso espaciado**, heatmap, cuenta, Docker, CI), probada de extremo a extremo en navegador contra la imagen Docker.
+Contenido: **9 nodos de la nueva escalera del troncal** (con 8 a 16 ejercicios cada uno, verificados por doble método) y
+**27 nodos troncales comprimidos** anteriores, pendientes de reubicar y desdoblar. Escalera nueva hecha: `tro-aprender-a-aprender`,
+matemáticas N0 completas (6 nodos), `prog-pensamiento-computacional` y `prog-python-fundamentos`.
 
 ## 3. Qué hacer ahora, por orden
 
-1. **Escribir el troncal N0 → N1** (ver `docs/CURRICULO.md`, secciones T-A a T-D): empezar por
-   `tro-aprender-a-aprender`, `mat-numeros-aritmetica`, `mat-algebra-basica`, `mat-geometria-basica`,
-   `mat-funciones-basicas`, `prog-pensamiento-computacional`, `prog-python-fundamentos`,
-   `fis-medida-movimiento`. Cada uno con la **plantilla de nodo** de `docs/PEDAGOGIA.md` y ejercicios.
-2. **Reubicar los 27 nodos existentes** en la escalera: cambiar `trunk_level` y `prerequisites`, y
-   desdoblarlos donde falte profundidad. `nodo-ejemplo` (raíz huérfana) debe desaparecer; su reto de
-   exponenciación modular pasa a un nodo de teoría de números. Ver «Reajuste de niveles» abajo.
+1. **Seguir escribiendo el troncal** en el orden de `docs/CURRICULO.md` (los ✅ ya están hechos): lo siguiente es
+   `fis-medida-movimiento`, `fis-fuerzas-energia`, `fis-ondas-calor-carga`, `ing-electricidad-basica` (N0-N1 de física y electricidad),
+   después N1 de matemáticas (`mat-algebra-secundaria`, `mat-trigonometria`, `mat-geometria-analitica`,
+   `mat-combinatoria-probabilidad-basica`, y desdoblar `mat-logica-demostraciones`), `prog-estructuras-datos`,
+   `prog-terminal-linux-git`. Cada nodo con la plantilla de `docs/PEDAGOGIA.md`, ≥ 8 ejercicios (lo normal: 14 a 16), 3 niveles.
+2. **Reubicar los 27 nodos existentes** en la escalera: cambiar `trunk_level` y `prerequisites`, y desdoblarlos donde falte
+   profundidad. `nodo-ejemplo` (raíz huérfana, «Enteros en máquina y aritmética modular») debe desaparecer; su reto pasa a un nodo
+   de teoría de números. Los nodos nuevos de N0 no dependen de él.
 3. Troncal N2 y N3, luego las ramas (N4 → N6) por prerrequisitos.
-4. Plataforma, cuando haga falta: cambio de contraseña y cierre de otras sesiones; tests de
-   `progress.ts` y `auth.ts` (necesitan base de datos temporal; `server-only` impide importarlos en
-   `tsx --test`, habrá que aislarlo); perfil `https` probado en un VPS real.
-5. Revisar la bibliografía de los 27 nodos existentes (se escribió de memoria) contra la web.
+4. Plataforma, cuando haga falta: cambio de contraseña y cierre de otras sesiones; tests de `progress.ts` y `auth.ts`
+   (`server-only` impide importarlos en `tsx --test`, habrá que aislarlo); perfil `https` probado en un VPS real; el
+   componente del árbol (React Flow) no respondía a clics en `npm run dev` según el usuario (no reproducido).
+5. Revisar la bibliografía de los 27 nodos antiguos (se escribió de memoria) contra la web. Los 9 nodos nuevos llevan
+   referencias verificadas en la web o citadas solo por libro/capítulo sin número.
 
 ### Reajuste de niveles (pendiente)
 Los 27 nodos actuales usan `trunk_level` 0 a 6 con otro criterio. En la escalera nueva: N0 a N3 es el
@@ -89,6 +92,18 @@ Reglas:
 - Un nodo con ejercicios necesita **al menos 5** (lo valida `vault:check`).
 - Plantilla de contenido y criterios de calidad: `docs/PEDAGOGIA.md`.
 
+**Flujo de trabajo por nodo (el que se ha seguido):**
+
+1. Escribir `.soluciones/<id>.spec.mjs` (no versionado): calcula cada respuesta por **dos métodos** (en los nodos de
+   programación, la respuesta es la salida de Python 3.12 ejecutado en Docker: `docker run --rm -v <dir>:/w -w /w python:3.12-slim python p.py`,
+   contrastada con una implementación en JavaScript) y exporta `[{ id, tier, prompt, answers: [...] }]`. En `String.raw`,
+   `\\\`` escribe una comilla invertida. Las listas se piden separadas por `;`.
+2. Escribir el nodo con `exercises: __EJERCICIOS__` en el frontmatter y ejecutar
+   `npx tsx scripts/ex-inject.ts vault/<ruta>.md .soluciones/<id>.spec.mjs`.
+3. Validar los fragmentos de código del texto ejecutándolos (los ejemplos de Python se probaron con `assert` en Docker; así se
+   cazó un resultado erróneo en el contador de palabras).
+4. `npm run vault:check` y `npm test`; commit; PR; esperar el CI; fusionar.
+
 Verificación antes de cada PR: `npm run vault:check`, `npm test`, `npx tsc --noEmit`. El CI repite todo
 y construye la imagen Docker.
 
@@ -98,6 +113,10 @@ y construye la imagen Docker.
   dos servidores de desarrollo en la misma carpeta**. El código de configuración de la cuenta se imprime
   en la terminal del servidor (`[exodus] Código de configuración: ...`); la cuenta del usuario ya está
   creada en `database/exodus.db`.
+- **Probar la interfaz sin tocar la cuenta del usuario**: `docker build -f docker/Dockerfile -t exodus-e2e .` y
+  `docker run -d --name exodus-e2e -p 127.0.0.1:3299:3000 -v <repo>/vault:/vault:ro -v <dirtemporal>:/data exodus-e2e`; el código de
+  configuración sale en `docker logs`. Se maneja con el navegador de Playwright (`mcp__playwright__*`). Un worktree con `node_modules`
+  enlazado **no** funciona con `next dev` (Turbopack no sigue el enlace).
 - **Python no está instalado.** Usar Node (`node script.cjs`) para scripts de apoyo, y la imagen Docker
   `gcc:14` (`MSYS_NO_PATHCONV=1 docker run --rm -v <ruta>:/w -w /w gcc:14 ...`) para compilar C.
 - **Heredocs largos con comillas rompen la shell** (`unexpected EOF`). Escribir los parches y los
@@ -126,7 +145,23 @@ y construye la imagen Docker.
 - Auth: una cuenta, scrypt, sesiones por cookie HttpOnly, limitador de intentos.
 - Docker (`deploy.bat` / `deploy.sh`, puerto 3210), perfil `https` con Caddy, CI en GitHub Actions.
 
-## 7. Contenido existente (27 nodos troncales comprimidos, cada uno con reto verificado)
+## 7. Contenido
+
+### Escalera nueva del troncal (con ejercicios autocorregidos)
+
+| Nivel | Nodo | Ejercicios |
+|:---:|---|:---:|
+| 0 | `tro-aprender-a-aprender` | 8 |
+| 0 | `mat-numeros-naturales` | 16 |
+| 0 | `mat-enteros-fracciones` | 16 |
+| 0 | `mat-proporcionalidad-porcentajes` | 16 |
+| 0 | `mat-algebra-basica` | 16 |
+| 0 | `mat-geometria-basica` | 16 |
+| 0 | `mat-funciones-basicas` (con estadística descriptiva) | 16 |
+| 0 | `prog-pensamiento-computacional` | 14 |
+| 1 | `prog-python-fundamentos` | 16 |
+
+### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 
 | Nodo | Reto |
 |---|---|
@@ -165,10 +200,11 @@ comprueba que cada flag valida contra el hash de su nodo.
 ## 8. Sin probar todavía
 
 - El perfil `https` con un dominio real y `deploy.bat` ejecutado como tal.
-- El flujo de ejercicios y repaso en el navegador con sesión real (se probó la lógica pura con tests;
-  falta una pasada con la interfaz).
-- El usuario reportó que no podía hacer clic en los nodos del árbol (React Flow) en `npm run dev`; no se
-  llegó a reproducir. El temario y el panel navegan con enlaces de servidor y no dependen de ese componente.
+- El usuario reportó que no podía hacer clic en los nodos del árbol (React Flow) en `npm run dev`; no se llegó a reproducir. El
+  panel y el temario navegan con enlaces de servidor y no dependen de ese componente.
+- Probado en navegador (imagen Docker, base temporal): creación de cuenta, panel, página de nodo con ejercicios, respuesta
+  incorrecta y correcta, normalización (espacios), dominio del 80 % que completa el nodo, calendario de repaso (fallo a mañana,
+  acierto a 3 días) y feedback del repaso.
 
 ## 9. Convenciones
 

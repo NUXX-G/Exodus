@@ -22,9 +22,12 @@ Verificadas en la web durante la sesión del 2026-11-12:
   conocimiento esa guía estorba (*efecto de inversión de la pericia*), de modo que se **retiran pasos
   gradualmente**. Los estudios proceden sobre todo de dominios bien estructurados (matemáticas, física).
 
-Pendientes de verificar antes de citarlas en un nodo: Ericsson, Krampe y Tesch-Römer (1993, *Psychological
-Review*, 100(3)) sobre práctica deliberada; Roediger y Karpicke (2006, *Psychological Science*, 17(3)) sobre el
-efecto de la prueba; Cepeda et al. (2006, *Psychological Bulletin*, 132(3)) sobre el espaciado.
+También verificadas en la web (2026-11-12): Ericsson, Krampe y Tesch-Römer (1993, *Psychological Review*, 100(3),
+363-406) sobre práctica deliberada, con la matización de que la réplica de Macnamara y Maitra (2019) encontró un efecto
+sustancial pero menor; Roediger y Karpicke (2006, *Psychological Science*, 17(3), 249-255): el efecto de la prueba, con la
+precisión de que a los 5 minutos releer rinde más y a los 2 días y a la semana examinarse retiene más; Cepeda et al. (2006,
+*Psychological Bulletin*, 132(3), 354-380): 839 evaluaciones en 317 experimentos, el intervalo óptimo crece con el tiempo
+que se quiere recordar.
 
 Referencias de currículo consultadas:
 

@@ -34,7 +34,8 @@ async function main() {
     if (ids.has(s.id)) throw new Error(`id repetido: ${s.id}`);
     ids.add(s.id);
     if (!s.answers?.length) throw new Error(`sin respuestas: ${s.id}`);
-    const prompt = s.prompt.replace(/^\n+|\s+$/g, "").split("\n").map((l) => (l ? "      " + l : "")).join("\n");
+    // En String.raw, «\`» conserva la barra: se quita para poder escribir código en línea.
+    const prompt = s.prompt.split("\\`").join("`").replace(/^\n+|\s+$/g, "").split("\n").map((l) => (l ? "      " + l : "")).join("\n");
     const answers = [...new Set(s.answers.map(hashAnswer))].map((h) => `"${h}"`).join(", ");
     return `  - id: ${s.id}\n    tier: ${s.tier}\n    prompt: |\n${prompt}\n    answers: [${answers}]`;
   });
