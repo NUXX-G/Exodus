@@ -2,8 +2,8 @@
 id: prog-pensamiento-computacional
 title: "Pensamiento computacional: algoritmos, bits y trazas"
 area: bajo-nivel
-trunk_level: 0
-prerequisites: [mat-algebra-basica]
+trunk_level: 1
+prerequisites: [mat-numeros-naturales]
 academic_sources:
   - "Abelson, H.; Sussman, G. J.; Sussman, J. Structure and Interpretation of Computer Programs, 2ª ed. MIT Press, 1996."
   - "Knuth, D. E. The Art of Computer Programming, vol. 1: Fundamental Algorithms, 3ª ed. Addison-Wesley, 1997."

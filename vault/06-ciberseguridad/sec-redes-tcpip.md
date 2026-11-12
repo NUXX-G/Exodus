@@ -2,8 +2,8 @@
 id: sec-redes-tcpip
 title: "Redes y pila TCP/IP"
 area: ciberseguridad
-trunk_level: 1
-prerequisites: [nodo-ejemplo]
+trunk_level: 8
+prerequisites: [prog-terminal-linux-git, prog-estructuras-datos]
 academic_sources:
   - "Fall, K. R.; Stevens, W. R. TCP/IP Illustrated, Vol. 1: The Protocols, 2ª ed. Addison-Wesley, 2011."
   - "Tanenbaum, A. S.; Feamster, N.; Wetherall, D. Computer Networks, 6ª ed. Pearson, 2021."
@@ -86,7 +86,7 @@ $$
 
 La operación $+'$ suma con *acarreo circular*: el acarreo que sale del bit 15 vuelve a entrar por
 el bit 0. Es la suma módulo $2^{16} - 1$ (con dos representaciones del cero), frente a la suma
-módulo $2^{16}$ del sumador ordinario de [[nodo-ejemplo]]. El emisor calcula $C$ con el campo de
+módulo $2^{16}$ del sumador ordinario de los enteros de ancho fijo ([[prog-pensamiento-computacional]]). El emisor calcula $C$ con el campo de
 suma puesto a cero y lo escribe en él.
 
 **Proposición.** El receptor acepta el bloque si y solo si la suma $+'$ de todas sus palabras,

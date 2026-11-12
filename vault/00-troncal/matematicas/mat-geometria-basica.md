@@ -2,7 +2,7 @@
 id: mat-geometria-basica
 title: "Geometría básica: figuras, Pitágoras y semejanza"
 area: matematicas
-trunk_level: 0
+trunk_level: 3
 prerequisites: [mat-algebra-basica]
 academic_sources:
   - "Kiselev, A. P. Kiselev's Geometry, Book I: Planimetry (trad. de A. Givental). Sumizdat, 2006."

@@ -2,7 +2,7 @@
 id: mat-algebra-basica
 title: "Álgebra básica: letras, ecuaciones y sistemas"
 area: matematicas
-trunk_level: 0
+trunk_level: 2
 prerequisites: [mat-enteros-fracciones]
 academic_sources:
   - "Gelfand, I. M.; Shen, A. Algebra. Birkhäuser, 1993."

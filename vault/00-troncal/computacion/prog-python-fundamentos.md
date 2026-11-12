@@ -2,7 +2,7 @@
 id: prog-python-fundamentos
 title: "Python desde cero: tipos, colecciones, funciones y archivos"
 area: bajo-nivel
-trunk_level: 1
+trunk_level: 2
 prerequisites: [prog-pensamiento-computacional]
 academic_sources:
   - "Python Software Foundation. The Python Tutorial (docs.python.org/3/tutorial/)."

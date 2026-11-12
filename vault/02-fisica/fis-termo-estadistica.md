@@ -2,7 +2,7 @@
 id: fis-termo-estadistica
 title: "Termodinámica y física estadística"
 area: fisica
-trunk_level: 4
+trunk_level: 11
 prerequisites: [fis-mecanica-clasica, mat-probabilidad]
 academic_sources:
   - "Reif, F. Fundamentals of Statistical and Thermal Physics. McGraw-Hill, 1965."

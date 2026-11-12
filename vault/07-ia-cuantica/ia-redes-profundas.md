@@ -2,7 +2,7 @@
 id: ia-redes-profundas
 title: "Redes neuronales profundas"
 area: ia-cuantica
-trunk_level: 5
+trunk_level: 12
 prerequisites: [ia-aprendizaje-estadistico]
 academic_sources:
   - "Goodfellow, I.; Bengio, Y.; Courville, A. Deep Learning. MIT Press, 2016."

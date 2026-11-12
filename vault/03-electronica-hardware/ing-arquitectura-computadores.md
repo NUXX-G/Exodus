@@ -2,7 +2,7 @@
 id: ing-arquitectura-computadores
 title: "Arquitectura de computadores"
 area: ingenieria
-trunk_level: 3
+trunk_level: 8
 prerequisites: [ing-logica-digital]
 academic_sources:
   - "Patterson, D. A.; Hennessy, J. L. Computer Organization and Design: RISC-V Edition, 2ª ed. Morgan Kaufmann, 2020."

@@ -2,8 +2,8 @@
 id: fis-electromagnetismo
 title: "Electromagnetismo"
 area: fisica
-trunk_level: 4
-prerequisites: [fis-mecanica-clasica]
+trunk_level: 11
+prerequisites: [fis-mecanica-clasica, ing-electricidad-basica]
 academic_sources:
   - "Griffiths, D. J. Introduction to Electrodynamics, 4ª ed. Cambridge University Press, 2017."
   - "Purcell, E. M.; Morin, D. J. Electricity and Magnetism, 3ª ed. Cambridge University Press, 2013."

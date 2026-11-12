@@ -2,7 +2,7 @@
 id: sec-web
 title: "Seguridad web"
 area: ciberseguridad
-trunk_level: 2
+trunk_level: 9
 prerequisites: [sec-redes-tcpip]
 academic_sources:
   - "Stuttard, D.; Pinto, M. The Web Application Hacker's Handbook, 2ª ed. Wiley, 2011."

@@ -2,7 +2,7 @@
 id: fis-fuerzas-energia
 title: "Fuerzas, energía y gravitación: las leyes de Newton"
 area: fisica
-trunk_level: 1
+trunk_level: 6
 prerequisites: [fis-medida-movimiento]
 academic_sources:
   - "Halliday, D.; Resnick, R.; Walker, J. Fundamentals of Physics, 11ª ed. Wiley, 2018."

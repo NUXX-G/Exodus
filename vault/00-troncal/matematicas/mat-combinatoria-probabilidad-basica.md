@@ -2,7 +2,7 @@
 id: mat-combinatoria-probabilidad-basica
 title: "Combinatoria y probabilidad básica: contar, azar y Bayes"
 area: matematicas
-trunk_level: 1
+trunk_level: 6
 prerequisites: [mat-algebra-secundaria, mat-enteros-fracciones]
 academic_sources:
   - "Grinstead, C. M.; Snell, J. L. Introduction to Probability, 2ª ed. American Mathematical Society, 1997 (disponible gratis en línea)."

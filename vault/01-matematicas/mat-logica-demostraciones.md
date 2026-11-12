@@ -2,8 +2,8 @@
 id: mat-logica-demostraciones
 title: "Lógica, conjuntos y demostración"
 area: matematicas
-trunk_level: 1
-prerequisites: []
+trunk_level: 6
+prerequisites: [mat-algebra-secundaria]
 academic_sources:
   - "Velleman, D. J. How to Prove It: A Structured Approach, 3ª ed. Cambridge University Press, 2019."
   - "Halmos, P. R. Naive Set Theory. Van Nostrand, 1960."
@@ -119,7 +119,7 @@ $a \mathrel{R} b$ por simetría y transitividad, y de ahí $[a] = [b]$. Recípro
 partición, «estar en el mismo bloque» es reflexiva, simétrica y transitiva, y sus clases son los
 bloques. $\blacksquare$
 
-Este es el mecanismo con el que se construyeron los enteros módulo $m$ en [[nodo-ejemplo]].
+Este es el mecanismo con el que se construyeron los enteros módulo $m$ (los restos de [[mat-numeros-naturales]]).
 
 Una **función** $f : A \to B$ es **inyectiva** si $f(x) = f(y) \Rightarrow x = y$,
 **sobreyectiva** si todo $b \in B$ es imagen de algún $a$, y **biyectiva** si es ambas. Dos

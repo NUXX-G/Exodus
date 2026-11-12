@@ -2,7 +2,7 @@
 id: rob-microcontroladores
 title: "Microcontroladores y sistemas empotrados"
 area: robotica
-trunk_level: 6
+trunk_level: 13
 prerequisites: [ing-arquitectura-computadores, ing-circuitos]
 academic_sources:
   - "Yiu, J. The Definitive Guide to ARM Cortex-M3 and Cortex-M4 Processors, 3ª ed. Newnes, 2013."

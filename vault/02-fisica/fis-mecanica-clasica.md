@@ -2,8 +2,8 @@
 id: fis-mecanica-clasica
 title: "Mecánica clásica"
 area: fisica
-trunk_level: 3
-prerequisites: [mat-analisis-real, mat-algebra-lineal]
+trunk_level: 10
+prerequisites: [fis-fuerzas-energia, mat-calculo-2, mat-algebra-lineal]
 academic_sources:
   - "Goldstein, H.; Poole, C.; Safko, J. Classical Mechanics, 3ª ed. Addison-Wesley, 2002."
   - "Landau, L. D.; Lifshitz, E. M. Mechanics (Course of Theoretical Physics, Vol. 1), 3ª ed. Butterworth-Heinemann, 1976."

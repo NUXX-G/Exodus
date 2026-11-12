@@ -2,7 +2,7 @@
 id: mat-calculo-1
 title: "Cálculo I: límites, derivadas y optimización"
 area: matematicas
-trunk_level: 2
+trunk_level: 8
 prerequisites: [mat-algebra-secundaria, mat-trigonometria, mat-geometria-analitica]
 academic_sources:
   - "Spivak, M. Calculus, 4ª ed. Publish or Perish, 2008."

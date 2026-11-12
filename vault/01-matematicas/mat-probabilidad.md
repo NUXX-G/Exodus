@@ -2,8 +2,8 @@
 id: mat-probabilidad
 title: "Probabilidad"
 area: matematicas
-trunk_level: 3
-prerequisites: [mat-analisis-real]
+trunk_level: 10
+prerequisites: [mat-combinatoria-probabilidad-basica, mat-calculo-2]
 academic_sources:
   - "Feller, W. An Introduction to Probability Theory and Its Applications, Vol. 1, 3ª ed. Wiley, 1968."
   - "Durrett, R. Probability: Theory and Examples, 5ª ed. Cambridge University Press, 2019."

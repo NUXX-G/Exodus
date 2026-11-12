@@ -2,8 +2,8 @@
 id: mat-algebra-lineal
 title: "Álgebra lineal"
 area: matematicas
-trunk_level: 2
-prerequisites: [mat-logica-demostraciones]
+trunk_level: 8
+prerequisites: [mat-logica-demostraciones, mat-geometria-analitica]
 academic_sources:
   - "Axler, S. Linear Algebra Done Right, 4ª ed. Springer, 2024."
   - "Strang, G. Introduction to Linear Algebra, 5ª ed. Wellesley-Cambridge Press, 2016."
@@ -150,7 +150,7 @@ $$
 
 Los autovalores de esa matriz son $\varphi = \frac{1 + \sqrt 5}{2}$ y $1 - \varphi$, de donde
 sale la fórmula de Binet. Para calcular $F_n$ exacto o módulo $p$ no hace falta diagonalizar:
-basta elevar la matriz con el método de cuadrados sucesivos de [[nodo-ejemplo]], en
+basta elevar la matriz con el método de cuadrados sucesivos (exponenciación rápida: elevar al cuadrado y multiplicar según los bits del exponente), en
 $O(\log n)$ productos.
 
 **Teorema espectral (caso real).** Toda matriz simétrica real es diagonalizable por una matriz

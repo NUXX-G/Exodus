@@ -2,8 +2,8 @@
 id: mat-estructuras-algebraicas
 title: "Grupos, anillos y cuerpos"
 area: matematicas
-trunk_level: 2
-prerequisites: [mat-logica-demostraciones, nodo-ejemplo]
+trunk_level: 7
+prerequisites: [mat-logica-demostraciones, mat-numeros-naturales]
 academic_sources:
   - "Dummit, D. S.; Foote, R. M. Abstract Algebra, 3ª ed. Wiley, 2004."
   - "Artin, M. Algebra, 2ª ed. Pearson, 2011."
@@ -19,7 +19,7 @@ hints:
 # Grupos, anillos y cuerpos
 
 El álgebra abstracta estudia las operaciones con independencia de los objetos sobre los que
-actúan. La aritmética modular de [[nodo-ejemplo]], las simetrías de un sólido y los bytes de un
+actúan. La aritmética modular (los restos de [[mat-numeros-naturales]]), las simetrías de un sólido y los bytes de un
 cifrado obedecen a los mismos pocos axiomas, y todo teorema demostrado a partir de ellos vale a
 la vez para los tres.
 

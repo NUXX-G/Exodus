@@ -2,7 +2,7 @@
 id: mat-funciones-basicas
 title: "Funciones, gráficas y estadística descriptiva"
 area: matematicas
-trunk_level: 0
+trunk_level: 4
 prerequisites: [mat-algebra-basica, mat-geometria-basica]
 academic_sources:
   - "Gelfand, I. M.; Glagoleva, E. G.; Shnol, E. E. Functions and Graphs. Dover Publications, 2002."

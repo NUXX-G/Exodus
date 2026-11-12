@@ -2,7 +2,7 @@
 id: cua-computacion-cuantica
 title: "Computación cuántica"
 area: ia-cuantica
-trunk_level: 5
+trunk_level: 12
 prerequisites: [fis-mecanica-cuantica, mat-probabilidad]
 academic_sources:
   - "Nielsen, M. A.; Chuang, I. L. Quantum Computation and Quantum Information, ed. 10º aniversario. Cambridge University Press, 2010."

@@ -2,7 +2,7 @@
 id: ing-electricidad-basica
 title: "Electricidad básica: corriente, tensión, Ohm y circuitos sencillos"
 area: ingenieria
-trunk_level: 1
+trunk_level: 7
 prerequisites: [fis-fuerzas-energia, mat-algebra-basica]
 academic_sources:
   - "Halliday, D.; Resnick, R.; Walker, J. Fundamentals of Physics, 11ª ed. Wiley, 2018."

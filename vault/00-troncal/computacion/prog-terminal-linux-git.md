@@ -2,7 +2,7 @@
 id: prog-terminal-linux-git
 title: "Terminal de Linux y Git: el taller del programador"
 area: bajo-nivel
-trunk_level: 1
+trunk_level: 2
 prerequisites: [prog-pensamiento-computacional]
 academic_sources:
   - "Shotts, W. The Linux Command Line, 2ª ed. No Starch Press, 2019 (la 5.ª edición de Internet es gratuita en linuxcommand.org)."

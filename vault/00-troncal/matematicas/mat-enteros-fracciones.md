@@ -2,7 +2,7 @@
 id: mat-enteros-fracciones
 title: "Enteros, fracciones y decimales"
 area: matematicas
-trunk_level: 0
+trunk_level: 1
 prerequisites: [mat-numeros-naturales]
 academic_sources:
   - "Niven, I.; Zuckerman, H. S.; Montgomery, H. L. An Introduction to the Theory of Numbers, 5ª ed. Wiley, 1991."
