@@ -118,12 +118,72 @@ export const activityLog = sqliteTable(
       .references(() => users.id, { onDelete: "cascade" }),
     day: text("day").notNull(),
     kind: text("kind", {
-      enum: ["node_opened", "hint_revealed", "flag_attempt", "flag_captured"],
+      enum: [
+        "node_opened",
+        "hint_revealed",
+        "flag_attempt",
+        "flag_captured",
+        "exercise_attempt",
+        "exercise_solved",
+        "review_done",
+      ],
     }).notNull(),
     nodeId: text("node_id"),
     createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(now),
   },
   (t) => [index("activity_log_day_idx").on(t.userId, t.day)],
+);
+
+/** Intentos de ejercicio (solo el hash de la respuesta, nunca el texto). */
+export const exerciseAttempts = sqliteTable(
+  "exercise_attempts",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    userId: integer("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    nodeId: text("node_id").notNull(),
+    exerciseId: text("exercise_id").notNull(),
+    submittedHash: text("submitted_hash").notNull(),
+    correct: integer("correct", { mode: "boolean" }).notNull(),
+    createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(now),
+  },
+  (t) => [
+    index("exercise_attempts_ex_idx").on(t.userId, t.nodeId, t.exerciseId),
+    index("exercise_attempts_time_idx").on(t.userId, t.createdAt),
+  ],
+);
+
+/** Ejercicios resueltos al menos una vez; un nodo se domina al resolver el 80 %. */
+export const exerciseSolved = sqliteTable(
+  "exercise_solved",
+  {
+    userId: integer("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    nodeId: text("node_id").notNull(),
+    exerciseId: text("exercise_id").notNull(),
+    solvedAt: integer("solved_at", { mode: "timestamp" }).notNull().default(now),
+  },
+  (t) => [primaryKey({ columns: [t.userId, t.nodeId, t.exerciseId] })],
+);
+
+/** Calendario de repaso espaciado: un ejercicio resuelto vuelve a pedirse en `due_day`. */
+export const reviews = sqliteTable(
+  "reviews",
+  {
+    userId: integer("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    nodeId: text("node_id").notNull(),
+    exerciseId: text("exercise_id").notNull(),
+    step: integer("step").notNull().default(0),
+    dueDay: text("due_day").notNull(),
+  },
+  (t) => [
+    primaryKey({ columns: [t.userId, t.nodeId, t.exerciseId] }),
+    index("reviews_due_idx").on(t.userId, t.dueDay),
+  ],
 );
 
 export type User = typeof users.$inferSelect;

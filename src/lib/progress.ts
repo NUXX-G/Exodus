@@ -1,10 +1,11 @@
 import "server-only";
-import { and, eq, gte, sql } from "drizzle-orm";
+import { and, eq, gte, lte, sql } from "drizzle-orm";
 import { getDb, schema } from "./db";
 import { checkFlag, sha256, type Vault, type VaultNode } from "./vault";
+import { checkAnswer, firstReview, hashAnswer, masteryNeeded, nextReview } from "./exercises";
 import type { ActivityKind } from "@db/schema";
 
-const { nodeProgress, flagSubmissions, hintReveals, activityLog } = schema;
+const { nodeProgress, flagSubmissions, hintReveals, activityLog, exerciseAttempts, exerciseSolved, reviews } = schema;
 
 /**
  * completed  — flag validada
@@ -90,7 +91,7 @@ export function revealNextHint(userId: number, node: VaultNode): number[] {
 
 export type FlagResult =
   | { ok: true }
-  | { ok: false; reason: "sin-reto" | "bloqueado" | "incorrecta" | "espera"; retryInSeconds?: number };
+  | { ok: false; reason: "sin-reto" | "bloqueado" | "dominio" | "incorrecta" | "espera"; retryInSeconds?: number };
 
 const MAX_FAILS_PER_MINUTE = 10;
 
@@ -101,6 +102,10 @@ export function submitFlag(userId: number, node: VaultNode, submission: string):
   const completed = getCompleted(userId);
   if (completed.has(node.id)) return { ok: true };
   if (stateOf(node, completed) === "locked") return { ok: false, reason: "bloqueado" };
+  // Con ejercicios, la flag integradora solo se acepta tras dominar el nodo.
+  if (node.exercises.length > 0 && getSolvedExercises(userId, node.id).length < masteryNeeded(node.exercises.length)) {
+    return { ok: false, reason: "dominio" };
+  }
 
   // Freno a la fuerza bruta: máximo de fallos por minuto y nodo.
   const since = new Date(Date.now() - 60_000);
@@ -188,4 +193,129 @@ export function getActivity(userId: number, windowDays: number): ActivitySummary
     .get()!.n;
 
   return { days, streak, flagsCaptured };
+}
+
+/* ───────── Ejercicios, dominio y repaso espaciado ───────── */
+
+export function getSolvedExercises(userId: number, nodeId: string): string[] {
+  return getDb()
+    .select({ id: exerciseSolved.exerciseId })
+    .from(exerciseSolved)
+    .where(and(eq(exerciseSolved.userId, userId), eq(exerciseSolved.nodeId, nodeId)))
+    .all()
+    .map((r) => r.id);
+}
+
+export interface Mastery {
+  solved: number;
+  total: number;
+  needed: number;
+  mastered: boolean;
+}
+
+export function masteryOf(node: VaultNode, solvedIds: string[]): Mastery {
+  const valid = new Set(node.exercises.map((e) => e.id));
+  const solved = solvedIds.filter((id) => valid.has(id)).length;
+  const needed = masteryNeeded(node.exercises.length);
+  return { solved, total: node.exercises.length, needed, mastered: solved >= needed };
+}
+
+export type ExerciseResult =
+  | { ok: true; mastered: boolean; completedNode: boolean }
+  | { ok: false; reason: "sin-ejercicio" | "bloqueado" | "incorrecta" | "espera" };
+
+const MAX_EXERCISE_FAILS_PER_MINUTE = 30;
+
+function recentExerciseFails(userId: number, nodeId: string): number {
+  return getDb()
+    .select({ n: sql<number>`count(*)` })
+    .from(exerciseAttempts)
+    .where(
+      and(
+        eq(exerciseAttempts.userId, userId),
+        eq(exerciseAttempts.nodeId, nodeId),
+        eq(exerciseAttempts.correct, false),
+        gte(exerciseAttempts.createdAt, new Date(Date.now() - 60_000)),
+      ),
+    )
+    .get()!.n;
+}
+
+export function submitExercise(userId: number, node: VaultNode, exerciseId: string, submission: string): ExerciseResult {
+  const db = getDb();
+  const ex = node.exercises.find((e) => e.id === exerciseId);
+  if (!ex) return { ok: false, reason: "sin-ejercicio" };
+  const completed = getCompleted(userId);
+  if (stateOf(node, completed) === "locked") return { ok: false, reason: "bloqueado" };
+  if (recentExerciseFails(userId, node.id) >= MAX_EXERCISE_FAILS_PER_MINUTE) return { ok: false, reason: "espera" };
+
+  const correct = checkAnswer(ex.answers, submission);
+  const today = dayKey();
+  let completedNode = false;
+
+  db.transaction((tx) => {
+    tx.insert(exerciseAttempts)
+      .values({ userId, nodeId: node.id, exerciseId, submittedHash: hashAnswer(submission), correct })
+      .run();
+    tx.insert(activityLog)
+      .values({ userId, nodeId: node.id, day: today, kind: correct ? "exercise_solved" : "exercise_attempt" })
+      .run();
+    if (!correct) return;
+    tx.insert(exerciseSolved).values({ userId, nodeId: node.id, exerciseId }).onConflictDoNothing().run();
+    const sch = firstReview(today);
+    tx.insert(reviews).values({ userId, nodeId: node.id, exerciseId, step: sch.step, dueDay: sch.dueDay }).onConflictDoNothing().run();
+  });
+
+  const m = masteryOf(node, getSolvedExercises(userId, node.id));
+  // Un nodo sin flag integradora se completa al alcanzar el dominio.
+  if (correct && m.mastered && !node.ctfFlag && !completed.has(node.id)) {
+    const now = new Date();
+    db.insert(nodeProgress)
+      .values({ userId, nodeId: node.id, status: "completed", completedAt: now })
+      .onConflictDoUpdate({ target: [nodeProgress.userId, nodeProgress.nodeId], set: { status: "completed", completedAt: now } })
+      .run();
+    completedNode = true;
+  }
+  return correct ? { ok: true, mastered: m.mastered, completedNode } : { ok: false, reason: "incorrecta" };
+}
+
+export interface DueReview {
+  nodeId: string;
+  exerciseId: string;
+  step: number;
+  dueDay: string;
+}
+
+export function getDueReviews(userId: number, today = dayKey()): DueReview[] {
+  return getDb()
+    .select({ nodeId: reviews.nodeId, exerciseId: reviews.exerciseId, step: reviews.step, dueDay: reviews.dueDay })
+    .from(reviews)
+    .where(and(eq(reviews.userId, userId), lte(reviews.dueDay, today)))
+    .orderBy(reviews.dueDay)
+    .all();
+}
+
+export function submitReview(userId: number, node: VaultNode, exerciseId: string, submission: string): "ok" | "incorrecta" | "sin-repaso" | "espera" {
+  const db = getDb();
+  const ex = node.exercises.find((e) => e.id === exerciseId);
+  const today = dayKey();
+  const row = db
+    .select()
+    .from(reviews)
+    .where(and(eq(reviews.userId, userId), eq(reviews.nodeId, node.id), eq(reviews.exerciseId, exerciseId)))
+    .get();
+  if (!ex || !row || row.dueDay > today) return "sin-repaso";
+  if (recentExerciseFails(userId, node.id) >= MAX_EXERCISE_FAILS_PER_MINUTE) return "espera";
+
+  const correct = checkAnswer(ex.answers, submission);
+  const next = nextReview(row.step, correct, today);
+  db.transaction((tx) => {
+    tx.insert(exerciseAttempts).values({ userId, nodeId: node.id, exerciseId, submittedHash: hashAnswer(submission), correct }).run();
+    tx.update(reviews)
+      .set({ step: next.step, dueDay: next.dueDay })
+      .where(and(eq(reviews.userId, userId), eq(reviews.nodeId, node.id), eq(reviews.exerciseId, exerciseId)))
+      .run();
+    tx.insert(activityLog).values({ userId, nodeId: node.id, day: today, kind: "review_done" }).run();
+  });
+  return correct ? "ok" : "incorrecta";
 }

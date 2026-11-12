@@ -29,6 +29,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <nav aria-label="Principal">
               <Link href="/">Inicio</Link>
               <Link href="/temario">Temario</Link>
+              <Link href="/repaso">Repaso</Link>
               <Link href="/buscar">Buscar</Link>
               <form action={logoutAction}>
                 <button type="submit" className="enlace-boton">

@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import ExerciseForm from "@/components/ExerciseForm";
 import FlagForm from "@/components/FlagForm";
 import { AREAS } from "@/lib/areas";
 import { getSessionUser, requireUser } from "@/lib/auth";
 import { linkResolverFor, renderMarkdown } from "@/lib/markdown";
-import { getCompleted, getRevealedLevels, recordOpen, stateOf } from "@/lib/progress";
+import { getCompleted, getRevealedLevels, getSolvedExercises, masteryOf, recordOpen, stateOf } from "@/lib/progress";
 import { attachmentInfo, loadVault } from "@/lib/vault";
 import { revealHintAction } from "./actions";
 
@@ -48,6 +49,13 @@ export default async function PaginaNodo({ params }: Props) {
   const area = AREAS[node.area];
   const nextHint = revealed.length + 1;
   const attachments = attachmentInfo(node);
+  const resolve = linkResolverFor(vault);
+  const solvedIds = getSolvedExercises(user.id, node.id);
+  const mastery = masteryOf(node, solvedIds);
+  const ejercicios = await Promise.all(
+    node.exercises.map(async (e) => ({ e, html: await renderMarkdown(e.prompt, resolve) })),
+  );
+  const TIER = ["", "A completar", "Problema", "Difícil"] as const;
 
   return (
     <main className="pagina nodo-pagina">
@@ -57,6 +65,32 @@ export default async function PaginaNodo({ params }: Props) {
         </p>
         {/* HTML generado en el servidor a partir del vault; el HTML crudo del Markdown se descarta. */}
         <article className="prosa" dangerouslySetInnerHTML={{ __html: html }} />
+
+        {ejercicios.length > 0 && (
+          <section className="ejercicios" aria-label="Ejercicios">
+            <header className="ejercicios-cabecera">
+              <h2>Ejercicios</h2>
+              <p className="dominio" data-dominado={mastery.mastered ? "true" : undefined}>
+                {mastery.solved} de {mastery.total} resueltos · dominio con {mastery.needed}
+              </p>
+              <span className="barra" aria-hidden="true">
+                <i style={{ width: `${(mastery.solved / mastery.total) * 100}%` }} />
+              </span>
+            </header>
+            <ol className="ejercicios-lista">
+              {ejercicios.map(({ e, html: h }, i) => (
+                <li key={e.id} data-resuelto={solvedIds.includes(e.id) ? "true" : undefined}>
+                  <p className="meta">
+                    Ejercicio {i + 1} · {TIER[e.tier]}
+                    {solvedIds.includes(e.id) ? " · resuelto" : ""}
+                  </p>
+                  <div className="prosa ejercicio-enunciado" dangerouslySetInnerHTML={{ __html: h }} />
+                  <ExerciseForm nodeId={node.id} exerciseId={e.id} solved={solvedIds.includes(e.id)} locked={state === "locked"} />
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
       </div>
 
       <aside className="lateral" aria-label="Progreso del nodo">
@@ -94,13 +128,28 @@ export default async function PaginaNodo({ params }: Props) {
         <section>
           <h2>Reto</h2>
           {node.ctfFlag === null ? (
-            <p className="nota">Este nodo aún no tiene reto. Se completa cuando se publique su flag.</p>
+            node.exercises.length > 0 ? (
+              <p className="nota">
+                {state === "completed"
+                  ? "Nodo dominado."
+                  : `Este nodo se completa al resolver ${mastery.needed} de sus ${mastery.total} ejercicios.`}
+              </p>
+            ) : (
+              <p className="nota">Este nodo aún no tiene reto. Se completa cuando se publique su flag.</p>
+            )
           ) : state === "completed" ? (
             <p className="mensaje" data-tono="ok">
               Flag validada{revealed.length > 0 ? ` con ${revealed.length} de ${node.hints.length} pistas` : " sin pistas"}.
             </p>
           ) : (
-            <FlagForm nodeId={node.id} locked={state === "locked"} />
+            <>
+              {node.exercises.length > 0 && !mastery.mastered && (
+                <p className="nota">
+                  Primero domina los ejercicios ({mastery.solved} de {mastery.needed} necesarios).
+                </p>
+              )}
+              <FlagForm nodeId={node.id} locked={state === "locked" || (node.exercises.length > 0 && !mastery.mastered)} />
+            </>
           )}
         </section>
 
