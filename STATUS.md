@@ -26,16 +26,15 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta, Docker, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **33 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **34 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 matemáticas hasta cálculo 2, álgebra lineal I, matemática discreta y lógica y demostración, física hasta mecánica newtoniana, electricidad básica,
-programación hasta algoritmos y fundamentos de seguridad) y **24 nodos comprimidos** anteriores (cada uno con un reto con
+programación hasta algoritmos y fundamentos de seguridad) y **23 nodos comprimidos** anteriores (cada uno con un reto con
 flag), ya enlazados a la escalera pero pendientes de desdoblar.
 
 ## 3. Qué hacer ahora, por orden
 
 1. **Seguir escribiendo el troncal** en el orden de `docs/CURRICULO.md` (los ✅ ya están hechos). Faltan, entre otros:
-   `sys-sistemas-operativos` (reescribir sobre `sys-procesos-planificacion`, ya hecho: memoria virtual, reemplazo, concurrencia,
-   archivos; conservar su flag), `sys-bases-datos`,
+   `sys-bases-datos`,
    `sys-redes-sockets`, `mat-calculo-multivariable`, `mat-ecuaciones-diferenciales`, `mat-estadistica-inferencia`,
    `mat-analisis-numerico`, `mat-algebra-lineal-avanzada`, `ing-medidas-laboratorio`, `fis-ondas-optica`,
    `tro-razonamiento-cientifico`, `tro-lectura-tecnica`. Cada nodo con la plantilla de `docs/PEDAGOGIA.md`, ≥ 8 ejercicios
@@ -45,7 +44,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
 3. Plataforma, cuando haga falta: cambio de contraseña y cierre de otras sesiones; tests de `progress.ts` y `auth.ts`
    (`server-only` impide importarlos en `tsx --test`, habrá que aislarlo); perfil `https` probado en un VPS real y
    `deploy.bat` ejecutado como tal.
-4. Revisar la bibliografía de los 24 nodos antiguos (se escribió de memoria) contra la web. Los nodos de la escalera llevan
+4. Revisar la bibliografía de los 23 nodos antiguos (se escribió de memoria) contra la web. Los nodos de la escalera llevan
    referencias verificadas en la web o citadas solo por libro/capítulo sin número.
 5. Tras añadir o enlazar nodos: `npm run vault:relevel`, `npm run vault:check`, `npm test`, `npx tsc --noEmit`.
 
@@ -198,6 +197,7 @@ y construye la imagen Docker.
 | 9 | `prog-algoritmos` | 16 |
 | 9 | `sys-procesos-planificacion` | 16 |
 | 10 | `fis-mecanica-newtoniana` | 16 |
+| 10 | `sys-sistemas-operativos` | 16 |
 | 11 | `fis-electricidad-magnetismo-1` | 17 |
 | 12 | `ing-circuitos-dc-ac` | 17 |
 
@@ -217,6 +217,8 @@ y se compilan y ejecutan igual (script de apoyo: extraer cada bloque a un archiv
 además recalcula la flag del reto en C y en JavaScript (disposición de la estructura calculada con las reglas de la ABI).
 `sys-procesos-planificacion`: los programas con `fork`/`exec`/`pipe`/señales se ejecutan en `gcc:14` con la salida redirigida a
 un archivo (búfer completo de stdio) y se contrastan con un modelo en JS; la planificación se simula en Python y en JS.
+`sys-sistemas-operativos` (reescrito, conserva su reto): reemplazo de páginas simulado en C y en JS (la flag se recalcula),
+banquero en Python y JS, hilos/enlaces/`mmap` ejecutados en `gcc:14`.
 
 ### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 
@@ -228,7 +230,6 @@ un archivo (búfer completo de stdio) y se contrastan con un modelo en JS; la pl
 | 9 | `ing-arquitectura-computadores` |
 | 9 | `mat-algebra-lineal` |
 | 9 | `sec-web` |
-| 9 | `sys-sistemas-operativos` |
 | 10 | `fis-mecanica-clasica` |
 | 10 | `ing-senales-sistemas` |
 | 10 | `mat-analisis-real` |
