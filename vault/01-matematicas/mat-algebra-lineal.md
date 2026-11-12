@@ -1,9 +1,9 @@
 ---
 id: mat-algebra-lineal
-title: "Álgebra lineal"
+title: "Álgebra lineal II: espacios vectoriales abstractos, determinante y autovalores"
 area: matematicas
-trunk_level: 8
-prerequisites: [mat-logica-demostraciones, mat-geometria-analitica]
+trunk_level: 9
+prerequisites: [mat-algebra-lineal-1, mat-logica-demostraciones]
 academic_sources:
   - "Axler, S. Linear Algebra Done Right, 4ª ed. Springer, 2024."
   - "Strang, G. Introduction to Linear Algebra, 5ª ed. Wellesley-Cambridge Press, 2016."
