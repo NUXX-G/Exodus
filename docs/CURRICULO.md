@@ -43,7 +43,7 @@ Cuatro pilares, que se estudian entrelazados por nivel, no uno detrás de otro.
   ✅ `mat-algebra-basica` · ✅ `mat-geometria-basica` · ✅ `mat-funciones-basicas` (incluye estadística descriptiva).
 - **N1** (hechos salvo la lógica): ✅ `mat-algebra-secundaria` · ✅ `mat-trigonometria` · ✅ `mat-geometria-analitica` ·
   ✅ `mat-combinatoria-probabilidad-basica` · ✳️ `mat-logica-demostraciones` (desdoblar).
-- **N2**: ✅ `mat-calculo-1` · ✅ `mat-calculo-2` · ✅ `mat-algebra-lineal-1` · ✳️ `mat-algebra-lineal` (ahora «Álgebra lineal II», abstracto) · ⬜ `mat-matematica-discreta`.
+- **N2**: ✅ `mat-calculo-1` · ✅ `mat-calculo-2` · ✅ `mat-algebra-lineal-1` · ✳️ `mat-algebra-lineal` (ahora «Álgebra lineal II», abstracto) · ✅ `mat-matematica-discreta`.
 - **N3**: ✳️ `mat-analisis-real` · ⬜ `mat-calculo-multivariable` · ⬜ `mat-ecuaciones-diferenciales` ·
   ✳️ `mat-estructuras-algebraicas` · ✳️ `mat-probabilidad` · ⬜ `mat-estadistica-inferencia` ·
   ⬜ `mat-analisis-numerico` · ⬜ `mat-algebra-lineal-avanzada`.
