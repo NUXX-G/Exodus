@@ -155,7 +155,7 @@ export default async function PaginaNodo({ params }: Props) {
 
         {attachments.length > 0 && (
           <section>
-            <h2>Archivos del reto</h2>
+            <h2>Archivos adjuntos</h2>
             <ul className="lista adjuntos">
               {attachments.map((a) => (
                 <li key={a.name}>
@@ -169,7 +169,10 @@ export default async function PaginaNodo({ params }: Props) {
                 </li>
               ))}
             </ul>
-            <p className="nota">Ejecútalos solo en una máquina virtual o un contenedor desechable.</p>
+            <p className="nota">
+              Comprueba el SHA-256 tras descargarlos. Los ejecutables, ábrelos solo en una máquina virtual o un contenedor
+              desechable.
+            </p>
           </section>
         )}
 
