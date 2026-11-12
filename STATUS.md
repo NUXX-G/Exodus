@@ -26,7 +26,7 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta, Docker, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **41 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **42 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 matemáticas hasta cálculo 2, álgebra lineal I, matemática discreta y lógica y demostración, física hasta mecánica newtoniana, electricidad básica,
 programación hasta algoritmos y fundamentos de seguridad) y **21 nodos comprimidos** anteriores (cada uno con un reto con
 flag), ya enlazados a la escalera pero pendientes de desdoblar.
@@ -34,7 +34,6 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
 ## 3. Qué hacer ahora, por orden
 
 1. **Seguir escribiendo el troncal** en el orden de `docs/CURRICULO.md` (los ✅ ya están hechos). Faltan, entre otros:
-   `mat-estadistica-inferencia`,
    `mat-algebra-lineal-avanzada`, `ing-medidas-laboratorio`, `fis-ondas-optica`,
    `tro-razonamiento-cientifico`, `tro-lectura-tecnica`. Cada nodo con la plantilla de `docs/PEDAGOGIA.md`, ≥ 8 ejercicios
    (lo normal: 14 a 16) y 3 niveles de pistas si lleva flag.
@@ -206,6 +205,7 @@ y construye la imagen Docker.
 | 11 | `mat-analisis-numerico` | 16 |
 | 11 | `mat-probabilidad` | 16 |
 | 12 | `ing-circuitos-dc-ac` | 17 |
+| 12 | `mat-estadistica-inferencia` | 15 |
 
 Notas de verificación: los nodos de programación se validaron ejecutando Python 3.12 real en Docker; `prog-terminal-linux-git` en un
 contenedor Debian con git; `sec-fundamentos` con hashes/HMAC/TOTP calculados en Python y Node (TOTP contrastado con el vector del
@@ -250,13 +250,13 @@ en JS; ley de Little contrastada con una simulación.
 | 12 | `fis-electromagnetismo` |
 | 12 | `fis-mecanica-cuantica` |
 | 12 | `fis-termo-estadistica` |
-| 12 | `ia-aprendizaje-estadistico` |
 | 12 | `rob-cinematica` |
 | 12 | `rob-control` |
 | 12 | `sec-criptografia` |
 | 13 | `cua-computacion-cuantica` |
-| 13 | `ia-redes-profundas` |
+| 13 | `ia-aprendizaje-estadistico` |
 | 13 | `ing-circuitos` |
+| 14 | `ia-redes-profundas` |
 | 14 | `rob-microcontroladores` |
 
 Los scripts que calculan y contrastan estas flags están en `.soluciones/` (`nivel-*.mjs`,

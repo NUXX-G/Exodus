@@ -2,8 +2,8 @@
 id: ia-aprendizaje-estadistico
 title: "Aprendizaje estadístico"
 area: ia-cuantica
-trunk_level: 12
-prerequisites: [mat-algebra-lineal, mat-probabilidad]
+trunk_level: 13
+prerequisites: [mat-algebra-lineal, mat-estadistica-inferencia]
 academic_sources:
   - "Bishop, C. M. Pattern Recognition and Machine Learning. Springer, 2006."
   - "Hastie, T.; Tibshirani, R.; Friedman, J. The Elements of Statistical Learning, 2ª ed. Springer, 2009."
