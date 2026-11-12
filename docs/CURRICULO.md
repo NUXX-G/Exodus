@@ -55,7 +55,7 @@ Cuatro pilares, que se estudian entrelazados por nivel, no uno detrás de otro.
 - **N2**: ⬜ `prog-algoritmos` (complejidad, ordenación, grafos, programación dinámica; CLRS) ·
   ✳️ `sys-c-memoria` · ⬜ `prog-poo-diseno` · ✳️ `ing-logica-digital`.
 - **N3**: ✳️ `ing-arquitectura-computadores` · ✳️ `sys-sistemas-operativos` · ⬜ `sys-bases-datos` ·
-  ✳️ `sec-redes-tcpip` · ⬜ `sys-redes-sockets` · ⬜ `sec-fundamentos` (seguridad básica: toda persona que
+  ✳️ `sec-redes-tcpip` · ⬜ `sys-redes-sockets` · ✅ `sec-fundamentos` (seguridad básica: toda persona que
   programa la necesita).
 
 ## T-D. Ciencias físicas e ingeniería básica (≈ 16 nodos)
