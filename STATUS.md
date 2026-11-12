@@ -26,7 +26,7 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta, Docker, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **25 nodos de la nueva escalera del troncal** (con 8 a 16 ejercicios cada uno, verificados por doble método) y
+Contenido: **26 nodos de la nueva escalera del troncal** (con 8 a 16 ejercicios cada uno, verificados por doble método) y
 **27 nodos troncales comprimidos** anteriores, pendientes de reubicar y desdoblar. Escalera nueva hecha: `tro-aprender-a-aprender`,
 matemáticas N0 completas (6 nodos), `prog-pensamiento-computacional` y `prog-python-fundamentos`.
 
@@ -307,6 +307,7 @@ y construye la imagen Docker.
 | 2 | `mat-calculo-1` | 16 |
 | 2 | `mat-calculo-2` | 16 |
 | 2 | `mat-algebra-lineal-1` | 16 |
+| 3 | `mat-matematica-discreta` | 16 |
 | 3 | `prog-algoritmos` (Python real + fuerza bruta/BFS como segundo método) | 16 |
 | 3 | `sec-fundamentos` (hashes, HMAC y TOTP calculados con Python y Node; TOTP validado con el vector del RFC 6238) | 16 |
 | 1 | `mat-algebra-secundaria` | 16 |
