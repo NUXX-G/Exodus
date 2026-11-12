@@ -24,13 +24,13 @@ export default async function Inicio() {
     area: n.area,
     level: n.trunkLevel,
     state: states.get(n.id)!,
-    hasChallenge: n.ctfFlag !== null,
+    hasChallenge: n.ctfFlag !== null || n.exercises.length > 0,
     prerequisites: n.prerequisites,
   }));
 
   const done = nodes.filter((n) => completed.has(n.id)).length;
   const next = nodes
-    .filter((n) => states.get(n.id) === "available" && n.ctfFlag)
+    .filter((n) => states.get(n.id) === "available" && (n.ctfFlag || n.exercises.length > 0))
     .sort((a, b) => a.trunkLevel - b.trunkLevel);
   const areas = areaProgress(vault, completed);
   const siguiente = recommendedNext(vault, states);

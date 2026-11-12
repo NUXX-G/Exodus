@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const TIPO_PISTA = ["Concepto", "Herramienta o comando", "Documentación oficial"] as const;
 
 const ESTADO = {
-  completed: { titulo: "Completado", detalle: "Flag validada." },
+  completed: { titulo: "Completado", detalle: "Dominio alcanzado o flag validada." },
   available: { titulo: "Disponible", detalle: "Prerequisitos cumplidos." },
   locked: { titulo: "Bloqueado", detalle: "Puedes leerlo; la flag se valida al completar los prerequisitos." },
 } as const;

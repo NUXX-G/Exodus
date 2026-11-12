@@ -14,8 +14,8 @@ export default function ReviewForm({ nodeId, exerciseId }: { nodeId: string; exe
       <label htmlFor={id} className="visualmente-oculto">
         Respuesta
       </label>
-      <input id={id} name="answer" type="text" placeholder="Sin apuntes" autoComplete="off" spellCheck={false} maxLength={512} required />
-      <button type="submit" className="boton" disabled={pending}>
+      <input id={id} name="answer" type="text" placeholder="Sin apuntes" autoComplete="off" spellCheck={false} maxLength={512} required disabled={state?.done} />
+      <button type="submit" className="boton" disabled={pending || state?.done}>
         {pending ? "Comprobando…" : "Comprobar"}
       </button>
       {state && (
