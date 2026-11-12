@@ -26,16 +26,16 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta, Docker, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **55 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **56 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 matemáticas hasta cálculo 2, álgebra lineal I, matemática discreta y lógica y demostración, física hasta mecánica newtoniana, electricidad básica,
-programación hasta algoritmos y fundamentos de seguridad) y **13 nodos comprimidos** anteriores (cada uno con un reto con
+programación hasta algoritmos y fundamentos de seguridad) y **12 nodos comprimidos** anteriores (cada uno con un reto con
 flag), ya enlazados a la escalera pero pendientes de desdoblar.
 
 ## 3. Qué hacer ahora, por orden
 
 1. **Seguir escribiendo el troncal** en el orden de `docs/CURRICULO.md` (los ✅ ya están hechos). Todos los nodos nuevos (⬜) del troncal
-   están escritos. Falta reescribir como nodos de escalera los ✳️ del troncal que quedan
-   (`fis-termo-estadistica`, `ing-circuitos`), moviéndolos a `vault/00-troncal/`,
+   están escritos. Falta reescribir como nodo de escalera el último ✳️ del troncal
+   (`ing-circuitos`), moviéndolo a `vault/00-troncal/`,
    conservando su flag y comprobándola en el spec (como se hizo con `mat-probabilidad` o `sys-sistemas-operativos`). Cada nodo con la plantilla de `docs/PEDAGOGIA.md`, ≥ 8 ejercicios
    (lo normal: 14 a 16) y 3 niveles de pistas si lleva flag.
 2. **Ramas N4 → N6** por prerrequisitos (lista en `docs/CURRICULO.md`: topología, EDP, C++, Rust, ARM, forense y logs, PCB,
@@ -43,7 +43,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
 3. Plataforma, cuando haga falta: cambio de contraseña y cierre de otras sesiones; tests de `progress.ts` y `auth.ts`
    (`server-only` impide importarlos en `tsx --test`, habrá que aislarlo); perfil `https` probado en un VPS real y
    `deploy.bat` ejecutado como tal.
-4. Revisar la bibliografía de los 13 nodos antiguos (se escribió de memoria) contra la web. Los nodos de la escalera llevan
+4. Revisar la bibliografía de los 12 nodos antiguos (se escribió de memoria) contra la web. Los nodos de la escalera llevan
    referencias verificadas en la web o citadas solo por libro/capítulo sin número.
 5. Tras añadir o enlazar nodos: `npm run vault:relevel`, `npm run vault:check`, `npm test`, `npx tsc --noEmit`.
 
@@ -216,6 +216,7 @@ y construye la imagen Docker.
 | 11 | `mat-probabilidad` | 16 |
 | 12 | `fis-electromagnetismo` | 16 |
 | 12 | `fis-ondas-optica` | 16 |
+| 12 | `fis-termo-estadistica` | 16 |
 | 12 | `ing-circuitos-dc-ac` | 17 |
 | 12 | `mat-algebra-lineal-avanzada` | 16 |
 | 12 | `mat-estadistica-inferencia` | 15 |
@@ -255,6 +256,9 @@ polos por Durand-Kerner; el bloque Python del texto se ejecuta en Docker.
 `fis-electromagnetismo` (reescrito, conserva su reto y recalcula la flag): Biot-Savart numérico frente a fórmulas (hilo, espira,
 solenoide, hexágono del reto), carga inducida integrada frente a la imagen, energías de campo frente a C y L, Fresnel por fórmula y por
 sistema de contorno, RK4 de la fuerza de Lorentz; el bloque Python (incluye Laplace por SOR) se ejecuta en Docker.
+`fis-termo-estadistica` (reescrito, conserva su reto y recalcula la flag con enteros exactos): procesos integrados con Simpson/RK4,
+microestados enumerados, sumas directas sobre niveles y derivadas numéricas de ln Z frente a fórmulas; Ising 4×4 por enumeración y por
+programación dinámica fila a fila; el bloque Python (Boltzmann desde la cuenta, anchura 1/√N, Wien) se ejecuta en Docker.
 
 ### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 
@@ -264,7 +268,6 @@ sistema de contorno, RK4 de la fuerza de Lorentz; el bloque Python (incluye Lapl
 | 10 | `sys-ensamblador-x86-64` |
 | 11 | `sec-explotacion-binaria` |
 | 12 | `fis-mecanica-cuantica` |
-| 12 | `fis-termo-estadistica` |
 | 12 | `rob-cinematica` |
 | 12 | `rob-control` |
 | 12 | `sec-criptografia` |
