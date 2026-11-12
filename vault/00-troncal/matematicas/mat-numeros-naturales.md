@@ -272,7 +272,7 @@ $$
 $$
 
 Aquí aparece un resultado negativo: los naturales no alcanzan para restar siempre. Los enteros
-($\dots,-2,-1,0,1,2,\dots$) se estudian en el nodo de enteros y fracciones.
+($\dots,-2,-1,0,1,2,\dots$) se estudian en [[mat-enteros-fracciones]].
 
 Error típico: $8 \div 2 \times 4$ vale $16$ (izquierda a derecha), **no** $1$. La multiplicación y la
 división tienen la **misma** prioridad.
@@ -484,5 +484,5 @@ reparte todo sin sobrar?» $\to$ **mcd**.
 
 ## Siguiente
 
-Con los naturales dominados, el nodo de enteros y fracciones amplía el sistema numérico a los enteros y a las
+Con los naturales dominados, [[mat-enteros-fracciones]] amplía el sistema numérico a los enteros y a las
 fracciones, y el nodo de álgebra básica sustituye los números por letras.
