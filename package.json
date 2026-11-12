@@ -14,7 +14,7 @@
     "vault:flag": "tsx scripts/flag-hash.ts",
     "vault:ex": "tsx scripts/ex-hash.ts",
     "vault:relevel": "tsx scripts/relevel.ts",
-    "test": "tsx --test tests/*.test.ts"
+    "test": "tsx --conditions=react-server --test tests/*.test.ts"
   },
   "dependencies": {
     "@shikijs/rehype": "^4.6.0",

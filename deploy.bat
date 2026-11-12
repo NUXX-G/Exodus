@@ -22,7 +22,8 @@ set /a tries+=1
 curl -s -f -o nul http://127.0.0.1:%EXODUS_PORT%/api/health
 if not errorlevel 1 goto ready
 if %tries% geq 60 goto failed
-timeout /t 2 /nobreak >nul
+rem `timeout` falla si la entrada no es una consola (tareas programadas, CI); ping espera ~2 s en cualquier caso.
+ping -n 3 127.0.0.1 >nul
 goto wait
 
 :ready
