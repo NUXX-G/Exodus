@@ -2,7 +2,7 @@
 id: sys-ensamblador-x86-64
 title: "Ensamblador x86-64"
 area: bajo-nivel
-trunk_level: 9
+trunk_level: 10
 prerequisites: [sys-c-memoria, ing-arquitectura-computadores]
 academic_sources:
   - "Intel Corporation. Intel 64 and IA-32 Architectures Software Developer's Manual, Vols. 1–2."

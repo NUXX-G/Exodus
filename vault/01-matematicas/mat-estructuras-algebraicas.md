@@ -2,7 +2,7 @@
 id: mat-estructuras-algebraicas
 title: "Grupos, anillos y cuerpos"
 area: matematicas
-trunk_level: 7
+trunk_level: 8
 prerequisites: [mat-logica-demostraciones, mat-numeros-naturales]
 academic_sources:
   - "Dummit, D. S.; Foote, R. M. Abstract Algebra, 3ª ed. Wiley, 2004."

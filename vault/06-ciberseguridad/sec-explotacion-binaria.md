@@ -2,7 +2,7 @@
 id: sec-explotacion-binaria
 title: "Reversing y explotación binaria"
 area: ciberseguridad
-trunk_level: 10
+trunk_level: 11
 prerequisites: [sys-ensamblador-x86-64, sys-sistemas-operativos]
 academic_sources:
   - "Erickson, J. Hacking: The Art of Exploitation, 2ª ed. No Starch Press, 2008."

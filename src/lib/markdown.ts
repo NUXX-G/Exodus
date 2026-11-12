@@ -72,7 +72,7 @@ function remarkWikilinks(options: { resolve: () => LinkResolver }) {
   };
 }
 
-const CALLOUT = /^\[!([a-zA-Z-]+)\][+-]?[ \t]*(.*)(?:\n|$)/;
+const CALLOUT = /^\[!([a-zA-Z-]+)\]([+-]?)[ \t]*(.*)(?:\n|$)/;
 
 function remarkCallouts() {
   return (tree: Root) => {
@@ -86,16 +86,23 @@ function remarkCallouts() {
 
       const kind = m[1].toLowerCase();
       // El título es el resto de la primera línea; el contenido sigue en la línea siguiente.
-      const title = m[2].trim() || kind.charAt(0).toUpperCase() + kind.slice(1);
+      const title = m[3].trim() || kind.charAt(0).toUpperCase() + kind.slice(1);
+      // Plegables al estilo Obsidian: «[!tipo]-» empieza cerrado y «[!tipo]+» abierto (<details>/<summary>).
+      const fold = m[2];
       head.value = head.value.slice(m[0].length);
       if (head.value === "" && first.children.length === 1) node.children.shift();
 
+      const className = ["callout", `callout-${kind}`];
       node.children.unshift({
         type: "paragraph",
         children: [{ type: "text", value: title }],
-        data: { hProperties: { className: ["callout-titulo"] } },
+        data: fold
+          ? { hName: "summary", hProperties: { className: ["callout-titulo"] } }
+          : { hProperties: { className: ["callout-titulo"] } },
       });
-      node.data = { hName: "aside", hProperties: { className: ["callout", `callout-${kind}`] } };
+      node.data = fold
+        ? { hName: "details", hProperties: { className, open: fold === "+" } }
+        : { hName: "aside", hProperties: { className } };
     });
   };
 }
@@ -117,11 +124,13 @@ function rehypeSafeLinks() {
 const sanitizeSchema = {
   ...defaultSchema,
   clobberPrefix: "",
-  tagNames: [...(defaultSchema.tagNames ?? []), "aside"],
+  tagNames: [...(defaultSchema.tagNames ?? []), "aside", "details", "summary"],
   attributes: {
     ...defaultSchema.attributes,
     code: [["className", /^language-./, "math-inline", "math-display"]],
     aside: [["className", /^callout/]],
+    details: [["className", /^callout/], "open"],
+    summary: [["className", "callout-titulo"]],
     p: [...(defaultSchema.attributes?.p ?? []), ["className", "callout-titulo"]],
     // La primera definición de `className` gana: se sustituye la del esquema por defecto.
     a: [
