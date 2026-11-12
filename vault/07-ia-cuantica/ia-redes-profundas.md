@@ -14,12 +14,15 @@ academic_sources:
   - "He, K.; Zhang, X.; Ren, S.; Sun, J. Deep Residual Learning for Image Recognition. CVPR, 2016."
   - "Cybenko, G. Approximation by superpositions of a sigmoidal function. Mathematics of Control, Signals and Systems, 2(4), 1989."
   - "LeCun, Y.; Bottou, L.; Bengio, Y.; Haffner, P. Gradient-based learning applied to document recognition. Proceedings of the IEEE, 86(11), 1998."
+  - "Hornik, K. Approximation capabilities of multilayer feedforward networks. Neural Networks, 4(2), 1991."
+  - "He, K.; Zhang, X.; Ren, S.; Sun, J. Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification. ICCV, 2015."
+  - "Srivastava, N. et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research, 15, 2014."
   - "Ba, J. L.; Kiros, J. R.; Hinton, G. E. Layer Normalization. arXiv:1607.06450, 2016."
 ctf_flag: "sha256:1b8e42f2f2f8c345b2cdb77ad34718e5cbb6acd7aba56614e86f23e6fb3407b1"
 hints:
   - "(a) Una derivada parcial de la pérdida es un producto de derivadas locales a lo largo del camino que va del peso a la salida (regla de la cadena); la derivada de la ReLU es 1 donde la preactivación es positiva y 0 donde no. Comprueba qué neuronas están activas antes de derivar. (b) Adam mantiene dos medias móviles, una del gradiente y otra de su cuadrado, y las corrige por el sesgo de inicio. (c) Las puntuaciones son productos punto escalados por 1/√d_k; el softmax actúa por filas. (d) Cuenta tensor a tensor: una matriz de entrada×salida más su vector de sesgo, y un tensor de pesos compartido solo se cuenta una vez."
   - "Para (a) usa fractions.Fraction (o sympy.Rational) y compara con la derivada numérica por diferencias centrales; el valor a entregar es el valor absoluto del numerador y el denominador de la fracción irreducible. Para (b) escribe el bucle con numpy; para (c), numpy con restar el máximo de cada fila antes de exponenciar; para (d), en PyTorch, sum(p.numel() for p in model.parameters()) cuenta cada parámetro compartido una sola vez."
-  - "Goodfellow et al., §6.5 (retropropagación), §8.5 (Adam) y §10 / Vaswani et al. §3.2 (atención de producto punto escalado, ecuación 1). Kingma & Ba (2015), algoritmo 1. Documentación: pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.parameters"
+  - "Goodfellow et al., §6.5 (retropropagación), §8.5 (algoritmos de tasa adaptativa, incluido Adam) / Vaswani et al. §3.2 (atención de producto punto escalado, ecuación 1). Kingma & Ba (2015), algoritmo 1. Documentación: pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.parameters"
 ---
 
 # Redes neuronales profundas
