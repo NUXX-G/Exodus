@@ -26,24 +26,23 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta, Docker, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **56 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
-matemáticas hasta cálculo 2, álgebra lineal I, matemática discreta y lógica y demostración, física hasta mecánica newtoniana, electricidad básica,
-programación hasta algoritmos y fundamentos de seguridad) y **12 nodos comprimidos** anteriores (cada uno con un reto con
+Contenido: **57 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+todo el troncal de `docs/CURRICULO.md`, de 1º ESO a final de grado: matemáticas hasta análisis real, álgebra lineal avanzada y
+estadística; física hasta electromagnetismo, termodinámica estadística y circuitos con semiconductores; computación hasta sistemas
+operativos, redes y bases de datos) y **11 nodos comprimidos** anteriores (cada uno con un reto con
 flag), ya enlazados a la escalera pero pendientes de desdoblar.
 
 ## 3. Qué hacer ahora, por orden
 
-1. **Seguir escribiendo el troncal** en el orden de `docs/CURRICULO.md` (los ✅ ya están hechos). Todos los nodos nuevos (⬜) del troncal
-   están escritos. Falta reescribir como nodo de escalera el último ✳️ del troncal
-   (`ing-circuitos`), moviéndolo a `vault/00-troncal/`,
-   conservando su flag y comprobándola en el spec (como se hizo con `mat-probabilidad` o `sys-sistemas-operativos`). Cada nodo con la plantilla de `docs/PEDAGOGIA.md`, ≥ 8 ejercicios
-   (lo normal: 14 a 16) y 3 niveles de pistas si lleva flag.
-2. **Ramas N4 → N6** por prerrequisitos (lista en `docs/CURRICULO.md`: topología, EDP, C++, Rust, ARM, forense y logs, PCB,
+1. **El troncal está completo**: todos sus nodos (incluidos los ✳️ antiguos de N3, reescritos y movidos a `vault/00-troncal/` con su
+   flag conservada y comprobada en el spec) son nodos de escalera. Cada nodo nuevo sigue la plantilla de `docs/PEDAGOGIA.md`, ≥ 8
+   ejercicios (lo normal: 14 a 16) y 3 niveles de pistas si lleva flag.
+2. **Ramas N4 → N6 (lo siguiente)** por prerrequisitos (lista en `docs/CURRICULO.md`: topología, EDP, C++, Rust, ARM, forense y logs, PCB,
    PyTorch, Transformers, LLM locales…). Los nodos comprimidos antiguos se desdoblan en ellas.
 3. Plataforma, cuando haga falta: cambio de contraseña y cierre de otras sesiones; tests de `progress.ts` y `auth.ts`
    (`server-only` impide importarlos en `tsx --test`, habrá que aislarlo); perfil `https` probado en un VPS real y
    `deploy.bat` ejecutado como tal.
-4. Revisar la bibliografía de los 12 nodos antiguos (se escribió de memoria) contra la web. Los nodos de la escalera llevan
+4. Revisar la bibliografía de los 11 nodos antiguos (se escribió de memoria) contra la web. Los nodos de la escalera llevan
    referencias verificadas en la web o citadas solo por libro/capítulo sin número.
 5. Tras añadir o enlazar nodos: `npm run vault:relevel`, `npm run vault:check`, `npm test`, `npx tsc --noEmit`.
 
@@ -220,6 +219,7 @@ y construye la imagen Docker.
 | 12 | `ing-circuitos-dc-ac` | 17 |
 | 12 | `mat-algebra-lineal-avanzada` | 16 |
 | 12 | `mat-estadistica-inferencia` | 15 |
+| 13 | `ing-circuitos` | 16 |
 | 13 | `ing-medidas-laboratorio` | 16 |
 
 Notas de verificación: los nodos de programación se validaron ejecutando Python 3.12 real en Docker; `prog-terminal-linux-git` en un
@@ -259,6 +259,9 @@ sistema de contorno, RK4 de la fuerza de Lorentz; el bloque Python (incluye Lapl
 `fis-termo-estadistica` (reescrito, conserva su reto y recalcula la flag con enteros exactos): procesos integrados con Simpson/RK4,
 microestados enumerados, sumas directas sobre niveles y derivadas numéricas de ln Z frente a fórmulas; Ising 4×4 por enumeración y por
 programación dinámica fila a fila; el bloque Python (Boltzmann desde la cuenta, anchura 1/√N, Wien) se ejecuta en Docker.
+`ing-circuitos` (reescrito, conserva su reto y recalcula la flag con fracciones exactas y Tellegen): transitorios por RK4, diodos por
+Newton frente a bisección, amplificadores por sistema nodal con el operacional como fuente controlada, pequeña señal por derivada
+numérica de la característica de gran señal, filtros por bisección sobre |H|; el bloque Python se ejecuta en Docker.
 
 ### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 
@@ -273,7 +276,6 @@ programación dinámica fila a fila; el bloque Python (Boltzmann desde la cuenta
 | 12 | `sec-criptografia` |
 | 13 | `cua-computacion-cuantica` |
 | 13 | `ia-aprendizaje-estadistico` |
-| 13 | `ing-circuitos` |
 | 14 | `ia-redes-profundas` |
 | 14 | `rob-microcontroladores` |
 
