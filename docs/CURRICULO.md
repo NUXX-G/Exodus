@@ -114,7 +114,7 @@ Cada rama exige los nodos troncales que cita.
   ⬜ `sec-gestion-riesgo`.
 
 ## IA y computación cuántica (≈ 14 nodos)
-- **N4**: ⬜ `ia-python-datos` · ✳️ `ia-aprendizaje-estadistico` · ⬜ `ia-redes-desde-cero` ·
+- **N4**: ⬜ `ia-python-datos` · ✅ `ia-aprendizaje-estadistico` · ⬜ `ia-redes-desde-cero` ·
   ✳️ `ia-redes-profundas` · ⬜ `ia-pytorch` · ✅ `cua-computacion-cuantica`.
 - **N5-N6**: ⬜ `ia-vision` · ⬜ `ia-nlp` · ⬜ `ia-transformers-llm` · ⬜ `ia-llm-locales` (Ollama, vLLM) ·
   ⬜ `ia-aprendizaje-refuerzo` · ⬜ `ia-modelos-generativos` · ⬜ `ia-bayesiana` ·
