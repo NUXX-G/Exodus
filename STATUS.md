@@ -26,16 +26,15 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta, Docker, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **47 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **48 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 matemáticas hasta cálculo 2, álgebra lineal I, matemática discreta y lógica y demostración, física hasta mecánica newtoniana, electricidad básica,
 programación hasta algoritmos y fundamentos de seguridad) y **20 nodos comprimidos** anteriores (cada uno con un reto con
 flag), ya enlazados a la escalera pero pendientes de desdoblar.
 
 ## 3. Qué hacer ahora, por orden
 
-1. **Seguir escribiendo el troncal** en el orden de `docs/CURRICULO.md` (los ✅ ya están hechos). Faltan, entre otros:
-   `mat-algebra-lineal-avanzada`, 
-   después, reescribir como nodos de escalera los ✳️ del troncal que quedan (`mat-analisis-real`,
+1. **Seguir escribiendo el troncal** en el orden de `docs/CURRICULO.md` (los ✅ ya están hechos). Todos los nodos nuevos (⬜) del troncal
+   están escritos. Falta reescribir como nodos de escalera los ✳️ del troncal que quedan (`mat-analisis-real`,
    `mat-estructuras-algebraicas`, `ing-logica-digital`, `ing-arquitectura-computadores`, `fis-mecanica-clasica`,
    `fis-electromagnetismo`, `fis-termo-estadistica`, `ing-circuitos`, `ing-senales-sistemas`), moviéndolos a `vault/00-troncal/`,
    conservando su flag y comprobándola en el spec (como se hizo con `mat-probabilidad` o `sys-sistemas-operativos`). Cada nodo con la plantilla de `docs/PEDAGOGIA.md`, ≥ 8 ejercicios
@@ -212,6 +211,7 @@ y construye la imagen Docker.
 | 11 | `mat-probabilidad` | 16 |
 | 12 | `fis-ondas-optica` | 16 |
 | 12 | `ing-circuitos-dc-ac` | 17 |
+| 12 | `mat-algebra-lineal-avanzada` | 16 |
 | 12 | `mat-estadistica-inferencia` | 15 |
 | 13 | `ing-medidas-laboratorio` | 16 |
 
