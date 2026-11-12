@@ -26,9 +26,9 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta, Docker, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **46 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **47 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 matemáticas hasta cálculo 2, álgebra lineal I, matemática discreta y lógica y demostración, física hasta mecánica newtoniana, electricidad básica,
-programación hasta algoritmos y fundamentos de seguridad) y **21 nodos comprimidos** anteriores (cada uno con un reto con
+programación hasta algoritmos y fundamentos de seguridad) y **20 nodos comprimidos** anteriores (cada uno con un reto con
 flag), ya enlazados a la escalera pero pendientes de desdoblar.
 
 ## 3. Qué hacer ahora, por orden
@@ -36,7 +36,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
 1. **Seguir escribiendo el troncal** en el orden de `docs/CURRICULO.md` (los ✅ ya están hechos). Faltan, entre otros:
    `mat-algebra-lineal-avanzada`, 
    después, reescribir como nodos de escalera los ✳️ del troncal que quedan (`mat-analisis-real`,
-   `mat-estructuras-algebraicas`, `mat-algebra-lineal`, `ing-logica-digital`, `ing-arquitectura-computadores`, `fis-mecanica-clasica`,
+   `mat-estructuras-algebraicas`, `ing-logica-digital`, `ing-arquitectura-computadores`, `fis-mecanica-clasica`,
    `fis-electromagnetismo`, `fis-termo-estadistica`, `ing-circuitos`, `ing-senales-sistemas`), moviéndolos a `vault/00-troncal/`,
    conservando su flag y comprobándola en el spec (como se hizo con `mat-probabilidad` o `sys-sistemas-operativos`). Cada nodo con la plantilla de `docs/PEDAGOGIA.md`, ≥ 8 ejercicios
    (lo normal: 14 a 16) y 3 niveles de pistas si lleva flag.
@@ -45,7 +45,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
 3. Plataforma, cuando haga falta: cambio de contraseña y cierre de otras sesiones; tests de `progress.ts` y `auth.ts`
    (`server-only` impide importarlos en `tsx --test`, habrá que aislarlo); perfil `https` probado en un VPS real y
    `deploy.bat` ejecutado como tal.
-4. Revisar la bibliografía de los 21 nodos antiguos (se escribió de memoria) contra la web. Los nodos de la escalera llevan
+4. Revisar la bibliografía de los 20 nodos antiguos (se escribió de memoria) contra la web. Los nodos de la escalera llevan
    referencias verificadas en la web o citadas solo por libro/capítulo sin número.
 5. Tras añadir o enlazar nodos: `npm run vault:relevel`, `npm run vault:check`, `npm test`, `npx tsc --noEmit`.
 
@@ -198,6 +198,7 @@ y construye la imagen Docker.
 | 8 | `sys-bases-datos` | 17 |
 | 8 | `sys-c-memoria` | 16 |
 | 8 | `tro-lectura-tecnica` | 14 |
+| 9 | `mat-algebra-lineal` | 14 |
 | 9 | `mat-calculo-2` | 16 |
 | 9 | `prog-algoritmos` | 16 |
 | 9 | `sys-procesos-planificacion` | 16 |
@@ -247,7 +248,6 @@ en JS; ley de Little contrastada con una simulación.
 | 8 | `ing-logica-digital` |
 | 8 | `mat-estructuras-algebraicas` |
 | 9 | `ing-arquitectura-computadores` |
-| 9 | `mat-algebra-lineal` |
 | 9 | `sec-web` |
 | 10 | `mat-analisis-real` |
 | 10 | `sys-ensamblador-x86-64` |
