@@ -2,7 +2,7 @@
 id: sys-sistemas-operativos
 title: "Sistemas operativos y kernel de Linux"
 area: bajo-nivel
-trunk_level: 4
+trunk_level: 9
 prerequisites: [sys-c-memoria]
 academic_sources:
   - "Arpaci-Dusseau, R. H.; Arpaci-Dusseau, A. C. Operating Systems: Three Easy Pieces, v1.10. Arpaci-Dusseau Books, 2023."
