@@ -29,6 +29,23 @@ hacer `git pull` en el servidor. El progreso de todos los usuarios se conserva.
 
 Otros nodos pueden citarlo como `` `mat-topologia` `` en el texto: en cuanto exista, la web lo convierte en enlace.
 
+### Proyectos y laboratorios
+
+Un nodo puede declarar `kind: proyecto` o `kind: laboratorio` en el frontmatter (sin `kind` es teoría). Aparecen en
+`/practica`, se pueden filtrar en el temario y se exportan a Obsidian con la etiqueta `exodus/proyecto` o
+`exodus/laboratorio`.
+
+- **Proyecto**: un trabajo grande dividido en hitos. Cada hito es un ejercicio cuya respuesta es la salida del
+  programa del estudiante para una entrada fija que da el enunciado (un número, un hash de la salida…), así que la
+  plataforma comprueba el trabajo sin ver el código. El enunciado describe el contrato de cada hito, los casos
+  límite y cómo probarlo localmente.
+- **Laboratorio**: un reto práctico con archivos en `vault/_adjuntos/<id>/` (registros, capturas, binarios, datos de
+  sensores) que se analizan hasta obtener la flag (`ctf_flag` con su SHA-256) y, si se quiere, ejercicios
+  intermedios. Las pistas (`hints`, máximo 3) siguen el orden concepto, herramienta, documentación.
+
+Las respuestas se generan con una implementación de referencia en `.soluciones/` (no versionada) y se comprueban
+por dos caminos, como en cualquier otro nodo.
+
 ## 2. Añadir una rama entera dentro de un área
 
 Una rama es un conjunto de nodos con prerequisitos entre sí. Escribe los nodos en orden (primero los que no

@@ -9,7 +9,7 @@ import { areaOf } from "@/lib/areas";
 import { getSessionUser, requireUser } from "@/lib/auth";
 import { linkResolverFor, renderMarkdown } from "@/lib/markdown";
 import { getCompleted, getRevealedLevels, getSolvedExercises, masteryOf, recordOpen, stateOf } from "@/lib/progress";
-import { attachmentInfo, loadVault } from "@/lib/vault";
+import { attachmentInfo, KIND_LABEL, loadVault } from "@/lib/vault";
 import { revealHintAction } from "./actions";
 
 const formatBytes = (n: number) =>
@@ -71,6 +71,12 @@ export default async function PaginaNodo({ params }: Props) {
           <Link href="/">Árbol</Link> / <Link href="/temario">Temario</Link> /{" "}
           <Link href={`/temario?area=${node.area}`}>{area.label}</Link> / nivel {node.trunkLevel}
         </p>
+        {node.kind !== "teoria" && (
+          <p className="tipo-nodo" data-tipo={node.kind}>
+            {KIND_LABEL[node.kind]}
+            {node.kind === "proyecto" ? ": cada hito se comprueba con la salida de tu propio programa." : ": descarga los archivos, analízalos y entrega la flag."}
+          </p>
+        )}
         {/* HTML generado en el servidor a partir del vault; el HTML crudo del Markdown se descarta. */}
         <article className="prosa" dangerouslySetInnerHTML={{ __html: html }} />
 

@@ -30,6 +30,21 @@ test("carga nodos válidos e ignora notas sin id y carpetas ocultas", () => {
   assert.equal(issues.length, 0);
 });
 
+test("tipo de nodo: teoría por defecto, proyecto y laboratorio; rechaza tipos desconocidos", () => {
+  tempVault({
+    "t.md": node("t"),
+    "p.md": node("p", "kind: proyecto\n"),
+    "l.md": node("l", "kind: laboratorio\n"),
+    "x.md": node("x", "kind: examen\n"),
+  });
+  const { nodes, issues } = loadVault();
+  assert.equal(nodes.get("t")!.kind, "teoria");
+  assert.equal(nodes.get("p")!.kind, "proyecto");
+  assert.equal(nodes.get("l")!.kind, "laboratorio");
+  assert.equal(nodes.has("x"), false);
+  assert.match(issues.map((i) => i.message).join("\n"), /kind/);
+});
+
 test("detecta frontmatter inválido, ids duplicados, prerequisitos inexistentes y ciclos", () => {
   tempVault({
     "malo.md": "---\nid: Mal Id\ntitle: x\narea: troncal\ntrunk_level: 0\n---\n",
