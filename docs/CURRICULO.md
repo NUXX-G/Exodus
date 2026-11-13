@@ -87,7 +87,7 @@ Cada rama exige los nodos troncales que cita.
 - **N4**: ✅ `fis-mecanica-cuantica` · ✅ `fis-relatividad-especial` · ✅ `fis-fluidos` ·
   ✅ `fis-mecanica-estadistica-avanzada` · ✅ `fis-materia-condensada-1`.
 - **N5-N6**: ⬜ `fis-teoria-cuantica-campos` · ✅ `fis-relatividad-general` ·
-  ⬜ `fis-fisica-nuclear-particulas` · ⬜ `fis-astrofisica`.
+  ✅ `fis-fisica-nuclear-particulas` · ⬜ `fis-astrofisica`.
 
 ## Ingeniería y hardware (≈ 12 nodos)
 - **N4**: ⬜ `ing-electronica-analogica` · ⬜ `ing-diseno-digital-hdl` · ⬜ `ing-pcb-diseno` ·
