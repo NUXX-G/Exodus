@@ -54,6 +54,16 @@ Para dar acceso a otras personas (cada una con su progreso), la cuenta principal
 **invitación** de un solo uso que caduca (1, 3 o 7 días) y la comparte como código o enlace; el invitado
 crea su cuenta en `/registro`. No hay registro abierto y las cuentas invitadas no pueden invitar.
 
+### Tu progreso en Obsidian
+
+En `/cuenta → Obsidian` cada usuario descarga **su** progreso como bóveda de Obsidian (o solo el plugin para
+una bóveda que ya tenga): el temario con su estado, una nota por cada nodo abierto (teoría, ejercicios resueltos
+y pendientes, próximos repasos, pistas reveladas), un panel y un registro por días. Con «Sincronizar
+automáticamente», el plugin *Exodus Sync* lo actualiza al abrir Obsidian y cada 30 minutos usando un token
+personal (`GET /api/obsidian/sync`, solo lectura, revocable en `/cuenta`). Solo reescribe lo que hay entre
+`<!-- exodus:inicio -->` y `<!-- exodus:fin -->`: lo que el usuario escribe debajo («Mis notas») no se toca, y
+nunca borra archivos. No se exportan respuestas, flags ni pistas sin revelar.
+
 | Comando | Qué hace |
 | --- | --- |
 | `npm run vault:check` | Valida el vault: frontmatter, grafo de prerequisitos y render de cada nodo (LaTeX, wikilinks) |

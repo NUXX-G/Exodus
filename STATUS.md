@@ -165,6 +165,14 @@ y construye la imagen Docker.
   `src/lib/markdown.ts` (GFM, LaTeX con MathJax en servidor, Shiki, wikilinks, callouts, saneado).
 - Lógica de estudio `src/lib/study.ts` (siguiente nodo, tiempo estimado, búsqueda), progreso
   `src/lib/progress.ts`, ejercicios y repaso `src/lib/exercises.ts` (módulo puro con tests).
+- Obsidian por usuario (2026-11-13): `src/lib/obsidian-export.ts` (exportación pura), `obsidian.ts` (datos y tokens
+  `api_tokens`, migración 0004), `obsidian-plugin.ts` (plugin *Exodus Sync* en JS plano, servido por la instancia),
+  `zip.ts` (ZIP sin dependencias, validado con `zipfile` de Python), rutas `/api/obsidian/sync` (Bearer) y
+  `/api/obsidian/descarga` (sesión + mismo origen). Tests en `tests/obsidian.test.ts` con la API de Obsidian simulada.
+  Probado en build de producción: descarga con token, sync con el token emitido, 401 sin credenciales. **No probado
+  dentro de Obsidian real** (no hay Obsidian en esta máquina): si falla, mirar la consola de Obsidian (Ctrl+Shift+I).
+  Nota: con `next dev` y Playwright, los logs de `.playwright-mcp/` en la raíz provocan un bucle de recarga;
+  para pruebas de navegador usar `next build && next start`.
 - Auth: cuenta `admin` (creada en /configurar con el código del registro del servidor) y cuentas `miembro` solo por
   invitación (`src/lib/invitations.ts`, tests en `tests/invitations.test.ts`); scrypt, sesiones por cookie HttpOnly,
   limitador de intentos.

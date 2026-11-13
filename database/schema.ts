@@ -68,6 +68,24 @@ export const invitations = sqliteTable(
   (t) => [index("invitations_creator_idx").on(t.createdBy)],
 );
 
+/**
+ * Tokens personales para conectar herramientas externas (el plugin de Obsidian) a la cuenta. Solo dan
+ * acceso de lectura a la exportación del propio usuario. `id` es el SHA-256 del token.
+ */
+export const apiTokens = sqliteTable(
+  "api_tokens",
+  {
+    id: text("id").primaryKey(),
+    userId: integer("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    name: text("name").notNull(),
+    createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(now),
+    lastUsedAt: integer("last_used_at", { mode: "timestamp" }),
+  },
+  (t) => [index("api_tokens_user_idx").on(t.userId)],
+);
+
 /** Estado de cada nodo por usuario. La ausencia de fila significa "nunca abierto". */
 export const nodeProgress = sqliteTable(
   "node_progress",

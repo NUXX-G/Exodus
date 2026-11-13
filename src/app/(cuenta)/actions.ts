@@ -12,9 +12,11 @@ import {
   login,
   logout,
   registerWithInvitation,
+  revokeOwnApiToken,
   revokeOwnInvitation,
 } from "@/lib/auth";
 import { MAX_PENDING } from "@/lib/invitations";
+import { publicOrigin } from "@/lib/origin";
 import { MIN_PASSWORD_LENGTH } from "@/lib/password";
 
 export interface AccountState {
@@ -133,7 +135,7 @@ export async function inviteAction(_prev: InviteState | null, form: FormData): P
   if (result === "dias") return { ok: false, message: "Elige una caducidad de la lista." };
   if (result === "permiso") return { ok: false, message: "Solo la cuenta principal puede invitar." };
 
-  const link = `${await publicOrigin()}/registro?codigo=${result.code}`;
+  const link = `${publicOrigin(await headers())}/registro?codigo=${result.code}`;
   const when = result.expiresAt.toLocaleString("es-ES", { day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" });
   return {
     ok: true,
@@ -148,14 +150,8 @@ export async function revokeInviteAction(form: FormData): Promise<void> {
   revalidatePath("/cuenta");
 }
 
-/**
- * Dirección por la que el admin ve la web, para que el enlace de invitación funcione igual desde fuera:
- * la cabecera Origin del navegador (exacta también tras Caddy, Tailscale o un túnel); si faltara, Host.
- */
-async function publicOrigin(): Promise<string> {
-  const h = await headers();
-  const origin = h.get("origin");
-  if (origin && /^https?:\/\/[^/\s]+$/.test(origin)) return origin;
-  const proto = h.get("x-forwarded-proto") === "https" ? "https" : "http";
-  return `${proto}://${h.get("x-forwarded-host") ?? h.get("host") ?? "localhost:3000"}`;
+
+export async function revokeApiTokenAction(form: FormData): Promise<void> {
+  await revokeOwnApiToken(String(form.get("id") ?? ""));
+  revalidatePath("/cuenta");
 }
