@@ -22,6 +22,7 @@ import {
   type PasswordChange,
 } from "./sessions";
 import { createInvitation, listInvitations, redeemInvitation, revokeInvitation } from "./invitations";
+import { listApiTokens, revokeApiToken } from "./obsidian";
 import type { User } from "@db/schema";
 
 const { users } = schema;
@@ -217,4 +218,16 @@ export async function ownInvitations() {
 export async function revokeOwnInvitation(id: string): Promise<boolean> {
   const user = await requireAdmin();
   return revokeInvitation(user.id, id);
+}
+
+/* ───────── Conexiones de Obsidian ───────── */
+
+export async function ownApiTokens() {
+  const user = await requireUser();
+  return listApiTokens(user.id);
+}
+
+export async function revokeOwnApiToken(id: string): Promise<boolean> {
+  const user = await requireUser();
+  return revokeApiToken(user.id, id);
 }
