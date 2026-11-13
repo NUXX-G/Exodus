@@ -91,7 +91,7 @@ Cada rama exige los nodos troncales que cita.
 
 ## Ingeniería y hardware (≈ 12 nodos)
 - **N4**: ✅ `ing-electronica-analogica` · ✅ `ing-diseno-digital-hdl` · ✅ `ing-pcb-diseno` ·
-  ⬜ `ing-electronica-potencia` · ⬜ `ing-comunicaciones` · ⬜ `ing-procesado-digital-senal`.
+  ✅ `ing-electronica-potencia` · ⬜ `ing-comunicaciones` · ⬜ `ing-procesado-digital-senal`.
 - **N5-N6**: ⬜ `ing-microelectronica-vlsi` · ⬜ `ing-rf-microondas` · ⬜ `ing-integridad-senal` ·
   ⬜ `ing-diseno-asic`.
 
