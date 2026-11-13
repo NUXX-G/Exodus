@@ -926,4 +926,4 @@ assert resultado.wasSuccessful() and resultado.testsRun == 2
 ## Siguiente
 
 Los nodos de sistemas ([[sys-c-memoria]]) muestran cómo se representa un objeto en memoria (una estructura más una tabla de
-punteros a funciones); `prog-cpp` y `prog-rust` (ramas) llevan estas ideas a lenguajes con control explícito de la memoria.
+punteros a funciones); `prog-cpp-moderno` y `prog-rust-fundamentos` (ramas) llevan estas ideas a lenguajes con control explícito de la memoria.

@@ -1,7 +1,7 @@
 ---
 id: rob-ros2
 title: "ROS 2: nodos, topics, servicios y acciones, DDS y QoS, ejecutores, tf2, ros2_control, Nav2 y el flujo de trabajo de un robot real"
-area: ingenieria
+area: robotica
 trunk_level: 16
 prerequisites: [rob-sensores-actuadores, rob-dinamica, prog-python-fundamentos]
 academic_sources:

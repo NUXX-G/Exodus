@@ -1,7 +1,7 @@
 ---
 id: rob-control-optimo-mpc
 title: "Control óptimo y predictivo: programación dinámica, LQR y Riccati, principio del mínimo de Pontryagin, MPC lineal con restricciones, MPC no lineal y MPPI"
-area: ingenieria
+area: robotica
 trunk_level: 19
 prerequisites: [rob-planificacion-movimiento, rob-control, mat-optimizacion]
 academic_sources:
