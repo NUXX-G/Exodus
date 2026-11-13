@@ -26,7 +26,7 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta con cambio de contraseña y cierre de otras sesiones, Docker, HTTPS con Caddy, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **72 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **73 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 todo el troncal de `docs/CURRICULO.md`, de 1º ESO a final de grado: matemáticas hasta análisis real, álgebra lineal avanzada y
 estadística; física hasta electromagnetismo, termodinámica estadística y circuitos con semiconductores; computación hasta sistemas
 operativos, redes y bases de datos) y **0 nodos comprimidos** anteriores (cada uno con un reto con
@@ -39,7 +39,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
    ejercicios (lo normal: 14 a 16) y 3 niveles de pistas si lleva flag.
 2. **Ramas N4 → N6 (lo siguiente)** por prerrequisitos (lista en `docs/CURRICULO.md`: topología, EDP, C++, Rust, ARM, forense y logs, PCB,
    PyTorch, Transformers, LLM locales…). Los nodos comprimidos antiguos se desdoblan en ellas. Hechos: `fis-mecanica-cuantica`, `cua-computacion-cuantica`, `rob-cinematica`, `rob-control`, `rob-microcontroladores`, `ia-aprendizaje-estadistico`, `ia-redes-profundas`, `sec-criptografia`, `sec-web`, `sec-explotacion-binaria`, `sys-ensamblador-x86-64`. **Ya no queda ningún nodo comprimido (✳️)**:
-   lo pendiente son los ⬜ de las ramas. Nuevos de las ramas ya escritos: `mat-analisis-complejo`, `mat-teoria-numeros`, `mat-optimizacion`, `mat-procesos-estocasticos`.
+   lo pendiente son los ⬜ de las ramas. Nuevos de las ramas ya escritos: `mat-analisis-complejo`, `mat-teoria-numeros`, `mat-optimizacion`, `mat-procesos-estocasticos`, `mat-edp`.
    (reescrito como nodo de escalera en `vault/02-fisica/`, conserva su flag). Las ramas se quedan en su carpeta (`vault/02-fisica/`, etc.).
 3. **Plataforma (MVP cerrado el 2026-11-12; invitaciones añadidas el 2026-11-13)**: el admin genera en `/cuenta` invitaciones de un
    solo uso que caducan (1, 3 o 7 días; máximo 20 pendientes; se pueden anular) y el invitado crea su cuenta `miembro` en
@@ -245,6 +245,7 @@ y construye la imagen Docker.
 | 12 | `fis-termo-estadistica` | 16 |
 | 12 | `ing-circuitos-dc-ac` | 17 |
 | 12 | `mat-algebra-lineal-avanzada` | 16 |
+| 12 | `mat-edp` | 16 |
 | 12 | `mat-estadistica-inferencia` | 15 |
 | 12 | `rob-cinematica` | 16 |
 | 12 | `rob-control` | 16 |
@@ -335,6 +336,7 @@ continuas de Pell frente a búsquedas exhaustivas; el bloque Python (criba, Mill
 `mat-optimizacion` (rama, nuevo): soluciones analíticas (primer orden, KKT, dualidad, tasas) frente a gradiente, Newton, gradiente conjugado,
 sección áurea, penalización, símplex frente a enumeración de vértices, mochila por DP frente a 2^n y llenado de agua por bisección frente a rejilla.
 - `mat-procesos-estocasticos` (nuevo, rama de matemáticas): 16 ejercicios. Cada respuesta por dos caminos deterministas: estacionaria por fórmula y por potencias de la matriz; ruina del jugador (justa y sesgada, probabilidad y duración) por fórmula de parada opcional y por sistema lineal; Poisson por la fórmula y por diferencia de integrales de Erlang (Simpson); tiempo de retorno por $1/\pi$ y por tiempos de llegada; matriz fundamental frente a iteración; M/M/1 por fórmula y por suma de la geométrica + Little; PageRank por potencias y por sistema; extinción por raíz y por iteración; reflexión por $2\Pr(B_1>1)$ y por la densidad del primer paso; Ornstein-Uhlenbeck y Kolmogorov por fórmula y RK4; carrera de Poisson por Simpson. Bloque Python ejecutado en python:3.12-slim (simulación de Poisson con semilla fija). Fuentes verificadas: Norris (CUP 1997), Grimmett-Stirzaker 4ª ed. (OUP 2020).
+- `mat-edp` (nuevo, rama de matemáticas): 16 ejercicios. Cada respuesta por la fórmula analítica y por un método numérico independiente: transporte por característica integrada; Fourier, Parseval, núcleo del calor y energía por Simpson; d'Alembert por salto de rana; calor por esquema explícito (Dirichlet y Neumann); estabilidad por bisección en el factor de von Neumann; Poisson 1D por sistema tridiagonal; frecuencia fundamental por iteración inversa del laplaciano discreto; autovalor mixto por disparo RK4 + bisección; Laplace en el cuadrado por SOR en dos mallas + Richardson; Burgers por cruce de características en malla. Bloque Python (explícito estable e inestable, d'Alembert, SOR) ejecutado en python:3.12-slim; se corrigió un valor del ejemplo 3 (0,0431). Fuentes verificadas: Strauss 2ª ed. (Wiley 2008), Evans 2ª ed. (AMS GSM 19, 2010).
 
 ### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 
