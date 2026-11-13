@@ -99,7 +99,7 @@ Cada rama exige los nodos troncales que cita.
 - **N4**: ✅ `rob-microcontroladores` · ✅ `rob-sensores-actuadores` · ✅ `rob-cinematica` ·
   ✅ `rob-control` · ✅ `rob-dinamica` · ✅ `rob-ros2`.
 - **N5-N6**: ✅ `rob-percepcion-slam` · ✅ `rob-planificacion-movimiento` · ✅ `rob-control-optimo-mpc` ·
-  ⬜ `rob-aprendizaje-robots`.
+  ✅ `rob-aprendizaje-robots`.
 
 ## Sistemas y programación avanzada (≈ 13 nodos; CS2023)
 - **N4**: ✅ `sys-ensamblador-x86-64` · ⬜ `prog-cpp` · ⬜ `prog-rust` · ⬜ `sys-ensamblador-arm` ·
