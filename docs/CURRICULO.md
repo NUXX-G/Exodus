@@ -81,7 +81,7 @@ Cada rama exige los nodos troncales que cita.
 - **N4**: ✅ `mat-analisis-complejo` · ✅ `mat-topologia` · ✅ `mat-medida-integracion` · ✅ `mat-edp` ·
   ✅ `mat-teoria-numeros` · ✅ `mat-optimizacion` · ✅ `mat-procesos-estocasticos`.
 - **N5-N6**: ✅ `mat-analisis-funcional` · ✅ `mat-geometria-diferencial` · ✅ `mat-estadistica-matematica` ·
-  ✅ `mat-teoria-informacion` · ⬜ `mat-algebra-conmutativa-galois`.
+  ✅ `mat-teoria-informacion` · ✅ `mat-algebra-conmutativa-galois`.
 
 ## Física (≈ 10 nodos)
 - **N4**: ✅ `fis-mecanica-cuantica` · ⬜ `fis-relatividad-especial` · ⬜ `fis-fluidos` ·
