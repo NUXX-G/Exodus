@@ -2,6 +2,7 @@ import "./db-temporal";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { getDb, schema } from "../src/lib/db";
+import { mergeAreas } from "../src/lib/areas";
 import { addDays, hashAnswer, REVIEW_INTERVALS } from "../src/lib/exercises";
 import {
   computeStates,
@@ -52,7 +53,7 @@ function makeUser(): number {
 
 test("estados: disponible sin prerrequisitos, bloqueado hasta completarlos, completado tras la flag", () => {
   const a = node("a"), b = node("b", { prerequisites: ["a"] });
-  const vault: Vault = { nodes: new Map([["a", a], ["b", b]]), issues: [] };
+  const vault: Vault = { nodes: new Map([["a", a], ["b", b]]), areas: mergeAreas(undefined).areas, issues: [] };
   const st = computeStates(vault, new Set());
   assert.equal(st.get("a"), "available");
   assert.equal(st.get("b"), "locked");

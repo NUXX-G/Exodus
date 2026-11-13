@@ -156,6 +156,9 @@ La base de datos vive en `database/exodus.db`: copiar ese archivo es la copia de
 | `EXODUS_PROXY` | (vacío) | `externo`: hay un Apache/nginx propio delante; no arranca Caddy y confía en su `X-Forwarded-For` |
 | `TZ` | `Europe/Madrid` | Zona horaria del heatmap y la racha |
 
+Para añadir nodos, ramas o áreas nuevas más adelante sin perder el progreso de nadie, sigue
+[`docs/AMPLIAR.md`](docs/AMPLIAR.md).
+
 ## Formato de un nodo
 
 Cualquier `.md` del vault con `id` en su frontmatter es un nodo del árbol. Las notas sin `id` se ignoran.
@@ -164,7 +167,7 @@ Cualquier `.md` del vault con `id` en su frontmatter es un nodo del árbol. Las 
 ---
 id: sys-c-memoria              # único, kebab-case
 title: C y el modelo de memoria
-area: bajo-nivel               # troncal | matematicas | fisica | ingenieria | robotica | bajo-nivel | ciberseguridad | ia-cuantica
+area: bajo-nivel               # troncal | matematicas | fisica | ingenieria | robotica | bajo-nivel | ciberseguridad | ia-cuantica | (nuevas en vault/_areas.md)
 trunk_level: 1                 # fila en el árbol (0 = raíz)
 prerequisites: [nodo-ejemplo]  # ids de otros nodos
 academic_sources:

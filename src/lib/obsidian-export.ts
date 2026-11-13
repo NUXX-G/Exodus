@@ -6,7 +6,7 @@
  * debajo un espacio "Mis notas" que es del usuario y nunca se toca (ver mergeNote en obsidian-plugin.ts).
  * Nunca se exportan respuestas, flags ni pistas no reveladas.
  */
-import { AREAS, AREA_IDS } from "./areas";
+import { areaOf } from "./areas";
 import { masteryNeeded } from "./exercises";
 import type { Vault, VaultNode } from "./vault";
 
@@ -71,10 +71,12 @@ export function buildExport(vault: Vault, data: UserExportData, root = ""): Expo
   const hintsOf = new Map<string, number[]>();
   for (const h of data.hints) hintsOf.set(h.nodeId, [...(hintsOf.get(h.nodeId) ?? []), h.level].sort());
   const completed = new Set(data.progress.filter((p) => p.status === "completed").map((p) => p.nodeId));
+  const AREA_IDS = [...vault.areas.keys()];
+  const label = (id: string) => areaOf(vault.areas, id).label;
   const nodes = [...vault.nodes.values()].sort(
     (a, b) => AREA_IDS.indexOf(a.area) - AREA_IDS.indexOf(b.area) || a.trunkLevel - b.trunkLevel || a.title.localeCompare(b.title, "es"),
   );
-  const nodePath = (n: VaultNode) => `${pre}Nodos/${folder(AREAS[n.area].label)}/${n.id}.md`;
+  const nodePath = (n: VaultNode) => `${pre}Nodos/${folder(label(n.area))}/${n.id}.md`;
   const files: ExportFile[] = [];
 
   /* ── Una nota por nodo abierto ── */
@@ -82,6 +84,8 @@ export function buildExport(vault: Vault, data: UserExportData, root = ""): Expo
     const p = progress.get(n.id);
     if (!p) continue;
     const solved = solvedBy.get(n.id) ?? new Map<string, Date>();
+    // Solo cuentan los ejercicios que siguen existiendo en el nodo.
+    const solvedCount = n.exercises.filter((e) => solved.has(e.id)).length;
     const hints = hintsOf.get(n.id) ?? [];
     const dependents = nodes.filter((m) => m.prerequisites.includes(n.id));
     const prereqs = n.prerequisites.map((id) => vault.nodes.get(id)).filter((m): m is VaultNode => !!m);
@@ -93,7 +97,7 @@ export function buildExport(vault: Vault, data: UserExportData, root = ""): Expo
         (p.completedAt ? ` · completado el ${day(p.completedAt)}` : ""),
     ];
     if (n.exercises.length > 0) {
-      lines.push(`> Ejercicios: ${solved.size} de ${n.exercises.length} resueltos (dominio con ${masteryNeeded(n.exercises.length)})`);
+      lines.push(`> Ejercicios: ${solvedCount} de ${n.exercises.length} resueltos (dominio con ${masteryNeeded(n.exercises.length)})`);
     }
     if (n.hints.length > 0) lines.push(`> Pistas reveladas: ${hints.length} de ${n.hints.length}`);
     if (prereqs.length) lines.push(`> Prerequisitos: ${prereqs.map(link).join(" · ")}`);
@@ -123,12 +127,12 @@ export function buildExport(vault: Vault, data: UserExportData, root = ""): Expo
         {
           exodus_id: n.id,
           aliases: [n.title],
-          area: AREAS[n.area].label,
+          area: label(n.area),
           nivel: n.trunkLevel,
           estado,
           abierto: day(p.firstOpenedAt),
           ...(p.completedAt ? { completado: day(p.completedAt) } : {}),
-          ...(n.exercises.length ? { ejercicios: `${solved.size}/${n.exercises.length}` } : {}),
+          ...(n.exercises.length ? { ejercicios: `${solvedCount}/${n.exercises.length}` } : {}),
           tags: ["exodus", `exodus/${n.area}`],
         },
         body,
@@ -142,7 +146,7 @@ export function buildExport(vault: Vault, data: UserExportData, root = ""): Expo
     const deArea = nodes.filter((n) => n.area === area);
     if (!deArea.length) continue;
     const hechos = deArea.filter((n) => completed.has(n.id)).length;
-    temario += `\n## ${AREAS[area].label} (${hechos}/${deArea.length})\n`;
+    temario += `\n## ${label(area)} (${hechos}/${deArea.length})\n`;
     for (const level of [...new Set(deArea.map((n) => n.trunkLevel))]) {
       temario += `\n**Nivel ${level}**\n\n`;
       for (const n of deArea.filter((m) => m.trunkLevel === level)) {

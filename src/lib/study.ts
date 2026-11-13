@@ -1,5 +1,5 @@
 import "server-only";
-import { AREA_IDS, type AreaId } from "./areas";
+import type { AreaId } from "./areas";
 import type { NodeState } from "./progress";
 import type { Vault, VaultNode } from "./vault";
 
@@ -19,6 +19,7 @@ export function formatMinutes(min: number): string {
 
 /** Orden de estudio: por nivel del tronco y, dentro del nivel, por el orden de las áreas. */
 export function studyOrder(vault: Vault): VaultNode[] {
+  const AREA_IDS = [...vault.areas.keys()];
   return [...vault.nodes.values()].sort(
     (a, b) =>
       a.trunkLevel - b.trunkLevel ||
@@ -40,7 +41,7 @@ export interface AreaProgress {
 }
 
 export function areaProgress(vault: Vault, completed: Set<string>): AreaProgress[] {
-  return AREA_IDS.map((id) => {
+  return [...vault.areas.keys()].map((id) => {
     const own = [...vault.nodes.values()].filter((n) => n.area === id);
     return {
       id,

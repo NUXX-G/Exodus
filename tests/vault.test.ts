@@ -141,3 +141,19 @@ test("render: un id de nodo existente escrito como código enlaza al nodo; uno f
   assert.doesNotMatch(html, /href="\/nodo\/mat-futuro"/);
   assert.match(html, /<code>x = 1<\/code>/);
 });
+
+test("áreas: el vault puede añadir un área nueva con _areas.md; un área sin declarar es un error", () => {
+  tempVault({
+    "_areas.md": "---\nareas:\n  - id: quimica\n    label: Química\n    color: \"#9be37f\"\n  - id: fisica\n    label: Física general\n---\n",
+    "q.md": "---\nid: qui-enlace\ntitle: Enlace químico\narea: quimica\ntrunk_level: 1\n---\n\nTexto.\n",
+    "x.md": "---\nid: xx-raro\ntitle: Raro\narea: alquimia\ntrunk_level: 1\n---\n\nTexto.\n",
+  });
+  const vault = loadVault();
+  assert.equal(vault.areas.get("quimica")?.label, "Química");
+  assert.equal(vault.areas.get("fisica")?.label, "Física general");
+  assert.equal(vault.areas.get("fisica")?.color, "#c3a6ff", "conserva el color integrado si no se da otro");
+  assert.equal([...vault.areas.keys()].at(-1), "quimica", "las nuevas van después de las integradas");
+  assert.ok(vault.nodes.has("qui-enlace"));
+  assert.ok(vault.issues.some((i) => i.file === "x.md" && /área desconocida "alquimia"/.test(i.message)));
+  assert.ok(!vault.issues.some((i) => i.file === "q.md"));
+});

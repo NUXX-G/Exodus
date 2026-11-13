@@ -6,7 +6,7 @@
  *
  *   id: sys-c-memoria              # único, kebab-case; es la identidad del nodo
  *   title: C y el modelo de memoria
- *   area: bajo-nivel               # una clave de AREAS
+ *   area: bajo-nivel               # un área integrada (areas.ts) o declarada en vault/_areas.md
  *   trunk_level: 1                 # profundidad en el tronco (0 = raíz)
  *   prerequisites: [nodo-ejemplo]  # ids de otros nodos
  *   academic_sources:              # bibliografía real
@@ -24,7 +24,7 @@ import path from "node:path";
 import crypto from "node:crypto";
 import matter from "gray-matter";
 import { z } from "zod";
-import { AREA_IDS, type AreaId } from "./areas";
+import { AREAS_FILE, mergeAreas, type AreaId, type AreaInfo } from "./areas";
 
 const exerciseSchema = z.object({
   id: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "id de ejercicio en kebab-case"),
@@ -48,7 +48,7 @@ const frontmatterSchema = z.object({
     .string()
     .regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "id debe ser kebab-case (a-z, 0-9, guiones)"),
   title: z.string().min(1),
-  area: z.enum(AREA_IDS),
+  area: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "area debe ser kebab-case"),
   trunk_level: z.number().int().min(0),
   prerequisites: z.array(z.string()).nullish().transform((v) => v ?? []),
   academic_sources: z.array(z.string()).nullish().transform((v) => v ?? []),
@@ -98,6 +98,8 @@ export interface VaultIssue {
 
 export interface Vault {
   nodes: Map<string, VaultNode>;
+  /** Áreas integradas más las de vault/_areas.md, en orden de presentación. */
+  areas: Map<string, AreaInfo>;
   issues: VaultIssue[];
 }
 
@@ -120,9 +122,10 @@ export function loadVault(): Vault {
   const nodes = new Map<string, VaultNode>();
   const issues: VaultIssue[] = [];
   if (!fs.existsSync(root)) {
-    return { nodes, issues: [{ file: root, message: "El directorio del vault no existe" }] };
+    return { nodes, areas: mergeAreas(undefined).areas, issues: [{ file: root, message: "El directorio del vault no existe" }] };
   }
 
+  let areasData: unknown;
   for (const full of walk(root)) {
     const file = path.relative(root, full).split(path.sep).join("/");
     let parsed: matter.GrayMatterFile<string>;
@@ -130,6 +133,10 @@ export function loadVault(): Vault {
       parsed = matter(fs.readFileSync(full, "utf8"));
     } catch (e) {
       issues.push({ file, message: `YAML inválido: ${(e as Error).message}` });
+      continue;
+    }
+    if (file === AREAS_FILE) {
+      areasData = parsed.data.areas;
       continue;
     }
     // Notas sin `id` son notas normales de Obsidian (índices, apuntes): no son nodos.
@@ -160,6 +167,12 @@ export function loadVault(): Vault {
       file,
       body: parsed.content,
     });
+  }
+
+  const { areas, issues: areaIssues } = mergeAreas(areasData);
+  for (const message of areaIssues) issues.push({ file: AREAS_FILE, message });
+  for (const node of nodes.values()) {
+    if (!areas.has(node.area)) issues.push({ file: node.file, message: `área desconocida "${node.area}": declárala en ${AREAS_FILE}` });
   }
 
   for (const node of nodes.values()) {
@@ -206,7 +219,7 @@ export function loadVault(): Vault {
   };
   for (const id of nodes.keys()) visit(id, []);
 
-  return { nodes, issues };
+  return { nodes, areas, issues };
 }
 
 /**

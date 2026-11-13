@@ -1,7 +1,7 @@
 import Link from "next/link";
 import SkillGraph, { type GraphNode } from "@/components/SkillGraph";
 import Heatmap from "@/components/Heatmap";
-import { AREAS } from "@/lib/areas";
+import { areaOf } from "@/lib/areas";
 import { requireUser } from "@/lib/auth";
 import { computeStates, getActivity, getCompleted, getDueReviews } from "@/lib/progress";
 import { areaProgress, estimateMinutes, formatMinutes, recommendedNext } from "@/lib/study";
@@ -22,6 +22,9 @@ export default async function Inicio() {
     id: n.id,
     title: n.title,
     area: n.area,
+    areaLabel: areaOf(vault.areas, n.area).label,
+    areaColor: areaOf(vault.areas, n.area).color,
+    areaOrder: [...vault.areas.keys()].indexOf(n.area),
     level: n.trunkLevel,
     state: states.get(n.id)!,
     hasChallenge: n.ctfFlag !== null || n.exercises.length > 0,
@@ -67,7 +70,7 @@ export default async function Inicio() {
             <p className="etiqueta">{done === 0 ? "Empieza aquí" : "Siguiente paso"}</p>
             <h2>{siguiente.title}</h2>
             <p className="nota">
-              {AREAS[siguiente.area].label} · nivel {siguiente.trunkLevel} · unas {formatMinutes(estimateMinutes(siguiente))}
+              {areaOf(vault.areas, siguiente.area).label} · nivel {siguiente.trunkLevel} · unas {formatMinutes(estimateMinutes(siguiente))}
             </p>
           </div>
           <Link href={`/nodo/${siguiente.id}`} prefetch={false} className="boton">
@@ -129,7 +132,7 @@ export default async function Inicio() {
                 <li key={n.id}>
                   <Link href={`/nodo/${n.id}`} prefetch={false}>
                     <span>
-                      <i className="punto" style={{ "--color-area": AREAS[n.area].color } as React.CSSProperties} />
+                      <i className="punto" style={{ "--color-area": areaOf(vault.areas, n.area).color } as React.CSSProperties} />
                       {n.title}
                     </span>
                     <small>nivel {n.trunkLevel}</small>
@@ -148,15 +151,15 @@ export default async function Inicio() {
                 <Link href={`/temario?area=${a.id}`} prefetch={false}>
                   <span className="fila-area">
                     <span>
-                      <i className="punto" style={{ "--color-area": AREAS[a.id].color } as React.CSSProperties} />
-                      {AREAS[a.id].label}
+                      <i className="punto" style={{ "--color-area": areaOf(vault.areas, a.id).color } as React.CSSProperties} />
+                      {areaOf(vault.areas, a.id).label}
                     </span>
                     <small>
                       {a.done} de {a.total}
                     </small>
                   </span>
                   <span className="barra" aria-hidden="true">
-                    <i style={{ width: `${(a.done / a.total) * 100}%`, background: AREAS[a.id].color }} />
+                    <i style={{ width: `${(a.done / a.total) * 100}%`, background: areaOf(vault.areas, a.id).color }} />
                   </span>
                 </Link>
               </li>

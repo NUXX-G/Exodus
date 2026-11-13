@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { AREAS, AREA_IDS, type AreaId } from "@/lib/areas";
+import { areaOf } from "@/lib/areas";
 import { requireUser } from "@/lib/auth";
 import { computeStates, getCompleted } from "@/lib/progress";
 import { estimateMinutes, formatMinutes, studyOrder } from "@/lib/study";
@@ -24,7 +24,8 @@ export default async function Temario({ searchParams }: Props) {
   const completed = getCompleted(user.id);
   const states = computeStates(vault, completed);
 
-  const areaSel = AREA_IDS.find((a) => a === area) as AreaId | undefined;
+  const AREA_IDS = [...vault.areas.keys()];
+  const areaSel = AREA_IDS.find((a) => a === area);
   const estadoSel = (Object.keys(ESTADOS) as (keyof typeof ESTADOS)[]).find((e) => e === estado);
 
   const all = studyOrder(vault);
@@ -66,7 +67,7 @@ export default async function Temario({ searchParams }: Props) {
           </Link>
           {AREA_IDS.filter((a) => all.some((n) => n.area === a)).map((a) => (
             <Link key={a} href={href(a, estadoSel)} aria-current={areaSel === a ? "true" : undefined}>
-              {AREAS[a].label}
+              {areaOf(vault.areas, a).label}
             </Link>
           ))}
         </div>
@@ -97,11 +98,11 @@ export default async function Temario({ searchParams }: Props) {
                   <li key={n.id} data-estado={st}>
                     <Link href={`/nodo/${n.id}`} prefetch={false}>
                       <span className="titulo">
-                        <i className="punto" style={{ "--color-area": AREAS[n.area].color } as React.CSSProperties} />
+                        <i className="punto" style={{ "--color-area": areaOf(vault.areas, n.area).color } as React.CSSProperties} />
                         {n.title}
                       </span>
                       <span className="meta">
-                        {AREAS[n.area].label} · {formatMinutes(estimateMinutes(n))}
+                        {areaOf(vault.areas, n.area).label} · {formatMinutes(estimateMinutes(n))}
                         {n.ctfFlag ? " · con reto" : ""}
                       </span>
                       <span className="estado" data-estado={st}>
