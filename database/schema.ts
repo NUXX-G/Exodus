@@ -26,6 +26,8 @@ export const users = sqliteTable(
     displayName: text("display_name"),
     /** scrypt con sal por usuario; ver src/lib/password.ts. */
     passwordHash: text("password_hash"),
+    /** `admin`: la cuenta creada en /configurar, que puede invitar. `miembro`: cuentas creadas con una invitación. */
+    role: text("role", { enum: ["admin", "miembro"] }).notNull().default("miembro"),
     createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(now),
   },
   (t) => [uniqueIndex("users_username_uq").on(t.username)],
@@ -43,6 +45,27 @@ export const sessions = sqliteTable(
     createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(now),
   },
   (t) => [index("sessions_user_idx").on(t.userId)],
+);
+
+/**
+ * Invitaciones de un solo uso para crear cuenta en /registro. `id` es el SHA-256 del código
+ * normalizado: la base de datos nunca guarda el código, que solo se muestra al crearlo.
+ */
+export const invitations = sqliteTable(
+  "invitations",
+  {
+    id: text("id").primaryKey(),
+    createdBy: integer("created_by")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    /** Para quién es (texto libre opcional), para reconocerla en la lista. */
+    note: text("note"),
+    expiresAt: integer("expires_at", { mode: "timestamp" }).notNull(),
+    createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(now),
+    usedAt: integer("used_at", { mode: "timestamp" }),
+    usedBy: integer("used_by").references(() => users.id, { onDelete: "set null" }),
+  },
+  (t) => [index("invitations_creator_idx").on(t.createdBy)],
 );
 
 /** Estado de cada nodo por usuario. La ausencia de fila significa "nunca abierto". */
@@ -187,5 +210,6 @@ export const reviews = sqliteTable(
 );
 
 export type User = typeof users.$inferSelect;
+export type Invitation = typeof invitations.$inferSelect;
 export type NodeProgress = typeof nodeProgress.$inferSelect;
 export type ActivityKind = (typeof activityLog.$inferInsert)["kind"];

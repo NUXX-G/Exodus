@@ -50,10 +50,14 @@ En la primera visita, `/configurar` pide crear la única cuenta de la instancia.
 de configuración** que el servidor escribe en su registro (la terminal de `npm run dev`): así solo
 quien controla la máquina puede crear la cuenta.
 
+Para dar acceso a otras personas (cada una con su progreso), la cuenta principal genera en `/cuenta` una
+**invitación** de un solo uso que caduca (1, 3 o 7 días) y la comparte como código o enlace; el invitado
+crea su cuenta en `/registro`. No hay registro abierto y las cuentas invitadas no pueden invitar.
+
 | Comando | Qué hace |
 | --- | --- |
 | `npm run vault:check` | Valida el vault: frontmatter, grafo de prerequisitos y render de cada nodo (LaTeX, wikilinks) |
-| `npm test` | Tests del parser, el render, las contraseñas y el limitador de intentos |
+| `npm test` | Tests del parser, el render, las contraseñas, el limitador de intentos, las sesiones, el progreso y las invitaciones |
 | `npm run vault:flag -- "EXODUS{...}"` | Genera el `ctf_flag: "sha256:..."` para el frontmatter sin dejar la flag en claro |
 | `npm run db:generate` | Genera una migración SQL tras cambiar `database/schema.ts` |
 | `npm run typecheck` | Comprobación de tipos |

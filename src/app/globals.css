@@ -703,6 +703,10 @@ details.callout:not([open]) > summary.callout-titulo {
   margin: 0 0 1.5rem;
 }
 
+.cuenta h2 {
+  margin-top: 2.5rem;
+}
+
 .cuenta-form {
   gap: 6px;
 }
@@ -715,6 +719,105 @@ details.callout:not([open]) > summary.callout-titulo {
 
 .cuenta-form .boton {
   margin-top: 6px;
+}
+
+.campo select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: var(--radio);
+  background: var(--tinta-honda);
+  color: var(--tiza);
+  font: inherit;
+}
+
+.cuenta-alternativa {
+  margin-top: 1.5rem;
+  font-size: 0.9375rem;
+}
+
+.cuenta-alternativa a {
+  color: var(--ambar);
+}
+
+.invitacion-nueva {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 16px 0 8px;
+  padding: 12px;
+  border: 1px solid var(--menta);
+  border-radius: var(--radio);
+}
+
+.copiable span {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--tiza-tenue);
+  margin-bottom: 4px;
+}
+
+.copiable div {
+  display: flex;
+  gap: 8px;
+}
+
+.copiable input {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: var(--radio);
+  background: var(--tinta-honda);
+  color: var(--tiza);
+  font-family: var(--fuente-codigo), monospace;
+  font-size: 0.8125rem;
+}
+
+.copiable .boton {
+  padding: 6px 12px;
+  font-size: 0.875rem;
+}
+
+.invitaciones {
+  width: 100%;
+  margin: 20px 0 3rem;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.invitaciones th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--tiza-tenue);
+  padding: 6px 8px 6px 0;
+  border-bottom: 1px solid var(--trazo-fuerte);
+}
+
+.invitaciones td {
+  padding: 8px 8px 8px 0;
+  border-bottom: 1px solid var(--trazo);
+  vertical-align: top;
+}
+
+.invitaciones tr[data-estado="caducada"] td,
+.tenue {
+  color: var(--tiza-tenue);
+}
+
+.invitaciones .enlace-boton {
+  color: var(--coral);
+  font-size: 0.875rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
 .enlace-boton {

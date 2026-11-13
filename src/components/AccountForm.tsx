@@ -1,19 +1,40 @@
 "use client";
 
 import { useActionState } from "react";
-import { loginAction, setupAction } from "@/app/(cuenta)/actions";
+import { loginAction, registerAction, setupAction } from "@/app/(cuenta)/actions";
 
-/** Formulario de acceso (`entrar`) o de creación de la cuenta de la instancia (`configurar`). */
-export default function AccountForm({ mode, minLength }: { mode: "entrar" | "configurar"; minLength: number }) {
-  const setup = mode === "configurar";
-  const [state, action, pending] = useActionState(setup ? setupAction : loginAction, null);
+type Mode = "entrar" | "configurar" | "registro";
+
+const ACTIONS = { entrar: loginAction, configurar: setupAction, registro: registerAction };
+const BUTTON = {
+  entrar: ["Entrar", "Entrando…"],
+  configurar: ["Crear cuenta", "Creando cuenta…"],
+  registro: ["Crear cuenta", "Creando cuenta…"],
+};
+
+/**
+ * Formulario de acceso (`entrar`), de creación de la cuenta de la instancia (`configurar`, con el código
+ * del registro del servidor) o de una cuenta invitada (`registro`, con el código de invitación).
+ */
+export default function AccountForm({ mode, minLength, defaultCode }: { mode: Mode; minLength: number; defaultCode?: string }) {
+  const nueva = mode !== "entrar";
+  const [state, action, pending] = useActionState(ACTIONS[mode], null);
 
   return (
     <form action={action} className="campo cuenta-form">
-      {setup && (
+      {nueva && (
         <>
-          <label htmlFor="code">Código de configuración</label>
-          <input id="code" name="code" type="text" autoComplete="off" autoCapitalize="none" spellCheck={false} required />
+          <label htmlFor="code">{mode === "configurar" ? "Código de configuración" : "Código de invitación"}</label>
+          <input
+            id="code"
+            name="code"
+            type="text"
+            autoComplete="off"
+            autoCapitalize="none"
+            spellCheck={false}
+            defaultValue={defaultCode}
+            required
+          />
         </>
       )}
 
@@ -25,12 +46,12 @@ export default function AccountForm({ mode, minLength }: { mode: "entrar" | "con
         id="password"
         name="password"
         type="password"
-        autoComplete={setup ? "new-password" : "current-password"}
-        minLength={setup ? minLength : undefined}
+        autoComplete={nueva ? "new-password" : "current-password"}
+        minLength={nueva ? minLength : undefined}
         required
       />
 
-      {setup && (
+      {nueva && (
         <>
           <label htmlFor="repeat">Repite la contraseña</label>
           <input id="repeat" name="repeat" type="password" autoComplete="new-password" minLength={minLength} required />
@@ -38,7 +59,7 @@ export default function AccountForm({ mode, minLength }: { mode: "entrar" | "con
       )}
 
       <button type="submit" className="boton" disabled={pending}>
-        {setup ? (pending ? "Creando cuenta…" : "Crear cuenta") : pending ? "Entrando…" : "Entrar"}
+        {BUTTON[mode][pending ? 1 : 0]}
       </button>
       {state && (
         <p className="mensaje" data-tono="error" role="alert">

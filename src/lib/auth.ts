@@ -1,7 +1,8 @@
 /**
- * Autenticación de instancia privada: una única cuenta (la primera que se crea en /configurar)
- * y sesiones por cookie HttpOnly. La lógica de base de datos (sesiones y contraseña) vive en
- * sessions.ts; aquí solo se conecta con las cookies, las cabeceras y las redirecciones de Next.
+ * Autenticación de instancia privada: la cuenta `admin` se crea en /configurar con el código del
+ * registro del servidor, y las demás (`miembro`) solo con una invitación suya en /registro. Sesiones por
+ * cookie HttpOnly. La lógica de base de datos vive en sessions.ts e invitations.ts; aquí solo se
+ * conecta con las cookies, las cabeceras y las redirecciones de Next.
  */
 import "server-only";
 import crypto from "node:crypto";
@@ -20,6 +21,7 @@ import {
   userForToken,
   type PasswordChange,
 } from "./sessions";
+import { createInvitation, listInvitations, redeemInvitation, revokeInvitation } from "./invitations";
 import type { User } from "@db/schema";
 
 const { users } = schema;
@@ -90,6 +92,8 @@ const loginLimiter = new FailureLimiter(limits);
 const setupLimiter = new FailureLimiter(limits);
 // La contraseña actual tampoco se puede adivinar a ciegas desde una sesión robada.
 const passwordLimiter = new FailureLimiter(limits);
+// Probar códigos de invitación a ciegas cuenta como fallo, igual que una contraseña.
+const registerLimiter = new FailureLimiter(limits);
 
 /** X-Forwarded-For solo es fiable si hay un proxy propio delante (perfil https del compose). */
 async function clientKey(): Promise<string> {
@@ -112,7 +116,7 @@ export async function createOwner(username: string, password: string, code: stri
   const created = db.transaction((tx) => {
     const exists = tx.select({ n: sql<number>`count(*)` }).from(users).where(isNotNull(users.passwordHash)).get()!.n;
     if (exists > 0) return null;
-    return tx.insert(users).values({ username, passwordHash: hashPassword(password) }).returning({ id: users.id }).get();
+    return tx.insert(users).values({ username, passwordHash: hashPassword(password), role: "admin" }).returning({ id: users.id }).get();
   });
   if (!created) return "existe";
   setupState.__exodusSetupCode = undefined;
@@ -172,4 +176,45 @@ export async function closeOtherSessions(): Promise<number> {
   const token = await currentToken();
   if (!token) redirect("/entrar");
   return revokeOtherSessions(user.id, token);
+}
+
+/* ───────── Invitaciones ───────── */
+
+export type RegisterResult = "ok" | "codigo" | "usuario" | "espera";
+
+/** Crea una cuenta `miembro` con una invitación y abre su sesión. */
+export async function registerWithInvitation(code: string, username: string, password: string): Promise<RegisterResult> {
+  const client = await clientKey();
+  if (registerLimiter.blocked(client)) return "espera";
+  const result = redeemInvitation(code, username, password);
+  if (result === "codigo") {
+    registerLimiter.fail(client);
+    return "codigo";
+  }
+  if (result === "usuario") return "usuario";
+  registerLimiter.succeed(client);
+  await startSession(result.userId);
+  return "ok";
+}
+
+/** Para lo que solo puede hacer la cuenta `admin`; a un miembro lo devuelve a /cuenta. */
+export async function requireAdmin(): Promise<User> {
+  const user = await requireUser();
+  if (user.role !== "admin") redirect("/cuenta");
+  return user;
+}
+
+export async function createOwnInvitation(days: number, note: string) {
+  const user = await requireAdmin();
+  return createInvitation(user.id, days, note);
+}
+
+export async function ownInvitations() {
+  const user = await requireAdmin();
+  return listInvitations(user.id);
+}
+
+export async function revokeOwnInvitation(id: string): Promise<boolean> {
+  const user = await requireAdmin();
+  return revokeInvitation(user.id, id);
 }
