@@ -26,7 +26,7 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta con cambio de contraseña y cierre de otras sesiones, Docker, HTTPS con Caddy, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **70 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **71 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 todo el troncal de `docs/CURRICULO.md`, de 1º ESO a final de grado: matemáticas hasta análisis real, álgebra lineal avanzada y
 estadística; física hasta electromagnetismo, termodinámica estadística y circuitos con semiconductores; computación hasta sistemas
 operativos, redes y bases de datos) y **0 nodos comprimidos** anteriores (cada uno con un reto con
@@ -39,7 +39,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
    ejercicios (lo normal: 14 a 16) y 3 niveles de pistas si lleva flag.
 2. **Ramas N4 → N6 (lo siguiente)** por prerrequisitos (lista en `docs/CURRICULO.md`: topología, EDP, C++, Rust, ARM, forense y logs, PCB,
    PyTorch, Transformers, LLM locales…). Los nodos comprimidos antiguos se desdoblan en ellas. Hechos: `fis-mecanica-cuantica`, `cua-computacion-cuantica`, `rob-cinematica`, `rob-control`, `rob-microcontroladores`, `ia-aprendizaje-estadistico`, `ia-redes-profundas`, `sec-criptografia`, `sec-web`, `sec-explotacion-binaria`, `sys-ensamblador-x86-64`. **Ya no queda ningún nodo comprimido (✳️)**:
-   lo pendiente son los ⬜ de las ramas. Nuevos de las ramas ya escritos: `mat-analisis-complejo`, `mat-teoria-numeros`.
+   lo pendiente son los ⬜ de las ramas. Nuevos de las ramas ya escritos: `mat-analisis-complejo`, `mat-teoria-numeros`, `mat-optimizacion`.
    (reescrito como nodo de escalera en `vault/02-fisica/`, conserva su flag). Las ramas se quedan en su carpeta (`vault/02-fisica/`, etc.).
 3. **Plataforma (MVP cerrado el 2026-11-12)**: `/cuenta` permite cambiar la contraseña (pide la actual; al cambiarla se cierran las
    demás sesiones) y cerrar las demás sesiones; probado en navegador con dos contextos. La lógica de sesiones está en
@@ -239,6 +239,7 @@ y construye la imagen Docker.
 | 13 | `ia-aprendizaje-estadistico` | 16 |
 | 13 | `ing-circuitos` | 16 |
 | 13 | `ing-medidas-laboratorio` | 16 |
+| 13 | `mat-optimizacion` | 16 |
 | 14 | `cua-computacion-cuantica` | 16 |
 | 14 | `ia-redes-profundas` | 16 |
 | 14 | `rob-microcontroladores` | 16 |
@@ -316,19 +317,13 @@ gcc:14 (main con ASan/UBSan y con -O2, salidas idénticas) frente a una emulaci�
 (convergencia exponencial), integrales reales por Simpson, Rouché frente a Durand-Kerner y al principio del argumento numérico.
 `mat-teoria-numeros` (rama, nuevo): fórmulas multiplicativas, Euclides extendido, reciprocidad, Tonelli-Shanks, Miller-Rabin y fracciones
 continuas de Pell frente a búsquedas exhaustivas; el bloque Python (criba, Miller-Rabin determinista, TCR, Pell D = 61) se ejecuta en Docker.
+`mat-optimizacion` (rama, nuevo): soluciones analíticas (primer orden, KKT, dualidad, tasas) frente a gradiente, Newton, gradiente conjugado,
+sección áurea, penalización, símplex frente a enumeración de vértices, mochila por DP frente a 2^n y llenado de agua por bisección frente a rejilla.
 
 ### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 
 | Profundidad | Nodo |
 |:---:|---|
-
-- El perfil `https` con un dominio real y `deploy.bat` ejecutado como tal.
-- **Resuelto (PR #29)**: el usuario no podía hacer clic en los nodos del árbol. Se reprodujo en el navegador (Playwright contra la imagen
-  Docker): `.react-flow__pane` interceptaba los clics porque React Flow deja los nodos con `pointer-events: none` si no son
-  arrastrables ni seleccionables. Corregido con CSS; el clic abre `/nodo/<id>`. Probado también el temario y el buscador con los 50 nodos.
-- Probado en navegador (imagen Docker, base temporal): creación de cuenta, panel, página de nodo con ejercicios, respuesta
-  incorrecta y correcta, normalización (espacios), dominio del 80 % que completa el nodo, calendario de repaso (fallo a mañana,
-  acierto a 3 días) y feedback del repaso.
 
 ## 9. Convenciones
 
