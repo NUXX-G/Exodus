@@ -26,10 +26,10 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta con cambio de contraseña y cierre de otras sesiones, Docker, HTTPS con Caddy, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **65 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **66 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 todo el troncal de `docs/CURRICULO.md`, de 1º ESO a final de grado: matemáticas hasta análisis real, álgebra lineal avanzada y
 estadística; física hasta electromagnetismo, termodinámica estadística y circuitos con semiconductores; computación hasta sistemas
-operativos, redes y bases de datos) y **3 nodos comprimidos** anteriores (cada uno con un reto con
+operativos, redes y bases de datos) y **2 nodos comprimidos** anteriores (cada uno con un reto con
 flag), ya enlazados a la escalera pero pendientes de desdoblar.
 
 ## 3. Qué hacer ahora, por orden
@@ -38,7 +38,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
    flag conservada y comprobada en el spec) son nodos de escalera. Cada nodo nuevo sigue la plantilla de `docs/PEDAGOGIA.md`, ≥ 8
    ejercicios (lo normal: 14 a 16) y 3 niveles de pistas si lleva flag.
 2. **Ramas N4 → N6 (lo siguiente)** por prerrequisitos (lista en `docs/CURRICULO.md`: topología, EDP, C++, Rust, ARM, forense y logs, PCB,
-   PyTorch, Transformers, LLM locales…). Los nodos comprimidos antiguos se desdoblan en ellas. Hechos: `fis-mecanica-cuantica`, `cua-computacion-cuantica`, `rob-cinematica`, `rob-control`, `rob-microcontroladores`, `ia-aprendizaje-estadistico`, `ia-redes-profundas`, `sec-criptografia`
+   PyTorch, Transformers, LLM locales…). Los nodos comprimidos antiguos se desdoblan en ellas. Hechos: `fis-mecanica-cuantica`, `cua-computacion-cuantica`, `rob-cinematica`, `rob-control`, `rob-microcontroladores`, `ia-aprendizaje-estadistico`, `ia-redes-profundas`, `sec-criptografia`, `sec-web`
    (reescrito como nodo de escalera en `vault/02-fisica/`, conserva su flag). Las ramas se quedan en su carpeta (`vault/02-fisica/`, etc.).
 3. **Plataforma (MVP cerrado el 2026-11-12)**: `/cuenta` permite cambiar la contraseña (pide la actual; al cambiarla se cierran las
    demás sesiones) y cerrar las demás sesiones; probado en navegador con dos contextos. La lógica de sesiones está en
@@ -49,7 +49,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
    interno de Caddy, cabeceras HSTS/nosniff/DENY y salud correctas, mapeando el 443 a otro puerto porque el 80 de Windows está
    ocupado). Lo único sin probar es Let's Encrypt con un dominio real, que exige un VPS y un DNS del usuario:
    `EXODUS_DOMAIN=exodus.midominio.com ./deploy.sh` (ver `docker/Caddyfile`).
-4. Revisar la bibliografía de los 3 nodos antiguos (se escribió de memoria) contra la web. Los nodos de la escalera llevan
+4. Revisar la bibliografía de los 2 nodos antiguos (se escribió de memoria) contra la web. Los nodos de la escalera llevan
    referencias verificadas en la web o citadas solo por libro/capítulo sin número.
 5. Tras añadir o enlazar nodos: `npm run vault:relevel`, `npm run vault:check`, `npm test`, `npx tsc --noEmit`.
 
@@ -208,6 +208,7 @@ y construye la imagen Docker.
 | 9 | `mat-algebra-lineal` | 14 |
 | 9 | `mat-calculo-2` | 16 |
 | 9 | `prog-algoritmos` | 16 |
+| 9 | `sec-web` | 16 |
 | 9 | `sys-procesos-planificacion` | 16 |
 | 10 | `fis-mecanica-newtoniana` | 16 |
 | 10 | `mat-analisis-real` | 16 |
@@ -298,12 +299,14 @@ Adam directo frente a su forma eficiente, atención estable frente a logsumexp, 
 `sec-criptografia` (rama, reescrito, conserva su reto): BigInt en JS (Fermat, RSA con CRT, BSGS, Pohlig-Hellman, curvas en afines y
 jacobianas, Legendre frente a pares), HMAC de la biblioteca frente a ipad/opad, AES-CTR real con nonce repetido. Ojo al escribir isqrt de BigInt:
 arrancar desde Math.sqrt(Number(n)) con n de 1024 bits deja un error enorme y el bucle de corrección no termina; usar Newton desde una potencia de 2.
+`sec-web` (rama, reescrito, conserva su reto): parsers reales (URL, base64url, JWT), SQLite real en Docker para la inyección frente a la
+consulta parametrizada, HMAC manual frente a biblioteca, decisiones de SameSite/SOP/CSP/CSRF contrastadas con tablas de casos; la clave del
+JWT del reto se recupera por fuerza bruta (10^5) y se recalcula la firma falsificada.
 
 ### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 
 | Profundidad | Nodo |
 |:---:|---|
-| 9 | `sec-web` |
 | 10 | `sys-ensamblador-x86-64` |
 | 11 | `sec-explotacion-binaria` |
 

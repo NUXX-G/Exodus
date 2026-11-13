@@ -107,7 +107,7 @@ Cada rama exige los nodos troncales que cita.
 - **N5-N6**: ⬜ `sys-verificacion-formal` · ⬜ `sys-optimizacion-rendimiento` · ⬜ `sys-lenguajes-programacion`.
 
 ## Ciberseguridad (≈ 14 nodos; CyBOK)
-- **N4**: ✅ `sec-criptografia` · ✳️ `sec-web` · ✳️ `sec-explotacion-binaria` · ⬜ `sec-seguridad-so` ·
+- **N4**: ✅ `sec-criptografia` · ✅ `sec-web` · ✳️ `sec-explotacion-binaria` · ⬜ `sec-seguridad-so` ·
   ⬜ `sec-forense-logs` · ⬜ `sec-reversing-malware` · ⬜ `sec-criptografia-aplicada` ·
   ⬜ `sec-seguridad-redes` · ⬜ `sec-metodologia-pentest` · ⬜ `sec-cloud-contenedores`.
 - **N5-N6**: ⬜ `sec-criptoanalisis` · ⬜ `sec-seguridad-hardware` · ⬜ `sec-formal-protocolos` ·
