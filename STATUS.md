@@ -26,7 +26,7 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta con cambio de contraseña y cierre de otras sesiones, Docker, HTTPS con Caddy, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **68 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **69 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 todo el troncal de `docs/CURRICULO.md`, de 1º ESO a final de grado: matemáticas hasta análisis real, álgebra lineal avanzada y
 estadística; física hasta electromagnetismo, termodinámica estadística y circuitos con semiconductores; computación hasta sistemas
 operativos, redes y bases de datos) y **0 nodos comprimidos** anteriores (cada uno con un reto con
@@ -39,7 +39,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
    ejercicios (lo normal: 14 a 16) y 3 niveles de pistas si lleva flag.
 2. **Ramas N4 → N6 (lo siguiente)** por prerrequisitos (lista en `docs/CURRICULO.md`: topología, EDP, C++, Rust, ARM, forense y logs, PCB,
    PyTorch, Transformers, LLM locales…). Los nodos comprimidos antiguos se desdoblan en ellas. Hechos: `fis-mecanica-cuantica`, `cua-computacion-cuantica`, `rob-cinematica`, `rob-control`, `rob-microcontroladores`, `ia-aprendizaje-estadistico`, `ia-redes-profundas`, `sec-criptografia`, `sec-web`, `sec-explotacion-binaria`, `sys-ensamblador-x86-64`. **Ya no queda ningún nodo comprimido (✳️)**:
-   lo pendiente son los ⬜ de las ramas
+   lo pendiente son los ⬜ de las ramas. Nuevos de las ramas ya escritos: `mat-analisis-complejo`.
    (reescrito como nodo de escalera en `vault/02-fisica/`, conserva su flag). Las ramas se quedan en su carpeta (`vault/02-fisica/`, etc.).
 3. **Plataforma (MVP cerrado el 2026-11-12)**: `/cuenta` permite cambiar la contraseña (pide la actual; al cambiarla se cierran las
    demás sesiones) y cerrar las demás sesiones; probado en navegador con dos contextos. La lógica de sesiones está en
@@ -221,6 +221,7 @@ y construye la imagen Docker.
 | 11 | `fis-electricidad-magnetismo-1` | 17 |
 | 11 | `fis-mecanica-clasica` | 16 |
 | 11 | `ing-senales-sistemas` | 16 |
+| 11 | `mat-analisis-complejo` | 16 |
 | 11 | `mat-analisis-numerico` | 16 |
 | 11 | `mat-probabilidad` | 16 |
 | 11 | `sec-explotacion-binaria` | 16 |
@@ -310,15 +311,13 @@ en JS contrastado con readelf (binutils en Docker, valores anotados en el spec),
 se confirmó desensamblando un objeto compilado con -fsanitize=address en gcc:14. Programa C (ASan/UBSan, -O2) y auditor ELF en Python ejecutados.
 `sys-ensamblador-x86-64` (rama, reescrito, conserva su reto): cada ejercicio es una función en ensamblador que el spec ensambla y ejecuta en
 gcc:14 (main con ASan/UBSan y con -O2, salidas idénticas) frente a una emulación con BigInt; el programa del texto usa __asm__ de nivel superior.
+`mat-analisis-complejo` (rama, nuevo, en `vault/01-matematicas/`): residuos y fórmula de Cauchy frente a la regla del trapecio sobre circunferencias
+(convergencia exponencial), integrales reales por Simpson, Rouché frente a Durand-Kerner y al principio del argumento numérico.
 
 ### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 
 | Profundidad | Nodo |
 |:---:|---|
-
-Los scripts que calculan y contrastan estas flags están en `.soluciones/` (`nivel-*.mjs`,
-`verificar.ts`, `flags.txt`), **solo en la máquina del usuario**; `npx tsx .soluciones/verificar.ts`
-comprueba que cada flag valida contra el hash de su nodo.
 
 ## 8. Sin probar todavía
 
