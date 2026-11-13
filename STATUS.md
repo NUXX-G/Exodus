@@ -26,7 +26,7 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta con cambio de contraseña y cierre de otras sesiones, Docker, HTTPS con Caddy, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **99 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **100 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 todo el troncal de `docs/CURRICULO.md`, de 1º ESO a final de grado: matemáticas hasta análisis real, álgebra lineal avanzada y
 estadística; física hasta electromagnetismo, termodinámica estadística y circuitos con semiconductores; computación hasta sistemas
 operativos, redes y bases de datos) y **0 nodos comprimidos** anteriores (cada uno con un reto con
@@ -39,7 +39,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
    ejercicios (lo normal: 14 a 16) y 3 niveles de pistas si lleva flag.
 2. **Ramas N4 → N6 (lo siguiente)** por prerrequisitos (lista en `docs/CURRICULO.md`: topología, EDP, C++, Rust, ARM, forense y logs, PCB,
    PyTorch, Transformers, LLM locales…). Los nodos comprimidos antiguos se desdoblan en ellas. Hechos: `fis-mecanica-cuantica`, `cua-computacion-cuantica`, `rob-cinematica`, `rob-control`, `rob-microcontroladores`, `ia-aprendizaje-estadistico`, `ia-redes-profundas`, `sec-criptografia`, `sec-web`, `sec-explotacion-binaria`, `sys-ensamblador-x86-64`. **Ya no queda ningún nodo comprimido (✳️)**:
-   lo pendiente son los ⬜ de las ramas. Nuevos de las ramas ya escritos: `mat-analisis-complejo`, `mat-teoria-numeros`, `mat-optimizacion`, `mat-procesos-estocasticos`, `mat-edp`, `mat-topologia`, `mat-medida-integracion`, `mat-teoria-informacion`, `mat-estadistica-matematica`, `mat-analisis-funcional`, `mat-geometria-diferencial`, `mat-algebra-conmutativa-galois`, `fis-relatividad-especial`, `fis-fluidos`, `fis-mecanica-estadistica-avanzada`, `fis-materia-condensada-1`, `fis-relatividad-general`, `fis-fisica-nuclear-particulas`, `fis-astrofisica`, `fis-teoria-cuantica-campos`, `ing-electronica-analogica`, `ing-diseno-digital-hdl`, `ing-pcb-diseno`, `ing-electronica-potencia`, `ing-comunicaciones`, `ing-procesado-digital-senal`, `ing-microelectronica-vlsi`, `ing-rf-microondas`, `ing-integridad-senal`, `ing-diseno-asic`, `rob-sensores-actuadores`.
+   lo pendiente son los ⬜ de las ramas. Nuevos de las ramas ya escritos: `mat-analisis-complejo`, `mat-teoria-numeros`, `mat-optimizacion`, `mat-procesos-estocasticos`, `mat-edp`, `mat-topologia`, `mat-medida-integracion`, `mat-teoria-informacion`, `mat-estadistica-matematica`, `mat-analisis-funcional`, `mat-geometria-diferencial`, `mat-algebra-conmutativa-galois`, `fis-relatividad-especial`, `fis-fluidos`, `fis-mecanica-estadistica-avanzada`, `fis-materia-condensada-1`, `fis-relatividad-general`, `fis-fisica-nuclear-particulas`, `fis-astrofisica`, `fis-teoria-cuantica-campos`, `ing-electronica-analogica`, `ing-diseno-digital-hdl`, `ing-pcb-diseno`, `ing-electronica-potencia`, `ing-comunicaciones`, `ing-procesado-digital-senal`, `ing-microelectronica-vlsi`, `ing-rf-microondas`, `ing-integridad-senal`, `ing-diseno-asic`, `rob-sensores-actuadores`, `rob-dinamica`.
    (reescrito como nodo de escalera en `vault/02-fisica/`, conserva su flag). Las ramas se quedan en su carpeta (`vault/02-fisica/`, etc.).
 3. **Plataforma (MVP cerrado el 2026-11-12; invitaciones añadidas el 2026-11-13)**: el admin genera en `/cuenta` invitaciones de un
    solo uso que caducan (1, 3 o 7 días; máximo 20 pendientes; se pueden anular) y el invitado crea su cuenta `miembro` en
@@ -272,6 +272,7 @@ y construye la imagen Docker.
 | 13 | `mat-geometria-diferencial` | 16 |
 | 13 | `mat-optimizacion` | 16 |
 | 13 | `mat-procesos-estocasticos` | 16 |
+| 13 | `rob-dinamica` | 16 |
 | 14 | `cua-computacion-cuantica` | 16 |
 | 14 | `fis-fisica-nuclear-particulas` | 16 |
 | 14 | `fis-materia-condensada-1` | 16 |
@@ -393,6 +394,7 @@ sección áurea, penalización, símplex frente a enumeración de vértices, moc
 Integridad de señal y alimentación (N5-6): BW 0,35/t_r y longitud crítica, Z₀ y retardo, celosía y terminaciones, TDR, NEXT/FEXT, pelicular y dieléctricas, ISI y ojo, jitter frente a BER, pares diferenciales, retorno y stubs de vía, PDN con impedancia objetivo. 16 ejercicios verificados con celosía, escalera LC simulada, PRBS-7 filtrada y bisección/Newton de la cola gaussiana; Python comprobado en Docker.
 Diseño de ASIC (N5-6): flujo RTL→GDSII de celdas estándar, síntesis y Liberty, DFT (stuck-at, scan, ATPG), STA con sesgo, OCV y CRPR, partición KL/FM, HPWL y colocación cuadrática, Elmore y CTS, Lee/Steiner/Hanan, repetidores de Bakoglu, potencia, caída IR, electromigración (Black), DPW, Poisson y Murphy, coste, flujo abierto (Yosys, OpenROAD, LibreLane; SKY130, GF180MCU, SG13G2). 16 ejercicios verificados por fuerza bruta, simulación de fallos con dos simuladores, Gauss-Seidel, escalera RC e integración numérica; Python comprobado en Docker.
 Sensores y actuadores (N4): encoders en cuadratura y Gray, velocidad por métodos M y T, IMU (sesgo, ARW, Allan), filtro complementario y Kalman estacionario, ultrasonidos, LiDAR/ToF, galgas en puente, motor de CC (curva par-velocidad, rendimiento), BLDC/FOC, paso a paso, servos, puente H y rizado, reductoras e inercia reflejada, par de pico y eficaz. 16 ejercicios verificados con señales de encoder simuladas, ODE del motor, filtros simulados, Riccati iterada y barridos; Python comprobado en Docker.
+Dinámica de robots (N4): inercias y Steiner, inercia reflejada, Lagrange para brazos (M, C, g del brazo de dos eslabones), propiedades estructurales, Newton–Euler recursivo, dinámica directa, identificación por mínimos cuadrados, PD con compensación de gravedad, par calculado y espacio operacional. 16 ejercicios verificados con Lagrange frente a RNEA, Lagrange numérico, polarización de la energía, simulación RK4 y Cramer frente a Gauss; Python comprobado en Docker (incluye conservación de energía).
 
 ### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 
