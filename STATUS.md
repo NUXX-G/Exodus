@@ -26,7 +26,7 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta con cambio de contraseña y cierre de otras sesiones, Docker, HTTPS con Caddy, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **81 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **82 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 todo el troncal de `docs/CURRICULO.md`, de 1º ESO a final de grado: matemáticas hasta análisis real, álgebra lineal avanzada y
 estadística; física hasta electromagnetismo, termodinámica estadística y circuitos con semiconductores; computación hasta sistemas
 operativos, redes y bases de datos) y **0 nodos comprimidos** anteriores (cada uno con un reto con
@@ -39,7 +39,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
    ejercicios (lo normal: 14 a 16) y 3 niveles de pistas si lleva flag.
 2. **Ramas N4 → N6 (lo siguiente)** por prerrequisitos (lista en `docs/CURRICULO.md`: topología, EDP, C++, Rust, ARM, forense y logs, PCB,
    PyTorch, Transformers, LLM locales…). Los nodos comprimidos antiguos se desdoblan en ellas. Hechos: `fis-mecanica-cuantica`, `cua-computacion-cuantica`, `rob-cinematica`, `rob-control`, `rob-microcontroladores`, `ia-aprendizaje-estadistico`, `ia-redes-profundas`, `sec-criptografia`, `sec-web`, `sec-explotacion-binaria`, `sys-ensamblador-x86-64`. **Ya no queda ningún nodo comprimido (✳️)**:
-   lo pendiente son los ⬜ de las ramas. Nuevos de las ramas ya escritos: `mat-analisis-complejo`, `mat-teoria-numeros`, `mat-optimizacion`, `mat-procesos-estocasticos`, `mat-edp`, `mat-topologia`, `mat-medida-integracion`, `mat-teoria-informacion`, `mat-estadistica-matematica`, `mat-analisis-funcional`, `mat-geometria-diferencial`, `mat-algebra-conmutativa-galois`, `fis-relatividad-especial`.
+   lo pendiente son los ⬜ de las ramas. Nuevos de las ramas ya escritos: `mat-analisis-complejo`, `mat-teoria-numeros`, `mat-optimizacion`, `mat-procesos-estocasticos`, `mat-edp`, `mat-topologia`, `mat-medida-integracion`, `mat-teoria-informacion`, `mat-estadistica-matematica`, `mat-analisis-funcional`, `mat-geometria-diferencial`, `mat-algebra-conmutativa-galois`, `fis-relatividad-especial`, `fis-fluidos`.
    (reescrito como nodo de escalera en `vault/02-fisica/`, conserva su flag). Las ramas se quedan en su carpeta (`vault/02-fisica/`, etc.).
 3. **Plataforma (MVP cerrado el 2026-11-12; invitaciones añadidas el 2026-11-13)**: el admin genera en `/cuenta` invitaciones de un
    solo uso que caducan (1, 3 o 7 días; máximo 20 pendientes; se pueden anular) y el invitado crea su cuenta `miembro` en
@@ -243,6 +243,7 @@ y construye la imagen Docker.
 | 11 | `mat-topologia` | 16 |
 | 11 | `sec-explotacion-binaria` | 16 |
 | 12 | `fis-electromagnetismo` | 16 |
+| 12 | `fis-fluidos` | 16 |
 | 12 | `fis-ondas-optica` | 16 |
 | 12 | `fis-termo-estadistica` | 16 |
 | 12 | `ing-circuitos-dc-ac` | 17 |
@@ -353,6 +354,7 @@ sección áurea, penalización, símplex frente a enumeración de vértices, moc
 - `mat-geometria-diferencial` (nuevo, rama de matemáticas): 16 ejercicios. Dos caminos por respuesta: curvatura, longitud, curvatura y torsión con derivadas numéricas y Simpson; curvaturas de esfera, toro y cilindro con las formas fundamentales calculadas numéricamente; Gauss-Bonnet integrando $K\,dA$ en el toro; área del toro por $\sqrt{EG - F^2}$ numérico (3 decimales para evitar redondeo ambiguo); Christoffel por la fórmula con derivadas numéricas de la métrica; holonomía integrando la ecuación de transporte con RK4; corchete de Lie con jacobianos numéricos; Stokes por integral de línea; Poincaré por la fórmula conforme con diferencias finitas. Bloque Python (geodésica de la esfera con RK4) ejecutado en python:3.12-slim. Fuentes verificadas: do Carmo (Prentice-Hall 1976), Lee 2ª ed. (Springer GTM 218, 2012).
 - `mat-algebra-conmutativa-galois` (nuevo, rama de matemáticas; cierra las ramas de matemáticas): 16 ejercicios. Dos caminos por respuesta: polinomio mínimo de √2+√3 por producto de conjugados y descarte de factores; discriminantes por fórmula y por raíces numéricas; cuerpos finitos por fuerza bruta (irreducibles sobre F₂, órdenes en F₁₆ con x⁴+x+1); Z/12, Z/60 y enteros de Gauss por enumeración; mcd de polinomios por Euclides; Bézout por resultante; subgrupos de Z/6 enumerados; construcciones por grado potencia de 2. Bloque Python ejecutado en python:3.12-slim. Fuentes verificadas: Dummit-Foote 3ª ed. (Wiley 2004), Atiyah-Macdonald (Addison-Wesley 1969).
 - `fis-relatividad-especial` (nuevo, rama de física): 16 ejercicios. Dos caminos por respuesta: γ por rapidez; dilatación y simultaneidad por boosts explícitos de sucesos; contracción transformando los extremos; composición por suma de rapideces; tiempo propio por boost al sistema donde Δx' = 0; momento por γ; umbral del pion por bisección en la masa invariante; Compton resolviendo la conservación del cuadrimomento; aberración transformando el cuadrimomento del fotón; gemelos integrando dt/γ; cohete a un g integrando cosh; campos con el invariante $E^2 - c^2B^2$. Se ajustaron decimales para evitar redondeos ambiguos (momento del protón a 1 decimal). Bloque Python ejecutado en python:3.12-slim. Fuentes verificadas: Taylor-Wheeler 2ª ed. (Freeman 1992), Rindler 2ª ed. (OUP 2006).
+- `fis-fluidos` (nuevo, rama de física): 16 ejercicios. Dos caminos por respuesta: hidrostática integrando dp/dz; Torricelli con la caída de una partícula (RK4); Poiseuille integrando el perfil parabólico; Stokes integrando la dinámica hasta la terminal (y comprobando Re < 1); Venturi por bisección en Bernoulli + continuidad; pérdida de carga por Δp; cilindro por gradiente numérico del potencial; Kutta-Joukowski integrando la presión de Bernoulli; Blasius por disparo (f''(0) = 0,332, η₉₉ = 4,91); flotación por bisección del calado; dispersión por bisección en ω; vorticidad por rotacional numérico; chorro integrando el flujo de cantidad de movimiento; remanso por balance de entalpía. Bloque Python ejecutado en python:3.12-slim. Fuentes verificadas: Kundu-Cohen-Dowling 6ª ed. (Academic Press 2015), Acheson (Clarendon 1990).
 
 ### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 
