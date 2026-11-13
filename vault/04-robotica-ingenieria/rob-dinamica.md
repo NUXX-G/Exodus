@@ -1,7 +1,7 @@
 ---
 id: rob-dinamica
 title: "Dinámica de robots: Lagrange y Newton–Euler, matriz de inercia, Coriolis y gravedad, dinámica directa e inversa, identificación y control por par calculado"
-area: ingenieria
+area: robotica
 trunk_level: 13
 prerequisites: [rob-cinematica, rob-control, fis-mecanica-clasica]
 academic_sources:

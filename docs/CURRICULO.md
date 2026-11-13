@@ -101,9 +101,33 @@ Cada rama exige los nodos troncales que cita.
 - **N5-N6**: ✅ `rob-percepcion-slam` · ✅ `rob-planificacion-movimiento` · ✅ `rob-control-optimo-mpc` ·
   ✅ `rob-aprendizaje-robots`.
 
-## Sistemas y programación avanzada (≈ 13 nodos; CS2023)
-- **N4**: ✅ `sys-ensamblador-x86-64` · ⬜ `prog-cpp` · ⬜ `prog-rust` · ⬜ `sys-ensamblador-arm` ·
-  ⬜ `sys-compiladores` · ⬜ `sys-concurrencia` · ⬜ `sys-kernel-linux` · ⬜ `sys-sistemas-distribuidos`.
+## Sistemas y programación avanzada (≈ 25 nodos; CS2023)
+
+Objetivo explícito: nivel **profesional** (de programador intermedio a sénior) en Rust, C y C++, y soltura real
+con scripting y automatización. Por eso los lenguajes se desdoblan en varios nodos con código que compila y
+pruebas que pasan, no en un resumen por lenguaje.
+
+- **Scripting y automatización (N3-N4)**: ⬜ `prog-bash-scripting` (bash y sh POSIX: expansiones, comillas,
+  redirecciones, `set -euo pipefail`, `trap`, `getopts`, funciones, portabilidad, ShellCheck, pruebas con bats) ·
+  ⬜ `prog-unix-texto` (expresiones regulares, grep, sed, awk, find, xargs, sort/uniq/join, jq, make como
+  automatizador) · ⬜ `prog-powershell-batch` (cmd y `.bat`, PowerShell 7: objetos en la tubería, módulos,
+  errores, remoting, Pester; equivalencias con bash).
+- **C profesional (N4)**: ✅ `sys-c-fundamentos` y ✅ `sys-c-memoria` (troncal) · ⬜ `sys-c-profesional`
+  (C17/C23, comportamiento indefinido a fondo, diseño de API y de errores, Make/CMake, sanitizadores, Valgrind,
+  gdb, pruebas, análisis estático, portabilidad y ABI).
+- **C++ (N4-N5)**: ⬜ `prog-cpp-moderno` (semántica de valor, RAII, movimiento, punteros inteligentes, STL y
+  algoritmos, lambdas, errores y excepciones) · ⬜ `prog-cpp-genericidad` (plantillas, deducción, SFINAE y
+  concepts, constexpr, rangos, borrado de tipos) · ⬜ `prog-cpp-profesional` (modelo de memoria y atómicos,
+  hilos, rendimiento y caché, CMake, vcpkg/Conan, GoogleTest, sanitizadores, clang-tidy, ABI).
+- **Rust (N4-N5), hasta nivel sénior**: ⬜ `prog-rust-fundamentos` (propiedad, préstamos, vidas, enums y
+  patrones, errores con `Result`, colecciones, cargo) · ⬜ `prog-rust-traits-genericos` (traits, genéricos,
+  objetos de trait, iteradores, cierres, punteros inteligentes, `Rc`/`RefCell`, módulos y crates) ·
+  ⬜ `prog-rust-concurrencia-async` (`Send`/`Sync`, hilos, canales, `Arc`/`Mutex`, atómicos, `async`/`await`,
+  `Future` y `Pin`, tokio) · ⬜ `prog-rust-unsafe-ffi-macros` (unsafe y sus invariantes, Miri, FFI con C,
+  macros declarativas y procedurales) · ⬜ `prog-rust-profesional` (diseño de API, errores con thiserror/anyhow,
+  pruebas y propiedades, criterion, tracing, serde, servicios con axum, workspaces, CI, clippy, semver).
+- **Sistemas (N4)**: ✅ `sys-ensamblador-x86-64` · ⬜ `sys-ensamblador-arm` · ⬜ `sys-compiladores` ·
+  ⬜ `sys-concurrencia` · ⬜ `sys-kernel-linux` · ⬜ `sys-sistemas-distribuidos`.
 - **N5-N6**: ⬜ `sys-verificacion-formal` · ⬜ `sys-optimizacion-rendimiento` · ⬜ `sys-lenguajes-programacion`.
 
 ## Ciberseguridad (≈ 14 nodos; CyBOK)
@@ -122,6 +146,31 @@ Cada rama exige los nodos troncales que cita.
 
 ---
 
+# PRÁCTICA: PROYECTOS Y LABORATORIOS POR RAMA
+
+La teoría de cada nodo ya trae ejercicios; esta capa añade práctica **grande**, la que en una carrera serían
+las prácticas de laboratorio y el trabajo de fin de asignatura. Se ven en `/practica` (formato en
+`docs/AMPLIAR.md`).
+
+- **Proyectos** (`kind: proyecto`): construir algo real de principio a fin, en varios hitos de dificultad
+  creciente. Cada hito tiene un contrato preciso y se comprueba con la salida del programa del estudiante para
+  una entrada fija. Se resuelven con el código propio, nunca mirando una solución.
+- **Laboratorios** (`kind: laboratorio`): situaciones realistas con archivos que analizar (registros, capturas
+  de red, binarios, datos de sensores o de un experimento) hasta encontrar una flag, con pistas en tres niveles.
+  En seguridad son siempre de análisis y defensa: forense, detección, ingeniería inversa y auditoría.
+
+| Rama | Proyectos | Laboratorios |
+|---|---|---|
+| Matemáticas | ⬜ `proy-mat-numerico` (biblioteca numérica validada: raíces, cuadratura, EDO, álgebra lineal) · ⬜ `proy-mat-algebra-computacional` (racionales, polinomios, factorización, Gröbner pequeño) | ⬜ `lab-mat-criptoaritmetica` (romper con teoría de números un esquema de juguete mal diseñado) |
+| Física | ⬜ `proy-fis-nbody` (N cuerpos con integradores simplécticos y conservación) · ⬜ `proy-fis-ising` (Monte Carlo, transición de fase, exponentes) | ⬜ `lab-fis-datos-experimentales` (ajuste con incertidumbres a datos medidos) |
+| Ingeniería | ⬜ `proy-ing-cpu-riscv` (CPU RV32I en Verilog que pasa la batería de pruebas) · ⬜ `proy-ing-filtros-dsp` (cadena de filtrado y diezmado en punto fijo) | ⬜ `lab-ing-iq-demodulacion` (demodular una grabación IQ hasta leer el mensaje) |
+| Robótica | ⬜ `proy-rob-robot-movil` (simulador, odometría, EKF, A*, seguimiento de trayectorias) · ⬜ `proy-rob-brazo` (cinemática, dinámica y control por par calculado de un brazo de 3 GDL) | ⬜ `lab-rob-fusion-sensores` (reconstruir una trayectoria a partir de registros de IMU y encoders) |
+| Sistemas | ⬜ `proy-sys-shell-c` (shell de Unix en C: tuberías, redirecciones, señales, trabajos) · ⬜ `proy-sys-kv-rust` (almacén clave-valor persistente y concurrente en Rust con protocolo de red) · ⬜ `proy-sys-compilador` (compilador de un lenguaje pequeño a ensamblador) · ⬜ `proy-sys-automatizacion` (kit de copias, auditoría y despliegue en bash y PowerShell) | ⬜ `lab-sys-depuracion` (diagnosticar un fallo a partir de un volcado y sus registros) · ⬜ `lab-sys-rendimiento` (encontrar el cuello de botella en trazas de perf) |
+| Ciberseguridad | ⬜ `proy-sec-ids` (detector de intrusiones sobre capturas y registros) · ⬜ `proy-sec-cripto-verificada` (AES-GCM y ChaCha20-Poly1305 contra vectores oficiales) | ⬜ `lab-sec-forense-servidor` · ⬜ `lab-sec-captura-red` · ⬜ `lab-sec-reversing-crackme` · ⬜ `lab-sec-cripto-mal-usada` · ⬜ `lab-sec-hardening` |
+| IA | ⬜ `proy-ia-autograd` (motor de diferenciación automática y red desde cero) · ⬜ `proy-ia-mini-gpt` (transformer pequeño entrenado y evaluado) | ⬜ `lab-ia-fuga-de-datos` (encontrar la fuga que infla las métricas de un modelo) |
+
+---
+
 ## Orden de construcción
 
 1. **Troncal N0 → N1**: matemáticas, programación y física base, más `tro-aprender-a-aprender`. Es la entrada
@@ -129,6 +178,9 @@ Cada rama exige los nodos troncales que cita.
 2. **Troncal N2**, con los nodos ✳️ existentes reubicados y enlazados.
 3. **Troncal N3**: desdoblar los ✳️ en la profundidad que pide un grado.
 4. **Ramas**, una por una, por prerrequisitos.
+5. **Ampliación de noviembre de 2026** (petición expresa): scripting (bash, utilidades de texto, PowerShell y
+   batch), después Rust, C y C++ en profundidad, después los proyectos y laboratorios de Sistemas y Ciberseguridad,
+   el resto de nodos de Sistemas, Ciberseguridad e IA, y por último los proyectos y laboratorios de las demás ramas.
 
 Los 27 nodos ya escritos se reubican en esta escalera (cambian de nivel y de prerrequisitos) y se amplían
 donde falte profundidad; no se tiran.

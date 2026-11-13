@@ -1,7 +1,7 @@
 ---
 id: rob-sensores-actuadores
 title: "Sensores y actuadores: encoders, IMU y fusión, distancia y fuerza, motores de continua, sin escobillas y paso a paso, puentes H, reductoras y dimensionado"
-area: ingenieria
+area: robotica
 trunk_level: 15
 prerequisites: [rob-microcontroladores, rob-control]
 academic_sources:

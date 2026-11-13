@@ -1,7 +1,7 @@
 ---
 id: rob-planificacion-movimiento
 title: "Planificación de movimiento: espacio de configuraciones, búsqueda en grafos (Dijkstra, A*), métodos por muestreo (PRM, RRT, RRT*), campos de potencial y generación de trayectorias"
-area: ingenieria
+area: robotica
 trunk_level: 18
 prerequisites: [rob-percepcion-slam, rob-dinamica, prog-algoritmos]
 academic_sources:

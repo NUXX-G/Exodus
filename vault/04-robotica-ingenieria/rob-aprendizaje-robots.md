@@ -1,7 +1,7 @@
 ---
 id: rob-aprendizaje-robots
 title: "Aprendizaje para robots: procesos de decisión de Markov, valor y Q-learning, gradiente de política, PPO y SAC, de la simulación a la realidad, aprendizaje por imitación y políticas generativas"
-area: ingenieria
+area: robotica
 trunk_level: 20
 prerequisites: [rob-control-optimo-mpc, ia-redes-profundas]
 academic_sources:

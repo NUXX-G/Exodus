@@ -369,4 +369,4 @@ Formato de la flag, en decimal: `EXODUS{a-b-c-d-e-f}`
 ## Siguiente
 
 En las ramas: `sec-reversing-malware` (análisis de *malware* en laboratorio), `sec-seguridad-so` (mitigaciones del núcleo), `sec-forense-logs` y, para el
-mismo problema visto desde los lenguajes, `prog-rust`.
+mismo problema visto desde los lenguajes, `prog-rust-fundamentos`.

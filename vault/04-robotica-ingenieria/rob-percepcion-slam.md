@@ -1,7 +1,7 @@
 ---
 id: rob-percepcion-slam
 title: "Percepción y SLAM: filtro de Bayes, Kalman y EKF, filtros de partículas, rejillas de ocupación, cámaras y estéreo, geometría epipolar, ICP y grafos de poses"
-area: ingenieria
+area: robotica
 trunk_level: 17
 prerequisites: [rob-ros2, mat-probabilidad, mat-algebra-lineal-avanzada]
 academic_sources:
