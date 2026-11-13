@@ -26,7 +26,7 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta con cambio de contraseña y cierre de otras sesiones, Docker, HTTPS con Caddy, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **82 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **83 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 todo el troncal de `docs/CURRICULO.md`, de 1º ESO a final de grado: matemáticas hasta análisis real, álgebra lineal avanzada y
 estadística; física hasta electromagnetismo, termodinámica estadística y circuitos con semiconductores; computación hasta sistemas
 operativos, redes y bases de datos) y **0 nodos comprimidos** anteriores (cada uno con un reto con
@@ -39,7 +39,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
    ejercicios (lo normal: 14 a 16) y 3 niveles de pistas si lleva flag.
 2. **Ramas N4 → N6 (lo siguiente)** por prerrequisitos (lista en `docs/CURRICULO.md`: topología, EDP, C++, Rust, ARM, forense y logs, PCB,
    PyTorch, Transformers, LLM locales…). Los nodos comprimidos antiguos se desdoblan en ellas. Hechos: `fis-mecanica-cuantica`, `cua-computacion-cuantica`, `rob-cinematica`, `rob-control`, `rob-microcontroladores`, `ia-aprendizaje-estadistico`, `ia-redes-profundas`, `sec-criptografia`, `sec-web`, `sec-explotacion-binaria`, `sys-ensamblador-x86-64`. **Ya no queda ningún nodo comprimido (✳️)**:
-   lo pendiente son los ⬜ de las ramas. Nuevos de las ramas ya escritos: `mat-analisis-complejo`, `mat-teoria-numeros`, `mat-optimizacion`, `mat-procesos-estocasticos`, `mat-edp`, `mat-topologia`, `mat-medida-integracion`, `mat-teoria-informacion`, `mat-estadistica-matematica`, `mat-analisis-funcional`, `mat-geometria-diferencial`, `mat-algebra-conmutativa-galois`, `fis-relatividad-especial`, `fis-fluidos`.
+   lo pendiente son los ⬜ de las ramas. Nuevos de las ramas ya escritos: `mat-analisis-complejo`, `mat-teoria-numeros`, `mat-optimizacion`, `mat-procesos-estocasticos`, `mat-edp`, `mat-topologia`, `mat-medida-integracion`, `mat-teoria-informacion`, `mat-estadistica-matematica`, `mat-analisis-funcional`, `mat-geometria-diferencial`, `mat-algebra-conmutativa-galois`, `fis-relatividad-especial`, `fis-fluidos`, `fis-mecanica-estadistica-avanzada`.
    (reescrito como nodo de escalera en `vault/02-fisica/`, conserva su flag). Las ramas se quedan en su carpeta (`vault/02-fisica/`, etc.).
 3. **Plataforma (MVP cerrado el 2026-11-12; invitaciones añadidas el 2026-11-13)**: el admin genera en `/cuenta` invitaciones de un
    solo uso que caducan (1, 3 o 7 días; máximo 20 pendientes; se pueden anular) y el invitado crea su cuenta `miembro` en
@@ -266,6 +266,7 @@ y construye la imagen Docker.
 | 13 | `mat-optimizacion` | 16 |
 | 13 | `mat-procesos-estocasticos` | 16 |
 | 14 | `cua-computacion-cuantica` | 16 |
+| 14 | `fis-mecanica-estadistica-avanzada` | 16 |
 | 14 | `ia-redes-profundas` | 16 |
 | 14 | `rob-microcontroladores` | 16 |
 
@@ -355,6 +356,7 @@ sección áurea, penalización, símplex frente a enumeración de vértices, moc
 - `mat-algebra-conmutativa-galois` (nuevo, rama de matemáticas; cierra las ramas de matemáticas): 16 ejercicios. Dos caminos por respuesta: polinomio mínimo de √2+√3 por producto de conjugados y descarte de factores; discriminantes por fórmula y por raíces numéricas; cuerpos finitos por fuerza bruta (irreducibles sobre F₂, órdenes en F₁₆ con x⁴+x+1); Z/12, Z/60 y enteros de Gauss por enumeración; mcd de polinomios por Euclides; Bézout por resultante; subgrupos de Z/6 enumerados; construcciones por grado potencia de 2. Bloque Python ejecutado en python:3.12-slim. Fuentes verificadas: Dummit-Foote 3ª ed. (Wiley 2004), Atiyah-Macdonald (Addison-Wesley 1969).
 - `fis-relatividad-especial` (nuevo, rama de física): 16 ejercicios. Dos caminos por respuesta: γ por rapidez; dilatación y simultaneidad por boosts explícitos de sucesos; contracción transformando los extremos; composición por suma de rapideces; tiempo propio por boost al sistema donde Δx' = 0; momento por γ; umbral del pion por bisección en la masa invariante; Compton resolviendo la conservación del cuadrimomento; aberración transformando el cuadrimomento del fotón; gemelos integrando dt/γ; cohete a un g integrando cosh; campos con el invariante $E^2 - c^2B^2$. Se ajustaron decimales para evitar redondeos ambiguos (momento del protón a 1 decimal). Bloque Python ejecutado en python:3.12-slim. Fuentes verificadas: Taylor-Wheeler 2ª ed. (Freeman 1992), Rindler 2ª ed. (OUP 2006).
 - `fis-fluidos` (nuevo, rama de física): 16 ejercicios. Dos caminos por respuesta: hidrostática integrando dp/dz; Torricelli con la caída de una partícula (RK4); Poiseuille integrando el perfil parabólico; Stokes integrando la dinámica hasta la terminal (y comprobando Re < 1); Venturi por bisección en Bernoulli + continuidad; pérdida de carga por Δp; cilindro por gradiente numérico del potencial; Kutta-Joukowski integrando la presión de Bernoulli; Blasius por disparo (f''(0) = 0,332, η₉₉ = 4,91); flotación por bisección del calado; dispersión por bisección en ω; vorticidad por rotacional numérico; chorro integrando el flujo de cantidad de movimiento; remanso por balance de entalpía. Bloque Python ejecutado en python:3.12-slim. Fuentes verificadas: Kundu-Cohen-Dowling 6ª ed. (Academic Press 2015), Acheson (Clarendon 1990).
+- `fis-mecanica-estadistica-avanzada` (nuevo, rama de física): 16 ejercicios. Dos caminos por respuesta: $T_c$ de BEC con $g_{3/2}(1)$ integrado (cambio $x = s^2$ para quitar la singularidad) y contado como excitados; $E_F$ integrando la densidad de estados; Sommerfeld por derivada numérica de la energía de Fermi-Dirac con μ(T) por bisección; Debye por la integral y por total menos cola; Onsager por bisección; campo medio por la pendiente; magnetización por punto fijo y Newton; correlación por matriz de transferencia; Metropolis por balance detallado; Einstein-Stokes por Green-Kubo; virial por límite de van der Waals; Langmuir por gran partición; fluctuaciones por $k_BT^2C_V$; Planck integrado; decimación por $\tanh K' = \tanh^2 K$; fracción condensada por integrales. Bloque Python (Metropolis 16×16 con semilla) ejecutado en python:3.12-slim. Fuentes verificadas: Pathria-Beale 3ª ed. (Academic Press 2011), Kardar (CUP 2007).
 
 ### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 
