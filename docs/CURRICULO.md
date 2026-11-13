@@ -102,7 +102,7 @@ Cada rama exige los nodos troncales que cita.
   ⬜ `rob-aprendizaje-robots`.
 
 ## Sistemas y programación avanzada (≈ 13 nodos; CS2023)
-- **N4**: ✳️ `sys-ensamblador-x86-64` · ⬜ `prog-cpp` · ⬜ `prog-rust` · ⬜ `sys-ensamblador-arm` ·
+- **N4**: ✅ `sys-ensamblador-x86-64` · ⬜ `prog-cpp` · ⬜ `prog-rust` · ⬜ `sys-ensamblador-arm` ·
   ⬜ `sys-compiladores` · ⬜ `sys-concurrencia` · ⬜ `sys-kernel-linux` · ⬜ `sys-sistemas-distribuidos`.
 - **N5-N6**: ⬜ `sys-verificacion-formal` · ⬜ `sys-optimizacion-rendimiento` · ⬜ `sys-lenguajes-programacion`.
 
