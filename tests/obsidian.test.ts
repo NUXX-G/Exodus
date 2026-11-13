@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import Module from "node:module";
 import zlib from "node:zlib";
 import { test } from "node:test";
+import { mergeAreas } from "../src/lib/areas";
 import { getDb, schema } from "../src/lib/db";
 import { hashPassword } from "../src/lib/password";
 import { createApiToken, listApiTokens, MAX_TOKENS, revokeApiToken, userExportData, userForApiToken } from "../src/lib/obsidian";
@@ -41,6 +42,7 @@ const vault: Vault = {
     ["mat-b", makeNode("mat-b", { prerequisites: ["mat-a"], trunkLevel: 2 })],
     ["mat-c", makeNode("mat-c", { prerequisites: ["mat-b"], trunkLevel: 3 })],
   ]),
+  areas: mergeAreas(undefined).areas,
   issues: [],
 } as unknown as Vault;
 

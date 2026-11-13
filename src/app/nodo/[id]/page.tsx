@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import ExerciseForm from "@/components/ExerciseForm";
 import FlagForm from "@/components/FlagForm";
-import { AREAS } from "@/lib/areas";
+import { areaOf } from "@/lib/areas";
 import { getSessionUser, requireUser } from "@/lib/auth";
 import { linkResolverFor, renderMarkdown } from "@/lib/markdown";
 import { getCompleted, getRevealedLevels, getSolvedExercises, masteryOf, recordOpen, stateOf } from "@/lib/progress";
@@ -46,7 +46,7 @@ export default async function PaginaNodo({ params }: Props) {
   const state = stateOf(node, completed);
   const revealed = getRevealedLevels(user.id, node.id);
   const html = await renderMarkdown(node.body, linkResolverFor(vault));
-  const area = AREAS[node.area];
+  const area = areaOf(vault.areas, node.area);
   const nextHint = revealed.length + 1;
   const attachments = attachmentInfo(node);
   const resolve = linkResolverFor(vault);

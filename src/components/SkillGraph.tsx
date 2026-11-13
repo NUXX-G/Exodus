@@ -14,12 +14,15 @@ import {
   type NodeProps,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import { AREAS, AREA_IDS, type AreaId } from "@/lib/areas";
 
 export interface GraphNode {
   id: string;
   title: string;
-  area: AreaId;
+  area: string;
+  areaLabel: string;
+  areaColor: string;
+  /** Posición del área en el orden de presentación (desempata columnas). */
+  areaOrder: number;
   level: number;
   state: "completed" | "available" | "locked";
   hasChallenge: boolean;
@@ -49,8 +52,8 @@ function NodoArbol({ data }: NodeProps<FlowNode>) {
         prefetch={false}
         className="nodo nodrag nopan"
         data-estado={node.state}
-        style={{ "--color-area": AREAS[node.area].color } as React.CSSProperties}
-        aria-label={`${node.title}. ${AREAS[node.area].label}. ${estado}`}
+        style={{ "--color-area": node.areaColor } as React.CSSProperties}
+        aria-label={`${node.title}. ${node.areaLabel}. ${estado}`}
       >
         <span className="nodo-titulo">{node.title}</span>
         <span className="nodo-estado">{estado}</span>
@@ -81,7 +84,7 @@ function layout(nodes: GraphNode[]): { flowNodes: FlowNode[]; edges: Edge[] } {
     row.sort(
       (a, b) =>
         key.get(a.id)! - key.get(b.id)! ||
-        AREA_IDS.indexOf(a.area) - AREA_IDS.indexOf(b.area) ||
+        a.areaOrder - b.areaOrder ||
         a.title.localeCompare(b.title, "es"),
     );
     row.forEach((node, i) => {
