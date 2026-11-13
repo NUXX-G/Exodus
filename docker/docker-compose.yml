@@ -8,6 +8,7 @@
 #       ssh -L 3210:127.0.0.1:3210 usuario@vps
 #   - VPS con dominio y HTTPS automático: perfil `https` (ver docker/Caddyfile).
 #       EXODUS_DOMAIN=exodus.midominio.com ./deploy.sh
+#   - VPS con Apache o nginx propio en 80/443: EXODUS_PROXY=externo ./deploy.sh (ver README).
 # La primera visita crea la cuenta de la instancia en /configurar: hazla nada más desplegar.
 # No publiques el puerto con EXODUS_BIND=0.0.0.0: las contraseñas viajarían sin cifrar.
 
