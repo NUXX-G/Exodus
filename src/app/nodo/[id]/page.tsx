@@ -56,12 +56,17 @@ export default async function PaginaNodo({ params }: Props) {
     node.exercises.map(async (e) => ({ e, html: await renderMarkdown(e.prompt, resolve) })),
   );
   const TIER = ["", "A completar", "Problema", "Difícil"] as const;
+  // Lo que este nodo desbloquea: los nodos que lo tienen como prerequisito.
+  const siguientes = [...vault.nodes.values()]
+    .filter((n) => n.prerequisites.includes(node.id))
+    .sort((a, b) => a.trunkLevel - b.trunkLevel || a.title.localeCompare(b.title, "es"));
 
   return (
     <main className="pagina nodo-pagina">
       <div>
         <p className="migas">
-          <Link href="/">Árbol</Link> / {area.label} / nivel {node.trunkLevel}
+          <Link href="/">Árbol</Link> / <Link href="/temario">Temario</Link> /{" "}
+          <Link href={`/temario?area=${node.area}`}>{area.label}</Link> / nivel {node.trunkLevel}
         </p>
         {/* HTML generado en el servidor a partir del vault; el HTML crudo del Markdown se descarta. */}
         <article className="prosa" dangerouslySetInnerHTML={{ __html: html }} />
@@ -152,6 +157,25 @@ export default async function PaginaNodo({ params }: Props) {
             </>
           )}
         </section>
+
+        {siguientes.length > 0 && (
+          <section>
+            <h2>Abre paso a</h2>
+            <ul className="lista">
+              {siguientes.map((n) => {
+                const st = stateOf(n, completed);
+                return (
+                  <li key={n.id}>
+                    <Link href={`/nodo/${n.id}`} prefetch={false}>
+                      <span>{n.title}</span>
+                      <small>{st === "completed" ? "completado" : st === "available" ? "disponible" : "bloqueado"}</small>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        )}
 
         {attachments.length > 0 && (
           <section>

@@ -4,6 +4,7 @@
  *  - LaTeX ($…$ y $$…$$) compuesto con MathJax a SVG: sin JS ni fuentes en el cliente
  *  - Resaltado de código con Shiki (gramáticas de TextMate, cualquier lenguaje, carga perezosa)
  *  - Sintaxis de Obsidian: [[wikilinks]] / [[destino|alias]] y callouts `> [!tipo] Título`
+ *  - Un id de nodo existente escrito como código (`mat-topologia`) se convierte en enlace a ese nodo
  * El HTML crudo incrustado en el Markdown se descarta (remark-rehype sin allowDangerousHtml).
  */
 import { unified, type Processor } from "unified";
@@ -17,7 +18,7 @@ import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
 import { visit, SKIP } from "unist-util-visit";
-import type { Blockquote, Link, PhrasingContent, Root, Text } from "mdast";
+import type { Blockquote, InlineCode, Link, PhrasingContent, Root, Text } from "mdast";
 import type { Element, Root as HastRoot } from "hast";
 import type { Vault } from "./vault";
 
@@ -68,6 +69,31 @@ function remarkWikilinks(options: { resolve: () => LinkResolver }) {
       if (last < node.value.length) out.push({ type: "text", value: node.value.slice(last) });
       parent.children.splice(index, 1, ...out);
       return [SKIP, index + out.length];
+    });
+  };
+}
+
+const NODE_ID = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)+$/;
+
+/**
+ * Los nodos citan a otros por su id entre comillas invertidas («En las ramas, `mat-topologia`»). Si ese
+ * nodo ya existe, el código pasa a ser un enlace; si aún no se ha escrito, queda como texto de código.
+ */
+function remarkNodeIdLinks(options: { resolve: () => LinkResolver }) {
+  return (tree: Root) => {
+    const resolve = options.resolve();
+    visit(tree, "inlineCode", (node: InlineCode, index, parent) => {
+      if (!parent || index === undefined || parent.type === "link" || !NODE_ID.test(node.value)) return;
+      const hit = resolve(node.value);
+      if (hit?.id !== node.value) return;
+      const link: Link = {
+        type: "link",
+        url: `/nodo/${hit.id}`,
+        children: [node],
+        data: { hProperties: { className: ["wikilink"], title: hit.title } },
+      };
+      parent.children.splice(index, 1, link);
+      return SKIP;
     });
   };
 }
@@ -153,6 +179,7 @@ function getProcessor() {
     .use(remarkMath)
     .use(remarkCallouts)
     .use(remarkWikilinks, { resolve: () => currentResolver })
+    .use(remarkNodeIdLinks, { resolve: () => currentResolver })
     .use(remarkRehype)
     // Saneado ANTES de MathJax/Shiki: filtra URLs peligrosas (javascript:) y atributos no previstos
     // del Markdown, sin tocar el SVG y los estilos que generan después los plugins de confianza.
