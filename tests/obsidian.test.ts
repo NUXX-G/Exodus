@@ -21,6 +21,7 @@ function makeNode(id: string, extra: Partial<VaultNode> = {}): VaultNode {
     title: `Título de ${id}`,
     area: "matematicas",
     trunkLevel: 1,
+    kind: "teoria",
     prerequisites: [],
     academicSources: ["Autor. Libro. Editorial, 2020."],
     ctfFlag: "sha256:" + "cd".repeat(32),

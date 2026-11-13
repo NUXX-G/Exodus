@@ -1274,3 +1274,15 @@ details.callout:not([open]) > summary.callout-titulo {
   color: var(--coral);
   margin-top: 8px;
 }
+
+/* Tipo de nodo (proyecto o laboratorio) bajo las migas. */
+.tipo-nodo {
+  border-left: 3px solid var(--ambar);
+  padding: 6px 12px;
+  margin: 0 0 18px;
+  color: var(--tiza);
+  font-size: 0.9375rem;
+}
+.tipo-nodo[data-tipo="laboratorio"] {
+  border-left-color: var(--menta);
+}

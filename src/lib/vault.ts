@@ -8,6 +8,7 @@
  *   title: C y el modelo de memoria
  *   area: bajo-nivel               # un área integrada (areas.ts) o declarada en vault/_areas.md
  *   trunk_level: 1                 # profundidad en el tronco (0 = raíz)
+ *   kind: proyecto                 # opcional: teoria (por defecto), proyecto o laboratorio
  *   prerequisites: [nodo-ejemplo]  # ids de otros nodos
  *   academic_sources:              # bibliografía real
  *     - "Kernighan & Ritchie. The C Programming Language, 2ª ed."
@@ -43,6 +44,11 @@ const ATTACHMENT_NAME = /^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/;
 const MAX_ATTACHMENTS = 10;
 export const MAX_ATTACHMENT_BYTES = 20 * 1024 * 1024;
 
+/** Teoría (por defecto), proyecto grande por hitos o laboratorio práctico con adjuntos y flag. */
+export const NODE_KINDS = ["teoria", "proyecto", "laboratorio"] as const;
+export type NodeKind = (typeof NODE_KINDS)[number];
+export const KIND_LABEL: Record<NodeKind, string> = { teoria: "Teoría", proyecto: "Proyecto", laboratorio: "Laboratorio" };
+
 const frontmatterSchema = z.object({
   id: z
     .string()
@@ -52,6 +58,7 @@ const frontmatterSchema = z.object({
   trunk_level: z.number().int().min(0),
   prerequisites: z.array(z.string()).nullish().transform((v) => v ?? []),
   academic_sources: z.array(z.string()).nullish().transform((v) => v ?? []),
+  kind: z.enum(NODE_KINDS).nullish().transform((v): NodeKind => v ?? "teoria"),
   ctf_flag: z.string().min(1).nullish().transform((v) => v ?? null),
   hints: z.array(z.string().min(1)).max(3).nullish().transform((v) => v ?? []),
   exercises: z.array(exerciseSchema).max(60).nullish().transform((v) => v ?? []),
@@ -75,6 +82,8 @@ export interface VaultNode {
   title: string;
   area: AreaId;
   trunkLevel: number;
+  /** Teoría, proyecto o laboratorio (frontmatter `kind`, por defecto teoría). */
+  kind: NodeKind;
   prerequisites: string[];
   academicSources: string[];
   /** Solo servidor. Nunca serializar hacia el cliente. */
@@ -158,6 +167,7 @@ export function loadVault(): Vault {
       title: fm.data.title,
       area: fm.data.area,
       trunkLevel: fm.data.trunk_level,
+      kind: fm.data.kind,
       prerequisites: fm.data.prerequisites,
       academicSources: fm.data.academic_sources,
       ctfFlag: fm.data.ctf_flag,

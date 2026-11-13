@@ -50,7 +50,7 @@ test("las notas aparecen en la exportación a Obsidian, enlazadas desde su nodo"
   recordOpen(u, "mat-a");
   createNote(u, { title: "Qué es una derivada", body: "límite del cociente", nodeId: "mat-a" });
   createNote(u, { title: "Ideas sueltas", body: "repasar [[mat-a]]" });
-  const node: VaultNode = { id: "mat-a", title: "Cálculo", area: "matematicas", trunkLevel: 1, prerequisites: [], academicSources: [], ctfFlag: null, hints: [], exercises: [], attachments: [], file: "a.md", body: "# Cálculo\n" };
+  const node: VaultNode = { id: "mat-a", title: "Cálculo", area: "matematicas", trunkLevel: 1, kind: "teoria", prerequisites: [], academicSources: [], ctfFlag: null, hints: [], exercises: [], attachments: [], file: "a.md", body: "# Cálculo\n" };
   const vault = { nodes: new Map([["mat-a", node]]), areas: mergeAreas(undefined).areas, issues: [] } as unknown as Vault;
   const data = userExportData(u, "obs-libreta");
   const files = buildExport(vault, data);

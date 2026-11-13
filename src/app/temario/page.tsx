@@ -4,7 +4,7 @@ import { areaOf } from "@/lib/areas";
 import { requireUser } from "@/lib/auth";
 import { computeStates, getCompleted } from "@/lib/progress";
 import { estimateMinutes, formatMinutes, studyOrder } from "@/lib/study";
-import { loadVault } from "@/lib/vault";
+import { KIND_LABEL, loadVault, NODE_KINDS } from "@/lib/vault";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Temario" };
@@ -15,11 +15,11 @@ const ESTADOS = {
   locked: "Bloqueado",
 } as const;
 
-type Props = { searchParams: Promise<{ area?: string; estado?: string }> };
+type Props = { searchParams: Promise<{ area?: string; estado?: string; tipo?: string }> };
 
 export default async function Temario({ searchParams }: Props) {
   const user = await requireUser();
-  const { area, estado } = await searchParams;
+  const { area, estado, tipo } = await searchParams;
   const vault = loadVault();
   const completed = getCompleted(user.id);
   const states = computeStates(vault, completed);
@@ -27,18 +27,21 @@ export default async function Temario({ searchParams }: Props) {
   const AREA_IDS = [...vault.areas.keys()];
   const areaSel = AREA_IDS.find((a) => a === area);
   const estadoSel = (Object.keys(ESTADOS) as (keyof typeof ESTADOS)[]).find((e) => e === estado);
+  const tipoSel = NODE_KINDS.find((k) => k === tipo);
 
   const all = studyOrder(vault);
   const visibles = all.filter(
-    (n) => (!areaSel || n.area === areaSel) && (!estadoSel || states.get(n.id) === estadoSel),
+    (n) =>
+      (!areaSel || n.area === areaSel) && (!estadoSel || states.get(n.id) === estadoSel) && (!tipoSel || n.kind === tipoSel),
   );
   const niveles = [...new Set(visibles.map((n) => n.trunkLevel))].sort((a, b) => a - b);
   const totalMin = visibles.reduce((s, n) => s + estimateMinutes(n), 0);
 
-  const href = (a?: string, e?: string) => {
+  const href = (a?: string, e?: string, t: string | null = tipoSel ?? null) => {
     const q = new URLSearchParams();
     if (a) q.set("area", a);
     if (e) q.set("estado", e);
+    if (t) q.set("tipo", t);
     const s = q.toString();
     return s ? `/temario?${s}` : "/temario";
   };
@@ -82,6 +85,17 @@ export default async function Temario({ searchParams }: Props) {
             </Link>
           ))}
         </div>
+        <div>
+          <span>Tipo</span>
+          <Link href={href(areaSel, estadoSel, null)} aria-current={!tipoSel ? "true" : undefined}>
+            Todos
+          </Link>
+          {NODE_KINDS.map((k) => (
+            <Link key={k} href={href(areaSel, estadoSel, k)} aria-current={tipoSel === k ? "true" : undefined}>
+              {KIND_LABEL[k]}
+            </Link>
+          ))}
+        </div>
       </nav>
 
       {visibles.length === 0 && <p className="nota">Ningún nodo cumple ese filtro.</p>}
@@ -103,6 +117,7 @@ export default async function Temario({ searchParams }: Props) {
                       </span>
                       <span className="meta">
                         {areaOf(vault.areas, n.area).label} · {formatMinutes(estimateMinutes(n))}
+                        {n.kind !== "teoria" ? ` · ${KIND_LABEL[n.kind].toLowerCase()}` : ""}
                         {n.ctfFlag ? " · con reto" : ""}
                       </span>
                       <span className="estado" data-estado={st}>
