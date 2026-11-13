@@ -26,7 +26,7 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta con cambio de contraseña y cierre de otras sesiones, Docker, HTTPS con Caddy, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **74 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **75 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 todo el troncal de `docs/CURRICULO.md`, de 1º ESO a final de grado: matemáticas hasta análisis real, álgebra lineal avanzada y
 estadística; física hasta electromagnetismo, termodinámica estadística y circuitos con semiconductores; computación hasta sistemas
 operativos, redes y bases de datos) y **0 nodos comprimidos** anteriores (cada uno con un reto con
@@ -39,7 +39,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
    ejercicios (lo normal: 14 a 16) y 3 niveles de pistas si lleva flag.
 2. **Ramas N4 → N6 (lo siguiente)** por prerrequisitos (lista en `docs/CURRICULO.md`: topología, EDP, C++, Rust, ARM, forense y logs, PCB,
    PyTorch, Transformers, LLM locales…). Los nodos comprimidos antiguos se desdoblan en ellas. Hechos: `fis-mecanica-cuantica`, `cua-computacion-cuantica`, `rob-cinematica`, `rob-control`, `rob-microcontroladores`, `ia-aprendizaje-estadistico`, `ia-redes-profundas`, `sec-criptografia`, `sec-web`, `sec-explotacion-binaria`, `sys-ensamblador-x86-64`. **Ya no queda ningún nodo comprimido (✳️)**:
-   lo pendiente son los ⬜ de las ramas. Nuevos de las ramas ya escritos: `mat-analisis-complejo`, `mat-teoria-numeros`, `mat-optimizacion`, `mat-procesos-estocasticos`, `mat-edp`, `mat-topologia`.
+   lo pendiente son los ⬜ de las ramas. Nuevos de las ramas ya escritos: `mat-analisis-complejo`, `mat-teoria-numeros`, `mat-optimizacion`, `mat-procesos-estocasticos`, `mat-edp`, `mat-topologia`, `mat-medida-integracion`.
    (reescrito como nodo de escalera en `vault/02-fisica/`, conserva su flag). Las ramas se quedan en su carpeta (`vault/02-fisica/`, etc.).
 3. **Plataforma (MVP cerrado el 2026-11-12; invitaciones añadidas el 2026-11-13)**: el admin genera en `/cuenta` invitaciones de un
    solo uso que caducan (1, 3 o 7 días; máximo 20 pendientes; se pueden anular) y el invitado crea su cuenta `miembro` en
@@ -248,6 +248,7 @@ y construye la imagen Docker.
 | 12 | `mat-algebra-lineal-avanzada` | 16 |
 | 12 | `mat-edp` | 16 |
 | 12 | `mat-estadistica-inferencia` | 15 |
+| 12 | `mat-medida-integracion` | 16 |
 | 12 | `rob-cinematica` | 16 |
 | 12 | `rob-control` | 16 |
 | 12 | `sec-criptografia` | 16 |
@@ -339,6 +340,7 @@ sección áurea, penalización, símplex frente a enumeración de vértices, moc
 - `mat-procesos-estocasticos` (nuevo, rama de matemáticas): 16 ejercicios. Cada respuesta por dos caminos deterministas: estacionaria por fórmula y por potencias de la matriz; ruina del jugador (justa y sesgada, probabilidad y duración) por fórmula de parada opcional y por sistema lineal; Poisson por la fórmula y por diferencia de integrales de Erlang (Simpson); tiempo de retorno por $1/\pi$ y por tiempos de llegada; matriz fundamental frente a iteración; M/M/1 por fórmula y por suma de la geométrica + Little; PageRank por potencias y por sistema; extinción por raíz y por iteración; reflexión por $2\Pr(B_1>1)$ y por la densidad del primer paso; Ornstein-Uhlenbeck y Kolmogorov por fórmula y RK4; carrera de Poisson por Simpson. Bloque Python ejecutado en python:3.12-slim (simulación de Poisson con semilla fija). Fuentes verificadas: Norris (CUP 1997), Grimmett-Stirzaker 4ª ed. (OUP 2020).
 - `mat-edp` (nuevo, rama de matemáticas): 16 ejercicios. Cada respuesta por la fórmula analítica y por un método numérico independiente: transporte por característica integrada; Fourier, Parseval, núcleo del calor y energía por Simpson; d'Alembert por salto de rana; calor por esquema explícito (Dirichlet y Neumann); estabilidad por bisección en el factor de von Neumann; Poisson 1D por sistema tridiagonal; frecuencia fundamental por iteración inversa del laplaciano discreto; autovalor mixto por disparo RK4 + bisección; Laplace en el cuadrado por SOR en dos mallas + Richardson; Burgers por cruce de características en malla. Bloque Python (explícito estable e inestable, d'Alembert, SOR) ejecutado en python:3.12-slim; se corrigió un valor del ejemplo 3 (0,0431). Fuentes verificadas: Strauss 2ª ed. (Wiley 2008), Evans 2ª ed. (AMS GSM 19, 2010).
 - `mat-topologia` (nuevo, rama de matemáticas): 16 ejercicios. Dos caminos por respuesta: distancias por fórmula y por $d_p$ con $p$ grande; contraejemplo de métrica por búsqueda; componentes por grafos y por fusión de intervalos; 29 topologías por fuerza bruta y por preórdenes (Alexandrov); punto fijo de Banach por iteración y Newton; cota a priori por fórmula y búsqueda; χ del toro de 7 vértices (comprobando que cada arista está en dos caras) frente a 2 − 2g; Betti (1, 2, 1) por rangos sobre Q y sobre GF(2) con ∂∂ = 0 comprobado; Cantor por conteo de cajas; número de Lebesgue por bisección sobre un barrido; índice por argumento acumulado y por cruces con signo; estereográfica por la inversa. Bloque Python ejecutado en python:3.12-slim. Fuentes verificadas: Munkres 2ª ed. (Prentice Hall 2000), Hatcher (CUP 2002).
+- `mat-medida-integracion` (nuevo, rama de matemáticas): 16 ejercicios. Dos caminos por respuesta: Cantor y Cantor gordo por serie y por construcción explícita; simples y Fatou por sumas de Riemann; truncamientos y $I_{10} = 10/9$ por Simpson; Fubini en 2D por Simpson anidado; el contraejemplo de Fubini con la integral interior $1/(1+x^2)$ comprobada numéricamente; capas frente a integral directa; Radon-Nikodym por derivada numérica de la CDF; Borel-Cantelli por productos telescópicos; media y varianza de Cantor enumerando $2^{20}$ puntos; máquina de escribir construyendo la sucesión. En el bloque Python se corrigió la comparación de la distribución de Cantor (en el nivel $k$ la media es $(1 - 3^{-k})/2$, no $1/2$). Fuentes verificadas: Folland 2ª ed. (Wiley 1999), Tao (AMS GSM 126, 2011).
 
 ### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 
