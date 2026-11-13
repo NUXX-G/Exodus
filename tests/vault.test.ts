@@ -131,3 +131,13 @@ test("adjuntos: un enlace simbólico no se sirve aunque apunte a un archivo real
   assert.equal(readAttachment("s", "enlace.bin"), null);
   assert.ok(loadVault().issues.some((i) => /enlace\.bin no es un archivo normal/.test(i.message)));
 });
+
+test("render: un id de nodo existente escrito como código enlaza al nodo; uno futuro queda como código", async () => {
+  tempVault({ "a.md": node("mat-uno"), "b.md": node("mat-dos") });
+  const vault = loadVault();
+  const html = await renderMarkdown("Sigue con `mat-dos`, luego `mat-futuro`; y `x = 1`.", linkResolverFor(vault));
+  assert.match(html, /<a href="\/nodo\/mat-dos" class="wikilink" title="Nodo mat-dos"><code>mat-dos<\/code><\/a>/);
+  assert.match(html, /<code>mat-futuro<\/code>/);
+  assert.doesNotMatch(html, /href="\/nodo\/mat-futuro"/);
+  assert.match(html, /<code>x = 1<\/code>/);
+});
