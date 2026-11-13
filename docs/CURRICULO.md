@@ -109,7 +109,7 @@ pruebas que pasan, no en un resumen por lenguaje.
 
 - **Scripting y automatización (N3-N4)**: ✅ `prog-bash-scripting` (bash y sh POSIX: expansiones, comillas,
   redirecciones, `set -euo pipefail`, `trap`, `getopts`, funciones, portabilidad, ShellCheck, pruebas con bats) ·
-  ⬜ `prog-unix-texto` (expresiones regulares, grep, sed, awk, find, xargs, sort/uniq/join, jq, make como
+  ✅ `prog-unix-texto` (expresiones regulares, grep, sed, awk, find, xargs, sort/uniq/join, jq, make como
   automatizador) · ⬜ `prog-powershell-batch` (cmd y `.bat`, PowerShell 7: objetos en la tubería, módulos,
   errores, remoting, Pester; equivalencias con bash).
 - **C profesional (N4)**: ✅ `sys-c-fundamentos` y ✅ `sys-c-memoria` (troncal) · ⬜ `sys-c-profesional`
