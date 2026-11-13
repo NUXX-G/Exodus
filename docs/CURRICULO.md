@@ -84,7 +84,7 @@ Cada rama exige los nodos troncales que cita.
   ✅ `mat-teoria-informacion` · ✅ `mat-algebra-conmutativa-galois`.
 
 ## Física (≈ 10 nodos)
-- **N4**: ✅ `fis-mecanica-cuantica` · ⬜ `fis-relatividad-especial` · ⬜ `fis-fluidos` ·
+- **N4**: ✅ `fis-mecanica-cuantica` · ✅ `fis-relatividad-especial` · ⬜ `fis-fluidos` ·
   ⬜ `fis-mecanica-estadistica-avanzada` · ⬜ `fis-materia-condensada-1`.
 - **N5-N6**: ⬜ `fis-teoria-cuantica-campos` · ⬜ `fis-relatividad-general` ·
   ⬜ `fis-fisica-nuclear-particulas` · ⬜ `fis-astrofisica`.
