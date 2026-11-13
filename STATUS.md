@@ -26,7 +26,7 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta con cambio de contraseña y cierre de otras sesiones, Docker, HTTPS con Caddy, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **76 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **77 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 todo el troncal de `docs/CURRICULO.md`, de 1º ESO a final de grado: matemáticas hasta análisis real, álgebra lineal avanzada y
 estadística; física hasta electromagnetismo, termodinámica estadística y circuitos con semiconductores; computación hasta sistemas
 operativos, redes y bases de datos) y **0 nodos comprimidos** anteriores (cada uno con un reto con
@@ -39,7 +39,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
    ejercicios (lo normal: 14 a 16) y 3 niveles de pistas si lleva flag.
 2. **Ramas N4 → N6 (lo siguiente)** por prerrequisitos (lista en `docs/CURRICULO.md`: topología, EDP, C++, Rust, ARM, forense y logs, PCB,
    PyTorch, Transformers, LLM locales…). Los nodos comprimidos antiguos se desdoblan en ellas. Hechos: `fis-mecanica-cuantica`, `cua-computacion-cuantica`, `rob-cinematica`, `rob-control`, `rob-microcontroladores`, `ia-aprendizaje-estadistico`, `ia-redes-profundas`, `sec-criptografia`, `sec-web`, `sec-explotacion-binaria`, `sys-ensamblador-x86-64`. **Ya no queda ningún nodo comprimido (✳️)**:
-   lo pendiente son los ⬜ de las ramas. Nuevos de las ramas ya escritos: `mat-analisis-complejo`, `mat-teoria-numeros`, `mat-optimizacion`, `mat-procesos-estocasticos`, `mat-edp`, `mat-topologia`, `mat-medida-integracion`, `mat-teoria-informacion`.
+   lo pendiente son los ⬜ de las ramas. Nuevos de las ramas ya escritos: `mat-analisis-complejo`, `mat-teoria-numeros`, `mat-optimizacion`, `mat-procesos-estocasticos`, `mat-edp`, `mat-topologia`, `mat-medida-integracion`, `mat-teoria-informacion`, `mat-estadistica-matematica`.
    (reescrito como nodo de escalera en `vault/02-fisica/`, conserva su flag). Las ramas se quedan en su carpeta (`vault/02-fisica/`, etc.).
 3. **Plataforma (MVP cerrado el 2026-11-12; invitaciones añadidas el 2026-11-13)**: el admin genera en `/cuenta` invitaciones de un
    solo uso que caducan (1, 3 o 7 días; máximo 20 pendientes; se pueden anular) y el invitado crea su cuenta `miembro` en
@@ -257,6 +257,7 @@ y construye la imagen Docker.
 | 13 | `ia-aprendizaje-estadistico` | 16 |
 | 13 | `ing-circuitos` | 16 |
 | 13 | `ing-medidas-laboratorio` | 16 |
+| 13 | `mat-estadistica-matematica` | 16 |
 | 13 | `mat-optimizacion` | 16 |
 | 13 | `mat-procesos-estocasticos` | 16 |
 | 14 | `cua-computacion-cuantica` | 16 |
@@ -343,6 +344,7 @@ sección áurea, penalización, símplex frente a enumeración de vértices, moc
 - `mat-topologia` (nuevo, rama de matemáticas): 16 ejercicios. Dos caminos por respuesta: distancias por fórmula y por $d_p$ con $p$ grande; contraejemplo de métrica por búsqueda; componentes por grafos y por fusión de intervalos; 29 topologías por fuerza bruta y por preórdenes (Alexandrov); punto fijo de Banach por iteración y Newton; cota a priori por fórmula y búsqueda; χ del toro de 7 vértices (comprobando que cada arista está en dos caras) frente a 2 − 2g; Betti (1, 2, 1) por rangos sobre Q y sobre GF(2) con ∂∂ = 0 comprobado; Cantor por conteo de cajas; número de Lebesgue por bisección sobre un barrido; índice por argumento acumulado y por cruces con signo; estereográfica por la inversa. Bloque Python ejecutado en python:3.12-slim. Fuentes verificadas: Munkres 2ª ed. (Prentice Hall 2000), Hatcher (CUP 2002).
 - `mat-medida-integracion` (nuevo, rama de matemáticas): 16 ejercicios. Dos caminos por respuesta: Cantor y Cantor gordo por serie y por construcción explícita; simples y Fatou por sumas de Riemann; truncamientos y $I_{10} = 10/9$ por Simpson; Fubini en 2D por Simpson anidado; el contraejemplo de Fubini con la integral interior $1/(1+x^2)$ comprobada numéricamente; capas frente a integral directa; Radon-Nikodym por derivada numérica de la CDF; Borel-Cantelli por productos telescópicos; media y varianza de Cantor enumerando $2^{20}$ puntos; máquina de escribir construyendo la sucesión. En el bloque Python se corrigió la comparación de la distribución de Cantor (en el nivel $k$ la media es $(1 - 3^{-k})/2$, no $1/2$). Fuentes verificadas: Folland 2ª ed. (Wiley 1999), Tao (AMS GSM 126, 2011).
 - `mat-teoria-informacion` (nuevo, rama de matemáticas): 16 ejercicios. Dos caminos por respuesta: entropía diádica frente a Huffman; $H(0{,}1)$ frente a $\frac1n\log_2\binom{n}{n/10}$; Huffman por profundidades y por suma de fusiones; regla de la cadena; KL como cruzada − entropía; información mutua desde la conjunta; capacidades BEC/Z por maximización numérica (malla, sección áurea) y canal simétrico por Blahut-Arimoto; Kraft por construcción voraz; entropía diferencial por Simpson; Hamming (7,4) decodificando los 128 patrones; codificación aritmética subdividiendo el intervalo; Fano por bisección y Newton. Se corrigió en el texto la comparación de Hamming con la transmisión sin código (unas 20 veces menos error, no 5). Fuentes verificadas: Cover-Thomas 2ª ed. (Wiley 2006), MacKay (CUP 2003).
+- `mat-estadistica-matematica` (nuevo, rama de matemáticas): 16 ejercicios. Dos caminos por respuesta: Fisher por $E[s^2]$; Cramér-Rao frente a la varianza exacta de la media; EMV por sección áurea; método delta frente a la varianza exacta Gamma; potencia de Neyman-Pearson integrando bajo $H_1$; $-2\log\Lambda$ por log-verosimilitudes; UMVUE de $e^{-\lambda}$ comprobando su insesgadez con la ley de $T$; posterior Beta por rejilla; remuestras bootstrap enumerando $5^5$; uniforme por malla; ECM del máximo integrando su densidad; James-Stein con $E[1/\chi^2_{10}]$ por Simpson; Wilson invirtiendo el test por bisección; K-S en malla fina. Cuantiles normales por bisección sobre Φ (Simpson) y contrastados con sus valores tabulados. Bloque Python (simulaciones con semilla fija) ejecutado en python:3.12-slim. Fuentes verificadas: Casella-Berger 2ª ed. (Duxbury 2002), Wasserman (Springer 2004).
 
 ### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 
