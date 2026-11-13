@@ -26,7 +26,7 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta con cambio de contraseña y cierre de otras sesiones, Docker, HTTPS con Caddy, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **71 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **72 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 todo el troncal de `docs/CURRICULO.md`, de 1º ESO a final de grado: matemáticas hasta análisis real, álgebra lineal avanzada y
 estadística; física hasta electromagnetismo, termodinámica estadística y circuitos con semiconductores; computación hasta sistemas
 operativos, redes y bases de datos) y **0 nodos comprimidos** anteriores (cada uno con un reto con
@@ -39,7 +39,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
    ejercicios (lo normal: 14 a 16) y 3 niveles de pistas si lleva flag.
 2. **Ramas N4 → N6 (lo siguiente)** por prerrequisitos (lista en `docs/CURRICULO.md`: topología, EDP, C++, Rust, ARM, forense y logs, PCB,
    PyTorch, Transformers, LLM locales…). Los nodos comprimidos antiguos se desdoblan en ellas. Hechos: `fis-mecanica-cuantica`, `cua-computacion-cuantica`, `rob-cinematica`, `rob-control`, `rob-microcontroladores`, `ia-aprendizaje-estadistico`, `ia-redes-profundas`, `sec-criptografia`, `sec-web`, `sec-explotacion-binaria`, `sys-ensamblador-x86-64`. **Ya no queda ningún nodo comprimido (✳️)**:
-   lo pendiente son los ⬜ de las ramas. Nuevos de las ramas ya escritos: `mat-analisis-complejo`, `mat-teoria-numeros`, `mat-optimizacion`.
+   lo pendiente son los ⬜ de las ramas. Nuevos de las ramas ya escritos: `mat-analisis-complejo`, `mat-teoria-numeros`, `mat-optimizacion`, `mat-procesos-estocasticos`.
    (reescrito como nodo de escalera en `vault/02-fisica/`, conserva su flag). Las ramas se quedan en su carpeta (`vault/02-fisica/`, etc.).
 3. **Plataforma (MVP cerrado el 2026-11-12)**: `/cuenta` permite cambiar la contraseña (pide la actual; al cambiarla se cierran las
    demás sesiones) y cerrar las demás sesiones; probado en navegador con dos contextos. La lógica de sesiones está en
@@ -240,6 +240,7 @@ y construye la imagen Docker.
 | 13 | `ing-circuitos` | 16 |
 | 13 | `ing-medidas-laboratorio` | 16 |
 | 13 | `mat-optimizacion` | 16 |
+| 13 | `mat-procesos-estocasticos` | 16 |
 | 14 | `cua-computacion-cuantica` | 16 |
 | 14 | `ia-redes-profundas` | 16 |
 | 14 | `rob-microcontroladores` | 16 |
@@ -319,13 +320,12 @@ gcc:14 (main con ASan/UBSan y con -O2, salidas idénticas) frente a una emulaci�
 continuas de Pell frente a búsquedas exhaustivas; el bloque Python (criba, Miller-Rabin determinista, TCR, Pell D = 61) se ejecuta en Docker.
 `mat-optimizacion` (rama, nuevo): soluciones analíticas (primer orden, KKT, dualidad, tasas) frente a gradiente, Newton, gradiente conjugado,
 sección áurea, penalización, símplex frente a enumeración de vértices, mochila por DP frente a 2^n y llenado de agua por bisección frente a rejilla.
+- `mat-procesos-estocasticos` (nuevo, rama de matemáticas): 16 ejercicios. Cada respuesta por dos caminos deterministas: estacionaria por fórmula y por potencias de la matriz; ruina del jugador (justa y sesgada, probabilidad y duración) por fórmula de parada opcional y por sistema lineal; Poisson por la fórmula y por diferencia de integrales de Erlang (Simpson); tiempo de retorno por $1/\pi$ y por tiempos de llegada; matriz fundamental frente a iteración; M/M/1 por fórmula y por suma de la geométrica + Little; PageRank por potencias y por sistema; extinción por raíz y por iteración; reflexión por $2\Pr(B_1>1)$ y por la densidad del primer paso; Ornstein-Uhlenbeck y Kolmogorov por fórmula y RK4; carrera de Poisson por Simpson. Bloque Python ejecutado en python:3.12-slim (simulación de Poisson con semilla fija). Fuentes verificadas: Norris (CUP 1997), Grimmett-Stirzaker 4ª ed. (OUP 2020).
 
 ### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 
 | Profundidad | Nodo |
 |:---:|---|
-
-## 9. Convenciones
 
 - Commits en español, prefijos `feat` / `fix` / `chore` / `docs` / `content` / `test` / `ci`, con la
   línea `Co-Authored-By` que indique la sesión. Ramas por unidad de trabajo y PR con CI en verde; no se
