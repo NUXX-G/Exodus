@@ -107,7 +107,7 @@ Objetivo explícito: nivel **profesional** (de programador intermedio a sénior)
 con scripting y automatización. Por eso los lenguajes se desdoblan en varios nodos con código que compila y
 pruebas que pasan, no en un resumen por lenguaje.
 
-- **Scripting y automatización (N3-N4)**: ⬜ `prog-bash-scripting` (bash y sh POSIX: expansiones, comillas,
+- **Scripting y automatización (N3-N4)**: ✅ `prog-bash-scripting` (bash y sh POSIX: expansiones, comillas,
   redirecciones, `set -euo pipefail`, `trap`, `getopts`, funciones, portabilidad, ShellCheck, pruebas con bats) ·
   ⬜ `prog-unix-texto` (expresiones regulares, grep, sed, awk, find, xargs, sort/uniq/join, jq, make como
   automatizador) · ⬜ `prog-powershell-batch` (cmd y `.bat`, PowerShell 7: objetos en la tubería, módulos,
