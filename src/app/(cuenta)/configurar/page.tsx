@@ -15,8 +15,8 @@ export default function Configurar() {
     <main className="pagina cuenta">
       <h1>Crea la cuenta de esta instancia</h1>
       <p>
-        Exodus es de un solo estudiante: esta será la única cuenta. Después de crearla, esta página deja de estar
-        disponible.
+        Esta será la cuenta principal de la instancia. Después de crearla, esta página deja de estar disponible; para
+        dar acceso a otras personas, genera invitaciones desde tu cuenta.
       </p>
       <p>
         El código de configuración está en el registro del servidor: en la terminal de <code>npm run dev</code>, o con{" "}

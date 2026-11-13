@@ -41,7 +41,11 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
    PyTorch, Transformers, LLM locales…). Los nodos comprimidos antiguos se desdoblan en ellas. Hechos: `fis-mecanica-cuantica`, `cua-computacion-cuantica`, `rob-cinematica`, `rob-control`, `rob-microcontroladores`, `ia-aprendizaje-estadistico`, `ia-redes-profundas`, `sec-criptografia`, `sec-web`, `sec-explotacion-binaria`, `sys-ensamblador-x86-64`. **Ya no queda ningún nodo comprimido (✳️)**:
    lo pendiente son los ⬜ de las ramas. Nuevos de las ramas ya escritos: `mat-analisis-complejo`, `mat-teoria-numeros`, `mat-optimizacion`, `mat-procesos-estocasticos`.
    (reescrito como nodo de escalera en `vault/02-fisica/`, conserva su flag). Las ramas se quedan en su carpeta (`vault/02-fisica/`, etc.).
-3. **Plataforma (MVP cerrado el 2026-11-12)**: `/cuenta` permite cambiar la contraseña (pide la actual; al cambiarla se cierran las
+3. **Plataforma (MVP cerrado el 2026-11-12; invitaciones añadidas el 2026-11-13)**: el admin genera en `/cuenta` invitaciones de un
+   solo uso que caducan (1, 3 o 7 días; máximo 20 pendientes; se pueden anular) y el invitado crea su cuenta `miembro` en
+   `/registro` (enlace con `?codigo=`). No hay registro abierto; los miembros no invitan. La base solo guarda el SHA-256 del código;
+   la migración 0003 añade `users.role` y marca `admin` a las cuentas existentes. Probado en navegador con contextos aislados
+   (registro, reuso rechazado, miembro sin sección de invitaciones, anular). `/cuenta` permite cambiar la contraseña (pide la actual; al cambiarla se cierran las
    demás sesiones) y cerrar las demás sesiones; probado en navegador con dos contextos. La lógica de sesiones está en
    `src/lib/sessions.ts` (sin dependencias de Next) y tiene tests, igual que `progress.ts` (`tests/sessions.test.ts`,
    `tests/progress.test.ts`): `npm test` usa `--conditions=react-server` para que `server-only` resuelva a su versión vacía, y
@@ -161,7 +165,9 @@ y construye la imagen Docker.
   `src/lib/markdown.ts` (GFM, LaTeX con MathJax en servidor, Shiki, wikilinks, callouts, saneado).
 - Lógica de estudio `src/lib/study.ts` (siguiente nodo, tiempo estimado, búsqueda), progreso
   `src/lib/progress.ts`, ejercicios y repaso `src/lib/exercises.ts` (módulo puro con tests).
-- Auth: una cuenta, scrypt, sesiones por cookie HttpOnly, limitador de intentos.
+- Auth: cuenta `admin` (creada en /configurar con el código del registro del servidor) y cuentas `miembro` solo por
+  invitación (`src/lib/invitations.ts`, tests en `tests/invitations.test.ts`); scrypt, sesiones por cookie HttpOnly,
+  limitador de intentos.
 - Docker (`deploy.bat` / `deploy.sh`, puerto 3210), perfil `https` con Caddy, CI en GitHub Actions.
 
 ## 7. Contenido
