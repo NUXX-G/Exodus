@@ -81,6 +81,31 @@ Hay dos formas de acceder a un VPS:
   además Caddy, que obtiene el certificado de Let's Encrypt. Requiere que el dominio apunte al VPS
   y los puertos 80 y 443 abiertos.
 
+### Actualizar una instalación
+
+```bash
+cp database/exodus.db database/exodus.db.bak   # copia de seguridad (Windows: copy database\exodus.db database\exodus.db.bak)
+git pull
+./deploy.sh                                     # Windows: deploy.bat
+```
+
+Las migraciones de la base de datos se aplican solas al arrancar; el progreso y las cuentas se conservan.
+Si solo cambia el contenido del vault, basta `git pull` (sin reconstruir).
+
+### Dar acceso a otras personas
+
+Cada cuenta tiene su propio progreso. Para que alguien entre desde fuera hace falta que la web sea
+alcanzable por HTTPS; nunca publiques el puerto 3210 directamente:
+
+- **VPS con dominio**: `EXODUS_DOMAIN=exodus.midominio.com ./deploy.sh` (Caddy + Let's Encrypt).
+- **Tu PC, sin dominio, solo para quien tú elijas**: [Tailscale](https://tailscale.com/). Instálalo, ejecuta
+  `tailscale serve --bg 3210` (la web queda en `https://<tu-equipo>.<tu-tailnet>.ts.net`, solo dentro de tu
+  red de Tailscale) y comparte el equipo con tu amigo desde el panel de Tailscale (*Share*). Él instala
+  Tailscale con su cuenta y abre esa dirección.
+
+Después, entra en `/cuenta` **por esa misma dirección** y genera la invitación: el enlace usa la dirección
+por la que la estás viendo.
+
 El vault se monta en solo lectura; para publicar contenido nuevo basta `git pull` en el host.
 La base de datos vive en `database/exodus.db`: copiar ese archivo es la copia de seguridad.
 
