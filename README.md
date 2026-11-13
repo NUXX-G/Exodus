@@ -54,6 +54,13 @@ Para dar acceso a otras personas (cada una con su progreso), la cuenta principal
 **invitación** de un solo uso que caduca (1, 3 o 7 días) y la comparte como código o enlace; el invitado
 crea su cuenta en `/registro`. No hay registro abierto y las cuentas invitadas no pueden invitar.
 
+### Libreta
+
+`/libreta` es un cuaderno de apuntes por usuario (Markdown, LaTeX y `[[enlaces]]` a nodos). Cada nota puede
+asociarse a un nodo; desde la página de un nodo se apunta algo sin salir de ella. Las notas se exportan a la
+carpeta `Exodus/Libreta` de la bóveda de Obsidian de su dueño (nunca a la de otro usuario) y quedan enlazadas
+desde la nota del nodo.
+
 ### Tu progreso en Obsidian
 
 En `/cuenta → Obsidian` cada usuario descarga **su** progreso como bóveda de Obsidian (o solo el plugin para

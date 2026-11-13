@@ -86,6 +86,26 @@ export const apiTokens = sqliteTable(
   (t) => [index("api_tokens_user_idx").on(t.userId)],
 );
 
+/**
+ * Libreta: notas en Markdown de cada usuario, opcionalmente asociadas a un nodo (`node_id` es texto libre,
+ * como en el progreso: si el nodo cambia o desaparece, la nota se conserva). Se exportan a Obsidian.
+ */
+export const notes = sqliteTable(
+  "notes",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    userId: integer("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    title: text("title").notNull(),
+    body: text("body").notNull().default(""),
+    nodeId: text("node_id"),
+    createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(now),
+    updatedAt: integer("updated_at", { mode: "timestamp" }).notNull().default(now),
+  },
+  (t) => [index("notes_user_idx").on(t.userId, t.updatedAt), index("notes_node_idx").on(t.userId, t.nodeId)],
+);
+
 /** Estado de cada nodo por usuario. La ausencia de fila significa "nunca abierto". */
 export const nodeProgress = sqliteTable(
   "node_progress",
@@ -229,5 +249,6 @@ export const reviews = sqliteTable(
 
 export type User = typeof users.$inferSelect;
 export type Invitation = typeof invitations.$inferSelect;
+export type Note = typeof notes.$inferSelect;
 export type NodeProgress = typeof nodeProgress.$inferSelect;
 export type ActivityKind = (typeof activityLog.$inferInsert)["kind"];

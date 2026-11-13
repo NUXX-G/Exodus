@@ -9,7 +9,7 @@ import { getDb, schema } from "./db";
 import { dayKey, getActivity } from "./progress";
 import type { UserExportData } from "./obsidian-export";
 
-const { users, apiTokens, nodeProgress, exerciseSolved, reviews, hintReveals, activityLog } = schema;
+const { users, apiTokens, nodeProgress, exerciseSolved, reviews, hintReveals, activityLog, notes } = schema;
 
 /** Tokens a la vez como máximo por cuenta (cada dispositivo con Obsidian usa uno). */
 export const MAX_TOKENS = 10;
@@ -102,5 +102,11 @@ export function userExportData(userId: number, username: string): UserExportData
       .where(eq(activityLog.userId, userId))
       .all(),
     streak: getActivity(userId, 1).streak,
+    notes: db
+      .select({ id: notes.id, title: notes.title, body: notes.body, nodeId: notes.nodeId, createdAt: notes.createdAt, updatedAt: notes.updatedAt })
+      .from(notes)
+      .where(eq(notes.userId, userId))
+      .orderBy(desc(notes.updatedAt))
+      .all(),
   };
 }

@@ -1225,3 +1225,52 @@ details.callout:not([open]) > summary.callout-titulo {
 .plano .nodo {
   pointer-events: auto;
 }
+
+/* ───────── Libreta ───────── */
+.nota-form textarea,
+.nota-form select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: var(--radio);
+  background: var(--tinta-honda);
+  color: var(--tiza);
+  font-family: var(--fuente-codigo), monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.nota-form input {
+  margin-bottom: 12px;
+}
+
+.nueva-nota,
+.editar-nota {
+  margin: 12px 0 20px;
+}
+
+.nueva-nota summary,
+.editar-nota summary {
+  cursor: pointer;
+  color: var(--ambar);
+  margin-bottom: 10px;
+}
+
+.libreta .notas-lista {
+  margin-top: 16px;
+}
+
+.nota-pagina {
+  max-width: 52rem;
+}
+
+.nota-pagina h1 {
+  margin: 0.5rem 0 1rem;
+}
+
+.enlace-boton.peligro {
+  color: var(--coral);
+  margin-top: 8px;
+}

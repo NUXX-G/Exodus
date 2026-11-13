@@ -26,6 +26,20 @@ export interface UserExportData {
   /** Actividad por día: tipo de evento y nodo. */
   activity: { day: string; kind: string; nodeId: string | null }[];
   streak: number;
+  /** Notas de la libreta del usuario (opcional para compatibilidad con exportaciones sin libreta). */
+  notes?: { id: number; title: string; body: string; nodeId: string | null; createdAt: Date; updatedAt: Date }[];
+}
+
+/** Nombre de archivo de una nota de la libreta: `<id>-<título en minúsculas sin acentos>`. */
+export function noteFileName(id: number, title: string): string {
+  const slug = title
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 50);
+  return `${id}-${slug || "nota"}`;
 }
 
 export interface ExportFile {
@@ -117,6 +131,10 @@ export function buildExport(vault: Vault, data: UserExportData, root = ""): Expo
         body += `\n### ${i + 1}. \`${e.id}\` (${TIER[e.tier]})\n\n${e.prompt.trim()}\n\n*${estadoEj}*\n`;
       });
     }
+    const mias = (data.notes ?? []).filter((x) => x.nodeId === n.id);
+    if (mias.length > 0) {
+      body += `\n## Tus notas de la libreta\n\n${mias.map((x) => `- [[${noteFileName(x.id, x.title)}|${x.title.replace(/[|\]]/g, " ")}]]`).join("\n")}\n`;
+    }
     if (n.academicSources.length > 0) {
       body += `\n## Bibliografía\n\n${n.academicSources.map((s) => `- ${s}`).join("\n")}\n`;
     }
@@ -172,8 +190,32 @@ export function buildExport(vault: Vault, data: UserExportData, root = ""): Expo
     : "Ninguno: estás al día.\n";
   panel += `\n## En curso\n\n`;
   panel += enCurso.length ? enCurso.map((n) => `- ${link(n)}`).join("\n") + "\n" : "Nada a medias.\n";
-  panel += `\nVer también: [[Temario]] y la carpeta \`Registro\`.\n`;
+  panel += `\nVer también: [[Temario]], [[Libreta]] y la carpeta \`Registro\`.\n`;
   files.push({ path: `${pre}Panel.md`, content: note({ tags: ["exodus"] }, panel) });
+
+  /* ── Libreta: una nota por cada apunte del usuario ── */
+  const libreta = data.notes ?? [];
+  for (const x of libreta) {
+    const nodo = x.nodeId ? vault.nodes.get(x.nodeId) : undefined;
+    const cabecera = nodo ? `> [!note] Nodo: ${link(nodo)}\n\n` : "";
+    files.push({
+      path: `${pre}Libreta/${noteFileName(x.id, x.title)}.md`,
+      content: note(
+        {
+          exodus_nota: x.id,
+          ...(x.nodeId ? { nodo: x.nodeId } : {}),
+          creada: day(x.createdAt),
+          actualizada: day(x.updatedAt),
+          tags: ["exodus", "exodus/libreta"],
+        },
+        `# ${x.title}\n\n${cabecera}${x.body.trim()}\n`,
+      ),
+    });
+  }
+  if (libreta.length > 0) {
+    const indice = `# Libreta\n\n${libreta.map((x) => `- [[${noteFileName(x.id, x.title)}|${x.title.replace(/[|\]]/g, " ")}]] · ${day(x.updatedAt)}`).join("\n")}\n`;
+    files.push({ path: `${pre}Libreta.md`, content: note({ tags: ["exodus", "exodus/libreta"] }, indice) });
+  }
 
   /* ── Registro: un archivo por mes, una sección por día ── */
   type Dia = { abiertos: Set<string>; resueltos: string[]; flags: Set<string>; repasos: number; pistas: number };
