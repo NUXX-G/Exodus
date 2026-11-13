@@ -26,7 +26,7 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta con cambio de contraseña y cierre de otras sesiones, Docker, HTTPS con Caddy, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **78 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **79 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 todo el troncal de `docs/CURRICULO.md`, de 1º ESO a final de grado: matemáticas hasta análisis real, álgebra lineal avanzada y
 estadística; física hasta electromagnetismo, termodinámica estadística y circuitos con semiconductores; computación hasta sistemas
 operativos, redes y bases de datos) y **0 nodos comprimidos** anteriores (cada uno con un reto con
@@ -39,7 +39,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
    ejercicios (lo normal: 14 a 16) y 3 niveles de pistas si lleva flag.
 2. **Ramas N4 → N6 (lo siguiente)** por prerrequisitos (lista en `docs/CURRICULO.md`: topología, EDP, C++, Rust, ARM, forense y logs, PCB,
    PyTorch, Transformers, LLM locales…). Los nodos comprimidos antiguos se desdoblan en ellas. Hechos: `fis-mecanica-cuantica`, `cua-computacion-cuantica`, `rob-cinematica`, `rob-control`, `rob-microcontroladores`, `ia-aprendizaje-estadistico`, `ia-redes-profundas`, `sec-criptografia`, `sec-web`, `sec-explotacion-binaria`, `sys-ensamblador-x86-64`. **Ya no queda ningún nodo comprimido (✳️)**:
-   lo pendiente son los ⬜ de las ramas. Nuevos de las ramas ya escritos: `mat-analisis-complejo`, `mat-teoria-numeros`, `mat-optimizacion`, `mat-procesos-estocasticos`, `mat-edp`, `mat-topologia`, `mat-medida-integracion`, `mat-teoria-informacion`, `mat-estadistica-matematica`, `mat-analisis-funcional`.
+   lo pendiente son los ⬜ de las ramas. Nuevos de las ramas ya escritos: `mat-analisis-complejo`, `mat-teoria-numeros`, `mat-optimizacion`, `mat-procesos-estocasticos`, `mat-edp`, `mat-topologia`, `mat-medida-integracion`, `mat-teoria-informacion`, `mat-estadistica-matematica`, `mat-analisis-funcional`, `mat-geometria-diferencial`.
    (reescrito como nodo de escalera en `vault/02-fisica/`, conserva su flag). Las ramas se quedan en su carpeta (`vault/02-fisica/`, etc.).
 3. **Plataforma (MVP cerrado el 2026-11-12; invitaciones añadidas el 2026-11-13)**: el admin genera en `/cuenta` invitaciones de un
    solo uso que caducan (1, 3 o 7 días; máximo 20 pendientes; se pueden anular) y el invitado crea su cuenta `miembro` en
@@ -259,6 +259,7 @@ y construye la imagen Docker.
 | 13 | `ing-medidas-laboratorio` | 16 |
 | 13 | `mat-analisis-funcional` | 16 |
 | 13 | `mat-estadistica-matematica` | 16 |
+| 13 | `mat-geometria-diferencial` | 16 |
 | 13 | `mat-optimizacion` | 16 |
 | 13 | `mat-procesos-estocasticos` | 16 |
 | 14 | `cua-computacion-cuantica` | 16 |
@@ -347,6 +348,7 @@ sección áurea, penalización, símplex frente a enumeración de vértices, moc
 - `mat-teoria-informacion` (nuevo, rama de matemáticas): 16 ejercicios. Dos caminos por respuesta: entropía diádica frente a Huffman; $H(0{,}1)$ frente a $\frac1n\log_2\binom{n}{n/10}$; Huffman por profundidades y por suma de fusiones; regla de la cadena; KL como cruzada − entropía; información mutua desde la conjunta; capacidades BEC/Z por maximización numérica (malla, sección áurea) y canal simétrico por Blahut-Arimoto; Kraft por construcción voraz; entropía diferencial por Simpson; Hamming (7,4) decodificando los 128 patrones; codificación aritmética subdividiendo el intervalo; Fano por bisección y Newton. Se corrigió en el texto la comparación de Hamming con la transmisión sin código (unas 20 veces menos error, no 5). Fuentes verificadas: Cover-Thomas 2ª ed. (Wiley 2006), MacKay (CUP 2003).
 - `mat-estadistica-matematica` (nuevo, rama de matemáticas): 16 ejercicios. Dos caminos por respuesta: Fisher por $E[s^2]$; Cramér-Rao frente a la varianza exacta de la media; EMV por sección áurea; método delta frente a la varianza exacta Gamma; potencia de Neyman-Pearson integrando bajo $H_1$; $-2\log\Lambda$ por log-verosimilitudes; UMVUE de $e^{-\lambda}$ comprobando su insesgadez con la ley de $T$; posterior Beta por rejilla; remuestras bootstrap enumerando $5^5$; uniforme por malla; ECM del máximo integrando su densidad; James-Stein con $E[1/\chi^2_{10}]$ por Simpson; Wilson invirtiendo el test por bisección; K-S en malla fina. Cuantiles normales por bisección sobre Φ (Simpson) y contrastados con sus valores tabulados. Bloque Python (simulaciones con semilla fija) ejecutado en python:3.12-slim. Fuentes verificadas: Casella-Berger 2ª ed. (Duxbury 2002), Wasserman (Springer 2004).
 - `mat-analisis-funcional` (nuevo, rama de matemáticas): 16 ejercicios. Dos caminos por respuesta: normas de sucesiones por sumas parciales; norma euclídea por potencias sobre AᵀA; normas inducidas en los vértices de las bolas unidad; proyección y error por la matriz de Gram con Simpson; Gram-Schmidt numérico; Parseval por el coeficiente calculado; ecuación integral por Picard; Riesz por discretización; Volterra (2/π) y núcleo min (4/π²) por discretización y potencias; Poincaré por el autovalor discreto exacto; constante de Lebesgue $L_5$ por integración y por la fórmula con tangentes; norma H¹ con la derivada débil. Bloque Python ejecutado en python:3.12-slim. Fuentes verificadas: Kreyszig (Wiley 1978), Brezis (Springer 2011).
+- `mat-geometria-diferencial` (nuevo, rama de matemáticas): 16 ejercicios. Dos caminos por respuesta: curvatura, longitud, curvatura y torsión con derivadas numéricas y Simpson; curvaturas de esfera, toro y cilindro con las formas fundamentales calculadas numéricamente; Gauss-Bonnet integrando $K\,dA$ en el toro; área del toro por $\sqrt{EG - F^2}$ numérico (3 decimales para evitar redondeo ambiguo); Christoffel por la fórmula con derivadas numéricas de la métrica; holonomía integrando la ecuación de transporte con RK4; corchete de Lie con jacobianos numéricos; Stokes por integral de línea; Poincaré por la fórmula conforme con diferencias finitas. Bloque Python (geodésica de la esfera con RK4) ejecutado en python:3.12-slim. Fuentes verificadas: do Carmo (Prentice-Hall 1976), Lee 2ª ed. (Springer GTM 218, 2012).
 
 ### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 
