@@ -1,0 +1,54 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { DeleteNoteButton, NoteForm } from "@/components/NoteForms";
+import { getSessionUser, requireUser } from "@/lib/auth";
+import { linkResolverFor, renderMarkdown } from "@/lib/markdown";
+import { getNote } from "@/lib/notes";
+import { studyOrder } from "@/lib/study";
+import { loadVault } from "@/lib/vault";
+
+export const dynamic = "force-dynamic";
+
+type Props = { params: Promise<{ id: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const user = await getSessionUser();
+  if (!user) return {};
+  const note = getNote(user.id, Number((await params).id));
+  return { title: note ? note.title : "Nota no encontrada" };
+}
+
+export default async function Nota({ params }: Props) {
+  const user = await requireUser();
+  const id = Number((await params).id);
+  const note = Number.isInteger(id) ? getNote(user.id, id) : null;
+  if (!note) notFound();
+  const vault = loadVault();
+  const nodo = note.nodeId ? vault.nodes.get(note.nodeId) : undefined;
+  const html = await renderMarkdown(note.body || "_Nota vacía._", linkResolverFor(vault));
+  const nodos = studyOrder(vault).map((n) => ({ id: n.id, title: n.title }));
+
+  return (
+    <main className="pagina nota-pagina">
+      <p className="migas">
+        <Link href="/libreta">Libreta</Link>
+        {nodo && (
+          <>
+            {" "}
+            · nodo <Link href={`/nodo/${nodo.id}`}>{nodo.title}</Link>
+          </>
+        )}
+      </p>
+      <h1>{note.title}</h1>
+      {/* HTML generado en el servidor por el mismo motor que los nodos: el HTML crudo se descarta y se sanea. */}
+      <article className="prosa" dangerouslySetInnerHTML={{ __html: html }} />
+
+      <details className="editar-nota">
+        <summary>Editar</summary>
+        <NoteForm note={note} nodes={nodos} />
+        <DeleteNoteButton id={note.id} />
+      </details>
+    </main>
+  );
+}

@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import ExerciseForm from "@/components/ExerciseForm";
 import FlagForm from "@/components/FlagForm";
+import { NoteForm } from "@/components/NoteForms";
+import { listNotes } from "@/lib/notes";
 import { areaOf } from "@/lib/areas";
 import { getSessionUser, requireUser } from "@/lib/auth";
 import { linkResolverFor, renderMarkdown } from "@/lib/markdown";
@@ -56,6 +58,7 @@ export default async function PaginaNodo({ params }: Props) {
     node.exercises.map(async (e) => ({ e, html: await renderMarkdown(e.prompt, resolve) })),
   );
   const TIER = ["", "A completar", "Problema", "Difícil"] as const;
+  const misNotas = listNotes(user.id, node.id);
   // Lo que este nodo desbloquea: los nodos que lo tienen como prerequisito.
   const siguientes = [...vault.nodes.values()]
     .filter((n) => n.prerequisites.includes(node.id))
@@ -176,6 +179,26 @@ export default async function PaginaNodo({ params }: Props) {
             </ul>
           </section>
         )}
+
+        <section>
+          <h2>Tus notas</h2>
+          {misNotas.length > 0 && (
+            <ul className="lista">
+              {misNotas.map((n) => (
+                <li key={n.id}>
+                  <Link href={`/libreta/${n.id}`} prefetch={false}>
+                    <span>{n.title}</span>
+                    <small>{n.updatedAt.toLocaleDateString("es-ES", { day: "numeric", month: "short" })}</small>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+          <details className="nueva-nota">
+            <summary>Apuntar algo de este nodo</summary>
+            <NoteForm fixedNode={node.id} compact />
+          </details>
+        </section>
 
         {attachments.length > 0 && (
           <section>

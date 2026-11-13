@@ -165,6 +165,10 @@ y construye la imagen Docker.
   `src/lib/markdown.ts` (GFM, LaTeX con MathJax en servidor, Shiki, wikilinks, callouts, saneado).
 - Lógica de estudio `src/lib/study.ts` (siguiente nodo, tiempo estimado, búsqueda), progreso
   `src/lib/progress.ts`, ejercicios y repaso `src/lib/exercises.ts` (módulo puro con tests).
+- Libreta por usuario (2026-11-14): tabla `notes` (migración 0005), `src/lib/notes.ts` (CRUD siempre filtrado por usuario,
+  límites de longitud y número), páginas `/libreta` y `/libreta/[id]` (render con el mismo motor saneado que los nodos), apunte
+  rápido desde cada nodo, exportación a Obsidian en `Libreta/<id>-<slug>.md` con índice y enlaces desde el nodo. Tests en
+  `tests/notes.test.ts`; probado en build de producción (LaTeX, wikilinks, `<script>` descartado, sync con token).
 - Obsidian por usuario (2026-11-13): `src/lib/obsidian-export.ts` (exportación pura), `obsidian.ts` (datos y tokens
   `api_tokens`, migración 0004), `obsidian-plugin.ts` (plugin *Exodus Sync* en JS plano, servido por la instancia),
   `zip.ts` (ZIP sin dependencias, validado con `zipfile` de Python), rutas `/api/obsidian/sync` (Bearer) y
