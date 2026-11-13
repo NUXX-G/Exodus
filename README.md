@@ -81,12 +81,40 @@ Hay dos formas de acceder a un VPS:
   además Caddy, que obtiene el certificado de Let's Encrypt. Requiere que el dominio apunte al VPS
   y los puertos 80 y 443 abiertos.
 
+### Detrás de tu propio Apache o nginx
+
+Exodus escucha solo en `127.0.0.1:3210`; tu servidor web pone el HTTPS (por ejemplo con certbot) y le pasa
+las peticiones. Las dos cabeceras importan: `X-Forwarded-Proto` marca la cookie de sesión como solo-HTTPS y
+`X-Forwarded-For` (que Apache y nginx añaden) permite al limitador de intentos distinguir a cada visitante.
+
+Apache (`sudo a2enmod proxy proxy_http headers`), dentro del `<VirtualHost *:443>` del subdominio:
+
+```apache
+ProxyPreserveHost On
+RequestHeader set X-Forwarded-Proto "https"
+ProxyPass / http://127.0.0.1:3210/
+ProxyPassReverse / http://127.0.0.1:3210/
+```
+
+nginx, dentro del `server { listen 443 ssl; ... }`:
+
+```nginx
+location / {
+    proxy_pass http://127.0.0.1:3210;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-Proto https;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+}
+```
+
+Y despliega siempre con `EXODUS_PROXY=externo ./deploy.sh`.
+
 ### Actualizar una instalación
 
 ```bash
 cp database/exodus.db database/exodus.db.bak   # copia de seguridad (Windows: copy database\exodus.db database\exodus.db.bak)
 git pull
-./deploy.sh                                     # Windows: deploy.bat
+./deploy.sh                                     # Windows: deploy.bat; con Apache/nginx: EXODUS_PROXY=externo ./deploy.sh
 ```
 
 Las migraciones de la base de datos se aplican solas al arrancar; el progreso y las cuentas se conservan.
@@ -98,6 +126,8 @@ Cada cuenta tiene su propio progreso. Para que alguien entre desde fuera hace fa
 alcanzable por HTTPS; nunca publiques el puerto 3210 directamente:
 
 - **VPS con dominio**: `EXODUS_DOMAIN=exodus.midominio.com ./deploy.sh` (Caddy + Let's Encrypt).
+- **VPS que ya tiene Apache o nginx** (otras webs en los puertos 80/443): no uses Caddy. Despliega con
+  `EXODUS_PROXY=externo ./deploy.sh` y publica Exodus desde tu servidor web (ver «Detrás de tu propio Apache o nginx»).
 - **Tu PC, sin dominio, solo para quien tú elijas**: [Tailscale](https://tailscale.com/). Instálalo, ejecuta
   `tailscale serve --bg 3210` (la web queda en `https://<tu-equipo>.<tu-tailnet>.ts.net`, solo dentro de tu
   red de Tailscale) y comparte el equipo con tu amigo desde el panel de Tailscale (*Share*). Él instala
@@ -113,6 +143,7 @@ La base de datos vive en `database/exodus.db`: copiar ese archivo es la copia de
 | --- | --- | --- |
 | `EXODUS_PORT` | `3210` | Puerto local publicado |
 | `EXODUS_DOMAIN` | (vacío) | Activa el perfil `https` con Caddy |
+| `EXODUS_PROXY` | (vacío) | `externo`: hay un Apache/nginx propio delante; no arranca Caddy y confía en su `X-Forwarded-For` |
 | `TZ` | `Europe/Madrid` | Zona horaria del heatmap y la racha |
 
 ## Formato de un nodo

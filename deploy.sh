@@ -1,7 +1,8 @@
 #!/usr/bin/env sh
 # Despliegue de Exodus en una línea:
 #   ./deploy.sh                                        local o VPS por túnel SSH
-#   EXODUS_DOMAIN=exodus.midominio.com ./deploy.sh     VPS con dominio y HTTPS automático
+#   EXODUS_DOMAIN=exodus.midominio.com ./deploy.sh     VPS con dominio y HTTPS automático (Caddy)
+#   EXODUS_PROXY=externo ./deploy.sh                   VPS con Apache/nginx propio delante (sin Caddy)
 set -eu
 
 cd "$(dirname "$0")"
@@ -19,7 +20,20 @@ export EXODUS_UID EXODUS_GID
 PORT="${EXODUS_PORT:-3210}"
 COMPOSE="docker compose -f docker/docker-compose.yml"
 
-if [ -n "${EXODUS_DOMAIN:-}" ]; then
+if [ "${EXODUS_PROXY:-}" = "externo" ]; then
+  # El HTTPS lo pone el servidor web que ya tienes (Apache, nginx) con proxy a 127.0.0.1:$PORT.
+  # Se confía en su X-Forwarded-For para distinguir a cada visitante en el limitador de intentos.
+  EXODUS_TRUST_PROXY=1
+  export EXODUS_TRUST_PROXY
+  URL="http://127.0.0.1:$PORT"
+  echo "Modo proxy externo: Exodus escucha en 127.0.0.1:$PORT y tu servidor web lo publica por HTTPS."
+elif [ -n "${EXODUS_DOMAIN:-}" ]; then
+  # Caddy necesita los puertos 80 y 443 libres: si otro servidor web los usa, usa EXODUS_PROXY=externo.
+  if command -v ss >/dev/null 2>&1 && ss -ltnH 2>/dev/null | awk '{print $4}' | grep -Eq '[:.](80|443)$'     && ! docker ps --format '{{.Names}}' | grep -q '^exodus-caddy'; then
+    echo "Los puertos 80/443 ya están en uso (¿Apache o nginx?). Caddy no puede arrancar." >&2
+    echo "Si ese servidor ya hace de proxy hacia Exodus, despliega con: EXODUS_PROXY=externo ./deploy.sh" >&2
+    exit 1
+  fi
   EXODUS_TRUST_PROXY=1
   export EXODUS_DOMAIN EXODUS_TRUST_PROXY
   COMPOSE="$COMPOSE --profile https"
