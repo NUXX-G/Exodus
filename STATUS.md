@@ -26,7 +26,7 @@ primero, luego `CLAUDE.md`, `docs/PEDAGOGIA.md` y `docs/CURRICULO.md`. Con eso p
 
 Plataforma funcional (árbol, panel, temario, búsqueda, flags, pistas, **ejercicios autocorregidos con dominio del 80 % y
 repaso espaciado**, heatmap, cuenta con cambio de contraseña y cierre de otras sesiones, Docker, HTTPS con Caddy, CI), probada de extremo a extremo en navegador contra la imagen Docker.
-Contenido: **101 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
+Contenido: **102 nodos de la escalera del troncal** (8 a 17 ejercicios cada uno, verificados por doble método; cubren
 todo el troncal de `docs/CURRICULO.md`, de 1º ESO a final de grado: matemáticas hasta análisis real, álgebra lineal avanzada y
 estadística; física hasta electromagnetismo, termodinámica estadística y circuitos con semiconductores; computación hasta sistemas
 operativos, redes y bases de datos) y **0 nodos comprimidos** anteriores (cada uno con un reto con
@@ -39,7 +39,7 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
    ejercicios (lo normal: 14 a 16) y 3 niveles de pistas si lleva flag.
 2. **Ramas N4 → N6 (lo siguiente)** por prerrequisitos (lista en `docs/CURRICULO.md`: topología, EDP, C++, Rust, ARM, forense y logs, PCB,
    PyTorch, Transformers, LLM locales…). Los nodos comprimidos antiguos se desdoblan en ellas. Hechos: `fis-mecanica-cuantica`, `cua-computacion-cuantica`, `rob-cinematica`, `rob-control`, `rob-microcontroladores`, `ia-aprendizaje-estadistico`, `ia-redes-profundas`, `sec-criptografia`, `sec-web`, `sec-explotacion-binaria`, `sys-ensamblador-x86-64`. **Ya no queda ningún nodo comprimido (✳️)**:
-   lo pendiente son los ⬜ de las ramas. Nuevos de las ramas ya escritos: `mat-analisis-complejo`, `mat-teoria-numeros`, `mat-optimizacion`, `mat-procesos-estocasticos`, `mat-edp`, `mat-topologia`, `mat-medida-integracion`, `mat-teoria-informacion`, `mat-estadistica-matematica`, `mat-analisis-funcional`, `mat-geometria-diferencial`, `mat-algebra-conmutativa-galois`, `fis-relatividad-especial`, `fis-fluidos`, `fis-mecanica-estadistica-avanzada`, `fis-materia-condensada-1`, `fis-relatividad-general`, `fis-fisica-nuclear-particulas`, `fis-astrofisica`, `fis-teoria-cuantica-campos`, `ing-electronica-analogica`, `ing-diseno-digital-hdl`, `ing-pcb-diseno`, `ing-electronica-potencia`, `ing-comunicaciones`, `ing-procesado-digital-senal`, `ing-microelectronica-vlsi`, `ing-rf-microondas`, `ing-integridad-senal`, `ing-diseno-asic`, `rob-sensores-actuadores`, `rob-dinamica`, `rob-ros2`.
+   lo pendiente son los ⬜ de las ramas. Nuevos de las ramas ya escritos: `mat-analisis-complejo`, `mat-teoria-numeros`, `mat-optimizacion`, `mat-procesos-estocasticos`, `mat-edp`, `mat-topologia`, `mat-medida-integracion`, `mat-teoria-informacion`, `mat-estadistica-matematica`, `mat-analisis-funcional`, `mat-geometria-diferencial`, `mat-algebra-conmutativa-galois`, `fis-relatividad-especial`, `fis-fluidos`, `fis-mecanica-estadistica-avanzada`, `fis-materia-condensada-1`, `fis-relatividad-general`, `fis-fisica-nuclear-particulas`, `fis-astrofisica`, `fis-teoria-cuantica-campos`, `ing-electronica-analogica`, `ing-diseno-digital-hdl`, `ing-pcb-diseno`, `ing-electronica-potencia`, `ing-comunicaciones`, `ing-procesado-digital-senal`, `ing-microelectronica-vlsi`, `ing-rf-microondas`, `ing-integridad-senal`, `ing-diseno-asic`, `rob-sensores-actuadores`, `rob-dinamica`, `rob-ros2`, `rob-percepcion-slam`.
    (reescrito como nodo de escalera en `vault/02-fisica/`, conserva su flag). Las ramas se quedan en su carpeta (`vault/02-fisica/`, etc.).
 3. **Plataforma (MVP cerrado el 2026-11-12; invitaciones añadidas el 2026-11-13)**: el admin genera en `/cuenta` invitaciones de un
    solo uso que caducan (1, 3 o 7 días; máximo 20 pendientes; se pueden anular) y el invitado crea su cuenta `miembro` en
@@ -291,6 +291,7 @@ y construye la imagen Docker.
 | 16 | `ing-rf-microondas` | 16 |
 | 16 | `rob-ros2` | 16 |
 | 17 | `ing-integridad-senal` | 16 |
+| 17 | `rob-percepcion-slam` | 16 |
 
 Notas de verificación: los nodos de programación se validaron ejecutando Python 3.12 real en Docker; `prog-terminal-linux-git` en un
 contenedor Debian con git; `sec-fundamentos` con hashes/HMAC/TOTP calculados en Python y Node (TOTP contrastado con el vector del
@@ -397,6 +398,7 @@ Diseño de ASIC (N5-6): flujo RTL→GDSII de celdas estándar, síntesis y Liber
 Sensores y actuadores (N4): encoders en cuadratura y Gray, velocidad por métodos M y T, IMU (sesgo, ARW, Allan), filtro complementario y Kalman estacionario, ultrasonidos, LiDAR/ToF, galgas en puente, motor de CC (curva par-velocidad, rendimiento), BLDC/FOC, paso a paso, servos, puente H y rizado, reductoras e inercia reflejada, par de pico y eficaz. 16 ejercicios verificados con señales de encoder simuladas, ODE del motor, filtros simulados, Riccati iterada y barridos; Python comprobado en Docker.
 Dinámica de robots (N4): inercias y Steiner, inercia reflejada, Lagrange para brazos (M, C, g del brazo de dos eslabones), propiedades estructurales, Newton–Euler recursivo, dinámica directa, identificación por mínimos cuadrados, PD con compensación de gravedad, par calculado y espacio operacional. 16 ejercicios verificados con Lagrange frente a RNEA, Lagrange numérico, polarización de la energía, simulación RK4 y Cramer frente a Gauss; Python comprobado en Docker (incluye conservación de energía).
 ROS 2 (N4): grafo de nodos, topics/servicios/acciones/parámetros, CDR, rmw (DDS/RTPS, Zenoh nivel 1 desde Kilted), dominios y puertos, QoS y compatibilidad, ejecutores y grupos de callbacks, ciclo de vida, tiempo simulado, tf2 y cuaterniones, REP 103/105, colcon/launch/rosbag2, ros2_control, Nav2, MoveIt 2, distribuciones (Jazzy LTS, Kilted, Lyrical LTS de mayo de 2026). 16 ejercicios verificados con colas y temporizadores simulados, serializador, enumeración de QoS, SLERP y matrices; Python comprobado en Docker y el nodo rclpy y la incompatibilidad de QoS probados en ros:jazzy-ros-core.
+Percepción y SLAM (N5-6): filtro de Bayes, Kalman/EKF/UKF, Mahalanobis, filtros de partículas y remuestreo sistemático, rejillas de ocupación en log-odds, pinhole y distorsión, estéreo y su incertidumbre, geometría epipolar, RANSAC, ICP de forma cerrada, grafos de poses y cierres de bucle. 16 ejercicios verificados con matrices homogéneas, Bayes directo, Cholesky, búsqueda binaria, triangulación por rayos, jacobiano numérico, Gauss-Newton frente a rejilla y búsqueda ternaria; Python comprobado en Docker.
 
 ### Nodos troncales comprimidos anteriores (cada uno con un reto con flag)
 
