@@ -71,6 +71,18 @@ test("checkFlag acepta hash o texto en claro, ignora espacios y rechaza lo demá
   assert.equal(checkFlag({ ...base, ctfFlag: null }, ""), false);
 });
 
+test("finales de línea CRLF: los avisos y el frontmatter se leen igual que con LF", async () => {
+  tempVault({ "crlf.md": node("crlf").replace("Cuerpo de crlf.", "> [!info] Escenario\nTexto del aviso.").split("\n").join("\r\n") });
+  const { nodes, issues } = loadVault();
+  assert.equal(issues.length, 0);
+  assert.equal(nodes.get("crlf")!.body.includes("\r"), false);
+  const html = await renderMarkdown(nodes.get("crlf")!.body, linkResolverFor(loadVault()));
+  assert.match(html, /<aside class="callout callout-info">/);
+  assert.match(html, /<p class="callout-titulo">Escenario<\/p>/);
+  // El renderizador también tolera \r\n por sí solo.
+  assert.match(await renderMarkdown("> [!tip] Consejo\r\n> Texto.", () => null), /callout-tip/);
+});
+
 test("render: LaTeX, código, wikilinks, callouts y descarte de HTML peligroso", async () => {
   tempVault({ "uno.md": node("uno"), "dos.md": node("dos") });
   const vault = loadVault();

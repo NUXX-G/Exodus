@@ -98,7 +98,7 @@ function remarkNodeIdLinks(options: { resolve: () => LinkResolver }) {
   };
 }
 
-const CALLOUT = /^\[!([a-zA-Z-]+)\]([+-]?)[ \t]*(.*)(?:\n|$)/;
+const CALLOUT = /^\[!([a-zA-Z-]+)\]([+-]?)[ \t]*(.*?)\r?(?:\n|$)/;
 
 function remarkCallouts() {
   return (tree: Root) => {
