@@ -127,7 +127,7 @@ pruebas que pasan, no en un resumen por lenguaje.
   macros declarativas y procedurales) · ✅ `prog-rust-profesional` (diseño de API, errores con thiserror/anyhow,
   pruebas y propiedades, criterion, tracing, serde, servicios con axum, workspaces, CI, clippy, semver).
 - **Sistemas (N4)**: ✅ `sys-ensamblador-x86-64` · ✅ `sys-ensamblador-arm` · ✅ `sys-compiladores` ·
-  ✅ `sys-concurrencia` · ⬜ `sys-kernel-linux` · ⬜ `sys-sistemas-distribuidos`.
+  ✅ `sys-concurrencia` · ✅ `sys-kernel-linux` · ⬜ `sys-sistemas-distribuidos`.
 - **N5-N6**: ⬜ `sys-verificacion-formal` · ⬜ `sys-optimizacion-rendimiento` · ⬜ `sys-lenguajes-programacion`.
 
 ## Ciberseguridad (≈ 14 nodos; CyBOK)
