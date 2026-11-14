@@ -112,7 +112,7 @@ pruebas que pasan, no en un resumen por lenguaje.
   ✅ `prog-unix-texto` (expresiones regulares, grep, sed, awk, find, xargs, sort/uniq/join, jq, make como
   automatizador) · ✅ `prog-powershell-batch` (cmd y `.bat`, PowerShell 7: objetos en la tubería, módulos,
   errores, remoting, Pester; equivalencias con bash).
-- **C profesional (N4)**: ✅ `sys-c-fundamentos` y ✅ `sys-c-memoria` (troncal) · ⬜ `sys-c-profesional`
+- **C profesional (N4)**: ✅ `sys-c-fundamentos` y ✅ `sys-c-memoria` (troncal) · ✅ `sys-c-profesional`
   (C17/C23, comportamiento indefinido a fondo, diseño de API y de errores, Make/CMake, sanitizadores, Valgrind,
   gdb, pruebas, análisis estático, portabilidad y ABI).
 - **C++ (N4-N5)**: ✅ `prog-cpp-moderno` (semántica de valor, RAII, movimiento, punteros inteligentes, STL y
