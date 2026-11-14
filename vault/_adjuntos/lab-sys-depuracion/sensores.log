@@ -1,0 +1,33 @@
+[1] ALTA temp-norte-1
+[2] ALTA temp-sur-2
+[3] ALTA hum-norte-1
+[4] ALTA hum-sur-2
+[5] ALTA co2-nave-a
+[6] ALTA co2-nave-b
+[7] ALTA luz-este
+[8] ALTA luz-oeste
+[9] ALTA suelo-bancal-1
+[10] ALTA suelo-bancal-2
+[11] ALTA temp-nave-c
+[12] ALTA hum-nave-c
+[240] BAJA luz-oeste
+[241] ALTA luz-oeste-2
+[410] AVISO alta rechazada temp-norte-1
+[412] AVISO sensor desconocido luz-oeste
+[500] AVISO sensor desconocido luz-oeste
+[520] AVISO línea inválida
+[567] AVISO sensor desconocido luz-oeste
+[601] AVISO sensor desconocido luz-oeste
+[689] AVISO sensor desconocido luz-oeste
+[700] BAJA suelo-bancal-2
+[702] ALTA suelo-bancal-3
+[899] AVISO sensor desconocido suelo-bancal-2
+[905] BAJA co2-nave-b
+[908] AVISO sensor desconocido luz-oeste
+[1069] AVISO sensor desconocido co2-nave-b
+[1074] AVISO sensor desconocido co2-nave-b
+[1106] AVISO sensor desconocido suelo-bancal-2
+[1165] AVISO sensor desconocido co2-nave-b
+[1180] ALTA invernadero-sur-temp
+[1185] AVISO sensor desconocido suelo-bancal-2
+[1186] AVISO sensor desconocido luz-oeste
