@@ -3,6 +3,7 @@
  * y que cada nodo se renderiza sin errores de LaTeX, wikilinks rotos ni LaTeX sin procesar.
  */
 import { linkResolverFor, renderMarkdown } from "../src/lib/markdown";
+import { loadRecursos } from "../src/lib/recursos";
 import { loadVault, vaultRoot } from "../src/lib/vault";
 
 async function main() {
@@ -29,10 +30,20 @@ async function main() {
     if (node.ctfFlag && node.hints.length !== 3) problems.push(`${node.file}: un nodo con reto necesita exactamente 3 pistas`);
   }
 
+  // Páginas de recursos (vault/_recursos): área existente, Markdown que se renderiza y solo enlaces https.
+  const recursos = loadRecursos();
+  problems.push(...recursos.problemas);
+  for (const p of recursos.paginas) {
+    if (!vault.areas.has(p.area)) problems.push(`${p.archivo}: área desconocida "${p.area}"`);
+    const html = await renderMarkdown(p.cuerpo, resolve);
+    for (const m of html.matchAll(/wikilink-rota[^>]*>([^<]*)/g)) problems.push(`${p.archivo}: wikilink roto: [[${m[1]}]]`);
+    for (const m of p.cuerpo.matchAll(/\]\((?!https:\/\/)([^)]*)\)/g)) problems.push(`${p.archivo}: enlace no https: ${m[1]}`);
+  }
+
   const withExercises = [...vault.nodes.values()].filter((n) => n.exercises.length > 0).length;
   const withChallenge = [...vault.nodes.values()].filter((n) => n.ctfFlag).length;
   console.log(`Vault: ${vaultRoot()}`);
-  console.log(`Nodos válidos: ${vault.nodes.size} (${withChallenge} con reto, ${withExercises} con ejercicios)`);
+  console.log(`Nodos válidos: ${vault.nodes.size} (${withChallenge} con reto, ${withExercises} con ejercicios); páginas de recursos: ${recursos.paginas.length}`);
   for (const p of problems) console.error(`  ✗ ${p}`);
   process.exit(problems.length ? 1 : 0);
 }

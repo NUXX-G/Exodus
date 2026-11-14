@@ -9,6 +9,7 @@ import { areaOf } from "@/lib/areas";
 import { getSessionUser, requireUser } from "@/lib/auth";
 import { linkResolverFor, renderMarkdown } from "@/lib/markdown";
 import { getCompleted, getRevealedLevels, getSolvedExercises, masteryOf, recordOpen, stateOf } from "@/lib/progress";
+import { loadRecursos } from "@/lib/recursos";
 import { attachmentInfo, KIND_LABEL, loadVault } from "@/lib/vault";
 import { revealHintAction } from "./actions";
 
@@ -70,6 +71,12 @@ export default async function PaginaNodo({ params }: Props) {
         <p className="migas">
           <Link href="/">Árbol</Link> / <Link href="/temario">Temario</Link> /{" "}
           <Link href={`/temario?area=${node.area}`}>{area.label}</Link> / nivel {node.trunkLevel}
+          {loadRecursos().paginas.some((p) => p.area === node.area) && (
+            <>
+              {" · "}
+              <Link href={`/recursos/${node.area}`}>recursos de la rama</Link>
+            </>
+          )}
         </p>
         {node.kind !== "teoria" && (
           <p className="tipo-nodo" data-tipo={node.kind}>
