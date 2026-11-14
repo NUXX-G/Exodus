@@ -139,7 +139,9 @@ export function loadVault(): Vault {
     const file = path.relative(root, full).split(path.sep).join("/");
     let parsed: matter.GrayMatterFile<string>;
     try {
-      parsed = matter(fs.readFileSync(full, "utf8"));
+      // Normaliza CRLF a LF: en Windows, Git puede entregar los .md con finales \r\n, y el análisis de Markdown
+      // (avisos, tablas, bloques) espera \n.
+      parsed = matter(fs.readFileSync(full, "utf8").replace(/\r\n?/g, "\n"));
     } catch (e) {
       issues.push({ file, message: `YAML inválido: ${(e as Error).message}` });
       continue;
