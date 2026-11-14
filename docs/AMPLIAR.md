@@ -96,3 +96,22 @@ EXODUS_PROXY=externo ./deploy.sh      # o ./deploy.sh, o EXODUS_DOMAIN=... ./dep
 
 Las migraciones de la base de datos se aplican solas al arrancar. Antes de una actualización grande, la copia
 `database/exodus.db.bak` permite volver atrás (`git checkout <commit anterior>` y restaurar el archivo).
+
+## Recursos recomendados por rama
+
+Cada rama puede tener una página de recursos (canales, cursos, libros y herramientas) en `vault/_recursos/<área>.md`.
+Es una nota normal de Obsidian **sin `id`** (el cargador de nodos la ignora) con este frontmatter:
+
+```yaml
+---
+recursos: matematicas        # id del área; debe existir
+title: Recursos de matemáticas
+resumen: Una línea para la tarjeta del índice.
+revisado: 2026-11-14          # fecha de la última comprobación de los enlaces
+---
+```
+
+El cuerpo es Markdown (con `[[wikilinks]]` a nodos). Se muestra en `/recursos` y `/recursos/<área>`, y cada nodo
+enlaza a la página de su rama. `npm run vault:check` comprueba el área, los wikilinks y que todos los enlaces sean
+`https`. Cada recomendación debe comprobarse antes de publicarla: que el canal o el curso existe (abrir el enlace),
+su idioma, su autor y de qué trata, contrastado en más de una fuente; y al revisar, actualizar `revisado`.

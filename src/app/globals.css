@@ -1286,3 +1286,126 @@ details.callout:not([open]) > summary.callout-titulo {
 .tipo-nodo[data-tipo="laboratorio"] {
   border-left-color: var(--menta);
 }
+
+/* Recursos recomendados por rama. */
+.recursos-indice {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.recursos-indice a {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--trazo);
+  border-left: 3px solid var(--color-area, var(--trazo));
+  text-decoration: none;
+}
+
+.recursos-indice a:hover .titulo {
+  color: var(--ambar);
+}
+
+.recursos-indice .meta {
+  color: var(--tiza-tenue);
+  font-size: 0.875rem;
+}
+
+.recursos-titulo {
+  border-left: 4px solid var(--color-area, var(--trazo));
+  padding-left: 12px;
+}
+
+.recursos-pagina .prosa li {
+  margin-bottom: 0.45em;
+}
+
+.recursos-pagina .prosa,
+.recursos-pagina > .nota {
+  max-width: 80ch;
+}
+
+/* Cabecera en pantallas estrechas: la marca arriba y la navegación en una fila que se desliza en horizontal,
+   sin que la página entera se desborde. */
+@media (max-width: 900px) {
+  .cabecera {
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: 8px;
+  }
+
+  .cabecera nav {
+    width: 100%;
+    gap: 18px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    padding: 4px 0 6px;
+    -webkit-mask-image: linear-gradient(to right, #000 88%, transparent);
+    mask-image: linear-gradient(to right, #000 88%, transparent);
+  }
+
+  .cabecera nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cabecera nav > * {
+    flex: none;
+    white-space: nowrap;
+  }
+
+  .cabecera nav a {
+    padding: 6px 0;
+  }
+}
+
+/* Pantallas estrechas: una fórmula en línea o un fragmento de código largo se desplazan dentro de su caja en lugar
+   de ensanchar la página. */
+@media (max-width: 600px) {
+  .prosa :not(pre) > code {
+    overflow-wrap: anywhere;
+  }
+
+  .prosa mjx-container:not([display="true"]) {
+    display: inline-block;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    vertical-align: middle;
+  }
+
+  .prosa mjx-container[display="true"] {
+    max-width: 100%;
+    min-width: 0 !important;
+  }
+}
+
+/* Las listas de ejercicios y repasos son rejillas: sin una columna minmax(0, 1fr), un bloque de código ancho dentro de
+   un enunciado impedía que la tarjeta se estrechara y desbordaba la página en el móvil. */
+.ejercicios-lista,
+.repasos {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (max-width: 720px) {
+  .prosa table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Dentro de una tabla, que ya se desliza en horizontal, el código no se parte. */
+  .prosa td code,
+  .prosa th code {
+    overflow-wrap: normal;
+    white-space: nowrap;
+  }
+}
