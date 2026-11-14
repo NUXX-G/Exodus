@@ -175,7 +175,7 @@ SAM (*Segment Anything*) segmenta a partir de indicaciones (un punto, una caja) 
 ## 6. Transformers de visión
 
 **ViT** (Dosovitskiy et al., 2021) corta la imagen en parches (16 × 16), proyecta cada uno a un vector (una convolución con núcleo y paso iguales al parche), añade una codificación de posición y un *token*
-de clase, y aplica un transformer estándar (`ia-transformers-llm`). Sin el sesgo inductivo de la convolución necesita más datos o más aumentos, pero escala muy bien; Swin introduce ventanas locales y
+de clase, y aplica un transformer estándar ([[ia-transformers-llm]]). Sin el sesgo inductivo de la convolución necesita más datos o más aumentos, pero escala muy bien; Swin introduce ventanas locales y
 jerarquía para tareas densas. La atención cuesta O(n²) en el número de parches, así que la resolución se paga cara.
 
 ## 7. Comprobar con un programa
@@ -266,4 +266,4 @@ a mano: [1, 3, 2]  torchvision: [1, 3, 2]
 
 ## Siguiente
 
-`ia-nlp` y `ia-transformers-llm`; para practicar, `lab-ia-fuga-de-datos`.
+`ia-nlp` y [[ia-transformers-llm]]; para practicar, `lab-ia-fuga-de-datos`.

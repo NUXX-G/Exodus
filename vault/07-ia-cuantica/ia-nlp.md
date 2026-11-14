@@ -105,7 +105,7 @@ exercises:
 
 El lenguaje es el dato más abundante y más difícil: ambiguo, dependiente del contexto, con vocabulario abierto y en miles de idiomas y alfabetos. El procesamiento del lenguaje natural (PLN) lo convierte
 en números con los que se puede calcular, y ha pasado por tres épocas: reglas, estadística (n-gramas, modelos lineales) y redes neuronales, que culminan en los transformers y los grandes modelos de lenguaje
-de `ia-transformers-llm`. Este nodo recorre los fundamentos que siguen debajo de todo eso: cómo se trocea y normaliza el texto, qué es un modelo de lenguaje y cómo se mide, cómo se representan palabras y
+de [[ia-transformers-llm]]. Este nodo recorre los fundamentos que siguen debajo de todo eso: cómo se trocea y normaliza el texto, qué es un modelo de lenguaje y cómo se mide, cómo se representan palabras y
 documentos, y cómo se evalúan los sistemas. Usa la entropía de [[mat-teoria-informacion]] y las herramientas de [[ia-pytorch]].
 
 ## Objetivos
@@ -280,4 +280,4 @@ gato → pato: 1  sábado → sabado: 1
 
 ## Siguiente
 
-`ia-transformers-llm` (la arquitectura que sustituyó a las recurrentes) y `ia-llm-locales`.
+[[ia-transformers-llm]] (la arquitectura que sustituyó a las recurrentes) y `ia-llm-locales`.
