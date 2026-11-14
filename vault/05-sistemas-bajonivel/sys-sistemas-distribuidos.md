@@ -213,7 +213,7 @@ El **consenso** (que varios nodos acuerden un valor y, con él, un registro repl
 
 - **FLP** (Fischer, Lynch y Paterson, 1985): en un sistema **asíncrono** con un solo fallo de caída posible, **ningún** algoritmo determinista garantiza terminar siempre. Los algoritmos reales mantienen la
   seguridad siempre y usan temporizadores (sincronía parcial) para avanzar.
-- **Mayorías**: con `N = 2f + 1` nodos se toleran `f` caídas, porque dos mayorías siempre comparten un nodo que recuerda lo decidido. Con 5 nodos, 2 caídas.
+- **Mayorías**: con `N = 2f + 1` nodos se toleran `f` caídas, porque dos mayorías siempre comparten un nodo que recuerda lo decidido. Con 7 nodos, 3 caídas; con 4, solo 1 (un nodo par no añade tolerancia).
 - **Paxos** (Lamport): fase 1 (*prepare/promise*: un proponente obtiene de una mayoría la promesa de no aceptar propuestas con número menor, y averigua el valor ya aceptado con número mayor) y fase 2
   (*accept*: propone ese valor, o el suyo si no había ninguno). Multi-Paxos fija un líder estable y se salta la fase 1. Correcto y difícil de implementar entero.
 - **Raft** (Ongaro y Ousterhout, 2014), diseñado para entenderse:
@@ -226,7 +226,7 @@ El **consenso** (que varios nodos acuerden un valor y, con él, un registro repl
   - **Compromiso**: una entrada está comprometida cuando el líder la tiene replicada en una mayoría **y es de su término actual**; las anteriores se comprometen con ella. Contar réplicas de entradas de
     términos anteriores puede perder datos (figura 8 del artículo).
   - En producción: etcd (Kubernetes), Consul, CockroachDB, TiKV, Kafka (KRaft).
-- **Bizantino**: con nodos que mienten hacen falta `N ≥ 3f + 1` (7 para tolerar 2) y quórums de `2f + 1`, para que dos quórums compartan al menos `f + 1` nodos, uno de ellos honrado. PBFT (Castro y Liskov,
+- **Bizantino**: con nodos que mienten hacen falta `N ≥ 3f + 1` (4 para tolerar 1, 10 para tolerar 3) y quórums de `2f + 1`, para que dos quórums compartan al menos `f + 1` nodos, uno de ellos honrado. PBFT (Castro y Liskov,
   1999) y sus sucesores (HotStuff, Tendermint) se usan en cadenas de bloques con permisos.
 
 > [!example] Ejemplo resuelto 2: la regla de compromiso de Raft

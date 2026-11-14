@@ -185,20 +185,20 @@ acceder a un objeto y difícil revocar todo lo de un sujeto; con capacidades, al
 ## 3. Permisos de Unix con precisión
 
 Cada proceso tiene identidades: **real** (quién lo lanzó), **efectiva** (la que se usa para comprobar permisos), **guardada** (para poder volver a ella) y, en Linux, la del sistema de archivos. Cada archivo
-tiene propietario, grupo y 12 bits de modo: `rwx` para propietario, grupo y otros, más **setuid** (4000), **setgid** (2000) y **sticky** (1000). `-rwsr-x---` es 4750.
+tiene propietario, grupo y 12 bits de modo: `rwx` para propietario, grupo y otros, más **setuid** (4000), **setgid** (2000) y **sticky** (1000). `-rwxr-sr-x` es 2755.
 
 **Comprobación de acceso** (path_resolution(7)): si el uid efectivo es 0, casi todo se permite; si no, se elige **una sola clase**: si el proceso es el propietario, solo cuentan los bits del propietario; si
-no, y pertenece al grupo, solo los del grupo; si no, los de otros. Por eso un archivo 0604 de bob:devs **no** lo puede leer alice si está en devs, aunque cualquier desconocido sí: la clase de grupo,
+no, y pertenece al grupo, solo los del grupo; si no, los de otros. Por eso un archivo 0705 de bob:staff **no** lo puede leer carol si está en staff, aunque cualquier desconocido sí: la clase de grupo,
 que no tiene `r`, la excluye. Para llegar al archivo hace falta además `x` en cada directorio del camino.
 
-- **Directorios**: `r` lista, `w` crea y borra entradas, `x` atraviesa. Borrar un archivo es modificar el **directorio**: alice puede borrar un archivo 0000 de bob si está en un directorio suyo con `w` y `x`.
+- **Directorios**: `r` lista, `w` crea y borra entradas, `x` atraviesa. Borrar un archivo es modificar el **directorio**: carol puede borrar un archivo 0444 de root si está en un directorio suyo con `w` y `x`.
 - **Sticky** en un directorio (`/tmp`, 1777): solo el propietario del archivo, el del directorio o root pueden borrar o renombrar.
-- **umask**: se quita de los permisos que pide `open`/`mkdir`. Con 027, un archivo pedido con 0666 queda 0640 y un directorio 0777 queda 0750.
-- **ACL POSIX** (acl(5)): entradas para usuarios y grupos concretos; las entradas de usuario con nombre, de grupo y de grupo con nombre se limitan con la **máscara**. Con `user:alice:rwx` y `mask::r--`,
-  alice tiene solo `r--` (`getfacl` lo muestra como `#effective:r--`). `chmod g=…` sobre un archivo con ACL cambia la máscara, no el grupo.
+- **umask**: se quita de los permisos que pide `open`/`mkdir`. Con 077, un archivo pedido con 0666 queda 0600 y un directorio 0777 queda 0700.
+- **ACL POSIX** (acl(5)): entradas para usuarios y grupos concretos; las entradas de usuario con nombre, de grupo y de grupo con nombre se limitan con la **máscara**. Con `user:carol:rwx` y `mask::-wx`,
+  carol tiene solo `-wx` (`getfacl` lo muestra como `#effective:-wx`). `chmod g=…` sobre un archivo con ACL cambia la máscara, no el grupo.
 
 **setuid**: al ejecutar un programa con el bit setuid, `execve` pone el uid efectivo y el guardado al propietario; el real sigue siendo el de quien lo lanzó. Un programa setuid de root ejecutado por
-uid 1000 tiene (1000, 0, 0). Es la forma clásica de dar a un usuario una operación privilegiada concreta (`passwd`, `ping` en sistemas antiguos), y una fuente histórica de escaladas: todo lo que el
+el uid 1005 tiene (real, efectivo, guardado) = (1005, 0, 0). Es la forma clásica de dar a un usuario una operación privilegiada concreta (`passwd`, `ping` en sistemas antiguos), y una fuente histórica de escaladas: todo lo que el
 programa lee del usuario (argumentos, variables de entorno, archivos, señales) es entrada hostil. El cargador dinámico entra en **modo de ejecución segura** (`AT_SECURE`) e ignora `LD_PRELOAD` y
 `LD_LIBRARY_PATH`, pero el programa debe además limpiar el entorno, abandonar el privilegio en cuanto no lo necesite (`setresuid` de los tres) y comprobar que lo ha abandonado.
 
@@ -215,8 +215,8 @@ P'(efectivo)  = F(efectivo) ? P'(permitido) : P'(ambiental)
 P'(heredable) = P(heredable)
 ```
 
-Con `setcap cap_net_bind_service+ep servidor`, cualquier usuario que lo ejecute obtiene **solo** esa capacidad (CapEff = 0x400, el bit 10), en vez de un setuid de root. Docker arranca los contenedores
-con 14 capacidades por defecto (0xa80425fb) y quita el resto del conjunto límite.
+Con `setcap cap_net_raw+ep sonda`, cualquier usuario que lo ejecute obtiene **solo** esa capacidad (CapEff = 0x2000, el bit 13), en vez de un setuid de root. Docker arranca los contenedores
+con un conjunto reducido (0xa80425fb; `capsh --decode` lo traduce a nombres) y quita el resto del conjunto límite.
 
 **no_new_privs** (`prctl(PR_SET_NO_NEW_PRIVS)`): una vez activado, ni setuid ni las capacidades de archivo conceden nada en `execve`, y no se puede desactivar. Es requisito para que un proceso sin
 privilegios instale un filtro seccomp, y systemd lo ofrece como `NoNewPrivileges=yes`.
@@ -225,8 +225,8 @@ privilegios instale un filtro seccomp, y systemd lo ofrece como `NoNewPrivileges
 
 **Bell-LaPadula** (confidencialidad, entorno militar): niveles (No clasificado < Confidencial < Secreto < Alto secreto) y categorías; una etiqueta **domina** a otra si su nivel es mayor o igual y sus
 categorías incluyen las de la otra. Propiedad simple: **no leer hacia arriba** (el sujeto debe dominar al objeto). Propiedad *: **no escribir hacia abajo** (el objeto debe dominar al sujeto), para
-que un troyano no pueda copiar un secreto a un archivo público. Un sujeto (Secreto, {NUC}) no puede leer (Confidencial, {NUC, EUR}): le falta la categoría EUR. Tampoco puede escribir en él, porque
-Confidencial no domina a Secreto.
+que un troyano no pueda copiar un secreto a un archivo público. Un sujeto (Secreto, {NUC, EUR}) puede leer (Confidencial, {NUC}): su nivel es mayor y tiene todas sus categorías. No puede escribir en él,
+porque Confidencial no domina a Secreto: sería escribir hacia abajo.
 
 **Biba** (integridad, el dual): **no leer hacia abajo** (no contaminarse con datos poco fiables) y **no escribir hacia arriba**. El control de integridad de Windows (niveles bajo, medio, alto y sistema)
 aplica la parte de "no escribir hacia arriba": un navegador en nivel bajo no puede modificar archivos de nivel medio.
@@ -293,16 +293,16 @@ def puede_borrar(proc, d, f):
         return proc["uid"] in (0, f["uid"], d["uid"])
     return True
 
-alice = {"uid": 1000, "grupos": [1000, 1002]}
-f3 = {"uid": 1001, "gid": 1002, "modo": 0o604}
-print("0604 bob:devs, ¿lee alice?", permite(alice, f3, R))
+carol = {"uid": 1005, "grupos": [1005, 1010]}
+f3 = {"uid": 1001, "gid": 1010, "modo": 0o705}
+print("0705 bob:staff, ¿lee carol?", permite(carol, f3, R))
 print("¿lee un desconocido?", permite({"uid": 1003, "grupos": [1003]}, f3, R))
 tmp = {"uid": 0, "gid": 0, "modo": 0o1777}
-print("/tmp, ¿borra alice lo de bob?", puede_borrar(alice, tmp, {"uid": 1001}))
-suyo = {"uid": 1000, "gid": 1000, "modo": 0o700}
-print("directorio de alice, ¿borra un 0000 de bob?", puede_borrar(alice, suyo, {"uid": 1001, "modo": 0}))
-f6 = {"uid": 1001, "gid": 1002, "modo": 0o640, "acl_usuarios": {1000: 7}, "mascara": R}
-print("ACL user:alice:rwx con mask::r--, ¿escribe alice?", permite(alice, f6, W), "¿lee?", permite(alice, f6, R))
+print("/tmp, ¿borra carol lo de bob?", puede_borrar(carol, tmp, {"uid": 1001}))
+suyo = {"uid": 1005, "gid": 1005, "modo": 0o700}
+print("directorio de carol, ¿borra un 0444 de root?", puede_borrar(carol, suyo, {"uid": 0, "modo": 0o444}))
+f6 = {"uid": 1001, "gid": 1010, "modo": 0o640, "acl_usuarios": {1005: 7}, "mascara": W | X}
+print("ACL user:carol:rwx con mask::-wx, ¿lee carol?", permite(carol, f6, R), "¿escribe?", permite(carol, f6, W))
 
 def execve_caps(P, F, archivo_privilegiado=True):
     amb = 0 if archivo_privilegiado else P["amb"]
@@ -310,27 +310,27 @@ def execve_caps(P, F, archivo_privilegiado=True):
     return perm if F["ef"] else amb
 
 docker = 0xa80425fb
-print("capacidades de Docker:", bin(docker).count("1"))
-print("CapEff con cap_net_bind_service+ep: %016x" % execve_caps({"inh": 0, "bnd": docker, "amb": 0}, {"inh": 0, "perm": 1 << 10, "ef": True}))
+print("CapEff con cap_net_raw+ep: %016x" % execve_caps({"inh": 0, "bnd": docker, "amb": 0}, {"inh": 0, "perm": 1 << 13, "ef": True}))
+print("CapEff sin capacidades de archivo: %016x" % execve_caps({"inh": 0, "bnd": docker, "amb": 0}, {"inh": 0, "perm": 0, "ef": False}))
 
 NIVEL = {"U": 0, "C": 1, "S": 2, "TS": 3}
 def domina(a, b):
     return NIVEL[a[0]] >= NIVEL[b[0]] and set(b[1]) <= set(a[1])
-s, o = ("S", {"NUC"}), ("C", {"NUC", "EUR"})
+s, o = ("S", {"NUC", "EUR"}), ("C", {"NUC"})
 print("BLP leer:", domina(s, o), "escribir:", domina(o, s))
 ```
 
 Salida:
 
 ```
-0604 bob:devs, ¿lee alice? False
+0705 bob:staff, ¿lee carol? False
 ¿lee un desconocido? True
-/tmp, ¿borra alice lo de bob? False
-directorio de alice, ¿borra un 0000 de bob? True
-ACL user:alice:rwx con mask::r--, ¿escribe alice? False ¿lee? True
-capacidades de Docker: 14
-CapEff con cap_net_bind_service+ep: 0000000000000400
-BLP leer: False escribir: False
+/tmp, ¿borra carol lo de bob? False
+directorio de carol, ¿borra un 0444 de root? True
+ACL user:carol:rwx con mask::-wx, ¿lee carol? False ¿escribe? True
+CapEff con cap_net_raw+ep: 0000000000002000
+CapEff sin capacidades de archivo: 0000000000000000
+BLP leer: True escribir: False
 ```
 
 Compruébalo en un contenedor desechable con `stat`, `setfacl`/`getfacl`, `setpriv`, `setcap` y `capsh --decode`.

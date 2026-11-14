@@ -162,8 +162,8 @@ Al terminar sabrás:
 5. **Para** cuando se alcance el objetivo: el código optimizado es más difícil de mantener.
 
 **Estadística de benchmarks**: los tiempos tienen colas largas (interrupciones, otros procesos, frecuencia variable), así que se resumen con la **mediana** y el **rango intercuartílico**, no con la media; se repite
-muchas veces, se calienta antes (cachés, predictores, JIT) y se fija la frecuencia si se puede. Con 12,1 11,8 12,4 30,2 11,9 12,0 12,2 11,7 12,3 12,0 ms, la mediana es 12,05 y el rango 0,40; la media (13,86) la
-estropea un solo valor. Herramientas: Criterion (Rust), Google Benchmark (C++), `hyperfine`. Un perfilador por **muestreo** es estadístico: con 1000 muestras, una función con el 23 % del tiempo recibe 230 ± 13.
+muchas veces, se calienta antes (cachés, predictores, JIT) y se fija la frecuencia si se puede. Con 8,4 8,1 8,6 8,2 25,0 8,3 8,0 8,5 8,2 8,3 ms, la mediana es 8,3; la media (9,96) la
+estropea un solo valor. Herramientas: Criterion (Rust), Google Benchmark (C++), `hyperfine`. Un perfilador por **muestreo** es estadístico: con 400 muestras, una función con el 10 % del tiempo recibe unas 40, con una desviación típica de √(400 · 0,1 · 0,9) = 6.
 
 ## 2. La jerarquía de memoria
 
@@ -196,7 +196,7 @@ estropea un solo valor. Herramientas: Criterion (Rust), Google Benchmark (C++), 
 ## 4. Predicción de saltos
 
 Un procesador moderno ejecuta especulativamente siguiendo la predicción de cada salto; un fallo cuesta **15–20 ciclos** (vaciar el *pipeline*). Los predictores reales (TAGE, perceptrones) aprenden patrones largos,
-pero los datos aleatorios no tienen patrón: `if (x >= 128)` sobre bytes aleatorios falla en torno al 50 % con un predictor de 2 bits (973 de 2000 en la simulación) y casi nunca con los mismos datos **ordenados** (2).
+pero los datos aleatorios no tienen patrón: `if (x >= 128)` sobre bytes aleatorios falla en torno al 50 % con un predictor de 2 bits (487 de 1000 en la simulación de abajo) y casi nunca con los mismos datos **ordenados** (2).
 Soluciones: ordenar o agrupar los datos, código **sin saltos** (`cmov`, `csel`, máscaras: `s += (x >= 128) * x`), y tablas en lugar de cadenas de `if`. Hay que medir: si el salto es predecible, la versión con salto
 suele ganar.
 
@@ -264,10 +264,10 @@ def traspone(N, bloque, cache):
     return cache.fallos
 
 
-ingenua = traspone(512, 512, Cache(32768, 8, 64))
-bloques = traspone(512, 8, Cache(32768, 8, 64))
-print(f"trasposición 512×512: ingenua {ingenua} fallos, por bloques de 8 {bloques}")
-assert (ingenua, bloques) == (294912, 69120)
+ingenua = traspone(384, 384, Cache(32768, 8, 64))
+bloques = traspone(384, 8, Cache(32768, 8, 64))
+print(f"trasposición 384×384: ingenua {ingenua} fallos, por bloques de 8 {bloques}")
+assert (ingenua, bloques) == (165888, 36864)
 
 
 def predictor_2bits(saltos):
@@ -278,15 +278,15 @@ def predictor_2bits(saltos):
     return fallos
 
 
-s, datos = 7, []
-for _ in range(2000):  # el generador congruencial de Exodus; el byte más alto de cada estado
+s, datos = 11, []
+for _ in range(1000):  # el generador congruencial de Exodus; el byte más alto de cada estado
     s = (s * 6364136223846793005 + 1442695040888963407) % 2**64
     datos.append(s >> 56)
 desordenados = predictor_2bits([x >= 128 for x in datos])
 ordenados = predictor_2bits([x >= 128 for x in sorted(datos)])
 print(f"if (x >= 128): {desordenados} fallos desordenados, {ordenados} ordenados")
-assert (desordenados, ordenados) == (973, 2)
-assert predictor_2bits([i % 4 != 3 for i in range(100)]) == 26
+assert (desordenados, ordenados) == (487, 2)
+assert predictor_2bits([i % 3 != 2 for i in range(99)]) == 34  # tomado, tomado, no tomado
 ```
 
 ## 9. Errores típicos

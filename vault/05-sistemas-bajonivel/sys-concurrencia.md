@@ -280,7 +280,7 @@ con un bucle de CAS sobre la cima; la **cola de Michael y Scott** (1996) usa dos
 ## 10. Rendimiento
 
 - **Amdahl**: con una fracción paralelizable `p`, la aceleración con `n` núcleos es `1 / ((1 − p) + p/n)`, acotada por `1 / (1 − p)`: con `p = 0,9`, 4,71 con 8 núcleos y como mucho 10.
-- **Gustafson**: si el problema crece con los núcleos, la aceleración escalada es `n − s(n − 1)` con fracción serie `s`: 7,3 con `n = 8` y `s = 0,1`. Las dos leyes no se contradicen: responden a preguntas
+- **Gustafson**: si el problema crece con los núcleos, la aceleración escalada es `n − s(n − 1)` con fracción serie `s`: 5,5 con `n = 6` y `s = 0,1`. Las dos leyes no se contradicen: responden a preguntas
   distintas (mismo problema más rápido, o problema mayor en el mismo tiempo).
 - **Ley de Little**: elementos en el sistema = tasa de llegada × tiempo de permanencia (`L = λW`): 200 peticiones/s que tardan 50 ms son 10 en curso; sirve para dimensionar grupos de hilos y colas.
 - **Coherencia de caché** (MESI y variantes): escribir en una línea la invalida en los demás núcleos. Un atómico disputado cuesta del orden de cien ciclos o más por la transferencia de la línea.
@@ -298,8 +298,9 @@ con un bucle de CAS sobre la cima; la **cola de Michael y Scott** (1996) usa dos
 - Diseñar para poder razonar: menos estado compartido, propiedad clara (el modelo de Rust), invariantes documentados en cada cerrojo.
 
 > [!example] Ejemplo resuelto 3: verificar dos cerrojos ingenuos
-> (A) `while (flag[otro]); flag[yo] = 1;` y (B) `flag[yo] = 1; while (flag[otro]);`. Explorando todas las intercalaciones: en A, ambos pueden comprobar el `flag` del otro antes de que nadie lo ponga y
-> **entrar los dos**; en B, ambos ponen su `flag` y luego esperan para siempre: **interbloqueo**. Peterson añade `turno`: quien llega último cede, y la exploración no encuentra ni una cosa ni la otra (con SC).
+> La **alternancia estricta**: `while (turno != yo); /* sección crítica */ turno = otro;`. Explorando todas las intercalaciones nunca hay dos hilos dentro (cumple la exclusión mutua), pero si un hilo
+> deja de pedir la sección crítica, el otro espera para siempre aunque esté libre: viola el **progreso**. Los cerrojos ingenuos que solo usan banderas fallan de otras formas (lo comprobarás en los
+> ejercicios); Peterson combina banderas y `turno` para cumplir las dos propiedades con SC.
 > Un explorador de este tipo cabe en 40 líneas y es una de las mejores inversiones para aprender: muchos algoritmos "evidentes" tienen errores que solo aparecen en una intercalación entre miles.
 
 ## 12. Hilos, asincronía y actores
