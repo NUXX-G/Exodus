@@ -115,7 +115,7 @@ pruebas que pasan, no en un resumen por lenguaje.
 - **C profesional (N4)**: ✅ `sys-c-fundamentos` y ✅ `sys-c-memoria` (troncal) · ⬜ `sys-c-profesional`
   (C17/C23, comportamiento indefinido a fondo, diseño de API y de errores, Make/CMake, sanitizadores, Valgrind,
   gdb, pruebas, análisis estático, portabilidad y ABI).
-- **C++ (N4-N5)**: ⬜ `prog-cpp-moderno` (semántica de valor, RAII, movimiento, punteros inteligentes, STL y
+- **C++ (N4-N5)**: ✅ `prog-cpp-moderno` (semántica de valor, RAII, movimiento, punteros inteligentes, STL y
   algoritmos, lambdas, errores y excepciones) · ⬜ `prog-cpp-genericidad` (plantillas, deducción, SFINAE y
   concepts, constexpr, rangos, borrado de tipos) · ⬜ `prog-cpp-profesional` (modelo de memoria y atómicos,
   hilos, rendimiento y caché, CMake, vcpkg/Conan, GoogleTest, sanitizadores, clang-tidy, ABI).
