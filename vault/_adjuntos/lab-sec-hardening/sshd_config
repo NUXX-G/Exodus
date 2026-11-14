@@ -1,0 +1,20 @@
+# /etc/ssh/sshd_config de web02 (extracto relevante)
+Port 22
+PermitRootLogin yes
+PubkeyAuthentication yes
+PasswordAuthentication yes
+PermitEmptyPasswords no
+MaxAuthTries 10
+LoginGraceTime 2m
+X11Forwarding yes
+AllowTcpForwarding yes
+ClientAliveInterval 0
+Subsystem sftp internal-sftp
+
+Match User deploy
+    PasswordAuthentication no
+    MaxAuthTries 3
+    AllowTcpForwarding no
+
+Match Address 10.0.0.0/8
+    PermitRootLogin prohibit-password
