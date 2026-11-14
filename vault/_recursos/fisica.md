@@ -1,7 +1,7 @@
 ---
 recursos: fisica
 title: Recursos de física
-resumen: Divulgación rigurosa, cursos universitarios completos, libros de referencia y simulaciones, en español y en inglés.
+resumen: "Divulgación rigurosa, cursos universitarios completos, libros de referencia y simulaciones, en español y en inglés."
 revisado: 2026-11-14
 ---
 
