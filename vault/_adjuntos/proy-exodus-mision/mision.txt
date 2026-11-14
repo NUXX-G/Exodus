@@ -1,0 +1,39 @@
+# Misión Exodus: parámetros del vehículo y del entorno (Marte)
+semilla 2026
+# física (unidades SI)
+masa 180
+g 3.71
+crr 0.05
+rho 0.02
+cda 0.8
+fmax 300
+pmax 60
+vmin 0.2
+v0 0.5
+# terreno del recorrido: h(s) = a1·sen(k1·s) + a2·sen(k2·s + f2)
+terreno 0.5 0.2 0.3 0.07 1.0
+longitud 120
+# energía: carga de los equipos (W), batería (capacidad Ah, resistencia interna Ω, estado de carga inicial)
+carga 50
+bateria 20 0.08 1.0
+# curva de tensión en vacío: estado de carga y voltios
+ocv 0.0 21.0
+ocv 0.1 23.0
+ocv 0.5 25.2
+ocv 0.9 27.0
+ocv 1.0 29.4
+# balizas de radio para la localización (x y, en metros)
+ruido_distancia 0.5
+baliza -10 -15
+baliza 60 25
+baliza 130 -12
+baliza 50 -30
+# mapa de la zona para planificar: filas, columnas, tamaño de celda (m); pendiente máxima practicable
+mapa 30 40 1.0
+pendiente_max 0.35
+# tareas del ordenador de a bordo: nombre, tiempo de cómputo C y periodo T (ms, enteros)
+tarea control 2 10
+tarea navegacion 8 50
+tarea telemetria 5 100
+tarea camara 30 200
+tarea registro 20 500
