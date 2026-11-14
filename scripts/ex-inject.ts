@@ -48,10 +48,10 @@ async function main() {
   const rest = raw.slice(end);
 
   if (front.includes("exercises: __EJERCICIOS__")) {
-    front = front.replace("exercises: __EJERCICIOS__", yaml);
+    front = front.replace("exercises: __EJERCICIOS__", () => yaml); // función: el texto puede contener $` o $'
   } else if (/^exercises:/m.test(front)) {
     // reemplaza el bloque previo: desde `exercises:` hasta la siguiente clave de primer nivel
-    front = front.replace(/^exercises:[\s\S]*?(?=^[A-Za-z_]+:|(?![\s\S]))/m, yaml + "\n");
+    front = front.replace(/^exercises:[\s\S]*?(?=^[A-Za-z_]+:|(?![\s\S]))/m, () => yaml + "\n");
   } else {
     throw new Error("falta `exercises: __EJERCICIOS__` en el frontmatter");
   }
