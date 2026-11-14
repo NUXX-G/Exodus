@@ -119,7 +119,7 @@ pruebas que pasan, no en un resumen por lenguaje.
   algoritmos, lambdas, errores y excepciones) · ⬜ `prog-cpp-genericidad` (plantillas, deducción, SFINAE y
   concepts, constexpr, rangos, borrado de tipos) · ⬜ `prog-cpp-profesional` (modelo de memoria y atómicos,
   hilos, rendimiento y caché, CMake, vcpkg/Conan, GoogleTest, sanitizadores, clang-tidy, ABI).
-- **Rust (N4-N5), hasta nivel sénior**: ⬜ `prog-rust-fundamentos` (propiedad, préstamos, vidas, enums y
+- **Rust (N4-N5), hasta nivel sénior**: ✅ `prog-rust-fundamentos` (propiedad, préstamos, vidas, enums y
   patrones, errores con `Result`, colecciones, cargo) · ⬜ `prog-rust-traits-genericos` (traits, genéricos,
   objetos de trait, iteradores, cierres, punteros inteligentes, `Rc`/`RefCell`, módulos y crates) ·
   ⬜ `prog-rust-concurrencia-async` (`Send`/`Sync`, hilos, canales, `Arc`/`Mutex`, atómicos, `async`/`await`,
