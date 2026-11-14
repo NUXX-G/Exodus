@@ -1,0 +1,48 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 1K of event 'cpu-clock:u'
+# Event count (approx.): 1645645644
+#
+# Overhead  Symbol                               IPC   [IPC Coverage]
+# ........  ...................................  ....................
+#
+    79.50%  [.] __strcmp_evex                    -      -            
+            |          
+            |--75.24%--busca_ip
+            |          main
+            |          __libc_start_call_main
+            |          __libc_start_main_impl (inlined)
+            |          _start
+            |          
+             --4.26%--busca_ruta
+                       main
+                       __libc_start_call_main
+                       __libc_start_main_impl (inlined)
+                       _start
+     9.49%  [.] busca_ip                         -      -            
+            |
+            ---main
+               __libc_start_call_main
+               __libc_start_main_impl (inlined)
+               _start
+     9.00%  [.] strcmp@plt                       -      -            
+            |          
+             --8.70%--busca_ip
+                       main
+                       __libc_start_call_main
+                       __libc_start_main_impl (inlined)
+                       _start
+     0.85%  [.] __vfscanf_internal               -      -            
+            |          
+             --0.73%--__vfscanf_internal
+                       __GI___isoc99_sscanf (inlined)
+                       main
+                       __libc_start_call_main
+                       __libc_start_main_impl (inlined)
+                       _start
+#
+# (Tip: If you have debuginfo enabled, try: perf report -s sym,srcline)
+#
