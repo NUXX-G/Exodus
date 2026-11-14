@@ -1,0 +1,32 @@
+Feb 28 23:50:01 web sshd[1201]: Accepted publickey for ana from 10.0.0.23 port 51234 ssh2: ED25519 SHA256:q9Xz2kT0hX1oV4mQ7bJcY8rL3sW5eN6uI1pA0dF2gH4
+Feb 28 23:58:00 web sshd[1210]: Failed password for root from 203.0.113.66 port 4242 ssh2
+Feb 28 23:58:02 web sshd[1211]: Invalid user admin from 203.0.113.66 port 4243
+Feb 28 23:58:02 web sshd[1211]: Failed password for invalid user admin from 203.0.113.66 port 4243 ssh2
+Feb 28 23:58:05 web sshd[1212]: Failed password for root from 203.0.113.66 port 4244 ssh2
+Feb 28 23:58:09 web sshd[1212]: message repeated 2 times: [ Failed password for root from 203.0.113.66 port 4244 ssh2]
+Feb 28 23:58:30 web sshd[1213]: Failed password for invalid user oracle from 203.0.113.66 port 4250 ssh2
+Feb 28 23:59:00 web sshd[1214]: Failed password for invalid user test from 203.0.113.66 port 4251 ssh2
+Feb 28 23:59:58 web sshd[1215]: Failed password for root from 203.0.113.66 port 4252 ssh2
+Feb 29 00:00:01 web sshd[1216]: Failed password for root from 203.0.113.66 port 4253 ssh2
+Feb 29 00:00:05 web sshd[1217]: Accepted password for root from 203.0.113.66 port 4254 ssh2
+Feb 29 00:00:05 web sshd[1217]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)
+Feb 29 00:10:00 web sshd[1300]: Failed password for ana from 10.0.0.23 port 51300 ssh2
+Feb 29 00:10:06 web sshd[1300]: Accepted password for ana from 10.0.0.23 port 51300 ssh2
+Feb 29 01:00:00 web sshd[1400]: Failed password for invalid user root from 10.0.0.99 port 22 from 198.51.100.200 port 5555 ssh2
+Feb 29 01:00:10 web sshd[1401]: message repeated 5 times: [ Failed password for invalid user root from 10.0.0.99 port 22 from 198.51.100.200 port 5555 ssh2]
+Feb 29 01:00:20 web sshd[1402]: Failed password for invalid user pi from 198.51.100.200 port 5556 ssh2
+Feb 29 02:00:00 web sshd[1500]: Failed password for root from 2001:db8:bad::7 port 60001 ssh2
+Feb 29 02:30:00 web sshd[1501]: Failed password for root from 2001:db8:bad::7 port 60002 ssh2
+Feb 29 03:00:00 web sshd[1502]: Failed password for root from 2001:db8:bad::7 port 60003 ssh2
+Feb 29 03:30:00 web sshd[1503]: Failed password for root from 2001:db8:bad::7 port 60004 ssh2
+Feb 29 04:00:00 web sshd[1504]: Failed password for root from 2001:db8:bad::7 port 60005 ssh2
+Feb 29 04:30:00 web sshd[1505]: Failed password for root from 2001:db8:bad::7 port 60006 ssh2
+Feb 29 05:00:00 web sshd[1506]: Accepted publickey for root from 2001:db8:bad::7 port 60007 ssh2: RSA SHA256:Zx8bQ0mV3pT6yR1cL9wN2kH5sJ4dF7gA0eU8iO3lP6q
+Feb 29 23:59:59 web sshd[1600]: Failed keyboard-interactive/pam for invalid user guest from 192.0.2.44 port 40000 ssh2
+Mar  1 00:00:01 web sshd[1601]: Failed keyboard-interactive/pam for invalid user guest from 192.0.2.44 port 40001 ssh2
+Mar  1 00:00:02 web sshd[1602]: Failed password for invalid user ubuntu from 192.0.2.44 port 40002 ssh2
+Mar  1 00:00:03 web sshd[1603]: Failed password for invalid user user from 192.0.2.44 port 40003 ssh2
+Mar  1 00:00:04 web sshd[1604]: Failed password for invalid user  from 192.0.2.44 port 40004 ssh2
+Mar  1 00:00:05 web CRON[1700]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
+Mar  1 00:00:06 web sshd[1605]: Received disconnect from 192.0.2.44 port 40004:11: Bye Bye [preauth]
+Mar  1 00:01:00 web sshd[1606]: Accepted password for ubuntu from 192.0.2.44 port 40010 ssh2
