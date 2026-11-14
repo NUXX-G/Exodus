@@ -165,13 +165,13 @@ t ::= x          variable
 ```
 
 Convenios: la aplicación asocia a la izquierda (`f a b` = `(f a) b`) y el cuerpo de una λ llega lo más lejos posible (`λx. x y` = `λx. (x y)`). Una variable está **ligada** si la captura una λ que la rodea, y
-**libre** si no: en `λx. (x y) (λy. y z)` las libres son `y` (la primera) y `z`. Dos términos que solo difieren en el nombre de las ligadas son el mismo (**α-equivalencia**): `λx. x` = `λy. y`.
+**libre** si no: en `λx. x (λy. y w) v` las libres son `w` y `v`; `x` e `y` están ligadas. Dos términos que solo difieren en el nombre de las ligadas son el mismo (**α-equivalencia**): `λx. x` = `λy. y`.
 
-La única regla de cálculo es la **β-reducción**: `(λx. t) s → t[x := s]`, sustituir el argumento por el parámetro. Por ejemplo, `(λx. λy. x) a b → (λy. a) b → a`, en dos pasos. Un **redex** es una subexpresión de
+La única regla de cálculo es la **β-reducción**: `(λx. t) s → t[x := s]`, sustituir el argumento por el parámetro. Por ejemplo, `(λx. λy. y) a b → (λy. y) b → b`, en dos pasos. Un **redex** es una subexpresión de
 la forma `(λx. t) s`; un término sin redex está en **forma normal**.
 
-**La sustitución tiene una trampa: la captura.** `(λx. λy. x) y` no puede dar `λy. y` (la función identidad): la `y` de fuera es libre y quedaría ligada por la λ de dentro. La sustitución correcta renombra
-primero la ligada (`λy'. y`, la función constante que devuelve la `y` de fuera). Las implementaciones evitan el problema con **índices de De Bruijn**: cada variable se sustituye por el número de λ que hay entre
+**La sustitución tiene una trampa: la captura.** `(λx. λz. x) z` no puede dar `λz. z` (la función identidad): la `z` de fuera es libre y quedaría ligada por la λ de dentro. La sustitución correcta renombra
+primero la ligada (`λz'. z`, la función constante que devuelve la `z` de fuera). Las implementaciones evitan el problema con **índices de De Bruijn**: cada variable se sustituye por el número de λ que hay entre
 ella y la que la liga. `λx. λy. x` es `λ. λ. 1`, `λx. x` es `λ. 0`; ya no hay nombres que capturar, y la α-equivalencia es la igualdad. Pierce (cap. 6) da las operaciones de desplazamiento y sustitución.
 
 **Con solo funciones se puede programar todo.** Los **numerales de Church** representan n como "aplicar f n veces":
@@ -185,7 +185,7 @@ MULT = λm. λn. λf. m (n f)        (aplicar "n veces f", m veces)
 CIERTO = λt. λf. t      FALSO = λt. λf. f      SI = λc. λa. λb. c a b
 ```
 
-`MULT 2 3` se reduce a `λf. λx. f (f (f (f (f (f x)))))`, el 6. La recursión sin nombres se consigue con un **combinador de punto fijo**: `Y = λf. (λx. f (x x)) (λx. f (x x))` cumple `Y g →* g (Y g)`, así que
+`MULT 2 2` se reduce a `λf. λx. f (f (f (f x)))`, el 4. La recursión sin nombres se consigue con un **combinador de punto fijo**: `Y = λf. (λx. f (x x)) (λx. f (x x))` cumple `Y g →* g (Y g)`, así que
 `Y (λfact. λn. SI (ES_CERO n) 1 (MULT n (fact (PRED n))))` es el factorial. El λ-cálculo es **Turing-completo** (Church y Turing demostraron la equivalencia), y por eso la igualdad de dos términos es indecidible.
 
 ## 2. Estrategias de evaluación
@@ -193,8 +193,8 @@ CIERTO = λt. λf. t      FALSO = λt. λf. f      SI = λc. λa. λb. c a b
 Un término puede tener varios redex; la **estrategia** decide cuál reducir.
 
 - **Orden normal**: el redex más externo y más a la izquierda. Si existe forma normal, la encuentra (teorema de normalización). Con Ω = `(λx. x x)(λx. x x)`, que se reduce a sí mismo para siempre,
-  `(λx. z) Ω → z`: el argumento no se usa y no se evalúa.
-- **Por valor** (*call-by-value*; C, Java, Rust, OCaml, Python): primero se evalúan los argumentos y no se reduce dentro de las λ. `(λx. z) Ω` **no termina**. Y el combinador Y también diverge, porque `x x` se
+  `(λx. λy. y) Ω → λy. y`: el argumento no se usa y no se evalúa.
+- **Por valor** (*call-by-value*; C, Java, Rust, OCaml, Python): primero se evalúan los argumentos y no se reduce dentro de las λ. `(λx. λy. y) Ω` **no termina**. Y el combinador Y también diverge, porque `x x` se
   evalúa antes de tiempo; en un lenguaje estricto se usa **Z** = `λf. (λx. f (λv. x x v)) (λx. f (λv. x x v))`, que retrasa la autoaplicación con una λ (η-expansión).
 - **Por nombre** y **por necesidad** (*lazy*; Haskell): como el orden normal sin reducir dentro de λ, y "por necesidad" además **memoriza** el valor del argumento la primera vez (con **thunks**), de modo que se
   evalúa como mucho una vez.
@@ -202,7 +202,7 @@ Un término puede tener varios redex; la **estrategia** decide cuál reducir.
 El **teorema de Church-Rosser** (confluencia) garantiza que, si dos estrategias llegan a una forma normal, es la **misma**. Las estrategias difieren en **si** terminan y en **cuánto** cuestan, no en el
 resultado. En un lenguaje con efectos (E/S, asignación) la estrategia sí cambia el significado, y por eso los lenguajes perezosos aíslan los efectos (las mónadas de Haskell).
 
-**Llamadas de cola**: si una llamada es lo último que hace una función, su marco de pila puede reutilizarse. `fact n = n * fact (n − 1)` necesita n + 1 marcos (fact(10): 11); la versión con acumulador
+**Llamadas de cola**: si una llamada es lo último que hace una función, su marco de pila puede reutilizarse. `fact n = n * fact (n − 1)` necesita n + 1 marcos (fact(5): 6); la versión con acumulador
 `fact_ac n ac = fact_ac (n − 1) (n · ac)` usa uno solo si el lenguaje elimina las llamadas de cola (Scheme lo exige; OCaml y Haskell lo hacen; C y Rust no lo garantizan, aunque el optimizador suele hacerlo).
 
 ## 3. Semántica operacional
@@ -229,7 +229,7 @@ SECD de Landin), que es casi un intérprete. Ambas semánticas coinciden en los 
 Otras dos semánticas: la **denotacional** (Scott y Strachey) asigna a cada programa un objeto matemático (una función parcial de estados en estados; el `while` es un **punto fijo mínimo**), y la
 **axiomática** (Hoare) es la de [[sys-verificacion-formal]].
 
-**Ámbito léxico frente a dinámico.** Con `x = 10; f() { return x }; g() { local x = 20; return f() }`, `g()` devuelve 10 con ámbito **léxico** (la `x` de `f` es la del sitio donde **se escribió** `f`) y 20 con
+**Ámbito léxico frente a dinámico.** Con `x = 1; f() { return x }; g() { local x = 2; return f() }`, `g()` devuelve 1 con ámbito **léxico** (la `x` de `f` es la del sitio donde **se escribió** `f`) y 2 con
 ámbito **dinámico** (la del que **llama**). Casi todos los lenguajes son léxicos (los antiguos Lisp y las variables `local` de bash son dinámicos), porque el léxico permite razonar sobre una función sin conocer a
 quien la llama. Implementarlo exige **clausuras**: una función se representa como (código, entorno donde se creó). El error clásico de un intérprete es evaluar el cuerpo con el entorno del que llama, y entonces
 se obtiene ámbito dinámico sin querer (Krishnamurthi lo trata en PLAI).
@@ -263,13 +263,13 @@ En OCaml o Haskell no se escriben los tipos y el compilador los deduce. El **alg
 1. Da a cada variable sin tipo conocido una **variable de tipo** nueva ('a, 'b, ...).
 2. Recorre el término generando **ecuaciones**: en `f x`, si f : τ₁ y x : τ₂, entonces τ₁ = τ₂ → 'r con 'r nueva.
 3. Las resuelve por **unificación** (Robinson, 1965): unir una variable con un tipo la sustituye; unir dos flechas une sus partes; unir tipos distintos (`int` con `bool`) es un error.
-4. **Comprobación de ocurrencia**: 'a = 'a → 'b no tiene solución (sería un tipo infinito). Por eso `λx. x x` no tipa.
+4. **Comprobación de ocurrencia**: 'a = 'a → 'b no tiene solución (sería un tipo infinito). Por eso `λf. f (λx. f)` no tipa: f tendría que ser a la vez una función y parte de su propio argumento.
 
-El resultado es el **tipo principal**: el más general, del que todos los demás son instancias. Para S = `λx. λy. λz. x z (y z)`: z : 'a, `x z` exige x : 'a → 'b → 'c, `y z` exige y : 'a → 'b, y el tipo es
-`('a -> 'b -> 'c) -> ('a -> 'b) -> 'a -> 'c`.
+El resultado es el **tipo principal**: el más general, del que todos los demás son instancias. Para la composición B = `λf. λg. λx. f (g x)`: si x : 'c, `g x` exige g : 'c → 'a, `f (g x)` exige
+f : 'a → 'b, y el tipo es `('a -> 'b) -> ('c -> 'a) -> 'c -> 'b`.
 
-**Polimorfismo de `let`.** En `let id = λx. x in (id 1, id true)`, el tipo de `id` ('a → 'a) se **generaliza** a ∀a. a → a al ligarlo con `let`, y cada uso lo **instancia** con una variable nueva: tipa. En
-`(λid. (id 1, id true)) (λx. x)`, `id` es un parámetro de λ, su tipo es una sola variable y unificarla con int → … y con bool → … falla: no tipa. Solo se generalizan las variables que no aparecen libres en el
+**Polimorfismo de `let`.** En `let k = λx. λy. x in (k 1 true, k true 1)`, el tipo de `k` ('a → 'b → 'a) se **generaliza** a ∀a b. a → b → a al ligarlo con `let`, y cada uso lo **instancia** con variables
+nuevas: tipa. En `(λk. (k 1 true, k true 1)) (λx. λy. x)`, `k` es un parámetro de λ, su tipo es una sola variable y unificarla con int → bool → … y con bool → int → … falla: no tipa. Solo se generalizan las variables que no aparecen libres en el
 contexto. La inferencia completa con polimorfismo de rango superior (pasar funciones polimórficas como argumento, el **System F** de Girard y Reynolds) es **indecidible** (Wells, 1999); HM es el punto óptimo:
 decidible, casi lineal en la práctica (aunque exponencial en el peor caso por `let` anidados) y sin anotaciones.
 
@@ -280,11 +280,11 @@ por tipo); Rust infiere solo dentro de una función y exige firmas en las funcio
 
 Con **subtipos** (S <: T, "un S sirve donde se espera un T"), la pregunta es cómo se propaga por los constructores de tipos. Con Gato <: Animal:
 
-- **Funciones**: S₁ → S₂ <: T₁ → T₂ si T₁ <: S₁ (**contravariante** en el argumento) y S₂ <: T₂ (**covariante** en el resultado). Una función Animal → Gato sirve donde se espera Gato → Animal (acepta más
-  y devuelve algo más concreto); Gato → Gato **no** sirve donde se espera Animal → Animal (le podrían pasar un perro).
-- **Contenedores inmutables** (lista, `Option`): covariantes. Una lista de gatos es una lista de animales.
-- **Contenedores mutables** (arrays, referencias): **invariantes**. Si Array<Gato> fuera un Array<Animal>, se podría escribir un perro en él. Java lo permitió para los arrays y tiene que comprobar cada escritura
-  en tiempo de ejecución (`ArrayStoreException`); sus genéricos (`List<Gato>`) son invariantes y usan comodines (`? extends Animal`) para la covarianza. Scala marca la varianza con `+T`/`-T`; Rust la deduce y
+- **Funciones**: S₁ → S₂ <: T₁ → T₂ si T₁ <: S₁ (**contravariante** en el argumento) y S₂ <: T₂ (**covariante** en el resultado). Con Entero <: Número, una función Número → Entero sirve donde se espera
+  Entero → Número (acepta más y devuelve algo más concreto); Entero → Entero **no** sirve donde se espera Número → Número (le podrían pasar un 2,5).
+- **Contenedores inmutables** (lista, `Option`): covariantes. Una lista de enteros es una lista de números.
+- **Contenedores mutables** (arrays, referencias): **invariantes**. Si Array<Entero> fuera un Array<Número>, se podría escribir 2,5 en él. Java lo permitió para los arrays y tiene que comprobar cada escritura
+  en tiempo de ejecución (`ArrayStoreException`); sus genéricos (`List<Integer>`) son invariantes y usan comodines (`? extends Number`) para la covarianza. Scala marca la varianza con `+T`/`-T`; Rust la deduce y
   la aplica a los tiempos de vida (`&'a T` es covariante en 'a; `&'a mut T` es invariante en T), y equivocarse con `unsafe` produce fallos de memoria reales.
 
 ## 7. Parametricidad: teoremas gratis
@@ -292,8 +292,8 @@ Con **subtipos** (S <: T, "un S sirve donde se espera un T"), la pregunta es có
 Una función polimórfica no puede inspeccionar los valores de un tipo que no conoce, y eso limita lo que hace. Reynolds (1983) lo formalizó y Wadler lo popularizó: del **tipo** se deduce un **teorema**.
 
 - ∀a. a → a: la única función total es la identidad.
-- ∀a. a → a → a: solo dos, devolver el primero o el segundo. Se comprueba contando: sobre un conjunto de 3 elementos hay 3⁹ funciones de dos argumentos, y solo 2 conmutan con todas las funciones del conjunto
-  en sí mismo (eso es lo que exige la parametricidad).
+- La parametricidad se puede comprobar contando: sobre un conjunto finito, las funciones de un tipo polimórfico son las que conmutan con todas las funciones del conjunto en sí mismo. Para ∀a. a → a,
+  sobre un conjunto de 3 elementos, de las 3³ = 27 funciones solo la identidad conmuta con todas.
 - ∀a. [a] → [a] (como `reverse` o `tail`): para toda g, `map g ∘ r = r ∘ map g`. La función solo reorganiza, duplica o descarta elementos, nunca los inventa.
 
 Esto vale sin efectos, sin excepciones y sin `seq` (que rompe parte de la parametricidad en Haskell) y sin reflexión (`instanceof` en Java la destruye). Es la razón por la que los tipos genéricos son
@@ -344,8 +344,8 @@ CERO = L(L(I(0)))
 SUC = L(L(L(A(I(1), A(A(I(2), I(1)), I(0))))))
 MULT = L(L(L(A(I(2), A(I(1), I(0))))))
 DOS, TRES = A(SUC, A(SUC, CERO)), A(SUC, A(SUC, A(SUC, CERO)))
-r, pasos = normal(A(A(MULT, DOS), TRES))
-print("MULT 2 3 =", church(r), "en", pasos, "pasos")
+r, pasos = normal(A(A(MULT, DOS), DOS))
+print("MULT 2 2 =", church(r), "en", pasos, "pasos")
 
 # Hindley-Milner: tipos ("v", n) | ("fn", a, b) | ("int",) | ("bool",) | ("par", a, b)
 class Tipado:
@@ -411,22 +411,23 @@ def tipo(e):
 v = lambda x: ("var", x)
 lam = lambda x, b: ("lam", x, b)
 app = lambda f, *xs: xs and app(("app", f, xs[0]), *xs[1:]) or f
-S = lam("x", lam("y", lam("z", app(v("x"), v("z"), app(v("y"), v("z"))))))
-doble = ("par", app(v("id"), ("lit", "int")), app(v("id"), ("lit", "bool")))
-print("S :", tipo(S))
-print("let id = λx.x in (id 1, id true) :", tipo(("let", "id", lam("x", v("x")), doble)))
-print("(λid. (id 1, id true)) (λx.x) :", tipo(app(lam("id", doble), lam("x", v("x")))))
-print("λx. x x :", tipo(lam("x", app(v("x"), v("x")))))
+B = lam("f", lam("g", lam("x", app(v("f"), app(v("g"), v("x"))))))
+K = lam("x", lam("y", v("x")))
+doble = ("par", app(v("k"), ("lit", "int"), ("lit", "bool")), app(v("k"), ("lit", "bool"), ("lit", "int")))
+print("B :", tipo(B))
+print("let k = λx.λy.x in (k 1 true, k true 1) :", tipo(("let", "k", K, doble)))
+print("(λk. (k 1 true, k true 1)) (λx.λy.x) :", tipo(app(lam("k", doble), K)))
+print("λf. f (λx. f) :", tipo(lam("f", app(v("f"), lam("x", v("f"))))))
 ```
 
 Salida:
 
 ```
-MULT 2 3 = 6 en 31 pasos
-S : ('a -> 'b -> 'c) -> ('a -> 'b) -> 'a -> 'c
-let id = λx.x in (id 1, id true) : int * bool
-(λid. (id 1, id true)) (λx.x) : error: no unifican int y bool
-λx. x x : error: tipo infinito
+MULT 2 2 = 4 en 25 pasos
+B : ('a -> 'b) -> ('c -> 'a) -> 'c -> 'b
+let k = λx.λy.x in (k 1 true, k true 1) : int * bool
+(λk. (k 1 true, k true 1)) (λx.λy.x) : error: no unifican int y bool
+λf. f (λx. f) : error: tipo infinito
 ```
 
 Amplíalo: añade `fix` y `if` al lenguaje tipado y escribe el factorial; añade booleanos de Church y comprueba Church-Rosser reduciendo con otra estrategia.

@@ -222,7 +222,7 @@ componente de una ruta, en una caché) y **`file`** (un archivo abierto: posici�
   `/dev` automáticamente.
 - Los datos entre usuario y núcleo **solo** se mueven con `copy_to_user`/`copy_from_user` (o `kstrtol_from_user`): comprueban la dirección y gestionan los fallos de página; un puntero de usuario nunca se
   desreferencia directamente (SMAP lo impide en hardware).
-- Los códigos de `ioctl` codifican dirección, tamaño, tipo y número: `_IOR('k', 3, int)` vale `0x80046b03` (lectura = 2 en los bits 30–31, tamaño 4 en los bits 16–29, `'k'` = `0x6b`, número 3).
+- Los códigos de `ioctl` codifican dirección, tamaño, tipo y número: `_IOW('k', 5, long)` vale `0x40086b05` (escritura = 1 en los bits 30–31, tamaño 8 en los bits 16–29, `'k'` = `0x6b` en los bits 8–15, número 5 en los bits 0–7).
 - El **modelo de dispositivos** (`struct device`, buses, `driver`, `probe`) y el **device tree** (en ARM y RISC-V) describen el hardware; los controladores de plataforma se enlazan por la propiedad
   `compatible`. `sysfs` (`/sys`) expone ese árbol.
 

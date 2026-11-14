@@ -191,7 +191,7 @@ visitados) y comprueba las propiedades.
 
 - **SAT**: ¿es satisfacible una fórmula en forma normal conjuntiva? Es NP-completo (Cook, 1971), y aun así los resolvedores modernos resuelven fórmulas industriales con millones de variables. **DPLL**:
   propagación unitaria, elección de un literal y vuelta atrás. **CDCL** añade el **aprendizaje de cláusulas** a partir de los conflictos y los saltos atrás no cronológicos (GRASP, Chaff, MiniSat, CaDiCaL).
-- **Codificar** un problema en SAT es un oficio: las 6 reinas con una variable por casilla (4 soluciones), el palomar (3 palomas en 2 huecos: 9 cláusulas, insatisfacible, y difícil para la resolución).
+- **Codificar** un problema en SAT es un oficio: las 8 reinas con una variable por casilla (92 soluciones), el palomar (4 palomas en 3 huecos: 4 + 3 · 6 = 22 cláusulas, insatisfacible, y difícil para la resolución).
 - **SMT** (*Satisfiability Modulo Theories*) añade teorías: aritmética lineal entera y real, **vectores de bits** (aritmética de máquina exacta, con desbordamiento), arrays, tipos de datos. **Z3** (Microsoft
   Research) y cvc5 son los más usados. Se verifica preguntando si existe un contraejemplo: si la negación de la propiedad es insatisfacible, la propiedad vale; si no, el modelo es el contraejemplo.
 - **Comprobación acotada** (BMC): desplegar k pasos del sistema en una fórmula y preguntar si se alcanza un error; encuentra contraejemplos cortos muy rápido (CBMC para C, Kani para Rust).
@@ -211,8 +211,8 @@ TLA+.
 ## 6. Interpretación abstracta, ejecución simbólica y tipos
 
 - **Interpretación abstracta** (Cousot y Cousot, 1977): ejecutar el programa sobre un **dominio abstracto** (signos, intervalos, octógonos, poliedros) que sobreaproxima todos los estados posibles; siempre termina
-  gracias al **ensanchamiento** (*widening*), que salta a ±∞ cuando un intervalo crece, y el **estrechamiento** recupera precisión. Para `x = 0; while (x < 100) x += 3;` da x ∈ [100, 102] a la salida (el valor real es
-  102). Es **correcta** (nunca omite un error) pero puede dar falsas alarmas. Astrée la usa para demostrar la ausencia de errores de ejecución en el software de control de vuelo del Airbus A380.
+  gracias al **ensanchamiento** (*widening*), que salta a ±∞ cuando un intervalo crece, y el **estrechamiento** recupera precisión. Para `x = 0; while (x < 50) x += 4;` da x ∈ [50, 53] a la salida (el valor real es
+  52). Es **correcta** (nunca omite un error) pero puede dar falsas alarmas. Astrée la usa para demostrar la ausencia de errores de ejecución en el software de control de vuelo del Airbus A380.
 - **Ejecución simbólica**: ejecutar con valores simbólicos y acumular la **condición de camino**; un resolvedor SMT decide qué caminos son factibles y genera entradas que los recorren (KLEE, angr). Con tres
   condicionales sobre el mismo x, de los 8 caminos sintácticos solo 6 son factibles.
 - **Sistemas de tipos** como verificación ligera: los tipos de Rust impiden las carreras de datos y los accesos tras liberar ([[prog-rust-fundamentos]]); los tipos refinados (Liquid Haskell) y dependientes llevan las
@@ -237,8 +237,8 @@ TLA+.
 
 ## 9. Comprobar con un programa
 
-En Python puro (ejecutado en `python:3.12-slim`): un resolvedor **DPLL** con propagación unitaria que cuenta modelos y codifica las 6 reinas; un **comprobador de modelos explícito** que explora el algoritmo de
-Peterson, comprueba la exclusión mutua y busca un estado sin salida; y el cálculo de **EG** y **AF** por puntos fijos sobre una estructura de Kripke.
+En Python puro (ejecutado en `python:3.12-slim`): un resolvedor **DPLL** con propagación unitaria que cuenta modelos y codifica las 5 reinas; un **comprobador de modelos explícito** que explora un cerrojo ingenuo de
+dos banderas, comprueba la exclusión mutua y encuentra el contraejemplo más corto de un interbloqueo (Peterson queda para los ejercicios); y el cálculo de **EG** y **AF** por puntos fijos sobre una estructura de Kripke.
 
 ```python
 from itertools import product
@@ -278,50 +278,55 @@ def reinas(n):
     return cl
 
 
-assert dpll([[1, 2], [-1, 3], [-2, -3, 4]]) == 6
-assert dpll(reinas(6)) == 4 and dpll(reinas(4)) == 2 and dpll(reinas(3)) == 0
-print("modelos de las 6 reinas:", dpll(reinas(6)))
+assert dpll([[1, 2, 3], [-1, -2], [-2, -3]]) == 4
+assert dpll(reinas(5)) == 10 and dpll(reinas(4)) == 2 and dpll(reinas(3)) == 0
+print("modelos de las 5 reinas:", dpll(reinas(5)))
 
 
-# Comprobador de modelos explícito: Peterson con dos procesos.
+# Comprobador de modelos explícito: el cerrojo ingenuo con dos banderas y sin turno.
+# pc: 0 fuera, 1 levanta su bandera, 2 espera a que la del otro esté bajada, 3 sección crítica (al salir la baja).
 def sucesores(estado):
-    pc, flag, turno = list(estado[0]), list(estado[1]), estado[2]
+    pc, flag = estado
     for i in (0, 1):
         otro = 1 - i
-        p, f, t = pc[:], flag[:], turno
+        p, f = list(pc), list(flag)
         if pc[i] == 0:
-            f[i], p[i] = 1, 1
+            p[i] = 1
         elif pc[i] == 1:
-            t, p[i] = otro, 2
+            f[i], p[i] = 1, 2
         elif pc[i] == 2:
-            if flag[otro] and turno == otro:
+            if flag[otro]:
                 continue  # espera: esta transición no está habilitada
             p[i] = 3
-        elif pc[i] == 3:
-            p[i] = 4
         else:
             f[i], p[i] = 0, 0
-        yield (tuple(p), tuple(f), t)
+        yield (tuple(p), tuple(f))
 
 
-inicial = ((0, 0), (0, 0), 0)
-vistos, frontera = {inicial}, [inicial]
+inicial = ((0, 0), (0, 0))
+vistos, frontera, padre, bloqueo = {inicial}, [inicial], {inicial: None}, None
 while frontera:
-    s = frontera.pop()
+    s = frontera.pop(0)  # BFS: el primer contraejemplo encontrado es el más corto
+    assert s[0] != (3, 3), f"se viola la exclusión mutua en {s}"
     hijos = list(sucesores(s))
-    assert hijos, f"interbloqueo en {s}"
-    assert not (s[0][0] == 3 and s[0][1] == 3), f"se viola la exclusión mutua en {s}"
+    if not hijos and bloqueo is None:
+        bloqueo = s
     for h in hijos:
         if h not in vistos:
             vistos.add(h)
+            padre[h] = s
             frontera.append(h)
-print("estados alcanzables de Peterson:", len(vistos))
-assert len(vistos) == 26
+camino = []
+while bloqueo is not None:
+    camino.append(bloqueo)
+    bloqueo = padre[bloqueo]
+print("cerrojo ingenuo:", len(vistos), "estados; interbloqueo en", camino[0], "tras", len(camino) - 1, "pasos")
+assert camino[0] == ((2, 2), (1, 1)) and len(camino) - 1 == 4
 
 
 # CTL por puntos fijos.
-SUC = {"s0": ["s1", "s2"], "s1": ["s1", "s3"], "s2": ["s0"], "s3": ["s3"]}
-ETIQ = {"s0": {"p"}, "s1": {"p"}, "s2": set(), "s3": {"q"}}
+SUC = {"s0": ["s1"], "s1": ["s2", "s3"], "s2": ["s2"], "s3": ["s0"]}
+ETIQ = {"s0": {"p"}, "s1": {"p"}, "s2": {"q"}, "s3": {"p"}}
 
 
 def EG(p):
@@ -342,13 +347,13 @@ def AF(q):
         Z = nuevo
 
 
-assert EG("p") == {"s0", "s1"} and AF("q") == {"s3"}
+assert EG("p") == {"s0", "s1", "s3"} and AF("q") == {"s2"}
 print("EG p:", sorted(EG("p")), " AF q:", sorted(AF("q")))
 
-# El error de la media en 8 bits, por fuerza bruta (un SMT lo haría simbólicamente).
-malos = sum(1 for x, y in product(range(256), repeat=2) if ((x + y) & 0xFF) >> 1 != (x + y) >> 1)
-buena = all(x // 2 + y // 2 + (x & y & 1) == (x + y) // 2 for x, y in product(range(256), repeat=2))
-assert malos == 32640 and buena
+# El error de la media en 4 bits, por fuerza bruta (un SMT lo haría simbólicamente).
+malos = sum(1 for x, y in product(range(16), repeat=2) if ((x + y) & 0xF) >> 1 != (x + y) >> 1)
+buena = all(x // 2 + y // 2 + (x & y & 1) == (x + y) // 2 for x, y in product(range(16), repeat=2))
+assert malos == 120 and buena
 print("pares con desbordamiento:", malos, " versión corregida correcta:", buena)
 ```
 

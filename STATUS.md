@@ -45,6 +45,8 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
    de texto, PowerShell y batch), Rust en cinco nodos hasta nivel sénior, C++ en tres, `sys-c-profesional`, y **proyectos** (`kind: proyecto`,
    hitos verificados con la salida del programa del estudiante) y **laboratorios** (`kind: laboratorio`, adjuntos y flag) por rama, visibles en
    `/practica` (PR #120). Los ids `prog-cpp` y `prog-rust` desaparecen en favor de los nodos desdoblados. Los nodos de robótica usan `area: robotica`.
+2c. **Auditoría de fugas** (2026-11-14): los nodos de #143 a #167 ya están revisados. Los anteriores tienen coincidencias por revisar a mano
+   (`npm run vault:fugas`; muchas son falsos positivos, como un dato que el nodo enseña y el ejercicio pide recordar).
 3. **Plataforma (MVP cerrado el 2026-11-12; invitaciones añadidas el 2026-11-13)**: el admin genera en `/cuenta` invitaciones de un
    solo uso que caducan (1, 3 o 7 días; máximo 20 pendientes; se pueden anular) y el invitado crea su cuenta `miembro` en
    `/registro` (enlace con `?codigo=`). No hay registro abierto; los miembros no invitan. La base solo guarda el SHA-256 del código;
@@ -106,6 +108,8 @@ Reglas:
 - **Cada ejercicio con un solo valor correcto y verificable por un segundo método.** Guarda el script de
   cálculo en `.soluciones/` (ignorada por git) y comprueba allí cada respuesta.
 - Un nodo con ejercicios necesita **al menos 5** (lo valida `vault:check`).
+- **Ningún ejemplo resuelto ni bloque de código del texto puede dar la respuesta de un ejercicio**: los ejemplos usan otros valores
+  (otra semilla, otro tamaño, otro caso). Compruébalo con `npm run vault:fugas -- <id>` (usa `.soluciones/`) y revisa a mano cada coincidencia.
 - Plantilla de contenido y criterios de calidad: `docs/PEDAGOGIA.md`.
 
 **Flujo de trabajo por nodo (el que se ha seguido):**

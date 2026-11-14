@@ -278,9 +278,10 @@ El **análisis semántico** comprueba lo que la gramática no puede expresar:
   las resuelve (con la **comprobación de ocurrencia**, que impide `α = α → β`). El resultado es el **tipo principal**, el más general. Con `let` se **generaliza**: `let id = fun x -> x` tiene tipo
   `∀α. α → α` y puede usarse con enteros y con cadenas.
 
-> [!example] Ejemplo resuelto 3: el tipo de `fun f x -> f (f x)`
-> Sean `f : φ` y `x : ξ`. `f x` exige `φ = ξ → ρ1`; `f (f x)` exige `φ = ρ1 → ρ2`. Unificar `ξ → ρ1` con `ρ1 → ρ2` da `ξ = ρ1` y `ρ1 = ρ2`. Todo es la misma variable: el tipo es
-> `('a -> 'a) -> 'a -> 'a`. La función solo se puede aplicar a funciones de un tipo en sí mismo, cosa que el programador no ha escrito en ninguna parte.
+> [!example] Ejemplo resuelto 3: el tipo de `fun x g -> g (g x) x`
+> Sean `x : ξ` y `g : γ`. `g x` (el argumento interior) exige `γ = ξ → ρ1`. Entonces `g (g x)` tiene tipo `ρ1` y además exige `γ = ρ1 → ρ2`; unificar `ξ → ρ1` con `ρ1 → ρ2` da
+> `ξ = ρ1 = ρ2`. Por último, `(g (g x)) x` aplica un `ξ` a `x`: exige `ξ = ξ → ρ3`, y la **comprobación de ocurrencia** lo rechaza (sería un tipo infinito). El término no tipa: la
+> unificación encuentra el error sin que el programador haya escrito un solo tipo.
 
 ## 7. Representaciones intermedias y SSA
 
