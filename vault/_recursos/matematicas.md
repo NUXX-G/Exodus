@@ -1,7 +1,7 @@
 ---
 recursos: matematicas
 title: Recursos de matemáticas
-resumen: Canales, cursos, libros gratuitos y herramientas, de la ESO a las demostraciones de nivel universitario, en español y en inglés.
+resumen: "Canales, cursos, libros gratuitos y herramientas, de la ESO a las demostraciones de nivel universitario, en español y en inglés."
 revisado: 2026-11-14
 ---
 
