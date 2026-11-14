@@ -1,0 +1,2 @@
+alert tcp any any -> any 80 (msg:"bien"; content:"GET"; sid:1;)
+alert tcp any any -> any 80 (msg:"opcion desconocida"; pcre:"/a/"; sid:2;)

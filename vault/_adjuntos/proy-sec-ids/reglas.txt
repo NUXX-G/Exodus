@@ -1,0 +1,18 @@
+# Reglas de proy-sec-ids: un subconjunto de la sintaxis de Snort y Suricata (ver el §4 del proyecto).
+alert tcp any any -> any 80 (msg:"recorrido de directorios en HTTP"; content:"../"; sid:1000001;)
+alert tcp any any -> any any (msg:"/etc/passwd en la carga"; content:"/etc/passwd"; sid:1000002;)
+alert tcp any any -> 10.0.0.0/24 80 (msg:"herramienta sqlmap"; content:"user-agent: sqlmap"; nocase; sid:1000003;)
+alert tcp !10.0.0.0/8 any -> any any (msg:"intento de conexion desde fuera"; flags:S; sid:1000004;)
+alert tcp any any -> 2001:db8::/32 8000:8999 (msg:"cmd.exe por IPv6"; content:"CMD.EXE"; nocase; content:"POST"; sid:1000005;)
+alert udp any any -> any 514 (msg:"syslog: fallo de ssh"; content:"Failed password"; sid:1000006;)
+alert udp any any -> any 53 (msg:"consulta DNS de ejemplo.test"; content:"|07|ejemplo|04|test|00|"; sid:1000007;)
+alert tcp any any -> any any (msg:"bytes 00 01 02"; content:"|00 01 02|"; sid:1000008;)
+alert any any any -> any !53 (msg:"carga de mas de 1000 bytes"; dsize:>1000; sid:1000009;)
+alert tcp any any -> any any (msg:"SYN+ACK"; flags:SA; sid:1000010;)
+alert tcp any 443 -> any any (msg:"registro TLS de datos de aplicacion"; content:"|17 03 03|"; sid:1000011;)
+alert tcp any any -> any 80 (msg:"minusculas sin nocase"; content:"get /"; sid:1000012;)
+
+alert udp any any -> any any (msg:"NTP v4 de cliente"; content:"|23|"; dsize:48; sid:1000013;)
+alert tcp any any -> any any (msg:"PSH con poca carga"; flags:P+; dsize:<10; sid:1000014;)
+alert udp any any -> any 4 (msg:"UDP de 2 bytes"; dsize:2; sid:1000015;)
+alert tcp any any -> any 1:1024 (msg:"RST hacia puerto bajo"; flags:R+; sid:1000016;)
