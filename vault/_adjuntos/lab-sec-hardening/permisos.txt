@@ -1,0 +1,11 @@
+# Salida de: stat -c '%A %U:%G %n' sobre ficheros elegidos de web02
+-rw-r----- root:shadow /etc/shadow
+-rw-r--r-- root:root /etc/passwd
+-rwxrwxrwx root:root /usr/local/bin/respaldo.sh
+-rwxr-xr-x root:root /usr/local/bin/rotar-logs.sh
+-rw-rw-rw- root:root /etc/cron.d/limpieza
+-rw------- deploy:deploy /home/deploy/.ssh/authorized_keys
+-rwsr-xr-x root:root /usr/bin/passwd
+-rwsr-xr-x root:root /usr/local/bin/diagnostico
+drwxrwxrwt root:root /tmp
+-rw-r--r-- www-data:www-data /var/www/html/.env

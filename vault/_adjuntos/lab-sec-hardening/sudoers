@@ -1,0 +1,7 @@
+# /etc/sudoers de web02 (sin comentarios ni valores por defecto)
+root    ALL=(ALL:ALL) ALL
+%admin  ALL=(ALL) ALL
+deploy  ALL=(root) NOPASSWD: /usr/bin/systemctl restart nginx, /usr/bin/systemctl reload nginx
+backup  ALL=(root) NOPASSWD: /usr/bin/tar *
+monitor ALL=(root) /usr/bin/journalctl
+soporte ALL=(ALL) NOPASSWD: /usr/bin/vim /etc/nginx/nginx.conf
