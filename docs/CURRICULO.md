@@ -162,12 +162,42 @@ las prácticas de laboratorio y el trabajo de fin de asignatura. Se ven en `/pra
 | Rama | Proyectos | Laboratorios |
 |---|---|---|
 | Matemáticas | ⬜ `proy-mat-numerico` (biblioteca numérica validada: raíces, cuadratura, EDO, álgebra lineal) · ⬜ `proy-mat-algebra-computacional` (racionales, polinomios, factorización, Gröbner pequeño) | ⬜ `lab-mat-criptoaritmetica` (romper con teoría de números un esquema de juguete mal diseñado) |
-| Física | ⬜ `proy-fis-nbody` (N cuerpos con integradores simplécticos y conservación) · ⬜ `proy-fis-ising` (Monte Carlo, transición de fase, exponentes) | ⬜ `lab-fis-datos-experimentales` (ajuste con incertidumbres a datos medidos) |
+| Física | ⬜ `proy-fis-nbody` (N cuerpos con integradores simplécticos y conservación) · ⬜ `proy-fis-ising` (Monte Carlo, transición de fase, exponentes) · ⬜ `proy-fis-schrodinger` (ecuación de Schrödinger numérica: estados ligados, paquetes de onda, efecto túnel) | ⬜ `lab-fis-datos-experimentales` (ajuste con incertidumbres a datos medidos) |
 | Ingeniería | ⬜ `proy-ing-cpu-riscv` (CPU RV32I en Verilog que pasa la batería de pruebas) · ⬜ `proy-ing-filtros-dsp` (cadena de filtrado y diezmado en punto fijo) | ⬜ `lab-ing-iq-demodulacion` (demodular una grabación IQ hasta leer el mensaje) |
 | Robótica | ⬜ `proy-rob-robot-movil` (simulador, odometría, EKF, A*, seguimiento de trayectorias) · ⬜ `proy-rob-brazo` (cinemática, dinámica y control por par calculado de un brazo de 3 GDL) | ⬜ `lab-rob-fusion-sensores` (reconstruir una trayectoria a partir de registros de IMU y encoders) |
 | Sistemas | ✅ `proy-sys-shell-c` (shell de Unix en C: tuberías, redirecciones, señales, trabajos) · ✅ `proy-sys-kv-rust` (almacén clave-valor persistente y concurrente en Rust con protocolo de red) · ✅ `proy-sys-compilador` (compilador de un lenguaje pequeño a ensamblador) · ✅ `proy-sys-automatizacion` (kit de copias, auditoría y despliegue en bash y PowerShell) | ⬜ `lab-sys-depuracion` (diagnosticar un fallo a partir de un volcado y sus registros) · ⬜ `lab-sys-rendimiento` (encontrar el cuello de botella en trazas de perf) |
 | Ciberseguridad | ⬜ `proy-sec-ids` (detector de intrusiones sobre capturas y registros) · ⬜ `proy-sec-cripto-verificada` (AES-GCM y ChaCha20-Poly1305 contra vectores oficiales) | ✅ `lab-sec-forense-servidor` · ✅ `lab-sec-captura-red` · ✅ `lab-sec-reversing-crackme` · ✅ `lab-sec-cripto-mal-usada` · ✅ `lab-sec-hardening` |
-| IA | ⬜ `proy-ia-autograd` (motor de diferenciación automática y red desde cero) · ⬜ `proy-ia-mini-gpt` (transformer pequeño entrenado y evaluado) | ⬜ `lab-ia-fuga-de-datos` (encontrar la fuga que infla las métricas de un modelo) |
+| IA | ⬜ `proy-ia-autograd` (motor de diferenciación automática y red desde cero) · ⬜ `proy-ia-mini-gpt` (transformer pequeño entrenado y evaluado) · ⬜ `proy-ia-aprendizaje-refuerzo` (agente que aprende a controlar un sistema físico simulado) | ⬜ `lab-ia-fuga-de-datos` (encontrar la fuga que infla las métricas de un modelo) |
+| Cuántica | ⬜ `proy-cua-simulador` (simulador de circuitos por vector de estado: puertas, medida, Grover, QFT y Shor pequeño, ruido y corrección de errores) | ⬜ `lab-cua-tomografia` (reconstruir un estado y detectar un espía en BB84 a partir de recuentos de medidas) |
+
+## SUPERPROYECTO: la misión Exodus (todas las ramas)
+
+Un proyecto final que integra todas las ramas en un solo sistema: un **vehículo autónomo de exploración planetaria
+simulado**, con su software de a bordo, su estación de tierra y su enlace seguro. Cada hito usa una rama y produce un
+artefacto que el siguiente necesita; el hito final ejecuta la misión completa y da un código que solo sale si todo
+encaja. Requiere haber hecho antes los proyectos de cada rama.
+
+| Hito | Rama | Qué se construye |
+|---|---|---|
+| 1 | Física | Simulador del vehículo: dinámica de un robot diferencial sobre terreno con pendientes y rozamiento, integrador con paso controlado y conservación comprobada |
+| 2 | Matemáticas | Estimación y optimización: filtro de Kalman extendido para la posición y planificación de trayectorias como problema de optimización con restricciones |
+| 3 | Ingeniería | Cadena de sensores: modelo de IMU y encoders con ruido, filtrado digital en punto fijo y presupuesto de energía con un modelo de batería |
+| 4 | Robótica | Navegación: mapa de ocupación, A* o RRT*, seguimiento con control predictivo, evitación de obstáculos |
+| 5 | Sistemas | Software de a bordo en Rust (tareas concurrentes con plazos, registro persistente) y estación de tierra con telemetría replicada |
+| 6 | Ciberseguridad | Enlace seguro: telemetría autenticada y cifrada (AEAD), protección contra repetición, modelo de amenazas y análisis forense de un incidente simulado |
+| 7 | IA | Percepción: clasificación del terreno a partir de datos de sensores con una red entrenada y evaluada sin fugas, y detección de anomalías en la telemetría |
+| 8 | Cuántica | Distribución de la clave del enlace con BB84 simulado, estimación del QBER, detección de un espía y amplificación de privacidad |
+| 9 | Integración | La misión completa: del despliegue a la recogida de muestras, con fallos inyectados (sensor degradado, pérdida de enlace, ataque) y un informe final |
+
+Cada hito se comprueba como los demás proyectos: un programa de prueba adjunto ejecuta el código del estudiante con
+entradas fijas y da un código si el contrato se cumple. Se construye cuando estén los proyectos de cada rama.
+
+## RECURSOS POR RAMA
+
+Además de la bibliografía de cada nodo, cada rama tiene una página de **recursos recomendados** (`/recursos`):
+canales de YouTube y cursos en español y en inglés, libros por nivel y herramientas, con lo que aporta cada uno.
+Viven en `vault/_recursos/<área>.md` y cada recomendación se comprueba (que existe, en qué idioma está y de qué
+trata) en más de una fuente.
 
 ---
 
