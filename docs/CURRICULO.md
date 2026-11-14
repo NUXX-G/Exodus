@@ -161,7 +161,7 @@ las prácticas de laboratorio y el trabajo de fin de asignatura. Se ven en `/pra
 
 | Rama | Proyectos | Laboratorios |
 |---|---|---|
-| Matemáticas | ✅ `proy-mat-numerico` (biblioteca numérica validada: raíces, cuadratura, EDO, álgebra lineal) · ✅ `proy-mat-algebra-computacional` (racionales, polinomios, factorización, Gröbner pequeño) | ⬜ `lab-mat-criptoaritmetica` (romper con teoría de números un esquema de juguete mal diseñado) |
+| Matemáticas | ✅ `proy-mat-numerico` (biblioteca numérica validada: raíces, cuadratura, EDO, álgebra lineal) · ✅ `proy-mat-algebra-computacional` (racionales, polinomios, factorización, Gröbner pequeño) | ✅ `lab-mat-criptoaritmetica` (romper con teoría de números un esquema de juguete mal diseñado) |
 | Física | ✅ `proy-fis-nbody` (N cuerpos con integradores simplécticos y conservación) · ✅ `proy-fis-ising` (Monte Carlo, transición de fase, exponentes) · ✅ `proy-fis-schrodinger` (ecuación de Schrödinger numérica: estados ligados, paquetes de onda, efecto túnel) | ⬜ `lab-fis-datos-experimentales` (ajuste con incertidumbres a datos medidos) |
 | Ingeniería | ✅ `proy-ing-cpu-riscv` (CPU RV32I en Verilog que pasa la batería de pruebas) · ✅ `proy-ing-filtros-dsp` (cadena de filtrado y diezmado en punto fijo) | ⬜ `lab-ing-iq-demodulacion` (demodular una grabación IQ hasta leer el mensaje) |
 | Robótica | ✅ `proy-rob-robot-movil` (simulador, odometría, EKF, A*, seguimiento de trayectorias) · ✅ `proy-rob-brazo` (cinemática, dinámica y control por par calculado de un brazo de 3 GDL) | ⬜ `lab-rob-fusion-sensores` (reconstruir una trayectoria a partir de registros de IMU y encoders) |
