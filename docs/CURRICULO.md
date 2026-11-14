@@ -142,7 +142,7 @@ pruebas que pasan, no en un resumen por lenguaje.
   ✅ `ia-redes-profundas` · ✅ `ia-pytorch` · ✅ `cua-computacion-cuantica`.
 - **N5-N6**: ✅ `ia-vision` · ✅ `ia-nlp` · ✅ `ia-transformers-llm` · ✅ `ia-llm-locales` (Ollama, vLLM) ·
   ✅ `ia-aprendizaje-refuerzo` · ✅ `ia-modelos-generativos` · ✅ `ia-bayesiana` ·
-  ⬜ `cua-algoritmos-correccion-errores`.
+  ✅ `cua-algoritmos-correccion-errores`.
 
 ---
 
