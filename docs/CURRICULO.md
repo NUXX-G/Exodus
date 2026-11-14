@@ -122,7 +122,7 @@ pruebas que pasan, no en un resumen por lenguaje.
 - **Rust (N4-N5), hasta nivel sénior**: ✅ `prog-rust-fundamentos` (propiedad, préstamos, vidas, enums y
   patrones, errores con `Result`, colecciones, cargo) · ✅ `prog-rust-traits-genericos` (traits, genéricos,
   objetos de trait, iteradores, cierres, punteros inteligentes, `Rc`/`RefCell`, módulos y crates) ·
-  ⬜ `prog-rust-concurrencia-async` (`Send`/`Sync`, hilos, canales, `Arc`/`Mutex`, atómicos, `async`/`await`,
+  ✅ `prog-rust-concurrencia-async` (`Send`/`Sync`, hilos, canales, `Arc`/`Mutex`, atómicos, `async`/`await`,
   `Future` y `Pin`, tokio) · ⬜ `prog-rust-unsafe-ffi-macros` (unsafe y sus invariantes, Miri, FFI con C,
   macros declarativas y procedurales) · ⬜ `prog-rust-profesional` (diseño de API, errores con thiserror/anyhow,
   pruebas y propiedades, criterion, tracing, serde, servicios con axum, workspaces, CI, clippy, semver).
