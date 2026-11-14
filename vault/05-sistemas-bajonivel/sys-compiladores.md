@@ -332,7 +332,7 @@ borren comprobaciones o se transformen bucles de forma sorprendente.
 - **Selección de instrucciones**: se cubre el árbol de la RI con **patrones** de la máquina (con programación dinámica para elegir la cobertura más barata, o con reglas de reescritura como en
   LLVM). `x86-64` permite `lea rax, [rbx + rcx*4 + 8]`, que hace en una instrucción una suma, un producto y otra suma.
 - **Código de pila**: la forma más sencilla de generar código es recorrer el árbol en postorden emitiendo `push` de operandos y, para cada operador, `pop` de dos, operar y `push`. Es lento pero correcto, y es
-  el punto de partida del proyecto `proy-sys-compilador`.
+  el punto de partida del proyecto [[proy-sys-compilador]].
 - **Asignación de registros**: dos variables **interfieren** si están vivas a la vez; en el **grafo de interferencias**, asignar `k` registros es **colorear con `k` colores** (Chaitin, 1981). Es un
   problema NP-completo en general, y se usa la heurística de simplificar (quitar nodos con menos de `k` vecinos), volcar a memoria (*spill*) si no se puede y seleccionar. Briggs la mejoró con el
   coloreado optimista; el **barrido lineal** (Poletto y Sarkar, 1999) recorre los intervalos de vida en orden y es el que usan los JIT por su rapidez. Para intervalos (y para programas en SSA), el
@@ -561,5 +561,5 @@ El mismo ensamblador, enlazado con un `main` en C, se ejecuta en el ejercicio de
 
 ## Siguiente
 
-El proyecto `proy-sys-compilador`, donde escribirás un compilador de un lenguaje pequeño hasta ensamblador x86-64 ejecutable; `sys-lenguajes-programacion` (semántica formal y diseño de
+El proyecto [[proy-sys-compilador]], donde escribirás un compilador de un lenguaje pequeño hasta ensamblador x86-64 ejecutable; `sys-lenguajes-programacion` (semántica formal y diseño de
 lenguajes) y `sys-optimizacion-rendimiento` (leer lo que el compilador ha hecho con tu código).
