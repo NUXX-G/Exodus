@@ -124,7 +124,7 @@ pruebas que pasan, no en un resumen por lenguaje.
   objetos de trait, iteradores, cierres, punteros inteligentes, `Rc`/`RefCell`, módulos y crates) ·
   ✅ `prog-rust-concurrencia-async` (`Send`/`Sync`, hilos, canales, `Arc`/`Mutex`, atómicos, `async`/`await`,
   `Future` y `Pin`, tokio) · ✅ `prog-rust-unsafe-ffi-macros` (unsafe y sus invariantes, Miri, FFI con C,
-  macros declarativas y procedurales) · ⬜ `prog-rust-profesional` (diseño de API, errores con thiserror/anyhow,
+  macros declarativas y procedurales) · ✅ `prog-rust-profesional` (diseño de API, errores con thiserror/anyhow,
   pruebas y propiedades, criterion, tracing, serde, servicios con axum, workspaces, CI, clippy, semver).
 - **Sistemas (N4)**: ✅ `sys-ensamblador-x86-64` · ⬜ `sys-ensamblador-arm` · ⬜ `sys-compiladores` ·
   ⬜ `sys-concurrencia` · ⬜ `sys-kernel-linux` · ⬜ `sys-sistemas-distribuidos`.
