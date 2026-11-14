@@ -172,6 +172,8 @@ las prácticas de laboratorio y el trabajo de fin de asignatura. Se ven en `/pra
 
 ## SUPERPROYECTO: la misión Exodus (todas las ramas)
 
+✅ `proy-exodus-mision` (en `vault/08-superproyecto/`)
+
 Un proyecto final que integra todas las ramas en un solo sistema: un **vehículo autónomo de exploración planetaria
 simulado**, con su software de a bordo, su estación de tierra y su enlace seguro. Cada hito usa una rama y produce un
 artefacto que el siguiente necesita; el hito final ejecuta la misión completa y da un código que solo sale si todo
