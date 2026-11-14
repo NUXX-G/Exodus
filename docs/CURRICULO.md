@@ -135,7 +135,7 @@ pruebas que pasan, no en un resumen por lenguaje.
   ✅ `sec-forense-logs` · ✅ `sec-reversing-malware` · ✅ `sec-criptografia-aplicada` ·
   ✅ `sec-seguridad-redes` · ✅ `sec-metodologia-pentest` · ✅ `sec-cloud-contenedores`.
 - **N5-N6**: ✅ `sec-criptoanalisis` · ✅ `sec-seguridad-hardware` · ✅ `sec-formal-protocolos` ·
-  ⬜ `sec-gestion-riesgo`.
+  ✅ `sec-gestion-riesgo`.
 
 ## IA y computación cuántica (≈ 14 nodos)
 - **N4**: ⬜ `ia-python-datos` · ✅ `ia-aprendizaje-estadistico` · ⬜ `ia-redes-desde-cero` ·
