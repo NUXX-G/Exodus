@@ -123,7 +123,7 @@ pruebas que pasan, no en un resumen por lenguaje.
   patrones, errores con `Result`, colecciones, cargo) · ✅ `prog-rust-traits-genericos` (traits, genéricos,
   objetos de trait, iteradores, cierres, punteros inteligentes, `Rc`/`RefCell`, módulos y crates) ·
   ✅ `prog-rust-concurrencia-async` (`Send`/`Sync`, hilos, canales, `Arc`/`Mutex`, atómicos, `async`/`await`,
-  `Future` y `Pin`, tokio) · ⬜ `prog-rust-unsafe-ffi-macros` (unsafe y sus invariantes, Miri, FFI con C,
+  `Future` y `Pin`, tokio) · ✅ `prog-rust-unsafe-ffi-macros` (unsafe y sus invariantes, Miri, FFI con C,
   macros declarativas y procedurales) · ⬜ `prog-rust-profesional` (diseño de API, errores con thiserror/anyhow,
   pruebas y propiedades, criterion, tracing, serde, servicios con axum, workspaces, CI, clippy, semver).
 - **Sistemas (N4)**: ✅ `sys-ensamblador-x86-64` · ⬜ `sys-ensamblador-arm` · ⬜ `sys-compiladores` ·
