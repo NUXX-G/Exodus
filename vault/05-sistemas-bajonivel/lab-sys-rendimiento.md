@@ -124,10 +124,10 @@ lento: aquí hay un `strlen` dentro de la condición de un bucle, el error de li
 1. **Reproduce**: compila (`gcc -O2 -g -fno-inline -fno-omit-frame-pointer -o informe informe.c`; sin `-fno-inline` las funciones pequeñas se integran en `main` y el perfil se lee peor) y genera registros
    de distintos tamaños con `python3 genera_log.py N > m.log`.
 2. **Perfil por muestreo**: `perf record -e cpu-clock:u -F 999 --call-graph dwarf ./informe < m.log` y `perf report --no-children`. Compara con `--call-graph fp`: las funciones de la biblioteca de C que no
-   montan marco de pila (como `strcmp`) hacen que el desenrollado por puntero de marco **se salte a su llamante**, y el perfil atribuye la llamada a la función de más arriba. Es un error real que confunde
+   montan marco de pila (muchas rutinas de cadenas escritas a mano en ensamblador) hacen que el desenrollado por puntero de marco **se salte a su llamante**, y el perfil atribuye la llamada a la función de más arriba. Es un error real que confunde
    a mucha gente; DWARF (o LBR en Intel) lo evita a cambio de más datos.
 3. **Perfil exacto**: `valgrind --tool=callgrind ./informe < m.log` y `callgrind_annotate --inclusive=yes --tree=caller`. Callgrind cuenta **instrucciones** (no tiempo) y **llamadas**, sin ruido: dos
-   ejecuciones dan lo mismo, lo que permite comparar con un modelo exacto. Observa también que Valgrind y la máquina real eligen variantes distintas de `strcmp` (`ifunc` según las extensiones del procesador).
+   ejecuciones dan lo mismo, lo que permite comparar con un modelo exacto. Observa también que Valgrind y la máquina real pueden elegir variantes distintas de una misma función de la biblioteca (`ifunc` según las extensiones del procesador).
 4. **Modelo**: escribe cuántas comparaciones hace la búsqueda lineal en función de n y del número de claves distintas, y comprueba que coincide **exactamente** con las llamadas medidas.
 5. **Escalado y estimación**: con `escalado.txt`, el exponente k de I ∝ nᵏ; con el modelo y la mediana medida, el tiempo del día completo.
 6. **Corrige** y mide con `hyperfine -N --warmup 2 --runs 10 --input m.log ./informe ./informe_ok`: mediana, no media.
@@ -135,8 +135,8 @@ lento: aquí hay un `strlen` dentro de la condición de un bucle, el error de li
 
 ## 2. Qué aprenderás a reconocer
 
-- **Símbolo caliente frente a culpable**: `strcmp` acumula casi todas las muestras, pero cada llamada es barata; el problema es **cuántas** llamadas hace `busca_ip`. El coste inclusivo de las funciones propias
-  dice dónde actuar.
+- **Símbolo caliente frente a culpable**: una función de biblioteca muy rápida puede acumular casi todas las muestras; el problema no es ella, sino **cuántas veces** la llama tu código. El coste
+  inclusivo de las funciones propias dice dónde actuar.
 - **Un algoritmo cuadrático escondido**: la búsqueda lineal hace O(n·k) comparaciones (n líneas, k claves distintas). Con pocas IP distintas no se nota; con un rastreador que trae 200 000, domina todo.
   El exponente medido no es exactamente 2 porque parte del coste es lineal (lectura y análisis de cada línea) y porque k no crece igual que n cuando se repiten IP.
 - **Lo que no importa**: `strlen` en la condición del bucle hace O(L²) por ruta, pero L ≤ 30 y su coste inclusivo es una fracción mínima; por Amdahl, arreglarlo solo no acelera nada. Arréglalo igual, pero
@@ -146,8 +146,8 @@ lento: aquí hay un `strlen` dentro de la condición de un bucle, el error de li
 
 ## 3. Lo que debería concluir el informe
 
-El tiempo de `informe` crece con el número de líneas por el número de IP distintas porque `busca_ip` recorre todas las IP ya vistas en cada línea; con el tráfico del rastreador eso son unas 1,9·10¹¹
-comparaciones al día. La solución es una estructura de búsqueda con coste esperado O(1) (una tabla hash con factor de carga acotado) para IP y rutas, que deja el programa limitado por la lectura y el
+El tiempo de `informe` crece con el número de líneas por el número de claves distintas porque cada búsqueda recorre todas las claves ya vistas; con el tráfico del rastreador eso son del orden
+de 10¹¹ comparaciones al día. La solución es una estructura de búsqueda con coste esperado O(1) (una tabla hash con factor de carga acotado) para IP y rutas, que deja el programa limitado por la lectura y el
 análisis de las líneas. Hay que añadir una **prueba de rendimiento** a la integración continua con un registro de tamaño realista, para que una regresión de complejidad se detecte antes de producción, y una
 alarma si la duración del trabajo nocturno crece. Y documentar la limitación que queda: una tabla hash con una función de dispersión conocida puede atacarse enviando claves que colisionan (ataques de
 complejidad algorítmica, Crosby y Wallach, USENIX Security 2003); si las claves vienen de fuera, se usa una función con semilla aleatoria como SipHash.
