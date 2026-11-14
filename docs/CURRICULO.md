@@ -181,15 +181,15 @@ encaja. Requiere haber hecho antes los proyectos de cada rama.
 
 | Hito | Rama | Qué se construye |
 |---|---|---|
-| 1 | Física | Simulador del vehículo: dinámica de un robot diferencial sobre terreno con pendientes y rozamiento, integrador con paso controlado y conservación comprobada |
-| 2 | Matemáticas | Estimación y optimización: filtro de Kalman extendido para la posición y planificación de trayectorias como problema de optimización con restricciones |
-| 3 | Ingeniería | Cadena de sensores: modelo de IMU y encoders con ruido, filtrado digital en punto fijo y presupuesto de energía con un modelo de batería |
-| 4 | Robótica | Navegación: mapa de ocupación, A* o RRT*, seguimiento con control predictivo, evitación de obstáculos |
-| 5 | Sistemas | Software de a bordo en Rust (tareas concurrentes con plazos, registro persistente) y estación de tierra con telemetría replicada |
-| 6 | Ciberseguridad | Enlace seguro: telemetría autenticada y cifrada (AEAD), protección contra repetición, modelo de amenazas y análisis forense de un incidente simulado |
-| 7 | IA | Percepción: clasificación del terreno a partir de datos de sensores con una red entrenada y evaluada sin fugas, y detección de anomalías en la telemetría |
-| 8 | Cuántica | Distribución de la clave del enlace con BB84 simulado, estimación del QBER, detección de un espía y amplificación de privacidad |
-| 9 | Integración | La misión completa: del despliegue a la recogida de muestras, con fallos inyectados (sensor degradado, pérdida de enlace, ataque) y un informe final |
+| 1 | Física | Dinámica longitudinal sobre el perfil del terreno (gravedad, rodadura, arrastre, motor limitado por fuerza y potencia) con RK4 y balance energético |
+| 2 | Matemáticas | Trilateración con Gauss-Newton a partir de distancias ruidosas a balizas y suavizado de la trayectoria por mínimos cuadrados regularizados (sesgo y varianza) |
+| 3 | Ingeniería | Batería con curva de tensión en vacío y resistencia interna alimentando el perfil de potencia de la travesía: autonomía en recorridos |
+| 4 | Robótica | Mapa de alturas, celdas impracticables por pendiente y A* con coste que penaliza la pendiente |
+| 5 | Sistemas | Telemetría en tramas con CRC-32 por un canal que pierde, corrompe, duplica y reordena; tiempos de respuesta en prioridad monótona en tasa y EDF |
+| 6 | Ciberseguridad | Enlace con HKDF y ChaCha20-Poly1305 (nonce y datos asociados con la secuencia) frente a repetición, falsificación y manipulación |
+| 7 | IA | Clasificación del terreno con regresión logística multinomial y detección de anomalías con mediana y MAD |
+| 8 | Cuántica | BB84 con espía y ruido: criba, QBER, aborto por encima del 11 % y amplificación de privacidad con Toeplitz |
+| 9 | Integración | La misión completa encadenada (la ruta fija la travesía, la clave BB84 alimenta el enlace) con informe y código de misión |
 
 Cada hito se comprueba como los demás proyectos: un programa de prueba adjunto ejecuta el código del estudiante con
 entradas fijas y da un código si el contrato se cumple. Se construye cuando estén los proyectos de cada rama.
