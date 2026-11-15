@@ -118,6 +118,9 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
    ~0,3 s de servidor por página. Fórmulas: un solo motor MathJax (`src/lib/rehype-mathjax-svg.ts`, sin órdenes TeX con
    estado) y glifos compartidos por página (`src/lib/svg-compacto.ts`: todo HTML con fórmulas que se pinte en una página
    debe pasar por `compactarFormulas`). *Por qué*: el precalentado del PR #207 tumbó la instancia por una fuga de MathJax.
+   Contenido escrito por usuarios (Libreta y, en el futuro, respuestas de desarrollo de la fase 3): siempre
+   `renderMarkdown(md, resolve, "usuario")`, que usa un motor MathJax aparte sin paquetes que definen macros y otra
+   clave de caché (PR #210). *Por qué*: con un motor compartido, una nota podía cambiar las fórmulas de otros usuarios.
 
 ## 7. Preguntas abiertas
 
@@ -131,5 +134,6 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
 
 | Fecha | Qué se hizo | Commit |
 | --- | --- | --- |
+| 2026-11-15 | Seguridad en v1: motor MathJax aparte para contenido de usuario (PR #210), fusionado en `v2` | merge de `main` |
 | 2026-11-15 | Urgente en v1: la instancia se quedaba sin memoria (fuga de MathJax) y los nodos pesaban 2,4 MB. PR #209 en `main`, fusionado en `v2` | merge de `main` |
 | 2026-11-15 | Paso 0: rama `v2`, `docs/ROADMAP_V2.md`, `STATUS.md` nuevo, `docs/HISTORIAL_V1.md`, `scripts/dev/`, `CLAUDE.md` | `v2: fase 0 completada` |
