@@ -184,10 +184,13 @@ const sanitizeSchema = {
 
 // El resolver cambia en cada render (el vault se relee); el pipeline se construye una sola vez.
 let currentResolver: LinkResolver = () => null;
-let processor: Processor<any, any, any, any, any> | undefined;
+/** Quién escribió el Markdown: el vault (confianza) o un usuario (Libreta). Cambia el motor de fórmulas. */
+export type Origen = "vault" | "usuario";
 
-function getProcessor() {
-  return (processor ??= unified()
+const processors: Partial<Record<Origen, Processor<any, any, any, any, any>>> = {};
+
+function getProcessor(origen: Origen) {
+  return (processors[origen] ??= unified()
     .use(remarkParse)
     .use(remarkGfm)
     .use(remarkMath)
@@ -200,7 +203,8 @@ function getProcessor() {
     .use(rehypeSanitize, sanitizeSchema)
     .use(rehypeSlug)
     // MathJax antes que Shiki: consume los bloques `math` para que no se traten como código.
-    .use(rehypeMathjax)
+    // Contenido de usuario: motor MathJax propio y sin paquetes que definen macros (ver rehype-mathjax-svg.ts).
+    .use(rehypeMathjax, { usuario: origen === "usuario" })
     .use(rehypeShiki, {
       theme: "night-owl",
       lazy: true,
@@ -213,9 +217,9 @@ function getProcessor() {
 }
 
 /** Renderiza sin caché. Las peticiones normales usan renderMarkdown. */
-export async function renderMarkdownSinCache(markdown: string, resolve: LinkResolver): Promise<string> {
+export async function renderMarkdownSinCache(markdown: string, resolve: LinkResolver, origen: Origen = "vault"): Promise<string> {
   currentResolver = resolve;
-  const file = await getProcessor().process(markdown);
+  const file = await getProcessor(origen).process(markdown);
   return String(file);
 }
 
@@ -223,7 +227,9 @@ export async function renderMarkdownSinCache(markdown: string, resolve: LinkReso
  * Markdown → HTML con caché por contenido (ver render-cache.ts). Un resolutor sin firma (hecho a mano en las
  * pruebas) no usa la caché: no habría forma de saber si dos resolutores dan los mismos enlaces.
  */
-export async function renderMarkdown(markdown: string, resolve: LinkResolver): Promise<string> {
-  if (!resolve.firma) return renderMarkdownSinCache(markdown, resolve);
-  return conCache(claveDeRender(markdown, resolve.firma), () => renderMarkdownSinCache(markdown, resolve));
+export async function renderMarkdown(markdown: string, resolve: LinkResolver, origen: Origen = "vault"): Promise<string> {
+  if (!resolve.firma) return renderMarkdownSinCache(markdown, resolve, origen);
+  // El origen entra en la clave: una nota de usuario nunca comparte entrada de caché con el vault.
+  const firma = origen === "vault" ? resolve.firma : `${resolve.firma}|origen=${origen}`;
+  return conCache(claveDeRender(markdown, firma), () => renderMarkdownSinCache(markdown, resolve, origen));
 }

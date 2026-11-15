@@ -36,6 +36,36 @@ test("MathJax compartido: las órdenes con estado se rechazan con data-mjx-error
   assert.match(await render(String.raw`$\mathbb{R}$`), /211D/);
 });
 
+test("MathJax compartido: la lista de órdenes con estado cubre todas las variantes y no toca \\newline", async () => {
+  const { TEX_CON_ESTADO } = await import("../src/lib/rehype-mathjax-svg");
+  const prohibidas = String.raw`\newcommand \renewcommand \providecommand \newenvironment \renewenvironment \Newextarrow \newtagform \renewtagform \newgathered \DeclareMathOperator \DeclarePairedDelimiter \DeclarePairedDelimiterX \def \gdef \edef \xdef \let \definecolor \require \setOptions \mathtoolsset \usetagform \label \ref \eqref \tag`.split(" ");
+  for (const p of prohibidas) assert.match(p + "{x}", TEX_CON_ESTADO, p);
+  const permitidas = String.raw`\newline \frac \delta \defined \letter \tagged \reference \mathbb \color \left \right \lim \sum`.split(" ");
+  for (const p of permitidas) assert.doesNotMatch(p + "{x}", TEX_CON_ESTADO, p);
+});
+
+test("MathJax de usuario: motor aparte, sin paquetes que definen, y no contamina al del vault", async () => {
+  const renderUsuario = async (md: string) =>
+    String(
+      await unified().use(remarkParse).use(remarkMath).use(remarkRehype).use(rehypeMathjaxSvg, { usuario: true }).use(rehypeStringify).process(md),
+    );
+  // \Newextarrow es de extpfeil (fuera del motor de usuario) y además está en la lista: no se define nada.
+  const intento = await renderUsuario(String.raw`$\Newextarrow{\xfoo}{5,5}{0x2192}$`);
+  assert.match(intento, /data-mjx-error/);
+  // \coloneqq (mathtools) no existe en el motor de usuario pero sí en el del vault.
+  assert.doesNotMatch(await render(String.raw`$a \coloneqq b$`), /data-mjx-error/);
+  const normId = (s: string) => s.replace(/MJX-\d+-/g, "MJX-N-");
+  assert.notEqual(
+    normId(await renderUsuario(String.raw`$a \coloneqq b$`)),
+    normId(await render(String.raw`$a \coloneqq b$`)),
+    "en el motor de usuario \\coloneqq (mathtools) no existe",
+  );
+  // Lo normal se dibuja igual en los dos motores.
+  const norm = (s: string) => s.replace(/MJX-\d+-/g, "MJX-N-");
+  const md = String.raw`$\int_0^1 \frac{x^2}{\sqrt{1+x}}\,dx$`;
+  assert.equal(norm(await renderUsuario(md)), norm(await render(md)));
+});
+
 test("MathJax compartido: un error de TeX no rompe el renderizado y vault:check lo ve", async () => {
   const html = await render(String.raw`$\frac{1}$ y luego $y$`);
   assert.match(html, /data-mjx-error/);

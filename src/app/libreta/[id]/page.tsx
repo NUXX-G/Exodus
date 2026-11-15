@@ -30,7 +30,7 @@ export default async function Nota({ params }: Props) {
   const {
     fragmentos: [html],
     definiciones,
-  } = compactarFormulas([await renderMarkdown(note.body || "_Nota vacía._", linkResolverFor(vault))]);
+  } = compactarFormulas([await renderMarkdown(note.body || "_Nota vacía._", linkResolverFor(vault), "usuario")]);
   const nodos = studyOrder(vault).map((n) => ({ id: n.id, title: n.title }));
 
   return (
