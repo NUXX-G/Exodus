@@ -1,0 +1,6 @@
+# Tomografía de un cúbit: 2000 repeticiones por base; n0 = resultado 0 (autovalor +1), n1 = resultado 1 (autovalor -1).
+# Estado que se quería preparar: Rz(0,7)·Ry(1,1)|0> (ángulos en radianes).
+base,n0,n1
+X,1576,424
+Y,1455,545
+Z,1407,593
