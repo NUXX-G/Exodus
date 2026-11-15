@@ -77,9 +77,9 @@ exercises:
   - id: energia-sismica
     tier: 3
     prompt: |
-      La energía liberada por un terremoto crece como $E \propto 10^{1{,}5\,M}$, siendo $M$ la magnitud. ¿Cuántas veces más energía libera un terremoto de magnitud $7$ que uno de
-      magnitud $5$? Respuesta: un número.
-    answers: ["sha256:40510175845988f13f6162ed8526f0b09f73384467fa855e1e79b44a56562a58"]
+      La energía liberada por un terremoto crece como $E \propto 10^{1{,}5\,M}$, siendo $M$ la magnitud. ¿Cuántas veces más energía libera un terremoto de magnitud $8$ que uno de
+      magnitud $5$? Respuesta: redondeado a un entero.
+    answers: ["sha256:770dd25925e4bbc1e09d89d1412be7b2d41c535a9370d58895a960e0162f7927"]
   - id: parametro-teorema-del-resto
     tier: 3
     prompt: |

@@ -73,8 +73,8 @@ exercises:
   - id: desigualdad-de-chebyshev
     tier: 2
     prompt: |
-      Una variable tiene media $50$ y desviación típica $5$, sin más información sobre su distribución. ¿Qué cota superior da la desigualdad de Chebyshev para $P(\lvert X - 50\rvert \ge 15)$? Respuesta: una fracción irreducible `a/b`.
-    answers: ["sha256:7dbf57a3ed617234cd386b0f2042474ab8a0f152f17305ad0d1f8e62412a2629"]
+      Una variable tiene media $50$ y desviación típica $5$, sin más información sobre su distribución. ¿Qué cota superior da la desigualdad de Chebyshev para $P(\lvert X - 50\rvert \ge 20)$? Respuesta: una fracción irreducible `a/b`.
+    answers: ["sha256:ece2d97a690303566cb7ba329f7bf3e25baedb393c113372798d4230af8de720"]
   - id: binomial-exacta-y-normal
     tier: 3
     prompt: |

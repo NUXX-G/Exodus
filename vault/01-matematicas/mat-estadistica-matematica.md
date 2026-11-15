@@ -36,13 +36,13 @@ exercises:
   - id: metodo-delta
     tier: 2
     prompt: |
-      Se estima la tasa $\lambda = 0{,}5$ de una exponencial con $1/\bar X$ y $n = 100$. Por el método delta, ¿cuál es su desviación típica asintótica? Respuesta: un número.
-    answers: ["sha256:0602d7c813c1f6e7351a5832730f29daf739674976caba8d9dd955be838d46ea"]
+      Se estima la tasa $\lambda = 0{,}5$ de una exponencial con $1/\bar X$ y $n = 400$. Por el método delta, ¿cuál es su desviación típica asintótica? Respuesta: un número.
+    answers: ["sha256:98fcc7a319ae18a5afb886159537cddd90fa882631187b9cc87f1da8f9173b7b"]
   - id: neyman-pearson
     tier: 2
     prompt: |
-      Con 9 observaciones $N(\mu, 1)$, el test más potente de nivel $0{,}05$ de $H_0: \mu = 0$ frente a $H_1: \mu = 1$ rechaza si $\bar X > c$. ¿Cuál es su potencia? Respuesta: con **4 decimales**.
-    answers: ["sha256:fcbc27710e5bd7205b6256d88fb76de32a25946783daff255c330947c883a53c"]
+      Con 16 observaciones $N(\mu, 1)$, el test más potente de nivel $0{,}05$ de $H_0: \mu = 0$ frente a $H_1: \mu = 1$ rechaza si $\bar X > c$. ¿Cuál es su potencia? Respuesta: con **4 decimales**.
+    answers: ["sha256:e555fce88b8ae816e6de8414a49704bd4773f367258b1c75c14ff8a4601e3ca7"]
   - id: razon-de-verosimilitudes
     tier: 2
     prompt: |
@@ -71,8 +71,8 @@ exercises:
   - id: rao-blackwell
     tier: 3
     prompt: |
-      En una muestra de 10 Poisson($\lambda$) con $T = \sum X_i = 15$, ¿cuánto vale el estimador insesgado de varianza mínima de $\Pr(X = 0) = e^{-\lambda}$ (obtenido por Rao-Blackwell a partir de $\mathbf 1_{\{X_1 = 0\}}$)? Respuesta: con **4 decimales**.
-    answers: ["sha256:36fc277d7fd5284f35bc49f8a42ddf00e032f356e89b6e13ca23dc8e09b9c267"]
+      En una muestra de 10 Poisson($\lambda$) con $T = \sum X_i = 12$, ¿cuánto vale el estimador insesgado de varianza mínima de $\Pr(X = 0) = e^{-\lambda}$ (obtenido por Rao-Blackwell a partir de $\mathbf 1_{\{X_1 = 0\}}$)? Respuesta: con **4 decimales**.
+    answers: ["sha256:f867af5a4e73895053181002486e67fab22195200d22c77cb338f6ea57a78bd3"]
   - id: eficiencia-relativa
     tier: 3
     prompt: |

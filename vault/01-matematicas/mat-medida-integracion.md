@@ -31,8 +31,8 @@ exercises:
   - id: cantor-gordo
     tier: 2
     prompt: |
-      Construye un "Cantor gordo": en el paso $n$ quita de la mitad de cada uno de los $2^{n-1}$ intervalos que quedan un intervalo abierto de longitud $4^{-n}$. ¿Qué medida tiene el conjunto resultante (cerrado, sin interior)? Respuesta: un número.
-    answers: ["sha256:d2cbad71ff333de67d07ec676e352ab7f38248eb69c942950157220607c55e84"]
+      Construye un "Cantor gordo": en el paso $n$ quita de la mitad de cada uno de los $2^{n-1}$ intervalos que quedan un intervalo abierto de longitud $8^{-n}$. ¿Qué medida tiene el conjunto resultante (cerrado, sin interior)? Respuesta: una fracción irreducible `p/q` o un decimal con **4 decimales**.
+    answers: ["sha256:6527243b137e313aee168954360944e5a3bdd5e700e74a5b1ac6a44bd24dd652", "sha256:4cbc34b71acf4b66192144d49c4abae2fcc1cdaff3802cb604b0c3408aa861f7"]
   - id: convergencia-monotona
     tier: 2
     prompt: |

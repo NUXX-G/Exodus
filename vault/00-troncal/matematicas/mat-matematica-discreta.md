@@ -38,13 +38,13 @@ exercises:
   - id: suma-de-cuadrados
     tier: 2
     prompt: |
-      Calcula $\displaystyle\sum_{k=1}^{30}k^2$ (se demuestra por inducción que vale $\frac{n(n+1)(2n+1)}{6}$). Respuesta: un entero.
-    answers: ["sha256:170f32fa66f6f7668b54f4a0ca869cc8b60c6bc0b704d98a388eeaca4d3fd6fb"]
+      Calcula $\displaystyle\sum_{k=1}^{40}k^2$ (se demuestra por inducción que vale $\frac{n(n+1)(2n+1)}{6}$). Respuesta: un entero.
+    answers: ["sha256:b3c50838fe758e187c428a6490d6de846c35793552b778c10b431c9ade3a9f33"]
   - id: recurrencia-lineal
     tier: 2
     prompt: |
-      La sucesión cumple $a_n = 3a_{n-1} - 2a_{n-2}$ con $a_0 = 1$ y $a_1 = 3$. ¿Cuánto vale $a_{10}$? (Pista: la ecuación característica $x^2 - 3x + 2 = 0$ tiene raíces $1$ y $2$.) Respuesta: un entero.
-    answers: ["sha256:adde7bf0e33b11361d40f4de29102a7c23e91a14078409b597701c7cb2134204"]
+      La sucesión cumple $a_n = 3a_{n-1} - 2a_{n-2}$ con $a_0 = 1$ y $a_1 = 3$. ¿Cuánto vale $a_{12}$? (Pista: la ecuación característica $x^2 - 3x + 2 = 0$ tiene raíces $1$ y $2$.) Respuesta: un entero.
+    answers: ["sha256:d31fd82522aa23afef527a708684d548837f6778ddde55a1c1b4ae1119d7f053"]
   - id: relaciones-de-equivalencia
     tier: 2
     prompt: |
@@ -53,8 +53,8 @@ exercises:
   - id: funciones-sobreyectivas
     tier: 2
     prompt: |
-      ¿Cuántas funciones **sobreyectivas** hay de un conjunto de $5$ elementos a uno de $3$ elementos? (Usa inclusión-exclusión.) Respuesta: un entero.
-    answers: ["sha256:9ae2bdd7beedc2e766c6b76585530e16925115707dc7a06ab5ee4aa2776b2c7b"]
+      ¿Cuántas funciones **sobreyectivas** hay de un conjunto de $6$ elementos a uno de $3$ elementos? (Usa inclusión-exclusión.) Respuesta: un entero.
+    answers: ["sha256:84f01dd97c687fb28a296bcc2ef1801446ea7405860595924eb2b5bb634718d1"]
   - id: aristas-de-k8
     tier: 2
     prompt: |
@@ -83,8 +83,8 @@ exercises:
   - id: cadenas-sin-unos-seguidos
     tier: 3
     prompt: |
-      ¿Cuántas cadenas binarias de longitud $12$ **no** contienen dos unos consecutivos? (Sale una sucesión de Fibonacci.) Respuesta: un entero.
-    answers: ["sha256:2c4cf657337835125bc4258d0e2e546af4185bdb70f64e1b0aa46d1d78017404"]
+      ¿Cuántas cadenas binarias de longitud $15$ **no** contienen dos unos consecutivos? (Sale una sucesión de Fibonacci.) Respuesta: un entero.
+    answers: ["sha256:eb57f949956cc9f3c32eb7f249bbe56a74c253015af4dddb0c98cde49157cbd0"]
   - id: rsa-de-juguete
     tier: 3
     prompt: |
