@@ -1,0 +1,16 @@
+{
+  "global": {
+    "core:datatype": "ci8",
+    "core:sample_rate": 96000,
+    "core:version": "1.0.0",
+    "core:description": "Grabación de un receptor SDR sintonizado cerca de 144,800 MHz (frecuencia APRS en Europa), en banda base compleja.",
+    "core:hw": "receptor SDR de 8 bits"
+  },
+  "captures": [
+    {
+      "core:sample_start": 0,
+      "core:frequency": 144782500
+    }
+  ],
+  "annotations": []
+}
