@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { DeleteNoteButton, NoteForm } from "@/components/NoteForms";
 import { getSessionUser, requireUser } from "@/lib/auth";
 import { linkResolverFor, renderMarkdown } from "@/lib/markdown";
+import { compactarFormulas } from "@/lib/svg-compacto";
 import { getNote } from "@/lib/notes";
 import { studyOrder } from "@/lib/study";
 import { loadVault } from "@/lib/vault";
@@ -26,7 +27,10 @@ export default async function Nota({ params }: Props) {
   if (!note) notFound();
   const vault = loadVault();
   const nodo = note.nodeId ? vault.nodes.get(note.nodeId) : undefined;
-  const html = await renderMarkdown(note.body || "_Nota vacía._", linkResolverFor(vault));
+  const {
+    fragmentos: [html],
+    definiciones,
+  } = compactarFormulas([await renderMarkdown(note.body || "_Nota vacía._", linkResolverFor(vault))]);
   const nodos = studyOrder(vault).map((n) => ({ id: n.id, title: n.title }));
 
   return (
@@ -42,6 +46,7 @@ export default async function Nota({ params }: Props) {
       </p>
       <h1>{note.title}</h1>
       {/* HTML generado en el servidor por el mismo motor que los nodos: el HTML crudo se descarta y se sanea. */}
+      {definiciones && <div className="formulas-definiciones" dangerouslySetInnerHTML={{ __html: definiciones }} />}
       <article className="prosa" dangerouslySetInnerHTML={{ __html: html }} />
 
       <details className="editar-nota">

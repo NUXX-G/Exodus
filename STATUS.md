@@ -111,6 +111,13 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
    Drizzle, sin FastAPI) y se añadieron el protocolo de arranque y la regla del roadmap. *Por qué*: `CLAUDE.md` se carga
    solo en cada sesión y un dato falso ahí despista a la siguiente.
 5. **2026-11-15 · `FASE_1.md` se deja como está**: es el encargo original de la v1, ya cumplido; no se usa en la v2.
+6. **2026-11-15 · Arreglos urgentes de la v1 van a `main` por PR y luego se fusionan en `v2`** (`git merge main`).
+   *Por qué*: el usuario usa la v1 en su VPS mientras se hace la v2. Primer caso: PR #209 (memoria de MathJax).
+7. **2026-11-15 · Presupuesto de rendimiento** (VPS de 2 GB compartido con otros servicios; contenedor de 512 MB; 2–4
+   usuarios). Toda función nueva se prueba en Docker con `--memory=512m --cpus=1` y no debe superar ~350 MB en uso ni
+   ~0,3 s de servidor por página. Fórmulas: un solo motor MathJax (`src/lib/rehype-mathjax-svg.ts`, sin órdenes TeX con
+   estado) y glifos compartidos por página (`src/lib/svg-compacto.ts`: todo HTML con fórmulas que se pinte en una página
+   debe pasar por `compactarFormulas`). *Por qué*: el precalentado del PR #207 tumbó la instancia por una fuga de MathJax.
 
 ## 7. Preguntas abiertas
 
@@ -124,4 +131,5 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
 
 | Fecha | Qué se hizo | Commit |
 | --- | --- | --- |
+| 2026-11-15 | Urgente en v1: la instancia se quedaba sin memoria (fuga de MathJax) y los nodos pesaban 2,4 MB. PR #209 en `main`, fusionado en `v2` | merge de `main` |
 | 2026-11-15 | Paso 0: rama `v2`, `docs/ROADMAP_V2.md`, `STATUS.md` nuevo, `docs/HISTORIAL_V1.md`, `scripts/dev/`, `CLAUDE.md` | `v2: fase 0 completada` |

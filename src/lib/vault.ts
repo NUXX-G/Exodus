@@ -126,7 +126,7 @@ function* walk(dir: string): Generator<string> {
   }
 }
 
-let enCache: { firma: string; vault: Vault } | null = null;
+let enCache: { root: string; firma: string; vault: Vault; comprobado: number } | null = null;
 
 /** Huella barata del vault: ruta, tamaño y fecha de cada .md (y de cada adjunto). Leerlo entero cuesta ~100 ms. */
 function firmaDelVault(root: string): string {
@@ -151,12 +151,23 @@ function firmaDelVault(root: string): string {
  */
 export function loadVault(): Vault {
   const root = vaultRoot();
+  // Comprobar la huella cuesta un stat por archivo (~200 archivos): se hace como mucho una vez cada
+  // VAULT_RECHECK_MS (2 s por defecto). Un cambio en el vault se ve, como tarde, a los 2 s.
+  if (enCache?.root === root && Date.now() - enCache.comprobado < recheckMs()) return enCache.vault;
   if (!fs.existsSync(root)) return leerVault(root);
   const firma = firmaDelVault(root);
-  if (enCache?.firma === firma) return enCache.vault;
+  if (enCache?.root === root && enCache.firma === firma) {
+    enCache.comprobado = Date.now();
+    return enCache.vault;
+  }
   const vault = leerVault(root);
-  enCache = { firma, vault };
+  enCache = { root, firma, vault, comprobado: Date.now() };
   return vault;
+}
+
+function recheckMs(): number {
+  const v = Number(process.env.VAULT_RECHECK_MS);
+  return Number.isFinite(v) && v >= 0 ? v : 2000;
 }
 
 function leerVault(root: string): Vault {

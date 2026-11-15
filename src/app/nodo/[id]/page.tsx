@@ -8,6 +8,7 @@ import { listNotes } from "@/lib/notes";
 import { areaOf } from "@/lib/areas";
 import { getSessionUser, requireUser } from "@/lib/auth";
 import { linkResolverFor, renderMarkdown } from "@/lib/markdown";
+import { compactarFormulas } from "@/lib/svg-compacto";
 import { getCompleted, getRevealedLevels, getSolvedExercises, masteryOf, recordOpen, stateOf } from "@/lib/progress";
 import { loadRecursos } from "@/lib/recursos";
 import { studyOrder } from "@/lib/study";
@@ -49,16 +50,18 @@ export default async function PaginaNodo({ params }: Props) {
   const completed = getCompleted(user.id);
   const state = stateOf(node, completed);
   const revealed = getRevealedLevels(user.id, node.id);
-  const html = await renderMarkdown(node.body, linkResolverFor(vault));
   const area = areaOf(vault.areas, node.area);
   const nextHint = revealed.length + 1;
   const attachments = attachmentInfo(node);
   const resolve = linkResolverFor(vault);
   const solvedIds = getSolvedExercises(user.id, node.id);
   const mastery = masteryOf(node, solvedIds);
-  const ejercicios = await Promise.all(
-    node.exercises.map(async (e) => ({ e, html: await renderMarkdown(e.prompt, resolve) })),
-  );
+  // Texto y enunciados se renderizan por separado (caché por fragmento) y luego comparten una sola copia de los
+  // glifos y la hoja de estilo de MathJax (svg-compacto.ts).
+  const crudos = await Promise.all([node.body, ...node.exercises.map((e) => e.prompt)].map((md) => renderMarkdown(md, resolve)));
+  const { fragmentos, definiciones } = compactarFormulas(crudos);
+  const html = fragmentos[0];
+  const ejercicios = node.exercises.map((e, i) => ({ e, html: fragmentos[i + 1] }));
   const TIER = ["", "A completar", "Problema", "Difícil"] as const;
   const misNotas = listNotes(user.id, node.id);
   // Lo que este nodo desbloquea: los nodos que lo tienen como prerequisito.
@@ -94,6 +97,7 @@ export default async function PaginaNodo({ params }: Props) {
           </p>
         )}
         {/* HTML generado en el servidor a partir del vault; el HTML crudo del Markdown se descarta. */}
+        {definiciones && <div className="formulas-definiciones" dangerouslySetInnerHTML={{ __html: definiciones }} />}
         <article className="prosa" dangerouslySetInnerHTML={{ __html: html }} />
 
         {ejercicios.length > 0 && (
