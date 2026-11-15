@@ -1,0 +1,12 @@
+# Tomografía de dos cúbits: 2000 repeticiones por par de bases. nAB = recuentos con el cúbit 0 en A y el cúbit 1 en B.
+# Estado que se quería preparar: (|00> + |11>)/raiz(2).
+base_q0,base_q1,n00,n01,n10,n11
+X,X,899,105,130,866
+X,Y,520,497,478,505
+X,Z,503,510,494,493
+Y,X,485,492,492,531
+Y,Y,170,835,850,145
+Y,Z,486,477,532,505
+Z,X,498,502,514,486
+Z,Y,521,451,506,522
+Z,Z,970,37,42,951
