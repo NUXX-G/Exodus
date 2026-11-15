@@ -11,8 +11,8 @@ exercises:
   - id: punto-de-trabajo-del-diodo
     tier: 1
     prompt: |
-      Un diodo ($I_s = 10^{-14}$ A, $n = 1$, $V_T = 25{,}852$ mV) en serie con 1 k$\Omega$ se conecta a 5 V. ¿Qué corriente circula, en mA? Respuesta: con **4 decimales**.
-    answers: ["sha256:8b72b4b72452ccae7fe9c53f2851514ed6752073988dcec9a0a12737eb46cc3c"]
+      Un diodo ($I_s = 10^{-14}$ A, $n = 1$, $V_T = 25{,}852$ mV) en serie con 1 k$\Omega$ se conecta a 3 V. ¿Qué corriente circula, en mA? Respuesta: con **4 decimales**.
+    answers: ["sha256:77f56999b868511c4cf30ea3a6a45932d481a4a72fb3c5791f515dd311593224"]
   - id: regulador-zener
     tier: 1
     prompt: |
@@ -41,18 +41,18 @@ exercises:
   - id: polarizacion-del-bjt
     tier: 2
     prompt: |
-      Un BJT ($\beta = 100$, $V_{BE} = 0{,}7$ V) se polariza con un divisor de 47 k$\Omega$ y 10 k$\Omega$ desde 12 V, $R_E = 1$ k$\Omega$ y $R_C = 4{,}7$ k$\Omega$. ¿Cuánto vale $I_C$, en mA? Respuesta: con **4 decimales**.
-    answers: ["sha256:57363897d29c29920be9f8bbd0a547558b0ab3562ef46c2f550ba9afea6168e3"]
+      Un BJT ($\beta = 120$, $V_{BE} = 0{,}7$ V) se polariza con un divisor de 56 k$\Omega$ y 12 k$\Omega$ desde 15 V, $R_E = 1{,}5$ k$\Omega$ y $R_C = 5{,}6$ k$\Omega$. ¿Cuánto vale $I_C$, en mA? Respuesta: con **4 decimales**.
+    answers: ["sha256:e287b613a06425c93cc522de299c350ad5640138f0482052ee5595646dc4ed12"]
   - id: ganancia-del-emisor-comun
     tier: 2
     prompt: |
       Con ese punto de trabajo, $R_E$ desacoplado y una carga de 10 k$\Omega$, ¿cuál es la ganancia de tensión en pequeña señal (con $r_o$ infinita, $V_T = 25{,}852$ mV)? Respuesta: con **1 decimal**.
-    answers: ["sha256:babcfdfcf283bab476a8eca5f086233e2d6932648d23b04e83ffa9f32e098bda"]
+    answers: ["sha256:39b9830cfec0e0d53701aec74036d657529510255ada8d5ea62386790956ccf7"]
   - id: ganancia-finita
     tier: 2
     prompt: |
-      Un no inversor de ganancia ideal 11 usa un operacional con ganancia en lazo abierto $A_0 = 10^5$. ¿Cuál es su ganancia real? Respuesta: con **4 decimales**.
-    answers: ["sha256:6ab08eedd02209bf1c59acf7d83fd1cf661c1d31023fe386e9c24dcad7a9c45a"]
+      Un no inversor de ganancia ideal 21 usa un operacional con ganancia en lazo abierto $A_0 = 10^5$. ¿Cuál es su ganancia real? Respuesta: con **4 decimales**.
+    answers: ["sha256:91323625d208eb43867c955ad8ba67f0e06b41998c8559ca1275b3b36e423816"]
   - id: producto-ganancia-ancho-de-banda
     tier: 2
     prompt: |
@@ -86,8 +86,8 @@ exercises:
   - id: margen-de-fase
     tier: 3
     prompt: |
-      Un operacional tiene $A(s) = \frac{10^5}{(1 + s/\omega_1)(1 + s/\omega_2)}$ con polos en 10 Hz y 1 MHz. Conectado como seguidor ($\beta = 1$), ¿qué margen de fase tiene, en grados? Respuesta: con **2 decimales**.
-    answers: ["sha256:9b4be10615075cc79beaa836ccb38add55ffdb7eb6c2fa8e5e70061814ec8586"]
+      Un operacional tiene $A(s) = \frac{10^5}{(1 + s/\omega_1)(1 + s/\omega_2)}$ con polos en 10 Hz y 2 MHz. Conectado como seguidor ($\beta = 1$), ¿qué margen de fase tiene, en grados? Respuesta: con **2 decimales**.
+    answers: ["sha256:b008ee52a1632b637c39000ae73f8fa8c6fa85d4903c4355d0a54994aa34fb24"]
 ---
 
 # Electrónica analógica: diodos, transistores en polarización y pequeña señal, amplificadores operacionales reales, filtros activos, osciladores, ruido y estabilidad

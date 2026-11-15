@@ -46,9 +46,9 @@ flag), ya enlazados a la escalera pero pendientes de desdoblar.
    hitos verificados con la salida del programa del estudiante) y **laboratorios** (`kind: laboratorio`, adjuntos y flag) por rama, visibles en
    `/practica` (PR #120). Los ids `prog-cpp` y `prog-rust` desaparecen en favor de los nodos desdoblados. Los nodos de robótica usan `area: robotica`.
 2c. **Auditoría de fugas** (2026-11-14; 2026-11-15): los nodos de #143 a #167 ya estaban revisados. Revisión del resto con `npm run vault:fugas`
-   (154 coincidencias en 84 nodos): física corregida (16 ejercicios en 10 nodos: se cambiaron los datos del ejercicio, no el ejemplo verificado del
-   texto, y cada nueva respuesta se calcula con dos métodos en su especificación). Quedan ingeniería, matemáticas, programación, sistemas,
-   seguridad y troncal. Falsos positivos que se dejan: números que aparecen por otro motivo y datos que el nodo enseña y el ejercicio pide
+   (154 coincidencias en 84 nodos): física (16 ejercicios en 10 nodos, #203) e ingeniería (27 ejercicios en 8 nodos) corregidas: se cambiaron los datos
+   del ejercicio, no el ejemplo verificado del texto, y cada nueva respuesta se calcula con dos métodos en su especificación. Quedan
+   matemáticas, programación, sistemas, seguridad y troncal. Falsos positivos que se dejan: números que aparecen por otro motivo y datos que el nodo enseña y el ejercicio pide
    recordar (códigos de error de Rust, `GFP_ATOMIC`, fases de PTES…).
 3. **Plataforma (MVP cerrado el 2026-11-12; invitaciones añadidas el 2026-11-13)**: el admin genera en `/cuenta` invitaciones de un
    solo uso que caducan (1, 3 o 7 días; máximo 20 pendientes; se pueden anular) y el invitado crea su cuenta `miembro` en

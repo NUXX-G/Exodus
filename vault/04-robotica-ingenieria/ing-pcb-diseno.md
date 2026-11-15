@@ -11,8 +11,8 @@ exercises:
   - id: resistencia-de-pista
     tier: 1
     prompt: |
-      ¿Qué resistencia tiene una pista de cobre ($\rho = 1{,}72\cdot10^{-8}\ \Omega$·m) de 35 $\mu$m de espesor, 0,3 mm de ancho y 50 mm de largo, en m$\Omega$? Respuesta: con **1 decimal**.
-    answers: ["sha256:88c10088c7f302c91667b126e6ec39d1518e4bd5fab463d634e405029e239e01"]
+      ¿Qué resistencia tiene una pista de cobre ($\rho = 1{,}72\cdot10^{-8}\ \Omega$·m) de 35 $\mu$m de espesor, 0,25 mm de ancho y 80 mm de largo, en m$\Omega$? Respuesta: con **1 decimal**.
+    answers: ["sha256:c5876ea27b7c84f5db148e4b2fe0bb6de5f622943ac5bf9c8c46f9b7335454d2"]
   - id: impedancia-objetivo
     tier: 1
     prompt: |
@@ -31,18 +31,18 @@ exercises:
   - id: temperatura-de-union
     tier: 1
     prompt: |
-      Un regulador lineal baja de 5 V a 3,3 V con 0,5 A. Con $\theta_{JA} = 50$ K/W y ambiente a 25 °C, ¿a qué temperatura está su unión, en °C? Respuesta: con **1 decimal**.
-    answers: ["sha256:8cad10c2a9f81849fd84459f22b6d8727e8331189cdaaf6013fbbc639e5b5d44"]
+      Un regulador lineal baja de 12 V a 5 V con 0,25 A. Con $\theta_{JA} = 50$ K/W y ambiente a 25 °C, ¿a qué temperatura está su unión, en °C? Respuesta: con **1 decimal**.
+    answers: ["sha256:8098ef89dd2b330d8982223e19d2e7f17996f2cbfe87a45023127e739e807fb4"]
   - id: ancho-ipc-2221
     tier: 2
     prompt: |
-      Con la correlación de IPC-2221 para capas externas, $I = 0{,}048\,\Delta T^{0{,}44}A^{0{,}725}$ ($A$ en mil²), ¿qué anchura de pista de 1 oz (1,378 mil de espesor) lleva 2 A con 10 °C de calentamiento, en mm? Respuesta: con **3 decimales**.
-    answers: ["sha256:aa427ca6ed49cd4ea0646331cf9223ddc4da4566062f16346997f04640dd7a16"]
+      Con la correlación de IPC-2221 para capas externas, $I = 0{,}048\,\Delta T^{0{,}44}A^{0{,}725}$ ($A$ en mil²), ¿qué anchura de pista de 1 oz (1,378 mil de espesor) lleva 3 A con 20 °C de calentamiento, en mm? Respuesta: con **3 decimales**.
+    answers: ["sha256:654b3ef65ce44fe1b946c1aae3ca6693683da2752e0c44457898a29a0849b1bb"]
   - id: impedancia-microstrip
     tier: 2
     prompt: |
-      Con la fórmula de IPC-2141, $Z_0 = \frac{87}{\sqrt{\varepsilon_r + 1{,}41}}\ln\frac{5{,}98h}{0{,}8w + t}$, ¿qué impedancia tiene una microstrip con $h = 0{,}2$ mm, $w = 0{,}35$ mm, $t = 0{,}035$ mm y $\varepsilon_r = 4{,}3$, en $\Omega$? Respuesta: con **1 decimal**.
-    answers: ["sha256:5dc14f26e7cf4130bedb4402c6ef3191ce31dfc456ba5c1bb4dc9d6dd7cd2711"]
+      Con la fórmula de IPC-2141, $Z_0 = \frac{87}{\sqrt{\varepsilon_r + 1{,}41}}\ln\frac{5{,}98h}{0{,}8w + t}$, ¿qué impedancia tiene una microstrip con $h = 0{,}2$ mm, $w = 0{,}3$ mm, $t = 0{,}035$ mm y $\varepsilon_r = 4{,}3$, en $\Omega$? Respuesta: con **1 decimal**.
+    answers: ["sha256:499d5c825c4a88b1bec3c80c51ace9a7ea6fbd8f833a292289187f3cf5482b86"]
   - id: resonancia-de-desacoplo
     tier: 2
     prompt: |
@@ -57,7 +57,7 @@ exercises:
     tier: 2
     prompt: |
       La pista de `resistencia-de-pista` (medida a 20 °C) trabaja a 85 °C. Con $\alpha = 0{,}00393$ K⁻¹, ¿qué resistencia tiene, en m$\Omega$? Respuesta: con **1 decimal**.
-    answers: ["sha256:9c24b180bbe7e230bc79187fdad8cd58e147ef1bb4808e626265975406906054"]
+    answers: ["sha256:f442351e576ded761b71cd552d4d78c33baba63d92a0765d158cd9f669dfa1fd"]
   - id: profundidad-pelicular
     tier: 2
     prompt: |
@@ -66,8 +66,8 @@ exercises:
   - id: rebote-de-masa
     tier: 2
     prompt: |
-      Ocho salidas comparten una patilla de masa con 2 nH de inductancia y conmutan a la vez 20 mA cada una en 1 ns. ¿Cuánto rebota la masa interna, en V? Respuesta: un número.
-    answers: ["sha256:60bb8f6c52a2aca85b1a3ae08e71f97dd3fa8603b55abefb09ebb0edfe5294d1"]
+      Seis salidas comparten una patilla de masa con 2,5 nH de inductancia y conmutan a la vez 30 mA cada una en 1 ns. ¿Cuánto rebota la masa interna, en V? Respuesta: un número.
+    answers: ["sha256:bffb16d6fe1445f051b3cff3025340011b817b391ffc04dcd77d1452efa10c25"]
   - id: vias-en-paralelo
     tier: 2
     prompt: |
@@ -78,11 +78,11 @@ exercises:
     prompt: |
       Según Ott, un bucle pequeño radia en modo diferencial $E = 263\cdot10^{-16}\,\frac{f^2AI}{r}$ (V/m, SI, sobre plano de masa). Para un bucle de 1 cm² con 10 mA a 100 MHz medido a 3 m, ¿cuánto vale $E$ en dB$\mu$V/m? Respuesta: con **2 decimales**.
     answers: ["sha256:0e4581689844b4c55e55e85a7f080a2bce1a8ef108828199bf4e44c0f59dff54"]
-  - id: ancho-para-50-ohmios
+  - id: ancho-para-75-ohmios
     tier: 3
     prompt: |
-      Con la fórmula de `impedancia-microstrip` y los mismos $h$, $t$ y $\varepsilon_r$, ¿qué anchura da exactamente 50 $\Omega$, en mm? Respuesta: con **3 decimales**.
-    answers: ["sha256:589334d4859a47587d4918b014c97bec7846283dda421f1c3be4ba9aa00a2401"]
+      Con la fórmula de `impedancia-microstrip` y los mismos $h$, $t$ y $\varepsilon_r$, ¿qué anchura da exactamente 75 $\Omega$, en mm? Respuesta: con **3 decimales**.
+    answers: ["sha256:24488d212116e21b76145add1f6c7f82598bb848f7a774ad6530b60bd63912a9"]
   - id: antirresonancia
     tier: 3
     prompt: |

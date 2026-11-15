@@ -11,13 +11,13 @@ exercises:
   - id: convertidor-reductor
     tier: 1
     prompt: |
-      Un convertidor reductor ideal en conducción continua tiene $V_{in} = 12$ V y ciclo de trabajo $D = 0{,}4$. ¿Qué tensión de salida da? Respuesta: en V.
-    answers: ["sha256:9c7f38a9ac4f5de592be486948ac944aff688f914e3b74e6917c7fe4715a561e"]
+      Un convertidor reductor ideal en conducción continua tiene $V_{in} = 24$ V y ciclo de trabajo $D = 0{,}3$. ¿Qué tensión de salida da? Respuesta: en V.
+    answers: ["sha256:18ed019486eb7ba1b2425746065deabe63e79e59d907ff99c5e82f1ee6ef3d58"]
   - id: convertidor-elevador
     tier: 1
     prompt: |
-      Un elevador ideal con $V_{in} = 5$ V trabaja con $D = 0{,}6$. ¿Qué tensión de salida da? Respuesta: en V.
-    answers: ["sha256:b902cc4550838229a710bfec4c38cbc7eb11082367a409df9135e7f007a96bda"]
+      Un elevador ideal con $V_{in} = 6$ V trabaja con $D = 0{,}55$. ¿Qué tensión de salida da? Respuesta: en V.
+    answers: ["sha256:3a86d08a08222f073b40f0fcf98ef196c0472015cc4eb80bb12ab772f52654fa"]
   - id: reductor-elevador
     tier: 1
     prompt: |
@@ -26,8 +26,8 @@ exercises:
   - id: rectificador-de-onda-completa
     tier: 1
     prompt: |
-      ¿Cuál es la tensión media de un rectificador de onda completa ideal alimentado con 325 V de pico (sin filtro)? Respuesta: en V con **1 decimal**.
-    answers: ["sha256:ef00acc2735f117268bb29cafb64e00f6fb1b3f1e50197dd9772714a98856bd0"]
+      ¿Cuál es la tensión media de un rectificador de onda completa ideal alimentado con 170 V de pico (sin filtro)? Respuesta: en V con **1 decimal**.
+    answers: ["sha256:1f4ee82df2417fc57d14332c595a7ae797de19385789baf6eadbbd4ff4720247"]
   - id: disipador
     tier: 1
     prompt: |
@@ -36,18 +36,18 @@ exercises:
   - id: rizado-de-corriente
     tier: 2
     prompt: |
-      En el reductor de `convertidor-reductor` (salida 4,8 V) con $L = 22\ \mu$H y $f_s = 200$ kHz, ¿cuánto vale el rizado pico a pico de la corriente de bobina, en A? Respuesta: con **4 decimales**.
-    answers: ["sha256:a380395d8b55465529f565ebdafceb5d3c5ccd10aeec638aacd361397f36dd16"]
+      En el reductor de `convertidor-reductor` (24 V con $D = 0{,}3$) con $L = 22\ \mu$H y $f_s = 200$ kHz, ¿cuánto vale el rizado pico a pico de la corriente de bobina, en A? Respuesta: con **4 decimales**.
+    answers: ["sha256:c5c296a1d2d023a74c710681e83bbd86280847c6b90413b552e59a7ef94abf65"]
   - id: rizado-de-tension
     tier: 2
     prompt: |
       Con un condensador de salida de 47 $\mu$F (sin ESR), ¿qué rizado pico a pico tiene la tensión de salida de ese reductor, en mV? Respuesta: con **2 decimales**.
-    answers: ["sha256:8719c8b9d63c644df3a5b778698dbdaa3c3f1b746f3cbb41b28a5f79a8989229"]
+    answers: ["sha256:fa4bb72a5e65c8dec11c74ff54f3cc84c43e1c716f9f2dd67d901d189a25ff89"]
   - id: frontera-de-conduccion
     tier: 2
     prompt: |
       ¿Por debajo de qué corriente de carga entra en conducción discontinua ese reductor, en A? Respuesta: con **4 decimales**.
-    answers: ["sha256:6c64309950919b695024dc8ed4b3dfaf898cbd24cf28e0cc49263f5a2331c3eb"]
+    answers: ["sha256:82d155337e0710a1321d3ee15fd695dcffb25d744e2f5c64697f78c908de9d87"]
   - id: perdidas-del-interruptor
     tier: 2
     prompt: |
@@ -61,8 +61,8 @@ exercises:
   - id: puente-trifasico
     tier: 2
     prompt: |
-      ¿Cuál es la tensión media de un puente rectificador trifásico de diodos (6 pulsos) con 325 V de pico de fase? Respuesta: en V con **1 decimal**.
-    answers: ["sha256:50b4f15d3a95285886f63e3985ded878c916f1b3e76a64802c4310cf7ef1ee0b"]
+      ¿Cuál es la tensión media de un puente rectificador trifásico de diodos (6 pulsos) con 170 V de pico de fase? Respuesta: en V con **1 decimal**.
+    answers: ["sha256:3cc51ec70d41547108dc895066dd1719b6b320218303845ef4bd0d4283659df8"]
   - id: rectificador-controlado
     tier: 2
     prompt: |

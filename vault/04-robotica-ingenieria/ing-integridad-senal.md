@@ -16,8 +16,8 @@ exercises:
   - id: ancho-de-banda-del-flanco
     tier: 1
     prompt: |
-      ¿Qué ancho de banda tiene una señal con tiempo de subida (10–90 %) de 100 ps, según la regla $0{,}35/t_r$, en GHz? Respuesta: un número.
-    answers: ["sha256:8a199b120cf400d69c300e1dd6eacdc8b0002353e3044bbab21e0125b32c9fd6"]
+      ¿Qué ancho de banda tiene una señal con tiempo de subida (10–90 %) de 50 ps, según la regla $0{,}35/t_r$, en GHz? Respuesta: un número.
+    answers: ["sha256:7902699be42c8a8e46fbbb4501726517e86b22c56a189f7625a6da49081b2451"]
   - id: longitud-critica
     tier: 1
     prompt: |

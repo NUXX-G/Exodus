@@ -31,8 +31,8 @@ exercises:
   - id: capacidad-de-puerta
     tier: 1
     prompt: |
-      ¿Qué capacidad de puerta tiene un transistor con óxido de 1,2 nm ($\varepsilon_r = 3{,}9$), $W = 1\ \mu$m y $L = 50$ nm, en fF? Respuesta: con **2 decimales**.
-    answers: ["sha256:12ae02d62ab8f3e3343b26b528fb96f3cf59b61e8547310411043dbc61d5e6b6"]
+      ¿Qué capacidad de puerta tiene un transistor con óxido de 1,5 nm ($\varepsilon_r = 3{,}9$), $W = 2\ \mu$m y $L = 30$ nm, en fF? Respuesta: con **2 decimales**.
+    answers: ["sha256:6c3f9363fae05325503032409f78e086bb93d575e289ec4b370e99abd316c9be"]
   - id: oscilador-en-anillo
     tier: 1
     prompt: |
@@ -61,8 +61,8 @@ exercises:
   - id: umbral-del-inversor
     tier: 2
     prompt: |
-      Un inversor CMOS con $V_{DD} = 1$ V, $V_{tn} = |V_{tp}| = 0{,}3$ V y $k_p/k_n = 0{,}5$ (modelo cuadrático), ¿a qué tensión de entrada conmuta ($V_{in} = V_{out}$)? Respuesta: con **4 decimales**.
-    answers: ["sha256:f336f9b4d00992100a80488e47edf178fde68b5da6b68287df7a5761d1ca0de8"]
+      Un inversor CMOS con $V_{DD} = 1$ V, $V_{tn} = |V_{tp}| = 0{,}3$ V y $k_p/k_n = 0{,}4$ (modelo cuadrático), ¿a qué tensión de entrada conmuta ($V_{in} = V_{out}$)? Respuesta: con **4 decimales**.
+    answers: ["sha256:cc62c9fbe9ee324ce30027d83378ee6afe8b0088f95c7037ed73a88c1b4c2a61"]
   - id: escalado-de-tension
     tier: 2
     prompt: |

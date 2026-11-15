@@ -66,8 +66,8 @@ exercises:
   - id: valor-de-pico
     tier: 2
     prompt: |
-      La red doméstica da $230$ V **eficaces** con onda senoidal. ¿Cuál es su tensión de **pico**, en voltios? Respuesta: la **parte entera** del resultado.
-    answers: ["sha256:9e11c362bc3d3572970b973d5cd86c073da358b6f9bceaa3be65d1a6487f8819"]
+      La red doméstica de Estados Unidos da $120$ V **eficaces** con onda senoidal. ¿Cuál es su tensión de **pico**, en voltios? Respuesta: la **parte entera** del resultado.
+    answers: ["sha256:f57e5cb1f4532c008183057ecc94283801fcb5afe2d1c190e3dfd38c4da08042"]
   - id: red-mixta
     tier: 3
     prompt: |
