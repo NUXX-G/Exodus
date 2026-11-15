@@ -57,8 +57,8 @@ exercises:
   - id: arbol-completo
     tier: 2
     prompt: |
-      ¿Cuántos nodos tiene un árbol binario **completo** (todos los niveles llenos) con niveles numerados de $0$ a $10$ (la raíz es el nivel $0$)? Respuesta: un entero.
-    answers: ["sha256:adde7bf0e33b11361d40f4de29102a7c23e91a14078409b597701c7cb2134204"]
+      ¿Cuántos nodos tiene un árbol binario **completo** (todos los niveles llenos) con niveles numerados de $0$ a $12$ (la raíz es el nivel $0$)? Respuesta: un entero.
+    answers: ["sha256:d31fd82522aa23afef527a708684d548837f6778ddde55a1c1b4ae1119d7f053"]
   - id: anillo-de-josefo
     tier: 2
     prompt: |
@@ -111,8 +111,8 @@ exercises:
   - id: heappush-lista
     tier: 3
     prompt: |
-      Se parte de un montículo mínimo vacío y se hace `heappush` de `7, 2, 9, 4` por ese orden. ¿Cómo queda la lista interna? Respuesta: los cuatro números separados por punto y coma.
-    answers: ["sha256:ffe36feee3bf923b73e16bdfff703eccd0efdddc2d96cd7da236499cc7df37b3"]
+      Se parte de un montículo mínimo vacío y se hace `heappush` de `5, 3, 8, 1` por ese orden. ¿Cómo queda la lista interna? Respuesta: los cuatro números separados por punto y coma.
+    answers: ["sha256:4d190803e6b1b8f0e4952d2c895f56ad38014fff376479f90d169e522831b29d"]
 ---
 
 # Estructuras de datos: listas, pilas, tablas hash, árboles y grafos

@@ -36,8 +36,8 @@ exercises:
   - id: base64url
     tier: 1
     prompt: |
-      Codifica en base64url (sin relleno `=`) la cadena `{"alg":"HS256"}`. Respuesta: la cadena base64url.
-    answers: ["sha256:7930789b6bd73b2254fc4983c1a39ba5ef30f480aa6fd9c3f0bf3d35323a2334"]
+      Codifica en base64url (sin relleno `=`) la cadena `{"alg":"HS384"}`. Respuesta: la cadena base64url.
+    answers: ["sha256:920a0276723d2e22ae6fd07efd7a7f8ea134a13600b6ee594431864567788e5b"]
   - id: leer-un-jwt
     tier: 1
     prompt: |
@@ -81,8 +81,8 @@ exercises:
   - id: fuerza-bruta-jwt
     tier: 3
     prompt: |
-      La clave de firma de un JWT tiene la forma `exodus-NNNNN` con `NNNNN` cinco dígitos. ¿Cuántas claves hay que probar, como mucho, para recuperarla a partir de un token (ataque sin conexión)? Respuesta: un entero.
-    answers: ["sha256:3bb78535cc9555ff19fe3556aaa41c78a0a45c64d49ba2bc564507648a8e77a1"]
+      La clave de firma de un JWT tiene la forma `exodus-xxxx` con `xxxx` cuatro letras minúsculas (de la a a la z, sin ñ). ¿Cuántas claves hay que probar, como mucho, para recuperarla a partir de un token (ataque sin conexión)? Respuesta: un entero.
+    answers: ["sha256:eff7a54322c310ba886e83ec575cdaf0362481d49d556accd52ca709f111e320"]
   - id: confusion-de-algoritmos
     tier: 3
     prompt: |

@@ -54,11 +54,11 @@ exercises:
 
       ¿Qué número imprime `grep -c ' 404 ' acceso.log`? Respuesta: un entero.
     answers: ["sha256:e7f6c011776e8db7cd330b54174fd76f7d0216b612387a5ffcfb81e6f0919683"]
-  - id: permisos-754
+  - id: permisos-640
     tier: 1
     prompt: |
-      Tras ejecutar `chmod 754 fichero`, ¿cuáles son los **nueve caracteres de permisos** que muestra `ls -l` (sin el primer carácter del tipo de archivo)? Respuesta: nueve caracteres, por ejemplo «rw-r--r--».
-    answers: ["sha256:bdd1a99b663059a99dddf842f63874fdfb85256c0b33f6ca03e4f1cc68e17bf0"]
+      Tras ejecutar `chmod 640 fichero`, ¿cuáles son los **nueve caracteres de permisos** que muestra `ls -l` (sin el primer carácter del tipo de archivo)? Respuesta: nueve caracteres, por ejemplo «rw-r--r--».
+    answers: ["sha256:bbd90b7c0ea30f09a2a0265124914d24a93065552474fb152c58d9aa3c526470"]
   - id: aritmetica-en-bash
     tier: 1
     prompt: |

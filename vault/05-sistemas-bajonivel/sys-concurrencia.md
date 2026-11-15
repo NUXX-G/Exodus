@@ -112,10 +112,10 @@ exercises:
   - id: peterson
     tier: 3
     prompt: |
-      Implementa en C11 el cerrojo de Peterson para dos hilos con `atomic_int` (orden secuencialmente consistente por defecto) y úsalo para proteger `contador++` sobre un `long` no atómico; cada hilo entra 100 000 veces. ¿Qué valor final tiene `contador`?
+      Implementa en C11 el cerrojo de Peterson para dos hilos con `atomic_int` (orden secuencialmente consistente por defecto) y úsalo para proteger `contador++` sobre un `long` no atómico; cada hilo entra 150 000 veces. ¿Qué valor final tiene `contador`?
 
       Respuesta: un número.
-    answers: ["sha256:b552e632666bbf6125e3109e28a4fecc08340d017e44109dadbf497a280b8f82"]
+    answers: ["sha256:6ce318969619d1c360b6144be09e3d3a22674897c7cbfe995716ed8b7ff7c4cf"]
   - id: verificar-cerrojos
     tier: 3
     prompt: |

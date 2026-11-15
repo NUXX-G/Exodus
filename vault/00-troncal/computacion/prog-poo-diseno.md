@@ -127,14 +127,14 @@ exercises:
       class B(A): pass
       class C(A): pass
       class D(B, C): pass
-      class E(C): pass
+      class E(B): pass
       class F(D, E): pass
 
       print(";".join(k.__name__ for k in F.__mro__ if k is not object))
       ```
 
       Respuesta: los nombres en el orden impreso, separados por `;`.
-    answers: ["sha256:131865c504a16cccd5523917a1c66ef69a937202c711a4c926c2bdbfb8b9ca37"]
+    answers: ["sha256:317d5cff374fd5b14cdf21c9ae242bc21119f821f9168364caac1273519ffd45"]
   - id: super-cooperativo
     tier: 2
     prompt: |

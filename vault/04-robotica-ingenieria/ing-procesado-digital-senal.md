@@ -51,13 +51,13 @@ exercises:
   - id: filtro-de-un-polo
     tier: 2
     prompt: |
-      El filtro $y[n] = 0{,}9y[n-1] + 0{,}1x[n]$ trabaja a $f_s = 1$ kHz. ¿A qué frecuencia cae 3 dB respecto a continua, en Hz? Respuesta: con **2 decimales**.
-    answers: ["sha256:9beb0787fe5b0381d5bb2bfb2bf27b5ed49481a7d4d217c6354aca4f35c2e9bc"]
+      El filtro $y[n] = 0{,}8y[n-1] + 0{,}2x[n]$ trabaja a $f_s = 1$ kHz. ¿A qué frecuencia cae 3 dB respecto a continua, en Hz? Respuesta: con **2 decimales**.
+    answers: ["sha256:4abce8d364a1ff358606407e570162aaf7face36a70354811af240b768277434"]
   - id: estabilidad
     tier: 2
     prompt: |
-      ¿Qué módulo tienen los polos de $y[n] = 1{,}8y[n-1] - 0{,}9y[n-2] + x[n]$? (Si es menor que 1, el filtro es estable.) Respuesta: con **4 decimales**.
-    answers: ["sha256:8273b288d40a215dc9763956f2bbcc35ce1d55ca5ba98971e9d270513df37d1d"]
+      ¿Qué módulo tienen los polos de $y[n] = 1{,}6y[n-1] - 0{,}8y[n-2] + x[n]$? (Si es menor que 1, el filtro es estable.) Respuesta: con **4 decimales**.
+    answers: ["sha256:92cd8aad0349afb161f11ce40f4210a7c7b9e58d25705137ce7b77bf3dfffbb0"]
   - id: transformacion-bilineal
     tier: 2
     prompt: |
@@ -86,8 +86,8 @@ exercises:
   - id: fir-por-ventana
     tier: 3
     prompt: |
-      Se diseña un FIR paso bajo por ventana: sinc ideal con $f_c = 0{,}25$ (en ciclos/muestra), 21 coeficientes y ventana de Hamming. ¿Cuánto atenúa en $f = 0{,}35$ respecto a continua, en dB (respuesta con signo)? Respuesta: con **2 decimales**.
-    answers: ["sha256:1393e172191ca350d23017de99c258b54927b9e53868fe6169008128a3039bc0"]
+      Se diseña un FIR paso bajo por ventana: sinc ideal con $f_c = 0{,}25$ (en ciclos/muestra), 31 coeficientes y ventana de Hamming. ¿Cuánto atenúa en $f = 0{,}35$ respecto a continua, en dB (respuesta con signo)? Respuesta: con **2 decimales**.
+    answers: ["sha256:fb1bafa70034b94fc8dee0b942c45015bdaf515080e38c2fa0635265dfb1ffb7"]
 ---
 
 # Procesado digital de señal: DFT y FFT, ventanas, filtros FIR e IIR, transformación bilineal, multitasa y aplicaciones

@@ -33,8 +33,8 @@ exercises:
   - id: media-geometrica-de-fermi
     tier: 1
     prompt: |
-      En una estimación de Fermi sabes que una cantidad está seguro entre $100$ y $10\,000$. ¿Qué valor central tomas si usas la **media geométrica** de las cotas? Respuesta: un número.
-    answers: ["sha256:40510175845988f13f6162ed8526f0b09f73384467fa855e1e79b44a56562a58"]
+      En una estimación de Fermi sabes que una cantidad está seguro entre $50$ y $2000$. ¿Qué valor central tomas si usas la **media geométrica** de las cotas? Respuesta: redondeada a un entero.
+    answers: ["sha256:7a20311cf7a4b222d436424480bc65dd0f9d2cefcbbb1fa148ca0d7e1d5bb55a"]
   - id: analisis-dimensional
     tier: 2
     prompt: |

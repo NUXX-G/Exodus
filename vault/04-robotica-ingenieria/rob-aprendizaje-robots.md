@@ -42,8 +42,8 @@ exercises:
   - id: iteracion-de-valores
     tier: 1
     prompt: |
-      Un robot está en una línea de estados 0 a 4; puede moverse a la izquierda o a la derecha (determinista; en 0, ir a la izquierda lo deja en 0). Cada paso cuesta $-1$, salvo entrar en el 4, que da $+10$ y termina. Con $\gamma = 0{,}9$, ¿cuánto vale $V^*(0)$? Respuesta: con **2 decimales**.
-    answers: ["sha256:62512bdc9864eb2c5efb4b8ffb7ca866d459468a3d607e559201347499b0f998"]
+      Un robot está en una línea de estados 0 a 4; puede moverse a la izquierda o a la derecha (determinista; en 0, ir a la izquierda lo deja en 0). Cada paso cuesta $-1$, salvo entrar en el 4, que da $+10$ y termina. Con $\gamma = 0{,}8$, ¿cuánto vale $V^*(0)$? Respuesta: con **2 decimales**.
+    answers: ["sha256:9964c8ae509e89f6db0c25641d8dbc8e108dca8706b3a8506665b5b1304cfaf7"]
   - id: evaluacion-de-politica
     tier: 2
     prompt: |
@@ -67,8 +67,8 @@ exercises:
   - id: ventaja-gae
     tier: 2
     prompt: |
-      Un fragmento de 3 pasos tiene recompensas 1, 1, 1, valores estimados 2, 2, 2 y termina tras el tercero (valor final 0). Con $\gamma = 0{,}9$ y $\lambda = 0{,}95$, ¿cuánto vale la ventaja GAE del primer paso? Respuesta: con **4 decimales**.
-    answers: ["sha256:7a00f43870dded4638e344838a4a08d00285f4667622e07086a8e02a8407517e"]
+      Un fragmento de 3 pasos tiene recompensas 1, 1, 1, valores estimados 2, 2, 2 y termina tras el tercero (valor final 0). Con $\gamma = 0{,}9$ y $\lambda = 0{,}9$, ¿cuánto vale la ventaja GAE del primer paso? Respuesta: con **4 decimales**.
+    answers: ["sha256:1044a439f489313f4e0911e6650207f6477c8ecd25304ad6db1e11fe10a8574b"]
   - id: entropia-de-la-politica
     tier: 2
     prompt: |

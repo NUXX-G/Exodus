@@ -37,8 +37,8 @@ exercises:
   - id: prefijo-de-un-doi
     tier: 1
     prompt: |
-      El artículo de Codd sobre el modelo relacional tiene el DOI `10.1145/362384.362685`. ¿Cuál es el **prefijo** del DOI (el que identifica a quien lo registró, aquí la ACM)? Respuesta: el prefijo.
-    answers: ["sha256:5e28aad199f1b89830247fa95b05e7f52a5492cc094d6356efe0168516d499eb"]
+      El artículo de Shannon «A Mathematical Theory of Communication» tiene el DOI `10.1002/j.1538-7305.1948.tb01338.x`. ¿Cuál es el **prefijo** del DOI (el que identifica a quien lo registró, aquí la editorial Wiley)? Respuesta: el prefijo.
+    answers: ["sha256:2a0cd7ca1cdb50411bd67df904d9c7d0b809b1b398806a590b5d0e2090ae5524"]
   - id: orden-de-versiones
     tier: 2
     prompt: |

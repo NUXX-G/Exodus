@@ -54,8 +54,8 @@ exercises:
   - id: base64-decodificar
     tier: 2
     prompt: |
-      Decodifica la cadena en Base64 `RXhvZHVz`. Respuesta: el texto resultante (distingue mayúsculas; aquí se compara sin distinguirlas).
-    answers: ["sha256:4995baa63e0e2487000039c1a829fadc3e90a69b115a47b2280064292497bbc0"]
+      Decodifica la cadena en Base64 `SG9sYSBtdW5kbw==`. Respuesta: el texto resultante (distingue mayúsculas; aquí se compara sin distinguirlas).
+    answers: ["sha256:93fa3e4624676f2e9aa143911118b4547087e9b6e0b6076f2e1027d7a2da2b0a"]
   - id: xor-de-bytes
     tier: 2
     prompt: |

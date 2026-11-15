@@ -427,15 +427,15 @@ exercises:
       #include <vector>
 
       int main() {
-          std::vector<int> v{1, 2, 3};
-          int* p = &v[0];
-          v.push_back(4);
-          std::cout << *p << '\n';
+          std::vector<int> v(3, 7);
+          int suma = 0;
+          for (std::size_t i = 0; i <= v.size(); ++i) suma += v.data()[i];
+          std::cout << suma << '\n';
       }
       ```
 
       Respuesta: el tipo de error tal como lo escribe AddressSanitizer.
-    answers: ["sha256:41c4e1dbcdc6e4360af83510364c6c9f62e660ee5aaa496e32933d8d66c1e304"]
+    answers: ["sha256:87ee90cf590bf8ceb279bfc6bc06ac9c757c5bb3e697cc13e40b08cbaa0dc12e"]
   - id: rangos
     tier: 3
     prompt: |
