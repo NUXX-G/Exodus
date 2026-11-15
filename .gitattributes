@@ -4,3 +4,4 @@ docker/Dockerfile text eol=lf
 *.bat text eol=crlf
 vault/_adjuntos/** -text
 obsidian-plugin/** text eol=lf
+src/vendor/** -text

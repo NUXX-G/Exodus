@@ -31,6 +31,9 @@ export default function Guia() {
               <a href="#movil">Obsidian en el móvil</a>
             </li>
             <li>
+              <a href="#github">Tus apuntes en tu propio GitHub</a>
+            </li>
+            <li>
               <a href="#problemas">Si algo no funciona</a>
             </li>
             <li>
@@ -87,17 +90,17 @@ export default function Guia() {
             Instala Obsidian desde <a href="https://obsidian.md">obsidian.md</a>.
           </li>
           <li>
-            En <Link href="/cuenta">Cuenta → Obsidian</Link>, elige «Una bóveda nueva…», deja marcada la sincronización y
-            pulsa <strong>Descargar</strong>.
+            En <Link href="/cuenta">Cuenta → Obsidian</Link>, elige «Una bóveda nueva…», deja marcadas la sincronización
+            y el plugin Git y pulsa <strong>Descargar</strong>.
           </li>
           <li>
             Descomprime el ZIP (Windows: clic derecho → <em>Extraer todo</em>). Sale una carpeta con la nota{" "}
-            <em>Empieza aquí</em>, la carpeta <em>Exodus</em> y una carpeta oculta <code>.obsidian</code> que contiene el
-            plugin.
+            <em>Primeros pasos</em>, la carpeta <em>Exodus</em> y una carpeta oculta <code>.obsidian</code> que contiene
+            los plugins Exodus Sync y Git.
           </li>
           <li>
             En Obsidian: <em>Abrir carpeta como bóveda</em> y elige <strong>esa</strong> carpeta, la que contiene{" "}
-            <em>Empieza aquí</em>. Si eliges otra de más arriba, Obsidian no encuentra el plugin.
+            <em>Primeros pasos</em>. Si eliges otra de más arriba, Obsidian no encuentra los plugins.
           </li>
           <li>
             Obsidian pregunta si confías en el autor de la bóveda: pulsa <strong>Confiar en el autor y activar plugins</strong>.
@@ -106,6 +109,9 @@ export default function Guia() {
             Comprueba que en la barra lateral izquierda aparece el icono de flechas circulares (<em>Sincronizar Exodus</em>).
             Púlsalo: aparece «Exodus: N notas nuevas…». A partir de ahí se sincroniza solo al abrir Obsidian y cada 30
             minutos.
+          </li>
+          <li>
+            Lee la nota <em>Primeros pasos</em>: explica cómo funciona todo y cómo guardar la bóveda en tu GitHub.
           </li>
         </ol>
 
@@ -158,7 +164,7 @@ export default function Guia() {
         </ol>
         <h3>c) Con BRAT, si el plugin está publicado en GitHub</h3>
         <p>
-          Si quien administra la instancia ha publicado el plugin en un repositorio público de GitHub (ver apartado 7):
+          Si quien administra la instancia ha publicado el plugin en un repositorio público de GitHub (ver apartado 8):
           instala desde <em>Plugins de la comunidad</em> el plugin <strong>BRAT</strong>, abre sus ajustes, pulsa{" "}
           <em>Add Beta plugin</em> y pega la dirección del repositorio. BRAT lo instala y lo mantiene actualizado.
         </p>
@@ -170,7 +176,46 @@ export default function Guia() {
           una vez; si lo pierdes, desconéctalo en la lista de conexiones y crea otro.
         </p>
 
-        <h2 id="problemas">6. Si algo no funciona</h2>
+        <h2 id="github">6. Tus apuntes en tu propio GitHub</h2>
+        <p>
+          Tu bóveda es tuya: Exodus solo escribe en ella y nunca la sube a ningún sitio. El repositorio de Exodus no
+          contiene apuntes de nadie. Si quieres copia de seguridad, historial y la misma bóveda en varios dispositivos,
+          guárdala en un repositorio <strong>privado y tuyo</strong> de GitHub. Cada persona lo hace con su cuenta y su
+          repositorio; nadie ve los apuntes de otro.
+        </p>
+        <p>
+          La bóveda nueva trae ya el plugin <strong>Git</strong> (de Vinzent03, código abierto) configurado para guardar y
+          subir tus cambios cada 10 minutos y traer los de otros dispositivos al abrir Obsidian. Solo falta conectarlo a tu
+          repositorio; la nota <em>Primeros pasos</em> de la bóveda lo explica con detalle. En resumen:
+        </p>
+        <ol>
+          <li>
+            En GitHub, crea un repositorio <strong>privado</strong> y vacío (sin README), por ejemplo <code>mis-apuntes</code>.
+          </li>
+          <li>
+            Instala Git en el ordenador (<a href="https://git-scm.com/downloads">git-scm.com</a>) y reinicia Obsidian.
+          </li>
+          <li>
+            En Obsidian, <em>Ajustes → Git → Identity</em>: tu nombre y tu correo. Después, con <kbd>Ctrl</kbd>+<kbd>P</kbd>:{" "}
+            <em>Git: Initialize a new repo</em>, <em>Git: Commit all changes</em> y <em>Git: Push</em> (remoto{" "}
+            <code>origin</code>, dirección <code>https://github.com/TU-USUARIO/mis-apuntes.git</code>). En Windows se abre
+            una ventana para iniciar sesión en GitHub; en Mac o Linux, usa un token de GitHub dentro de la dirección, como
+            explica la nota.
+          </li>
+        </ol>
+        <p>
+          Tu token de Exodus (<code>.obsidian/plugins/exodus-sync/data.json</code>) nunca se sube: el{" "}
+          <code>.gitignore</code> de la bóveda lo deja fuera. Si usas una bóveda que ya tenías, añade esa línea a su{" "}
+          <code>.gitignore</code>.
+        </p>
+        <p>
+          En el móvil el plugin Git también funciona, pero su autor avisa de que allí es experimental y puede ir lento con
+          bóvedas grandes. Se usa clonando tu repositorio en una bóveda vacía con usuario y token de GitHub (pasos en la
+          nota). Si te da problemas, sincroniza la carpeta con Syncthing, iCloud u Obsidian Sync (apartado 5a) y deja que
+          solo el ordenador suba a GitHub.
+        </p>
+
+        <h2 id="problemas">7. Si algo no funciona</h2>
         <ul>
           <li>
             <strong>No aparece el plugin</strong>: comprueba que existe <code>.obsidian/plugins/exodus-sync/main.js</code>{" "}
@@ -194,7 +239,7 @@ export default function Guia() {
           </li>
         </ul>
 
-        <h2 id="administrar">7. Para quien administra la instancia</h2>
+        <h2 id="administrar">8. Para quien administra la instancia</h2>
         <h3>Actualizar</h3>
         <pre>
           <code>{`cd /ruta/a/Exodus

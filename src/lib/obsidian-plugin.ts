@@ -199,6 +199,20 @@ export const PLUGIN_MAIN_JS = MAIN.replace("__EXPORT_VERSION__", String(EXPORT_V
 );
 
 /** Configuración inicial del plugin (data.json) para que funcione nada más activarlo. */
+/**
+ * .gitignore de la bóveda descargada, para quien la suba a su propio repositorio (por ejemplo con el plugin Git):
+ * data.json del plugin guarda el token de Exodus y no debe acabar en GitHub.
+ */
+export const VAULT_GITIGNORE = [
+  "# Exodus Sync guarda aquí tu token personal: no lo subas a ningún repositorio.",
+  `.obsidian/plugins/${PLUGIN_ID}/data.json`,
+  "# Estado de la ventana de Obsidian y papelera: cambian solos y no son apuntes.",
+  ".obsidian/workspace.json",
+  ".obsidian/workspace-mobile.json",
+  ".trash/",
+  "",
+].join("\n");
+
 export function pluginData(serverUrl: string, token: string | null, folder = "Exodus") {
   return {
     serverUrl,
