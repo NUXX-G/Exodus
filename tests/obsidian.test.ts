@@ -346,3 +346,40 @@ test("la carpeta obsidian-plugin/ coincide con el plugin que sirve la web", asyn
   assert.equal(manifest.id, "exodus-sync");
   assert.equal(manifest.isDesktopOnly, false);
 });
+
+test("el .gitignore de la bóveda deja fuera el token del plugin", async () => {
+  const { VAULT_GITIGNORE, PLUGIN_ID } = await import("../src/lib/obsidian-plugin");
+  const lineas = VAULT_GITIGNORE.split("\n");
+  assert.ok(lineas.includes(`.obsidian/plugins/${PLUGIN_ID}/data.json`));
+  assert.ok(!lineas.some((l) => l.trim() === ".obsidian/" || l.trim() === ".obsidian"), "el plugin debe poder viajar con la bóveda");
+});
+
+test("plugin Git incluido: archivos de la release comprobados, licencia y ajustes iniciales", async () => {
+  const { gitPluginFiles, gitPluginVersion, GIT_PLUGIN_ID, GIT_PLUGIN_DATA } = await import("../src/lib/obsidian-git");
+  const archivos = gitPluginFiles();
+  assert.deepEqual(Object.keys(archivos).sort(), ["LICENSE", "main.js", "manifest.json", "styles.css"]);
+  const manifest = JSON.parse(archivos["manifest.json"].toString("utf8"));
+  assert.equal(manifest.id, GIT_PLUGIN_ID);
+  assert.equal(manifest.isDesktopOnly, false);
+  assert.equal(gitPluginVersion(), manifest.version);
+  assert.match(archivos["LICENSE"].toString("utf8"), /^MIT License/);
+  assert.ok(GIT_PLUGIN_DATA.autoSaveInterval > 0 && GIT_PLUGIN_DATA.autoPullOnBoot);
+});
+
+test("nota «Primeros pasos»: explica GitHub solo si va el plugin Git y nunca menciona subir el token", async () => {
+  const { primerosPasos } = await import("../src/lib/obsidian-primeros-pasos");
+  const conGit = primerosPasos({ origin: "https://exodus.example", conSync: true, conGit: true });
+  const sinGit = primerosPasos({ origin: "https://exodus.example", conSync: false, conGit: false });
+  assert.match(conGit, /^# Primeros pasos/);
+  assert.match(conGit, /Git: Initialize a new repo/);
+  assert.match(conGit, /Git: Clone an existing remote repo/);
+  assert.match(conGit, /\.obsidian\/plugins\/exodus-sync\/data\.json/);
+  assert.doesNotMatch(sinGit, /Git: Initialize/);
+  assert.match(sinGit, /Crear un token para conectar a mano/);
+  // Numeración seguida en las dos variantes.
+  for (const nota of [conGit, sinGit]) {
+    const nums = [...nota.matchAll(/^## (\d+)\./gm)].map((m) => Number(m[1]));
+    assert.deepEqual(nums, nums.map((_, i) => i + 1));
+  }
+  assert.doesNotMatch(conGit, /\n{3,}/);
+});

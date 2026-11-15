@@ -30,6 +30,10 @@ export function ObsidianDownloadForm() {
       <label className="casilla">
         <input type="checkbox" name="sync" defaultChecked /> Sincronizar automáticamente (crea una conexión con token)
       </label>
+      <label className="casilla">
+        <input type="checkbox" name="git" defaultChecked /> Incluir el plugin Git, para guardar la bóveda en tu propio
+        repositorio privado de GitHub (solo bóveda nueva; la nota «Primeros pasos» explica cómo)
+      </label>
       <button type="submit" className="boton">
         Descargar
       </button>

@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
   serverExternalPackages: ["better-sqlite3", "shiki", "mathjax-full"],
   outputFileTracingIncludes: {
     "/**": ["./database/migrations/**/*"],
+    // Plugin Git de Obsidian que viaja en la bóveda descargada (se lee con fs, el trazado no lo ve solo).
+    "/api/obsidian/descarga": ["./src/vendor/obsidian-git/*"],
   },
 };
 

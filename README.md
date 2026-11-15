@@ -71,11 +71,16 @@ personal (`GET /api/obsidian/sync`, solo lectura, revocable en `/cuenta`). Solo 
 `<!-- exodus:inicio -->` y `<!-- exodus:fin -->`: lo que el usuario escribe debajo («Mis notas») no se toca, y
 nunca borra archivos. No se exportan respuestas, flags ni pistas sin revelar.
 
-El ZIP de la bóveda lleva todo en su raíz (`Empieza aquí.md`, `.obsidian/` con el plugin y `Exodus/`): se abre en
-Obsidian la carpeta que contiene `Empieza aquí.md`. Para el móvil o una bóveda existente, `/cuenta` también crea un
+El ZIP de la bóveda lleva todo en su raíz (`Primeros pasos.md`, `.obsidian/` con los plugins y `Exodus/`): se abre en
+Obsidian la carpeta que contiene `Primeros pasos.md`. Para el móvil o una bóveda existente, `/cuenta` también crea un
 token para pegarlo a mano en los ajustes del plugin. La guía paso a paso (ordenador, móvil, problemas frecuentes) está en
 `/guia`, accesible sin sesión. La carpeta `obsidian-plugin/` es el mismo plugin listo para publicarlo en un repositorio
 público e instalarlo con BRAT (`npm run obsidian:plugin` la regenera; su README explica la publicación).
+La bóveda de cada usuario es suya: Exodus nunca la sube a ningún repositorio. Para que cada uno la guarde en un
+repositorio privado propio, el ZIP trae (opcional, marcado por defecto) el plugin **Git** de Obsidian
+([Vinzent03/obsidian-git](https://github.com/Vinzent03/obsidian-git), MIT, copia sin cambios en `src/vendor/obsidian-git`
+comprobada por sha256) ya configurado, y un `.gitignore` que deja fuera el token de `exodus-sync/data.json`. La nota
+«Primeros pasos» de la bóveda y `/guia#github` explican cómo conectarlo.
 
 | Comando | Qué hace |
 | --- | --- |

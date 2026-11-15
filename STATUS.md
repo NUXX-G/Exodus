@@ -198,6 +198,12 @@ y construye la imagen Docker.
   token manual para Obsidian en `/cuenta`; ZIP de la bóveda con todo en la raíz (antes quedaba
   `Exodus-x/Exodus-x/.obsidian` y Obsidian no veía el plugin). `obsidian-plugin/` generado con `npm run obsidian:plugin`
   y comprobado por un test; publicarlo en un repo público queda a decisión del usuario.
+- Bóveda con GitHub propio (2026-11-15): la bóveda descargada trae la nota `Primeros pasos.md`
+  (`src/lib/obsidian-primeros-pasos.ts`), un `.gitignore` que excluye el token de `exodus-sync/data.json` y, opcional
+  (marcado por defecto), el plugin **Git** de Vinzent03 2.42.0 (MIT) copiado sin cambios en `src/vendor/obsidian-git`,
+  verificado por sha256 contra la release (`src/lib/obsidian-git.ts`) y preconfigurado (commit-and-sync cada 10 min,
+  pull al abrir). Cada usuario lo conecta a su repositorio privado; Exodus no sube nada. Probado: ZIP extraído con
+  Expand-Archive, push a un repositorio y clon en otro directorio sin el token. No probado dentro de Obsidian real.
 - Auth: cuenta `admin` (creada en /configurar con el código del registro del servidor) y cuentas `miembro` solo por
   invitación (`src/lib/invitations.ts`, tests en `tests/invitations.test.ts`); scrypt, sesiones por cookie HttpOnly,
   limitador de intentos.
