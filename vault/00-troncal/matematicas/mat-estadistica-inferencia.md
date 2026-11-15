@@ -58,8 +58,8 @@ exercises:
   - id: tamano-de-muestra
     tier: 2
     prompt: |
-      ¿Cuántas personas hay que encuestar, como mínimo, para estimar una proporción con un margen de error de $\pm 3$ puntos al $95\,\%$ de confianza en el peor caso ($p = 0{,}5$)? Respuesta: un entero.
-    answers: ["sha256:0f0b82fae280ae9fec1905f029b6ee9a9c85bb6cc5151da6dafe38a7902a4a53"]
+      ¿Cuántas personas hay que encuestar, como mínimo, para estimar una proporción con un margen de error de $\pm 2$ puntos al $95\,\%$ de confianza en el peor caso ($p = 0{,}5$)? Respuesta: un entero.
+    answers: ["sha256:66ba11c8b57047bc31dcba9dde802fb5f9d55940b0d98e692d4b47f6eead97ad"]
   - id: potencia-de-un-contraste
     tier: 2
     prompt: |

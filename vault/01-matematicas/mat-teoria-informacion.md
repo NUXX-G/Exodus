@@ -36,8 +36,8 @@ exercises:
   - id: huffman
     tier: 2
     prompt: |
-      Construye un código de Huffman para la fuente $(0{,}4;\ 0{,}2;\ 0{,}2;\ 0{,}1;\ 0{,}1)$. ¿Cuál es su longitud media en bits por símbolo? Respuesta: un número.
-    answers: ["sha256:914204c25f3f144ddec3469c61a6faea695c87590ab78a5eb25b0f3904cf84e0"]
+      Construye un código de Huffman para la fuente $(0{,}5;\ 0{,}2;\ 0{,}15;\ 0{,}1;\ 0{,}05)$. ¿Cuál es su longitud media en bits por símbolo? Respuesta: un número.
+    answers: ["sha256:312115dbd13c05f6d2f2bca8d9492f4fbd589ac17ae156bb701a2710afac7e45"]
   - id: divergencia-kl
     tier: 2
     prompt: |

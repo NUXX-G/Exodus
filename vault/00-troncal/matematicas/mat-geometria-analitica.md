@@ -93,8 +93,8 @@ exercises:
   - id: puntos-de-la-red
     tier: 3
     prompt: |
-      ¿Cuántos puntos de **coordenadas enteras** $(x, y)$ cumplen $x^2 + y^2 \le 100$ (dentro o sobre la circunferencia de radio $10$)? Respuesta: un entero.
-    answers: ["sha256:8d1ede4f889e0ed6f0823d8c1821905b9de37a0f851dc270df0dbf72b3c93641"]
+      ¿Cuántos puntos de **coordenadas enteras** $(x, y)$ cumplen $x^2 + y^2 \le 144$ (dentro o sobre la circunferencia de radio $12$)? Respuesta: un entero.
+    answers: ["sha256:2dfe70c43208f52b9ef4ea7e134705283947116491e81fbac05f0aedc25c5956"]
 ---
 
 # Geometría analítica: rectas, vectores, circunferencias y cónicas

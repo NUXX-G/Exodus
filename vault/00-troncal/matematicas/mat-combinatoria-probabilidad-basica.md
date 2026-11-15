@@ -16,8 +16,8 @@ exercises:
   - id: orden-en-fila
     tier: 1
     prompt: |
-      ¿De cuántas maneras distintas pueden colocarse $6$ personas en una fila? Respuesta: un entero.
-    answers: ["sha256:d829857eb1366e70be857a69886d1555af0d32681beab068afb93492c2e2b843"]
+      ¿De cuántas maneras distintas pueden colocarse $8$ personas en una fila? Respuesta: un entero.
+    answers: ["sha256:9d8aa099e798b1bbabc95dfdfffc09525c2693f344ce326baeeca1cf2604b093"]
   - id: combinaciones
     tier: 1
     prompt: |
@@ -37,8 +37,8 @@ exercises:
   - id: pin-sin-repetir
     tier: 2
     prompt: |
-      ¿Cuántos PIN de $4$ cifras (de $0$ a $9$) tienen **todas las cifras distintas**? Respuesta: un entero.
-    answers: ["sha256:68bc5ec90a2d9464eba42cbe67ccf5a442629e039a2e7d21942c0ea7420b4576"]
+      ¿Cuántos PIN de $5$ cifras (de $0$ a $9$) tienen **todas las cifras distintas**? Respuesta: un entero.
+    answers: ["sha256:ea133efe99012bb929c4e57d7641a6f21b89eed614e869c8a02ebbeb67dbe42f"]
   - id: anagramas
     tier: 2
     prompt: |

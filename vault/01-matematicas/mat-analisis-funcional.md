@@ -26,8 +26,8 @@ exercises:
   - id: proyeccion-ortogonal
     tier: 2
     prompt: |
-      En $L^2[-1, 1]$, proyecta $f(x) = x^3$ sobre el subespacio $\operatorname{span}\{1, x\}$. La proyección es $a + bx$: ¿cuánto vale $b$? Respuesta: un número.
-    answers: ["sha256:b4af4e0d40391d3a00179d935c63b7e15ba8cd3dfa29f218dedc270bd3eb3e79"]
+      En $L^2[-1, 1]$, proyecta $f(x) = x^5$ sobre el subespacio $\operatorname{span}\{1, x\}$. La proyección es $a + bx$: ¿cuánto vale $b$? Respuesta: una fracción irreducible `p/q` o un decimal con **4 decimales**.
+    answers: ["sha256:d016d339874fc1562fe41bdd5dc2606fdff3c9b627dc0351985a0cae3b4ea4e6", "sha256:6880413a56fd44c2495976d1d4a81a901d9dc1ba8f165671d3ddc4fc9e58ab55"]
   - id: error-de-aproximacion
     tier: 2
     prompt: |
@@ -46,8 +46,8 @@ exercises:
   - id: ecuacion-integral
     tier: 2
     prompt: |
-      Resuelve $f(x) = 1 + \frac12\int_0^1 x\,t\,f(t)\,dt$ (el operador es una contracción). ¿Cuánto vale $f(1)$? Respuesta: un número.
-    answers: ["sha256:9c193c604ad7de942961af97b39ff541f2e611fdf0b93a3044e16dfbd808f41b"]
+      Resuelve $f(x) = 1 + \frac13\int_0^1 x\,t\,f(t)\,dt$ (el operador es una contracción). ¿Cuánto vale $f(1)$? Respuesta: un número.
+    answers: ["sha256:be6b2fb06a46dafd73630b693355fc0995f79344cc7e01ba0582b6c9ab9e6c59"]
   - id: representante-de-riesz
     tier: 2
     prompt: |
