@@ -33,8 +33,8 @@ exercises:
   - id: comprension
     tier: 2
     prompt: |
-      ¿Qué número imprime `print(sum(x * x for x in range(1, 21) if x % 3 == 0))`? Respuesta: un entero.
-    answers: ["sha256:bc57590a33fe355e174396df60ac503f8e99763776307dcd8b9ce8dfe3c47a2a"]
+      ¿Qué número imprime `print(sum(x * x for x in range(1, 31) if x % 4 == 0))`? Respuesta: un entero.
+    answers: ["sha256:ec3fdcd8136188e3b476270894351cdc05dc44a4df50d1c4ed727294fb89430f"]
   - id: argumento-mutable
     tier: 2
     prompt: |
@@ -70,8 +70,8 @@ exercises:
   - id: excepcion
     tier: 2
     prompt: |
-      ¿Cómo se llama la excepción que lanza `1 / 0` en Python? Respuesta: el nombre exacto de la clase.
-    answers: ["sha256:7dc75aac10b66d191eac0b3bfb8a7382891e95d495bf142c8513e30682a11822"]
+      ¿Cómo se llama la excepción que lanza `"abc" + 1` en Python? Respuesta: el nombre exacto de la clase.
+    answers: ["sha256:583abb96a6174b86cd0efa397cdc083a4b7d5871eaf9865ebbfa67bd22739db5"]
   - id: potencia-modular
     tier: 2
     prompt: |
@@ -80,8 +80,8 @@ exercises:
   - id: ordenar-con-clave
     tier: 2
     prompt: |
-      ¿Qué imprime `print(sorted(["banana", "kiwi", "fig", "apple"], key=len)[0])`? Respuesta: el texto impreso.
-    answers: ["sha256:8c39c63488260c318aea4cb09df75d79e27f13c6997489d4aee818cbb88a7d23"]
+      ¿Qué imprime `print(sorted(["cereza", "pera", "uva", "melocoton"], key=len)[0])`? Respuesta: el texto impreso.
+    answers: ["sha256:93701021b69332b431f49a94f716556a64eefa2dc392e1bef4335158da46dcc2"]
   - id: zip-diccionario
     tier: 3
     prompt: |
@@ -92,7 +92,7 @@ exercises:
     prompt: |
       ¿Qué imprime `print(len(set("mississippi")), len({x % 7 for x in range(100)}))`? Respuesta con los dos números separados por punto y coma.
     answers: ["sha256:303967d1437e85a0093d7a74e5a3acec2282fad4e534023ed0a8be8571b543cb"]
-  - id: factorial-20
+  - id: factorial-25
     tier: 3
     prompt: |
       ¿Qué imprime este programa? (Python tiene enteros de tamaño ilimitado.)
@@ -101,14 +101,14 @@ exercises:
       def fact(n):
           return 1 if n <= 1 else n * fact(n - 1)
 
-      print(fact(20))
+      print(fact(25))
       ~~~
-    answers: ["sha256:0f90a83d6efa0e58870635bedb7ca3eff1bdde520d4a98f83c8fec4c6b864611"]
+    answers: ["sha256:18825bc0b987d768d250f6629e60092357649e9e6b40ba5678fed545e7e186b0"]
   - id: capicuas
     tier: 3
     prompt: |
-      ¿Qué imprime `print(sum(1 for n in range(1, 10000) if str(n) == str(n)[::-1]))`? (Cuenta los capicúas de $1$ a $9999$.) Respuesta: un entero.
-    answers: ["sha256:a4e00d7e6aa82111575438c5e5d3e63269d4c475c718b2389f6d02932c47f8a6"]
+      ¿Qué imprime `print(sum(1 for n in range(1, 100000) if str(n) == str(n)[::-1]))`? (Cuenta los capicúas de $1$ a $99\,999$.) Respuesta: un entero.
+    answers: ["sha256:4aec429ac0bfafdbb8dab14f41d1b7a98dacf1ce3478b71b904d383ae614b032"]
   - id: vocales
     tier: 3
     prompt: |

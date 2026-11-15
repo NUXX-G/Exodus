@@ -74,9 +74,9 @@ exercises:
   - id: plan-realista
     tier: 3
     prompt: |
-      Suponte que el currículo tiene $140$ nodos y que dominar cada uno exige unas $5$ horas de estudio. Estudiando $2$ horas al día, todos los
+      Suponte que el currículo tiene $140$ nodos y que dominar cada uno exige unas $5$ horas de estudio. Estudiando $3$ horas al día, todos los
       días, ¿cuántos días hacen falta? (Redondea hacia arriba.) Respuesta: un entero.
-    answers: ["sha256:deeeb5df3f2cee6bf4e597a8a3a878a6ce49b932b9e90b416922d4499f54fae6"]
+    answers: ["sha256:114bd151f8fb0c58642d2170da4ae7d7c57977260ac2cc8905306cab6b2acabc"]
 ---
 
 # Aprender a aprender: método de estudio con evidencia

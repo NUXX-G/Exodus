@@ -21,14 +21,14 @@ exercises:
       ¿Cuántas veces se ejecuta `c += 1`?
 
       ~~~python
-      n = 100
+      n = 60
       c = 0
       for i in range(n):
           for j in range(i, n):
               c += 1
       ~~~
       Respuesta: un entero.
-    answers: ["sha256:3f95b1b8a32c2c0251dfdbc3c8a30aab6d6e680cf0ef03e8af84a65dff0c4a85"]
+    answers: ["sha256:aa4b0d224e2b4488c6e3c5692347a0e26322d86dcb6bf01ab937e15d76037ee4"]
   - id: busqueda-binaria-peor-caso
     tier: 1
     prompt: |

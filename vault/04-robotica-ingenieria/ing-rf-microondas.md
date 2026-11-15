@@ -66,8 +66,8 @@ exercises:
   - id: figura-de-ruido
     tier: 2
     prompt: |
-      Un receptor encadena un LNA (20 dB, NF 1 dB), un mezclador (−7 dB, NF 7 dB) y un amplificador de FI (30 dB, NF 3 dB). ¿Cuál es la figura de ruido total, en dB? Respuesta: con **2 decimales**.
-    answers: ["sha256:9c193c604ad7de942961af97b39ff541f2e611fdf0b93a3044e16dfbd808f41b"]
+      Un receptor encadena un LNA (15 dB, NF 1,5 dB), un mezclador (−6 dB, NF 6 dB) y un amplificador de FI (25 dB, NF 4 dB). ¿Cuál es la figura de ruido total, en dB? Respuesta: con **2 decimales**.
+    answers: ["sha256:8771a6c04174b7f719ebdeca5db87304a72a118a5629a5e2ce9ef7d62158b728"]
   - id: permitividad-efectiva
     tier: 2
     prompt: |
@@ -76,8 +76,8 @@ exercises:
   - id: red-en-l
     tier: 3
     prompt: |
-      Se adapta una fuente de 10 $\Omega$ a una carga de 50 $\Omega$ a 1 GHz con una red L (bobina en serie del lado de 10 $\Omega$, condensador en paralelo con la carga). ¿Qué inductancia hace falta, en nH? Respuesta: con **2 decimales**.
-    answers: ["sha256:b31738fa3024a58492ecdea87224f323b490e65674ad23c8ce64f4feb94dcd48"]
+      Se adapta una fuente de 20 $\Omega$ a una carga de 50 $\Omega$ a 2 GHz con una red L (bobina en serie del lado de 20 $\Omega$, condensador en paralelo con la carga). ¿Qué inductancia hace falta, en nH? Respuesta: con **2 decimales**.
+    answers: ["sha256:312115dbd13c05f6d2f2bca8d9492f4fbd589ac17ae156bb701a2710afac7e45"]
   - id: estabilidad-de-un-transistor
     tier: 3
     prompt: |
