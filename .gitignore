@@ -18,3 +18,4 @@ vault/.trash/
 
 # Scripts que calculan las flags: solo en local, nunca al repositorio
 .soluciones/
+database/cache-html/

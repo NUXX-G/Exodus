@@ -15,7 +15,14 @@ const ESTADOS = {
   locked: "Bloqueado",
 } as const;
 
-type Props = { searchParams: Promise<{ area?: string; estado?: string; tipo?: string }> };
+/** Lo que dice el botón de cada fila: invita a entrar en el nodo. */
+const ACCION = {
+  completed: "Completado · repasar",
+  available: "Empezar →",
+  locked: "Bloqueado · leer",
+} as const;
+
+type Props ={ searchParams: Promise<{ area?: string; estado?: string; tipo?: string }> };
 
 export default async function Temario({ searchParams }: Props) {
   const user = await requireUser();
@@ -121,7 +128,7 @@ export default async function Temario({ searchParams }: Props) {
                         {n.ctfFlag ? " · con reto" : ""}
                       </span>
                       <span className="estado" data-estado={st}>
-                        {ESTADOS[st]}
+                        {ACCION[st]}
                       </span>
                     </Link>
                   </li>

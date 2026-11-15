@@ -7,6 +7,7 @@
  *  - Un id de nodo existente escrito como código (`mat-topologia`) se convierte en enlace a ese nodo
  * El HTML crudo incrustado en el Markdown se descarta (remark-rehype sin allowDangerousHtml).
  */
+import crypto from "node:crypto";
 import { unified, type Processor } from "unified";
 import remarkParse from "remark-parse";
 import remarkGfm from "remark-gfm";
@@ -21,22 +22,35 @@ import { visit, SKIP } from "unist-util-visit";
 import type { Blockquote, InlineCode, Link, PhrasingContent, Root, Text } from "mdast";
 import type { Element, Root as HastRoot } from "hast";
 import type { Vault } from "./vault";
+import { claveDeRender, conCache } from "./render-cache";
 
 /** Resuelve el destino de un wikilink a un id de nodo (por id o por nombre de archivo). */
-export type LinkResolver = (target: string) => { id: string; title: string } | null;
+export type LinkResolver = ((target: string) => { id: string; title: string } | null) & {
+  /** Huella de todo lo que el resolutor puede devolver: forma parte de la clave de la caché de HTML. */
+  firma?: string;
+};
+
+const resolutores = new WeakMap<Vault, LinkResolver>();
 
 export function linkResolverFor(vault: Vault): LinkResolver {
+  const hecho = resolutores.get(vault);
+  if (hecho) return hecho;
   const byName = new Map<string, string>();
   for (const node of vault.nodes.values()) {
     byName.set(node.id.toLowerCase(), node.id);
     const base = node.file.split("/").pop()!.replace(/\.md$/i, "").toLowerCase();
     if (!byName.has(base)) byName.set(base, node.id);
   }
-  return (target) => {
+  const resolve: LinkResolver = (target) => {
     const key = target.split("#")[0].split("/").pop()!.replace(/\.md$/i, "").trim().toLowerCase();
     const id = byName.get(key);
     return id ? { id, title: vault.nodes.get(id)!.title } : null;
   };
+  const huella = crypto.createHash("sha256");
+  for (const [nombre, id] of [...byName.entries()].sort()) huella.update(`${nombre}\t${id}\t${vault.nodes.get(id)!.title}\n`);
+  resolve.firma = huella.digest("hex");
+  resolutores.set(vault, resolve);
+  return resolve;
 }
 
 const WIKILINK = /\[\[([^\[\]|]+)(?:\|([^\[\]]+))?\]\]/g;
@@ -198,8 +212,18 @@ function getProcessor() {
     .use(rehypeStringify));
 }
 
-export async function renderMarkdown(markdown: string, resolve: LinkResolver): Promise<string> {
+/** Renderiza sin caché. Las peticiones normales usan renderMarkdown. */
+export async function renderMarkdownSinCache(markdown: string, resolve: LinkResolver): Promise<string> {
   currentResolver = resolve;
   const file = await getProcessor().process(markdown);
   return String(file);
+}
+
+/**
+ * Markdown → HTML con caché por contenido (ver render-cache.ts). Un resolutor sin firma (hecho a mano en las
+ * pruebas) no usa la caché: no habría forma de saber si dos resolutores dan los mismos enlaces.
+ */
+export async function renderMarkdown(markdown: string, resolve: LinkResolver): Promise<string> {
+  if (!resolve.firma) return renderMarkdownSinCache(markdown, resolve);
+  return conCache(claveDeRender(markdown, resolve.firma), () => renderMarkdownSinCache(markdown, resolve));
 }

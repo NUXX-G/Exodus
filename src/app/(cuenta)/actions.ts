@@ -12,10 +12,12 @@ import {
   login,
   logout,
   registerWithInvitation,
+  requireUser,
   revokeOwnApiToken,
   revokeOwnInvitation,
 } from "@/lib/auth";
 import { MAX_PENDING } from "@/lib/invitations";
+import { createApiToken } from "@/lib/obsidian";
 import { publicOrigin } from "@/lib/origin";
 import { MIN_PASSWORD_LENGTH } from "@/lib/password";
 
@@ -154,4 +156,24 @@ export async function revokeInviteAction(form: FormData): Promise<void> {
 export async function revokeApiTokenAction(form: FormData): Promise<void> {
   await revokeOwnApiToken(String(form.get("id") ?? ""));
   revalidatePath("/cuenta");
+}
+
+export interface TokenState {
+  ok: boolean;
+  message: string;
+  token?: string;
+  servidor?: string;
+}
+
+/**
+ * Crea una conexión para configurar el plugin a mano (por ejemplo, en el móvil): devuelve el token una sola vez,
+ * junto con la dirección de esta instancia. No se vuelve a mostrar; si se pierde, se desconecta y se crea otro.
+ */
+export async function createManualTokenAction(_prev: TokenState | null): Promise<TokenState> {
+  const user = await requireUser();
+  const fecha = new Date().toLocaleDateString("es-ES");
+  const token = createApiToken(user.id, `Obsidian · manual · ${fecha}`);
+  revalidatePath("/cuenta");
+  if (!token) return { ok: false, message: "Has llegado al máximo de conexiones: desconecta alguna de la lista." };
+  return { ok: true, message: "Copia el token ahora: no se volverá a mostrar.", token, servidor: publicOrigin(await headers()) };
 }

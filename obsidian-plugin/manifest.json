@@ -1,0 +1,9 @@
+{
+  "id": "exodus-sync",
+  "name": "Exodus Sync",
+  "version": "1.0.0",
+  "minAppVersion": "1.4.0",
+  "description": "Sincroniza tu progreso de Exodus (temario, nodos, ejercicios y registro) con esta bóveda.",
+  "author": "Exodus",
+  "isDesktopOnly": false
+}

@@ -71,6 +71,12 @@ personal (`GET /api/obsidian/sync`, solo lectura, revocable en `/cuenta`). Solo 
 `<!-- exodus:inicio -->` y `<!-- exodus:fin -->`: lo que el usuario escribe debajo («Mis notas») no se toca, y
 nunca borra archivos. No se exportan respuestas, flags ni pistas sin revelar.
 
+El ZIP de la bóveda lleva todo en su raíz (`Empieza aquí.md`, `.obsidian/` con el plugin y `Exodus/`): se abre en
+Obsidian la carpeta que contiene `Empieza aquí.md`. Para el móvil o una bóveda existente, `/cuenta` también crea un
+token para pegarlo a mano en los ajustes del plugin. La guía paso a paso (ordenador, móvil, problemas frecuentes) está en
+`/guia`, accesible sin sesión. La carpeta `obsidian-plugin/` es el mismo plugin listo para publicarlo en un repositorio
+público e instalarlo con BRAT (`npm run obsidian:plugin` la regenera; su README explica la publicación).
+
 | Comando | Qué hace |
 | --- | --- |
 | `npm run vault:check` | Valida el vault: frontmatter, grafo de prerequisitos y render de cada nodo (LaTeX, wikilinks) |
@@ -136,6 +142,11 @@ git pull
 
 Las migraciones de la base de datos se aplican solas al arrancar; el progreso y las cuentas se conservan.
 Si solo cambia el contenido del vault, basta `git pull` (sin reconstruir).
+
+Al arrancar, el servidor prepara en segundo plano el HTML de todos los nodos (LaTeX y código resaltado son caros: unos
+6 s por nodo en frío) y lo guarda en `cache-html/`, junto a la base de datos; tarda alrededor de un minuto y después
+cada nodo se abre en décimas de segundo. Esa carpeta se puede borrar sin perder nada; `EXODUS_PRECALENTAR=0` desactiva
+el precalentado.
 
 ### Dar acceso a otras personas
 
