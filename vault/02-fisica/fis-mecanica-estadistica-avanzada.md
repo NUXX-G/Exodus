@@ -71,13 +71,13 @@ exercises:
   - id: fraccion-condensada
     tier: 2
     prompt: |
-      ¿Qué fracción de los átomos de un gas ideal de Bose está en el condensado a $T = 0{,}6\,T_c$? Respuesta: con **4 decimales**.
-    answers: ["sha256:408a62801547af3edfd5f4bcd08665ed2edef08937a296ec6ccfd5530071f3f4"]
+      ¿Qué fracción de los átomos de un gas ideal de Bose está en el condensado a $T = 0{,}7\,T_c$? Respuesta: con **4 decimales**.
+    answers: ["sha256:39b8274b56ee7d67507ae1618860ad38dae1a732b3aa63e1297d39855bac504b"]
   - id: debye
     tier: 3
     prompt: |
-      Con el modelo de Debye, ¿cuánto vale $C_V/(3Nk_B)$ a $T = \theta_D/10$ (con la integral completa, no la ley $T^3$)? Respuesta: con **4 decimales**.
-    answers: ["sha256:9573f29ace73daa9badaadb38f3f15c2c955194b578ec57e14d8719d40d896a0"]
+      Con el modelo de Debye, ¿cuánto vale $C_V/(3Nk_B)$ a $T = \theta_D/5$ (con la integral completa, no la ley $T^3$)? Respuesta: con **4 decimales**.
+    answers: ["sha256:24580b36c7d6e73b7a9c010a515d33bcc82a8c1518ac1d426021bad34aff1091"]
   - id: longitud-de-correlacion
     tier: 3
     prompt: |

@@ -11,8 +11,8 @@ exercises:
   - id: bragg
     tier: 1
     prompt: |
-      Con radiación Cu K$\alpha$ ($\lambda = 0{,}15406$ nm), ¿a qué ángulo $2\theta$ (grados) aparece la reflexión (111) del cobre (FCC, $a = 0{,}3615$ nm)? Respuesta: con **2 decimales**.
-    answers: ["sha256:2c02b2d7aa3d2ea92d1523194e9973f1d1766abedb45b6d9e133751169a33a4f"]
+      Con radiación Cu K$\alpha$ ($\lambda = 0{,}15406$ nm), ¿a qué ángulo $2\theta$ (grados) aparece la reflexión (200) del cobre (FCC, $a = 0{,}3615$ nm)? Respuesta: con **2 decimales**.
+    answers: ["sha256:9966123f3562d0257468d47b8d7ded51ed5eab78485c6f6ca62a5d66040124e3"]
   - id: atomos-por-celda
     tier: 1
     prompt: |

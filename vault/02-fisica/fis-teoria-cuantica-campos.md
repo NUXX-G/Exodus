@@ -76,8 +76,8 @@ exercises:
   - id: carrera-de-alfa
     tier: 3
     prompt: |
-      Incluyendo solo el lazo del electrón, $1/\alpha(Q) = 1/\alpha - \frac{2}{3\pi}\ln\frac{Q}{m_e}$. ¿Cuánto vale $1/\alpha$ en $Q = M_Z = 91{,}1876$ GeV? Respuesta: con **2 decimales**.
-    answers: ["sha256:a0cac4782c77cdbc492a9d47a47227526dacd1785f2b39664d1d0ae736eeeb57"]
+      Incluyendo solo el lazo del electrón, $1/\alpha(Q) = 1/\alpha - \frac{2}{3\pi}\ln\frac{Q}{m_e}$. ¿Cuánto vale $1/\alpha$ en $Q = 10$ GeV? Respuesta: con **2 decimales**.
+    answers: ["sha256:bbb29a58ba8991a4a156d7f1e25db39f3ebbf05553ac135fa792f93fb2a92f77"]
   - id: libertad-asintotica
     tier: 3
     prompt: |
