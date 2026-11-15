@@ -17,7 +17,9 @@ import path from "node:path";
 /** Súbelo cuando cambie el renderizador (plugins, opciones de MathJax o Shiki): invalida toda la caché. */
 export const RENDER_VERSION = "1";
 
-const MAX_MEMORIA = 64 * 1024 * 1024;
+// Poco: el disco sirve cualquier página en ~1 ms y el contenedor tiene 512 MB; con pocos usuarios, las páginas que se
+// repiten caben de sobra.
+const MAX_MEMORIA = 16 * 1024 * 1024;
 
 const memoria = new Map<string, string>();
 let bytesEnMemoria = 0;

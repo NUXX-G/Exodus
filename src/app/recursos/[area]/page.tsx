@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { areaOf } from "@/lib/areas";
 import { requireUser } from "@/lib/auth";
 import { linkResolverFor, renderMarkdown } from "@/lib/markdown";
+import { compactarFormulas } from "@/lib/svg-compacto";
 import { loadRecursos } from "@/lib/recursos";
 import { loadVault } from "@/lib/vault";
 
@@ -25,7 +26,10 @@ export default async function RecursosArea({ params }: Props) {
   if (!pagina) notFound();
   const vault = loadVault();
   const info = areaOf(vault.areas, pagina.area);
-  const html = await renderMarkdown(pagina.cuerpo, linkResolverFor(vault));
+  const {
+    fragmentos: [html],
+    definiciones,
+  } = compactarFormulas([await renderMarkdown(pagina.cuerpo, linkResolverFor(vault))]);
 
   return (
     <main className="pagina recursos-pagina">
@@ -37,6 +41,7 @@ export default async function RecursosArea({ params }: Props) {
       </h1>
       {pagina.resumen && <p className="nota">{pagina.resumen}</p>}
       {/* HTML generado en el servidor a partir del vault; el HTML crudo del Markdown se descarta. */}
+      {definiciones && <div className="formulas-definiciones" dangerouslySetInnerHTML={{ __html: definiciones }} />}
       <article className="prosa" dangerouslySetInnerHTML={{ __html: html }} />
       <p className="nota">
         {pagina.revisado ? `Enlaces comprobados el ${pagina.revisado}. ` : ""}

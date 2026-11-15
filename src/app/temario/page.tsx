@@ -72,33 +72,33 @@ export default async function Temario({ searchParams }: Props) {
       <nav className="filtros" aria-label="Filtros del temario">
         <div>
           <span>Área</span>
-          <Link href={href(undefined, estadoSel)} aria-current={!areaSel ? "true" : undefined}>
+          <Link prefetch={false} href={href(undefined, estadoSel)} aria-current={!areaSel ? "true" : undefined}>
             Todas
           </Link>
           {AREA_IDS.filter((a) => all.some((n) => n.area === a)).map((a) => (
-            <Link key={a} href={href(a, estadoSel)} aria-current={areaSel === a ? "true" : undefined}>
+            <Link key={a} prefetch={false} href={href(a, estadoSel)} aria-current={areaSel === a ? "true" : undefined}>
               {areaOf(vault.areas, a).label}
             </Link>
           ))}
         </div>
         <div>
           <span>Estado</span>
-          <Link href={href(areaSel, undefined)} aria-current={!estadoSel ? "true" : undefined}>
+          <Link prefetch={false} href={href(areaSel, undefined)} aria-current={!estadoSel ? "true" : undefined}>
             Todos
           </Link>
           {(Object.keys(ESTADOS) as (keyof typeof ESTADOS)[]).map((e) => (
-            <Link key={e} href={href(areaSel, e)} aria-current={estadoSel === e ? "true" : undefined}>
+            <Link key={e} prefetch={false} href={href(areaSel, e)} aria-current={estadoSel === e ? "true" : undefined}>
               {ESTADOS[e]}
             </Link>
           ))}
         </div>
         <div>
           <span>Tipo</span>
-          <Link href={href(areaSel, estadoSel, null)} aria-current={!tipoSel ? "true" : undefined}>
+          <Link prefetch={false} href={href(areaSel, estadoSel, null)} aria-current={!tipoSel ? "true" : undefined}>
             Todos
           </Link>
           {NODE_KINDS.map((k) => (
-            <Link key={k} href={href(areaSel, estadoSel, k)} aria-current={tipoSel === k ? "true" : undefined}>
+            <Link key={k} prefetch={false} href={href(areaSel, estadoSel, k)} aria-current={tipoSel === k ? "true" : undefined}>
               {KIND_LABEL[k]}
             </Link>
           ))}

@@ -1654,3 +1654,11 @@ details.callout:not([open]) > summary.callout-titulo {
 .fuentes li {
   overflow-wrap: anywhere;
 }
+
+/* Trazos y hoja de estilo de MathJax compartidos por toda la página (svg-compacto.ts): no ocupan sitio. */
+.formulas-definiciones {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}

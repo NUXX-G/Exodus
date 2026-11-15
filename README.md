@@ -148,9 +148,10 @@ git pull
 Las migraciones de la base de datos se aplican solas al arrancar; el progreso y las cuentas se conservan.
 Si solo cambia el contenido del vault, basta `git pull` (sin reconstruir).
 
-Al arrancar, el servidor prepara en segundo plano el HTML de todos los nodos (LaTeX y código resaltado son caros: unos
-6 s por nodo en frío) y lo guarda en `cache-html/`, junto a la base de datos; tarda alrededor de un minuto y después
-cada nodo se abre en décimas de segundo. Esa carpeta se puede borrar sin perder nada; `EXODUS_PRECALENTAR=0` desactiva
+Al arrancar, el servidor prepara en segundo plano el HTML de todos los nodos (LaTeX y código resaltado son caros) y
+lo guarda en `cache-html/`, junto a la base de datos. La primera vez tarda de uno a tres minutos, usando como mucho
+la mitad de la CPU para no frenar las visitas; en los arranques siguientes solo rehace lo que haya cambiado. Después,
+cada nodo se abre en décimas de segundo. El contenedor está limitado a 512 MB y en uso ronda los 300 MB. Esa carpeta se puede borrar sin perder nada; `EXODUS_PRECALENTAR=0` desactiva
 el precalentado.
 
 ### Dar acceso a otras personas

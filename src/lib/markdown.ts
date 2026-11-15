@@ -13,7 +13,7 @@ import remarkParse from "remark-parse";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import remarkRehype from "remark-rehype";
-import rehypeMathjax from "rehype-mathjax";
+import rehypeMathjax from "./rehype-mathjax-svg";
 import rehypeShiki from "@shikijs/rehype";
 import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import rehypeSlug from "rehype-slug";

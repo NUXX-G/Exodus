@@ -204,6 +204,15 @@ y construye la imagen Docker.
   verificado por sha256 contra la release (`src/lib/obsidian-git.ts`) y preconfigurado (commit-and-sync cada 10 min,
   pull al abrir). Cada usuario lo conecta a su repositorio privado; Exodus no sube nada. Probado: ZIP extraído con
   Expand-Archive, push a un repositorio y clon en otro directorio sin el token. No probado dentro de Obsidian real.
+- Memoria y peso de las páginas (2026-11-15, tras caerse la instancia del VPS): `rehype-mathjax` creaba un motor TeX
+  por renderizado y MathJax retenía ~0,8 MB por nodo; con el precalentado, el contenedor de 512 MB se quedaba sin
+  memoria al minuto de arrancar y se reiniciaba en bucle («This page couldn't load»). Ahora `src/lib/rehype-mathjax-svg.ts`
+  usa un solo motor (mismo HTML en los 2951 textos del vault, salvo la numeración de ids; rechaza `
+ewcommand`,
+  `label`… para que compartirlo sea seguro), `src/lib/svg-compacto.ts` deja una sola copia por página de los glifos y la
+  hoja de estilo de MathJax (nodo de 2,4 MB → 1,06 MB; 101 KB comprimido), `loadVault` comprueba el vault como mucho cada
+  2 s, el precalentado descansa tanto como trabaja y la LRU en memoria baja a 16 MB. Medido en Docker con 512 MB y 1 CPU:
+  sin caídas, ~280 MB en uso, nodo en 0,06–0,2 s de servidor (antes ~1,2 s), temario 0,08 s.
 - Auth: cuenta `admin` (creada en /configurar con el código del registro del servidor) y cuentas `miembro` solo por
   invitación (`src/lib/invitations.ts`, tests en `tests/invitations.test.ts`); scrypt, sesiones por cookie HttpOnly,
   limitador de intentos.

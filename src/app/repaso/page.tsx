@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import ReviewForm from "@/components/ReviewForm";
 import { requireUser } from "@/lib/auth";
 import { linkResolverFor, renderMarkdown } from "@/lib/markdown";
+import { compactarFormulas } from "@/lib/svg-compacto";
 import { getDueReviews } from "@/lib/progress";
 import { loadVault } from "@/lib/vault";
 
@@ -15,13 +16,15 @@ export default async function Repaso() {
   const resolve = linkResolverFor(vault);
   const due = getDueReviews(user.id).filter((r) => vault.nodes.get(r.nodeId)?.exercises.some((e) => e.id === r.exerciseId));
 
-  const items = await Promise.all(
+  const crudos = await Promise.all(
     due.slice(0, 20).map(async (r) => {
       const node = vault.nodes.get(r.nodeId)!;
       const ex = node.exercises.find((e) => e.id === r.exerciseId)!;
       return { r, node, html: await renderMarkdown(ex.prompt, resolve) };
     }),
   );
+  const { fragmentos, definiciones } = compactarFormulas(crudos.map((c) => c.html));
+  const items = crudos.map((c, i) => ({ ...c, html: fragmentos[i] }));
 
   return (
     <main className="pagina">
@@ -42,6 +45,8 @@ export default async function Repaso() {
       {items.length === 0 ? (
         <p>Nada pendiente. Vuelve mañana, o avanza con un nodo nuevo desde el <Link href="/temario">temario</Link>.</p>
       ) : (
+        <>
+        {definiciones && <div className="formulas-definiciones" dangerouslySetInnerHTML={{ __html: definiciones }} />}
         <ol className="repasos">
           {items.map(({ r, node, html }) => (
             <li key={`${r.nodeId}/${r.exerciseId}`}>
@@ -56,6 +61,7 @@ export default async function Repaso() {
             </li>
           ))}
         </ol>
+        </>
       )}
     </main>
   );

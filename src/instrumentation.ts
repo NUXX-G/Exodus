@@ -6,5 +6,5 @@ export async function register() {
   if (process.env.NEXT_RUNTIME !== "nodejs") return;
   if (process.env.NEXT_PHASE === "phase-production-build" || process.env.EXODUS_PRECALENTAR === "0") return;
   const { precalentar } = await import("./lib/precalentar");
-  setTimeout(() => void precalentar(), 3000);
+  setTimeout(() => void precalentar(), 10_000);
 }
