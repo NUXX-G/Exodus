@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { InviteForm, RevokeButton } from "@/components/InviteForms";
-import { ObsidianDownloadForm, RevokeTokenButton } from "@/components/ObsidianForms";
+import { ManualTokenForm, ObsidianDownloadForm, RevokeTokenButton } from "@/components/ObsidianForms";
 import { PasswordForm, SessionsForm } from "@/components/SecurityForms";
 import { activeSessions, ownApiTokens, ownInvitations, requireUser } from "@/lib/auth";
 import { INVITE_DAYS, MAX_NOTE, type InvitationRow } from "@/lib/invitations";
@@ -43,7 +44,15 @@ export default async function Cuenta() {
         resueltos, los repasos pendientes y un registro por días. Con sincronización, el plugin lo actualiza solo al
         abrir Obsidian y cada 30 minutos; lo que escribas en «Mis notas» nunca se sobrescribe.
       </p>
+      <p>
+        Paso a paso (ordenador y móvil) y qué hacer si el plugin no aparece: <Link href="/guia#obsidian">Guía de Obsidian</Link>.
+      </p>
       <ObsidianDownloadForm />
+      <p className="nota">
+        En el móvil, o para conectar una bóveda que ya tienes, instala el plugin y pega en sus ajustes la dirección y un
+        token:
+      </p>
+      <ManualTokenForm />
       {tokens.length > 0 && (
         <table className="invitaciones">
           <thead>

@@ -333,3 +333,16 @@ test("el ZIP se puede leer de vuelta: nombres UTF-8, contenido y CRC", () => {
   }
   assert.throws(() => buildZip([{ path: "../malo", data: "" }]));
 });
+
+test("la carpeta obsidian-plugin/ coincide con el plugin que sirve la web", async () => {
+  const fs = await import("node:fs");
+  const path = await import("node:path");
+  const { archivosDelPlugin } = await import("../scripts/obsidian-plugin");
+  for (const [nombre, contenido] of Object.entries(archivosDelPlugin)) {
+    const actual = fs.readFileSync(path.join(__dirname, "..", "obsidian-plugin", nombre), "utf8").replace(/\r\n/g, "\n");
+    assert.equal(actual, contenido, `obsidian-plugin/${nombre} no está al día: ejecuta npm run obsidian:plugin`);
+  }
+  const manifest = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "obsidian-plugin", "manifest.json"), "utf8"));
+  assert.equal(manifest.id, "exodus-sync");
+  assert.equal(manifest.isDesktopOnly, false);
+});

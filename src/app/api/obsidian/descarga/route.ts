@@ -14,9 +14,14 @@ function instrucciones(origin: string, conSync: boolean, tipo: "boveda" | "plugi
   const pasos =
     tipo === "boveda"
       ? [
-          "1. Descomprime este ZIP donde quieras guardar tus apuntes.",
-          "2. En Obsidian: «Abrir carpeta como bóveda» y elige la carpeta descomprimida.",
-          "3. Si Obsidian pregunta por los plugins de la comunidad, pulsa «Confiar en el autor y activar plugins».",
+          "1. Descomprime este ZIP (en Windows: clic derecho → «Extraer todo»). Queda una carpeta con esta nota, la carpeta",
+          "   Exodus y una carpeta oculta .obsidian, que es la que lleva el plugin.",
+          "2. En Obsidian: «Abrir carpeta como bóveda» y elige ESA carpeta, la que contiene esta nota (no una carpeta de",
+          "   más arriba: si abres otra, Obsidian no verá el plugin).",
+          "3. Obsidian pregunta si confías en el autor de la bóveda: pulsa «Confiar en el autor y activar plugins». Si",
+          "   elegiste el modo restringido: Ajustes → Plugins de la comunidad → «Activar plugins de la comunidad», y activa",
+          "   «Exodus Sync» en la lista de plugins instalados.",
+          "4. Comprueba que en la barra lateral izquierda aparece el icono de flechas circulares (Sincronizar Exodus).",
         ]
       : [
           "1. Abre la carpeta de tu bóveda y entra en .obsidian/plugins (créala si no existe; .obsidian está oculta).",
@@ -32,7 +37,7 @@ function instrucciones(origin: string, conSync: boolean, tipo: "boveda" | "plugi
         "El token se puede desconectar en /cuenta → Obsidian. No compartas este ZIP: da acceso de lectura a tu progreso.",
       ]
     : ["", "Esta copia no se sincroniza: es una foto de tu progreso de hoy. Para mantenerla al día, descarga con sincronización."];
-  return ["Exodus en Obsidian", "", ...pasos, ...sync, ""].join("\n");
+  return [tipo === "boveda" ? "# Empieza aquí: Exodus en Obsidian" : "Exodus en Obsidian", "", ...pasos, ...sync, "", `Guía completa, también para el móvil: ${origin}/guia#obsidian`, ""].join("\n");
 }
 
 /**
@@ -66,15 +71,16 @@ export async function POST(req: Request) {
   let entries: ZipEntry[];
   let filename: string;
   if (tipo === "boveda") {
-    const top = `Exodus-${safeUser}`;
+    // Todo en la raíz del ZIP: «Extraer todo» de Windows (y el Finder) ya crean una carpeta con el nombre del ZIP.
+    // Con una carpeta dentro quedaba Exodus-x/Exodus-x/.obsidian, y al abrir la de fuera Obsidian no veía el plugin.
     const notas = buildExport(loadVault(), userExportData(user.id, user.username), "Exodus");
     entries = [
-      { path: `${top}/LEEME.txt`, data: instrucciones(origin, conSync, tipo) },
-      { path: `${top}/.obsidian/community-plugins.json`, data: json([PLUGIN_ID]) },
-      ...plugin(`${top}/.obsidian/plugins/${PLUGIN_ID}`),
-      ...notas.map((f) => ({ path: `${top}/${f.path}`, data: f.content })),
+      { path: "Empieza aquí.md", data: instrucciones(origin, conSync, tipo) },
+      { path: ".obsidian/community-plugins.json", data: json([PLUGIN_ID]) },
+      ...plugin(`.obsidian/plugins/${PLUGIN_ID}`),
+      ...notas.map((f) => ({ path: f.path, data: f.content })),
     ];
-    filename = `${top}.zip`;
+    filename = `Exodus-${safeUser}.zip`;
   } else {
     entries = [{ path: "LEEME.txt", data: instrucciones(origin, conSync, tipo) }, ...plugin(PLUGIN_ID)];
     filename = `${PLUGIN_ID}.zip`;

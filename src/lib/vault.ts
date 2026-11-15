@@ -126,8 +126,40 @@ function* walk(dir: string): Generator<string> {
   }
 }
 
+let enCache: { firma: string; vault: Vault } | null = null;
+
+/** Huella barata del vault: ruta, tamaño y fecha de cada .md (y de cada adjunto). Leerlo entero cuesta ~100 ms. */
+function firmaDelVault(root: string): string {
+  const h = crypto.createHash("sha1").update(root);
+  const anota = (full: string) => {
+    try {
+      const st = fs.statSync(full);
+      h.update(`${full}\t${st.size}\t${st.mtimeMs}\n`);
+    } catch {
+      h.update(`${full}\t-\n`);
+    }
+  };
+  for (const full of walk(root)) anota(full);
+  const adj = path.join(root, ATTACHMENTS_DIR);
+  if (fs.existsSync(adj)) for (const d of fs.readdirSync(adj)) for (const f of fs.readdirSync(path.join(adj, d))) anota(path.join(adj, d, f));
+  return h.digest("hex");
+}
+
+/**
+ * El vault, leído de disco solo si algún archivo ha cambiado desde la última vez: guardar un .md en Obsidian
+ * se sigue viendo al recargar. No modifiques el objeto devuelto: lo comparten todas las peticiones.
+ */
 export function loadVault(): Vault {
   const root = vaultRoot();
+  if (!fs.existsSync(root)) return leerVault(root);
+  const firma = firmaDelVault(root);
+  if (enCache?.firma === firma) return enCache.vault;
+  const vault = leerVault(root);
+  enCache = { firma, vault };
+  return vault;
+}
+
+function leerVault(root: string): Vault {
   const nodes = new Map<string, VaultNode>();
   const issues: VaultIssue[] = [];
   if (!fs.existsSync(root)) {

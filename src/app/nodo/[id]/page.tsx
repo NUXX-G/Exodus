@@ -10,6 +10,7 @@ import { getSessionUser, requireUser } from "@/lib/auth";
 import { linkResolverFor, renderMarkdown } from "@/lib/markdown";
 import { getCompleted, getRevealedLevels, getSolvedExercises, masteryOf, recordOpen, stateOf } from "@/lib/progress";
 import { loadRecursos } from "@/lib/recursos";
+import { studyOrder } from "@/lib/study";
 import { attachmentInfo, KIND_LABEL, loadVault } from "@/lib/vault";
 import { revealHintAction } from "./actions";
 
@@ -64,10 +65,18 @@ export default async function PaginaNodo({ params }: Props) {
   const siguientes = [...vault.nodes.values()]
     .filter((n) => n.prerequisites.includes(node.id))
     .sort((a, b) => a.trunkLevel - b.trunkLevel || a.title.localeCompare(b.title, "es"));
+  // Anterior y siguiente en el orden de estudio de la misma área.
+  const deLaRama = studyOrder(vault).filter((n) => n.area === node.area);
+  const pos = deLaRama.findIndex((n) => n.id === node.id);
+  const anterior = pos > 0 ? deLaRama[pos - 1] : null;
+  const siguiente = pos >= 0 && pos < deLaRama.length - 1 ? deLaRama[pos + 1] : null;
 
   return (
     <main className="pagina nodo-pagina">
       <div>
+        <Link href={`/temario?area=${node.area}`} className="boton-volver">
+          ← Volver al temario
+        </Link>
         <p className="migas">
           <Link href="/">Árbol</Link> / <Link href="/temario">Temario</Link> /{" "}
           <Link href={`/temario?area=${node.area}`}>{area.label}</Link> / nivel {node.trunkLevel}
@@ -112,6 +121,28 @@ export default async function PaginaNodo({ params }: Props) {
             </ol>
           </section>
         )}
+
+        <nav className="nodo-navegacion" aria-label="Navegación entre nodos">
+          {anterior ? (
+            <Link href={`/nodo/${anterior.id}`} prefetch={false} className="anterior">
+              <small>← Anterior en {area.label}</small>
+              <span>{anterior.title}</span>
+            </Link>
+          ) : (
+            <span />
+          )}
+          <Link href={`/temario?area=${node.area}`} className="volver">
+            Volver al temario
+          </Link>
+          {siguiente ? (
+            <Link href={`/nodo/${siguiente.id}`} prefetch={false} className="siguiente">
+              <small>Siguiente en {area.label} →</small>
+              <span>{siguiente.title}</span>
+            </Link>
+          ) : (
+            <span />
+          )}
+        </nav>
       </div>
 
       <aside className="lateral" aria-label="Progreso del nodo">

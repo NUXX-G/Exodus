@@ -190,6 +190,14 @@ y construye la imagen Docker.
   dentro de Obsidian real** (no hay Obsidian en esta máquina): si falla, mirar la consola de Obsidian (Ctrl+Shift+I).
   Nota: con `next dev` y Playwright, los logs de `.playwright-mcp/` en la raíz provocan un bucle de recarga;
   para pruebas de navegador usar `next build && next start`.
+- Navegación y rendimiento (2026-11-15): caché del HTML renderizado por hash de contenido (`src/lib/render-cache.ts`,
+  memoria + disco en `<carpeta de la BD>/cache-html`), caché de `loadVault` por firma de archivos, precalentado al
+  arrancar (`src/instrumentation.ts` → `src/lib/precalentar.ts`: 180 nodos en ~50 s), indicador de carga
+  (`IndicadorCarga.tsx`) y `loading.tsx`. Cabecera fija con menú ☰ en ≤900 px, «← Volver al temario» y anterior/siguiente
+  en cada nodo. Medido en build de producción: abrir un nodo desde Temario 7,4 s → 0,19 s. Guía pública `/guia`;
+  token manual para Obsidian en `/cuenta`; ZIP de la bóveda con todo en la raíz (antes quedaba
+  `Exodus-x/Exodus-x/.obsidian` y Obsidian no veía el plugin). `obsidian-plugin/` generado con `npm run obsidian:plugin`
+  y comprobado por un test; publicarlo en un repo público queda a decisión del usuario.
 - Auth: cuenta `admin` (creada en /configurar con el código del registro del servidor) y cuentas `miembro` solo por
   invitación (`src/lib/invitations.ts`, tests en `tests/invitations.test.ts`); scrypt, sesiones por cookie HttpOnly,
   limitador de intentos.

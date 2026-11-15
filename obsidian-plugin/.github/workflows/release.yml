@@ -1,0 +1,29 @@
+# Solo actúa cuando esta carpeta es la raíz de su propio repositorio (ver README): al subir una etiqueta
+# igual a la versión de manifest.json, crea la release con main.js y manifest.json, que es lo que necesitan BRAT
+# y el instalador de Obsidian.
+name: Publicar versión del plugin
+
+on:
+  push:
+    tags:
+      - "*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Comprobar que la etiqueta coincide con la versión
+        run: |
+          version=$(node -p "require('./manifest.json').version")
+          if [ "$version" != "${GITHUB_REF_NAME}" ]; then
+            echo "La etiqueta ${GITHUB_REF_NAME} no coincide con la versión ${version} de manifest.json" >&2
+            exit 1
+          fi
+      - name: Crear la release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "${GITHUB_REF_NAME}" main.js manifest.json --title "Exodus Sync ${GITHUB_REF_NAME}" --notes "Exodus Sync ${GITHUB_REF_NAME}"

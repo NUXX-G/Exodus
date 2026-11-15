@@ -6,3 +6,4 @@ vault
 .env*
 *.md
 docker
+database/cache-html
