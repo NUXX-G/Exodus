@@ -1,0 +1,13 @@
+# Péndulo simple: L = longitud del hilo hasta el borde superior de la bola (m); t20 = tiempo de 20 oscilaciones (s),
+# medido con cronómetro manual, incertidumbre típica 0,10 s por medida.
+L_m,t20_s,sigma_t20_s
+0.200,18.46,0.10
+0.300,22.58,0.10
+0.400,25.83,0.10
+0.500,28.64,0.10
+0.600,31.39,0.10
+0.700,33.80,0.10
+0.800,34.29,0.10
+0.900,38.38,0.10
+1.000,40.42,0.10
+1.100,42.44,0.10
