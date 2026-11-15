@@ -81,8 +81,8 @@ exercises:
   - id: edad-del-universo
     tier: 3
     prompt: |
-      ¿Qué edad tiene un universo plano con $\Omega_m = 0{,}3$, $\Omega_\Lambda = 0{,}7$ y $H_0 = 70$ km/s/Mpc, en Gyr? Respuesta: con **2 decimales**.
-    answers: ["sha256:65aca5e69e2739aa83c0c9dc3b31f64d2497872c31aedbf658f67ba349518ac6"]
+      ¿Qué edad tiene un universo plano con $\Omega_m = 0{,}25$, $\Omega_\Lambda = 0{,}75$ y $H_0 = 70$ km/s/Mpc, en Gyr? Respuesta: con **2 decimales**.
+    answers: ["sha256:787df89cbd9d0a09831da18b4918e86b389d255dd88afa68f7878ac814f089ae"]
   - id: caida-a-la-singularidad
     tier: 3
     prompt: |

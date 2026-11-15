@@ -91,9 +91,9 @@ exercises:
   - id: conduccion-pared
     tier: 3
     prompt: |
-      Una pared de ladrillo de $0{,}2$ m de espesor y $10$ m$^2$ de área (conductividad $k = 0{,}8$ W/(m·K)) separa un interior a $20$ K más caliente que el exterior.
+      Una pared de ladrillo de $0{,}25$ m de espesor y $10$ m$^2$ de área (conductividad $k = 0{,}8$ W/(m·K)) separa un interior a $15$ K más caliente que el exterior.
       ¿Cuánto calor pasa por segundo (potencia, en vatios) por conducción, $P = kA\,\Delta T/L$? Respuesta: un número.
-    answers: ["sha256:1a1cf797fabe7f95836fabeca626907c77b3e6c9aff7c2290b396a238c69362e"]
+    answers: ["sha256:ddfe0e8d462af661f81db36589c39882dc0f2330785b5d80cd34f2f520ad618f"]
   - id: rendimiento-de-carnot
     tier: 3
     prompt: |

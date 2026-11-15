@@ -8,11 +8,11 @@ academic_sources:
   - "Krane, K. S. Introductory Nuclear Physics. Wiley, 1988."
   - "Griffiths, D. Introduction to Elementary Particles, 2ª ed. revisada. Wiley-VCH, 2008."
 exercises:
-  - id: ligadura-del-helio
+  - id: ligadura-del-carbono
     tier: 1
     prompt: |
-      Con las masas atómicas $m(^1\mathrm H) = 1{,}007825032$ u, $m_n = 1{,}008664916$ u y $m(^4\mathrm{He}) = 4{,}002603254$ u (1 u $= 931{,}494$ MeV), ¿cuál es la energía de ligadura del ⁴He en MeV? Respuesta: con **3 decimales**.
-    answers: ["sha256:984eee005b6622410605fd6c7c33c8edfdba4c879dca7c715dcc655d3acd6b7d"]
+      Con las masas atómicas $m(^1\mathrm H) = 1{,}007825032$ u, $m_n = 1{,}008664916$ u y $m(^{12}\mathrm C) = 12$ u exactas (1 u $= 931{,}494$ MeV), ¿cuál es la energía de ligadura del ¹²C en MeV? Respuesta: con **3 decimales**.
+    answers: ["sha256:f63a2a0c1dbd09144f705b6861f230f35a40095d3d09a980a4283e3425f803c8"]
   - id: carbono-14
     tier: 1
     prompt: |
@@ -51,13 +51,13 @@ exercises:
   - id: desintegracion-alfa
     tier: 2
     prompt: |
-      En la desintegración $^{238}\mathrm U \to {}^{234}\mathrm{Th} + \alpha$ (masas atómicas 238,0507884 u, 234,0436014 u y 4,002603254 u), ¿con qué energía cinética sale la partícula alfa, en MeV (no relativista)? Respuesta: con **3 decimales**.
-    answers: ["sha256:b566ccab1a4939acdc39671e3862b8866ecdd6951fe7e88b1db0a436986f11fd"]
-  - id: fusion-dt
+      En la desintegración $^{226}\mathrm{Ra} \to {}^{222}\mathrm{Rn} + \alpha$ (masas atómicas 226,0254098 u, 222,0175777 u y 4,002603254 u), ¿con qué energía cinética sale la partícula alfa, en MeV (no relativista)? Respuesta: con **3 decimales**.
+    answers: ["sha256:81db95987a88974557df83b5c33ff7ee1b200dab0d5d977ab5545bade8bef213"]
+  - id: fusion-dd
     tier: 2
     prompt: |
-      En la fusión D + T → ⁴He + n (masas 2,014101778; 3,016049278; 4,002603254 y 1,008664916 u), ¿qué energía cinética se lleva el neutrón, en MeV (cálculo no relativista, reactivos en reposo)? Respuesta: con **2 decimales**.
-    answers: ["sha256:cef91f0c7050016cdcb415a8ff8080c8c0d41cf080bfd4341c240b179d9a7680"]
+      En la fusión D + D → ³He + n (masas 2,014101778; 3,016029323 y 1,008664916 u), ¿qué energía cinética se lleva el neutrón, en MeV (cálculo no relativista, reactivos en reposo)? Respuesta: con **2 decimales**.
+    answers: ["sha256:0be838584e0bb2d91b88cd607e07af75c480506ee612a8143233b6a13672ec6c"]
   - id: barrera-de-coulomb
     tier: 2
     prompt: |

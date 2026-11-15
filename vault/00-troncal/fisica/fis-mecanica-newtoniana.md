@@ -57,8 +57,8 @@ exercises:
   - id: velocidad-con-arrastre
     tier: 2
     prompt: |
-      El mismo paracaidista ($m = 70$ kg, $b = 14$ kg/s, $g = 10$) parte del reposo. Su velocidad es $v(t) = v_t(1 - e^{-t/\tau})$ con $\tau = m/b$. ¿Cuánto vale a los $10$ s, en m/s? Respuesta: **dos decimales**.
-    answers: ["sha256:278898e09156016275266ad691b5f38dbb5e1e9ab799a6b24a42a2e588f772c5"]
+      El mismo paracaidista ($m = 70$ kg, $b = 14$ kg/s, $g = 10$) parte del reposo. Su velocidad es $v(t) = v_t(1 - e^{-t/\tau})$ con $\tau = m/b$. ¿Cuánto vale a los $7$ s, en m/s? Respuesta: **dos decimales**.
+    answers: ["sha256:e3db5af3ee27d86a32b5ccef8aa6010e4be57f15353bb62663963ec213c82bf0"]
   - id: equilibrios-estables
     tier: 2
     prompt: |

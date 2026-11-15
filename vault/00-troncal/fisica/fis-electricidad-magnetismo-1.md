@@ -53,8 +53,8 @@ exercises:
   - id: esfera-uniforme-interior
     tier: 2
     prompt: |
-      Una esfera maciza de radio $0{,}2$ m tiene una carga de $8$ nC repartida **uniformemente en su volumen**. ¿Qué campo hay a $0{,}1$ m del centro, en N/C? ($k = 9\times10^9$.) Respuesta: un número.
-    answers: ["sha256:bdc5d8a48c23897906b09a9a3680bd2e9c8b3121edbda36f949800f0959c8d55"]
+      Una esfera maciza de radio $0{,}2$ m tiene una carga de $8$ nC repartida **uniformemente en su volumen**. ¿Qué campo hay a $0{,}15$ m del centro, en N/C? ($k = 9\times10^9$.) Respuesta: un número.
+    answers: ["sha256:cba8d3a39041d4164e60270c6281f81be92d29656bec527211d87de66571f403"]
   - id: radio-del-ciclotron
     tier: 2
     prompt: |
@@ -88,13 +88,13 @@ exercises:
   - id: campo-en-el-eje-de-un-anillo
     tier: 3
     prompt: |
-      Un anillo de radio $0{,}1$ m lleva una carga de $10$ nC repartida uniformemente. ¿Qué campo hay en el punto del eje a $0{,}1$ m del plano del anillo, en N/C? ($E = kQx/(R^2 + x^2)^{3/2}$, $k = 9\times10^9$.) Respuesta: un entero (redondeado).
-    answers: ["sha256:6749ccd704f8c8bfe84093c1ac87c1d39898cd313f30f165416cd948bfaf9c28"]
+      Un anillo de radio $0{,}1$ m lleva una carga de $10$ nC repartida uniformemente. ¿Qué campo hay en el punto del eje a $0{,}2$ m del plano del anillo, en N/C? ($E = kQx/(R^2 + x^2)^{3/2}$, $k = 9\times10^9$.) Respuesta: un entero (redondeado).
+    answers: ["sha256:31d8edb99534fd4800651db4d241d86e0380fa7376718b88590c2d772b41d5f4"]
   - id: fuerza-entre-hilos
     tier: 3
     prompt: |
-      Dos hilos rectos largos y paralelos, a $0{,}1$ m, llevan $10$ A cada uno en el mismo sentido. ¿Qué fuerza por metro de longitud se ejercen, en $\mu$N/m? ($\mu_0 = 4\pi\times10^{-7}$.) Respuesta: un número.
-    answers: ["sha256:27badc983df1780b60c2b3fa9d3a19a00e46aac798451f0febdca52920faaddf"]
+      Dos hilos rectos largos y paralelos, a $0{,}15$ m, llevan $15$ A y $20$ A en el mismo sentido. ¿Qué fuerza por metro de longitud se ejercen, en $\mu$N/m? ($\mu_0 = 4\pi\times10^{-7}$.) Respuesta: un número.
+    answers: ["sha256:26d228663f13a88592a12d16cf9587caab0388b262d6d9f126ed62f9333aca94"]
   - id: velocidad-de-la-luz
     tier: 3
     prompt: |

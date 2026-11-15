@@ -82,12 +82,12 @@ exercises:
       Un coche a $30$ m/s frena a fondo y el rozamiento con el suelo (coeficiente $\mu = 0{,}6$) es la única fuerza horizontal. Con $g = 10$ m/s$^2$,
       ¿qué distancia recorre hasta detenerse, en metros? Respuesta: un número.
     answers: ["sha256:f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac"]
-  - id: altura-gravedad-cuarta
+  - id: altura-gravedad-novena
     tier: 3
     prompt: |
       La gravedad disminuye con el cuadrado de la distancia al **centro** de la Tierra (radio $6371$ km). ¿A qué **altura sobre la superficie**, en kilómetros,
-      la aceleración de la gravedad vale la cuarta parte que en la superficie? Respuesta: un número.
-    answers: ["sha256:df805239a17c4c49d0851f3a0c6fc3225b76f6bbbe5b8bc7cb1f12bc9965f78c"]
+      la aceleración de la gravedad vale la novena parte que en la superficie? Respuesta: un número.
+    answers: ["sha256:9f5923259bf6c7b9bb3b3c584d5bd925a8aaeaefc903d60e587fde76c39626e5"]
   - id: velocidad-orbital
     tier: 3
     prompt: |

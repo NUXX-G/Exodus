@@ -63,11 +63,11 @@ exercises:
     prompt: |
       El Sol gira alrededor del centro galáctico a 230 km/s a 8,2 kpc. ¿Qué masa encierra su órbita, en unidades de $10^{10}$ masas solares? Respuesta: con **2 decimales**.
     answers: ["sha256:d1ba5d5981fe2afc9a7795a3d06beaa33864ea6831a72dc5e92c37f8e2e0f361"]
-  - id: edad-en-z-1
+  - id: edad-en-z-2
     tier: 2
     prompt: |
-      En un universo de Einstein-de Sitter (solo materia, plano) con $H_0 = 70$ km/s/Mpc, ¿qué edad tenía el universo en $z = 1$, en Gyr? Respuesta: con **2 decimales**.
-    answers: ["sha256:1a9d6e6e6ce73ab1cc14ece61b9bc5e5013f601170c0e37bc439d2f0b8079d4d"]
+      En un universo de Einstein-de Sitter (solo materia, plano) con $H_0 = 70$ km/s/Mpc, ¿qué edad tenía el universo en $z = 2$, en Gyr? Respuesta: con **2 decimales**.
+    answers: ["sha256:8c5ded3c20deebb070ac14b0e8f892d6d357a19ee3a5d263c8e6579497cb636d"]
   - id: combustible-del-sol
     tier: 2
     prompt: |
@@ -76,8 +76,8 @@ exercises:
   - id: distancia-de-luminosidad
     tier: 3
     prompt: |
-      En un universo de Einstein-de Sitter con $H_0 = 70$ km/s/Mpc, ¿cuál es la distancia de luminosidad a $z = 1$, en Mpc? Respuesta: redondeada a Mpc entero.
-    answers: ["sha256:7a44fc7a25bbd06a340d2a3a84520b3ce1a4e2f781d383b378b24eb0ac8228b7"]
+      En un universo de Einstein-de Sitter con $H_0 = 70$ km/s/Mpc, ¿cuál es la distancia de luminosidad a $z = 2$, en Mpc? Respuesta: redondeada a Mpc entero.
+    answers: ["sha256:e399ad584daf025332e506028a6724d5f7176b4aa7e07e9c61738476b7b9e3dd"]
   - id: radio-de-einstein
     tier: 3
     prompt: |
