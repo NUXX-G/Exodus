@@ -1,0 +1,6 @@
+# Marcas del suelo: cuando la cámara inferior ve una, el sistema registra la pose medida (x, y en m; theta en rad).
+t_s,marca,x_m,y_m,theta_rad
+8.000,M1,1.986,-0.002,0.0003
+22.460,M2,3.983,3.019,1.5733
+41.920,M3,0.992,5.004,3.1423
+58.360,M4,0.015,1.006,3.1469
