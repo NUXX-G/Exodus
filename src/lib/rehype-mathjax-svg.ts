@@ -7,8 +7,16 @@
  * retenida por nodo (250 MB tras renderizar los 180), suficiente para que el contenedor de 512 MB se quedara sin
  * memoria y se reiniciara en bucle. Con un motor compartido la memoria se queda plana y cada renderizado es más rápido.
  *
- * Es seguro compartirlo porque el vault no usa órdenes TeX con estado entre fórmulas (`\newcommand`, `\def`,
- * `\label`/`\eqref`): si aparecen, la fórmula sale como error y `vault:check` falla, para que siga siendo así.
+ * Compartir un motor exige que ninguna fórmula pueda dejarle estado (macros, colores, flechas u opciones nuevas): si
+ * no, una fórmula cambiaría cómo se dibujan las siguientes, también las de otros usuarios y las guardadas en la caché.
+ * Dos defensas:
+ *  - Dos motores. El del vault (contenido de confianza, revisado en el repositorio) tiene todos los paquetes. El de
+ *    lo que escriben los usuarios (Libreta) no carga los paquetes que permiten definir cosas: `newcommand`
+ *    (`\newcommand`, `\def`, `\let`, `\DeclareMathOperator`…), `mathtools` (`\DeclarePairedDelimiter`,
+ *    `\newtagform`, `\mathtoolsset`…), `extpfeil` (`\Newextarrow`), `configmacros` y `tagformat`.
+ *  - En los dos, `TEX_CON_ESTADO` rechaza antes de convertir cualquier orden que defina o configure algo: la fórmula
+ *    sale como error (`data-mjx-error`) y `vault:check` falla si aparece en el vault.
+ * Además, `entrada.reset()` vacía antes de cada fórmula la numeración y las etiquetas de ecuaciones.
  */
 import type { Element, ElementContent, Root, Text } from "hast";
 import { h } from "hastscript";
@@ -23,20 +31,34 @@ import { TeX } from "mathjax-full/js/input/tex.js";
 import { mathjax } from "mathjax-full/js/mathjax.js";
 import { SVG } from "mathjax-full/js/output/svg.js";
 
-/** Órdenes TeX que guardan estado entre fórmulas: con un motor compartido se filtrarían de un nodo a otro. */
-export const TEX_CON_ESTADO = /\\(newcommand|renewcommand|providecommand|def|gdef|edef|let|DeclareMathOperator|newenvironment|label|eqref|ref|tag)\b/;
+/**
+ * Órdenes TeX que definen o configuran algo que sobrevive a la fórmula. Cubre todas las variantes de MathJax 3: todo
+ * lo que empieza por new/renew/provide/declare en cualquier capitalización salvo `\newline` (`\newcommand`,
+ * `\renewcommand`, `\newenvironment`, `\Newextarrow`, `\newtagform`, `\DeclareMathOperator`,
+ * `\DeclarePairedDelimiter`…), `\def`, `\gdef`, `\edef`, `\xdef`, `\let`, `\definecolor`, `\require`, `\setOptions`,
+ * `\mathtoolsset`, `\usetagform`, `\label`, `\ref`, `\eqref` y `\tag`.
+ */
+export const TEX_CON_ESTADO =
+  /\\(?!newline(?![a-z]))(?:(?:re)?new|provide|declare)[a-z]*|\\[gex]?def(?![a-z])|\\let(?![a-z])|\\(?:definecolor|require|setoptions|mathtoolsset|usetagform|label|eqref|ref|tag)(?![a-z])/i;
+
+/** Paquetes que permiten definir o configurar algo: fuera del motor de contenido de usuario. */
+const PAQUETES_QUE_DEFINEN = new Set(["newcommand", "mathtools", "extpfeil", "configmacros", "tagformat", "setoptions", "require", "autoload"]);
+const PAQUETES_USUARIO = AllPackages.filter((p) => !PAQUETES_QUE_DEFINEN.has(p));
 
 interface Motor {
   convertir(tex: string, display: boolean): LiteElement;
   hojaDeEstilo(): LiteElement;
 }
 
-let motor: Motor | undefined;
+const motores: { vault?: Motor; usuario?: Motor } = {};
+let manejadorRegistrado = false;
 
-function crearMotor(): Motor {
-  const adaptador = liteAdaptor();
-  RegisterHTMLHandler(adaptador);
-  const entrada = new TeX({ packages: AllPackages });
+function crearMotor(paquetes: string[]): Motor {
+  if (!manejadorRegistrado) {
+    RegisterHTMLHandler(liteAdaptor());
+    manejadorRegistrado = true;
+  }
+  const entrada = new TeX({ packages: paquetes });
   const salida = new SVG();
   const documento = mathjax.document("", { InputJax: entrada, OutputJax: salida });
   return {
@@ -58,8 +80,15 @@ function desdeLite(el: LiteElement): Element {
   return h(el.kind, el.attributes as Record<string, string>, hijos) as Element;
 }
 
-export default function rehypeMathjaxSvg() {
+export interface OpcionesMathjax {
+  /** Contenido escrito por un usuario (Libreta): motor sin los paquetes que permiten definir cosas. */
+  usuario?: boolean;
+}
+
+export default function rehypeMathjaxSvg(opciones: OpcionesMathjax = {}) {
+  const tipo = opciones.usuario ? "usuario" : "vault";
   return function (tree: Root, file: VFile) {
+    let motor: Motor | undefined;
     let encontrado = false;
     let contexto: Root | Element = tree;
 
@@ -82,7 +111,7 @@ export default function rehypeMathjaxSvg() {
       }
       if (!padre) return;
 
-      motor ??= crearMotor();
+      motor ??= motores[tipo] ??= crearMotor(tipo === "usuario" ? PAQUETES_USUARIO : AllPackages);
       encontrado = true;
       const texto = toText(ambito, { whitespace: "pre" });
       let resultado: ElementContent[];

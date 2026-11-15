@@ -213,6 +213,9 @@ ewcommand`,
   hoja de estilo de MathJax (nodo de 2,4 MB → 1,06 MB; 101 KB comprimido), `loadVault` comprueba el vault como mucho cada
   2 s, el precalentado descansa tanto como trabaja y la LRU en memoria baja a 16 MB. Medido en Docker con 512 MB y 1 CPU:
   sin caídas, ~280 MB en uso, nodo en 0,06–0,2 s de servidor (antes ~1,2 s), temario 0,08 s.
+  Seguridad del motor compartido (PR siguiente): las notas de la Libreta (escritas por usuarios) usan un motor MathJax
+  aparte sin paquetes que definen macros (`newcommand`, `mathtools`, `extpfeil`, `configmacros`, `tagformat`) y con su
+  propia clave de caché; en los dos motores `TEX_CON_ESTADO` rechaza todas las variantes de definición/configuración.
 - Auth: cuenta `admin` (creada en /configurar con el código del registro del servidor) y cuentas `miembro` solo por
   invitación (`src/lib/invitations.ts`, tests en `tests/invitations.test.ts`); scrypt, sesiones por cookie HttpOnly,
   limitador de intentos.
