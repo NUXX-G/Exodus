@@ -21,8 +21,8 @@ exercises:
   - id: desbordamiento
     tier: 1
     prompt: |
-      Un sumador de 8 bits con signo (complemento a dos) suma $100 + 50$. ¿Qué valor con signo aparece en la salida? Respuesta: un entero.
-    answers: ["sha256:ee0997440d6d651dfc53f7246f4b5869a2490720482c3be3af2dccc3e6e646fa"]
+      Un sumador de 8 bits con signo (complemento a dos) suma $90 + 70$. ¿Qué valor con signo aparece en la salida? Respuesta: un entero.
+    answers: ["sha256:81179d1d4725d8c7174042a4c41f03c87d9d069535742fbe95156d70dd12812f"]
   - id: contador-modulo-60
     tier: 1
     prompt: |
@@ -86,8 +86,8 @@ exercises:
   - id: estado-del-lfsr
     tier: 3
     prompt: |
-      El LFSR de `lfsr` se implementa con `q <= {q[2:0], q[3] ^ q[2]};` y arranca en `4'b0001`. ¿Qué valor tiene tras 10 flancos de reloj? Respuesta: los 4 bits `q[3:0]`.
-    answers: ["sha256:5bedd317328c9ed79ecd3aecee74d37f97813cb4ce61ef3402eb388fb369fa86"]
+      El LFSR de `lfsr` se implementa con `q <= {q[2:0], q[3] ^ q[2]};` y arranca en `4'b0001`. ¿Qué valor tiene tras 7 flancos de reloj? Respuesta: los 4 bits `q[3:0]`.
+    answers: ["sha256:7a5df5ffa0dec2228d90b8d0a0f1b0767b748b0a41314c123075b8289e4e053f"]
 ---
 
 # Diseño digital con HDL: Verilog sintetizable, máquinas de estados, temporización, aritmética, memorias y FPGA

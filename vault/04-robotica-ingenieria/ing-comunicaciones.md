@@ -16,8 +16,8 @@ exercises:
   - id: regla-de-carson
     tier: 1
     prompt: |
-      ¿Qué ancho de banda ocupa una FM con desviación de 75 kHz y moduladora de 15 kHz según la regla de Carson, en kHz? Respuesta: un número.
-    answers: ["sha256:7b69759630f869f2723875f873935fed29d2d12b10ef763c1c33b8e0004cb405"]
+      ¿Qué ancho de banda ocupa una FM de banda estrecha con desviación de 5 kHz y moduladora de 3 kHz según la regla de Carson, en kHz? Respuesta: un número.
+    answers: ["sha256:b17ef6d19c7a5b1ee83b907c595526dcb1eb06db8227d650d5dda0a9f4ce8cd9"]
   - id: criterio-de-nyquist
     tier: 1
     prompt: |
