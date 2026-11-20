@@ -150,6 +150,19 @@ exercises:
     prompt: |
       ¿Cuántos generadores tiene el grupo cíclico $\mathbb Z_{65521}^*$? Respuesta: un entero.
     answers: ["sha256:619b9764b0f5da3d20548bf11d493fb78b5a6790c625aae87e95f3dd1a15a289"]
+  - id: informe-nonce-repetido
+    tier: 3
+    type: desarrollo
+    prompt: |
+      **Desarrollo: informe de incidente (análisis defensivo).** Una aplicación cifra los mensajes de sus usuarios con
+      AES-128 en modo CTR y una única clave, pero por un error de código usa **siempre el mismo nonce** (cero). Redacta un
+      informe breve con cuatro apartados:
+
+      1. Qué propiedad de seguridad se pierde y por qué (con la ecuación que lo muestra).
+      2. Qué puede obtener un atacante que capture el tráfico, qué necesita para ello y qué **no** obtiene.
+      3. Cómo se habría detectado (en el código, en las pruebas o en el tráfico).
+      4. Corrección y medidas posteriores.
+    sealed: "gz64:H4sIAAAAAAACCn1VzW7bRhB+lYGgg0TQQuwkRavAB8Nxix6SBlZRFCgLY7Q7kscld5jdpRvZ9cP4aBQ+BLmlt/DFilmK+kmC3IgluTPz/c3tIEjZRBY3mA6y7HACp+IWbMkZxpIt2kmWwZmD01/Pc6AS5qW8bQiGPARLJSzK5kqAAgxnFwzHUBQVxktf3Z6cze4u/hoVRaR38daJM3RXFHlR/FMUOY+HsIJAYHjhsXBDA8dQQVFIXTYBZsPUBpgSrwlWkP6GBV9JyCHLolgJUEqAilzAKwrQBHTaXcWhkq6pLIPhbJgDhvYR3jZUuOGwcObicFPGXBzBMYyqnaPZePM4qi6Ods+PYfdDfTnprjwL0DiEkueeIoIlaBwEKQWaIOCpiVzyDVqE0ad/499yELkiqNF++m88gRNLVXsfFF9wAhaBXaSlV+inYLCaM3q9cc5R7x6a4foUqCxcN3D/rhrCqELHdVOi4faDg8AOLEUyEf14UrjCZdnRBE6xRqMlEokY0aCLpFQr7o3rkQXTrASUQgEjTm4MggBavmZHMDI4J0MeQw4L8RVGCT1N2zsKp4JpH3p2yF1z+2Gcg8wjkyMYzuAYzBbaIZADChiglsCGxVGAFWSZpZAEA6bB8m3D5EGil75QlumPJYZUCEPhtv9PYMZuZxDDVnJ9gqoxl7tSqhuyBJ5MU5NHrzKrxQOFiLZ9DJENJtDYslSJU+N5DtbjcslumUh9LYXrb4ASIcuSlLNMWTo5m8HICVyiihrLiOOpatdi+z5ZKcjcE6jK9Tj69n7BRjqv2NQ+UKDOFTnUGPR0BYsmNl7WHD+dwEulPalgbWFP1xySKiyBaT9YXspUier8ZcSFqDIA0UMjLqIVr95Rq3pix4ZxolfVvqE5hmnXlAc15DUZCoXbuLAD26pOIcvSWZaB8VxHWXpU7FT0Ok7XQPvR6ZyucQniOfn2ESGQTwr2FTsOEcepgR1gphvuCpew6RswUjG5G4Hai20Mud3iAb76bQ4rPfz9l3MFScfa+6cTLIaajM5G3ZBrzJ9panm/A/rrNFeWrSdTHW21qvWNxkIXcyMsCaN4Tvf+8J2aOkDKhp6KHGRLS00+cIjkIo3zwq2goitJSdELBRt9y0afRydns4OfTl+BwOklnl7i0ZODN1KuDp8+eT5OFEcNlfZhExewDRI10AsIrOK0vGgfDZewRI8u8g36wiX+wprAkMO62MHs599gdP7jKXz/7PnRGDyljiE04KmmyB1QkGXnEtGrU3qfrJIc2aoFlZzaS0WRrXzhi8LtGaNci6krYOUF4DUH9BBo2X7UeIBayvZx7WNgZ3TbRZ0Q2/do2ac47xSuGErV3qevFaUFliUpFFbCpnJIgbCreiPreyeDfOCbuWczmP5xOzCeI3mWwXRw9q4u9dYStzvCrN3Z71X16XoHUtCY0fz/YoN9tpeGMKrbB2/ZpgHNZ/t8rC3VjYsSBtOju3yvqZd9mbdN+7AJ6J0VkUDej1EYbXJZ03gbpWNYJcyyzKnz+9t6lr/VxxsvtThKTKTNotVMv1/7hVYKjDahlveUrT/o8qIS3VeuvS85cMdTL5w9IA4/a2DHyNP9eNoxsar0a14TWIv/myVekVKUllw68hSm4PeMACuIHmNnAdn3we5qwIXiYWW/3J93/wMZOUK+3gkAAA=="
   - id: r-ecb-pinguino
     tier: 1
     type: opcion

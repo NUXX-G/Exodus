@@ -57,6 +57,13 @@
       "when": 1795194127827,
       "tag": "0007_diario_errores",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1795194643735,
+      "tag": "0008_desarrollo",
+      "breakpoints": true
     }
   ]
 }

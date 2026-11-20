@@ -23,9 +23,9 @@ registro de sesiones (una línea) o a `docs/`.
 
 ## 1. Ahora mismo
 
-- **Fase actual**: FASE 3 — Respuesta desarrollada con rúbrica.
-- **Tarea actual**: tipo «desarrollo» (respuesta en Markdown/LaTeX/código o «hecha en papel», autocorrección con rúbrica).
-- **Siguiente paso concreto**: leer la FASE 3 del roadmap; diseñar `type: desarrollo` con `rubric` y `solution` ocultas (no se exportan a Obsidian ni se envían al navegador antes de entregar) y una tabla de entregas.
+- **Fase actual**: FASE 4 — Ejercicios de código con tests.
+- **Tarea actual**: tipo «código» (plantilla, tests por etapas, Python, C, C++, Rust y Bash). ⛔ decidido con la autorización del usuario: elegir el aislamiento más seguro.
+- **Siguiente paso concreto**: leer la FASE 4 del roadmap; estudiar los hitos con `prueba.sh` existentes (`grep -rl prueba.sh vault`) y decidir entre contenedor efímero aislado y runner local con resultado firmado (anotar en §6).
 - **Bloqueos**: ninguno.
 - **Prueba en navegador**: `scripts/dev/sesion-prueba.ts` (usuario y sesión en una base temporal) y
   `scripts/dev/e2e-v2.cjs` (Playwright 1.58 de la caché de npx: `PLAYWRIGHT_CORE=C:/Users/nelso/AppData/Local/npm-cache/_npx/787f53666b8d4740/node_modules/playwright-core`).
@@ -146,6 +146,12 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
 12. **2026-11-20 · Práctica intercalada** en `/repaso?modo=intercalado`: no cambia el dominio; un fallo reprograma
    ese ejercicio para mañana. *Por qué*: intercalar sirve para elegir la herramienta adecuada, como en un examen;
    un fallo indica olvido.
+13. **2026-11-20 · Desarrollo con rúbrica**: la solución y la rúbrica van **selladas** en el frontmatter (gzip + base64), no
+   cifradas: el servidor tiene que mostrarlas tras entregar y el repo es del usuario; el sellado evita leerlas sin
+   querer. Umbral: **60 %** de la rúbrica para contar como resuelto (aprobar en la UNED es un 5 sobre 10; se pide algo
+   más porque la nota es una autoevaluación). La nota se guarda como un intento más, así el diario de errores y el
+   repaso funcionan igual. Con una entrega sin puntuar no se admite otra del mismo ejercicio.
+
 ## 7. Preguntas abiertas
 
 - Ninguna todavía. (Las ⛔ de la fase 1 se preguntarán al llegar a ellas.)
@@ -158,6 +164,7 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
 
 | Fecha | Qué se hizo | Commit |
 | --- | --- | --- |
+| 2026-11-20 | Fase 3: tipo «desarrollo» (respuesta Markdown/LaTeX/código o en papel; solución modelo y rúbrica selladas que solo se muestran tras entregar; autopuntuación por criterios, 60 % para resolver; cuenta para dominio, repaso y diario de errores; exportación a Obsidian solo tras puntuarse); 4 desarrollos (cálculo, cinemática, inducción, informe de incidente) | `v2: fase 3 completada` |
 | 2026-11-20 | Fase 2: diario de errores (etiquetas y nota tras cada fallo, /errores con patrones, consejo y evolución), repaso ordenado por fallos recientes ponderados por tipo e intervalos frenados tras fallos de concepto, práctica intercalada de nodos dominados con filtro por área | `v2: fase 2 completada` |
 | 2026-11-20 | Fase 1: tipos de ejercicio (CAS en JS, unidades, matrices, opción, flag), variantes, banco de repaso, intentos con variante y tiempo, reportes y `/reportes`, vista previa, 9 nodos convertidos, e2e con Playwright | `v2: fase 1 completada` |
 | 2026-11-15 | Seguridad en v1: motor MathJax aparte para contenido de usuario (PR #210), fusionado en `v2` | merge de `main` |

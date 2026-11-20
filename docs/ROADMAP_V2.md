@@ -105,13 +105,13 @@ El usuario pide terminar **todas** las fases de forma autónoma, **sin preguntar
 
 ## FASE 3 — Respuesta desarrollada con rúbrica
 
-- [ ] Tipo «desarrollo»: demostraciones, derivaciones, análisis de diseño, informes forenses o de incidente,
+- [x] Tipo «desarrollo»: demostraciones, derivaciones, análisis de diseño, informes forenses o de incidente,
       explicación de algoritmos.
-- [ ] Respuesta en Markdown + LaTeX + código, o marcada como «hecha en papel».
-- [ ] Solo después de entregar se muestran la solución modelo y la rúbrica del vault. El usuario se puntúa punto a
+- [x] Respuesta en Markdown + LaTeX + código, o marcada como «hecha en papel».
+- [x] Solo después de entregar se muestran la solución modelo y la rúbrica del vault. El usuario se puntúa punto a
       punto y la nota cuenta para el dominio del nodo.
-- [ ] Nada de esto se exporta a Obsidian antes de entregar.
-- [ ] Cierre de fase (checks, casillas, `STATUS.md`, commit `v2: fase 3 completada`).
+- [x] Nada de esto se exporta a Obsidian antes de entregar.
+- [x] Cierre de fase (checks, casillas, `STATUS.md`, commit `v2: fase 3 completada`).
 
 ## FASE 4 — Ejercicios de código con tests
 

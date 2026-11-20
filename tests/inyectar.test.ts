@@ -58,3 +58,23 @@ test("ex-inject: rechaza una respuesta de referencia que el corrector no acepta"
   assert.throws(() => insertar(NODO, [{ id: "mal", tier: 1, type: "expresion", vars: ["x"], domain: [-3, -1], prompt: "?", answers: ["ln(x)"] }]), /dominio/);
   assert.throws(() => insertar(NODO, [{ id: "mal", tier: 1, type: "opcion", options: ["a", "b"], prompt: "?", answers: ["z"] }]), /rango/);
 });
+
+test("ex-inject: desarrollo sellado (ni solución ni rúbrica en claro) que se abre en el servidor", async () => {
+  const { abrir } = await import("../src/lib/sellado");
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "exodus-iny-des-"));
+  const spec: Spec[] = [
+    { id: "dem", tier: 3, type: "desarrollo", prompt: "Demuestra que hay infinitos primos.", solution: "Supón que $p_1, \dots, p_n$ son todos y considera $N = p_1\cdots p_n + 1$.", rubric: [{ criterio: "Reducción al absurdo", puntos: 2 }, { criterio: "Construye $N$ y concluye", puntos: 3 }] },
+  ];
+  fs.writeFileSync(path.join(dir, "prueba.md"), insertar(NODO, spec));
+  process.env.VAULT_PATH = dir;
+  const { nodes, issues } = loadVault();
+  assert.deepEqual(issues, []);
+  const e = nodes.get("prueba")!.exercises[0];
+  assert.equal(e.type, "desarrollo");
+  const s = abrir(e.sealed!);
+  assert.equal(s.rubric.length, 2);
+  assert.match(s.solution, /N = p_1/);
+  const texto = fs.readFileSync(path.join(dir, "prueba.md"), "utf8");
+  assert.ok(!texto.includes("Construye") && !texto.includes("N = p_1"), "nada en claro");
+  assert.throws(() => insertar(NODO, [{ id: "x", tier: 1, type: "desarrollo", prompt: "?" }]), /solution y rubric/);
+});

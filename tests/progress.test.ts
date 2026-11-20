@@ -30,9 +30,15 @@ import {
   lastAttemptId,
   submitPractice,
   tagAttempt,
+  gradeDevelopment,
+  lastDevelopment,
+  submitDevelopment,
 } from "../src/lib/progress";
 import { sha256, type Vault, type VaultExercise, type VaultNode } from "../src/lib/vault";
 import { REGISTRO, salDe } from "../src/lib/tipos-ejercicio";
+import { sellar } from "../src/lib/sellado";
+import { userExportData } from "../src/lib/obsidian";
+import { buildExport } from "../src/lib/obsidian-export";
 import { and, eq } from "drizzle-orm";
 
 const FLAG = "EXODUS{prueba}";
@@ -336,4 +342,59 @@ test("práctica intercalada: solo nodos completados, alternando nodos; un fallo 
   const ult = getDb().select().from(schema.exerciseAttempts).where(eq(schema.exerciseAttempts.id, lastAttemptId(u)!)).get()!;
   assert.equal(ult.mode, "intercalado");
   assert.equal(submitPractice(u, p.node, p.ex.id, p.ex.id.slice(1)), "ok");
+});
+
+/* ───────── v2 fase 3: desarrollo con rúbrica ───────── */
+
+const desarrollo = (id: string, extra: Partial<VaultExercise> = {}): VaultExercise => ({
+  id,
+  tier: 3,
+  type: "desarrollo",
+  review: false,
+  prompt: "Demuestra que $\sqrt2$ es irracional.",
+  answers: [],
+  sealed: sellar({ solution: "Supón $\sqrt2 = p/q$ irreducible…", rubric: [{ criterio: "Plantea la reducción al absurdo", puntos: 2 }, { criterio: "Llega a que $p$ y $q$ son pares", puntos: 3 }] }),
+  ...extra,
+});
+
+test("desarrollo: entregar, puntuarse con la rúbrica y contar para el dominio con el 60 %", () => {
+  const u = makeUser();
+  const nd = node("des", { exercises: [desarrollo("raiz2"), ...ejercicios(1)] });
+  const vault = { nodes: new Map([[nd.id, nd]]), areas: mergeAreas(undefined).areas, issues: [] } as unknown as Vault;
+  assert.deepEqual(submitDevelopment(u, nd, "raiz2", { answer: "  ", onPaper: false }), { ok: false, reason: "vacia" });
+  const e1 = submitDevelopment(u, nd, "raiz2", { answer: "", onPaper: true });
+  assert.ok(e1.ok);
+  assert.deepEqual(submitDevelopment(u, nd, "raiz2", { answer: "otra", onPaper: false }), { ok: false, reason: "pendiente" });
+  assert.deepEqual(gradeDevelopment(u, vault, e1.ok ? e1.id : 0, [2, 9]), { ok: false, reason: "puntos" });
+  const otro = makeUser();
+  assert.deepEqual(gradeDevelopment(otro, vault, e1.ok ? e1.id : 0, [1, 1]), { ok: false, reason: "no-existe" });
+  // 2 de 5 = 40 %: fallo.
+  const g1 = gradeDevelopment(u, vault, e1.ok ? e1.id : 0, [1, 1]);
+  assert.ok(g1.ok && !g1.solved);
+  assert.equal(getSolvedExercises(u, nd.id).length, 0);
+  assert.equal(tagAttempt(u, lastAttemptId(u)!, "concepto", null), true, "el fallo se puede etiquetar");
+  assert.deepEqual(gradeDevelopment(u, vault, e1.ok ? e1.id : 0, [2, 3]), { ok: false, reason: "puntuada" });
+  // Segunda entrega: 3 de 5 = 60 %: resuelto y programado para repaso.
+  const e2 = submitDevelopment(u, nd, "raiz2", { answer: "Supón que sí es racional…", onPaper: false });
+  const g2 = gradeDevelopment(u, vault, e2.ok ? e2.id : 0, [2, 1]);
+  assert.ok(g2.ok && g2.solved && g2.score === 3 && g2.max === 5);
+  assert.deepEqual(getSolvedExercises(u, nd.id), ["raiz2"]);
+  assert.ok(getDb().select().from(schema.reviews).where(and(eq(schema.reviews.userId, u), eq(schema.reviews.exerciseId, "raiz2"))).get());
+  const ult = lastDevelopment(u, nd.id, "raiz2")!;
+  assert.equal(ult.answer, "Supón que sí es racional…");
+  assert.deepEqual(JSON.parse(ult.scores!), [2, 1]);
+});
+
+test("desarrollo: la exportación a Obsidian solo trae la solución tras entregar y puntuarse", () => {
+  const u = makeUser();
+  const nd = node("des-obs", { exercises: [desarrollo("raiz2")], body: "# Raíz\n" });
+  recordOpen(u, nd.id);
+  const vault = { nodes: new Map([[nd.id, nd]]), areas: mergeAreas(undefined).areas, issues: [] } as unknown as Vault;
+  const texto = () => buildExport(vault, userExportData(u, "x")).find((f) => f.path.includes("des-obs"))!.content;
+  assert.ok(!texto().includes("Supón $\sqrt2"), "antes de entregar no hay solución");
+  const e = submitDevelopment(u, nd, "raiz2", { answer: "Mi prueba", onPaper: false });
+  assert.ok(!texto().includes("Supón $\sqrt2"), "entregado sin puntuar: tampoco");
+  gradeDevelopment(u, vault, e.ok ? e.id : 0, [2, 3]);
+  assert.ok(texto().includes("Supón $\sqrt2"), "tras puntuarse, sí");
+  assert.ok(texto().includes("> Mi prueba"));
 });

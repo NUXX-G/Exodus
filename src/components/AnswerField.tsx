@@ -7,7 +7,7 @@ import { previewAnswerAction, type PreviewState } from "@/app/nodo/[id]/actions"
 export interface AnswerSpec {
   nodeId: string;
   exerciseId: string;
-  type: "texto" | "numero" | "expresion" | "matriz" | "opcion" | "flag";
+  type: "texto" | "numero" | "expresion" | "matriz" | "opcion" | "flag" | "desarrollo";
   unit?: string;
   sig?: number;
   vars?: string[];

@@ -128,6 +128,30 @@ async function main() {
   await primero.locator(".mensaje").first().waitFor();
   ok(`práctica intercalada: respuesta procesada («${(await primero.locator(".mensaje").first().innerText()).slice(0, 40)}»)`);
 
+  // Desarrollo con rúbrica (fase 3).
+  for (const n of ["mat-algebra-secundaria", "mat-combinatoria-probabilidad-basica"])
+    db.prepare("insert or replace into node_progress (user_id,node_id,status,completed_at) values (?,?,'completed',unixepoch())").run(uid, n);
+  await page.goto(`${BASE}/nodo/mat-logica-demostraciones`);
+  const des = page.locator('.ejercicios-lista > li:has-text("Demuestra por inducción que")');
+  await des.waitFor();
+  assert.equal(await page.locator(".solucion-modelo").count(), 0, "sin solución antes de entregar");
+  assert.ok(!(await page.content()).includes("escuadras"), "la solución no viaja en el HTML antes de entregar");
+  await des.locator('textarea[name="answer"]').fill("Sea $P(n)$: $\\sum_{k=1}^n (2k-1) = n^2$. Base: $1 = 1^2$. Paso: $m^2 + 2m + 1 = (m+1)^2$.");
+  await des.locator('button:has-text("Vista previa")').click();
+  await des.locator(".vista-previa mjx-container").first().waitFor();
+  ok("desarrollo: vista previa con fórmulas");
+  await des.locator('button:has-text("Entregar")').click();
+  await des.locator(".solucion-modelo").waitFor();
+  ok("desarrollo: tras entregar se ve la solución modelo y la rúbrica");
+  const criterios = await des.locator(".rubrica ol > li").count();
+  for (let i = 0; i < criterios; i++) await des.locator(`.rubrica ol > li:nth-child(${i + 1}) .puntos label`).last().click();
+  await des.locator('button:has-text("Guardar mi nota")').click();
+  await des.locator('.mensaje:has-text("puntos")').first().waitFor();
+  const entrega = db.prepare("select score, max_score from development_submissions where user_id=? order by id desc").get(uid);
+  assert.equal(entrega.score, entrega.max_score);
+  assert.ok(db.prepare("select 1 from exercise_solved where user_id=? and exercise_id='induccion-suma-de-impares'").get(uid), "cuenta para el dominio");
+  ok(`desarrollo: nota ${entrega.score}/${entrega.max_score} guardada y cuenta para el dominio`);
+
   assert.deepEqual(errores, [], "errores de JavaScript en la página");
   await browser.close();
   console.log(`\n${pasos.length} comprobaciones superadas`);

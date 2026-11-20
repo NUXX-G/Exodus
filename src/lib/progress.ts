@@ -7,9 +7,10 @@ import { interleave, isErrorTag, weekOf, RECENT_DAYS, reviewPriority, weightedNe
 import { corregir, rellenar, salDe } from "./tipos-ejercicio";
 import { defDe } from "./ejercicio-def";
 import { semillaDe } from "./cas";
+import { abrir as abrirSellado, type Sellado } from "./sellado";
 import type { ActivityKind } from "@db/schema";
 
-const { nodeProgress, flagSubmissions, hintReveals, activityLog, exerciseAttempts, exerciseSolved, reviews, reports } = schema;
+const { nodeProgress, flagSubmissions, hintReveals, activityLog, exerciseAttempts, exerciseSolved, reviews, reports, developmentSubmissions } = schema;
 
 /**
  * completed  — flag validada
@@ -297,7 +298,6 @@ export function submitExercise(userId: number, node: VaultNode, exerciseId: stri
   if ("error" in r) return { ok: false, reason: "ilegible", error: r.error };
   const correct = r.correcto;
   const today = dayKey();
-  let completedNode = false;
 
   db.transaction((tx) => {
     tx.insert(exerciseAttempts)
@@ -312,17 +312,10 @@ export function submitExercise(userId: number, node: VaultNode, exerciseId: stri
     tx.insert(reviews).values({ userId, nodeId: node.id, exerciseId, step: sch.step, dueDay: sch.dueDay }).onConflictDoNothing().run();
   });
 
-  const m = masteryOf(node, getSolvedExercises(userId, node.id));
+  if (!correct) return { ok: false, reason: "incorrecta" };
   // Un nodo sin flag integradora se completa al alcanzar el dominio.
-  if (correct && m.mastered && !node.ctfFlag && !completed.has(node.id)) {
-    const now = new Date();
-    db.insert(nodeProgress)
-      .values({ userId, nodeId: node.id, status: "completed", completedAt: now })
-      .onConflictDoUpdate({ target: [nodeProgress.userId, nodeProgress.nodeId], set: { status: "completed", completedAt: now } })
-      .run();
-    completedNode = true;
-  }
-  return correct ? { ok: true, mastered: m.mastered, completedNode } : { ok: false, reason: "incorrecta" };
+  const m = completeIfMastered(userId, node);
+  return { ok: true, mastered: m.mastered, completedNode: m.completedNode };
 }
 
 export interface DueReview {
@@ -658,4 +651,149 @@ export function submitPractice(userId: number, node: VaultNode, exerciseId: stri
     }
   });
   return r.correcto ? "ok" : "incorrecta";
+}
+
+/* ───────── Ejercicios de desarrollo con rúbrica (fase 3) ───────── */
+
+/** Fracción de la rúbrica que hay que alcanzar para que un desarrollo cuente como resuelto. */
+export const DEV_THRESHOLD = 0.6;
+export const MAX_DEV_ANSWER = 20_000;
+
+/** Solución y rúbrica (solo servidor; nunca antes de que el alumno entregue). */
+export function sealedOf(ex: VaultExercise): Sellado | null {
+  if (ex.type !== "desarrollo" || !ex.sealed) return null;
+  try {
+    return abrirSellado(ex.sealed);
+  } catch {
+    return null;
+  }
+}
+
+/** Completa el nodo si se alcanza el dominio y no tiene flag integradora. */
+function completeIfMastered(userId: number, node: VaultNode): { mastered: boolean; completedNode: boolean } {
+  const m = masteryOf(node, getSolvedExercises(userId, node.id));
+  if (!m.mastered || node.ctfFlag || getCompleted(userId).has(node.id)) return { mastered: m.mastered, completedNode: false };
+  const now = new Date();
+  getDb()
+    .insert(nodeProgress)
+    .values({ userId, nodeId: node.id, status: "completed", completedAt: now })
+    .onConflictDoUpdate({ target: [nodeProgress.userId, nodeProgress.nodeId], set: { status: "completed", completedAt: now } })
+    .run();
+  return { mastered: true, completedNode: true };
+}
+
+export type DevSubmitResult =
+  | { ok: true; id: number }
+  | { ok: false; reason: "sin-ejercicio" | "bloqueado" | "vacia" | "larga" | "sin-repaso" | "cambiada" | "pendiente" };
+
+/**
+ * Entrega de un desarrollo. Se guarda el texto (o «en papel») y, a partir de aquí, el alumno puede ver la solución y la
+ * rúbrica y puntuarse. Mientras una entrega del mismo ejercicio esté sin puntuar, no se admite otra.
+ */
+export function submitDevelopment(
+  userId: number,
+  node: VaultNode,
+  exerciseId: string,
+  input: { answer: string; onPaper: boolean; mode?: "estudio" | "repaso" | "intercalado"; reviewOf?: string },
+): DevSubmitResult {
+  const mode = input.mode ?? "estudio";
+  const ex = (mode === "estudio" ? node.exercises : [...node.exercises, ...node.reviewBank]).find((e) => e.id === exerciseId);
+  if (!ex || ex.type !== "desarrollo") return { ok: false, reason: "sin-ejercicio" };
+  const answer = input.onPaper ? "" : input.answer.trim();
+  if (!input.onPaper && !answer) return { ok: false, reason: "vacia" };
+  if (answer.length > MAX_DEV_ANSWER) return { ok: false, reason: "larga" };
+  if (mode === "estudio" && stateOf(node, getCompleted(userId)) === "locked") return { ok: false, reason: "bloqueado" };
+  if (mode === "repaso") {
+    const scheduled = node.exercises.find((e) => e.id === input.reviewOf);
+    const row = scheduled && getDb().select().from(reviews).where(and(eq(reviews.userId, userId), eq(reviews.nodeId, node.id), eq(reviews.exerciseId, scheduled.id))).get();
+    if (!scheduled || !row || row.dueDay > dayKey()) return { ok: false, reason: "sin-repaso" };
+    if (reviewQuestion(userId, node, scheduled, row.step).ex.id !== ex.id) return { ok: false, reason: "cambiada" };
+  }
+  const pendiente = getDb()
+    .select({ id: developmentSubmissions.id })
+    .from(developmentSubmissions)
+    .where(and(eq(developmentSubmissions.userId, userId), eq(developmentSubmissions.nodeId, node.id), eq(developmentSubmissions.exerciseId, ex.id), sql`${developmentSubmissions.gradedAt} is null`))
+    .get();
+  if (pendiente) return { ok: false, reason: "pendiente" };
+  const fila = getDb()
+    .insert(developmentSubmissions)
+    .values({ userId, nodeId: node.id, exerciseId: ex.id, answer, onPaper: input.onPaper, mode, reviewOf: mode === "repaso" ? input.reviewOf : null })
+    .returning({ id: developmentSubmissions.id })
+    .get();
+  logActivity(userId, "exercise_attempt", node.id);
+  return { ok: true, id: fila.id };
+}
+
+export type DevGradeResult =
+  | { ok: true; score: number; max: number; solved: boolean; mastered: boolean; completedNode: boolean }
+  | { ok: false; reason: "no-existe" | "puntuada" | "puntos" };
+
+/**
+ * El alumno se puntúa criterio a criterio. Con al menos el 60 % de la rúbrica, el ejercicio cuenta como resuelto
+ * (dominio y repaso, como cualquier otro); por debajo cuenta como fallo (y se puede etiquetar en el diario de errores).
+ */
+export function gradeDevelopment(userId: number, vault: Vault, submissionId: number, scores: number[]): DevGradeResult {
+  const db = getDb();
+  const sub = db.select().from(developmentSubmissions).where(eq(developmentSubmissions.id, submissionId)).get();
+  if (!sub || sub.userId !== userId) return { ok: false, reason: "no-existe" };
+  if (sub.gradedAt) return { ok: false, reason: "puntuada" };
+  const node = vault.nodes.get(sub.nodeId);
+  const ex = node && [...node.exercises, ...node.reviewBank].find((e) => e.id === sub.exerciseId);
+  const sellado = ex && sealedOf(ex);
+  if (!node || !ex || !sellado) return { ok: false, reason: "no-existe" };
+  if (scores.length !== sellado.rubric.length || scores.some((s, i) => !Number.isInteger(s) || s < 0 || s > sellado.rubric[i].puntos)) {
+    return { ok: false, reason: "puntos" };
+  }
+  const score = scores.reduce((a, b) => a + b, 0);
+  const max = sellado.rubric.reduce((a, c) => a + c.puntos, 0);
+  const solved = score >= DEV_THRESHOLD * max;
+  const today = dayKey();
+  db.transaction((tx) => {
+    tx.update(developmentSubmissions)
+      .set({ scores: JSON.stringify(scores), score, maxScore: max, gradedAt: new Date() })
+      .where(eq(developmentSubmissions.id, submissionId))
+      .run();
+    // Un intento como los demás: alimenta el diario de errores, la actividad y la ponderación del repaso.
+    tx.insert(exerciseAttempts)
+      .values({ userId, nodeId: node.id, exerciseId: ex.id, submittedHash: `desarrollo:${submissionId}`, correct: solved, mode: sub.mode, reviewOf: sub.reviewOf })
+      .run();
+    tx.insert(activityLog).values({ userId, nodeId: node.id, day: today, kind: solved ? "exercise_solved" : "exercise_attempt" }).run();
+    if (sub.mode === "estudio" && solved) {
+      tx.insert(exerciseSolved).values({ userId, nodeId: node.id, exerciseId: ex.id }).onConflictDoNothing().run();
+      const sch = firstReview(today);
+      tx.insert(reviews).values({ userId, nodeId: node.id, exerciseId: ex.id, step: sch.step, dueDay: sch.dueDay }).onConflictDoNothing().run();
+    }
+  });
+  if (sub.mode === "repaso" && sub.reviewOf) {
+    const row = db.select().from(reviews).where(and(eq(reviews.userId, userId), eq(reviews.nodeId, node.id), eq(reviews.exerciseId, sub.reviewOf))).get();
+    if (row) {
+      const next = weightedNextReview(row.step, solved, today, failsOf(recentFails(userId, today), node.id, sub.reviewOf));
+      db.update(reviews).set(next).where(and(eq(reviews.userId, userId), eq(reviews.nodeId, node.id), eq(reviews.exerciseId, sub.reviewOf))).run();
+    }
+  }
+  if (sub.mode === "intercalado" && !solved && !ex.review) {
+    const sch = { step: 0, dueDay: weightedNextReview(0, false, today, []).dueDay };
+    db.insert(reviews).values({ userId, nodeId: node.id, exerciseId: ex.id, ...sch }).onConflictDoUpdate({ target: [reviews.userId, reviews.nodeId, reviews.exerciseId], set: sch }).run();
+  }
+  const m = sub.mode === "estudio" && solved ? completeIfMastered(userId, node) : { mastered: false, completedNode: false };
+  return { ok: true, score, max, solved, ...m };
+}
+
+export type DevSubmission = typeof developmentSubmissions.$inferSelect;
+
+/** Última entrega de un desarrollo (para mostrar su estado al volver al nodo). */
+export function lastDevelopment(userId: number, nodeId: string, exerciseId: string): DevSubmission | null {
+  return (
+    getDb()
+      .select()
+      .from(developmentSubmissions)
+      .where(and(eq(developmentSubmissions.userId, userId), eq(developmentSubmissions.nodeId, nodeId), eq(developmentSubmissions.exerciseId, exerciseId)))
+      .orderBy(sql`${developmentSubmissions.id} desc`)
+      .get() ?? null
+  );
+}
+
+/** Todas las entregas de desarrollo de un usuario (para la exportación a Obsidian). */
+export function userDevelopments(userId: number): DevSubmission[] {
+  return getDb().select().from(developmentSubmissions).where(eq(developmentSubmissions.userId, userId)).orderBy(developmentSubmissions.id).all();
 }

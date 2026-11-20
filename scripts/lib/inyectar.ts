@@ -1,5 +1,6 @@
 /** Generación del bloque `exercises:` de un nodo a partir de un spec (lo usa scripts/ex-inject.ts). */
 import { marcadores, REGISTRO, salDe, TIPOS, type DefEjercicio, type TipoId } from "../../src/lib/tipos-ejercicio";
+import { sellar } from "../../src/lib/sellado";
 
 export interface Spec extends Omit<DefEjercicio, "type"> {
   type?: TipoId;
@@ -8,6 +9,9 @@ export interface Spec extends Omit<DefEjercicio, "type"> {
   answers?: string[];
   review?: boolean;
   variants?: { values: Record<string, string | number>; answers: string[] }[];
+  /** desarrollo: solución modelo (Markdown) y rúbrica; se sellan (src/lib/sellado.ts). */
+  solution?: string;
+  rubric?: { criterio: string; puntos: number }[];
 }
 
 const indentar = (s: string, n: number) =>
@@ -49,7 +53,11 @@ export function bloqueEjercicio(s: Spec): string {
     l.push(`    options:`);
     for (const o of s.options) l.push(`      - ${literal(o, 8)}`);
   }
-  if (s.variants?.length) {
+  if (type === "desarrollo") {
+    if (!s.solution || !s.rubric?.length) throw new Error(`${s.id}: un desarrollo necesita solution y rubric`);
+    const limpio = (x: string) => x.split("\\`").join("`").replace(/^\n+|\s+$/g, "");
+    l.push(`    sealed: "${sellar({ solution: limpio(s.solution), rubric: s.rubric.map((r) => ({ ...r, criterio: limpio(r.criterio) })) })}"`);
+  } else if (s.variants?.length) {
     const faltan = marcadores(s.prompt).filter((k) => s.variants!.some((v) => !(k in v.values)));
     if (faltan.length) throw new Error(`${s.id}: variantes sin el dato ${faltan.join(", ")}`);
     l.push(`    variants:`);

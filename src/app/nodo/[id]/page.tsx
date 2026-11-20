@@ -13,6 +13,8 @@ import { currentVariant, getCompleted, getRevealedLevels, getSolvedExercises, ma
 import { answerSpec } from "@/lib/answer-spec";
 import { ETIQUETA_TIPO } from "@/lib/tipos-ejercicio";
 import ReportForm from "@/components/ReportForm";
+import DevelopmentForm from "@/components/DevelopmentForm";
+import { devInitial } from "@/lib/desarrollo-inicial";
 import { loadRecursos } from "@/lib/recursos";
 import { studyOrder } from "@/lib/study";
 import { attachmentInfo, KIND_LABEL, loadVault } from "@/lib/vault";
@@ -74,6 +76,10 @@ export default async function PaginaNodo({ params }: Props) {
     const optionsHtml = opciones[i].length ? fragmentos.slice(cursor, (cursor += opciones[i].length)) : undefined;
     return { e, html: fragmentos[i + 1], spec: answerSpec(node.id, e, variantes[i], optionsHtml) };
   });
+  // Desarrollos: estado de la última entrega (la solución solo se renderiza si ya hay una).
+  const desarrollos = new Map(
+    await Promise.all(node.exercises.filter((e) => e.type === "desarrollo").map(async (e) => [e.id, await devInitial(user.id, node.id, e)] as const)),
+  );
   const TIER = ["", "A completar", "Problema", "Difícil"] as const;
   const misNotas = listNotes(user.id, node.id);
   // Lo que este nodo desbloquea: los nodos que lo tienen como prerequisito.
@@ -133,7 +139,11 @@ export default async function PaginaNodo({ params }: Props) {
                     {solvedIds.includes(e.id) ? " · resuelto" : ""}
                   </p>
                   <div className="prosa ejercicio-enunciado" dangerouslySetInnerHTML={{ __html: h }} />
-                  <ExerciseForm spec={spec} solved={solvedIds.includes(e.id)} locked={state === "locked"} />
+                  {e.type === "desarrollo" ? (
+                    <DevelopmentForm nodeId={node.id} exerciseId={e.id} locked={state === "locked"} initial={desarrollos.get(e.id)!} />
+                  ) : (
+                    <ExerciseForm spec={spec} solved={solvedIds.includes(e.id)} locked={state === "locked"} />
+                  )}
                   <ReportForm nodeId={node.id} exerciseId={e.id} />
                 </li>
               ))}

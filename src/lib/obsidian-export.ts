@@ -9,6 +9,22 @@
 import { areaOf } from "./areas";
 import { masteryNeeded } from "./exercises";
 import { rellenar } from "./tipos-ejercicio";
+import { abrir } from "./sellado";
+
+const abrirSeguro = (s: string) => {
+  try {
+    return abrir(s);
+  } catch {
+    return null;
+  }
+};
+/** Mete un texto en un callout de Obsidian (cada línea con «> »). */
+const citar = (s: string) =>
+  s
+    .trim()
+    .split("\n")
+    .map((l) => `> ${l}`)
+    .join("\n");
 import type { Vault, VaultNode } from "./vault";
 
 export const EXPORT_VERSION = 1;
@@ -29,6 +45,8 @@ export interface UserExportData {
   streak: number;
   /** Notas de la libreta del usuario (opcional para compatibilidad con exportaciones sin libreta). */
   notes?: { id: number; title: string; body: string; nodeId: string | null; createdAt: Date; updatedAt: Date }[];
+  /** Entregas de desarrollo ya puntuadas (opcional). Solo con ellas se exporta la solución modelo de ese ejercicio. */
+  developments?: { nodeId: string; exerciseId: string; answer: string; onPaper: boolean; score: number; maxScore: number; gradedAt: Date }[];
 }
 
 /** Nombre de archivo de una nota de la libreta: `<id>-<título en minúsculas sin acentos>`. */
@@ -133,6 +151,13 @@ export function buildExport(vault: Vault, data: UserExportData, root = ""): Expo
         const enunciado = e.variants?.length ? rellenar(e.prompt, e.variants[0].values) : e.prompt;
         const opciones = e.options?.length ? `\n\n${e.options.map((o, k) => `${String.fromCharCode(97 + k)}) ${o}`).join("\n")}` : "";
         body += `\n### ${i + 1}. \`${e.id}\` (${TIER[e.tier]})\n\n${enunciado.trim()}${opciones}\n\n*${estadoEj}*\n`;
+        // Desarrollos: tras entregar y puntuarse, la última entrega y la solución modelo. Antes, nada.
+        const entrega = e.type === "desarrollo" ? (data.developments ?? []).filter((d) => d.nodeId === n.id && d.exerciseId === e.id).at(-1) : undefined;
+        const sellado = entrega && e.sealed ? abrirSeguro(e.sealed) : null;
+        if (entrega && sellado) {
+          body += `\n> [!note]- Tu entrega (${day(entrega.gradedAt)}, ${entrega.score} de ${entrega.maxScore} puntos)\n${citar(entrega.onPaper ? "_Hecha en papel._" : entrega.answer)}\n`;
+          body += `\n> [!success]- Solución modelo\n${citar(sellado.solution)}\n`;
+        }
       });
     }
     const mias = (data.notes ?? []).filter((x) => x.nodeId === n.id);

@@ -27,6 +27,7 @@ import matter from "gray-matter";
 import { z } from "zod";
 import { AREAS_FILE, mergeAreas, type AreaId, type AreaInfo } from "./areas";
 import { marcadores, TIPOS, type TipoId } from "./tipos-ejercicio";
+import { errorDeSellado } from "./sellado";
 
 const HASH = z.string().regex(/^sha256:[0-9a-f]{64}$/);
 
@@ -54,6 +55,8 @@ const exerciseSchema = z
     multiple: z.boolean().optional(),
     /** Solo para el repaso: no cuenta para el dominio ni aparece en el nodo (pregunta distinta del temario). */
     review: z.boolean().default(false),
+    /** desarrollo: solución modelo y rúbrica selladas (src/lib/sellado.ts); nunca llegan al navegador antes de entregar. */
+    sealed: z.string().startsWith("gz64:").max(200_000).optional(),
     /** Plantilla parametrizada: cada intento usa otra variante, con sus datos y sus hashes. */
     variants: z
       .array(z.object({ values: z.record(z.string(), z.union([z.number(), z.string()])), answers: z.array(HASH).min(1).max(64) }))
@@ -61,7 +64,10 @@ const exerciseSchema = z
       .optional(),
   })
   .superRefine((e, ctx) => {
-    if (!e.variants?.length && e.answers.length === 0) ctx.addIssue({ code: "custom", message: "sin respuestas (answers o variants)" });
+    if (e.type === "desarrollo") {
+      if (!e.sealed) ctx.addIssue({ code: "custom", message: "un ejercicio de desarrollo necesita sealed (solución y rúbrica)" });
+      else if (errorDeSellado(e.sealed)) ctx.addIssue({ code: "custom", message: `sealed ilegible: ${errorDeSellado(e.sealed)}` });
+    } else if (!e.variants?.length && e.answers.length === 0) ctx.addIssue({ code: "custom", message: "sin respuestas (answers o variants)" });
     if (e.type === "opcion" && !e.options) ctx.addIssue({ code: "custom", message: "un ejercicio de opción múltiple necesita options" });
     if (e.type === "expresion" && !e.vars) ctx.addIssue({ code: "custom", message: "un ejercicio de expresión necesita vars" });
     if (e.domain && !(e.domain[0] < e.domain[1])) ctx.addIssue({ code: "custom", message: "domain: el extremo izquierdo debe ser menor" });
@@ -120,6 +126,8 @@ export interface VaultExercise {
   options?: string[];
   multiple?: boolean;
   review: boolean;
+  /** Solo servidor: solución y rúbrica selladas de un ejercicio de desarrollo. */
+  sealed?: string;
   /** Solo servidor (los hashes); los datos se muestran al rellenar el enunciado. */
   variants?: { values: Record<string, string | number>; answers: string[] }[];
 }

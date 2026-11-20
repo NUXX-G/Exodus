@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import ReviewForm from "@/components/ReviewForm";
+import DevelopmentForm from "@/components/DevelopmentForm";
+import { devInitial } from "@/lib/desarrollo-inicial";
 import { requireUser } from "@/lib/auth";
 import { answerSpec } from "@/lib/answer-spec";
 import { linkResolverFor, renderMarkdown } from "@/lib/markdown";
@@ -61,9 +63,10 @@ export default async function Repaso({ searchParams }: Props) {
   // Todas las fórmulas de la página comparten glifos (svg-compacto.ts): se aplanan y se reparten después.
   const { fragmentos, definiciones } = compactarFormulas(partes.flat());
   let cursor = 0;
+  const iniciales = await Promise.all(items.map((it) => (it.ex.type === "desarrollo" ? devInitial(user.id, it.node.id, it.ex, true) : null)));
   const listos = items.map((it, i) => {
     const trozo = fragmentos.slice(cursor, (cursor += partes[i].length));
-    return { ...it, html: trozo[0], spec: answerSpec(it.node.id, it.ex, it.variant, it.ex.options ? trozo.slice(1) : undefined) };
+    return { ...it, html: trozo[0], inicial: iniciales[i], spec: answerSpec(it.node.id, it.ex, it.variant, it.ex.options ? trozo.slice(1) : undefined) };
   });
   const enlace = (m: string | null, a: string | null, r = 0) => {
     const q = new URLSearchParams();
@@ -153,7 +156,17 @@ export default async function Repaso({ searchParams }: Props) {
                   {it.meta}
                 </p>
                 <div className="prosa ejercicio-enunciado" dangerouslySetInnerHTML={{ __html: it.html }} />
-                <ReviewForm exerciseId={it.programado} spec={it.spec} practica={intercalado} />
+                {it.inicial ? (
+                  <DevelopmentForm
+                    nodeId={it.node.id}
+                    exerciseId={it.ex.id}
+                    mode={intercalado ? "intercalado" : "repaso"}
+                    reviewOf={intercalado ? undefined : it.programado}
+                    initial={it.inicial}
+                  />
+                ) : (
+                  <ReviewForm exerciseId={it.programado} spec={it.spec} practica={intercalado} />
+                )}
               </li>
             ))}
           </ol>

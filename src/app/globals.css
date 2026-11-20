@@ -1995,3 +1995,120 @@ details.callout:not([open]) > summary.callout-titulo {
 .pagina-errores .consejo + section {
   margin-top: 32px;
 }
+
+/* ───────── v2 fase 3: desarrollo con rúbrica ───────── */
+
+.desarrollo-form,
+.desarrollo-revelado {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.desarrollo-form textarea {
+  width: 100%;
+  min-height: 12rem;
+  padding: 10px 12px;
+  background: var(--tinta-honda);
+  color: var(--tiza);
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: var(--radio);
+  font-family: var(--fuente-codigo), monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.desarrollo-form .boton {
+  align-self: flex-start;
+}
+
+.papel {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--tiza-tenue);
+}
+
+.desarrollo-revelado details {
+  border: 1px solid var(--trazo);
+  border-radius: var(--radio);
+  padding: 8px 12px;
+}
+
+.desarrollo-revelado summary {
+  cursor: pointer;
+  color: var(--tiza-tenue);
+}
+
+.solucion-modelo {
+  border-left: 3px solid var(--menta);
+  padding-left: 12px;
+}
+
+.rubrica {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--ambar);
+  border-radius: var(--radio);
+}
+
+.rubrica ol {
+  margin: 0;
+  padding-left: 1.4em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rubrica .prosa > :first-child {
+  margin-top: 0;
+}
+
+.rubrica .prosa > :last-child {
+  margin-bottom: 4px;
+}
+
+.puntos {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.puntos input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.puntos span {
+  display: inline-block;
+  min-width: 2.2em;
+  text-align: center;
+  padding: 3px 8px;
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: var(--radio);
+  cursor: pointer;
+}
+
+.puntos input:checked + span {
+  border-color: var(--ambar);
+  background: rgba(245, 185, 66, 0.18);
+}
+
+.puntos input:focus-visible + span {
+  outline: 2px solid var(--ambar);
+}
+
+.puntos small {
+  color: var(--tiza-tenue);
+}
+
+.rubrica .boton {
+  align-self: flex-start;
+}

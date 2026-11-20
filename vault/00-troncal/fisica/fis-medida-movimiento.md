@@ -181,6 +181,19 @@ exercises:
     prompt: |
       Un coche pasa de $36$ km/h a $108$ km/h en $8$ s con aceleración constante. ¿Qué distancia recorre en esos $8$ s, en metros? Respuesta: un número.
     answers: ["sha256:a512db2741cd20693e4b16f19891e72b9ff12cead72761fc5e92d2aaf34740c1"]
+  - id: deduce-distancia-de-seguridad
+    tier: 3
+    type: desarrollo
+    prompt: |
+      **Desarrollo.** Un conductor circula a velocidad $v$, tarda un tiempo de reacción $t_r$ en empezar a frenar (durante ese
+      tiempo no frena) y después frena con una deceleración constante de módulo $a$ hasta pararse. Deduce que la distancia total
+      recorrida es
+      $$
+      d = v\,t_r + \frac{v^2}{2a}.
+      $$
+      Comprueba que cada término tiene dimensiones de longitud y explica qué término manda a velocidades altas y qué consecuencia
+      práctica tiene.
+    sealed: "gz64:H4sIAAAAAAACCn1UwW7jNhT8lYHAg60oTqKjiz0ECAoUKNAeFr2Ea+OFfI4JUKRLUkaCwB/jYw899RP8YwUl25J2g71R5PDNvMcZfRTR2zYZ74plUZa/UmQ8YBaYlDKn/9x8UZb4i61XRpOG8i4mcokh9gK6Df06rYNYovF70xh2yaN1ZuNDwxWEXj/gC/ZSVhm1kE66M0+N2SawI00dy6Niy4E62jHRLQlojrrn3FJMBHEvFvidsL8q4wixn6V55sItCElU+LtlRAa51hLYSSfSepMRd9Tf1yazKEPgKJ0Q0ul1fZW7wS2kTJtA6qHOJdebVT6VMm997Ff14YMOHWjYqOnwHaSmw6IvPvsD2gRWiRrOvSnvIPbnqvv1/arGDWpav0n5xDYR3sQS4j4frmrcoiYpK72uxWLez/GrT2Tz8ITGF+RR32DcQcANpNQTLZc3eDINu2i849hVeD5f+TbIl7KhtA0NmsOwjgcplfZp2OguXJDiFwgpLW/S83ROUgbzuk2fll/Vd0O5DB+OpgdTqnMnj4MPOIJsoliWaMhpAluk0z+hMc5DtaTD6ZiM8hD7VX03q2kuliAL7V8sBdiRpar8NRhEM66pQGTpdLuzRhF2HHwHZZztnD1Xlh1bjynLBf70ARz9D0Ujv7ahD1dgxWhatfVoTscIzbtgInU2HiuTbvaO3aWej7CnfxuTON8YReJ9ypXNxhbKqy1noGbbBcw0Ox8SOeS8+fmiqIrQvgSjiuXzR6GCSRyML5ZFF9rJGJRv/GexX/4Q+6Iqdq1LPhbLh0M1KfvVcLPz4/GNUlrBo40eyoecmw72SWKGvFzajObVdWhLoNGf5WdKnsbvchVzNQo06zaPFtE4cAg+9CPvuZzJ69PRvvJLoDFP/R3PozsdrYkmQl8ySHbSYn5U7ePVuvFnsn/T7JLZZC9mp2jfGDc1PruuDYF38FvvWtsZIrJquet4lhPAY/er9nTsDHydxXyq4tvhf/bBTQE+BgAA"
   - id: r-ms-a-kmh
     tier: 1
     type: numero

@@ -45,6 +45,7 @@ solo hay hashes con sal (id del ejercicio y de la variante); la solución nunca 
 | `matriz` | Matriz o vector (fila = columna en vectores), `sig` 6 por defecto | `sig` | `"[[1, 1/2], [0, 1]]"` |
 | `opcion` | Opción u opciones elegidas | `options`, `multiple` | `"b"` o `"a, c"` |
 | `flag` | Texto exacto sin normalizar | — | `"EXODUS{…}"` |
+| `desarrollo` | No se corrige solo: el alumno entrega (texto o «en papel»), ve la solución y se puntúa con la rúbrica; con el 60 % cuenta como resuelto | `solution`, `rubric` | — (ver abajo) |
 
 - `form` (expresiones): `factorizada`, `expandida` o `sin-raices-en-denominador`. Además de ser equivalente, la
   respuesta debe tener esa forma.
@@ -59,6 +60,12 @@ solo hay hashes con sal (id del ejercicio y de la variante); la solución nunca 
   ejercicio del nodo, Exodus alterna entre el banco y una variante nueva del ejercicio; si no hay ni banco ni
   variantes, repite el original.
 - `ex-inject` comprueba que cada respuesta de referencia se acepta con el propio corrector antes de escribir nada.
+- **Desarrollo** (demostraciones, derivaciones, informes, explicación de algoritmos): en el spec, `type: "desarrollo"`,
+  `solution` (Markdown con LaTeX y código) y `rubric: [{ criterio, puntos }]` (puntos enteros). `ex-inject` los
+  guarda **sellados** en `sealed` (gzip + base64, `src/lib/sellado.ts`): no es cifrado, solo evita leerlos sin querer en
+  Obsidian o GitHub. Ni la solución ni la rúbrica llegan al navegador ni a la exportación antes de entregar; tras
+  puntuarse, la exportación incluye la entrega y la solución. La rúbrica debe permitir puntuarse con honestidad:
+  criterios observables ("escribe el caso base", "llega a … sin errores de signo"), no "está bien".
 - Redondea en el spec los resultados de coma flotante que deban ser exactos: un `0` calculado puede salir como
   `1e-33` y entonces «0» no se aceptaría. En los enunciados con datos, escribe `\{{dato}}` dentro de `String.raw`
   (JavaScript leería `${{` como interpolación) y quita la barra al exportar.

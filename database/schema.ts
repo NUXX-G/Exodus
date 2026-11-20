@@ -282,6 +282,36 @@ export const reports = sqliteTable(
   (t) => [index("reports_status_idx").on(t.status, t.createdAt), index("reports_node_idx").on(t.nodeId)],
 );
 
+/**
+ * Entregas de ejercicios de desarrollo (demostraciones, derivaciones, informes…). El texto es del usuario y se guarda
+ * tal cual (Markdown con LaTeX y código; se dibuja siempre con el motor de contenido de usuario). La nota la pone el
+ * propio alumno con la rúbrica, criterio a criterio, después de ver la solución modelo.
+ */
+export const developmentSubmissions = sqliteTable(
+  "development_submissions",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    userId: integer("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    nodeId: text("node_id").notNull(),
+    exerciseId: text("exercise_id").notNull(),
+    /** Respuesta en Markdown; vacía si se hizo en papel. */
+    answer: text("answer").notNull().default(""),
+    onPaper: integer("on_paper", { mode: "boolean" }).notNull().default(false),
+    mode: text("mode", { enum: ["estudio", "repaso", "intercalado"] }).notNull().default("estudio"),
+    /** En el repaso: el ejercicio programado. */
+    reviewOf: text("review_of"),
+    /** Puntos que el alumno se da en cada criterio de la rúbrica (JSON: number[]); null hasta que se puntúa. */
+    scores: text("scores"),
+    score: integer("score"),
+    maxScore: integer("max_score"),
+    createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(now),
+    gradedAt: integer("graded_at", { mode: "timestamp" }),
+  },
+  (t) => [index("development_user_idx").on(t.userId, t.nodeId, t.exerciseId)],
+);
+
 export type User = typeof users.$inferSelect;
 export type Invitation = typeof invitations.$inferSelect;
 export type Note = typeof notes.$inferSelect;

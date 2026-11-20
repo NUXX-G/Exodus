@@ -6,7 +6,7 @@ import "server-only";
 import crypto from "node:crypto";
 import { and, asc, desc, eq, sql } from "drizzle-orm";
 import { getDb, schema } from "./db";
-import { dayKey, getActivity } from "./progress";
+import { dayKey, getActivity, userDevelopments } from "./progress";
 import type { UserExportData } from "./obsidian-export";
 
 const { users, apiTokens, nodeProgress, exerciseSolved, reviews, hintReveals, activityLog, notes } = schema;
@@ -108,5 +108,9 @@ export function userExportData(userId: number, username: string): UserExportData
       .where(eq(notes.userId, userId))
       .orderBy(desc(notes.updatedAt))
       .all(),
+    // Solo entregas puntuadas: la solución modelo no se exporta antes de entregar y puntuarse.
+    developments: userDevelopments(userId)
+      .filter((d) => d.gradedAt)
+      .map((d) => ({ nodeId: d.nodeId, exerciseId: d.exerciseId, answer: d.answer, onPaper: d.onPaper, score: d.score ?? 0, maxScore: d.maxScore ?? 0, gradedAt: d.gradedAt! })),
   };
 }

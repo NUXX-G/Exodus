@@ -28,7 +28,7 @@ exercises:
       (a) $p \lor \lnot p$ · (b) $(p \Rightarrow q) \Rightarrow (q \Rightarrow p)$ · (c) $\bigl((p \Rightarrow q) \land p\bigr) \Rightarrow q$ · (d) $(p \Rightarrow q) \lor (q \Rightarrow p)$ · (e) $\lnot(p \land q) \Rightarrow (\lnot p \land \lnot q)$ · (f) $\bigl((p \Rightarrow q) \land (q \Rightarrow r)\bigr) \Rightarrow (p \Rightarrow r)$
 
       Respuesta: las letras en orden alfabético separadas por `;` (por ejemplo `a;b`).
-    answers: ["sha256:8dd5e8acfd17b065ea0fa4ae0f5249f0ab21d8d90047e807e9a1606dcb9f7ab9", "sha256:51dc5be712faa568a924961e7449c435cc8cdb5fd8402fb706ce41ff1e781b11"]
+    answers: ["sha256:8dd5e8acfd17b065ea0fa4ae0f5249f0ab21d8d90047e807e9a1606dcb9f7ab9","sha256:51dc5be712faa568a924961e7449c435cc8cdb5fd8402fb706ce41ff1e781b11"]
   - id: funciones-booleanas
     tier: 1
     prompt: |
@@ -126,6 +126,16 @@ exercises:
     prompt: |
       La función $\pi(x, y) = \dfrac{(x + y)(x + y + 1)}{2} + y$ es una biyección de $\mathbb{N} \times \mathbb{N}$ en $\mathbb{N}$ (con $0 \in \mathbb{N}$). ¿Qué par $(x, y)$ cumple $\pi(x, y) = 100$? Respuesta: `x;y`.
     answers: ["sha256:6fb73a3356b452f5575eeb852cf8242645f055592fa9ebbfb747165bdec5de1e"]
+  - id: induccion-suma-de-impares
+    tier: 2
+    type: desarrollo
+    prompt: |
+      **Desarrollo.** Demuestra por inducción que, para todo entero $n \ge 1$,
+      $$
+      1 + 3 + 5 + \cdots + (2n - 1) = n^2 .
+      $$
+      Escribe claramente la proposición $P(n)$, el caso base, la hipótesis de inducción y el paso inductivo.
+    sealed: "gz64:H4sIAAAAAAACCn1TTW/TQBT8KyNrD3aSRrIRF0s5VSCQOFT0yJJqs36kq+6Hu+sFhcg/qOKEeoMb+WPI66bErejN8tuZN2/mvX0WnI6dcjars0sSYBe5LVgNxnmjQqvFLnQ7TZyHaK72N6uyX+9tj7y6wRnKAivYdcWW3HI7m52L4LARgWYz5MxihZIVNUhDi8ZBfb+NinzjQAGsZNgNpYY8yWsHVq6rhFjikiCjaTU98L5T7eG+o6ACGoKyTZRSHe7tcjbDZWyd3QrjAm4jDfpNwYYGUpHvBFrhBaIFM+B8SygZZBQ6KRFpzpPJTJ9XN2dpLPNvrIthrNS1U19dakoD7dCTNA6/dKeMQ4hG2MZhhxhSTQtcPyqvuWWM22m7edmfOMl5tA35jReS9s91pWf91T5p6zEH5xu11XmVm3lZDNX0wz+oxxyVwRwlVsjTR7GusBxlfIi0daNZ4Pyj2l53wnv3DReJ7DFQZ6WO4ej1uTMJVE4c3r3AM9rfucadBLBA6/zgXOuVlapVbhort+MWPk1xpLFHmqQxf9+QwJacOdx1XklRD2HLKBo/rFxDYJbzThkKsAxttJ0LCIQvzhsBcfgpGkVDbH9+UBhx4c/vBCwXeLXA6wU4b1wXjuhlkS0yHzdeyaz+tM+kVx155bI6e2Ojlep4RZDOovUk1ehgtshGhqwu+8UEeO5M6yNtxGCLPJ4RHm7oJeRb503UYrpsUz9PboBB+I3qvPDKIbdukg8rXmo0vYIaId3AoLc73HmjrAMbV/FsiFi0WsmnsnbQmrYCAiy9XFcMQVmQ985TOG1fPXNoWMUdQaoundn/92c6xef+Lz6I1yXlBAAA"
 ---
 
 # Lógica y demostración: cómo se escribe una prueba

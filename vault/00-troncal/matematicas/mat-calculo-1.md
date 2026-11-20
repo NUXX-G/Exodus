@@ -172,6 +172,14 @@ exercises:
       El método de bisección parte de un intervalo $[1, 2]$ donde $f(x) = x^3 - x - 1$ cambia de signo (teorema del valor intermedio) y lo divide por la mitad en cada paso.
       ¿Cuántas bisecciones hacen falta, como mínimo, para que el intervalo final mida **menos de $10^{-6}$**? Respuesta: un entero.
     answers: ["sha256:f5ca38f748a1d6eaf726b8a42fb575c3c71f1864a8143301782de13da2d9202b"]
+  - id: derivada-de-1-sobre-x
+    tier: 3
+    type: desarrollo
+    prompt: |
+      **Desarrollo.** A partir de la **definición** de derivada (sin usar las reglas de derivación), demuestra que si
+      $f(x) = \dfrac1x$, entonces $f'(a) = -\dfrac{1}{a^2}$ para todo $a \ne 0$. Justifica cada paso; en particular, por qué
+      puedes simplificar $h$ y por qué el límite final vale lo que dices.
+    sealed: "gz64:H4sIAAAAAAACCn1Uy27bMBD8lYFAoDZiqbZ7c5tTmkvRQ9Aey6bYSOuIBUUqJGXEMPQx/YAcit561Y8VlGTHdoKeJC25j5md0S7xVjdBWZOskhvrUPBaGZWr7o+ZQazfTGiKS0hZKF9r2vqw1SylVtWPXSllsPNWyrWjfLee0EU5RYr1hKbtrmxFhq9MEAQpDWMuMtyQIwgp9YZdQCml618+YB+iMSTgWZqg2HAscIFyX2QG8t0THhqGGFoKsA/dr3HygjJppFlk+MI+EHJrULCxlTJUWIfcVt1fs5JGCGmG0Rc7uihbpBg/qQfcgyKk6Ju0Oxqez2dpeQhmQ7llho9qowoGm+AYohQZrg1YQ3dPlQoxhMga5gLeagtlArtNxGmwIW0d++HOOVjPqBsuGF5VtVZrlZM7QfFyAa+NKuWsP0jHk8U5hncZPhPWjeklMMxSUe2DjTnFWVLkHo1BbnPFJjAKRm21inxbj7zZ2hP2N6TjQm+Xe4Tgvscl5uK9NOzjvoIyDR0dYHvMIHv4ZuAKpHX3NLLwLNVjcb4C9Az97XIP/cpWtbN31CNfRXk9xoKPt7t00cYpNMHxvaaIUhNqG9jkilAQRBqvLVsxg7aolK9slswS19w5lSerb7skdyqwUzZZJdc+d+qOI6oDccrkjis2gWLQOc6DnUWvHO02PVirl/Wo/8OaBx2L2LduTLA+WS3a2UnnwROaPGJCruxI+SsWiXg13xPoMMWR4gUmFvzQqLhRE3h63HV51vVT40Ov2FMlF9Eryj2bBbV18Qa/tMwglsl2MP7JHwF1/1eJ6fzQcPfbTv9HwRXpvNF00iFdvKXbpcDPcdDulymiOyejGlVBxQz2kFDwiejPCTQWptHnY3xv/wE+NytlbQUAAA=="
   - id: r-derivada-cociente
     tier: 2
     type: expresion

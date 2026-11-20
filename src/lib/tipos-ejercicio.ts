@@ -16,6 +16,8 @@
  *   matriz     matriz o vector de números (admite fracciones y expresiones sin variables)
  *   opcion     opción múltiple (`options`; `multiple: true` para varias correctas)
  *   flag       texto exacto sin normalizar (como la flag de un nodo)
+ *   desarrollo demostración, derivación, informe…: no se corrige solo; el alumno se puntúa con la rúbrica sellada
+ *              (src/lib/sellado.ts) tras ver la solución modelo
  *
  * Módulo puro: lo usan el servidor, los tests y los scripts.
  */
@@ -24,7 +26,7 @@ import { aLatex, analizar, aTexto, cumpleForma, ErrorExpresion, evaluar, leerNum
 import { describirDimension, ErrorUnidad, leerUnidad, mismaDimension } from "./unidades";
 import { hashAnswer } from "./exercises";
 
-export const TIPOS = ["texto", "numero", "expresion", "matriz", "opcion", "flag"] as const;
+export const TIPOS = ["texto", "numero", "expresion", "matriz", "opcion", "flag", "desarrollo"] as const;
 export type TipoId = (typeof TIPOS)[number];
 
 export const ETIQUETA_TIPO: Record<TipoId, string> = {
@@ -34,6 +36,7 @@ export const ETIQUETA_TIPO: Record<TipoId, string> = {
   matriz: "Matriz o vector",
   opcion: "Opción múltiple",
   flag: "Flag",
+  desarrollo: "Desarrollo",
 };
 
 /** Lo que un tipo necesita saber del ejercicio (subconjunto del frontmatter). */
@@ -196,7 +199,17 @@ const envuelve = (f: () => { huellas: string[]; interpretacion?: string }): Lect
   }
 };
 
+const NO_AUTOMATICO = "los ejercicios de desarrollo se corrigen con la rúbrica, no automáticamente";
+
 export const REGISTRO: Record<TipoId, TipoEjercicio> = {
+  desarrollo: {
+    id: "desarrollo",
+    leer: () => ({ ok: false, error: NO_AUTOMATICO }),
+    referencia: () => {
+      throw new Error(NO_AUTOMATICO);
+    },
+    coincide: () => false,
+  },
   texto: {
     id: "texto",
     leer: (envio) => ({ ok: true, huellas: [hashAnswer(envio)] }),
