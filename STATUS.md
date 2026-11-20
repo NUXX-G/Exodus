@@ -32,6 +32,14 @@ registro de sesiones (una línea) o a `docs/`.
   En Git Bash, con `MSYS_NO_PATHCONV=1` las rutas `/tmp` no se traducen: usa `cygpath -w`. Para el servidor de
   prueba antes de `guardar.sh` (que reconstruye `.next`): el `node` hijo sobrevive a TaskStop; ciérralo por PID.
 
+## 1b. Cola de pendientes (en orden; no adelantar nada)
+
+1. Roadmap v2: lo que quede de `docs/ROADMAP_V2.md` (fases 8A, 8B, 8C, 9-17 y «Fin del plan»), en su orden.
+2. Sistema de aprendizaje (recuerdo activo, repetición espaciada, priming, datos, quiz, socrático). Especificación completa en docs/APRENDIZAJE.md. Ejecutar por fases en el orden que indica el documento.
+   Nota del usuario (2026-11-20): son funciones **nuevas**; no eliminar nada de lo anterior para sustituirlo. Si algo
+   que ya existe es mejor que lo que pide el documento (p. ej. el repaso espaciado con variantes y banco de repaso, el
+   diario de errores o el temporizador), se deja tal cual y se integra con lo nuevo; anotar en §6 cada caso y su porqué.
+
 ## 2. Reglas de la v2 (resumen; el texto completo está en el roadmap)
 
 - Avanza fase a fase sin pedir permiso. Cierre de fase: tests, `npm run vault:check` y `npm run typecheck` en verde,

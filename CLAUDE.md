@@ -25,5 +25,8 @@
 - Estado vivo y protocolo de arranque: `STATUS.md` (corto; léelo entero). Historia de la v1: `docs/HISTORIAL_V1.md` (solo con `grep`).
 - Rama de trabajo de la v2: `v2`. Guardar trabajo: `bash scripts/dev/guardar.sh "v2: ..."` (checks + commit + push). Nunca fusionar `v2` en `main`.
 
+## Documentos de referencia
+- `docs/APRENDIZAJE.md`: especificación de la tarea en cola «Sistema de aprendizaje» (ver `STATUS.md` §1b). Sus «Principios que no se negocian» son obligatorios cuando se trabaje en ella.
+
 ## Roadmap activo
 Si hay un roadmap activo, lee STATUS.md y SOLO la sección de la fase actual en docs/ROADMAP_V2.md. Continúa desde ahí siguiendo las reglas de ejecución del roadmap.
