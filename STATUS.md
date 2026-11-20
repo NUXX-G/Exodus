@@ -26,6 +26,7 @@ registro de sesiones (una línea) o a `docs/`.
 - **Fase actual**: FASE 8 — Objetivos recomendados.
 - **Tarea actual**: objetivos opcionales en el vault (listas ordenadas de nodos de cualquier área), activables por usuario, con avance, ritmo y siguiente nodo.
 - **Siguiente paso concreto**: leer la FASE 8 del roadmap; formato `vault/_objetivos/<id>.md` (sin id de nodo, como los recursos), tabla de objetivos activos por usuario, panel en Inicio con avance y ritmo, registro opcional de tiempo de estudio por día y área.
+- **Pendiente de la fase 8**: ejecutar el e2e (objetivos y tiempo), sección de AMPLIAR sobre crecer hasta el grado y cierre. **Además**: `vault:soluciones` completo (con Docker) da 134 discrepancias, todas en los hitos de proyectos marcados por `scripts/dev/marcar-hitos.cjs` (los specs base no ponen `type: codigo`/`harness`/`stage`): hacer que vault-soluciones aplique la misma marca antes de comparar (o crear specs .v2) y confirmar que no queda ninguna otra.
 - **Bloqueos**: ninguno.
 - **Prueba en navegador**: `scripts/dev/sesion-prueba.ts` (usuario y sesión en una base temporal) y
   `scripts/dev/e2e-v2.cjs` (Playwright 1.58 de la caché de npx: `PLAYWRIGHT_CORE=C:/Users/nelso/AppData/Local/npm-cache/_npx/787f53666b8d4740/node_modules/playwright-core`).
