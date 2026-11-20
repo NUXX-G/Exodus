@@ -219,9 +219,9 @@ Ciclo por cada área (una fase por área), con estas tareas:
 
 ## FASE 9 — Contenido: troncal (desde cero hasta Bachillerato)
 
-- [ ] a) Mapa (`docs/contenido/troncal.md`)
-- [ ] b) Plan (⛔ si cambia ids o afecta al progreso)
-- [ ] c) Redacción
+- [x] a) Mapa (`docs/contenido/troncal.md`)
+- [x] b) Plan (⛔ si cambia ids o afecta al progreso) — sin cambios de id
+- [~] c) Redacción — 31 nodos en orden (ver `docs/contenido/troncal.md` §b); hechos: ninguno completo
 - [ ] d) Revisión independiente (subagente)
 - [ ] e) Reportes «creo que esto está mal» del área
 - [ ] f) Cierre (checks, cobertura, `STATUS.md`, commit `v2: fase 9 completada`)

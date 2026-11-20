@@ -24,8 +24,8 @@ registro de sesiones (una línea) o a `docs/`.
 ## 1. Ahora mismo
 
 - **Fase actual**: FASE 9 — Contenido: troncal (desde cero hasta Bachillerato).
-- **Tarea actual**: a) Mapa: elegir 1-2 fuentes de referencia (gratuitas y en español si existen: OpenStax, materiales oficiales) y escribir docs/contenido/troncal.md con la tabla sección de la fuente → nodo / hueco / sobra.
-- **Siguiente paso concreto**: leer la FASE 9 y la sección «PARTE 2» del roadmap (ciclo a-f, escalera práctico/formal obligatoria, glosario, fuentes con capítulo); el troncal es solo el ~20 % de fundamentos (1.º ESO → Bachillerato): delimitar qué nodos actuales son troncal y cuáles pertenecen ya a una rama (muchos de 00-troncal/ son de grado; no se cambian ids).
+- **Tarea actual**: c) redacción del troncal en escalera, nodo a nodo en el orden de `docs/contenido/troncal.md` §b.
+- **Siguiente paso concreto**: nodo 1, `tro-aprender-a-aprender`: leerlo, añadir bloques `[!practico]`/`[!formal]` por sección, términos al glosario, variantes y banco de repaso; `vault:check -- --avisos` sin avisos de ese nodo; anotar en el registro de redacción de `troncal.md`.
 - **Bloqueos**: ninguno.
 - **Prueba en navegador**: `scripts/dev/sesion-prueba.ts` (usuario y sesión en una base temporal) y
   `scripts/dev/e2e-v2.cjs` (Playwright 1.58 de la caché de npx: `PLAYWRIGHT_CORE=C:/Users/nelso/AppData/Local/npm-cache/_npx/787f53666b8d4740/node_modules/playwright-core`).
