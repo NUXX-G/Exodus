@@ -221,7 +221,7 @@ Ciclo por cada área (una fase por área), con estas tareas:
 
 - [x] a) Mapa (`docs/contenido/troncal.md`)
 - [x] b) Plan (⛔ si cambia ids o afecta al progreso) — sin cambios de id
-- [~] c) Redacción — 31 nodos en orden (ver `docs/contenido/troncal.md` §b); hechos: ninguno completo
+- [~] c) Redacción — 31 nodos en orden (ver `docs/contenido/troncal.md` §b); hechos: 2/31
 - [ ] d) Revisión independiente (subagente)
 - [ ] e) Reportes «creo que esto está mal» del área
 - [ ] f) Cierre (checks, cobertura, `STATUS.md`, commit `v2: fase 9 completada`)

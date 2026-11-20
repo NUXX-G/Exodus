@@ -30,6 +30,8 @@ const terminoSchema = z.object({
   llano: z.string().min(1).max(600),
   formal: z.string().max(1500).optional(),
   nodo: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/),
+  /** Nodos anteriores que ya lo explican a nivel básico (la explicación completa está en `nodo`). */
+  tambien: z.array(z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/)).max(10).optional(),
 });
 
 export interface Termino {
@@ -39,6 +41,8 @@ export interface Termino {
   llano: string;
   formal: string | null;
   nodo: string;
+  /** Otros nodos (anteriores) donde ya se explica a nivel básico. */
+  tambien: string[];
   area: string;
   /** Ancla en /glosario. */
   slug: string;
@@ -85,7 +89,7 @@ export function loadGlosario(root: string): { terminos: Termino[]; problemas: st
         problemas.push(`${archivo}: término repetido «${r.data.termino}»`);
         continue;
       }
-      terminos.push({ termino: r.data.termino, sinonimos: r.data.sinonimos ?? [], excepto: (r.data.excepto ?? []).map((x) => x.toLowerCase()), llano: r.data.llano, formal: r.data.formal ?? null, nodo: r.data.nodo, area, slug });
+      terminos.push({ termino: r.data.termino, sinonimos: r.data.sinonimos ?? [], excepto: (r.data.excepto ?? []).map((x) => x.toLowerCase()), llano: r.data.llano, formal: r.data.formal ?? null, nodo: r.data.nodo, tambien: r.data.tambien ?? [], area, slug });
     }
   }
   return { terminos, problemas };

@@ -77,7 +77,7 @@ async function main() {
   };
   for (const node of vault.nodes.values()) {
     if (node.kind === "examen") continue;
-    const antes = [...terminosEn(node.body, patron)].filter((x) => x.nodo !== node.id && !deps(node.id).has(x.nodo));
+    const antes = [...terminosEn(node.body, patron)].filter((x) => ![x.nodo, ...x.tambien].some((n) => n === node.id || deps(node.id).has(n)));
     if (antes.length) avisos.push(`${node.file}: usa términos que se explican en nodos posteriores: ${antes.map((x) => `«${x.termino}» (${x.nodo})`).join(", ")}`);
   }
 

@@ -25,7 +25,7 @@ registro de sesiones (una línea) o a `docs/`.
 
 - **Fase actual**: FASE 9 — Contenido: troncal (desde cero hasta Bachillerato).
 - **Tarea actual**: c) redacción del troncal en escalera, nodo a nodo en el orden de `docs/contenido/troncal.md` §b.
-- **Siguiente paso concreto**: nodo 1, `tro-aprender-a-aprender`: leerlo, añadir bloques `[!practico]`/`[!formal]` por sección, términos al glosario, variantes y banco de repaso; `vault:check -- --avisos` sin avisos de ese nodo; anotar en el registro de redacción de `troncal.md`.
+- **Siguiente paso concreto**: nodo 3, `mat-enteros-fracciones` (hechos 1-2: tro-aprender-a-aprender, mat-numeros-naturales). Receta: script de parche en el scratchpad con `practico()`/`formal()` (ver registro en troncal.md), spec `.soluciones/<id>.v2.mjs` con variantes doble-comprobadas y banco `r-*`, `ex-inject`, `vault:soluciones`, `vault:fugas`, `vault:check -- --avisos` sin avisos del nodo.
 - **Bloqueos**: ninguno.
 - **Prueba en navegador**: `scripts/dev/sesion-prueba.ts` (usuario y sesión en una base temporal) y
   `scripts/dev/e2e-v2.cjs` (Playwright 1.58 de la caché de npx: `PLAYWRIGHT_CORE=C:/Users/nelso/AppData/Local/npm-cache/_npx/787f53666b8d4740/node_modules/playwright-core`).

@@ -91,6 +91,7 @@ ciclo), sin bloquear este.
 | Tema | Nodo | Estado |
 | --- | --- | --- |
 | Cómo estudiar (recuperación, espaciado, intercalado) | `tro-aprender-a-aprender` | ✔ |
+| `mat-numeros-naturales` | Bloque práctico en §2-§7 (cuentakilómetros, repartos, piezas de Lego, cuerdas y autobuses); «teorema», «algoritmo» y «logaritmo» explicados antes de usarse (glosario: campo nuevo `tambien`); demostraciones en bloques formales; 11 ejercicios con variantes; 6 preguntas de repaso | 2026-11-20 |
 | Leer textos técnicos y verificar fuentes | `tro-lectura-tecnica` | ✔ |
 | Razonamiento científico, incertidumbre y estimación | `tro-razonamiento-cientifico` | ✔ |
 | Pensar como un programador; primer lenguaje; terminal y Git | `prog-pensamiento-computacional`, `prog-python-fundamentos`, `prog-terminal-linux-git` | ✔ |

@@ -384,7 +384,7 @@ function leerVault(root: string): Vault {
   const glos = loadGlosario(root);
   for (const message of glos.problemas) issues.push({ file: "_glosario", message });
   for (const t of glos.terminos) {
-    if (!nodes.has(t.nodo)) issues.push({ file: `_glosario/${t.area}.md`, message: `«${t.termino}»: el nodo ${t.nodo} no existe` });
+    for (const n of [t.nodo, ...t.tambien]) if (!nodes.has(n)) issues.push({ file: `_glosario/${t.area}.md`, message: `«${t.termino}»: el nodo ${n} no existe` });
     if (!areas.has(t.area)) issues.push({ file: `_glosario/${t.area}.md`, message: `área desconocida "${t.area}"` });
   }
 

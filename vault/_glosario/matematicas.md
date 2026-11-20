@@ -59,6 +59,7 @@ terminos:
     llano: "La pregunta «¿a qué número hay que elevar la base para obtener este resultado?». Como 10 × 10 × 10 = 1000, el logaritmo en base 10 de 1000 es 3."
     formal: "Para $b > 0$, $b \\ne 1$ y $x > 0$: $\\log_b x = y \\iff b^y = x$. Cumple $\\log_b(xy) = \\log_b x + \\log_b y$."
     nodo: mat-algebra-secundaria
+    tambien: [mat-numeros-naturales]
   - termino: seno
     llano: "En un triángulo rectángulo, el cociente entre el lado opuesto a un ángulo y la hipotenusa. Dice «cuánto sube» por cada unidad de longitud inclinada."
     formal: "Para un ángulo $\\theta$, $\\sin\\theta$ es la ordenada del punto de la circunferencia unidad que forma un ángulo $\\theta$ con el eje $x$; en un triángulo rectángulo, cateto opuesto entre hipotenusa."
@@ -72,6 +73,7 @@ terminos:
     llano: "Una afirmación matemática que se ha demostrado que es verdad a partir de otras ya aceptadas."
     formal: "Proposición que se deduce, mediante reglas lógicas, de axiomas, definiciones y resultados ya demostrados."
     nodo: mat-logica-demostraciones
+    tambien: [mat-numeros-naturales]
   - termino: axioma
     sinonimos: [axiomas]
     llano: "Una regla de partida que se acepta sin demostrarla, como los cimientos de una casa: todo lo demás se construye encima."
