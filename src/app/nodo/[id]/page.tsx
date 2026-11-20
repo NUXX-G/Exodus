@@ -16,6 +16,7 @@ import ReportForm from "@/components/ReportForm";
 import DevelopmentForm from "@/components/DevelopmentForm";
 import CodeInfo from "@/components/CodeInfo";
 import ExamIntro from "@/components/ExamIntro";
+import StudyTimeForm from "@/components/StudyTimeForm";
 import { undoDiagnosisAction } from "@/app/diagnostico/actions";
 import { devInitial } from "@/lib/desarrollo-inicial";
 import { loadRecursos } from "@/lib/recursos";
@@ -235,6 +236,12 @@ export default async function PaginaNodo({ params }: Props) {
             </ul>
           </section>
         )}
+
+        <section>
+          <h2>Tiempo de estudio</h2>
+          <p className="nota">Opcional: anota lo que has dedicado a este tema (se ve en el mapa de actividad y en el ritmo de tus objetivos).</p>
+          <StudyTimeForm nodeId={node.id} />
+        </section>
 
         <section>
           <h2>Reto</h2>

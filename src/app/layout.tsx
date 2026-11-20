@@ -22,6 +22,7 @@ export const viewport: Viewport = { width: "device-width", initialScale: 1, them
 const SECCIONES = [
   ["/", "Inicio"],
   ["/temario", "Temario"],
+  ["/objetivos", "Objetivos"],
   ["/practica", "Práctica"],
   ["/recursos", "Recursos"],
   ["/repaso", "Repaso"],

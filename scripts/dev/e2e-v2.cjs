@@ -214,6 +214,26 @@ async function main() {
   assert.ok(fila.finished_at && fila.max_score === 12);
   ok(`simulacro en papel: guardado automático, entrega y nota ${fila.score}/${fila.max_score}`);
 
+  // Objetivos y tiempo de estudio (fase 8).
+  await page.goto(`${BASE}/objetivos`);
+  const obj = page.locator('.lista-objetivos > li:has-text("acceso a la universidad")');
+  await obj.locator('summary:has-text("Activar")').click();
+  await obj.locator('input[name="hours"]').fill("8");
+  await obj.locator('button:has-text("Activar este objetivo")').click();
+  await obj.locator('a.boton:has-text("")').first().waitFor();
+  await page.goto(`${BASE}/`);
+  await page.locator('.objetivos-inicio:has-text("acceso a la universidad")').waitFor();
+  ok("objetivo activado: aparece en Inicio con avance y siguiente nodo");
+  await page.goto(`${BASE}/nodo/mat-calculo-1`);
+  await page.locator('.tiempo-form input[name="minutes"]').fill("40");
+  await page.locator('.tiempo-form button').click();
+  await page.locator('.tiempo-form .mensaje:has-text("40")').waitFor();
+  const min = db.prepare("select sum(minutes) m from study_time where user_id=?").get(uid).m;
+  assert.equal(min, 40);
+  await page.goto(`${BASE}/`);
+  assert.match(await page.locator(".calor + .nota").innerText(), /40 min de estudio/);
+  ok("tiempo de estudio: anotado en el nodo y sumado en el mapa de actividad");
+
   assert.deepEqual(errores, [], "errores de JavaScript en la página");
   await browser.close();
   console.log(`\n${pasos.length} comprobaciones superadas`);

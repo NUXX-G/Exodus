@@ -1,6 +1,8 @@
 import Link from "next/link";
 import SkillGraph, { type GraphNode } from "@/components/SkillGraph";
 import Heatmap from "@/components/Heatmap";
+import { activeGoals, studyMinutes } from "@/lib/objetivos-db";
+import { avanceObjetivo } from "@/lib/objetivos";
 import { areaOf } from "@/lib/areas";
 import { requireUser } from "@/lib/auth";
 import { computeStates, getActivity, getCompleted, getDiagnosed, getDueReviews } from "@/lib/progress";
@@ -38,6 +40,7 @@ export default async function Inicio() {
   const areas = areaProgress(vault, completed);
   const siguiente = recommendedNext(vault, states);
   const repasos = getDueReviews(user.id).length;
+  const objetivosActivos = activeGoals(user.id).map((a) => ({ o: a.objetivo, av: avanceObjetivo(a.objetivo, vault, states, estimateMinutes, a.hoursPerWeek) }));
   const minutosRestantes = areas.reduce((s, a) => s + a.minutesLeft, 0);
 
   return (
@@ -63,6 +66,32 @@ export default async function Inicio() {
           </div>
         </dl>
       </section>
+
+      {objetivosActivos.length > 0 && (
+        <section className="objetivos-inicio" aria-label="Tus objetivos">
+          <h2>Tus objetivos</h2>
+          <ul>
+            {objetivosActivos.map(({ o, av }) => (
+              <li key={o.id}>
+                <Link href="/objetivos" className="titulo-objetivo">
+                  {o.titulo}
+                </Link>
+                <span className="barra" aria-hidden="true">
+                  <i style={{ width: `${av.total ? Math.round(((av.hechos + av.diagnosticados) / av.total) * 100) : 0}%` }} />
+                </span>
+                <span className="meta">
+                  {av.hechos + av.diagnosticados} de {av.total} · unas {av.semanas} semanas
+                </span>
+                {av.siguiente && (
+                  <Link href={`/nodo/${av.siguiente.id}`} prefetch={false}>
+                    Siguiente: {av.siguiente.title}
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {done < 3 && (
         <p className="consejo">
@@ -124,7 +153,7 @@ export default async function Inicio() {
       <div className="bajo-plano">
         <section>
           <h2>Actividad</h2>
-          <Heatmap days={activity.days} />
+          <Heatmap days={activity.days} minutos={studyMinutes(user.id, 7 * 26).porDia} />
         </section>
 
         <section>

@@ -385,6 +385,43 @@ export const examAttempts = sqliteTable(
   (t) => [index("exam_attempts_user_idx").on(t.userId, t.nodeId)],
 );
 
+/** Objetivos recomendados que el usuario ha activado (vault/_objetivos), con su ritmo y fecha opcional. */
+export const userGoals = sqliteTable(
+  "user_goals",
+  {
+    userId: integer("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    goalId: text("goal_id").notNull(),
+    /** Horas de estudio por semana que el usuario cree poder dedicar (null: las sugeridas por el objetivo). */
+    hoursPerWeek: real("hours_per_week"),
+    /** Fecha a la que quiere llegar (YYYY-MM-DD), opcional. */
+    targetDay: text("target_day"),
+    activatedAt: integer("activated_at", { mode: "timestamp" }).notNull().default(now),
+  },
+  (t) => [primaryKey({ columns: [t.userId, t.goalId] })],
+);
+
+/**
+ * Tiempo de estudio registrado (opcional): a mano o con el temporizador. Se suma por día y por área en el heatmap.
+ */
+export const studyTime = sqliteTable(
+  "study_time",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    userId: integer("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    day: text("day").notNull(),
+    area: text("area").notNull(),
+    nodeId: text("node_id"),
+    minutes: integer("minutes").notNull(),
+    source: text("source", { enum: ["manual", "temporizador"] }).notNull().default("manual"),
+    createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(now),
+  },
+  (t) => [index("study_time_user_day_idx").on(t.userId, t.day)],
+);
+
 export type User = typeof users.$inferSelect;
 export type Invitation = typeof invitations.$inferSelect;
 export type Note = typeof notes.$inferSelect;

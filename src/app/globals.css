@@ -2308,3 +2308,91 @@ details.callout:not([open]) > summary.callout-titulo {
 .pasos-reto li[data-estado="cerrado"] {
   color: var(--tiza-tenue);
 }
+
+/* ───────── v2 fase 8: objetivos y tiempo de estudio ───────── */
+
+.lista-objetivos {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.lista-objetivos > li {
+  padding: 14px 18px;
+  border: 1px solid var(--trazo);
+  border-radius: var(--radio);
+}
+
+.lista-objetivos > li[data-activo="true"] {
+  border-color: var(--menta);
+}
+
+.lista-objetivos h2 {
+  margin: 0 0 4px;
+}
+
+.lista-objetivos .barra,
+.objetivos-inicio .barra {
+  display: block;
+  height: 6px;
+  margin: 8px 0;
+  background: var(--trazo);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.lista-objetivos .barra i,
+.objetivos-inicio .barra i {
+  display: block;
+  height: 100%;
+  background: var(--menta);
+}
+
+.form-objetivo,
+.tiempo-form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 8px 0;
+}
+
+.form-objetivo input,
+.tiempo-form input {
+  padding: 6px 8px;
+  background: var(--tinta-honda);
+  color: var(--tiza);
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: var(--radio);
+}
+
+.tiempo-form input {
+  width: 5.5em;
+}
+
+.objetivos-inicio {
+  margin: 20px 0;
+}
+
+.objetivos-inicio ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+.objetivos-inicio li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 14px;
+  border: 1px solid var(--trazo);
+  border-radius: var(--radio);
+}
+
+.titulo-objetivo {
+  font-weight: 600;
+}

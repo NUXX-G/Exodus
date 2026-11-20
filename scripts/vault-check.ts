@@ -11,6 +11,7 @@
 import { avisosDeEjercicio, avisosDeFuentes, problemasDeEjercicio } from "../src/lib/calidad";
 import { linkResolverFor, renderMarkdown } from "../src/lib/markdown";
 import { loadRecursos } from "../src/lib/recursos";
+import { loadObjetivos, problemasDeObjetivo } from "../src/lib/objetivos";
 import { rellenar } from "../src/lib/tipos-ejercicio";
 import { loadVault, vaultRoot } from "../src/lib/vault";
 
@@ -59,10 +60,15 @@ async function main() {
     for (const m of p.cuerpo.matchAll(/\]\((?!https:\/\/|\/[a-z])([^)]*)\)/g)) problems.push(`${p.archivo}: enlace que no es https ni interno: ${m[1]}`);
   }
 
+  // Objetivos (vault/_objetivos): formato y nodos. Un nodo aún no escrito es un aviso (marca un hueco del temario).
+  const objetivos = loadObjetivos(vaultRoot());
+  problems.push(...objetivos.problemas);
+  for (const o of objetivos.objetivos) for (const a of problemasDeObjetivo(o, vault)) avisos.push(`${a} (pendiente de escribir)`);
+
   const withExercises = [...vault.nodes.values()].filter((n) => n.exercises.length > 0).length;
   const withChallenge = [...vault.nodes.values()].filter((n) => n.ctfFlag).length;
   console.log(`Vault: ${vaultRoot()}`);
-  console.log(`Nodos válidos: ${vault.nodes.size} (${withChallenge} con reto, ${withExercises} con ejercicios); páginas de recursos: ${recursos.paginas.length}`);
+  console.log(`Nodos válidos: ${vault.nodes.size} (${withChallenge} con reto, ${withExercises} con ejercicios); páginas de recursos: ${recursos.paginas.length}; objetivos: ${objetivos.objetivos.length}`);
   console.log(`Avisos: ${avisos.length}${avisos.length && !listarAvisos ? " (npm run vault:check -- --avisos para verlos)" : ""}`);
   if (listarAvisos) for (const a of avisos) console.log(`  · ${a}`);
   for (const p of problems) console.error(`  ✗ ${p}`);
