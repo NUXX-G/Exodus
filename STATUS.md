@@ -23,9 +23,9 @@ registro de sesiones (una línea) o a `docs/`.
 
 ## 1. Ahora mismo
 
-- **Fase actual**: FASE 7 — Calidad automática.
-- **Tarea actual**: vault:check que verifica soluciones calculables, variantes de muestra (casos degenerados) y soluciones de código; avisos de academic_sources vagos; informe de cobertura.
-- **Siguiente paso concreto**: leer la FASE 7 del roadmap; ampliar scripts/vault-check.ts: para cada ejercicio comprobar que los hashes tienen el formato y número esperados por tipo, que las variantes rellenan todos los datos, que ninguna variante repite datos, y generar el informe de cobertura por área (tipos, variantes, banco de repaso, desarrollos, código).
+- **Fase actual**: FASE 8 — Objetivos recomendados.
+- **Tarea actual**: objetivos opcionales en el vault (listas ordenadas de nodos de cualquier área), activables por usuario, con avance, ritmo y siguiente nodo.
+- **Siguiente paso concreto**: leer la FASE 8 del roadmap; formato `vault/_objetivos/<id>.md` (sin id de nodo, como los recursos), tabla de objetivos activos por usuario, panel en Inicio con avance y ritmo, registro opcional de tiempo de estudio por día y área.
 - **Bloqueos**: ninguno.
 - **Prueba en navegador**: `scripts/dev/sesion-prueba.ts` (usuario y sesión en una base temporal) y
   `scripts/dev/e2e-v2.cjs` (Playwright 1.58 de la caché de npx: `PLAYWRIGHT_CORE=C:/Users/nelso/AppData/Local/npm-cache/_npx/787f53666b8d4740/node_modules/playwright-core`).
@@ -85,7 +85,9 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
 
 ## 5. Comandos y trampas del entorno (Windows 11)
 
-- Checks: `npm run vault:check`, `npm run typecheck`, `npm test`, `npm run build`. Tras tocar prerequisitos:
+- Checks: `npm run vault:check` (`-- --avisos` lista fuentes vagas y demás), `npm run typecheck`, `npm test`,
+  `npm run build`. Con soluciones: `npm run vault:soluciones [-- <id>… | --sin-docker]`. Cobertura:
+  `npm run vault:cobertura` (→ `docs/contenido/cobertura.md`). Tras tocar prerequisitos:
   `npm run vault:relevel`. Fugas de respuestas en el texto: `npm run vault:fugas -- <id>`.
 - Probar en navegador: `npm run build`, luego `DATABASE_PATH=<db temporal> npx next start -p 3211`, y Playwright.
   **Nunca** con la base del usuario (`database/exodus.db`). Con `next dev`, los logs de `.playwright-mcp/` provocan
@@ -189,6 +191,7 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
 
 | Fecha | Qué se hizo | Commit |
 | --- | --- | --- |
+| 2026-11-20 | Fase 7: vault:check ampliado (renderiza cada variante, opción y banco; variantes repetidas, datos sin rellenar, huellas por tipo; avisos de fuentes sin capítulo o sección), vault:soluciones (doble comprobación de cada spec, vault sincronizado con el spec, variantes degeneradas: 6 corregidas), vault:cobertura (docs/contenido/cobertura.md); arreglado un wikilink falso en ia-pytorch | `v2: fase 7 completada` |
 | 2026-11-20 | Fase 6: simulacros y retos (kind: examen): items referenciados con variantes, cronómetro con entrega automática, guardado automático, modo papel, desarrollos con rúbrica tras entregar, retos encadenados, historial con mejor y media; 5 simulacros (ESO, Bachillerato mates y física, primero de grado mates, física de grado) y 5 retos finales por rama técnica | `v2: fase 6 completada` |
 | 2026-11-20 | Fase 5: prueba de nivel adaptativa por área (búsqueda binaria de la frontera en el orden de estudio, 2-3 preguntas por sonda, «No lo sé»), marcas «dominado por diagnóstico» que desbloquean sin completar y se quitan por nodo o área, /diagnostico con resultado y nodo por el que empezar | `v2: fase 5 completada` |
 | 2026-11-20 | Fase 4: tipo «código» con runner local (prueba.sh generado con las entradas del vault; Exodus solo guarda la huella del código), 132 hitos de 20 proyectos integrados (harness + stage), 3 ejercicios nuevos verificados contra referencias reales (bash+awk, Python en Docker): resumen de notas, gradiente logístico estable con gradient check, Verlet con deriva de energía | `v2: fase 4 completada` |

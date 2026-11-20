@@ -34,7 +34,7 @@ exercises:
   - id: entropia-cruzada
     tier: 2
     prompt: |
-      ¿Qué devuelve `F.cross_entropy` para los logits [[2, 1, 0]] y la clase 0, sin suavizado y con `label_smoothing=0.1`?
+      ¿Qué devuelve `F.cross_entropy` para los logits `[[2, 1, 0]]` y la clase 0, sin suavizado y con `label_smoothing=0.1`?
 
       Respuesta: `sin;con` con 4 decimales.
     answers: ["sha256:0a356ed4a188cba06b0059e2635f9773b4bf6a3d8c75b16456da84e48751ed56"]

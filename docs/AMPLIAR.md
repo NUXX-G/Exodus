@@ -24,7 +24,10 @@ hacer `git pull` en el servidor. El progreso de todos los usuarios se conserva.
    ejecuta `npx tsx scripts/ex-inject.ts vault/.../<id>.md .soluciones/<id>.spec.mjs`. En el vault solo queda el
    SHA-256 de cada respuesta.
 3. Si el nodo tiene reto con flag: `npm run vault:flag -- "EXODUS{...}"` y pega el `sha256:` en `ctf_flag`.
-4. Comprueba: `npm run vault:relevel && npm run vault:check && npm test`.
+4. Comprueba: `npm run vault:relevel && npm run vault:check && npm test`, y en local, con las soluciones,
+   `npm run vault:soluciones -- <id>` (repite la doble comprobación del spec, comprueba que el vault coincide con él y
+   avisa de variantes degeneradas). `npm run vault:check -- --avisos` lista lo mejorable (fuentes sin capítulo o
+   sección, pocas variantes) y `npm run vault:cobertura` actualiza `docs/contenido/cobertura.md`.
 5. Rama, PR, CI en verde, fusión. En el servidor: `git pull` (sin reconstruir: el vault se monta en solo lectura).
 
 Otros nodos pueden citarlo como `` `mat-topologia` `` en el texto: en cuanto exista, la web lo convierte en enlace.

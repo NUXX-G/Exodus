@@ -146,11 +146,11 @@ El usuario pide terminar **todas** las fases de forma autónoma, **sin preguntar
 
 ## FASE 7 — Calidad automática
 
-- [ ] `vault:check` verifica la solución de cada ejercicio calculable, genera variantes de muestra para detectar casos
+- [x] `vault:check` verifica la solución de cada ejercicio calculable, genera variantes de muestra para detectar casos
       degenerados y comprueba que las soluciones de referencia de código pasan sus tests.
-- [ ] Avisos para nodos sin `academic_sources` concretos (libro y capítulo, o documentación oficial concreta).
-- [ ] Informe de cobertura por área: nodos con ejercicios verificados, de qué tipos y cuántos.
-- [ ] Cierre de fase (checks, casillas, `STATUS.md`, commit `v2: fase 7 completada`).
+- [x] Avisos para nodos sin `academic_sources` concretos (libro y capítulo, o documentación oficial concreta).
+- [x] Informe de cobertura por área: nodos con ejercicios verificados, de qué tipos y cuántos.
+- [x] Cierre de fase (checks, casillas, `STATUS.md`, commit `v2: fase 7 completada`).
 
 ## FASE 8 — Objetivos recomendados
 
