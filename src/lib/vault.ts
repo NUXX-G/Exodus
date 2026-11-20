@@ -33,6 +33,7 @@ import { z } from "zod";
 import { AREAS_FILE, mergeAreas, type AreaId, type AreaInfo } from "./areas";
 import { marcadores, TIPOS, type TipoId } from "./tipos-ejercicio";
 import { errorDeSellado } from "./sellado";
+import { loadGlosario, type Termino } from "./glosario";
 import { LANGUAGES, type CodeCase, type Language } from "./codigo";
 
 const HASH = z.string().regex(/^sha256:[0-9a-f]{64}$/);
@@ -211,6 +212,8 @@ export interface Vault {
   nodes: Map<string, VaultNode>;
   /** Áreas integradas más las de vault/_areas.md, en orden de presentación. */
   areas: Map<string, AreaInfo>;
+  /** Glosario (vault/_glosario): términos con explicación llana y formal. */
+  glosario: Termino[];
   issues: VaultIssue[];
 }
 
@@ -276,7 +279,7 @@ function leerVault(root: string): Vault {
   const nodes = new Map<string, VaultNode>();
   const issues: VaultIssue[] = [];
   if (!fs.existsSync(root)) {
-    return { nodes, areas: mergeAreas(undefined).areas, issues: [{ file: root, message: "El directorio del vault no existe" }] };
+    return { nodes, areas: mergeAreas(undefined).areas, glosario: [], issues: [{ file: root, message: "El directorio del vault no existe" }] };
   }
 
   let areasData: unknown;
@@ -377,6 +380,14 @@ function leerVault(root: string): Vault {
     }
   }
 
+  // Glosario: cada término apunta a un nodo y un área que existen.
+  const glos = loadGlosario(root);
+  for (const message of glos.problemas) issues.push({ file: "_glosario", message });
+  for (const t of glos.terminos) {
+    if (!nodes.has(t.nodo)) issues.push({ file: `_glosario/${t.area}.md`, message: `«${t.termino}»: el nodo ${t.nodo} no existe` });
+    if (!areas.has(t.area)) issues.push({ file: `_glosario/${t.area}.md`, message: `área desconocida "${t.area}"` });
+  }
+
   // Integridad del grafo: prerequisitos existentes y sin ciclos.
   for (const node of nodes.values()) {
     for (const pre of node.prerequisites) {
@@ -397,7 +408,7 @@ function leerVault(root: string): Vault {
   };
   for (const id of nodes.keys()) visit(id, []);
 
-  return { nodes, areas, issues };
+  return { nodes, areas, glosario: glos.terminos, issues };
 }
 
 /**

@@ -23,9 +23,9 @@ registro de sesiones (una línea) o a `docs/`.
 
 ## 1. Ahora mismo
 
-- **Fase actual**: FASE 8A — Explicación en escalera y glosario.
-- **Tarea actual**: formato de nodo con registros «práctico» y «formal» conmutables, y glosario por área con términos resaltados y /glosario.
-- **Siguiente paso concreto**: leer la FASE 8A del roadmap y docs/PEDAGOGIA.md; diseñar el marcado en el Markdown del nodo (p. ej. callouts `> [!practico]` / `> [!formal]` o secciones `## Práctico`/`## Formal`) que Obsidian también entienda, el conmutador en la página del nodo (preferencia del usuario) y el formato de `vault/_glosario/<area>.md`.
+- **Fase actual**: FASE 8B — Libreta con dibujo y calculadora.
+- **Tarea actual**: lienzo de dibujo a mano en la Libreta (lápiz, borrador, colores, deshacer, cuadrícula; ratón, táctil y lápiz) exportable a Obsidian, y calculadora científica flotante.
+- **Siguiente paso concreto**: leer la FASE 8B del roadmap y src/lib/notes.ts; guardar los dibujos como SVG (trazos) por usuario en una tabla nueva o como campo de la nota, exportarlos a Obsidian junto a la nota; calculadora con el CAS de src/lib/cas.ts en el navegador (sin dependencias).
 - **Bloqueos**: ninguno.
 - **Prueba en navegador**: `scripts/dev/sesion-prueba.ts` (usuario y sesión en una base temporal) y
   `scripts/dev/e2e-v2.cjs` (Playwright 1.58 de la caché de npx: `PLAYWRIGHT_CORE=C:/Users/nelso/AppData/Local/npm-cache/_npx/787f53666b8d4740/node_modules/playwright-core`).
@@ -192,6 +192,12 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
    no errores, para que un objetivo como «primero UNED» muestre los huecos reales. `vault:soluciones` compara los hitos
    marcados por `marcar-hitos.cjs` sin sus campos de código (los specs antiguos no los generan).
 
+18. **2026-11-20 · Escalera con callouts `[!practico]`/`[!formal]`** (Obsidian los muestra igual) y conmutador «Todo /
+   Práctico / Formal» con cookie (la página llega ya pintada). Glosario en `vault/_glosario/` con resaltado de la primera
+   aparición (plugin rehype tras el saneado, solo en contenido del vault) y aviso de términos usados antes de
+   explicarse (127 nodos hoy: es la lista de trabajo de las fases de contenido). Los términos se eligen sin otro
+   significado común (el resaltado es global) y admiten `excepto` («fuerza bruta»).
+
 ## 7. Preguntas abiertas
 
 - Ninguna todavía. (Las ⛔ de la fase 1 se preguntarán al llegar a ellas.)
@@ -204,6 +210,7 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
 
 | Fecha | Qué se hizo | Commit |
 | --- | --- | --- |
+| 2026-11-20 | Fase 8A: explicación en escalera (callouts práctico/formal con títulos propios y conmutador recordado), glosario por área (58 términos en 7 notas) resaltado en el texto con explicación al pasar el ratón, /glosario con búsqueda, aviso de tecnicismos usados antes de explicarse, documentado en PEDAGOGIA y AMPLIAR; ejemplo en mat-proporcionalidad-porcentajes (y corregida una fuga en su banco de repaso) | `v2: fase 8A completada` |
 | 2026-11-20 | Fase 8: objetivos recomendados en vault/_objetivos (6: acceso a la universidad, primero UNED con el plan oficial 2026-27, junior de sistemas, analista SOC 1, junior de IA, junior de robótica) con avance, semanas al ritmo elegido, ritmo necesario para una fecha y siguiente nodo, en /objetivos y en Inicio; tiempo de estudio opcional por nodo sumado en el heatmap; cómo crecer hasta el grado completo (AMPLIAR §3b); vault:soluciones compara los hitos marcados sin sus campos de código | `v2: fase 8 completada` |
 | 2026-11-20 | Fase 7: vault:check ampliado (renderiza cada variante, opción y banco; variantes repetidas, datos sin rellenar, huellas por tipo; avisos de fuentes sin capítulo o sección), vault:soluciones (doble comprobación de cada spec, vault sincronizado con el spec, variantes degeneradas: 6 corregidas), vault:cobertura (docs/contenido/cobertura.md); arreglado un wikilink falso en ia-pytorch | `v2: fase 7 completada` |
 | 2026-11-20 | Fase 6: simulacros y retos (kind: examen): items referenciados con variantes, cronómetro con entrega automática, guardado automático, modo papel, desarrollos con rúbrica tras entregar, retos encadenados, historial con mejor y media; 5 simulacros (ESO, Bachillerato mates y física, primero de grado mates, física de grado) y 5 retos finales por rama técnica | `v2: fase 6 completada` |

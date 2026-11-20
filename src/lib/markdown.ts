@@ -23,11 +23,15 @@ import type { Blockquote, InlineCode, Link, PhrasingContent, Root, Text } from "
 import type { Element, Root as HastRoot } from "hast";
 import type { Vault } from "./vault";
 import { claveDeRender, conCache } from "./render-cache";
+import type { Termino } from "./glosario";
+import { rehypeGlosario } from "./rehype-glosario";
 
 /** Resuelve el destino de un wikilink a un id de nodo (por id o por nombre de archivo). */
 export type LinkResolver = ((target: string) => { id: string; title: string } | null) & {
   /** Huella de todo lo que el resolutor puede devolver: forma parte de la clave de la caché de HTML. */
   firma?: string;
+  /** Glosario del vault: sus términos se resaltan en el texto de los nodos. */
+  glosario?: Termino[];
 };
 
 const resolutores = new WeakMap<Vault, LinkResolver>();
@@ -48,6 +52,8 @@ export function linkResolverFor(vault: Vault): LinkResolver {
   };
   const huella = crypto.createHash("sha256");
   for (const [nombre, id] of [...byName.entries()].sort()) huella.update(`${nombre}\t${id}\t${vault.nodes.get(id)!.title}\n`);
+  for (const t of vault.glosario ?? []) huella.update(`g\t${t.slug}\t${t.termino}\t${t.sinonimos.join(",")}\t${t.llano}\n`);
+  resolve.glosario = vault.glosario ?? [];
   resolve.firma = huella.digest("hex");
   resolutores.set(vault, resolve);
   return resolve;
@@ -112,6 +118,9 @@ function remarkNodeIdLinks(options: { resolve: () => LinkResolver }) {
   };
 }
 
+/** Títulos por defecto de los callouts propios de Exodus (escalera: práctico → formal). */
+const TITULO_CALLOUT: Record<string, string> = { practico: "En la práctica", formal: "Con rigor" };
+
 const CALLOUT = /^\[!([a-zA-Z-]+)\]([+-]?)[ \t]*(.*?)\r?(?:\n|$)/;
 
 function remarkCallouts() {
@@ -126,7 +135,7 @@ function remarkCallouts() {
 
       const kind = m[1].toLowerCase();
       // El título es el resto de la primera línea; el contenido sigue en la línea siguiente.
-      const title = m[3].trim() || kind.charAt(0).toUpperCase() + kind.slice(1);
+      const title = m[3].trim() || TITULO_CALLOUT[kind] || kind.charAt(0).toUpperCase() + kind.slice(1);
       // Plegables al estilo Obsidian: «[!tipo]-» empieza cerrado y «[!tipo]+» abierto (<details>/<summary>).
       const fold = m[2];
       head.value = head.value.slice(m[0].length);
@@ -202,6 +211,8 @@ function getProcessor(origen: Origen) {
     // del Markdown, sin tocar el SVG y los estilos que generan después los plugins de confianza.
     .use(rehypeSanitize, sanitizeSchema)
     .use(rehypeSlug)
+    // Glosario: solo en el contenido del vault (no en las notas de los usuarios).
+    .use(rehypeGlosario, { terminos: () => (origen === "vault" ? (currentResolver.glosario ?? []) : []) })
     // MathJax antes que Shiki: consume los bloques `math` para que no se traten como código.
     // Contenido de usuario: motor MathJax propio y sin paquetes que definen macros (ver rehype-mathjax-svg.ts).
     .use(rehypeMathjax, { usuario: origen === "usuario" })

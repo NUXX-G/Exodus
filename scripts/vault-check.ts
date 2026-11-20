@@ -12,6 +12,7 @@ import { avisosDeEjercicio, avisosDeFuentes, problemasDeEjercicio } from "../src
 import { linkResolverFor, renderMarkdown } from "../src/lib/markdown";
 import { loadRecursos } from "../src/lib/recursos";
 import { loadObjetivos, problemasDeObjetivo } from "../src/lib/objetivos";
+import { patronTerminos, terminosEn } from "../src/lib/glosario";
 import { rellenar } from "../src/lib/tipos-ejercicio";
 import { loadVault, vaultRoot } from "../src/lib/vault";
 
@@ -60,6 +61,26 @@ async function main() {
     for (const m of p.cuerpo.matchAll(/\]\((?!https:\/\/|\/[a-z])([^)]*)\)/g)) problems.push(`${p.archivo}: enlace que no es https ni interno: ${m[1]}`);
   }
 
+  // Glosario: un término usado en un nodo que no tiene entre sus prerequisitos (directos o indirectos) el nodo que lo
+  // explica es un tecnicismo sin explicar antes (PEDAGOGIA.md: escalera). Aviso, no error.
+  const patron = patronTerminos(vault.glosario);
+  const ancestros = new Map<string, Set<string>>();
+  const deps = (id: string): Set<string> => {
+    if (ancestros.has(id)) return ancestros.get(id)!;
+    const s = new Set<string>();
+    ancestros.set(id, s);
+    for (const p of vault.nodes.get(id)?.prerequisites ?? []) {
+      s.add(p);
+      for (const q of deps(p)) s.add(q);
+    }
+    return s;
+  };
+  for (const node of vault.nodes.values()) {
+    if (node.kind === "examen") continue;
+    const antes = [...terminosEn(node.body, patron)].filter((x) => x.nodo !== node.id && !deps(node.id).has(x.nodo));
+    if (antes.length) avisos.push(`${node.file}: usa términos que se explican en nodos posteriores: ${antes.map((x) => `«${x.termino}» (${x.nodo})`).join(", ")}`);
+  }
+
   // Objetivos (vault/_objetivos): formato y nodos. Un nodo aún no escrito es un aviso (marca un hueco del temario).
   const objetivos = loadObjetivos(vaultRoot());
   problems.push(...objetivos.problemas);
@@ -68,7 +89,7 @@ async function main() {
   const withExercises = [...vault.nodes.values()].filter((n) => n.exercises.length > 0).length;
   const withChallenge = [...vault.nodes.values()].filter((n) => n.ctfFlag).length;
   console.log(`Vault: ${vaultRoot()}`);
-  console.log(`Nodos válidos: ${vault.nodes.size} (${withChallenge} con reto, ${withExercises} con ejercicios); páginas de recursos: ${recursos.paginas.length}; objetivos: ${objetivos.objetivos.length}`);
+  console.log(`Nodos válidos: ${vault.nodes.size} (${withChallenge} con reto, ${withExercises} con ejercicios); páginas de recursos: ${recursos.paginas.length}; objetivos: ${objetivos.objetivos.length}; términos del glosario: ${vault.glosario.length}`);
   console.log(`Avisos: ${avisos.length}${avisos.length && !listarAvisos ? " (npm run vault:check -- --avisos para verlos)" : ""}`);
   if (listarAvisos) for (const a of avisos) console.log(`  · ${a}`);
   for (const p of problems) console.error(`  ✗ ${p}`);

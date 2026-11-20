@@ -240,8 +240,8 @@ exercises:
     prompt: |
       Si ${{k}}$ kg de manzanas cuestan ${{c}}$ euros, ¿cuánto cuestan ${{m}}$ kg al mismo precio? Respuesta: euros.
     variants:
-      - values: {"k":5,"c":"7{,}50","m":3}
-        answers: ["sha256:4ce5467078f84e9e0425b2dee0bc2604c32650777525ace09b8473ed79d17a20","sha256:e22625ac91d9f3cce5d3d82a49de565715b0c0f79ea47f6af867d73607a4682c","sha256:09bb874ef35b2606f87fb4539326187af08dcfc56adbac15f377aff62758f534"]
+      - values: {"k":5,"c":"8{,}20","m":3}
+        answers: ["sha256:a113ef5b9bbc0d415bd38e2bc7b3fa473d7e86223fce1e2ea82464558b5854ba","sha256:2e22a953b6475766022d9549336eff9e4078b5d9e00ec47bff1ada938bc0127e","sha256:0dc27efbe5fe778dec78583c1cad3af39f7934535850cc06e1a741d0dd0eb7d2"]
       - values: {"k":4,"c":"6{,}20","m":6}
         answers: ["sha256:8060a42678fa7969d1dcbcb75d3ee5d21697c152ab6462ec9c63b5baf048587f","sha256:a8139c2dbde88f893209395c84fc2231ae69930b56bf434e56d79f53394e85e4","sha256:b694b116c65f23adbfd17f4d07a3fafe3d7a75587265b9169dc1cdf62e5abde0"]
       - values: {"k":3,"c":"4{,}35","m":7}
@@ -288,22 +288,35 @@ Al terminar sabrás:
 
 ## 2. Razón y proporción
 
-Una **razón** compara dos cantidades de la misma clase: $a : b = \dfrac{a}{b}$. Una **proporción** es la igualdad
-de dos razones:
+> [!practico]
+> Cuando dices «en esta clase hay 2 chicas por cada 3 chicos» estás comparando dos cantidades dividiendo una entre
+> otra: eso es una **razón**. Si en otra clase hay 8 chicas y 12 chicos, la mezcla es la misma (también 2 por cada 3):
+> las dos razones son iguales, y a esa igualdad se le llama **proporción**. Un truco para comprobarlo sin dividir:
+> multiplica «en cruz». $2 \cdot 12 = 24$ y $3 \cdot 8 = 24$: salen iguales, así que la mezcla es la misma.
 
-$$
-\frac{a}{b} = \frac{c}{d} \iff ad = bc .
-$$
-
-Es la propiedad que vimos para las fracciones equivalentes (ver [[mat-enteros-fracciones]]): el producto
-de los extremos ($a\,d$) iguala al de los medios ($b\,c$). La teoría de la proporción es antiquísima:
-Eudoxo la formalizó en el siglo IV a. C. (Euclides, *Elementos* V).
+> [!formal]
+> Una **razón** compara dos cantidades de la misma clase: $a : b = \dfrac{a}{b}$ (con $b \ne 0$). Una **proporción**
+> es la igualdad de dos razones:
+>
+> $$
+> \frac{a}{b} = \frac{c}{d} \iff ad = bc \qquad (b, d \ne 0).
+> $$
+>
+> Es la propiedad que vimos para las fracciones equivalentes (ver [[mat-enteros-fracciones]]): el producto
+> de los extremos ($a\,d$) iguala al de los medios ($b\,c$). La teoría de la proporción es antiquísima:
+> Eudoxo la formalizó en el siglo IV a. C. (Euclides, *Elementos* V).
 
 ### Magnitudes directamente proporcionales
 
-Dos magnitudes son **directamente proporcionales** si su cociente es constante: $y = kx$, con $k$ la
-**constante de proporcionalidad**. Si una se duplica, la otra se duplica; si se triplica, se triplica. En una
-gráfica es una recta que pasa por el origen.
+> [!practico]
+> En la frutería, si 1 kg de naranjas cuesta 2 €, 2 kg cuestan 4 € y 10 kg cuestan 20 €: el precio y los kilos crecen
+> «al mismo ritmo». Siempre que dividas el precio entre los kilos te sale lo mismo (2 € por kilo). Ese número fijo es
+> lo que hace que las dos cantidades sean **directamente proporcionales**.
+
+> [!formal]
+> Dos magnitudes son **directamente proporcionales** si su cociente es constante: $y = kx$, con $k \ne 0$ la
+> **constante de proporcionalidad**. Si una se multiplica por $\lambda$, la otra también. Su gráfica es una recta
+> que pasa por el origen, de pendiente $k$.
 
 **Ejemplo:** el precio de las manzanas: $3$ kg cuestan $4{,}50$ €, luego $k = 1{,}50$ €/kg y $5$ kg cuestan
 $5 \cdot 1{,}50 = 7{,}50$ €.

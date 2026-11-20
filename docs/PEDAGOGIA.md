@@ -56,6 +56,33 @@ Referencias de currículo consultadas:
 7. **Sin IA durante el estudio.** Tres niveles de pista por reto: concepto, herramienta o comando,
    documentación oficial. Nunca la solución.
 
+## Explicación en escalera (v2, obligatoria en todo nodo nuevo o reescrito)
+
+Exodus tiene que servir para aprender **desde cero**: cada idea se explica primero para que la entienda cualquiera y
+después se sube, peldaño a peldaño, hasta el nivel formal que necesita un matemático, un físico o un profesional de la
+rama. En el Markdown del nodo:
+
+```markdown
+## 3. Porcentajes
+
+> [!practico]
+> Intuición en lenguaje de la calle, con un ejemplo de la vida real y números sencillos. Sin tecnicismos: si hace
+> falta uno, se explica aquí mismo con palabras normales (o ya está en el glosario y en un prerequisito).
+
+> [!formal]
+> Definición precisa, notación, teorema y demostración (o derivación), con sus hipótesis. Referencia a la fuente.
+
+Texto común a los dos registros: ejemplos resueltos, errores típicos… (se ve siempre).
+```
+
+- El alumno elige en el nodo «Todo», «Práctico» o «Formal» (se recuerda para todos los nodos). «Todo» muestra la escalera
+  completa: práctico y después formal. Obsidian muestra los dos callouts tal cual.
+- **Ningún tecnicismo sin explicar antes.** Cada término técnico de un área está en su glosario
+  (`vault/_glosario/<área>.md`) con una explicación llana (sin LaTeX: es un aviso emergente) y otra formal, y el
+  nodo donde se explica. `vault:check -- --avisos` lista los nodos que usan un término que se explica en un nodo que
+  no es prerequisito suyo: o se explica allí mismo con palabras normales, o se añade el prerequisito.
+- Los ejemplos del registro práctico usan **otros números** que los ejercicios (`npm run vault:fugas`).
+
 ## Plantilla de nodo
 
 Todo nodo tiene, en este orden:

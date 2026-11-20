@@ -84,6 +84,15 @@ solo hay hashes con sal (id del ejercicio y de la variante); la solución nunca 
   (JavaScript leería `${{` como interpolación) y quita la barra al exportar.
 - Una respuesta que no se entiende («tres», una unidad incompatible) no cuenta como intento: el alumno ve el error.
 
+### Explicación en escalera y glosario
+
+- Registros: callouts `> [!practico]` y `> [!formal]` dentro de cada sección (ver `docs/PEDAGOGIA.md`, «Explicación en
+  escalera»). Sin título, salen como «En la práctica» y «Con rigor».
+- Glosario: `vault/_glosario/<área>.md` (sin `id`), con `glosario: <área>` y una lista `terminos` de
+  `{ termino, sinonimos?, excepto?, llano, formal?, nodo }`. `excepto` son expresiones hechas que empiezan por el
+  término pero no lo son («fuerza bruta»). Elige términos técnicos sin otro significado común: el resaltado es global
+  (primera aparición en cada nodo). Se ven en `/glosario`.
+
 ### Simulacros y retos (`kind: examen`)
 
 Un nodo `kind: examen` lleva un bloque `exam` y no tiene teoría propia (el cuerpo explica qué cubre y cómo prepararlo):

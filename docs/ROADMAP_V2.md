@@ -163,13 +163,13 @@ El usuario pide terminar **todas** las fases de forma autónoma, **sin preguntar
 
 ## FASE 8A — Explicación en escalera y glosario
 
-- [ ] Formato de nodo con secciones «práctico» (intuición, vida real, sin tecnicismos) y «formal» (definiciones,
+- [x] Formato de nodo con secciones «práctico» (intuición, vida real, sin tecnicismos) y «formal» (definiciones,
       teoremas, demostraciones), conmutables en la página del nodo; por defecto, el registro que elija el usuario.
-- [ ] Glosario por área en el vault (`vault/_glosario/<area>.md`): término, explicación llana, definición formal y
+- [x] Glosario por área en el vault (`vault/_glosario/<area>.md`): término, explicación llana, definición formal y
       nodo donde se introduce. Los términos del glosario se resaltan en el texto con su explicación al pasar/pulsar.
-- [ ] Página `/glosario` (leyenda) con búsqueda; `vault:check` avisa de términos usados antes de definirse.
-- [ ] Documentarlo en `docs/PEDAGOGIA.md` y `docs/AMPLIAR.md`.
-- [ ] Cierre de fase (checks, casillas, `STATUS.md`, commit `v2: fase 8A completada`).
+- [x] Página `/glosario` (leyenda) con búsqueda; `vault:check` avisa de términos usados antes de definirse.
+- [x] Documentarlo en `docs/PEDAGOGIA.md` y `docs/AMPLIAR.md`.
+- [x] Cierre de fase (checks, casillas, `STATUS.md`, commit `v2: fase 8A completada`).
 
 ## FASE 8B — Libreta con dibujo y calculadora
 

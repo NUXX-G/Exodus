@@ -234,6 +234,19 @@ async function main() {
   assert.match(await page.locator(".calor + .nota").innerText(), /40 min de estudio/);
   ok("tiempo de estudio: anotado en el nodo y sumado en el mapa de actividad");
 
+  // Escalera y glosario (fase 8A).
+  await page.goto(`${BASE}/nodo/mat-proporcionalidad-porcentajes`);
+  await page.locator('.registro-selector button:has-text("Práctico")').click();
+  assert.equal(await page.locator(".callout-formal").first().evaluate((el) => getComputedStyle(el).display), "none");
+  await page.reload();
+  assert.equal(await page.locator("article[data-registro]").getAttribute("data-registro"), "practico", "la preferencia se recuerda");
+  await page.locator('.registro-selector button:has-text("Todo")').click();
+  assert.notEqual(await page.locator(".callout-formal").first().evaluate((el) => getComputedStyle(el).display), "none");
+  assert.ok((await page.locator("a.termino").count()) > 0, "términos del glosario resaltados");
+  await page.goto(`${BASE}/glosario?q=porcentaje`);
+  await page.locator('.glosario-lista h3:has-text("porcentaje")').waitFor();
+  ok("escalera práctico/formal con preferencia guardada, términos resaltados y /glosario con búsqueda");
+
   assert.deepEqual(errores, [], "errores de JavaScript en la página");
   await browser.close();
   console.log(`\n${pasos.length} comprobaciones superadas`);

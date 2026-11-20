@@ -16,6 +16,8 @@ import ReportForm from "@/components/ReportForm";
 import DevelopmentForm from "@/components/DevelopmentForm";
 import CodeInfo from "@/components/CodeInfo";
 import ExamIntro from "@/components/ExamIntro";
+import RegistroSelector, { type Registro } from "@/components/RegistroSelector";
+import { cookies } from "next/headers";
 import StudyTimeForm from "@/components/StudyTimeForm";
 import { undoDiagnosisAction } from "@/app/diagnostico/actions";
 import { devInitial } from "@/lib/desarrollo-inicial";
@@ -62,6 +64,10 @@ export default async function PaginaNodo({ params }: Props) {
 
   const completed = getCompleted(user.id);
   const diagnosed = getDiagnosed(user.id);
+  // Explicación en escalera: registro elegido por el usuario (cookie) y si el nodo tiene bloques práctico/formal.
+  const reg = (await cookies()).get("exodus_registro")?.value;
+  const registro: Registro = reg === "practico" || reg === "formal" ? reg : "todo";
+  const tieneEscalera = /^>\s*\[!(practico|formal)\]/im.test(node.body);
   const state = stateOf(node, completed, diagnosed);
   const revealed = getRevealedLevels(user.id, node.id);
   const area = areaOf(vault.areas, node.area);
@@ -134,7 +140,8 @@ export default async function PaginaNodo({ params }: Props) {
         )}
         {/* HTML generado en el servidor a partir del vault; el HTML crudo del Markdown se descarta. */}
         {definiciones && <div className="formulas-definiciones" dangerouslySetInnerHTML={{ __html: definiciones }} />}
-        <article className="prosa" dangerouslySetInnerHTML={{ __html: html }} />
+        {tieneEscalera && <RegistroSelector inicial={registro} />}
+        <article className="prosa" data-registro={registro} dangerouslySetInnerHTML={{ __html: html }} />
 
         {ejercicios.length > 0 && (
           <section className="ejercicios" aria-label="Ejercicios">

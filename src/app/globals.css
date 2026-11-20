@@ -1841,7 +1841,8 @@ details.callout:not([open]) > summary.callout-titulo {
   margin-bottom: 16px;
 }
 
-.filtro-area select {
+.filtro-area select,
+.filtro-area input[type="search"] {
   padding: 6px 8px;
   background: var(--tinta-honda);
   color: var(--tiza);
@@ -2395,4 +2396,95 @@ details.callout:not([open]) > summary.callout-titulo {
 
 .titulo-objetivo {
   font-weight: 600;
+}
+
+/* ───────── v2 fase 8A: explicación en escalera y glosario ───────── */
+
+.callout-practico {
+  border-left-color: var(--menta) !important;
+}
+
+.callout-formal {
+  border-left-color: #8ec5ff !important;
+}
+
+[data-registro="practico"] .callout-formal,
+[data-registro="formal"] .callout-practico {
+  display: none;
+}
+
+.registro-selector {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+
+.registro-selector button {
+  padding: 4px 12px;
+  background: none;
+  color: var(--tiza-tenue);
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.registro-selector button[aria-checked="true"] {
+  color: var(--tiza);
+  border-color: var(--ambar);
+  background: rgba(245, 185, 66, 0.12);
+}
+
+a.termino {
+  position: relative;
+  color: inherit;
+  text-decoration: underline dotted var(--menta);
+  text-underline-offset: 3px;
+}
+
+a.termino:hover::after,
+a.termino:focus-visible::after {
+  content: attr(data-def);
+  position: absolute;
+  left: 0;
+  top: 1.6em;
+  z-index: 20;
+  width: min(320px, 80vw);
+  padding: 8px 10px;
+  background: var(--tinta-honda);
+  color: var(--tiza);
+  border: 1px solid var(--menta);
+  border-radius: var(--radio);
+  font-family: var(--fuente-ui), sans-serif;
+  font-size: 0.85rem;
+  font-style: normal;
+  line-height: 1.4;
+  white-space: normal;
+  pointer-events: none;
+}
+
+.glosario-lista {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.glosario-lista > li {
+  padding: 10px 14px;
+  border: 1px solid var(--trazo);
+  border-radius: var(--radio);
+  scroll-margin-top: 80px;
+}
+
+.glosario-lista > li:target {
+  border-color: var(--menta);
+}
+
+.glosario-lista h3 {
+  margin: 0 0 4px;
 }

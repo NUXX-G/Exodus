@@ -76,7 +76,7 @@ function makeUser(): number {
 
 test("estados: disponible sin prerrequisitos, bloqueado hasta completarlos, completado tras la flag", () => {
   const a = node("a"), b = node("b", { prerequisites: ["a"] });
-  const vault: Vault = { nodes: new Map([["a", a], ["b", b]]), areas: mergeAreas(undefined).areas, issues: [] };
+  const vault: Vault = { nodes: new Map([["a", a], ["b", b]]), areas: mergeAreas(undefined).areas, glosario: [], issues: [] };
   const st = computeStates(vault, new Set());
   assert.equal(st.get("a"), "available");
   assert.equal(st.get("b"), "locked");
