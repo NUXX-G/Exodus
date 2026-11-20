@@ -104,8 +104,8 @@ exercises:
         answers: ["sha256:44c8031cb036a7350d8b9b8603af662a4b9cdbd2f96e8d5de5af435c9c35da69"]
       - values: {"a":120,"b":84}
         answers: ["sha256:fd0f7e53c5b02b688a57ee37f3d52065cb168a7b9fd5a3abd93d37e1559fbd30"]
-      - values: {"a":66,"b":99}
-        answers: ["sha256:a4e00d7e6aa82111575438c5e5d3e63269d4c475c718b2389f6d02932c47f8a6"]
+      - values: {"a":56,"b":77}
+        answers: ["sha256:683d098205b11550f2d71016c82c4377a96c9f808e132f83f15ba9bd058c7b20"]
   - id: autobuses
     tier: 2
     prompt: |

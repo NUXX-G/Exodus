@@ -17,13 +17,17 @@ const buscar = (d, id) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e)
 const escapa = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 if (process.argv[2] === "--uno") {
-  const spec = process.argv[3], id = path.basename(spec).replace(/\.spec\.mjs$/, "");
+  const id = path.basename(process.argv[3]).replace(/\.spec\.mjs$/, "");
+  // La v2 (variantes y banco de repaso) manda si existe: se revisan las respuestas de todas las variantes.
+  const v2 = path.join(path.dirname(process.argv[3]), id + ".v2.mjs");
+  const spec = fs.existsSync(v2) ? v2 : process.argv[3];
   const f = buscar(vault, id)[0];
   if (!f) { console.log(`${id}: sin nodo`); process.exit(0); }
   const txt = fs.readFileSync(f, "utf8"), cuerpo = txt.slice(txt.indexOf("\n---", 4) + 4);
   const m = await import(pathToFileURL(spec).href), fugas = [];
-  for (const e of m.default) for (const a of e.answers) {
-    if (a.length < 3 || /^(si|sí|no)$/i.test(a)) continue;
+  for (const e of m.default) for (const a of (e.answers ?? []).concat((e.variants ?? []).flatMap((v) => v.answers))) {
+    // Las opciones múltiples se responden con una letra: no hay nada que filtrar en el texto.
+    if (e.type === "opcion" || a.length < 3 || /^(si|sí|no)$/i.test(a)) continue;
     const variantes = new Set([a, a.replace(/\./g, ","), a.replace(/;/g, " "), a.replace(/;/g, ", ")]);
     if ([...variantes].some((v) => new RegExp(`(^|[^0-9A-Za-z_.,])${escapa(v)}($|[^0-9A-Za-z_])`).test(cuerpo))) { fugas.push(`${e.id} = ${a}`); }
   }
