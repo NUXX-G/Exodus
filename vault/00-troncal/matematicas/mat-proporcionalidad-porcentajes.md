@@ -323,6 +323,11 @@ $5 \cdot 1{,}50 = 7{,}50$ €.
 
 ### Magnitudes inversamente proporcionales
 
+> [!practico]
+> Cuantos más amigos pagan una pizza de $24$ €, **menos** paga cada uno: $2$ amigos, $12$ €; $3$ amigos, $8$ €; $4$ amigos,
+> $6$ €. Lo que no cambia es el total: amigos $\times$ euros por cabeza $= 24$ siempre.
+
+
 Son **inversamente proporcionales** si su **producto** es constante: $xy = k$. Si una se duplica, la otra se
 reduce a la mitad. Ejemplo: obreros y días para una misma obra, con el mismo ritmo.
 
@@ -355,6 +360,12 @@ Si el reparto es **inversamente** proporcional a $b_i$ se usa $\frac{1}{b_i}$ co
 
 ## 3. Porcentajes
 
+> [!practico]
+> «Por ciento» significa «de cada cien». Un $20\,\%$ de descuento es quitar $20$ € de cada $100$ €. La idea que ahorra
+> más errores: **subir un $10\,\%$ es multiplicar por $1{,}10$** y **bajar un $10\,\%$ es multiplicar por $0{,}90$**. Con
+> eso, un descuento sobre un descuento es multiplicar dos veces, y quitar el IVA es dividir.
+
+
 El **tanto por ciento** es una fracción de denominador $100$: $p\,\% = \dfrac{p}{100}$. Por tanto,
 «el $18\,\%$ de $250$» es $\frac{18}{100}\cdot 250 = 45$, y $\frac{3}{5} = \frac{60}{100} = 60\,\%$.
 
@@ -383,22 +394,28 @@ $1{,}21\,P = 121$, luego $P = 100$ €. Error típico: restar el $21\,\%$ de $12
 
 ### Porcentajes encadenados: se multiplican, no se suman
 
+> [!practico]
+> Una tienda sube un abrigo de $100$ € un $50\,\%$ ($150$ €) y luego lo «rebaja» un $50\,\%$: cuesta $75$ €, no $100$. La
+> rebaja se aplica sobre un precio **mayor**, así que quita más euros de los que añadió la subida.
+
+
 Una subida del $p\,\%$ seguida de otra del $q\,\%$ multiplica por $\bigl(1 + \frac{p}{100}\bigr)\bigl(1 + \frac{q}{100}\bigr)$.
-Desarrollando:
-
-$$
-\Bigl(1 + \tfrac{p}{100}\Bigr)\Bigl(1 + \tfrac{q}{100}\Bigr) = 1 + \frac{p + q}{100} + \frac{pq}{10\,000} ,
-$$
-
-que **no** es $1 + \frac{p+q}{100}$ salvo que $pq = 0$: el término $\frac{pq}{10\,000}$ es el «efecto sobre lo ya
-subido». **Consecuencias:**
-
-- Subir un $10\,\%$ y luego un $20\,\%$ es subir un $32\,\%$, no un $30\,\%$.
-- **Subir y bajar el mismo porcentaje no devuelve al inicio.** $(1 + r)(1 - r) = 1 - r^2 < 1$: tras subir un
-  $20\,\%$ y bajar un $20\,\%$ se acaba un $4\,\%$ por debajo. Perder el $50\,\%$ exige ganar el $100\,\%$ para
-  recuperarse.
-- Dos descuentos del $20\,\%$ y del $30\,\%$ equivalen a $1 - 0{,}8\cdot 0{,}7 = 0{,}44$: un descuento del
-  $44\,\%$, no del $50\,\%$.
+> [!formal] Con rigor: por qué no se suman
+> Desarrollando:
+>
+> $$
+> \Bigl(1 + \tfrac{p}{100}\Bigr)\Bigl(1 + \tfrac{q}{100}\Bigr) = 1 + \frac{p + q}{100} + \frac{pq}{10\,000} ,
+> $$
+>
+> que **no** es $1 + \frac{p+q}{100}$ salvo que $pq = 0$: el término $\frac{pq}{10\,000}$ es el «efecto sobre lo ya
+> subido». **Consecuencias:**
+>
+> - Subir un $10\,\%$ y luego un $20\,\%$ es subir un $32\,\%$, no un $30\,\%$.
+> - **Subir y bajar el mismo porcentaje no devuelve al inicio.** $(1 + r)(1 - r) = 1 - r^2 < 1$: tras subir un
+>   $20\,\%$ y bajar un $20\,\%$ se acaba un $4\,\%$ por debajo. Perder el $50\,\%$ exige ganar el $100\,\%$ para
+>   recuperarse.
+> - Dos descuentos del $20\,\%$ y del $30\,\%$ equivalen a $1 - 0{,}8\cdot 0{,}7 = 0{,}44$: un descuento del
+>   $44\,\%$, no del $50\,\%$.
 
 ### Puntos porcentuales frente a porcentaje
 
@@ -412,6 +429,11 @@ mezclar $2$ L al $10\,\%$ con $3$ L al $20\,\%$ queda $\frac{0{,}2 + 0{,}6}{5} =
 porcentajes sin pesar: «$15\,\%$» no es la media de $10\,\%$ y $20\,\%$ si los volúmenes difieren.
 
 ## 4. La velocidad media: un caso donde el promedio engaña
+
+> [!practico]
+> Vas al pueblo de tus abuelos ($60$ km) a $60$ km/h y vuelves a $30$ km/h por un atasco. Tardas $1$ h en ir y $2$ h en
+> volver: $120$ km en $3$ h son $40$ km/h de media, no $45$. El tramo lento dura más, y por eso «pesa» más en la media.
+
 
 Si se recorre el mismo camino de ida a $v_1$ y de vuelta a $v_2$, la velocidad media **no** es
 $\frac{v_1 + v_2}{2}$. Con distancia $d$ cada tramo, la distancia total es $2d$ y el tiempo total
@@ -427,6 +449,12 @@ camino.**
 
 ## 5. Interés simple e interés compuesto
 
+> [!practico]
+> Una bola de nieve que rueda cuesta abajo: cada vuelta coge nieve **proporcional a lo grande que ya es**. El interés
+> compuesto es eso: el banco te paga intereses también por los intereses de años anteriores. Al principio apenas se
+> nota; a $30$ años, la diferencia es enorme. Funciona igual al revés con una deuda que no pagas.
+
+
 El **interés** es el precio del dinero a lo largo del tiempo. Con un capital inicial $C$ y una tasa $r$ por
 periodo (por ejemplo $r = 0{,}04$ por año):
 
@@ -434,8 +462,9 @@ periodo (por ejemplo $r = 0{,}04$ por año):
 - **Compuesto**: los intereses se suman al capital y generan intereses, $C_n = C(1 + r)^n$. Crece
   **exponencialmente**.
 
-*Justificación del compuesto.* Cada periodo multiplica el capital por $(1 + r)$; tras $n$ periodos se han
-multiplicado $n$ factores iguales. $\blacksquare$
+> [!formal] Con rigor: de dónde sale la fórmula
+> *Justificación del compuesto.* Cada periodo multiplica el capital por $(1 + r)$; tras $n$ periodos se han
+> multiplicado $n$ factores iguales. $\blacksquare$
 
 **Ejemplo resuelto:** $2000$ € al $3\,\%$ anual durante $5$ años. Simple: $2000(1 + 5\cdot 0{,}03) = 2300$ €.
 Compuesto: $2000\cdot 1{,}03^5 = 2000\cdot 1{,}159274\ldots = 2318{,}54$ €. La diferencia ($18{,}54$ €) parece
@@ -445,8 +474,8 @@ pequeña, pero a $30$ años el compuesto da $2000\cdot 1{,}03^{30} \approx 4854$
 $(1{,}01)^{12} - 1 = 12{,}68\,\%$. En general, si se capitaliza $m$ veces al año con tasa $i$ por periodo, el
 interés anual efectivo es $(1 + i)^m - 1$. Por eso se compara siempre con la **tasa anual equivalente**.
 
-**Tiempo de duplicación.** Se busca $n$ con $(1 + r)^n = 2$. Con logaritmos (que se estudiarán más adelante),
-$n = \ln 2 / \ln(1 + r)$. Como $\ln(1 + r) \approx r$ para $r$ pequeño y $\ln 2 \approx 0{,}693$, resulta la
+**Tiempo de duplicación.** Se busca $n$ con $(1 + r)^n = 2$. Con logaritmos (que se estudian a fondo en
+[[mat-algebra-secundaria]]), $n = \ln 2 / \ln(1 + r)$. Como $\ln(1 + r) \approx r$ para $r$ pequeño y $\ln 2 \approx 0{,}693$, resulta la
 **regla del $72$** (aproximada): $n \approx \dfrac{72}{r\,[\%]}$. Al $6\,\%$, unos $12$ años (el valor exacto es
 $11{,}9$). Es una estimación mental, no una fórmula exacta.
 
@@ -470,6 +499,12 @@ pero equivale a $1{,}02^{12} - 1 = 26{,}8\,\%$ al año, y los intereses se aplic
 paga, **crece de forma exponencial**. Lee siempre la TAE.
 
 ## 6. Escalas, unidades y cómo cambian las áreas
+
+> [!practico]
+> Si haces una foto el doble de ancha y el doble de alta, necesitas **cuatro** veces más papel, no dos. Y una caja el
+> doble de larga, ancha y alta cabe **ocho** veces más. Por eso un gigante de cuentos de $10$ veces nuestra altura pesaría
+> $1000$ veces más, y sus huesos (cuya sección solo crece $100$ veces) no lo aguantarían.
+
 
 Una escala $1 : k$ significa que $1$ cm del plano son $k$ cm de la realidad. En un mapa a $1 : 25\,000$,
 $7$ cm son $175\,000$ cm $= 1{,}75$ km. **Lo que casi todo el mundo olvida:** si todas las **longitudes** se
@@ -504,5 +539,5 @@ son $10$ m/s.
 
 ## Siguiente
 
-Con los números dominados, el nodo de álgebra básica sustituye las cantidades concretas por letras y estudia las
-ecuaciones, y el de funciones básicas representa las relaciones de proporcionalidad y otras en gráficas.
+Con los números dominados, [[mat-algebra-basica|el nodo de álgebra básica]] sustituye las cantidades concretas por
+letras, y [[mat-funciones-basicas|el nodo de gráficas]] dibuja la proporcionalidad y otras relaciones en gráficas.

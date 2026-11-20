@@ -29,6 +29,7 @@ Leyenda: ✔ cubierto · ◐ parcial (qué falta) · ✗ hueco (nodo nuevo en el
 | 1.º ESO | 2 Números naturales. Divisibilidad | `mat-numeros-naturales` | ✔ |
 | `mat-enteros-fracciones` | Bloque práctico en §2-§5 (ascensor con sótanos, deudas, vídeo al revés, pizza, botellas); teoremas de decimales en bloques formales; sin «porcentaje» antes de su nodo; 10 ejercicios con variantes (fracciones exactas contrastadas en coma flotante / división larga); 6 de repaso. vault:check ya no cuenta ids de wikilinks como términos | 2026-11-20 |
 | `mat-algebra-basica` | Bloque práctico en §2, §3, §6 y §7 (letras como cajas, hoja de cálculo, cuadrado partido, entradas de cine, presupuesto); «pendiente» sustituida por la condición $a_1b_2 - a_2b_1 
+| `mat-proporcionalidad-porcentajes` | (Ya tenía §2 en escalera, variantes y banco.) Bloque práctico en inversa, §3, encadenados, §4-§6 (pizza a escote, abrigo que sube y baja, viaje al pueblo, bola de nieve, foto y gigante); demostraciones en bloques formales; «velocidad media» explicada aquí (glosario `tambien`) | 2026-11-20 |
 e 0$ (la pendiente llega en funciones); 12 ejercicios con variantes (expresiones: tipo `expresion` con forma expandida); 6 de repaso | 2026-11-20 |
 | 1.º ESO | 3 Potencias y raíces | `mat-numeros-naturales` §5, `mat-algebra-secundaria` §4 | ◐ raíz cuadrada (cálculo y estimación) en ESO |
 | 1.º ESO | 4 Números enteros | `mat-enteros-fracciones` | ✔ |
