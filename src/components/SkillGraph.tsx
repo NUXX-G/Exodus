@@ -24,12 +24,13 @@ export interface GraphNode {
   /** Posición del área en el orden de presentación (desempata columnas). */
   areaOrder: number;
   level: number;
-  state: "completed" | "available" | "locked";
+  state: "completed" | "diagnosed" | "available" | "locked";
   hasChallenge: boolean;
   prerequisites: string[];
 }
 
 const ESTADO: Record<GraphNode["state"], string> = {
+  diagnosed: "Dominado por diagnóstico",
   completed: "Completado",
   available: "Disponible",
   locked: "Bloqueado",
@@ -107,7 +108,7 @@ function layout(nodes: GraphNode[]): { flowNodes: FlowNode[]; edges: Edge[] } {
     for (const pre of n.prerequisites) {
       const from = byId.get(pre);
       if (!from) continue;
-      const done = from.state === "completed";
+      const done = from.state === "completed" || from.state === "diagnosed";
       edges.push({
         id: `${pre}>${n.id}`,
         source: pre,

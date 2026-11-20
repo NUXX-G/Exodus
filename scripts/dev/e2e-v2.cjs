@@ -177,6 +177,22 @@ async function main() {
   await liC.locator('.mensaje:has-text("incorrecta")').waitFor();
   ok(`código: script descargado (${script.length} B), ejecutado en local y código ${cod} rechazado por ser de un programa incorrecto`);
 
+  // Prueba de nivel (fase 5): con «No lo sé» en todo, la frontera es el primer nodo y no se marca nada.
+  await page.goto(`${BASE}/diagnostico`);
+  await page.locator('.lista-diagnostico li:has-text("Física") button:has-text("Hacer la prueba")').click();
+  await page.waitForURL(/\/diagnostico\/\d+/);
+  let preguntas = 0;
+  while ((await page.locator('button:has-text("No lo sé")').count()) > 0 && preguntas < 40) {
+    const antes = await page.locator(".cifras dd").first().innerText();
+    await page.locator('button:has-text("No lo sé")').click();
+    await page.waitForFunction((a) => !document.querySelector('button[name="dontKnow"]') || document.querySelector(".cifras dd")?.textContent !== a, antes);
+    preguntas++;
+  }
+  await page.locator('.consejo:has-text("Empieza por")').waitFor();
+  const marcas = db.prepare("select count(*) n from diagnostic_marks where user_id=?").get(uid).n;
+  assert.equal(marcas, 0);
+  ok(`prueba de nivel: ${preguntas} preguntas, resultado con nodo de inicio y sin marcas (todo «no lo sé»)`);
+
   assert.deepEqual(errores, [], "errores de JavaScript en la página");
   await browser.close();
   console.log(`\n${pasos.length} comprobaciones superadas`);

@@ -81,6 +81,13 @@ solo hay hashes con sal (id del ejercicio y de la variante); la solución nunca 
   (JavaScript leería `${{` como interpolación) y quita la barra al exportar.
 - Una respuesta que no se entiende («tres», una unidad incompatible) no cuenta como intento: el alumno ve el error.
 
+### Prueba de nivel
+
+La prueba de nivel (`src/lib/diagnostico.ts`) sondea los nodos de un área en orden de estudio con preguntas de
+corrección automática (`texto`, `numero`, `expresion`, `matriz`, `opcion`), primero del banco de repaso. Un nodo sin
+esas preguntas (solo desarrollo o código) se salta. Para que el diagnóstico sea fino, cada nodo debería tener al
+menos 2-3 preguntas de repaso cortas que comprueben lo esencial.
+
 ### Proyectos y laboratorios
 
 Un nodo puede declarar `kind: proyecto` o `kind: laboratorio` en el frontmatter (sin `kind` es teoría). Aparecen en
@@ -134,6 +141,7 @@ sin declarar. Crea también la carpeta `vault/08-quimica/` para mantener el orde
 | Respuesta corregida (mismo `id` de ejercicio) | Lo resuelto se conserva. |
 | Cambiar el `type` o añadir `variants` (mismo `id`) | Lo resuelto se conserva; el alumno ve la variante que le toca. |
 | Pregunta nueva con `review: true` | No cambia el dominio; empieza a salir en el repaso. |
+| Prueba de nivel (`/diagnostico`) | Marca nodos «dominado por diagnóstico» en `diagnostic_marks`: desbloquean sus dependientes pero no son «completado»; el alumno las quita cuando quiere. Repetir la prueba de un área sustituye sus marcas. |
 | Nodo borrado | Su historial se conserva (el `node_id` es texto libre) y reaparece si el nodo vuelve con el mismo `id`. |
 | **`id` cambiado** | El progreso queda asociado al `id` viejo. **No cambies ids**: cambia `title` o la carpeta, que sí son libres. |
 

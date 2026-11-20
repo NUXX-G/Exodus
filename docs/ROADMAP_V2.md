@@ -129,10 +129,10 @@ El usuario pide terminar **todas** las fases de forma autónoma, **sin preguntar
 
 ## FASE 5 — Prueba de nivel
 
-- [ ] Diagnóstico adaptativo y repetible, por área.
-- [ ] Marca nodos como «dominado por diagnóstico» (distinto de completado y reversible) y propone dónde empezar en
+- [x] Diagnóstico adaptativo y repetible, por área.
+- [x] Marca nodos como «dominado por diagnóstico» (distinto de completado y reversible) y propone dónde empezar en
       cada área.
-- [ ] Cierre de fase (checks, casillas, `STATUS.md`, commit `v2: fase 5 completada`).
+- [x] Cierre de fase (checks, casillas, `STATUS.md`, commit `v2: fase 5 completada`).
 
 ## FASE 6 — Simulacros y retos
 

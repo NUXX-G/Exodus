@@ -13,11 +13,15 @@ import type { ActivityKind } from "@db/schema";
 const { nodeProgress, flagSubmissions, hintReveals, activityLog, exerciseAttempts, exerciseSolved, reviews, reports, developmentSubmissions } = schema;
 
 /**
- * completed  — flag validada
- * available  — todos los prerequisitos completados (o no tiene)
+ * completed  — flag validada o dominio alcanzado
+ * diagnosed  — «dominado por diagnóstico» (prueba de nivel): desbloquea lo que depende de él, pero no cuenta como
+ *              completado; se puede estudiar y completar igual
+ * available  — todos los prerequisitos completados o diagnosticados (o no tiene)
  * locked     — falta algún prerequisito. Se puede leer, pero no validar su flag.
  */
-export type NodeState = "completed" | "available" | "locked";
+export type NodeState = "completed" | "diagnosed" | "available" | "locked";
+
+const NINGUNO: ReadonlySet<string> = new Set();
 
 export function dayKey(d = new Date()): string {
   const p = (n: number) => String(n).padStart(2, "0");
@@ -37,15 +41,28 @@ export function getCompleted(userId: number): Set<string> {
   return new Set(rows.map((r) => r.nodeId));
 }
 
-export function stateOf(node: VaultNode, completed: Set<string>): NodeState {
+export function stateOf(node: VaultNode, completed: ReadonlySet<string>, diagnosed: ReadonlySet<string> = NINGUNO): NodeState {
   if (completed.has(node.id)) return "completed";
-  return node.prerequisites.every((p) => completed.has(p)) ? "available" : "locked";
+  if (diagnosed.has(node.id)) return "diagnosed";
+  return node.prerequisites.every((p) => completed.has(p) || diagnosed.has(p)) ? "available" : "locked";
 }
 
-export function computeStates(vault: Vault, completed: Set<string>): Map<string, NodeState> {
+export function computeStates(vault: Vault, completed: ReadonlySet<string>, diagnosed: ReadonlySet<string> = NINGUNO): Map<string, NodeState> {
   const out = new Map<string, NodeState>();
-  for (const node of vault.nodes.values()) out.set(node.id, stateOf(node, completed));
+  for (const node of vault.nodes.values()) out.set(node.id, stateOf(node, completed, diagnosed));
   return out;
+}
+
+/** Nodos «dominados por diagnóstico» del usuario (prueba de nivel). */
+export function getDiagnosed(userId: number): Set<string> {
+  return new Set(
+    getDb()
+      .select({ nodeId: schema.diagnosticMarks.nodeId })
+      .from(schema.diagnosticMarks)
+      .where(eq(schema.diagnosticMarks.userId, userId))
+      .all()
+      .map((r) => r.nodeId),
+  );
 }
 
 /** Marca el nodo como abierto. La actividad se registra una vez por nodo y día. */
@@ -106,7 +123,7 @@ export function submitFlag(userId: number, node: VaultNode, submission: string):
 
   const completed = getCompleted(userId);
   if (completed.has(node.id)) return { ok: true };
-  if (stateOf(node, completed) === "locked") return { ok: false, reason: "bloqueado" };
+  if (stateOf(node, completed, getDiagnosed(userId)) === "locked") return { ok: false, reason: "bloqueado" };
   // Con ejercicios, la flag integradora solo se acepta tras dominar el nodo.
   if (node.exercises.length > 0 && getSolvedExercises(userId, node.id).length < masteryNeeded(node.exercises.length)) {
     return { ok: false, reason: "dominio" };
@@ -271,6 +288,11 @@ export function promptOf(ex: VaultExercise, variant: number | null): string {
   return variant === null || !ex.variants?.[variant] ? ex.prompt : rellenar(ex.prompt, ex.variants[variant].values);
 }
 
+/** Corrige una respuesta (sin guardar nada). */
+export function gradeExercise(ex: VaultExercise, variant: number | null, submission: string) {
+  return grade(ex, variant, submission);
+}
+
 function grade(ex: VaultExercise, variant: number | null, submission: string) {
   const aceptadas = variant === null ? ex.answers : ex.variants![variant].answers;
   return corregir(defDe(ex), aceptadas, submission, salDe(ex.id, variant));
@@ -289,7 +311,7 @@ export function submitExercise(userId: number, node: VaultNode, exerciseId: stri
   const ex = node.exercises.find((e) => e.id === exerciseId);
   if (!ex) return { ok: false, reason: "sin-ejercicio" };
   const completed = getCompleted(userId);
-  if (stateOf(node, completed) === "locked") return { ok: false, reason: "bloqueado" };
+  if (stateOf(node, completed, getDiagnosed(userId)) === "locked") return { ok: false, reason: "bloqueado" };
   if (recentExerciseFails(userId, node.id) >= MAX_EXERCISE_FAILS_PER_MINUTE) return { ok: false, reason: "espera" };
 
   const variant = currentVariant(userId, node.id, ex);
@@ -702,7 +724,7 @@ export function submitDevelopment(
   const answer = input.onPaper ? "" : input.answer.trim();
   if (!input.onPaper && !answer) return { ok: false, reason: "vacia" };
   if (answer.length > MAX_DEV_ANSWER) return { ok: false, reason: "larga" };
-  if (mode === "estudio" && stateOf(node, getCompleted(userId)) === "locked") return { ok: false, reason: "bloqueado" };
+  if (mode === "estudio" && stateOf(node, getCompleted(userId), getDiagnosed(userId)) === "locked") return { ok: false, reason: "bloqueado" };
   if (mode === "repaso") {
     const scheduled = node.exercises.find((e) => e.id === input.reviewOf);
     const row = scheduled && getDb().select().from(reviews).where(and(eq(reviews.userId, userId), eq(reviews.nodeId, node.id), eq(reviews.exerciseId, scheduled.id))).get();

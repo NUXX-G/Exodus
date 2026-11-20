@@ -2147,3 +2147,55 @@ details.callout:not([open]) > summary.callout-titulo {
   font-size: 0.85em;
   word-break: break-all;
 }
+
+/* ───────── v2 fase 5: dominado por diagnóstico ───────── */
+
+.nodo[data-estado="diagnosed"] {
+  border-color: var(--menta);
+  border-style: dashed;
+}
+
+.nodo[data-estado="diagnosed"] .nodo-estado {
+  color: var(--menta);
+}
+
+.estado-nodo[data-estado="diagnosed"] {
+  border-color: var(--menta);
+  border-style: dashed;
+}
+
+.temario-lista .estado[data-estado="diagnosed"] {
+  color: var(--menta);
+  font-style: italic;
+}
+
+.lista-diagnostico {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lista-diagnostico > li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 12px 16px;
+  border: 1px solid var(--trazo);
+  border-left: 4px solid var(--color-area, var(--trazo-fuerte));
+  border-radius: var(--radio);
+}
+
+.lista-diagnostico h2 {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+}
+
+.fila-marca {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}

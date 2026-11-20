@@ -9,12 +9,13 @@ import { areaOf } from "@/lib/areas";
 import { getSessionUser, requireUser } from "@/lib/auth";
 import { linkResolverFor, renderMarkdown } from "@/lib/markdown";
 import { compactarFormulas } from "@/lib/svg-compacto";
-import { currentVariant, getCompleted, getRevealedLevels, getSolvedExercises, masteryOf, promptOf, recordOpen, stateOf } from "@/lib/progress";
+import { currentVariant, getCompleted, getDiagnosed, getRevealedLevels, getSolvedExercises, masteryOf, promptOf, recordOpen, stateOf } from "@/lib/progress";
 import { answerSpec } from "@/lib/answer-spec";
 import { ETIQUETA_TIPO } from "@/lib/tipos-ejercicio";
 import ReportForm from "@/components/ReportForm";
 import DevelopmentForm from "@/components/DevelopmentForm";
 import CodeInfo from "@/components/CodeInfo";
+import { undoDiagnosisAction } from "@/app/diagnostico/actions";
 import { devInitial } from "@/lib/desarrollo-inicial";
 import { loadRecursos } from "@/lib/recursos";
 import { studyOrder } from "@/lib/study";
@@ -40,6 +41,10 @@ const TIPO_PISTA = ["Concepto", "Herramienta o comando", "Documentación oficial
 
 const ESTADO = {
   completed: { titulo: "Completado", detalle: "Dominio alcanzado o flag validada." },
+  diagnosed: {
+    titulo: "Dominado por diagnóstico",
+    detalle: "La prueba de nivel indica que ya lo sabes: desbloquea lo que sigue. Puedes estudiarlo y completarlo igual.",
+  },
   available: { titulo: "Disponible", detalle: "Prerequisitos cumplidos." },
   locked: { titulo: "Bloqueado", detalle: "Puedes leerlo; la flag se valida al completar los prerequisitos." },
 } as const;
@@ -54,7 +59,8 @@ export default async function PaginaNodo({ params }: Props) {
   recordOpen(user.id, node.id);
 
   const completed = getCompleted(user.id);
-  const state = stateOf(node, completed);
+  const diagnosed = getDiagnosed(user.id);
+  const state = stateOf(node, completed, diagnosed);
   const revealed = getRevealedLevels(user.id, node.id);
   const area = areaOf(vault.areas, node.area);
   const nextHint = revealed.length + 1;
@@ -191,6 +197,14 @@ export default async function PaginaNodo({ params }: Props) {
         <div className="estado-nodo" data-estado={state}>
           <strong>{ESTADO[state].titulo}</strong>
           <span>{ESTADO[state].detalle}</span>
+          {state === "diagnosed" && (
+            <form action={undoDiagnosisAction}>
+              <input type="hidden" name="nodeId" value={node.id} />
+              <button type="submit" className="boton-reporte">
+                No lo domino: quitar la marca
+              </button>
+            </form>
+          )}
         </div>
 
         {node.prerequisites.length > 0 && (
@@ -252,7 +266,7 @@ export default async function PaginaNodo({ params }: Props) {
             <h2>Abre paso a</h2>
             <ul className="lista">
               {siguientes.map((n) => {
-                const st = stateOf(n, completed);
+                const st = stateOf(n, completed, diagnosed);
                 return (
                   <li key={n.id}>
                     <Link href={`/nodo/${n.id}`} prefetch={false}>

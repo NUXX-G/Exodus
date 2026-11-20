@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { areaOf } from "@/lib/areas";
 import { requireUser } from "@/lib/auth";
-import { computeStates, getCompleted } from "@/lib/progress";
+import { computeStates, getCompleted, getDiagnosed } from "@/lib/progress";
 import { estimateMinutes, formatMinutes, studyOrder } from "@/lib/study";
 import { KIND_LABEL, loadVault, NODE_KINDS } from "@/lib/vault";
 
@@ -11,6 +11,7 @@ export const metadata: Metadata = { title: "Temario" };
 
 const ESTADOS = {
   completed: "Completado",
+  diagnosed: "Dominado (diagnóstico)",
   available: "Disponible",
   locked: "Bloqueado",
 } as const;
@@ -18,6 +19,7 @@ const ESTADOS = {
 /** Lo que dice el botón de cada fila: invita a entrar en el nodo. */
 const ACCION = {
   completed: "Completado · repasar",
+  diagnosed: "Ya lo sabes · repasar",
   available: "Empezar →",
   locked: "Bloqueado · leer",
 } as const;
@@ -29,7 +31,7 @@ export default async function Temario({ searchParams }: Props) {
   const { area, estado, tipo } = await searchParams;
   const vault = loadVault();
   const completed = getCompleted(user.id);
-  const states = computeStates(vault, completed);
+  const states = computeStates(vault, completed, getDiagnosed(user.id));
 
   const AREA_IDS = [...vault.areas.keys()];
   const areaSel = AREA_IDS.find((a) => a === area);
@@ -57,6 +59,9 @@ export default async function Temario({ searchParams }: Props) {
     <main className="pagina">
       <section className="resumen">
         <h1>Temario</h1>
+        <p className="nota">
+          ¿Ya sabes parte? <Link href="/diagnostico">Prueba de nivel</Link> por área.
+        </p>
         <dl className="cifras">
           <div>
             <dt>Nodos</dt>

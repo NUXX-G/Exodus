@@ -2,14 +2,14 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { areaOf } from "@/lib/areas";
 import { requireUser } from "@/lib/auth";
-import { computeStates, getCompleted, getSolvedExercises, masteryOf } from "@/lib/progress";
+import { computeStates, getCompleted, getDiagnosed, getSolvedExercises, masteryOf } from "@/lib/progress";
 import { studyOrder } from "@/lib/study";
 import { loadVault, type NodeKind } from "@/lib/vault";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Práctica" };
 
-const ESTADOS = { completed: "Completado", available: "Disponible", locked: "Bloqueado" } as const;
+const ESTADOS = { completed: "Completado", diagnosed: "Dominado (diagnóstico)", available: "Disponible", locked: "Bloqueado" } as const;
 
 const DESCRIPCION: Record<Exclude<NodeKind, "teoria">, string> = {
   proyecto:
@@ -22,7 +22,7 @@ const DESCRIPCION: Record<Exclude<NodeKind, "teoria">, string> = {
 export default async function Practica() {
   const user = await requireUser();
   const vault = loadVault();
-  const states = computeStates(vault, getCompleted(user.id));
+  const states = computeStates(vault, getCompleted(user.id), getDiagnosed(user.id));
   const orden = studyOrder(vault);
 
   return (

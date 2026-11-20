@@ -23,9 +23,9 @@ registro de sesiones (una línea) o a `docs/`.
 
 ## 1. Ahora mismo
 
-- **Fase actual**: FASE 5 — Prueba de nivel.
-- **Tarea actual**: diagnóstico adaptativo por área que marca nodos como «dominado por diagnóstico» (distinto de completado y reversible).
-- **Siguiente paso concreto**: leer la FASE 5 del roadmap; diseñar el estado «diagnóstico» (tabla aparte, sin tocar node_progress) y el algoritmo adaptativo (búsqueda en el orden de estudio del área con preguntas del banco y variantes).
+- **Fase actual**: FASE 6 — Simulacros y retos.
+- **Tarea actual**: nodo «examen» (ejercicios de varios nodos o un examen importado, duración fija y cronómetro), modo papel, retos finales por rama, historial con notas.
+- **Siguiente paso concreto**: leer la FASE 6 del roadmap; diseñar `kind: examen` con una lista de ejercicios referenciados (`nodo/ejercicio`) o propios, tabla de intentos de examen con inicio, fin y nota, y la página del examen con cronómetro.
 - **Bloqueos**: ninguno.
 - **Prueba en navegador**: `scripts/dev/sesion-prueba.ts` (usuario y sesión en una base temporal) y
   `scripts/dev/e2e-v2.cjs` (Playwright 1.58 de la caché de npx: `PLAYWRIGHT_CORE=C:/Users/nelso/AppData/Local/npm-cache/_npx/787f53666b8d4740/node_modules/playwright-core`).
@@ -92,7 +92,7 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
   bucles de recarga.
 - **Python no está instalado**: scripts de apoyo en Node; para ejecutar Python, C, Rust… usar Docker
   (`python:3.12-slim`, `gcc:14`, etc.; con `MSYS_NO_PATHCONV=1` en Git Bash).
-- **Los heredocs de esta shell estropean las barras invertidas** (`\\n` llega como salto de línea real, `\\\\` como `\\`):
+- **Los heredocs de esta shell estropean las barras invertidas** (`\n` llega como salto de línea real, `\\` como `\`):
   los scripts de parche se escriben con la herramienta Write en el scratchpad y se ejecutan con `node`.
 - Los `.ts`/`.tsx`/`.md` del repo pueden tener **CRLF**: para parchear, `node scripts/dev/reemplaza.cjs <archivo> <pares.json>`
   o la herramienta Edit. Los heredocs largos con comillas rompen la shell.
@@ -164,6 +164,13 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
    aceptado*: el alumno podría copiar el código de otro; en estudio personal solo se engaña a sí mismo (igual que con
    cualquier respuesta). Los casos (entradas) son visibles; las salidas esperadas, no («tests ocultos»).
 
+15. **2026-11-20 · Prueba de nivel por búsqueda binaria** en el orden de estudio de cada área (2 preguntas por
+   nodo sondeado, 3 si hay empate; «No lo sé» cuenta como fallo; no se dice si se acierta hasta el final). Las marcas
+   «dominado por diagnóstico» van en una tabla aparte (`diagnostic_marks`): desbloquean dependientes (`stateOf`
+   devuelve `diagnosed`) pero no tocan `node_progress` ni el dominio, y se quitan por nodo o por área. *Por qué*: el
+   árbol no es una cadena perfecta, así que el resultado es una estimación; hacerla reversible y separada del
+   progreso evita estropear lo ganado de verdad.
+
 ## 7. Preguntas abiertas
 
 - Ninguna todavía. (Las ⛔ de la fase 1 se preguntarán al llegar a ellas.)
@@ -176,6 +183,7 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
 
 | Fecha | Qué se hizo | Commit |
 | --- | --- | --- |
+| 2026-11-20 | Fase 5: prueba de nivel adaptativa por área (búsqueda binaria de la frontera en el orden de estudio, 2-3 preguntas por sonda, «No lo sé»), marcas «dominado por diagnóstico» que desbloquean sin completar y se quitan por nodo o área, /diagnostico con resultado y nodo por el que empezar | `v2: fase 5 completada` |
 | 2026-11-20 | Fase 4: tipo «código» con runner local (prueba.sh generado con las entradas del vault; Exodus solo guarda la huella del código), 132 hitos de 20 proyectos integrados (harness + stage), 3 ejercicios nuevos verificados contra referencias reales (bash+awk, Python en Docker): resumen de notas, gradiente logístico estable con gradient check, Verlet con deriva de energía | `v2: fase 4 completada` |
 | 2026-11-20 | Fase 3: tipo «desarrollo» (respuesta Markdown/LaTeX/código o en papel; solución modelo y rúbrica selladas que solo se muestran tras entregar; autopuntuación por criterios, 60 % para resolver; cuenta para dominio, repaso y diario de errores; exportación a Obsidian solo tras puntuarse); 4 desarrollos (cálculo, cinemática, inducción, informe de incidente) | `v2: fase 3 completada` |
 | 2026-11-20 | Fase 2: diario de errores (etiquetas y nota tras cada fallo, /errores con patrones, consejo y evolución), repaso ordenado por fallos recientes ponderados por tipo e intervalos frenados tras fallos de concepto, práctica intercalada de nodos dominados con filtro por área | `v2: fase 2 completada` |

@@ -33,12 +33,14 @@ import {
   gradeDevelopment,
   lastDevelopment,
   submitDevelopment,
+  getDiagnosed,
 } from "../src/lib/progress";
 import { sha256, type Vault, type VaultExercise, type VaultNode } from "../src/lib/vault";
 import { REGISTRO, salDe } from "../src/lib/tipos-ejercicio";
 import { sellar } from "../src/lib/sellado";
 import { userExportData } from "../src/lib/obsidian";
 import { buildExport } from "../src/lib/obsidian-export";
+import { answerDiagnostic, currentDiagQuestion, getDiagSession, startDiagnostic, undoDiagnosis } from "../src/lib/diagnostico-db";
 import { and, eq } from "drizzle-orm";
 
 const FLAG = "EXODUS{prueba}";
@@ -397,4 +399,42 @@ test("desarrollo: la exportación a Obsidian solo trae la solución tras entrega
   gradeDevelopment(u, vault, e.ok ? e.id : 0, [2, 3]);
   assert.ok(texto().includes("Supón $\sqrt2"), "tras puntuarse, sí");
   assert.ok(texto().includes("> Mi prueba"));
+});
+
+/* ───────── v2 fase 5: prueba de nivel ───────── */
+
+test("prueba de nivel: marca lo sabido, desbloquea sin completar y es reversible", () => {
+  const u = makeUser();
+  // Cadena a0 → a1 → … → a5; cada nodo con 3 ejercicios cuya respuesta es su índice.
+  const nodos = Array.from({ length: 6 }, (_, i) =>
+    node(`dg${i}`, { area: "matematicas", trunkLevel: i, prerequisites: i ? [`dg${i - 1}`] : [], exercises: ejercicios(3) }),
+  );
+  const vault = { nodes: new Map(nodos.map((n) => [n.id, n])), areas: mergeAreas(undefined).areas, issues: [] } as unknown as Vault;
+  const id = startDiagnostic(u, vault, "matematicas");
+  assert.equal(startDiagnostic(u, vault, "matematicas"), id, "retoma la sesión abierta");
+  // El alumno sabe hasta dg2 (dg3 en adelante: «no lo sé»).
+  let vueltas = 0;
+  for (;;) {
+    const ses = getDiagSession(u, id)!;
+    const q = currentDiagQuestion(ses.state, vault);
+    if (!q) break;
+    const sabe = Number(q.node.id.slice(2)) <= 2;
+    const r = answerDiagnostic(u, vault, id, q.ex.id.slice(1), { askedId: q.ex.id, dontKnow: !sabe });
+    assert.ok(r.ok);
+    assert.ok(++vueltas < 30);
+  }
+  const ses = getDiagSession(u, id)!;
+  assert.ok(ses.finishedAt);
+  assert.equal(ses.startNodeId, "dg3");
+  assert.deepEqual([...getDiagnosed(u)].sort(), ["dg0", "dg1", "dg2"]);
+  const estados = computeStates(vault, getCompleted(u), getDiagnosed(u));
+  assert.equal(estados.get("dg2"), "diagnosed");
+  assert.equal(estados.get("dg3"), "available", "desbloqueado por el diagnóstico");
+  assert.equal(estados.get("dg4"), "locked");
+  assert.equal(getCompleted(u).size, 0, "no cuenta como completado");
+  assert.equal(submitExercise(u, nodos[3], "e0", "0").ok, true, "se puede practicar el nodo desbloqueado");
+  assert.equal(undoDiagnosis(u, { nodeId: "dg2" }), 1);
+  assert.equal(computeStates(vault, getCompleted(u), getDiagnosed(u)).get("dg3"), "locked");
+  assert.equal(undoDiagnosis(u, { area: "matematicas" }), 2);
+  assert.equal(getDiagnosed(u).size, 0);
 });

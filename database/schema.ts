@@ -312,6 +312,45 @@ export const developmentSubmissions = sqliteTable(
   (t) => [index("development_user_idx").on(t.userId, t.nodeId, t.exerciseId)],
 );
 
+/**
+ * Prueba de nivel (fase 5): una sesión por área y usuario. `state` es el JSON de src/lib/diagnostico.ts (orden de
+ * nodos, intervalo de la frontera, sonda en curso, historial). Al terminar se guardan las marcas.
+ */
+export const diagnosticSessions = sqliteTable(
+  "diagnostic_sessions",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    userId: integer("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    area: text("area").notNull(),
+    state: text("state").notNull(),
+    startNodeId: text("start_node_id"),
+    startedAt: integer("started_at", { mode: "timestamp" }).notNull().default(now),
+    finishedAt: integer("finished_at", { mode: "timestamp" }),
+  },
+  (t) => [index("diagnostic_sessions_user_idx").on(t.userId, t.area)],
+);
+
+/**
+ * Nodos «dominados por diagnóstico»: desbloquean lo que depende de ellos, pero **no** cuentan como completados ni
+ * para el dominio. El alumno puede quitarlos cuando quiera (reversible). Repetir el diagnóstico de un área las
+ * sustituye.
+ */
+export const diagnosticMarks = sqliteTable(
+  "diagnostic_marks",
+  {
+    userId: integer("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    nodeId: text("node_id").notNull(),
+    area: text("area").notNull(),
+    sessionId: integer("session_id").notNull(),
+    createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(now),
+  },
+  (t) => [primaryKey({ columns: [t.userId, t.nodeId] })],
+);
+
 export type User = typeof users.$inferSelect;
 export type Invitation = typeof invitations.$inferSelect;
 export type Note = typeof notes.$inferSelect;

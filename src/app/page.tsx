@@ -3,7 +3,7 @@ import SkillGraph, { type GraphNode } from "@/components/SkillGraph";
 import Heatmap from "@/components/Heatmap";
 import { areaOf } from "@/lib/areas";
 import { requireUser } from "@/lib/auth";
-import { computeStates, getActivity, getCompleted, getDueReviews } from "@/lib/progress";
+import { computeStates, getActivity, getCompleted, getDiagnosed, getDueReviews } from "@/lib/progress";
 import { areaProgress, estimateMinutes, formatMinutes, recommendedNext } from "@/lib/study";
 import { loadVault } from "@/lib/vault";
 
@@ -13,7 +13,7 @@ export default async function Inicio() {
   const vault = loadVault();
   const user = await requireUser();
   const completed = getCompleted(user.id);
-  const states = computeStates(vault, completed);
+  const states = computeStates(vault, completed, getDiagnosed(user.id));
   const activity = getActivity(user.id, 26 * 7);
 
   const nodes = [...vault.nodes.values()];
@@ -63,6 +63,13 @@ export default async function Inicio() {
           </div>
         </dl>
       </section>
+
+      {done < 3 && (
+        <p className="consejo">
+          ¿Ya sabes parte del temario? Haz la <Link href="/diagnostico">prueba de nivel</Link> de cada área: en unas pocas
+          preguntas encuentra por dónde te conviene empezar.
+        </p>
+      )}
 
       {siguiente ? (
         <section className="continuar" aria-label="Siguiente paso">
