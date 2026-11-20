@@ -50,7 +50,7 @@ exercises:
       ```
 
       ```sh
-      grep -Ec '^[A-Z]{2}[0-9]{2}( [0-9]{4}){5} cuentas.txt
+      grep -Ec '^[A-Z]{2}[0-9]{2}( [0-9]{4}){5}$' cuentas.txt
       ```
 
       Respuesta: un número.

@@ -63,3 +63,51 @@ export function listNotes(userId: number, nodeId?: string): Note[] {
   const where = nodeId ? and(eq(notes.userId, userId), eq(notes.nodeId, nodeId)) : eq(notes.userId, userId);
   return getDb().select().from(notes).where(where).orderBy(desc(notes.updatedAt), desc(notes.id)).all();
 }
+
+/* ───────── Dibujos de la Libreta (fase 8B) ───────── */
+
+export const MAX_DIBUJOS_POR_NOTA = 30;
+
+export type Dibujo = typeof schema.noteDrawings.$inferSelect;
+
+/** Dibujos de una nota del usuario (en orden de creación). */
+export function listDrawings(userId: number, noteId: number): Dibujo[] {
+  return getDb()
+    .select()
+    .from(schema.noteDrawings)
+    .where(and(eq(schema.noteDrawings.userId, userId), eq(schema.noteDrawings.noteId, noteId)))
+    .orderBy(schema.noteDrawings.id)
+    .all();
+}
+
+/** Todos los dibujos del usuario (exportación a Obsidian). */
+export function allDrawings(userId: number): Dibujo[] {
+  return getDb().select().from(schema.noteDrawings).where(eq(schema.noteDrawings.userId, userId)).orderBy(schema.noteDrawings.id).all();
+}
+
+/**
+ * Crea (id null) o actualiza un dibujo de una nota propia. Los trazos ya vienen validados (src/lib/dibujo.ts).
+ * Devuelve el id, o null si la nota no es del usuario o se supera el límite.
+ */
+export function saveDrawing(userId: number, noteId: number, drawingId: number | null, strokesJson: string, now = new Date()): number | null {
+  if (!getNote(userId, noteId)) return null;
+  const db = getDb();
+  if (drawingId === null) {
+    if (listDrawings(userId, noteId).length >= MAX_DIBUJOS_POR_NOTA) return null;
+    const id = db.insert(schema.noteDrawings).values({ userId, noteId, strokes: strokesJson, createdAt: now, updatedAt: now }).returning({ id: schema.noteDrawings.id }).get().id;
+    db.update(notes).set({ updatedAt: now }).where(eq(notes.id, noteId)).run();
+    return id;
+  }
+  const r = db
+    .update(schema.noteDrawings)
+    .set({ strokes: strokesJson, updatedAt: now })
+    .where(and(eq(schema.noteDrawings.id, drawingId), eq(schema.noteDrawings.userId, userId), eq(schema.noteDrawings.noteId, noteId)))
+    .run();
+  if (r.changes !== 1) return null;
+  db.update(notes).set({ updatedAt: now }).where(eq(notes.id, noteId)).run();
+  return drawingId;
+}
+
+export function deleteDrawing(userId: number, drawingId: number): boolean {
+  return getDb().delete(schema.noteDrawings).where(and(eq(schema.noteDrawings.id, drawingId), eq(schema.noteDrawings.userId, userId))).run().changes === 1;
+}

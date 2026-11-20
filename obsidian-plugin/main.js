@@ -16,11 +16,11 @@ function mergeNote(existing, incoming) {
   return head + existing.slice(endEx + MARK_END.length);
 }
 
-/** Solo rutas relativas de notas Markdown, sin subir de carpeta ni caracteres raros. */
+/** Solo rutas relativas de notas Markdown o dibujos SVG, sin subir de carpeta ni caracteres raros. */
 function safeRelative(rel) {
   if (typeof rel !== "string" || rel.length === 0 || rel.length > 300) return false;
   if (rel.charAt(0) === "/" || rel.indexOf("\\") !== -1 || rel.indexOf(":") !== -1) return false;
-  if (!/\.md$/.test(rel)) return false;
+  if (!/\.(md|svg)$/.test(rel)) return false;
   var parts = rel.split("/");
   for (var i = 0; i < parts.length; i++) if (parts[i] === "" || parts[i] === "." || parts[i] === "..") return false;
   return true;
@@ -45,7 +45,8 @@ async function syncFiles(adapter, folder, files, normalize) {
       if (!(await adapter.exists(dir))) await adapter.mkdir(dir);
     }
     var existing = (await adapter.exists(path)) ? await adapter.read(path) : null;
-    var merged = mergeNote(existing, f.content);
+    // Las notas conservan lo que el usuario escribe debajo de exodus:fin; los dibujos se sustituyen enteros.
+    var merged = /\.md$/.test(path) ? mergeNote(existing, f.content) : f.content;
     if (existing === merged) { r.unchanged++; continue; }
     await adapter.write(path, merged);
     if (existing === null) r.created++; else r.updated++;

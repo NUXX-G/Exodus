@@ -69,7 +69,7 @@ exercises:
       'ERROR' -eq 'error'
       'ERROR' -ceq 'error'
       'informe.txt' -like '*.TXT'
-      if ('v12.3' -match '^v(\d+)\.(\d+)) { $Matches[1] }
+      if ('v12.3' -match '^v(\d+)\.(\d+)$') { $Matches[1] }
       ```
 
       Respuesta: las cuatro salidas separadas por `;` (`True`/`False` tal cual).

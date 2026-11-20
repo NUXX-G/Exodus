@@ -7,6 +7,7 @@ import crypto from "node:crypto";
 import { and, asc, desc, eq, sql } from "drizzle-orm";
 import { getDb, schema } from "./db";
 import { dayKey, getActivity, userDevelopments } from "./progress";
+import { allDrawings } from "./notes";
 import type { UserExportData } from "./obsidian-export";
 
 const { users, apiTokens, nodeProgress, exerciseSolved, reviews, hintReveals, activityLog, notes } = schema;
@@ -108,6 +109,7 @@ export function userExportData(userId: number, username: string): UserExportData
       .where(eq(notes.userId, userId))
       .orderBy(desc(notes.updatedAt))
       .all(),
+    drawings: allDrawings(userId).map((d) => ({ id: d.id, noteId: d.noteId, trazos: JSON.parse(d.strokes) })),
     // Solo entregas puntuadas: la solución modelo no se exporta antes de entregar y puntuarse.
     developments: userDevelopments(userId)
       .filter((d) => d.gradedAt)

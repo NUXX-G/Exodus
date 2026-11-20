@@ -422,6 +422,28 @@ export const studyTime = sqliteTable(
   (t) => [index("study_time_user_day_idx").on(t.userId, t.day)],
 );
 
+/**
+ * Dibujos a mano de la Libreta (fase 8B). Se guardan como trazos vectoriales (JSON: lista de trazos con color, grosor y
+ * puntos) y el SVG se genera en el servidor a partir de esos números (src/lib/dibujo.ts), así que nunca se inserta
+ * SVG escrito por el usuario. Cada dibujo pertenece a una nota y se exporta a Obsidian junto a ella.
+ */
+export const noteDrawings = sqliteTable(
+  "note_drawings",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    userId: integer("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    noteId: integer("note_id")
+      .notNull()
+      .references(() => notes.id, { onDelete: "cascade" }),
+    strokes: text("strokes").notNull().default("[]"),
+    createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(now),
+    updatedAt: integer("updated_at", { mode: "timestamp" }).notNull().default(now),
+  },
+  (t) => [index("note_drawings_note_idx").on(t.userId, t.noteId)],
+);
+
 export type User = typeof users.$inferSelect;
 export type Invitation = typeof invitations.$inferSelect;
 export type Note = typeof notes.$inferSelect;

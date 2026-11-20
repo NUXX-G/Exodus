@@ -387,6 +387,32 @@ export function evaluar(n: Nodo, vals: Record<string, number> = {}): number {
   }
 }
 
+const TRIG = new Set(["sin", "cos", "tan", "sec", "csc", "cot"]);
+const TRIG_INV = new Set(["asin", "acos", "atan"]);
+
+/**
+ * Versión del árbol en grados (calculadora): los argumentos de sin, cos… se convierten de grados a radianes y los
+ * resultados de arcsin, arccos y arctan, de radianes a grados.
+ */
+export function enGrados(n: Nodo): Nodo {
+  const aRad = (a: Nodo): Nodo => ({ t: "op", o: "*", a, b: { t: "op", o: "/", a: { t: "const", n: "pi" }, b: { t: "num", v: 180 } } });
+  switch (n.t) {
+    case "neg":
+    case "fact":
+      return { ...n, a: enGrados(n.a) };
+    case "op":
+      return { ...n, a: enGrados(n.a), b: enGrados(n.b) };
+    case "fn": {
+      const args = n.args.map(enGrados);
+      if (TRIG.has(n.f)) return { t: "fn", f: n.f, args: [aRad(args[0])] };
+      if (TRIG_INV.has(n.f)) return { t: "op", o: "*", a: { t: "fn", f: n.f, args }, b: { t: "op", o: "/", a: { t: "num", v: 180 }, b: { t: "const", n: "pi" } } };
+      return { ...n, args };
+    }
+    default:
+      return n;
+  }
+}
+
 /** Variables que aparecen en el árbol. */
 export function variablesDe(n: Nodo, out = new Set<string>()): Set<string> {
   if (n.t === "var") out.add(n.n);

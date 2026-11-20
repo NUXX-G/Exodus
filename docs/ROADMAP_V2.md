@@ -173,10 +173,10 @@ El usuario pide terminar **todas** las fases de forma autónoma, **sin preguntar
 
 ## FASE 8B — Libreta con dibujo y calculadora
 
-- [ ] Lienzo de dibujo a mano en la Libreta (lápiz, borrador, colores, deshacer, cuadrícula, ratón/táctil/lápiz),
+- [x] Lienzo de dibujo a mano en la Libreta (lápiz, borrador, colores, deshacer, cuadrícula, ratón/táctil/lápiz),
       guardado por usuario y exportable a Obsidian (PNG/SVG junto a la nota).
-- [ ] Calculadora científica integrada (flotante, accesible desde cualquier página de estudio), sin IA.
-- [ ] Cierre de fase (checks, casillas, `STATUS.md`, commit `v2: fase 8B completada`).
+- [x] Calculadora científica integrada (flotante, accesible desde cualquier página de estudio), sin IA.
+- [x] Cierre de fase (checks, casillas, `STATUS.md`, commit `v2: fase 8B completada`).
 
 ## FASE 8C — Comodidad de estudio
 

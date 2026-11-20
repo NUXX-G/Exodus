@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { Archivo, JetBrains_Mono, STIX_Two_Text } from "next/font/google";
 import IndicadorCarga from "@/components/IndicadorCarga";
+import Calculadora from "@/components/Calculadora";
 import { getSessionUser } from "@/lib/auth";
 import { logoutAction } from "./(cuenta)/actions";
 import "./globals.css";
@@ -86,6 +87,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <IndicadorCarga />
         </Suspense>
         {children}
+        {user && <Calculadora />}
       </body>
     </html>
   );

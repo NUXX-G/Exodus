@@ -247,6 +247,35 @@ async function main() {
   await page.locator('.glosario-lista h3:has-text("porcentaje")').waitFor();
   ok("escalera práctico/formal con preferencia guardada, términos resaltados y /glosario con búsqueda");
 
+  // Libreta con dibujo y calculadora (fase 8B).
+  const notaId = db.prepare("insert into notes (user_id, title, body) values (?, 'Esquema de prueba', 'texto') returning id").get(uid).id;
+  await page.goto(`${BASE}/libreta/${notaId}`);
+  await page.locator('button:has-text("Añadir dibujo")').click();
+  const papel = page.locator(".lienzo-papel");
+  const caja = await papel.boundingBox();
+  await page.mouse.move(caja.x + 50, caja.y + 50);
+  await page.mouse.down();
+  for (let i = 1; i <= 10; i++) await page.mouse.move(caja.x + 50 + i * 20, caja.y + 50 + i * 8);
+  await page.mouse.up();
+  // Dos trazos rápidos más (los eventos llegan antes de que React repinte: no deben quedarse en un punto).
+  for (const [x0, y0, x1, y1] of [[300, 200, 400, 320], [400, 200, 300, 320]]) {
+    await page.mouse.move(caja.x + x0, caja.y + y0);
+    await page.mouse.down();
+    await page.mouse.move(caja.x + x1, caja.y + y1, { steps: 4 });
+    await page.mouse.up();
+  }
+  await page.locator('button:has-text("Guardar dibujo")').click();
+  await page.locator(".dibujo svg path").first().waitFor();
+  const guardado = JSON.parse(db.prepare("select strokes from note_drawings where user_id=?").get(uid).strokes);
+  assert.equal(guardado.length, 3, "tres trazos guardados");
+  assert.ok(guardado.every((t) => t.puntos.length >= 3), "ningún trazo rápido se queda en un punto");
+  ok("libreta: dibujo a mano guardado y mostrado como SVG");
+  await page.locator(".calc-boton").click();
+  await page.locator(".calc-entrada").fill("2*sin(30) + sqrt(16)");
+  await page.keyboard.press("Enter");
+  assert.match(await page.locator(".calc-resultado").innerText(), /= 5/);
+  ok("calculadora: 2·sin(30°) + √16 = 5 en grados");
+
   assert.deepEqual(errores, [], "errores de JavaScript en la página");
   await browser.close();
   console.log(`\n${pasos.length} comprobaciones superadas`);

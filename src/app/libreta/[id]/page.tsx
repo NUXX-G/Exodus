@@ -5,7 +5,9 @@ import { DeleteNoteButton, NoteForm } from "@/components/NoteForms";
 import { getSessionUser, requireUser } from "@/lib/auth";
 import { linkResolverFor, renderMarkdown } from "@/lib/markdown";
 import { compactarFormulas } from "@/lib/svg-compacto";
-import { getNote } from "@/lib/notes";
+import { getNote, listDrawings } from "@/lib/notes";
+import { svgDe, type Trazo } from "@/lib/dibujo";
+import DibujosNota from "@/components/DibujosNota";
 import { studyOrder } from "@/lib/study";
 import { loadVault } from "@/lib/vault";
 
@@ -32,6 +34,10 @@ export default async function Nota({ params }: Props) {
     definiciones,
   } = compactarFormulas([await renderMarkdown(note.body || "_Nota vacía._", linkResolverFor(vault), "usuario")]);
   const nodos = studyOrder(vault).map((n) => ({ id: n.id, title: n.title }));
+  const dibujos = listDrawings(user.id, note.id).map((d) => {
+    const trazos = JSON.parse(d.strokes) as Trazo[];
+    return { id: d.id, trazos, svg: svgDe(trazos) };
+  });
 
   return (
     <main className="pagina nota-pagina">
@@ -48,6 +54,8 @@ export default async function Nota({ params }: Props) {
       {/* HTML generado en el servidor por el mismo motor que los nodos: el HTML crudo se descarta y se sanea. */}
       {definiciones && <div className="formulas-definiciones" dangerouslySetInnerHTML={{ __html: definiciones }} />}
       <article className="prosa" dangerouslySetInnerHTML={{ __html: html }} />
+
+      <DibujosNota noteId={note.id} dibujos={dibujos} />
 
       <details className="editar-nota">
         <summary>Editar</summary>

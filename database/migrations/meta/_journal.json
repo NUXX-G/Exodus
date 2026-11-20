@@ -85,6 +85,13 @@
       "when": 1795197900964,
       "tag": "0011_objetivos_tiempo",
       "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "6",
+      "when": 1795209176140,
+      "tag": "0012_dibujos",
+      "breakpoints": true
     }
   ]
 }

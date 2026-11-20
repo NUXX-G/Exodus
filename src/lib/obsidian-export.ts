@@ -10,6 +10,7 @@ import { areaOf } from "./areas";
 import { masteryNeeded } from "./exercises";
 import { rellenar } from "./tipos-ejercicio";
 import { abrir } from "./sellado";
+import { archivoDibujo, svgDe, type Trazo } from "./dibujo";
 
 const abrirSeguro = (s: string) => {
   try {
@@ -45,6 +46,8 @@ export interface UserExportData {
   streak: number;
   /** Notas de la libreta del usuario (opcional para compatibilidad con exportaciones sin libreta). */
   notes?: { id: number; title: string; body: string; nodeId: string | null; createdAt: Date; updatedAt: Date }[];
+  /** Dibujos de la Libreta (opcional): trazos de cada dibujo y la nota a la que pertenecen. */
+  drawings?: { id: number; noteId: number; trazos: Trazo[] }[];
   /** Entregas de desarrollo ya puntuadas (opcional). Solo con ellas se exporta la solución modelo de ese ejercicio. */
   developments?: { nodeId: string; exerciseId: string; answer: string; onPaper: boolean; score: number; maxScore: number; gradedAt: Date }[];
 }
@@ -233,6 +236,10 @@ export function buildExport(vault: Vault, data: UserExportData, root = ""): Expo
   for (const x of libreta) {
     const nodo = x.nodeId ? vault.nodes.get(x.nodeId) : undefined;
     const cabecera = nodo ? `> [!note] Nodo: ${link(nodo)}\n\n` : "";
+    // Dibujos de la nota: un SVG por dibujo en Libreta/dibujos/, incrustado al final de la nota.
+    const dibujos = (data.drawings ?? []).filter((d) => d.noteId === x.id);
+    for (const d of dibujos) files.push({ path: `${pre}Libreta/dibujos/${archivoDibujo(d.id)}`, content: svgDe(d.trazos, { titulo: x.title }) });
+    const incrustados = dibujos.length ? `\n## Dibujos\n\n${dibujos.map((d) => `![[${archivoDibujo(d.id)}]]`).join("\n\n")}\n` : "";
     files.push({
       path: `${pre}Libreta/${noteFileName(x.id, x.title)}.md`,
       content: note(
@@ -243,7 +250,7 @@ export function buildExport(vault: Vault, data: UserExportData, root = ""): Expo
           actualizada: day(x.updatedAt),
           tags: ["exodus", "exodus/libreta"],
         },
-        `# ${x.title}\n\n${cabecera}${x.body.trim()}\n`,
+        `# ${x.title}\n\n${cabecera}${x.body.trim()}\n${incrustados}`,
       ),
     });
   }

@@ -253,6 +253,7 @@ test("plugin: el manifiesto es válido y la fusión conserva siempre lo que escr
     assert.equal(P.safeRelative(bad), false, bad);
   }
   assert.equal(P.safeRelative("Nodos/Matemáticas/mat-a.md"), true);
+  assert.equal(P.safeRelative("Libreta/dibujos/dibujo-3.svg"), true, "dibujos de la Libreta");
 });
 
 test("plugin: sincroniza en la carpeta elegida, crea carpetas, no duplica y respeta las notas", async () => {

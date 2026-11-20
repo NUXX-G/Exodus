@@ -23,9 +23,9 @@ registro de sesiones (una línea) o a `docs/`.
 
 ## 1. Ahora mismo
 
-- **Fase actual**: FASE 8B — Libreta con dibujo y calculadora.
-- **Tarea actual**: lienzo de dibujo a mano en la Libreta (lápiz, borrador, colores, deshacer, cuadrícula; ratón, táctil y lápiz) exportable a Obsidian, y calculadora científica flotante.
-- **Siguiente paso concreto**: leer la FASE 8B del roadmap y src/lib/notes.ts; guardar los dibujos como SVG (trazos) por usuario en una tabla nueva o como campo de la nota, exportarlos a Obsidian junto a la nota; calculadora con el CAS de src/lib/cas.ts en el navegador (sin dependencias).
+- **Fase actual**: FASE 8C — Comodidad de estudio.
+- **Tarea actual**: investigar y añadir funciones que ayuden a estudiar solo con Exodus (temporizador Pomodoro que anota el tiempo, modo concentración, tarjetas de glosario, atajos de teclado, hojas de ejercicios imprimibles…); decidir y anotar.
+- **Siguiente paso concreto**: leer la FASE 8C del roadmap; buscar evidencia (técnica Pomodoro, intercalado, recuperación) y elegir 4-6 funciones de más rendimiento por esfuerzo; anotarlas en §6 con su porqué antes de implementarlas.
 - **Bloqueos**: ninguno.
 - **Prueba en navegador**: `scripts/dev/sesion-prueba.ts` (usuario y sesión en una base temporal) y
   `scripts/dev/e2e-v2.cjs` (Playwright 1.58 de la caché de npx: `PLAYWRIGHT_CORE=C:/Users/nelso/AppData/Local/npm-cache/_npx/787f53666b8d4740/node_modules/playwright-core`).
@@ -197,6 +197,41 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
    aparición (plugin rehype tras el saneado, solo en contenido del vault) y aviso de términos usados antes de
    explicarse (127 nodos hoy: es la lista de trabajo de las fases de contenido). Los términos se eligen sin otro
    significado común (el resaltado es global) y admiten `excepto` («fuerza bruta»).
+
+19. **2026-11-20 · Dibujos como trazos vectoriales** (JSON validado: colores de una paleta fija, puntos recortados al
+   lienzo) y SVG generado en el servidor solo con números: no se guarda ni se inserta SVG escrito por el usuario. Se
+   exportan a Obsidian como `Libreta/dibujos/dibujo-N.svg` incrustados en la nota; el plugin 1.1 acepta `.svg` y los
+   sustituye enteros (el 1.0 los salta sin romper nada). El trazo se sigue con escuchas en `window` y
+   `getCoalescedEvents` (la captura del puntero se perdía al repintar y los movimientos rápidos se fundían en uno).
+   Calculadora: el mismo CAS de los ejercicios, en el navegador, sin `eval`.
+20. **2026-11-20 · `vault:soluciones` completo (180 nodos, con Docker)** encontró 2 enunciados de la v1 estropeados por
+   una versión antigua de `ex-inject` que interpretaba `
+
+- Ninguna todavía. (Las ⛔ de la fase 1 se preguntarán al llegar a ellas.)
+
+## 8. Reportes «creo que esto está mal» pendientes
+
+- Ninguno (resumen con `DATABASE_PATH=<copia de la base> npm run -s reportes`; página `/reportes`).
+
+## 9. Registro de sesiones (una línea por sesión, la más reciente arriba)
+
+| Fecha | Qué se hizo | Commit |
+| --- | --- | --- |
+| 2026-11-20 | Fase 8B: lienzo de dibujo en la Libreta (lápiz con presión, borrador de trazos, 6 colores, 4 grosores, deshacer/rehacer con Ctrl+Z/Ctrl+Y, cuadrícula), guardado vectorial y exportación a Obsidian como SVG (plugin 1.1); calculadora científica flotante en todas las páginas (Alt+C, grados/radianes, Ans, historial) con el CAS propio; arreglados 2 enunciados de la v1 | `v2: fase 8B completada` |
+| 2026-11-20 | Fase 8A: explicación en escalera (callouts práctico/formal con títulos propios y conmutador recordado), glosario por área (58 términos en 7 notas) resaltado en el texto con explicación al pasar el ratón, /glosario con búsqueda, aviso de tecnicismos usados antes de explicarse, documentado en PEDAGOGIA y AMPLIAR; ejemplo en mat-proporcionalidad-porcentajes (y corregida una fuga en su banco de repaso) | `v2: fase 8A completada` |
+| 2026-11-20 | Fase 8: objetivos recomendados en vault/_objetivos (6: acceso a la universidad, primero UNED con el plan oficial 2026-27, junior de sistemas, analista SOC 1, junior de IA, junior de robótica) con avance, semanas al ritmo elegido, ritmo necesario para una fecha y siguiente nodo, en /objetivos y en Inicio; tiempo de estudio opcional por nodo sumado en el heatmap; cómo crecer hasta el grado completo (AMPLIAR §3b); vault:soluciones compara los hitos marcados sin sus campos de código | `v2: fase 8 completada` |
+| 2026-11-20 | Fase 7: vault:check ampliado (renderiza cada variante, opción y banco; variantes repetidas, datos sin rellenar, huellas por tipo; avisos de fuentes sin capítulo o sección), vault:soluciones (doble comprobación de cada spec, vault sincronizado con el spec, variantes degeneradas: 6 corregidas), vault:cobertura (docs/contenido/cobertura.md); arreglado un wikilink falso en ia-pytorch | `v2: fase 7 completada` |
+| 2026-11-20 | Fase 6: simulacros y retos (kind: examen): items referenciados con variantes, cronómetro con entrega automática, guardado automático, modo papel, desarrollos con rúbrica tras entregar, retos encadenados, historial con mejor y media; 5 simulacros (ESO, Bachillerato mates y física, primero de grado mates, física de grado) y 5 retos finales por rama técnica | `v2: fase 6 completada` |
+| 2026-11-20 | Fase 5: prueba de nivel adaptativa por área (búsqueda binaria de la frontera en el orden de estudio, 2-3 preguntas por sonda, «No lo sé»), marcas «dominado por diagnóstico» que desbloquean sin completar y se quitan por nodo o área, /diagnostico con resultado y nodo por el que empezar | `v2: fase 5 completada` |
+| 2026-11-20 | Fase 4: tipo «código» con runner local (prueba.sh generado con las entradas del vault; Exodus solo guarda la huella del código), 132 hitos de 20 proyectos integrados (harness + stage), 3 ejercicios nuevos verificados contra referencias reales (bash+awk, Python en Docker): resumen de notas, gradiente logístico estable con gradient check, Verlet con deriva de energía | `v2: fase 4 completada` |
+| 2026-11-20 | Fase 3: tipo «desarrollo» (respuesta Markdown/LaTeX/código o en papel; solución modelo y rúbrica selladas que solo se muestran tras entregar; autopuntuación por criterios, 60 % para resolver; cuenta para dominio, repaso y diario de errores; exportación a Obsidian solo tras puntuarse); 4 desarrollos (cálculo, cinemática, inducción, informe de incidente) | `v2: fase 3 completada` |
+| 2026-11-20 | Fase 2: diario de errores (etiquetas y nota tras cada fallo, /errores con patrones, consejo y evolución), repaso ordenado por fallos recientes ponderados por tipo e intervalos frenados tras fallos de concepto, práctica intercalada de nodos dominados con filtro por área | `v2: fase 2 completada` |
+| 2026-11-20 | Fase 1: tipos de ejercicio (CAS en JS, unidades, matrices, opción, flag), variantes, banco de repaso, intentos con variante y tiempo, reportes y `/reportes`, vista previa, 9 nodos convertidos, e2e con Playwright | `v2: fase 1 completada` |
+| 2026-11-15 | Seguridad en v1: motor MathJax aparte para contenido de usuario (PR #210), fusionado en `v2` | merge de `main` |
+| 2026-11-15 | Urgente en v1: la instancia se quedaba sin memoria (fuga de MathJax) y los nodos pesaban 2,4 MB. PR #209 en `main`, fusionado en `v2` | merge de `main` |
+| 2026-11-15 | Paso 0: rama `v2`, `docs/ROADMAP_V2.md`, `STATUS.md` nuevo, `docs/HISTORIAL_V1.md`, `scripts/dev/`, `CLAUDE.md` | `v2: fase 0 completada` |
+` como patrón de reemplazo (`prog-powershell-batch`,
+   `prog-unix-texto`); reinyectados (respuestas iguales, progreso intacto).
 
 ## 7. Preguntas abiertas
 

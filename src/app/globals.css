@@ -2488,3 +2488,194 @@ a.termino:focus-visible::after {
 .glosario-lista h3 {
   margin: 0 0 4px;
 }
+
+/* ───────── v2 fase 8B: lienzo de la Libreta y calculadora ───────── */
+
+.dibujos-nota {
+  margin: 24px 0;
+}
+
+.dibujo {
+  margin: 0 0 16px;
+}
+
+.dibujo svg,
+.lienzo-papel {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: var(--radio);
+}
+
+.lienzo-papel {
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.lienzo-papel[data-herramienta="borrador"] {
+  cursor: cell;
+}
+
+.lienzo-barra {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.lienzo-barra button:not(.boton) {
+  padding: 4px 8px;
+  background: var(--tinta-honda);
+  color: var(--tiza);
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: var(--radio);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.lienzo-barra button[aria-pressed="true"] {
+  border-color: var(--ambar);
+  box-shadow: 0 0 0 1px var(--ambar);
+}
+
+.lienzo-barra button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.lienzo-barra .color {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.punto-grosor {
+  display: inline-block;
+  background: var(--tiza);
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.lienzo-barra .separador {
+  width: 1px;
+  height: 22px;
+  background: var(--trazo);
+}
+
+.calc-boton {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 40;
+  width: 48px;
+  height: 48px;
+  font-size: 1.4rem;
+  background: var(--lamina);
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.calc {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 40;
+  width: min(340px, calc(100vw - 36px));
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  padding: 12px;
+  background: var(--tinta-honda);
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: var(--radio);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+}
+
+.calc-cabecera {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.calc-cabecera strong {
+  flex: 1;
+}
+
+.calc-modo,
+.calc-cerrar {
+  padding: 2px 8px;
+  background: none;
+  color: var(--tiza);
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: var(--radio);
+  font: inherit;
+  cursor: pointer;
+}
+
+.calc-entrada {
+  width: 100%;
+  padding: 8px 10px;
+  background: var(--tinta);
+  color: var(--tiza);
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: var(--radio);
+  font-family: var(--fuente-codigo), monospace;
+  font-size: 1rem;
+}
+
+.calc-resultado {
+  min-height: 1.8em;
+  margin: 6px 2px;
+  font-family: var(--fuente-codigo), monospace;
+  font-size: 1.1rem;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.calc-teclas {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+}
+
+.calc-teclas button {
+  padding: 7px 0;
+  background: var(--lamina);
+  color: var(--tiza);
+  border: 1px solid var(--trazo);
+  border-radius: var(--radio);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.calc-teclas .calc-igual {
+  grid-column: span 3;
+  background: var(--ambar);
+  color: var(--tinta);
+  font-weight: 700;
+}
+
+.calc-historial {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  font-size: 0.8rem;
+}
+
+.calc-historial button {
+  width: 100%;
+  padding: 2px 4px;
+  background: none;
+  color: var(--tiza-tenue);
+  border: 0;
+  text-align: left;
+  font-family: var(--fuente-codigo), monospace;
+  cursor: pointer;
+}
