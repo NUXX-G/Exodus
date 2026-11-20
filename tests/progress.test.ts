@@ -41,6 +41,7 @@ import { sellar } from "../src/lib/sellado";
 import { userExportData } from "../src/lib/obsidian";
 import { buildExport } from "../src/lib/obsidian-export";
 import { answerDiagnostic, currentDiagQuestion, getDiagSession, startDiagnostic, undoDiagnosis } from "../src/lib/diagnostico-db";
+import { answerChainStep, expired, getExamAttempt, gradeExamDevelopment, listExamAttempts, saveExamAnswer, startExam, submitExam } from "../src/lib/examen";
 import { and, eq } from "drizzle-orm";
 
 const FLAG = "EXODUS{prueba}";
@@ -57,6 +58,7 @@ function node(id: string, opts: Partial<VaultNode> = {}): VaultNode {
     hints: [],
     exercises: [],
     reviewBank: [],
+    examExercises: [],
     attachments: [],
     file: `${id}.md`,
     body: "",
@@ -437,4 +439,72 @@ test("prueba de nivel: marca lo sabido, desbloquea sin completar y es reversible
   assert.equal(computeStates(vault, getCompleted(u), getDiagnosed(u)).get("dg3"), "locked");
   assert.equal(undoDiagnosis(u, { area: "matematicas" }), 2);
   assert.equal(getDiagnosed(u).size, 0);
+});
+
+/* ───────── v2 fase 6: exámenes y retos ───────── */
+
+test("examen: se fijan items, se guardan respuestas, se corrige al entregar y el desarrollo se puntúa con la rúbrica", () => {
+  const u = makeUser();
+  const fuente = node("ex-fuente", { exercises: ejercicios(3) });
+  const examen = node("ex-simulacro", {
+    kind: "examen",
+    exam: { chained: false, paper: true, pass: 0.5, duration: 60, items: [{ ref: "ex-fuente/e0", puntos: 1 }, { ref: "ex-fuente/e1", puntos: 1 }, { ref: "./dem", puntos: 2 }] },
+    examExercises: [desarrollo("dem")],
+  });
+  const vault = { nodes: new Map([fuente, examen].map((n) => [n.id, n])), areas: mergeAreas(undefined).areas, issues: [] } as unknown as Vault;
+  const r = startExam(u, vault, examen, "papel");
+  assert.ok(r.ok);
+  const id = r.ok ? r.id : 0;
+  assert.deepEqual(startExam(u, vault, examen, "papel"), { ok: true, id }, "retoma el intento en curso");
+  const a0 = getExamAttempt(u, id)!;
+  assert.equal(a0.items.length, 3);
+  assert.ok(a0.deadline && a0.deadline.getTime() > Date.now() + 59 * 60_000);
+  assert.ok(saveExamAnswer(u, id, "ex-fuente/e0", "0"));
+  assert.ok(saveExamAnswer(u, id, "ex-fuente/e1", "mal"));
+  assert.ok(saveExamAnswer(u, id, "./dem", "Mi demostración"));
+  assert.equal(saveExamAnswer(u, id, "otro/x", "1"), false, "solo items del examen");
+  const a1 = submitExam(u, vault, id)!;
+  assert.deepEqual(a1.results!.map((x) => x.estado), ["bien", "mal", "pendiente"]);
+  assert.equal(a1.score, 1);
+  assert.equal(a1.maxScore, 4);
+  assert.equal(saveExamAnswer(u, id, "ex-fuente/e1", "1"), false, "entregado: ya no se cambia");
+  assert.ok(!getCompleted(u).has("ex-simulacro"), "con desarrollos pendientes no se completa");
+  assert.ok(gradeExamDevelopment(u, vault, id, "./dem", [2, 3]));
+  const a2 = getExamAttempt(u, id)!;
+  assert.equal(a2.score, 3);
+  assert.ok(getCompleted(u).has("ex-simulacro"), "3 de 4 ≥ 50 %: completado");
+  assert.equal(getSolvedExercises(u, "ex-fuente").length, 0, "un simulacro no resuelve los ejercicios de origen");
+  assert.equal(listExamAttempts(u, "ex-simulacro").length, 1);
+});
+
+test("examen: caducado se entrega solo con lo guardado", () => {
+  const u = makeUser();
+  const fuente = node("ex2-fuente", { exercises: ejercicios(2) });
+  const examen = node("ex2", { kind: "examen", exam: { chained: false, paper: false, pass: 0.5, duration: 1, items: [{ ref: "ex2-fuente/e0", puntos: 1 }] }, examExercises: [] });
+  const vault = { nodes: new Map([fuente, examen].map((n) => [n.id, n])), areas: mergeAreas(undefined).areas, issues: [] } as unknown as Vault;
+  const r = startExam(u, vault, examen, "normal");
+  const id = r.ok ? r.id : 0;
+  saveExamAnswer(u, id, "ex2-fuente/e0", "0");
+  getDb().update(schema.examAttempts).set({ deadline: new Date(Date.now() - 1000) }).where(eq(schema.examAttempts.id, id)).run();
+  assert.equal(saveExamAnswer(u, id, "ex2-fuente/e0", "9"), false);
+  assert.equal(expired(getExamAttempt(u, id)!), true);
+  const nuevo = startExam(u, vault, examen, "normal");
+  assert.ok(nuevo.ok && nuevo.id !== id, "el caducado se entrega y empieza otro");
+  assert.equal(getExamAttempt(u, id)!.score, 1);
+});
+
+test("reto encadenado: cada paso se desbloquea al acertar el anterior", () => {
+  const u = makeUser();
+  const fuente = node("rt-fuente", { exercises: ejercicios(3) });
+  const reto = node("rt", { kind: "examen", exam: { chained: true, paper: false, pass: 1, items: [0, 1, 2].map((i) => ({ ref: `rt-fuente/e${i}`, puntos: 1 })) }, examExercises: [] });
+  const vault = { nodes: new Map([fuente, reto].map((n) => [n.id, n])), areas: mergeAreas(undefined).areas, issues: [] } as unknown as Vault;
+  const r = startExam(u, vault, reto, "normal");
+  const id = r.ok ? r.id : 0;
+  assert.equal(getExamAttempt(u, id)!.deadline, null, "sin límite de tiempo");
+  assert.deepEqual(answerChainStep(u, vault, id, "1"), { ok: true, correcto: false, terminado: false }, "el paso 0 pide la respuesta 0");
+  assert.deepEqual(answerChainStep(u, vault, id, "0"), { ok: true, correcto: true, terminado: false });
+  assert.equal(getExamAttempt(u, id)!.step, 1);
+  answerChainStep(u, vault, id, "1");
+  assert.deepEqual(answerChainStep(u, vault, id, "2"), { ok: true, correcto: true, terminado: true });
+  assert.ok(getCompleted(u).has("rt"));
 });

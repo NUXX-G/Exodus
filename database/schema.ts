@@ -11,6 +11,7 @@ import {
   index,
   integer,
   primaryKey,
+  real,
   sqliteTable,
   text,
   uniqueIndex,
@@ -349,6 +350,39 @@ export const diagnosticMarks = sqliteTable(
     createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(now),
   },
   (t) => [primaryKey({ columns: [t.userId, t.nodeId] })],
+);
+
+/**
+ * Intentos de examen o reto (nodos `kind: examen`). Al empezar se fijan los items y sus variantes; las respuestas se
+ * guardan sobre la marcha (si se cierra el navegador no se pierden) y la nota se calcula al entregar. Los desarrollos
+ * se puntúan después con la rúbrica. No cuentan para el dominio de los nodos de origen: es un simulacro.
+ */
+export const examAttempts = sqliteTable(
+  "exam_attempts",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    userId: integer("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    nodeId: text("node_id").notNull(),
+    /** `normal` o `papel` (se resuelve a mano y al final se introducen los resultados). */
+    mode: text("mode", { enum: ["normal", "papel"] }).notNull().default("normal"),
+    /** JSON: [{ ref, puntos, variant }] fijados al empezar. */
+    items: text("items").notNull(),
+    /** JSON: { [ref]: respuesta }. */
+    answers: text("answers").notNull().default("{}"),
+    /** JSON: [{ ref, estado, puntos, max }] tras entregar. */
+    results: text("results"),
+    score: real("score"),
+    maxScore: real("max_score"),
+    /** Reto encadenado: pasos superados. */
+    step: integer("step").notNull().default(0),
+    startedAt: integer("started_at", { mode: "timestamp" }).notNull().default(now),
+    /** Hora límite (null: sin límite). */
+    deadline: integer("deadline", { mode: "timestamp" }),
+    finishedAt: integer("finished_at", { mode: "timestamp" }),
+  },
+  (t) => [index("exam_attempts_user_idx").on(t.userId, t.nodeId)],
 );
 
 export type User = typeof users.$inferSelect;

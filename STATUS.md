@@ -23,9 +23,9 @@ registro de sesiones (una línea) o a `docs/`.
 
 ## 1. Ahora mismo
 
-- **Fase actual**: FASE 6 — Simulacros y retos.
-- **Tarea actual**: nodo «examen» (ejercicios de varios nodos o un examen importado, duración fija y cronómetro), modo papel, retos finales por rama, historial con notas.
-- **Siguiente paso concreto**: leer la FASE 6 del roadmap; diseñar `kind: examen` con una lista de ejercicios referenciados (`nodo/ejercicio`) o propios, tabla de intentos de examen con inicio, fin y nota, y la página del examen con cronómetro.
+- **Fase actual**: FASE 7 — Calidad automática.
+- **Tarea actual**: vault:check que verifica soluciones calculables, variantes de muestra (casos degenerados) y soluciones de código; avisos de academic_sources vagos; informe de cobertura.
+- **Siguiente paso concreto**: leer la FASE 7 del roadmap; ampliar scripts/vault-check.ts: para cada ejercicio comprobar que los hashes tienen el formato y número esperados por tipo, que las variantes rellenan todos los datos, que ninguna variante repite datos, y generar el informe de cobertura por área (tipos, variantes, banco de repaso, desarrollos, código).
 - **Bloqueos**: ninguno.
 - **Prueba en navegador**: `scripts/dev/sesion-prueba.ts` (usuario y sesión en una base temporal) y
   `scripts/dev/e2e-v2.cjs` (Playwright 1.58 de la caché de npx: `PLAYWRIGHT_CORE=C:/Users/nelso/AppData/Local/npm-cache/_npx/787f53666b8d4740/node_modules/playwright-core`).
@@ -171,6 +171,12 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
    árbol no es una cadena perfecta, así que el resultado es una estimación; hacerla reversible y separada del
    progreso evita estropear lo ganado de verdad.
 
+16. **2026-11-20 · Simulacros y retos como nodos `kind: examen`** que **referencian** ejercicios de otros nodos (sin
+   duplicarlos), con variantes fijadas al empezar, guardado automático, entrega automática al acabarse el tiempo y modo
+   papel con 10 min de margen. No resuelven los ejercicios de origen (un simulacro mide, no enseña). Retos finales por
+   rama técnica: cadenas de pasos de los nodos de la rama, de dificultad creciente (`vault/09-simulacros/`). *Por qué*:
+   reutilizar los ejercicios ya verificados por dos métodos es más fiable que escribir exámenes nuevos sin verificar.
+
 ## 7. Preguntas abiertas
 
 - Ninguna todavía. (Las ⛔ de la fase 1 se preguntarán al llegar a ellas.)
@@ -183,6 +189,7 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
 
 | Fecha | Qué se hizo | Commit |
 | --- | --- | --- |
+| 2026-11-20 | Fase 6: simulacros y retos (kind: examen): items referenciados con variantes, cronómetro con entrega automática, guardado automático, modo papel, desarrollos con rúbrica tras entregar, retos encadenados, historial con mejor y media; 5 simulacros (ESO, Bachillerato mates y física, primero de grado mates, física de grado) y 5 retos finales por rama técnica | `v2: fase 6 completada` |
 | 2026-11-20 | Fase 5: prueba de nivel adaptativa por área (búsqueda binaria de la frontera en el orden de estudio, 2-3 preguntas por sonda, «No lo sé»), marcas «dominado por diagnóstico» que desbloquean sin completar y se quitan por nodo o área, /diagnostico con resultado y nodo por el que empezar | `v2: fase 5 completada` |
 | 2026-11-20 | Fase 4: tipo «código» con runner local (prueba.sh generado con las entradas del vault; Exodus solo guarda la huella del código), 132 hitos de 20 proyectos integrados (harness + stage), 3 ejercicios nuevos verificados contra referencias reales (bash+awk, Python en Docker): resumen de notas, gradiente logístico estable con gradient check, Verlet con deriva de energía | `v2: fase 4 completada` |
 | 2026-11-20 | Fase 3: tipo «desarrollo» (respuesta Markdown/LaTeX/código o en papel; solución modelo y rúbrica selladas que solo se muestran tras entregar; autopuntuación por criterios, 60 % para resolver; cuenta para dominio, repaso y diario de errores; exportación a Obsidian solo tras puntuarse); 4 desarrollos (cálculo, cinemática, inducción, informe de incidente) | `v2: fase 3 completada` |

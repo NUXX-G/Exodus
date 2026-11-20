@@ -16,7 +16,11 @@ const DESCRIPCION: Record<Exclude<NodeKind, "teoria">, string> = {
     "Trabajos grandes por hitos: construyes algo real de principio a fin y cada hito se comprueba con la salida de tu programa para una entrada fija.",
   laboratorio:
     "Retos prácticos con archivos que descargas y analizas (registros, capturas, binarios, datos de sensores…) hasta encontrar la flag.",
+  examen:
+    "Simulacros con tiempo (como el examen real, también en papel) y retos encadenados en los que cada paso se desbloquea al resolver el anterior. Tu historial guarda cada nota.",
 };
+
+const TITULO = { proyecto: "Proyectos", laboratorio: "Laboratorios", examen: "Simulacros y retos" } as const;
 
 /** Proyectos y laboratorios de todas las ramas, con el progreso del usuario en cada uno. */
 export default async function Practica() {
@@ -35,11 +39,11 @@ export default async function Practica() {
         </p>
       </section>
 
-      {(["proyecto", "laboratorio"] as const).map((kind) => {
+      {(["examen", "proyecto", "laboratorio"] as const).map((kind) => {
         const lista = orden.filter((n) => n.kind === kind);
         return (
           <section key={kind} className="temario-nivel">
-            <h2>{kind === "proyecto" ? "Proyectos" : "Laboratorios"}</h2>
+            <h2>{TITULO[kind]}</h2>
             <p className="nota">{DESCRIPCION[kind]}</p>
             {lista.length === 0 ? (
               <p className="nota">Todavía no hay ninguno publicado.</p>
@@ -58,6 +62,7 @@ export default async function Practica() {
                         <span className="meta">
                           {areaOf(vault.areas, n.area).label}
                           {m.total > 0 ? ` · ${m.solved} de ${m.total} hitos` : ""}
+                          {n.exam ? ` · ${n.exam.items.length} ${n.exam.chained ? "pasos" : "preguntas"}${n.exam.duration ? ` · ${n.exam.duration} min` : ""}` : ""}
                           {n.ctfFlag ? " · con flag" : ""}
                           {n.attachments.length > 0 ? ` · ${n.attachments.length} archivo${n.attachments.length > 1 ? "s" : ""}` : ""}
                         </span>

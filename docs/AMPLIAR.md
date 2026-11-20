@@ -81,6 +81,28 @@ solo hay hashes con sal (id del ejercicio y de la variante); la solución nunca 
   (JavaScript leería `${{` como interpolación) y quita la barra al exportar.
 - Una respuesta que no se entiende («tres», una unidad incompatible) no cuenta como intento: el alumno ve el error.
 
+### Simulacros y retos (`kind: examen`)
+
+Un nodo `kind: examen` lleva un bloque `exam` y no tiene teoría propia (el cuerpo explica qué cubre y cómo prepararlo):
+
+```yaml
+kind: examen
+prerequisites: [mat-calculo-1, mat-trigonometria]     # los temas que cubre
+exam: {"duration": 120, "paper": true, "items": [{"ref": "mat-calculo-1/regla-de-la-cadena", "puntos": 1}, {"ref": "./propio", "puntos": 2}]}
+```
+
+- `items`: ejercicios de otros nodos (`nodo/ejercicio`) o propios del examen (`./id`, en su `exercises`, para importar un
+  examen real); `puntos` por item (1 por defecto). Con variantes, cada intento usa datos nuevos.
+- **Simulacro** (`duration` en minutos): no se corrige nada hasta entregar; las respuestas se guardan solas; al acabarse el
+  tiempo se entrega solo. `paper: true` permite el **modo papel** (resolver a mano y pasar los resultados, con
+  10 minutos de margen). Los desarrollos se puntúan con su rúbrica tras entregar.
+- **Reto encadenado** (`chained: true`): sin tiempo; cada paso se desbloquea al acertar el anterior (no admite
+  desarrollos). `pass: 1` exige llegar al final.
+- `pass` (0-1, 0,5 por defecto): nota para completar el nodo. Un examen **no** resuelve los ejercicios de origen ni
+  cuenta para su dominio. El historial guarda cada intento con nota, modo y tiempo.
+- `scripts/dev/genera-examenes.ts` genera los simulacros y retos de `vault/09-simulacros/` eligiendo de forma
+  determinista los ejercicios de mayor nivel de cada nodo de origen.
+
 ### Prueba de nivel
 
 La prueba de nivel (`src/lib/diagnostico.ts`) sondea los nodos de un área en orden de estudio con preguntas de

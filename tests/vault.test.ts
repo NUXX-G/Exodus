@@ -35,7 +35,7 @@ test("tipo de nodo: teoría por defecto, proyecto y laboratorio; rechaza tipos d
     "t.md": node("t"),
     "p.md": node("p", "kind: proyecto\n"),
     "l.md": node("l", "kind: laboratorio\n"),
-    "x.md": node("x", "kind: examen\n"),
+    "x.md": node("x", "kind: blog\n"),
   });
   const { nodes, issues } = loadVault();
   assert.equal(nodes.get("t")!.kind, "teoria");
@@ -183,4 +183,23 @@ test("áreas: el vault puede añadir un área nueva con _areas.md; un área sin 
   assert.ok(vault.nodes.has("qui-enlace"));
   assert.ok(vault.issues.some((i) => i.file === "x.md" && /área desconocida "alquimia"/.test(i.message)));
   assert.ok(!vault.issues.some((i) => i.file === "q.md"));
+});
+
+test("examen: kind y bloque exam van juntos; cada item debe existir; sus ejercicios no van al dominio", () => {
+  const ej = "exercises:\n  - id: e1\n    tier: 1\n    prompt: hola\n    answers: [\"sha256:" + "a".repeat(64) + "\"]\n";
+  tempVault({
+    "f.md": node("fuente", ej),
+    "e.md": node("ex", "kind: examen\nexam: {\"duration\": 30, \"items\": [{\"ref\": \"fuente/e1\"}, {\"ref\": \"./e1\", \"puntos\": 2}]}\n" + ej),
+    "m.md": node("malo", "kind: examen\nexam: {\"items\": [{\"ref\": \"fuente/nada\"}]}\n"),
+    "s.md": node("sin", "kind: examen\n"),
+  });
+  const { nodes, issues } = loadVault();
+  const ex = nodes.get("ex")!;
+  assert.equal(ex.exercises.length, 0);
+  assert.equal(ex.examExercises.length, 1);
+  assert.equal(ex.exam!.items[0].puntos, 1);
+  assert.equal(ex.exam!.chained, false);
+  const msgs = issues.map((i) => `${i.file}: ${i.message}`).join("\n");
+  assert.match(msgs, /m\.md: examen: el item fuente\/nada no existe/);
+  assert.match(msgs, /s\.md: kind: examen y el bloque exam van juntos/);
 });

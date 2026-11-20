@@ -15,6 +15,7 @@ import { ETIQUETA_TIPO } from "@/lib/tipos-ejercicio";
 import ReportForm from "@/components/ReportForm";
 import DevelopmentForm from "@/components/DevelopmentForm";
 import CodeInfo from "@/components/CodeInfo";
+import ExamIntro from "@/components/ExamIntro";
 import { undoDiagnosisAction } from "@/app/diagnostico/actions";
 import { devInitial } from "@/lib/desarrollo-inicial";
 import { loadRecursos } from "@/lib/recursos";
@@ -168,6 +169,8 @@ export default async function PaginaNodo({ params }: Props) {
           </section>
         )}
 
+        {node.kind === "examen" && node.exam && <ExamIntro userId={user.id} node={node} locked={state === "locked"} />}
+
         <ReportForm nodeId={node.id} exerciseId={null} />
 
         <nav className="nodo-navegacion" aria-label="Navegación entre nodos">
@@ -241,6 +244,10 @@ export default async function PaginaNodo({ params }: Props) {
                 {state === "completed"
                   ? "Nodo dominado."
                   : `Este nodo se completa al resolver ${mastery.needed} de sus ${mastery.total} ejercicios.`}
+              </p>
+            ) : node.kind === "examen" && node.exam ? (
+              <p className="nota">
+                {state === "completed" ? "Aprobado." : `Se completa al aprobar (${Math.round(node.exam.pass * 100)} % de la nota).`}
               </p>
             ) : (
               <p className="nota">Este nodo aún no tiene reto. Se completa cuando se publique su flag.</p>

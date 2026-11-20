@@ -136,13 +136,13 @@ El usuario pide terminar **todas** las fases de forma autónoma, **sin preguntar
 
 ## FASE 6 — Simulacros y retos
 
-- [ ] Nodo «examen»: ejercicios de varios nodos o áreas, o un examen real importado del vault, con duración fija y
+- [x] Nodo «examen»: ejercicios de varios nodos o áreas, o un examen real importado del vault, con duración fija y
       cronómetro.
-- [ ] «Modo papel» para mates y física: se resuelve a mano y después se introducen resultados o se autocorrige con
+- [x] «Modo papel» para mates y física: se resuelve a mano y después se introducen resultados o se autocorrige con
       rúbrica.
-- [ ] Retos finales por rama técnica: CTF encadenado o proyecto con etapas de tests.
-- [ ] Historial con notas y comparativa.
-- [ ] Cierre de fase (checks, casillas, `STATUS.md`, commit `v2: fase 6 completada`).
+- [x] Retos finales por rama técnica: CTF encadenado o proyecto con etapas de tests.
+- [x] Historial con notas y comparativa.
+- [x] Cierre de fase (checks, casillas, `STATUS.md`, commit `v2: fase 6 completada`).
 
 ## FASE 7 — Calidad automática
 

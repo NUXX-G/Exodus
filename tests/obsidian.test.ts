@@ -31,6 +31,7 @@ function makeNode(id: string, extra: Partial<VaultNode> = {}): VaultNode {
       { id: "ej-b", tier: 2, type: "texto", review: false, prompt: "Calcula algo difícil.", answers: [HASH] },
     ],
     reviewBank: [],
+    examExercises: [],
     attachments: [],
     file: `${id}.md`,
     body: `# ${id}\n\nTeoría de ${id} con [[otro]].\n`,

@@ -2199,3 +2199,112 @@ details.callout:not([open]) > summary.callout-titulo {
   gap: 10px;
   align-items: baseline;
 }
+
+/* ───────── v2 fase 6: exámenes y retos ───────── */
+
+.examen-intro {
+  margin: 24px 0;
+  padding: 14px 18px;
+  border: 1px solid var(--ambar);
+  border-radius: var(--radio);
+}
+
+.examen-intro h2 {
+  margin-top: 0;
+}
+
+.examen-barra {
+  position: sticky;
+  top: 56px;
+  z-index: 5;
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  flex-wrap: wrap;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  background: var(--tinta-honda);
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: var(--radio);
+}
+
+.examen-barra strong {
+  font-family: var(--fuente-codigo), monospace;
+  font-size: 1.3rem;
+}
+
+.examen-barra strong[data-urgente="true"] {
+  color: var(--coral);
+}
+
+.examen-items {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.examen-items > li {
+  padding: 12px 16px;
+  border: 1px solid var(--trazo);
+  border-radius: var(--radio);
+}
+
+.examen-respuesta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.examen-respuesta textarea {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--tinta-honda);
+  color: var(--tiza);
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: var(--radio);
+  font-family: var(--fuente-codigo), monospace;
+}
+
+.guardado {
+  color: var(--menta);
+}
+
+.examen-entrega {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 24px 0;
+}
+
+.pasos-reto {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.pasos-reto li {
+  padding: 4px 10px;
+  border: 1px solid var(--trazo);
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+.pasos-reto li[data-estado="hecho"] {
+  border-color: var(--menta);
+  color: var(--menta);
+}
+
+.pasos-reto li[data-estado="actual"] {
+  border-color: var(--ambar);
+}
+
+.pasos-reto li[data-estado="cerrado"] {
+  color: var(--tiza-tenue);
+}

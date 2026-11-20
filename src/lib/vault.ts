@@ -8,7 +8,12 @@
  *   title: C y el modelo de memoria
  *   area: bajo-nivel               # un área integrada (areas.ts) o declarada en vault/_areas.md
  *   trunk_level: 1                 # profundidad en el tronco (0 = raíz)
- *   kind: proyecto                 # opcional: teoria (por defecto), proyecto o laboratorio
+ *   kind: proyecto                 # opcional: teoria (por defecto), proyecto, laboratorio o examen
+ *   exam:                          # solo con kind: examen (simulacro o reto encadenado; ver docs/AMPLIAR.md)
+ *     duration: 120                # minutos (sin duration: sin límite)
+ *     chained: false               # reto encadenado: cada paso se desbloquea al acertar el anterior
+ *     paper: true                  # admite «modo papel»
+ *     items: [{ ref: mat-calculo-1/regla-de-la-cadena, puntos: 1 }, { ref: ./propio }]
  *   prerequisites: [nodo-ejemplo]  # ids de otros nodos
  *   academic_sources:              # bibliografía real
  *     - "Kernighan & Ritchie. The C Programming Language, 2ª ed."
@@ -100,9 +105,25 @@ const MAX_ATTACHMENTS = 10;
 export const MAX_ATTACHMENT_BYTES = 20 * 1024 * 1024;
 
 /** Teoría (por defecto), proyecto grande por hitos o laboratorio práctico con adjuntos y flag. */
-export const NODE_KINDS = ["teoria", "proyecto", "laboratorio"] as const;
+export const NODE_KINDS = ["teoria", "proyecto", "laboratorio", "examen"] as const;
 export type NodeKind = (typeof NODE_KINDS)[number];
-export const KIND_LABEL: Record<NodeKind, string> = { teoria: "Teoría", proyecto: "Proyecto", laboratorio: "Laboratorio" };
+export const KIND_LABEL: Record<NodeKind, string> = { teoria: "Teoría", proyecto: "Proyecto", laboratorio: "Laboratorio", examen: "Examen" };
+
+const examSchema = z.object({
+  /** Duración en minutos; sin ella, el examen no tiene límite de tiempo. */
+  duration: z.number().int().min(1).max(600).optional(),
+  /** Reto encadenado: los pasos se ven y se responden en orden; cada uno se desbloquea al acertar el anterior. */
+  chained: z.boolean().default(false),
+  /** Admite «modo papel»: se resuelve a mano y al final se introducen los resultados o se autocorrige con la rúbrica. */
+  paper: z.boolean().default(false),
+  /** Nota mínima (0-1) para completar el nodo. */
+  pass: z.number().min(0).max(1).default(0.5),
+  items: z
+    .array(z.object({ ref: z.string().regex(/^(\.|[a-z0-9]+(-[a-z0-9]+)*)\/[a-z0-9]+(-[a-z0-9]+)*$/, "ref: <nodo>/<ejercicio> o ./<ejercicio>"), puntos: z.number().min(0.25).max(100).default(1) }))
+    .min(1)
+    .max(100),
+});
+export type ExamConfig = z.infer<typeof examSchema>;
 
 const frontmatterSchema = z.object({
   id: z
@@ -114,6 +135,7 @@ const frontmatterSchema = z.object({
   prerequisites: z.array(z.string()).nullish().transform((v) => v ?? []),
   academic_sources: z.array(z.string()).nullish().transform((v) => v ?? []),
   kind: z.enum(NODE_KINDS).nullish().transform((v): NodeKind => v ?? "teoria"),
+  exam: examSchema.optional(),
   ctf_flag: z.string().min(1).nullish().transform((v) => v ?? null),
   hints: z.array(z.string().min(1)).max(3).nullish().transform((v) => v ?? []),
   exercises: z.array(exerciseSchema).max(60).nullish().transform((v) => v ?? []),
@@ -164,6 +186,10 @@ export interface VaultNode {
   ctfFlag: string | null;
   /** Solo servidor. Se entregan al cliente de una en una al revelarlas. */
   hints: string[];
+  /** Examen o reto (kind: examen): configuración e items. Sus ejercicios propios van en `examExercises`. */
+  exam?: ExamConfig;
+  /** Ejercicios propios de un examen (no cuentan para el dominio ni entran en el repaso). */
+  examExercises: VaultExercise[];
   /** Ejercicios autocorregidos del nodo; el dominio exige resolver el 80 %. */
   exercises: VaultExercise[];
   /** Banco de preguntas solo de repaso (`review: true`): distintas de las del nodo, no cuentan para el dominio. */
@@ -293,8 +319,11 @@ function leerVault(root: string): Vault {
       academicSources: fm.data.academic_sources,
       ctfFlag: fm.data.ctf_flag,
       hints: fm.data.hints,
-      exercises: fm.data.exercises.filter((e) => !e.review),
-      reviewBank: fm.data.exercises.filter((e) => e.review),
+      // En un examen, sus ejercicios son items del examen: no van al dominio ni al repaso.
+      exercises: fm.data.kind === "examen" ? [] : fm.data.exercises.filter((e) => !e.review),
+      reviewBank: fm.data.kind === "examen" ? [] : fm.data.exercises.filter((e) => e.review),
+      exam: fm.data.exam,
+      examExercises: fm.data.kind === "examen" ? fm.data.exercises : [],
       attachments: fm.data.attachments,
       file,
       body: parsed.content,
@@ -331,6 +360,20 @@ function leerVault(root: string): Vault {
       }
       if (!st.isFile()) issues.push({ file: node.file, message: `el adjunto ${name} no es un archivo normal (¿enlace simbólico?)` });
       else if (st.size > MAX_ATTACHMENT_BYTES) issues.push({ file: node.file, message: `el adjunto ${name} supera ${MAX_ATTACHMENT_BYTES} bytes` });
+    }
+  }
+
+  // Exámenes: kind y exam van juntos, y cada item apunta a un ejercicio que existe.
+  for (const node of nodes.values()) {
+    if ((node.kind === "examen") !== !!node.exam) {
+      issues.push({ file: node.file, message: "kind: examen y el bloque exam van juntos" });
+      continue;
+    }
+    for (const it of node.exam?.items ?? []) {
+      const [nid, eid] = it.ref.split("/");
+      const destino = nid === "." ? node : nodes.get(nid);
+      const ex = destino && (nid === "." ? destino.examExercises : [...destino.exercises, ...destino.reviewBank]).find((e) => e.id === eid);
+      if (!ex) issues.push({ file: node.file, message: `examen: el item ${it.ref} no existe` });
     }
   }
 

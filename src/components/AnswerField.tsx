@@ -27,9 +27,22 @@ const AYUDA: Partial<Record<AnswerSpec["type"], string>> = {
  * Campo de respuesta según el tipo de ejercicio. Incluye los campos ocultos que necesita el servidor (variante y
  * tiempo empleado) y, para expresiones, matrices y números, una vista previa que no corrige ni cuenta como intento.
  */
-export default function AnswerField({ spec, disabled, placeholder, formId }: { spec: AnswerSpec; disabled?: boolean; placeholder?: string; formId: string }) {
+export default function AnswerField({
+  spec,
+  disabled,
+  placeholder,
+  formId,
+  initial,
+}: {
+  spec: AnswerSpec;
+  disabled?: boolean;
+  placeholder?: string;
+  formId: string;
+  /** Respuesta guardada (exámenes): texto, o índices separados por comas en opción múltiple. */
+  initial?: string;
+}) {
   const tiempo = useRef<HTMLInputElement>(null);
-  const [valor, setValor] = useState("");
+  const [valor, setValor] = useState(initial ?? "");
   const [vista, setVista] = useState<PreviewState | null>(null);
   const conVista = spec.type === "expresion" || spec.type === "matriz" || spec.type === "numero";
 
@@ -70,7 +83,13 @@ export default function AnswerField({ spec, disabled, placeholder, formId }: { s
         {ocultos}
         {html.map((h, i) => (
           <label key={i} className="opcion">
-            <input type={spec.multiple ? "checkbox" : "radio"} name="answer" value={String(i)} required={!spec.multiple} />
+            <input
+              type={spec.multiple ? "checkbox" : "radio"}
+              name="answer"
+              value={String(i)}
+              required={!spec.multiple}
+              defaultChecked={initial?.split(",").includes(String(i))}
+            />
             <span className="opcion-letra">{String.fromCharCode(97 + i)})</span>
             <span className="prosa opcion-texto" dangerouslySetInnerHTML={{ __html: h }} />
           </label>

@@ -193,6 +193,27 @@ async function main() {
   assert.equal(marcas, 0);
   ok(`prueba de nivel: ${preguntas} preguntas, resultado con nodo de inicio y sin marcas (todo «no lo sé»)`);
 
+  // Simulacro (fase 6): modo papel, pasar un resultado, entregar con confirmación y ver la nota.
+  for (const n of ["mat-numeros-naturales", "mat-enteros-fracciones", "mat-algebra-basica", "mat-proporcionalidad-porcentajes", "mat-geometria-basica", "mat-funciones-basicas"])
+    db.prepare("insert or replace into node_progress (user_id,node_id,status,completed_at) values (?,?,'completed',unixepoch())").run(uid, n);
+  await page.goto(`${BASE}/nodo/sim-mat-eso`);
+  await page.locator('button:has-text("Empezar en modo papel")').click();
+  await page.waitForURL(/\/examen\/\d+/);
+  await page.locator('.examen-barra[role="timer"] strong').waitFor();
+  assert.equal(await page.locator(".examen-respuesta").count(), 0, "en papel, primero se resuelve a mano");
+  await page.locator('button:has-text("pasar resultados")').click();
+  const primera = page.locator(".examen-items > li").first();
+  await primera.locator('input[name="answer"], textarea[name="answer"]').first().fill("42");
+  await primera.locator('.guardado:has-text("guardado")').waitFor();
+  const intento = db.prepare("select id, answers from exam_attempts where user_id=? order by id desc").get(uid);
+  assert.ok(intento.answers.includes("42"), "la respuesta se guarda sola");
+  await page.locator('button:has-text("Entregar el examen")').click();
+  await page.locator('button:has-text("Sí, entregar")').click();
+  await page.locator('h1:has-text("Resultado")').waitFor();
+  const fila = db.prepare("select score, max_score, finished_at from exam_attempts where id=?").get(intento.id);
+  assert.ok(fila.finished_at && fila.max_score === 12);
+  ok(`simulacro en papel: guardado automático, entrega y nota ${fila.score}/${fila.max_score}`);
+
   assert.deepEqual(errores, [], "errores de JavaScript en la página");
   await browser.close();
   console.log(`\n${pasos.length} comprobaciones superadas`);
