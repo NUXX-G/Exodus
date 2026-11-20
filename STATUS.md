@@ -16,19 +16,17 @@ registro de sesiones (una línea) o a `docs/`.
 5. Consulta, sin leer enteros: `docs/HISTORIAL_V1.md` (estado de la v1 y lista de nodos; usa `grep`),
    `docs/PEDAGOGIA.md` (al escribir contenido), `docs/AMPLIAR.md` (formato de nodos y efectos sobre el progreso),
    `docs/CURRICULO.md` (árbol de la v1).
-6. Antes de que se llene el contexto: termina la tarea en curso, actualiza §1 y el registro (§8), ejecuta
-   `bash scripts/dev/guardar.sh "v2: fase N · <tarea>"` y di al usuario:
-   **«Abre una sesión nueva y escribe: continúa con el roadmap»**.
+6. Antes de que se llene el contexto: termina la tarea en curso, actualiza §1 y el registro (§9) y ejecuta
+   `bash scripts/dev/guardar.sh "v2: fase N · <tarea>"`. **Desde el 2026-11-20 no se para nunca la sesión ni se
+   pide abrir otra**: el contexto se resume solo y se sigue. Un trabajo cron de la sesión («continúa con el roadmap»,
+   cada hora en el minuto 17) reanuda el trabajo tras los límites de uso; si no existe (`CronList`), recréalo.
 
 ## 1. Ahora mismo
 
 - **Fase actual**: FASE 1 — Ejercicios verificados y parametrizados.
-- **Tarea actual**: ninguna empezada. Primera: formato de los ejercicios (frontmatter o archivo hermano) y registro
-  de tipos.
-- **Siguiente paso concreto**: leer el esquema de `exercises` en `src/lib/vault.ts` y la corrección en
-  `src/lib/exercises.ts`; decidir el formato y documentarlo en `docs/AMPLIAR.md`. La verificación simbólica tiene un
-  ⛔: antes de implementarla, presentar al usuario la propuesta «servicio SymPy en docker-compose» frente a «CAS en JS»
-  con pros y contras, y seguir con lo que no dependa de ella.
+- **Tarea actual**: formato de los ejercicios y registro de tipos (decidido en §6.8; en implementación).
+- **Siguiente paso concreto**: `src/lib/ejercicios/` (registro de tipos, CAS mínimo, unidades), ampliar
+  `exerciseSchema` en `vault.ts`, migración 0006 (intentos con variante/tiempo, reportes), UI y `ex-inject.ts`.
 - **Bloqueos**: ninguno.
 
 ## 2. Reglas de la v2 (resumen; el texto completo está en el roadmap)
@@ -121,6 +119,21 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
    Contenido escrito por usuarios (Libreta y, en el futuro, respuestas de desarrollo de la fase 3): siempre
    `renderMarkdown(md, resolve, "usuario")`, que usa un motor MathJax aparte sin paquetes que definen macros y otra
    clave de caché (PR #210). *Por qué*: con un motor compartido, una nota podía cambiar las fórmulas de otros usuarios.
+
+8. **2026-11-20 · Autonomía total.** El usuario autoriza decidir también los ⛔ sin preguntar y amplía el plan
+   (sección «Ampliación del 2026-11-20» del roadmap: repaso con variantes, explicación en escalera, glosario,
+   libreta con dibujo, calculadora, contenido hasta máster, proyectos con presupuesto). Fases nuevas 8A, 8B y 8C.
+9. **2026-11-20 · ⛔ Verificación simbólica: CAS mínimo en JS, sin servicio Python.** La respuesta del alumno se
+   evalúa en puntos fijos (sembrados por el id del ejercicio) y se compara la **huella** (hash de los valores
+   redondeados) con la de la solución, calculada al inyectar. *Pros*: sin servicio ni lenguaje nuevo, cabe en los
+   512 MB, la solución no queda en claro en el vault (regla de siempre), es determinista y comprobable en tests.
+   *Contras frente a SymPy*: no simplifica ni demuestra; equivalencia probabilística (prácticamente segura con
+   varios puntos); dominios restringidos (raíces, logaritmos) exigen declarar el intervalo de muestreo; la forma
+   («factoriza», «simplifica») se comprueba aparte con reglas sobre el árbol. *Descartado SymPy*: un contenedor
+   Python más (~150 MB) en un VPS de 2 GB y otro servicio que mantener, para un beneficio que no hace falta aquí.
+10. **2026-11-20 · Plantillas parametrizadas como variantes precalculadas.** El spec de `.soluciones/` genera
+   N variantes (datos + hash de la solución, verificada por dos métodos) y el servidor elige una no vista en cada
+   intento. *Por qué*: mantiene la regla de no tener soluciones ni fórmulas en claro y la doble verificación offline.
 
 ## 7. Preguntas abiertas
 

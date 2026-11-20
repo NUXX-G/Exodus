@@ -34,7 +34,7 @@ export function precalentar(): Promise<void> {
     let n = 0;
     for (const node of studyOrder(vault)) {
       await renderizarConDescanso(node.body, resolve);
-      for (const e of node.exercises) await renderizarConDescanso(e.prompt, resolve);
+      for (const e of node.exercises) if (!e.variants?.length) await renderizarConDescanso(e.prompt, resolve);
       n++;
     }
     for (const p of loadRecursos().paginas) {

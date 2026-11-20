@@ -26,15 +26,51 @@ import crypto from "node:crypto";
 import matter from "gray-matter";
 import { z } from "zod";
 import { AREAS_FILE, mergeAreas, type AreaId, type AreaInfo } from "./areas";
+import { marcadores, TIPOS, type TipoId } from "./tipos-ejercicio";
 
-const exerciseSchema = z.object({
-  id: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "id de ejercicio en kebab-case"),
-  /** 1 = a completar (guiado), 2 = problema propio, 3 = difícil / integrador. */
-  tier: z.number().int().min(1).max(3).default(2),
-  prompt: z.string().min(1),
-  /** Respuestas aceptadas, cada una `sha256:<hex>` del texto normalizado (npm run vault:ex). */
-  answers: z.array(z.string().regex(/^sha256:[0-9a-f]{64}$/)).min(1).max(8),
-});
+const HASH = z.string().regex(/^sha256:[0-9a-f]{64}$/);
+
+const exerciseSchema = z
+  .object({
+    id: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "id de ejercicio en kebab-case"),
+    /** 1 = a completar (guiado), 2 = problema propio, 3 = difícil / integrador. */
+    tier: z.number().int().min(1).max(3).default(2),
+    /** Tipo de corrección (src/lib/tipos-ejercicio.ts). Sin `type`: texto exacto normalizado (formato v1). */
+    type: z.enum(TIPOS).default("texto"),
+    /** Enunciado en Markdown; con variantes, admite `{{dato}}`. */
+    prompt: z.string().min(1),
+    /** Hashes aceptados (los genera scripts/ex-inject.ts). Con `variants`, cada variante lleva los suyos. */
+    answers: z.array(HASH).max(64).default([]),
+    /** numero/matriz: cifras significativas que se comparan. */
+    sig: z.number().int().min(1).max(12).optional(),
+    /** numero: unidad en que se espera el resultado; se admite cualquier unidad compatible. */
+    unit: z.string().min(1).max(40).optional(),
+    /** expresion: variables admitidas e intervalo donde se evalúa. */
+    vars: z.array(z.string().regex(/^[A-Za-z][A-Za-z0-9_]*$/)).max(6).optional(),
+    domain: z.tuple([z.number(), z.number()]).optional(),
+    form: z.enum(["factorizada", "expandida", "sin-raices-en-denominador"]).optional(),
+    /** opcion: texto de cada opción (Markdown) y si hay varias correctas. */
+    options: z.array(z.string().min(1)).min(2).max(10).optional(),
+    multiple: z.boolean().optional(),
+    /** Solo para el repaso: no cuenta para el dominio ni aparece en el nodo (pregunta distinta del temario). */
+    review: z.boolean().default(false),
+    /** Plantilla parametrizada: cada intento usa otra variante, con sus datos y sus hashes. */
+    variants: z
+      .array(z.object({ values: z.record(z.string(), z.union([z.number(), z.string()])), answers: z.array(HASH).min(1).max(64) }))
+      .max(200)
+      .optional(),
+  })
+  .superRefine((e, ctx) => {
+    if (!e.variants?.length && e.answers.length === 0) ctx.addIssue({ code: "custom", message: "sin respuestas (answers o variants)" });
+    if (e.type === "opcion" && !e.options) ctx.addIssue({ code: "custom", message: "un ejercicio de opción múltiple necesita options" });
+    if (e.type === "expresion" && !e.vars) ctx.addIssue({ code: "custom", message: "un ejercicio de expresión necesita vars" });
+    if (e.domain && !(e.domain[0] < e.domain[1])) ctx.addIssue({ code: "custom", message: "domain: el extremo izquierdo debe ser menor" });
+    for (const [i, v] of (e.variants ?? []).entries()) {
+      for (const k of marcadores(e.prompt)) {
+        if (!(k in v.values)) ctx.addIssue({ code: "custom", message: `variante ${i}: falta el dato {{${k}}}` });
+      }
+    }
+  });
 
 
 /** Directorio, dentro del vault, con una carpeta de adjuntos por id de nodo. */
@@ -72,9 +108,20 @@ const frontmatterSchema = z.object({
 export interface VaultExercise {
   id: string;
   tier: number;
+  type: TipoId;
   prompt: string;
   /** Solo servidor: hashes de las respuestas aceptadas. */
   answers: string[];
+  sig?: number;
+  unit?: string;
+  vars?: string[];
+  domain?: [number, number];
+  form?: "factorizada" | "expandida" | "sin-raices-en-denominador";
+  options?: string[];
+  multiple?: boolean;
+  review: boolean;
+  /** Solo servidor (los hashes); los datos se muestran al rellenar el enunciado. */
+  variants?: { values: Record<string, string | number>; answers: string[] }[];
 }
 
 export interface VaultNode {
@@ -90,8 +137,10 @@ export interface VaultNode {
   ctfFlag: string | null;
   /** Solo servidor. Se entregan al cliente de una en una al revelarlas. */
   hints: string[];
-  /** Ejercicios autocorregidos; el dominio del nodo exige resolver el 80 %. */
+  /** Ejercicios autocorregidos del nodo; el dominio exige resolver el 80 %. */
   exercises: VaultExercise[];
+  /** Banco de preguntas solo de repaso (`review: true`): distintas de las del nodo, no cuentan para el dominio. */
+  reviewBank: VaultExercise[];
   /** Nombres de los archivos del reto, en vault/_adjuntos/<id>/. */
   attachments: string[];
   /** Ruta relativa al vault, con `/`. */
@@ -217,7 +266,8 @@ function leerVault(root: string): Vault {
       academicSources: fm.data.academic_sources,
       ctfFlag: fm.data.ctf_flag,
       hints: fm.data.hints,
-      exercises: fm.data.exercises,
+      exercises: fm.data.exercises.filter((e) => !e.review),
+      reviewBank: fm.data.exercises.filter((e) => e.review),
       attachments: fm.data.attachments,
       file,
       body: parsed.content,
@@ -231,7 +281,7 @@ function leerVault(root: string): Vault {
   }
 
   for (const node of nodes.values()) {
-    const ids = node.exercises.map((e) => e.id);
+    const ids = [...node.exercises, ...node.reviewBank].map((e) => e.id);
     if (new Set(ids).size !== ids.length) issues.push({ file: node.file, message: "ids de ejercicio repetidos" });
   }
 

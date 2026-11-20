@@ -1662,3 +1662,152 @@ details.callout:not([open]) > summary.callout-titulo {
   height: 0;
   overflow: hidden;
 }
+
+/* ───────── v2: tipos de ejercicio, vista previa y reportes ───────── */
+
+.respuesta {
+  flex: 1;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.respuesta input[type="text"],
+.respuesta textarea,
+.reporte-form textarea,
+.reporte-cierre input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--tinta-honda);
+  color: var(--tiza);
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: var(--radio);
+  font-family: var(--fuente-codigo), monospace;
+  font-size: 0.9375rem;
+}
+
+.ayuda-respuesta {
+  margin: 0;
+  font-size: 0.8125rem;
+}
+
+.vista-previa {
+  padding: 6px 10px;
+  border-left: 2px solid var(--menta);
+  background: rgba(127, 227, 196, 0.06);
+  overflow-x: auto;
+}
+
+.vista-previa .prosa {
+  margin: 0;
+}
+
+.vista-error {
+  color: var(--coral);
+  font-size: 0.875rem;
+}
+
+.opciones {
+  flex-basis: 100%;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.opcion {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  padding: 8px 10px;
+  border: 1px solid var(--trazo);
+  border-radius: var(--radio);
+  cursor: pointer;
+}
+
+.opcion:has(input:checked) {
+  border-color: var(--ambar);
+  background: rgba(245, 185, 66, 0.08);
+}
+
+.opcion-letra {
+  font-family: var(--fuente-codigo), monospace;
+  color: var(--tiza-tenue);
+}
+
+.opcion-texto > :first-child {
+  margin-top: 0;
+}
+
+.opcion-texto > :last-child {
+  margin-bottom: 0;
+}
+
+.boton-reporte {
+  margin-top: 8px;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--tiza-tenue);
+  font: inherit;
+  font-size: 0.8125rem;
+  text-decoration: underline dotted;
+  cursor: pointer;
+}
+
+.boton-reporte:hover {
+  color: var(--coral);
+}
+
+.reporte-form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.875rem;
+}
+
+.fila-botones {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.reportes {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.reportes > li {
+  padding: 12px 14px;
+  border: 1px solid var(--trazo);
+  border-radius: var(--radio);
+}
+
+.reportes > li[data-estado="pendiente"] {
+  border-left: 3px solid var(--ambar);
+}
+
+.reportes blockquote {
+  margin: 8px 0;
+  white-space: pre-wrap;
+}
+
+.reporte-cierre {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.reporte-cierre input[type="text"] {
+  flex: 1;
+  min-width: 200px;
+  width: auto;
+}

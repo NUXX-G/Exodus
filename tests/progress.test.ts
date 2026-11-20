@@ -19,8 +19,15 @@ import {
   submitExercise,
   submitFlag,
   submitReview,
+  createReport,
+  currentVariant,
+  listReports,
+  promptOf,
+  resolveReport,
+  reviewQuestion,
 } from "../src/lib/progress";
 import { sha256, type Vault, type VaultExercise, type VaultNode } from "../src/lib/vault";
+import { REGISTRO, salDe } from "../src/lib/tipos-ejercicio";
 import { eq } from "drizzle-orm";
 
 const FLAG = "EXODUS{prueba}";
@@ -36,6 +43,7 @@ function node(id: string, opts: Partial<VaultNode> = {}): VaultNode {
     ctfFlag: null,
     hints: [],
     exercises: [],
+    reviewBank: [],
     attachments: [],
     file: `${id}.md`,
     body: "",
@@ -44,7 +52,7 @@ function node(id: string, opts: Partial<VaultNode> = {}): VaultNode {
 }
 
 const ejercicios = (n: number): VaultExercise[] =>
-  Array.from({ length: n }, (_, i) => ({ id: `e${i}`, tier: 1, prompt: "¿?", answers: [hashAnswer(String(i))] }));
+  Array.from({ length: n }, (_, i) => ({ id: `e${i}`, tier: 1, type: "texto", review: false, prompt: "¿?", answers: [hashAnswer(String(i))] }));
 
 let n = 0;
 function makeUser(): number {
@@ -170,4 +178,94 @@ test("racha: días consecutivos con actividad hasta hoy", () => {
   };
   for (const k of [0, 1, 2, 4]) getDb().insert(schema.activityLog).values({ userId: u, kind: "node_opened", nodeId: "a", day: d(k) }).run();
   assert.equal(getActivity(u, 30).streak, 3);
+});
+
+/* ───────── v2: tipos, variantes, banco de repaso y reportes ───────── */
+
+const numerico = (id: string, valores: number[], extra: Partial<VaultExercise> = {}): VaultExercise => ({
+  id,
+  tier: 2,
+  type: "numero",
+  review: false,
+  sig: 3,
+  prompt: "Calcula {{a}} · 2",
+  answers: [],
+  variants: valores.map((a, i) => ({ values: { a }, answers: REGISTRO.numero.referencia(String(a * 2), { id, type: "numero", sig: 3 }, salDe(id, i)) })),
+  ...extra,
+});
+
+test("variantes: cada acierto pasa a otros datos; fallar no los cambia", () => {
+  const u = makeUser();
+  const ex = numerico("doble", [3, 5, 7]);
+  const nd = node("variantes", { exercises: [ex] });
+  const v0 = currentVariant(u, nd.id, ex)!;
+  const a = [3, 5, 7][v0];
+  assert.match(promptOf(ex, v0), new RegExp(`Calcula ${a} `));
+  assert.deepEqual(submitExercise(u, nd, "doble", "999", { variant: v0 }), { ok: false, reason: "incorrecta" });
+  assert.equal(currentVariant(u, nd.id, ex), v0, "fallar no cambia la variante");
+  // Respuesta de otra variante: incorrecta.
+  const otra = [3, 5, 7][(v0 + 1) % 3] * 2;
+  assert.equal(submitExercise(u, nd, "doble", String(otra), { variant: v0 }).ok, false);
+  assert.equal(submitExercise(u, nd, "doble", String(a * 2), { variant: v0 }).ok, true);
+  const v1 = currentVariant(u, nd.id, ex);
+  assert.notEqual(v1, v0);
+  // Una página antigua (variante vieja) se detecta y no cuenta.
+  assert.deepEqual(submitExercise(u, nd, "doble", String(a * 2), { variant: v0 }), { ok: false, reason: "variante" });
+  const fila = getDb().select().from(schema.exerciseAttempts).where(eq(schema.exerciseAttempts.userId, u)).all().at(-1)!;
+  assert.equal(fila.variant, v0);
+  assert.equal(fila.mode, "estudio");
+});
+
+test("respuesta ilegible: no cuenta como intento", () => {
+  const u = makeUser();
+  const nd = node("ilegible", { exercises: [numerico("doble", [3])] });
+  const r = submitExercise(u, nd, "doble", "tres", { variant: 0 });
+  assert.equal(r.ok, false);
+  assert.equal((r as { reason: string }).reason, "ilegible");
+  assert.equal(getDb().select().from(schema.exerciseAttempts).where(eq(schema.exerciseAttempts.userId, u)).all().length, 0);
+});
+
+test("repaso: pregunta del banco distinta del ejercicio original, y se registra como repaso", () => {
+  const u = makeUser();
+  const banco: VaultExercise = { id: "por-que", tier: 2, type: "texto", review: true, prompt: "¿Por qué?", answers: [hashAnswer("porque")] };
+  const nd = node("con-banco", { exercises: ejercicios(1), reviewBank: [banco] });
+  submitExercise(u, nd, "e0", "0");
+  getDb().update(schema.reviews).set({ dueDay: dayKey() }).where(eq(schema.reviews.userId, u)).run();
+  const q = reviewQuestion(u, nd, nd.exercises[0], 0);
+  assert.equal(q.kind, "banco");
+  assert.equal(q.ex.id, "por-que");
+  assert.equal(submitReview(u, nd, "e0", "0", { askedId: "por-que" }), "incorrecta", "la respuesta del original no vale");
+  getDb().update(schema.reviews).set({ dueDay: dayKey() }).where(eq(schema.reviews.userId, u)).run();
+  assert.equal(submitReview(u, nd, "e0", "porque", { askedId: "e0" }), "cambiada", "no se puede elegir la pregunta");
+  assert.equal(submitReview(u, nd, "e0", "porque", { askedId: "por-que" }), "ok");
+  const ultimo = getDb().select().from(schema.exerciseAttempts).where(eq(schema.exerciseAttempts.userId, u)).all().at(-1)!;
+  assert.equal(ultimo.mode, "repaso");
+  assert.equal(ultimo.reviewOf, "e0");
+  assert.equal(ultimo.exerciseId, "por-que");
+  // El banco no cuenta para el dominio.
+  assert.equal(masteryOf(nd, getSolvedExercises(u, nd.id)).total, 1);
+});
+
+test("repaso con variantes y sin banco: mismo problema con otros datos", () => {
+  const u = makeUser();
+  const ex = numerico("doble", [3, 5, 7, 9]);
+  const nd = node("rep-var", { exercises: [ex] });
+  const v0 = currentVariant(u, nd.id, ex)!;
+  submitExercise(u, nd, "doble", String([3, 5, 7, 9][v0] * 2), { variant: v0 });
+  const q = reviewQuestion(u, nd, ex, 0);
+  assert.equal(q.kind, "variante");
+  assert.notEqual(q.variant, v0);
+});
+
+test("reportes: se guardan pendientes, con límite y resolución", () => {
+  const u = makeUser();
+  assert.equal(createReport(u, "nodo-x", null, "   "), "vacio");
+  assert.equal(createReport(u, "nodo-x", "e1", "La solución del 1 parece mal"), "ok");
+  const pend = listReports("pendiente").filter((r) => r.nodeId === "nodo-x");
+  assert.equal(pend.length, 1);
+  assert.equal(pend[0].exerciseId, "e1");
+  resolveReport(pend[0].id, "resuelto", "Corregido");
+  assert.equal(listReports("pendiente").filter((r) => r.nodeId === "nodo-x").length, 0);
+  for (let i = 0; i < 19; i++) createReport(u, "nodo-y", null, "x");
+  assert.equal(createReport(u, "nodo-y", null, "uno más"), "espera");
 });

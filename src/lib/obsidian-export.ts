@@ -8,6 +8,7 @@
  */
 import { areaOf } from "./areas";
 import { masteryNeeded } from "./exercises";
+import { rellenar } from "./tipos-ejercicio";
 import type { Vault, VaultNode } from "./vault";
 
 export const EXPORT_VERSION = 1;
@@ -128,7 +129,10 @@ export function buildExport(vault: Vault, data: UserExportData, root = ""): Expo
         const when = solved.get(e.id);
         const due = reviewOf.get(`${n.id}/${e.id}`);
         const estadoEj = when ? `✅ resuelto el ${day(when)}${due ? ` · próximo repaso el ${due}` : ""}` : "⬜ pendiente";
-        body += `\n### ${i + 1}. \`${e.id}\` (${TIER[e.tier]})\n\n${e.prompt.trim()}\n\n*${estadoEj}*\n`;
+        // Plantillas: se exporta la primera variante; el banco de repaso (`review`) no se exporta nunca.
+        const enunciado = e.variants?.length ? rellenar(e.prompt, e.variants[0].values) : e.prompt;
+        const opciones = e.options?.length ? `\n\n${e.options.map((o, k) => `${String.fromCharCode(97 + k)}) ${o}`).join("\n")}` : "";
+        body += `\n### ${i + 1}. \`${e.id}\` (${TIER[e.tier]})\n\n${enunciado.trim()}${opciones}\n\n*${estadoEj}*\n`;
       });
     }
     const mias = (data.notes ?? []).filter((x) => x.nodeId === n.id);

@@ -9,7 +9,10 @@ import { areaOf } from "@/lib/areas";
 import { getSessionUser, requireUser } from "@/lib/auth";
 import { linkResolverFor, renderMarkdown } from "@/lib/markdown";
 import { compactarFormulas } from "@/lib/svg-compacto";
-import { getCompleted, getRevealedLevels, getSolvedExercises, masteryOf, recordOpen, stateOf } from "@/lib/progress";
+import { currentVariant, getCompleted, getRevealedLevels, getSolvedExercises, masteryOf, promptOf, recordOpen, stateOf } from "@/lib/progress";
+import { answerSpec } from "@/lib/answer-spec";
+import { ETIQUETA_TIPO } from "@/lib/tipos-ejercicio";
+import ReportForm from "@/components/ReportForm";
 import { loadRecursos } from "@/lib/recursos";
 import { studyOrder } from "@/lib/study";
 import { attachmentInfo, KIND_LABEL, loadVault } from "@/lib/vault";
@@ -58,10 +61,19 @@ export default async function PaginaNodo({ params }: Props) {
   const mastery = masteryOf(node, solvedIds);
   // Texto y enunciados se renderizan por separado (caché por fragmento) y luego comparten una sola copia de los
   // glifos y la hoja de estilo de MathJax (svg-compacto.ts).
-  const crudos = await Promise.all([node.body, ...node.exercises.map((e) => e.prompt)].map((md) => renderMarkdown(md, resolve)));
+  // Cada ejercicio con variantes muestra la que le toca a este usuario (cambia tras cada acierto).
+  const variantes = node.exercises.map((e) => currentVariant(user.id, node.id, e));
+  const opciones = node.exercises.map((e) => e.options ?? []);
+  const crudos = await Promise.all(
+    [node.body, ...node.exercises.map((e, i) => promptOf(e, variantes[i])), ...opciones.flat()].map((md) => renderMarkdown(md, resolve)),
+  );
   const { fragmentos, definiciones } = compactarFormulas(crudos);
   const html = fragmentos[0];
-  const ejercicios = node.exercises.map((e, i) => ({ e, html: fragmentos[i + 1] }));
+  let cursor = 1 + node.exercises.length;
+  const ejercicios = node.exercises.map((e, i) => {
+    const optionsHtml = opciones[i].length ? fragmentos.slice(cursor, (cursor += opciones[i].length)) : undefined;
+    return { e, html: fragmentos[i + 1], spec: answerSpec(node.id, e, variantes[i], optionsHtml) };
+  });
   const TIER = ["", "A completar", "Problema", "Difícil"] as const;
   const misNotas = listNotes(user.id, node.id);
   // Lo que este nodo desbloquea: los nodos que lo tienen como prerequisito.
@@ -112,19 +124,24 @@ export default async function PaginaNodo({ params }: Props) {
               </span>
             </header>
             <ol className="ejercicios-lista">
-              {ejercicios.map(({ e, html: h }, i) => (
+              {ejercicios.map(({ e, html: h, spec }, i) => (
                 <li key={e.id} data-resuelto={solvedIds.includes(e.id) ? "true" : undefined}>
                   <p className="meta">
                     Ejercicio {i + 1} · {TIER[e.tier]}
+                    {e.type !== "texto" ? ` · ${ETIQUETA_TIPO[e.type]}` : ""}
+                    {spec.variant !== null ? " · datos nuevos tras cada acierto" : ""}
                     {solvedIds.includes(e.id) ? " · resuelto" : ""}
                   </p>
                   <div className="prosa ejercicio-enunciado" dangerouslySetInnerHTML={{ __html: h }} />
-                  <ExerciseForm nodeId={node.id} exerciseId={e.id} solved={solvedIds.includes(e.id)} locked={state === "locked"} />
+                  <ExerciseForm spec={spec} solved={solvedIds.includes(e.id)} locked={state === "locked"} />
+                  <ReportForm nodeId={node.id} exerciseId={e.id} />
                 </li>
               ))}
             </ol>
           </section>
         )}
+
+        <ReportForm nodeId={node.id} exerciseId={null} />
 
         <nav className="nodo-navegacion" aria-label="Navegación entre nodos">
           {anterior ? (

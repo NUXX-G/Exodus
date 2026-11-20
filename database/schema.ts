@@ -207,6 +207,14 @@ export const exerciseAttempts = sqliteTable(
     exerciseId: text("exercise_id").notNull(),
     submittedHash: text("submitted_hash").notNull(),
     correct: integer("correct", { mode: "boolean" }).notNull(),
+    /** Índice de la variante (plantillas parametrizadas); null si el ejercicio no tiene variantes. */
+    variant: integer("variant"),
+    /** Tiempo desde que se mostró el enunciado hasta el envío (lo mide el navegador; orientativo). */
+    elapsedMs: integer("elapsed_ms"),
+    /** `estudio` (en el nodo), `repaso` (en /repaso). */
+    mode: text("mode", { enum: ["estudio", "repaso"] }).notNull().default("estudio"),
+    /** En el repaso: el ejercicio programado al que sustituye esta pregunta (puede ser otra del banco). */
+    reviewOf: text("review_of"),
     createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(now),
   },
   (t) => [
@@ -245,6 +253,29 @@ export const reviews = sqliteTable(
     primaryKey({ columns: [t.userId, t.nodeId, t.exerciseId] }),
     index("reviews_due_idx").on(t.userId, t.dueDay),
   ],
+);
+
+/**
+ * Reportes «creo que esto está mal» sobre un nodo o un ejercicio. Los revisa el administrador en /reportes y
+ * se resumen en STATUS.md al trabajar el área. `node_id` es texto libre, como en el progreso.
+ */
+export const reports = sqliteTable(
+  "reports",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    userId: integer("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    nodeId: text("node_id").notNull(),
+    exerciseId: text("exercise_id"),
+    message: text("message").notNull(),
+    status: text("status", { enum: ["pendiente", "resuelto", "descartado"] }).notNull().default("pendiente"),
+    /** Respuesta del administrador al cerrarlo (opcional). */
+    resolution: text("resolution"),
+    createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(now),
+    resolvedAt: integer("resolved_at", { mode: "timestamp" }),
+  },
+  (t) => [index("reports_status_idx").on(t.status, t.createdAt), index("reports_node_idx").on(t.nodeId)],
 );
 
 export type User = typeof users.$inferSelect;

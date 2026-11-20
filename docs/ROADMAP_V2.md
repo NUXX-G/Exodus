@@ -31,6 +31,31 @@ es obligatorio y las ramas son opcionales. Matemáticas y física son la priorid
 robótica, sistemas/bajo nivel, ciberseguridad, IA, cuántica) deben tener la misma calidad de práctica y verificación,
 cada una con los tipos de ejercicio que le encajan.
 
+## Ampliación del 2026-11-20 (pedida por el usuario; manda sobre lo anterior si choca)
+
+El usuario pide terminar **todas** las fases de forma autónoma, **sin preguntar**: autoriza a decidir también los ⛔
+(se decide la opción más segura, se documenta en `STATUS.md` §6 y se sigue). Requisitos nuevos:
+
+1. **Repaso que hace pensar**: las preguntas de repaso NO son las mismas que las del temario. Dos clases: (a) la
+   misma pregunta con otros datos (plantillas parametrizadas) y (b) preguntas distintas pero del mismo temario
+   (conceptuales, de aplicación, «¿por qué falla esto?»). Ver FASE 1 y FASE 2.
+2. **Explicación en escalera** en todos los nodos de todas las ramas: empieza para que lo entienda cualquiera
+   (sin tecnicismos, con ejemplos prácticos de la vida real) y sube peldaño a peldaño hasta el nivel formal que
+   necesita un matemático o físico (o un profesional de la rama). Dos registros conmutables: «práctico» y «formal».
+   Ningún tecnicismo sin explicar antes: **glosario/leyenda** por área y términos enlazados. Ver FASE 8A y PARTE 2.
+3. **Libreta con dibujo** (lienzo tipo paint para escribir a mano, guardable y exportable a Obsidian) y
+   **calculadora científica** integrada. Ver FASE 8B.
+4. **Más comodidad de estudio**: buscar y añadir otras funciones que ayuden a estudiar solo con Exodus. Ver FASE 8C.
+5. **Alcance de contenido**: de 1º de ESO hasta **el nivel de un estudiante que termina un máster universitario**,
+   en cada rama. Estructura: el **troncal** es solo el primer escalón (los fundamentos, ~20 % del contenido total
+   de Exodus, de 1º de ESO a Bachillerato/inicio de grado, el 20 % que abre el 80 % restante); cada **rama**
+   (matemáticas, física, ingeniería, robótica, sistemas, ciberseguridad, IA, cuántica) parte del troncal y
+   especializa hasta fin de máster (~80 % del contenido). Exodus debe bastar para estudiar por cuenta propia. Todo
+   contrastado con fuentes reales (libro y sección o documentación oficial).
+6. **Proyectos**: revisar, mejorar y añadir. Pueden costar dinero (p. ej. construir y lanzar un cohete de modelismo),
+   pero con presupuesto ajustado: cada proyecto indica lista de materiales con coste aproximado, alternativas
+   baratas y normas de seguridad/legales.
+
 ## PASO 0 — Preparación
 
 - [x] Leer `CLAUDE.md`, `STATUS.md`, `FASE_1.md` y `docs/AMPLIAR.md`.
@@ -62,6 +87,8 @@ cada una con los tipos de ejercicio que le encajan.
 - [ ] Cada intento se guarda: resultado, tiempo y variante.
 - [ ] Botón «creo que esto está mal» en cada nodo y ejercicio. Los reportes van a una página de pendientes y se
       resumen en `STATUS.md`.
+- [ ] Repaso con variantes: en `/repaso` un ejercicio parametrizado sale con otros datos, y cada nodo puede tener
+      un banco `review` de preguntas distintas (conceptuales/aplicación) que solo salen en el repaso.
 - [ ] Convertir como ejemplo 3 nodos del troncal y 1 de cada rama con contenido.
 - [ ] Cierre de fase: tests, `vault:check`, `typecheck`, casillas, `STATUS.md`, commit `v2: fase 1 completada`.
 
@@ -132,13 +159,42 @@ cada una con los tipos de ejercicio que le encajan.
 - [ ] Estructura preparada para que mates y física crezcan hasta el grado completo sin reorganizar el árbol.
 - [ ] Cierre de fase (checks, casillas, `STATUS.md`, commit `v2: fase 8 completada`).
 
+## FASE 8A — Explicación en escalera y glosario
+
+- [ ] Formato de nodo con secciones «práctico» (intuición, vida real, sin tecnicismos) y «formal» (definiciones,
+      teoremas, demostraciones), conmutables en la página del nodo; por defecto, el registro que elija el usuario.
+- [ ] Glosario por área en el vault (`vault/_glosario/<area>.md`): término, explicación llana, definición formal y
+      nodo donde se introduce. Los términos del glosario se resaltan en el texto con su explicación al pasar/pulsar.
+- [ ] Página `/glosario` (leyenda) con búsqueda; `vault:check` avisa de términos usados antes de definirse.
+- [ ] Documentarlo en `docs/PEDAGOGIA.md` y `docs/AMPLIAR.md`.
+- [ ] Cierre de fase (checks, casillas, `STATUS.md`, commit `v2: fase 8A completada`).
+
+## FASE 8B — Libreta con dibujo y calculadora
+
+- [ ] Lienzo de dibujo a mano en la Libreta (lápiz, borrador, colores, deshacer, cuadrícula, ratón/táctil/lápiz),
+      guardado por usuario y exportable a Obsidian (PNG/SVG junto a la nota).
+- [ ] Calculadora científica integrada (flotante, accesible desde cualquier página de estudio), sin IA.
+- [ ] Cierre de fase (checks, casillas, `STATUS.md`, commit `v2: fase 8B completada`).
+
+## FASE 8C — Comodidad de estudio
+
+- [ ] Investigar y añadir funciones que ayuden a estudiar solo con Exodus (p. ej. temporizador Pomodoro, modo
+      concentración, tarjetas de glosario, atajos de teclado, impresión de hojas de ejercicios). Decidir y anotar.
+- [ ] Cierre de fase (checks, casillas, `STATUS.md`, commit `v2: fase 8C completada`).
+
 # PARTE 2: CONTENIDO (un ciclo por área)
 
 Orden de áreas: troncal → matemáticas → física → sistemas/bajo nivel → ingeniería → IA → cuántica → robótica →
 ciberseguridad.
 
-Alcance: troncal desde cero hasta Bachillerato. Matemáticas y física hasta primero completo del doble grado de la UNED,
-usando como referencia sus guías docentes. El resto de ramas hasta nivel junior.
+Alcance (ampliado el 2026-11-20): todas las áreas desde 1º de ESO hasta **nivel máster como mínimo**. Matemáticas y
+física cubren el doble grado completo de la UNED (guías docentes como referencia) y siguen hasta máster. El resto
+de ramas: de cero a nivel profesional/máster. Se avanza por tramos: primero lo que el usuario necesita antes
+(troncal y primero de la UNED), luego se profundiza.
+
+Cada nodo se escribe **en escalera** (FASE 8A): práctico → formal, sin tecnicismos sin explicar, términos en el
+glosario. Cada rama tiene proyectos buenos (pueden costar dinero, con presupuesto ajustado, materiales, coste y
+seguridad).
 
 Principio: Exodus NO es la fuente primaria de teoría. Cada nodo sigue una fuente fiable concreta y contrastable (libro
 y sección, o documentación oficial). Priorizar fuentes gratuitas y en español cuando existan (OpenStax, Book of
@@ -168,7 +224,7 @@ Ciclo por cada área (una fase por área), con estas tareas:
 - [ ] e) Reportes «creo que esto está mal» del área
 - [ ] f) Cierre (checks, cobertura, `STATUS.md`, commit `v2: fase 9 completada`)
 
-## FASE 10 — Contenido: matemáticas (hasta primero del doble grado UNED)
+## FASE 10 — Contenido: matemáticas (doble grado UNED completo y máster)
 
 - [ ] a) Mapa (`docs/contenido/matematicas.md`, con la guía docente de la UNED)
 - [ ] b) Plan (⛔ si cambia ids o afecta al progreso)
@@ -177,7 +233,7 @@ Ciclo por cada área (una fase por área), con estas tareas:
 - [ ] e) Reportes «creo que esto está mal» del área
 - [ ] f) Cierre (checks, cobertura, `STATUS.md`, commit `v2: fase 10 completada`)
 
-## FASE 11 — Contenido: física (hasta primero del doble grado UNED)
+## FASE 11 — Contenido: física (doble grado UNED completo y máster)
 
 - [ ] a) Mapa (`docs/contenido/fisica.md`, con la guía docente de la UNED)
 - [ ] b) Plan (⛔ si cambia ids o afecta al progreso)
@@ -186,7 +242,7 @@ Ciclo por cada área (una fase por área), con estas tareas:
 - [ ] e) Reportes «creo que esto está mal» del área
 - [ ] f) Cierre (checks, cobertura, `STATUS.md`, commit `v2: fase 11 completada`)
 
-## FASE 12 — Contenido: sistemas / bajo nivel (hasta junior)
+## FASE 12 — Contenido: sistemas / bajo nivel (hasta fin de máster)
 
 - [ ] a) Mapa (`docs/contenido/sistemas.md`)
 - [ ] b) Plan (⛔ si cambia ids o afecta al progreso)
@@ -195,7 +251,7 @@ Ciclo por cada área (una fase por área), con estas tareas:
 - [ ] e) Reportes «creo que esto está mal» del área
 - [ ] f) Cierre (checks, cobertura, `STATUS.md`, commit `v2: fase 12 completada`)
 
-## FASE 13 — Contenido: ingeniería (hasta junior)
+## FASE 13 — Contenido: ingeniería (hasta fin de máster)
 
 - [ ] a) Mapa (`docs/contenido/ingenieria.md`)
 - [ ] b) Plan (⛔ si cambia ids o afecta al progreso)
@@ -204,7 +260,7 @@ Ciclo por cada área (una fase por área), con estas tareas:
 - [ ] e) Reportes «creo que esto está mal» del área
 - [ ] f) Cierre (checks, cobertura, `STATUS.md`, commit `v2: fase 13 completada`)
 
-## FASE 14 — Contenido: IA (hasta junior)
+## FASE 14 — Contenido: IA (hasta fin de máster)
 
 - [ ] a) Mapa (`docs/contenido/ia.md`)
 - [ ] b) Plan (⛔ si cambia ids o afecta al progreso)
@@ -213,7 +269,7 @@ Ciclo por cada área (una fase por área), con estas tareas:
 - [ ] e) Reportes «creo que esto está mal» del área
 - [ ] f) Cierre (checks, cobertura, `STATUS.md`, commit `v2: fase 14 completada`)
 
-## FASE 15 — Contenido: cuántica (hasta junior)
+## FASE 15 — Contenido: cuántica (hasta fin de máster)
 
 - [ ] a) Mapa (`docs/contenido/cuantica.md`)
 - [ ] b) Plan (⛔ si cambia ids o afecta al progreso)
@@ -222,7 +278,7 @@ Ciclo por cada área (una fase por área), con estas tareas:
 - [ ] e) Reportes «creo que esto está mal» del área
 - [ ] f) Cierre (checks, cobertura, `STATUS.md`, commit `v2: fase 15 completada`)
 
-## FASE 16 — Contenido: robótica (hasta junior)
+## FASE 16 — Contenido: robótica (hasta fin de máster)
 
 - [ ] a) Mapa (`docs/contenido/robotica.md`)
 - [ ] b) Plan (⛔ si cambia ids o afecta al progreso)
@@ -231,7 +287,7 @@ Ciclo por cada área (una fase por área), con estas tareas:
 - [ ] e) Reportes «creo que esto está mal» del área
 - [ ] f) Cierre (checks, cobertura, `STATUS.md`, commit `v2: fase 16 completada`)
 
-## FASE 17 — Contenido: ciberseguridad (hasta junior)
+## FASE 17 — Contenido: ciberseguridad (hasta fin de máster)
 
 - [ ] a) Mapa (`docs/contenido/ciberseguridad.md`)
 - [ ] b) Plan (⛔ si cambia ids o afecta al progreso)

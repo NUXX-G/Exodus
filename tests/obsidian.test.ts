@@ -27,9 +27,10 @@ function makeNode(id: string, extra: Partial<VaultNode> = {}): VaultNode {
     ctfFlag: "sha256:" + "cd".repeat(32),
     hints: ["pista uno", "pista dos", "pista tres"],
     exercises: [
-      { id: "ej-a", tier: 1, prompt: "¿Cuánto es $1 + 1$?", answers: [HASH] },
-      { id: "ej-b", tier: 2, prompt: "Calcula algo difícil.", answers: [HASH] },
+      { id: "ej-a", tier: 1, type: "texto", review: false, prompt: "¿Cuánto es $1 + 1$?", answers: [HASH] },
+      { id: "ej-b", tier: 2, type: "texto", review: false, prompt: "Calcula algo difícil.", answers: [HASH] },
     ],
+    reviewBank: [],
     attachments: [],
     file: `${id}.md`,
     body: `# ${id}\n\nTeoría de ${id} con [[otro]].\n`,
