@@ -78,6 +78,11 @@ export default async function Cuenta() {
         </table>
       )}
 
+      <h2>Reportes</h2>
+      <p>
+        Si algo de un nodo o un ejercicio te parece mal, usa «Creo que esto está mal» bajo él. En{" "}
+        <Link href="/reportes">Reportes</Link> {admin ? "están todos los de los usuarios, para revisarlos y cerrarlos" : "ves los tuyos y su respuesta"}.
+      </p>
       {admin && (
         <>
           <h2>Invitaciones</h2>

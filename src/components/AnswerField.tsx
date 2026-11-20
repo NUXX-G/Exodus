@@ -94,7 +94,7 @@ export default function AnswerField({ spec, disabled, placeholder, formId }: { s
   const sugerencia =
     placeholder ??
     (spec.type === "numero"
-      ? `Número${spec.unit ? ` (en ${spec.unit} u otra unidad compatible)` : ""}${spec.sig ? `, ${spec.sig} cifras significativas` : ""}`
+      ? `Número${spec.unit ? ` (en ${spec.unit} u otra unidad compatible)` : ""}${spec.sig && spec.sig <= 4 ? `, redondeado a ${spec.sig} cifras significativas` : ""}`
       : spec.type === "expresion"
         ? `Expresión en ${spec.vars?.join(", ") || "x"}`
         : "Tu respuesta");

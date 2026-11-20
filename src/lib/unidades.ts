@@ -75,6 +75,11 @@ const BASE: Record<string, Unidad> = {
   bit: U(1, D()),
   byte: U(8, D()),
   "%": U(0.01, D()),
+  // Moneda: sin dimensión física; permite escribir «160 €» o «160 euros» en ejercicios de dinero.
+  "€": U(1, D()),
+  euro: U(1, D()),
+  euros: U(1, D()),
+  EUR: U(1, D()),
 };
 
 const PREFIJABLES = new Set(["m", "g", "s", "A", "K", "mol", "cd", "N", "J", "W", "Pa", "Hz", "C", "V", "Ω", "ohm", "S", "F", "H", "T", "Wb", "L", "l", "eV", "t", "bar", "Bq", "Gy", "Sv", "lm", "lx", "rad", "B", "b", "bit", "byte", "Wh"]);
@@ -110,7 +115,7 @@ export function leerUnidad(texto: string): Unidad {
   let factor = 1;
   const dim: Dim = D();
   let signo = 1;
-  const re = /(\s*)([*·.×\/])?\s*([A-Za-zΩµμ°%][A-Za-zΩµμ_]*|1)(?:\s*\^\s*\(?\s*([+\-−]?\d+)\s*\)?)?/y;
+  const re = /(\s*)([*·.×\/])?\s*([A-Za-zΩµμ°%€][A-Za-zΩµμ_]*|1)(?:\s*\^\s*\(?\s*([+\-−]?\d+)\s*\)?)?/y;
   let i = 0;
   let primero = true;
   while (i < s.length) {

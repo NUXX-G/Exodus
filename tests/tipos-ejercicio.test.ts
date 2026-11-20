@@ -119,3 +119,9 @@ test("tipo opcion", () => {
 test("plantillas", () => {
   assert.equal(rellenar("Un coche a {{v}} km/h durante {{ t }} h", { v: 90, t: 2 }), "Un coche a 90 km/h durante 2 h");
 });
+
+test("tipo numero: admite el símbolo de la moneda y %", () => {
+  const def: DefEjercicio = { id: "p", type: "numero", sig: 6 };
+  const ref = REGISTRO.numero.referencia("160", def, "p");
+  for (const s of ["160,00 €", "160 euros", "160€", "160"]) assert.ok((corregir(def, ref, s, "p") as { correcto: boolean }).correcto, s);
+});

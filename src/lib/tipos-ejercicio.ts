@@ -89,7 +89,7 @@ function separarUnidad(s: string): { valor: number; unidad: string | null } {
   for (let i = t.length - 1; i > 0; i--) {
     const izq = t.slice(0, i).trim();
     const der = t.slice(i).trim();
-    if (!izq || !der || !/^[A-Za-zΩµμ°%1]/.test(der)) continue;
+    if (!izq || !der || !/^[A-Za-zΩµμ°%€1]/.test(der)) continue;
     try {
       leerUnidad(der);
       return { valor: leerNumero(izq), unidad: der };

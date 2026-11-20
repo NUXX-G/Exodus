@@ -17,14 +17,52 @@ hints:
 exercises:
   - id: kmh-a-ms
     tier: 1
+    type: numero
+    sig: 6
+    unit: "m/s"
     prompt: |
-      Expresa $72$ km/h en m/s. Respuesta: un número.
-    answers: ["sha256:f5ca38f748a1d6eaf726b8a42fb575c3c71f1864a8143301782de13da2d9202b"]
+      Expresa ${{k}}$ km/h en m/s. Respuesta: un número (puedes escribir la unidad).
+    variants:
+      - values: {"k":72}
+        answers: ["sha256:12e4942df75f186a864f30c41c5f97ac76e84dbbdd75c9dd490e13ffce3953bd","sha256:ff91743f1e1bd495a0f4dfd5c8d49ab27f02adf7047c4a70083485aff5f72a7f","sha256:04bc0e268434161f319656b3d78f0dd4c8ab3d858c521f5e9ae4a840f0aeb99a"]
+      - values: {"k":36}
+        answers: ["sha256:a735036646797ea1d81ea3f1e491b446dae569f1d3afc472a77cedaf6fdd2cf5","sha256:42e55394b995ea36bf1d4ea9e64fc4df3703d2f34f804998becfbe77c3812450","sha256:cf14755f3f5952785dc47617a667564994a70361b0d59eecab4e43cb53f672dc"]
+      - values: {"k":90}
+        answers: ["sha256:2429fdd51a3227b633b19b22f3b69e0c157c44d854e680ea5b96d940858528f9","sha256:ab6ec8d13aa56a365c11e213cc984cf5a3f0aadd2811d1ae9c7b5529a4e3ff9b","sha256:d277477648c9adaf797d719d0653284008d371087e135b7655aedee3ab6b5c1a"]
+      - values: {"k":54}
+        answers: ["sha256:afcd340293c3d132f819ab4a590a06702163669d06b175989c6f12fb59ea2053","sha256:dff116882c6acd12e4b68018fc60fd68e30884ad51b3382b191eefdfa0ad2a02","sha256:0068ddac6582fb787ef63f65f74e7e08c2b833e23b48e3cb766c74b8fdd9addd"]
+      - values: {"k":108}
+        answers: ["sha256:0d48d0bfe7a268e4c4c0a6948f8fbd9189a7c37d1c7d0eb467fb9d3688636286","sha256:fc24573de4b918d6f69fa545d0004f33d562d64be3d1c071afd5be2da2056e64","sha256:f8f77ed2bbc326d17c7eed3fa3a263da6a43bb98597a05cc1ef97580c7856c7e"]
+      - values: {"k":126}
+        answers: ["sha256:8306f28bd5b2898b8ff9cc06c8ef0328427777f78531841d0eb2d6d9d4c12e96","sha256:200705855f460234a153cf1701147529e1d44ebd5620c8feb596ae55eafac525","sha256:35ac1b0374a230a65e273f7b6ffe3704fbb998eefce5fb6c17e8b923e122ef28"]
+      - values: {"k":18}
+        answers: ["sha256:099ab32173f1737ab311a52443bf66d3e6b2c737e9c3ce7779e17397255420cf","sha256:70401ba2776c523a9d3855475859fd64ae8b9805374c14966aa106931f5b935e","sha256:4a0e7f628a253456ad28d96ad5b8bf9dd368c7b78984743decbeae8f05a91653"]
+      - values: {"k":144}
+        answers: ["sha256:9633fe07f5c31c27b884f7448770b7eecc77033eb93b0ead7ee0c5a4e861b210","sha256:6fa65f43e4238bd22256910bee3937be36353da3c917baec1a6f7e965ca6f842","sha256:a8ad2fff05376e8570974f423a7ccb55427f75f7ffa87a8a9b0cd85f39d966b2"]
   - id: densidad-unidades
     tier: 1
+    type: numero
+    sig: 6
+    unit: "kg/m^3"
     prompt: |
-      Una sustancia tiene una densidad de $5$ g/cm$^3$. Exprésala en kg/m$^3$. Respuesta: un número.
-    answers: ["sha256:0f8eb4b72b6e0c9e88b388eb967b49e067ef1004bf07bffc22c3acb13b43580a"]
+      Una sustancia tiene una densidad de ${{r}}$ g/cm$^3$. Exprésala en kg/m$^3$. Respuesta: un número.
+    variants:
+      - values: {"r":"5"}
+        answers: ["sha256:9ea35ff4012a888cb57922ec2d0b36fb46b0c90b2dc710f87fbd485e75547fce","sha256:e83de207cdf25173aa5026f36ae5f84b091f353f32a49c9f729a5c6a2afef014","sha256:b43a289bb7e82f132d2d005fc6e7650ecbd0179c603e845dba79aeb0ece91a71"]
+      - values: {"r":"2{,}7"}
+        answers: ["sha256:8a3a088d48f3e78b7bbabf12db28bd7a5aeffc879dc51c16b98cf1a16dd52bf2","sha256:5dbfe12506ebdd85e44abf8579e6eba8314c4e7b4ab93b323ab2e4b495e1565f","sha256:f5ec0887ab1340d72c0ad4a1b9a1113fe89196acf0fb89a1c473906304f3c22e"]
+      - values: {"r":"7{,}9"}
+        answers: ["sha256:d0132d412d7eabdd93ea38126fdc879a4f5ec3957d8b0131a82bbc1f82658b6c","sha256:f1be1693e420396491e0ffd5f6216d4d5e051a6fefc27ee3f0c8c2e96eb13174","sha256:e7c11d02f76f34bd7698ecb21010f22de91f43aca1857dbf790a3d02e91062a5"]
+      - values: {"r":"0{,}8"}
+        answers: ["sha256:06ef89963f4cb107fc98214585ea25ffe02a900c9cc3e69a0ed6c4dac6291f63","sha256:fcad9fedd32264da702aa1ca689821c137c75ee5ec5d3e32bfd301cd744af97e","sha256:ca5c6b6a77bc80d62512017a5b7189c586e86e79636c5387c76872714cb6190f"]
+      - values: {"r":"11{,}3"}
+        answers: ["sha256:a2544fe831898bbc752d4ae70d9d162f83c64233a5402577ea950f0adf273604","sha256:275bf09845f0c73c9f1080e5b21d3ebcd0fb4addc85769a7f7b86058857869fd","sha256:6bc1029b9117609a820dc7bc7fad641375b29c67b82b42b7935b08130a95099f"]
+      - values: {"r":"19{,}3"}
+        answers: ["sha256:a87ab124c4e90d95aaac7c54c4b5e150f2857d6d3696649962009f9ed52706c2","sha256:d15390821c5478965c7f38be76f3725cca98b37aed096dfd93c513fd0a09236d","sha256:6711e2e517f3b71f7e01a34eb96710aaa6d021f8af76498676dc958877bbd880"]
+      - values: {"r":"1{,}2"}
+        answers: ["sha256:32f70418a8612c7dda80311ae49a1da044bf304c20c3d5a4e2eaf6d20e283810","sha256:4d161119cbdbcc0a27bd9ab383ef240a7263285aadb471f5c8735cc64be94541","sha256:e1601a48d848441046e97997cf2db2db048d227cf2c1bbcfa76330a0afbd80cb"]
+      - values: {"r":"8{,}9"}
+        answers: ["sha256:9bae78844a034342362c697b67adc4924c7f7b8b0cb4c50741c38d279305b952","sha256:268ce7e416e7ff3617e4127821c7ef3de66c13ff49cb395d0c597abc57848a77","sha256:a7b3bcab42b4483c33c8cac979818fc0980a8b1f663a85fece485a55df21ccd1"]
   - id: aceleracion-media
     tier: 1
     prompt: |
@@ -38,16 +76,50 @@ exercises:
     answers: ["sha256:17ea4724806c9a840104754d08730e3edd9fcd70f0f625fc6bc894f5ed433a42"]
   - id: distancia-de-frenada
     tier: 2
+    type: numero
+    sig: 6
+    unit: "m"
     prompt: |
-      Un coche circula a $25$ m/s y frena con aceleración constante de $-5$ m/s$^2$. ¿Qué distancia recorre hasta detenerse, en metros?
-      Respuesta: un número.
-    answers: ["sha256:bff1c57ce1058197ad064590893a945a6729b9a15769d826f422128eabb6438d"]
+      Un coche circula a ${{v}}$ m/s y frena con aceleración constante de $-{{a}}$ m/s$^2$. ¿Qué distancia recorre hasta
+      detenerse? Respuesta: un número en metros.
+    variants:
+      - values: {"v":25,"a":5}
+        answers: ["sha256:4d8afde356ae993ccb096976e57cccfad8429c12fcf5e30502cb146e597c5e2a","sha256:2b9c76af65789ca1db0ed3deb185afcdf7be639519fbbedecf5c12a3653b4f4a","sha256:3716a53588a49b2fc5a5c496617247e22bab188adde13c33ab605b4aa0966c96"]
+      - values: {"v":20,"a":4}
+        answers: ["sha256:a63a9d6d276af5ec3d7014e0dff597120786b701051ab2e0d0d9b1b85cfa3346","sha256:d7af1c41f8e31392afff846a11ef5893bdef20ba272bc699ac27ef8465d14ccb","sha256:774039d3a523cc9d0ae7d7f3a5960a892023d786f8c6e9c0b6d08807e349db56"]
+      - values: {"v":30,"a":6}
+        answers: ["sha256:ca1375af4cac5606c4d1675a76bab655fa04a697409cf678dbf571dad741378d","sha256:5f0f20ebeed90485d1dbc9fc11ea361a7ef0dedc31a480ee5ad7a8957bf13c89","sha256:e658d42392e9317d1bf0dd48187a151cf12b85a481880cf438de3e05a72da071"]
+      - values: {"v":15,"a":3}
+        answers: ["sha256:ef26a28641f5265dbb27ae1e3c373b8e6ac57aa022daa98c5fc0a7810053b30c","sha256:024a635fecc68e440b59f3b48b44a76119d932a28c93642a7b4e5f0799475e41","sha256:49b8e864a984617cb322cf5de46cfef963fa68ad6b767bde3a34626df15fc3e9"]
+      - values: {"v":24,"a":8}
+        answers: ["sha256:7600d1b325b533c04b9b9d483b4077de2282ce3c487d9a95f840f13c52f57c5e","sha256:c59bd779cdd4a950cf6539771c675c53033653c16b1cb97183d9ff6d15f31129","sha256:0c8de837cd9e95ccfd467717dad24e3ab2b163a17673ba98e241ab4e3c5f47df"]
+      - values: {"v":35,"a":7}
+        answers: ["sha256:50c6bd814def5a60d8dc2f977e41f554f27a8cb745bd8c807105b53032a703da","sha256:312cfefe836bd69982c0b78fa6c6f4fd979bb003e01223fc710ee043df534be1","sha256:45b500020a7e39731049aff4851b17e17e51a39fa94ead8e5cae70489953ea60"]
+      - values: {"v":12,"a":2}
+        answers: ["sha256:8f7dc595d12c3562fa9d22e0d86465d3aa01d036fc11801230b2008ed1dfc5ca","sha256:346d18b632e4f1dc99594d18af6e830f1bf35f4c81862555b90424c7a7257bd0","sha256:271c507847dd0a531d9b69287f86d927923a541cd517a2715face68ceea2be65"]
   - id: caida-libre
     tier: 2
+    type: numero
+    sig: 6
+    unit: "m/s"
     prompt: |
-      Se suelta un objeto desde $80$ m de altura. Desprecia el rozamiento y usa $g = 10$ m/s$^2$. ¿Con qué velocidad llega al suelo, en m/s?
-      Respuesta: un número.
-    answers: ["sha256:d59eced1ded07f84c145592f65bdf854358e009c5cd705f5215bf18697fed103"]
+      Se suelta un objeto desde ${{h}}$ m de altura. Desprecia el rozamiento y usa $g = 10$ m/s$^2$. ¿Con qué velocidad llega
+      al suelo? Respuesta: un número en m/s.
+    variants:
+      - values: {"h":80}
+        answers: ["sha256:66967b8cf64f0ed1accff60273ebae87400d0d9c81ed10260e014db204c0fd30","sha256:44d2a09e1553cf005422ab346f06b559c5f193927bfdb94ff16e6a0fef7ecbc0","sha256:a808b8228324737abbadbd82c7d567f36de9708e3c5e29996610c8b6cee49473"]
+      - values: {"h":5}
+        answers: ["sha256:4436273a3fb8ab5ea18cd460ac0ef96f49fd1ef86a8fefd7b665f135e167d1f6","sha256:4c51d8f31f956701e9e7c21a5e34a7d7a9e1438f97c9191fbc3447eac489f14f","sha256:f37632f32a8cab2c9424009a740b124323df8e5e1b63aaf7daa6e4050d5eb4aa"]
+      - values: {"h":20}
+        answers: ["sha256:f55aed9f7891d4faf0f186896677611837dd8b01bf14721bababd3ddcb3fabbe","sha256:2e11a098a886bfc36faca5cdface3e30809d7b3feb659d2f3d8eaaf0bbf1ea30","sha256:711175dd5c5e940452c89374608fc3bea24f952a6061ecae34ca811d99f58f81"]
+      - values: {"h":45}
+        answers: ["sha256:b72bda94274920feda130d76f3ef2b312f299212cb9da6b802e67d1c6474eb1c","sha256:f582e47aa2dbf23bb537a48df554fca9150754901cf9d4f68d1b9cbbb71926e8","sha256:405dbd214166e9ec20e38cc5b589c27ab203a69f2c1eb8b69ed28e66ec1d14cf"]
+      - values: {"h":125}
+        answers: ["sha256:967710ad37037e6881d872719a871d0bb5c0768bb1752a01bb95dfd60efeaa06","sha256:b3f43e0e66756c7e8f64199311bbe54ab6c10097fc6da67c0613c6c38244baeb","sha256:4e1679d81edcf8d389127d41da0be18eb51324d5b8b3337b4c97474fdb94f567"]
+      - values: {"h":180}
+        answers: ["sha256:f1469ea2c86a8fff4362241a36a8ee6ace46abc277e2e793f1e09e1c3ba7edd1","sha256:56a0d0a817e479e13f4ceafe0f388221151df0871dfd6c3ce40864342d36a785","sha256:bedd82f2f4061daa9cbf93fa74e579525539565ac8b439b4653029759c5826c4"]
+      - values: {"h":245}
+        answers: ["sha256:4a185e4bf4f8dddf86c7418a50478008f49c2f9f91f9301fefc5a9ac032edecf","sha256:08f591c7c7e14bc014e1a27adb2168f0153c6aa43ce515b27d821218e5cdf593","sha256:a662eac1b386e5d52b1a49f4705e1f9f1a5da25375fc7849403eecf3b55e9193"]
   - id: lanzamiento-vertical
     tier: 2
     prompt: |
@@ -67,10 +139,13 @@ exercises:
     answers: ["sha256:c2356069e9d1e79ca924378153cfbbfb4d4416b1f99d41a2940bfdb66c5319db"]
   - id: aceleracion-centripeta
     tier: 2
+    type: numero
+    sig: 3
+    unit: "m/s^2"
     prompt: |
-      Una rueda de $0{,}3$ m de radio gira a $600$ revoluciones por minuto. ¿Cuál es la aceleración centrípeta de un punto de su borde, en m/s$^2$?
-      Respuesta: el **entero más próximo**.
-    answers: ["sha256:d40535ac09aac0ef32f8a23b8bb8e04bc2e8f9d6b0981fa98a16d0382f558d83"]
+      Una rueda de $0{,}3$ m de radio gira a $600$ revoluciones por minuto. ¿Cuál es la aceleración centrípeta de un punto de
+      su borde? Respuesta: en m/s$^2$, con **3 cifras significativas**.
+    answers: ["sha256:437a3b39ac30fd45156741b4943502f4e20b9c9df49c14cfde6a3d0b3c994293","sha256:213e3136a0197efc1fea42e33458adbdcd6463dc4e095857c5efcdb7a02ef08e","sha256:792a3dfbaa70d485fa369512dffebc9325fdb1ca0203caf3ec10d1c8f7f21198"]
   - id: alcance-proyectil
     tier: 3
     prompt: |
@@ -106,6 +181,83 @@ exercises:
     prompt: |
       Un coche pasa de $36$ km/h a $108$ km/h en $8$ s con aceleración constante. ¿Qué distancia recorre en esos $8$ s, en metros? Respuesta: un número.
     answers: ["sha256:a512db2741cd20693e4b16f19891e72b9ff12cead72761fc5e92d2aaf34740c1"]
+  - id: r-ms-a-kmh
+    tier: 1
+    type: numero
+    review: true
+    sig: 6
+    unit: "km/h"
+    prompt: |
+      Un guepardo corre a ${{v}}$ m/s. ¿A cuántos km/h va? Respuesta: un número.
+    variants:
+      - values: {"v":28}
+        answers: ["sha256:0fd1d5beb98607a8f9066566486989253deb989c4e2058714a220f82e426a8eb","sha256:3c3eacde9cae0bf5f9cc587fa181ea565ce6c7f749d00ce82f4bc558d986f75a","sha256:b9c6ee0b5d0b0831ae48e16b689825a2605d7a4eb764ceca5f729f5fec71a8aa"]
+      - values: {"v":30}
+        answers: ["sha256:c19de1ff9f5eaf9aa5b360ea893f18dab8587b9e92fbfc54e865977e327cd8d5","sha256:44a7f948765192b6c15839e7676d078d618ada530e836b296d731a89f387bf9b","sha256:92a81ac6fb13b2c00c2c5707c990d4467c19a2c3c164f521c0d9eb0b546a5c82"]
+      - values: {"v":25}
+        answers: ["sha256:6ea3f6b37361e991c94037c2a6e9238ab08f7ff6c3d5ecc18cdc9f10e139c065","sha256:b13dc7188deb5e77db653d5730a0918e6daf14540e35ca6675609a0f07e35376","sha256:632af65929da7a52d35bd1896c6a46c9b2943f6bbdbe26f27eb9aade6320cc32"]
+      - values: {"v":20}
+        answers: ["sha256:ea18fdf134f92b62bb5b83e4310ad288239756f5ed277f1bd6cc9fef2c79724b","sha256:599f1ab66cd03e84d5631e59059e1239545827bf58838425f3196173b391b690","sha256:0e0f2e367761b5d6c9f84e1b2550e605c36771635f0b2ef80545fb976f53d2b4"]
+      - values: {"v":33}
+        answers: ["sha256:ce3fec8815955b858b905a5f5ac2069d7c8d220a5aa17c5546ab1965c97b0d78","sha256:dbb4eed0b8bb38e78139a8730d25f81b54e7eb4b64217e370bc7349af2a55f3a","sha256:ec5b6ff4c746047609be4adad4f463deb075c1cdf1d121278e92bdd58ef873d3"]
+  - id: r-pendiente-xt
+    tier: 1
+    type: opcion
+    review: true
+    prompt: |
+      En una gráfica posición-tiempo ($x$ frente a $t$), ¿qué mide la **pendiente** en cada instante?
+    options:
+      - |
+        La aceleración
+      - |
+        La velocidad
+      - |
+        La distancia recorrida
+      - |
+        El tiempo empleado
+    answers: ["sha256:96995b33eb6f3105328c2b9e8a56c908b1a60e30a72e857b8fbe8f33222bceaf"]
+  - id: r-area-vt
+    tier: 1
+    type: opcion
+    review: true
+    prompt: |
+      En una gráfica velocidad-tiempo, ¿qué representa el **área** comprendida entre la gráfica y el eje del tiempo?
+    options:
+      - |
+        La aceleración media
+      - |
+        La velocidad final
+      - |
+        El desplazamiento
+      - |
+        La fuerza
+    answers: ["sha256:234be623ea84a8d7eeeffb1a223aec6f960ecb9ee9346c8a5ebe3da5f8b4e7ca"]
+  - id: r-caida-cuadruple
+    tier: 2
+    type: opcion
+    review: true
+    prompt: |
+      Sin rozamiento, sueltas un objeto desde una altura **cuatro veces mayor**. ¿Con qué velocidad llega al suelo, comparada
+      con la de antes?
+    options:
+      - |
+        Cuatro veces mayor
+      - |
+        El doble
+      - |
+        Dieciséis veces mayor
+      - |
+        Igual: todos los cuerpos caen igual
+    answers: ["sha256:3bf598b7f7d60706bdf38fe45922c75e0325e23553553c0adbcc077e94461cb2"]
+  - id: r-frenada-doble
+    tier: 2
+    type: numero
+    review: true
+    sig: 6
+    prompt: |
+      Un coche frena siempre con la misma deceleración. Si circula al **doble** de velocidad, ¿por cuánto se multiplica su
+      distancia de frenada? Respuesta: un número.
+    answers: ["sha256:29afc8112acb4bd032cff76d25a71209bfac8d25231d859a55e074fd399a8b8f","sha256:d4759873a808b40af461b838ebe6d197dc61329993236ed381179f89d1f00190","sha256:0e77a2755b0399985dae61b4143586f61d6cd355d21d3007550c0ba38d3eef5b"]
 ---
 
 # Medida y movimiento: unidades, error y cinemática

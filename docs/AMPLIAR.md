@@ -29,6 +29,38 @@ hacer `git pull` en el servidor. El progreso de todos los usuarios se conserva.
 
 Otros nodos pueden citarlo como `` `mat-topologia` `` en el texto: en cuanto exista, la web lo convierte en enlace.
 
+### Tipos de ejercicio (v2)
+
+Los ejercicios siguen en el frontmatter del nodo (`exercises:`), generados por `scripts/ex-inject.ts` desde
+`.soluciones/<id>.spec.mjs`. Se eligió el frontmatter frente a un archivo hermano porque el nodo sigue siendo un
+único `.md` autocontenido (Obsidian, `git mv`, búsqueda) y el bloque lo escribe siempre la herramienta. En el vault
+solo hay hashes con sal (id del ejercicio y de la variante); la solución nunca queda en claro. El corrector está en
+`src/lib/tipos-ejercicio.ts` (registro de tipos) y `src/lib/cas.ts` (lectura de expresiones y LaTeX).
+
+| `type` | Qué compara | Campos | Respuesta en el spec |
+| --- | --- | --- | --- |
+| *(sin type)* `texto` | Texto exacto normalizado (formato v1) | — | `"3/4"` (varias formas si hace falta) |
+| `numero` | Valor redondeado a `sig` cifras (3 por defecto), ±1 en la última; cualquier unidad compatible | `sig`, `unit` | `"27.8"` (en `unit`) |
+| `expresion` | Equivalencia matemática: evaluación en 8 puntos fijos de `domain` (por defecto [0.5, 2.5]) | `vars`, `domain`, `form` | `"2x cos(x^2)"` o LaTeX |
+| `matriz` | Matriz o vector (fila = columna en vectores), `sig` 6 por defecto | `sig` | `"[[1, 1/2], [0, 1]]"` |
+| `opcion` | Opción u opciones elegidas | `options`, `multiple` | `"b"` o `"a, c"` |
+| `flag` | Texto exacto sin normalizar | — | `"EXODUS{…}"` |
+
+- `form` (expresiones): `factorizada`, `expandida` o `sin-raices-en-denominador`. Además de ser equivalente, la
+  respuesta debe tener esa forma.
+- `domain`: el intervalo donde la solución está definida (raíces, logaritmos). `ex-inject` falla si la solución no
+  se puede evaluar en el dominio.
+- **Variantes** (plantillas parametrizadas): `variants: [{ values: { a: 3 }, answers: ["6"] }, …]` y `{{a}}` en el
+  enunciado. Cada acierto pasa al alumno a la siguiente variante; el repaso usa otra variante. Genera las variantes
+  en el spec con un bucle y calcula cada respuesta por dos métodos, como siempre. Evita datos que den casos
+  degenerados (división por cero, raíces dobles no buscadas).
+- **Banco de repaso**: `review: true` marca una pregunta que solo sale en `/repaso` y no cuenta para el dominio.
+  Sirve para preguntar lo mismo de otra manera (concepto, aplicación, «¿por qué falla esto?»). Al repasar un
+  ejercicio del nodo, Exodus alterna entre el banco y una variante nueva del ejercicio; si no hay ni banco ni
+  variantes, repite el original.
+- `ex-inject` comprueba que cada respuesta de referencia se acepta con el propio corrector antes de escribir nada.
+- Una respuesta que no se entiende («tres», una unidad incompatible) no cuenta como intento: el alumno ve el error.
+
 ### Proyectos y laboratorios
 
 Un nodo puede declarar `kind: proyecto` o `kind: laboratorio` en el frontmatter (sin `kind` es teoría). Aparecen en
@@ -80,6 +112,8 @@ sin declarar. Crea también la carpeta `vault/08-quimica/` para mantener el orde
 | Ejercicio nuevo | Queda pendiente; un nodo ya completado sigue completado. |
 | Ejercicio quitado | Lo resuelto se conserva en la base de datos pero deja de contar y de pedirse en el repaso. |
 | Respuesta corregida (mismo `id` de ejercicio) | Lo resuelto se conserva. |
+| Cambiar el `type` o añadir `variants` (mismo `id`) | Lo resuelto se conserva; el alumno ve la variante que le toca. |
+| Pregunta nueva con `review: true` | No cambia el dominio; empieza a salir en el repaso. |
 | Nodo borrado | Su historial se conserva (el `node_id` es texto libre) y reaparece si el nodo vuelve con el mismo `id`. |
 | **`id` cambiado** | El progreso queda asociado al `id` viejo. **No cambies ids**: cambia `title` o la carpeta, que sí son libres. |
 

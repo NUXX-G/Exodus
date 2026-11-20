@@ -20,15 +20,55 @@ exercises:
     answers: ["sha256:39fa9ec190eee7b6f4dff1100d6343e10918d044c75eac8f9e9a2596173f80c9"]
   - id: porcentaje-de
     tier: 1
+    type: numero
+    sig: 6
     prompt: |
-      Calcula el $18\,\%$ de $250$. Respuesta: un número.
-    answers: ["sha256:811786ad1ae74adfdd20dd0372abaaebc6246e343aebd01da0bfc4c02bf0106c"]
+      Calcula el ${{p}}\,\%$ de ${{b}}$. Respuesta: un número.
+    variants:
+      - values: {"p":18,"b":250}
+        answers: ["sha256:eff9c517aba62d2a550de68e0aee7561550fcfc36295a249ef962469348edafb","sha256:7a84a036e3aee2dbe5beb102e35b336a3fad74f55d7e5efdb782da213235a916","sha256:7f0f551d82a3c887f9071d69ed3f62a47b3ba466bfc8cdbc1f2848ac9f12a099"]
+      - values: {"p":15,"b":340}
+        answers: ["sha256:0d07dc91014badf2d75c8e9582656ef74fcab1460d1dbd0bbb5a3919c72715fe","sha256:c95fef3fc284e27b29b357f0b1bf21bdf759d869450a0b66540aee522a5b7bdb","sha256:86d47459af4b66e93ac2765556375af73565005f04acdef60434c3b1d4ec0fdb"]
+      - values: {"p":35,"b":160}
+        answers: ["sha256:df243d18559dfb5a41cc986be9fec8fe2a104d47df2f10f230b65a9509c6fa6a","sha256:34a8051aa888e556b6570b4339197aafe7c74e27b5edfcd73d26ee95422b4ae7","sha256:c318c060838df0b2f2a8834a365e4508b1ea40a378fc4506d045e6c91bea23f8"]
+      - values: {"p":12,"b":475}
+        answers: ["sha256:7e604d19acb418b59f7197830a50ad74cd8f79e8ca7fcc59a9fa16b442209285","sha256:279ac023d5ec0469fe2c3f0212010676f3e63ea25f2306400ab72627c5331ca4","sha256:739ba72dd335d8c77e65a8ab8ada26012bafcdd7a6825d54b9f72d404d479d22"]
+      - values: {"p":65,"b":240}
+        answers: ["sha256:27331f05cde379b965794b0d8532889251c6d220e0d2875bf176a5ec4c5f9d06","sha256:2203f254608be2deeaf1f32c6e97d1f0731558b773fc8dd468b5032d09302f3c","sha256:692996bc9a69d63f6ea7d7c7260c245c273f0f4c5c7a79e52872c4049117fe7e"]
+      - values: {"p":8,"b":1350}
+        answers: ["sha256:97558ebe7d9da8a0fd9b02ae7af4b4e1c1d415faba4ebdb5f885014b59848a8e","sha256:4b47a73e6dd8240a6d19cce40984091744f91f1a9016f3486dfef09d64c2ee79","sha256:36ca85d9280155463f49fc75315edf9fe6f2b0cb867394d7c79587ff1ad64771"]
+      - values: {"p":42,"b":550}
+        answers: ["sha256:0455a6f485d240904118923d737574b2014b93599c5e0ba1dcd285e2886c26fd","sha256:72a04de4b704b94a71d47dcbc63e4bc8ae8276797b27c02f289960c7295b1f69","sha256:d9ec6c4464c1bb18e3103826366d6c058b8f043f06199dbbb3db20edd1827e0d"]
+      - values: {"p":24,"b":625}
+        answers: ["sha256:8cc756ea7fa124c2dd82198459ce955b47d074de2183f55842d789bb5c7e5d48","sha256:8730aaae63922defb72a1c9a08b917fb7c8084770844dcc42a6fcadcab02e9ed","sha256:aa2467eb82a28db0549c37f73b12c7160b63f60f915b0defbc31173b49105219"]
+      - values: {"p":75,"b":96}
+        answers: ["sha256:1a902928a59cbd34889c8b6ff1b8cb910b38c0763159d008d65b15ba421f49b3","sha256:3687ea6099b363a5f2bb734799f0b53f61eef224a5349524135610d0c4c2b9d3","sha256:a31b434722830314d5c31e28969786dc22c1f1c16ab2d5d531fe69a5188f9ba1"]
+      - values: {"p":5,"b":1830}
+        answers: ["sha256:9bbcb6f580a04f56669112720d03af6684bb32b22edf1fe13cfd31ed85cab87e","sha256:ebae020f6788d3e6751d710bf951b4498086f445baf73432052a30c368e084d1","sha256:09f8a6e85116bc0580007e436342c61f248f7ffef8cc15cfa11b17affd960d69"]
   - id: obreros
     tier: 1
+    type: numero
+    sig: 6
     prompt: |
-      Doce obreros terminan una obra en $15$ días. Con el mismo ritmo, ¿en cuántos días la terminarían $18$ obreros?
+      ${{a}}$ obreros terminan una obra en ${{d}}$ días. Con el mismo ritmo, ¿en cuántos días la terminarían ${{n}}$ obreros?
       Respuesta: un número de días.
-    answers: ["sha256:4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5233ade6af1dd5"]
+    variants:
+      - values: {"a":12,"d":15,"n":18}
+        answers: ["sha256:8ef8e8c22589466b2d850809a0496b53023ff71f3d0be143a710829470d2ef81","sha256:ae62d3d323a1d2026e63bf548b9132297e669a233d3d3bcf7f739b2d8e68089c","sha256:d5fdad93ca9a84ca06418a7026d7a89ac75037ad912e899bdcbaa3d3e130e8a7"]
+      - values: {"a":8,"d":9,"n":6}
+        answers: ["sha256:b82f53cf22ea3981d5f3bd689e7045d9e9736b1d85793c95391b8418e8fce4db","sha256:99c453847e5b65b1d8012ed08b1ef9347b82d03e1e9400ef4f64a07028c84054","sha256:4ce28f0dedf0a09f4e4718d52f49a284272b2484ab94b101f11bb70065a4ffdb"]
+      - values: {"a":10,"d":12,"n":15}
+        answers: ["sha256:bdb521e0849a8758495212f0d2967c33ca7e0210000591626e3fd823c00e033a","sha256:40d2851613b464bec2fcbcbab165fad98095f8536f18616907077916deb2b5cc","sha256:2c46be12b436931087d0d65b7df64c490423d2f97543324c39d1f5a053ba245a"]
+      - values: {"a":6,"d":20,"n":8}
+        answers: ["sha256:6d934a2ecac61d44f8bb04aa78c6a6fdf0cff411f21f6a5c9e0bd4b73922a2f5","sha256:1e0d0a5a737c5b45a6c8c9c5fb72cf0a10bed0ec4b281b33e27021d5393f318a","sha256:b45d059f69d74f792abe1dd7f1bf5b88b18ab06c425c51fd187b5f897a5d3d1c"]
+      - values: {"a":14,"d":6,"n":21}
+        answers: ["sha256:f0a17231306b55dfc034f3c3b6bbd2c60d44a19b135792362c65d264379c1ee1","sha256:de9f8b225178b8c7233a0aebe9c01a8616eab6af77eb83728d4a494472e3b478","sha256:789c726c3a3831ac85a163076bd48677040f5bd870b0eaf6bb6ab321e55f6740"]
+      - values: {"a":9,"d":16,"n":12}
+        answers: ["sha256:e40a1fe0f90a974073802e668ec92d678f9291e4ebc2e0476e9f96ec83ee8679","sha256:90e0b2725a1badf54c710788d6e1269f013aa987c8e34b4c7d845a917bcf7bbc","sha256:79fd3dd4a91809d861e540b7924d3c3d1a847ce6259b0d7bf54836c92ce8c67c"]
+      - values: {"a":15,"d":8,"n":20}
+        answers: ["sha256:9835fa811004a75c00382ff80143c12489ab3a3cfba723d48279ba91178bb95c","sha256:b23e930cf6f525752fe6bdd143cf7c676052e18bf56e6ce7f0ec2a715454937c","sha256:015493f88347674a7e995b037733b1b4aab53c94b96e4b019cf59c0b88a24dc8"]
+      - values: {"a":4,"d":27,"n":9}
+        answers: ["sha256:ccaebb1ba7ff9b21826eafc337c44410c7fc8c223e820e8a23f9be3954b0b021","sha256:8cfb86094d8857a984ac07b384eb06769ad27cfc92024a42cdaa92336cef42c9","sha256:f960ad6c6c1e2d660cb187cc3d16594b63fd29761e41f2cfc2fd963a7553f655"]
   - id: sube-y-baja
     tier: 2
     prompt: |
@@ -37,10 +77,28 @@ exercises:
     answers: ["sha256:f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac"]
   - id: iva
     tier: 2
+    type: numero
+    sig: 6
     prompt: |
-      Un producto cuesta $193{,}60$ euros con un IVA del $21\,\%$ incluido. ¿Cuál es su precio **sin** IVA? Respuesta: euros,
-      un número.
-    answers: ["sha256:a512db2741cd20693e4b16f19891e72b9ff12cead72761fc5e92d2aaf34740c1"]
+      Un producto cuesta ${{precio}}$ euros con un IVA del $21\,\%$ incluido. ¿Cuál es su precio **sin** IVA? Respuesta:
+      euros, un número.
+    variants:
+      - values: {"precio":"193{,}60"}
+        answers: ["sha256:5b6ace5859b9c46538207421d2044c7ac0fe53e5c23a1fcca28691782f87e540","sha256:3ad696a325a76fcab12efd21a3a2720ec9f390ba3da0d8b00c68b318ddcadf06","sha256:93239f1d01bdd4e9ceb6f13ea2f1496601c6444895ab1c35f1d03146a48718d2"]
+      - values: {"precio":"54{,}45"}
+        answers: ["sha256:b3d91ca71e656babc029465d311cf0981ab0a0c23a7f02303c7008f9dff167ef","sha256:48fdf63b188bd8da3b0ea62f9b7588dec33f412eb0fd6dfe08168b047d6fc30d","sha256:88771efeaf92747f439566f47ce5b460b60e59a242460bb84077e258c2073d5f"]
+      - values: {"precio":"290{,}40"}
+        answers: ["sha256:32e914537b764b94be5d3c87b3fc3063701d4eaae367539071c3dfca07241b43","sha256:e3db02a169072fe1b747d8db19cc90adf69d09c5551d31e3a5befce84c71a31f","sha256:121dfa294841e1467288a54dd8c032037233df2e4a15a1d4eaa3cd4ff656b263"]
+      - values: {"precio":"15{,}73"}
+        answers: ["sha256:89592f5089d50619af152b93ebc4a7ce180167f7b4236dbc6bd6f17fa4e2f13b","sha256:e8e40ef65d10d8ba65c40b59465c06f5d794d45908fdc60d90104c9b1ab5a495","sha256:bd08e81391f03310ed325fdaa7040bca148e0bef2579cf85867779e991268b79"]
+      - values: {"precio":"1058{,}75"}
+        answers: ["sha256:f394963a8e91871f962e572e1cc23400d2c26717b4b47d533147b3483d42be0c","sha256:2ca6e28d65334702079edb2613351bfc55030a670b8881dbc24fea259d6800a1","sha256:4a745b76cac29f90646e6a1f16b1cfcc22b2dca438ecb3b4292fcbf5ebd0be89"]
+      - values: {"precio":"43{,}56"}
+        answers: ["sha256:27d408320a3ed3337666ff48341d39558e31cb2cb1c5db9be773bc5ac58e8f8b","sha256:385c1dbde52a0e6c398b5908bfe64039fdefb9e6160d664d90761fba02d089e6","sha256:d9f134e9c27ecd38cd4f55d2d90d1c0666b32209c37d0c81900d0d1cf69a7cfe"]
+      - values: {"precio":"150{,}04"}
+        answers: ["sha256:984b1ba7dc0924b94ef20bb35b7562f6d59bd69c1c433ae375dce8666955b24d","sha256:ff4a03b099e943e47c2ec83407ffde2bcea046e79a380d07062a1a3b43498dab","sha256:5e561756d0ad5a13367968968a756a0b3fda6a63dae30e03db6713bfdc3fdeb3"]
+      - values: {"precio":"724{,}79"}
+        answers: ["sha256:4713b473a0cf39391abc38257c799020c92902c4a8fec61c063e2888e352c81a","sha256:532be485f9300effd66164609189143552c06bd8fbead936504998f3e20a5a6a","sha256:b0127864f213d1977bdd5d94added901174d0191874eecc48b650b887872952e"]
   - id: descuentos-sucesivos
     tier: 2
     prompt: |
@@ -107,6 +165,91 @@ exercises:
       Una cuenta paga un $1\,\%$ de interés **cada mes** (compuesto). ¿Qué porcentaje de interés equivale a un año completo?
       Respuesta: un número con cuatro decimales, **truncando**, sin el símbolo %.
     answers: ["sha256:c4c94b07ddf8b88aed2e65b6d2032d348fa53dc5f34157fb411ef380e24cfdee"]
+  - id: r-sube-baja-igual
+    tier: 2
+    type: opcion
+    review: true
+    prompt: |
+      Un precio sube un $10\,\%$ y después baja un $10\,\%$. Respecto al precio inicial, el precio final es…
+    options:
+      - |
+        Igual que al principio
+      - |
+        Un $1\,\%$ menor
+      - |
+        Un $1\,\%$ mayor
+      - |
+        Un $10\,\%$ menor
+    answers: ["sha256:d0dcae58234dcb185b513dff7d3df77ef26f6848497411097cf6a5a54e2ea208"]
+  - id: r-conmutativo
+    tier: 1
+    type: opcion
+    review: true
+    prompt: |
+      ¿Qué es mayor: el $30\,\%$ de $80$ o el $80\,\%$ de $30$? Piénsalo antes de calcular.
+    options:
+      - |
+        El $30\,\%$ de $80$
+      - |
+        El $80\,\%$ de $30$
+      - |
+        Son iguales
+    answers: ["sha256:3e6b9653d36e33739f79778ab73aaff52b87dd50175d9f6987ad90479ae31514"]
+  - id: r-grifos
+    tier: 1
+    type: opcion
+    review: true
+    prompt: |
+      Cuatro grifos iguales llenan un depósito en $6$ horas. ¿Cuánto tardan ocho grifos iguales?
+    options:
+      - |
+        $12$ h
+      - |
+        $3$ h
+      - |
+        $6$ h
+      - |
+        $2$ h
+    answers: ["sha256:cc7ae956bf989cf28314705526ff8ba7a401a13a11dc2a48c5454a00c35171ac"]
+  - id: r-precio-original
+    tier: 2
+    type: numero
+    review: true
+    sig: 6
+    prompt: |
+      Tras una rebaja del ${{r}}\,\%$, un artículo cuesta ${{p}}$ euros. ¿Cuánto costaba antes de la rebaja? Respuesta: euros.
+      (Cuidado: no es sumar el ${{r}}\,\%$ al precio rebajado.)
+    variants:
+      - values: {"r":20,"p":64}
+        answers: ["sha256:e91b50b1ecb7d3f0d22df08c8591936c101925acd731cedbf94f444d873afe2c","sha256:e9c94f1bbad2afd3341a6767258238a78a6db4db41561a460f7605438832c738","sha256:2cd010c487be235e0dff6d72e14d459c0cf222e79a34b2cdebd9b412305be7b2"]
+      - values: {"r":15,"p":102}
+        answers: ["sha256:bfd4d1ef8370f91bce6b8f3476d901cc4607a496c67419be0330bb9c2e500512","sha256:6a80b4e8b805fb44a593f9c98f1d3e967bee6116d398e728bb612528c1a7d2ba","sha256:8d33b51373c80b10053408af09b54d3643cb103aefc733d529050bfe07a657b7"]
+      - values: {"r":30,"p":56}
+        answers: ["sha256:6671f844984e16fe921a8728b8527c115b05e89ec77e3a478f6b34b649db1fa5","sha256:fc39c492e08687b476ac85f2f74c5a69ceb9de832a1280a2426140f80e73e39d","sha256:d9a0a63294f3d6f6947ccf47cea75bb038d54990d51cf6d86a9b9b7f1de14caa"]
+      - values: {"r":25,"p":90}
+        answers: ["sha256:41c0e63dad19cfdbfa85a83fea4e416d1622323dac8bc8cd9e88ad73bf13cdb3","sha256:8e7fbf14b03ee4fbc06829a8c7d8f352f70174fc697b661fa33528329d143905","sha256:26ae1e28dc2709f66cbae3135298f9f32b34b7f9fcfbd4a6b1a82a2d63e14cb1"]
+      - values: {"r":40,"p":72}
+        answers: ["sha256:0b6640372067cb60f26cac7e667f3ae919811dca89f07c994226cdc55a31a84a","sha256:58700df02799530372c6461bee0189b77fa38a89321967e94885cc8af1e22aeb","sha256:02167ec6047295d1298a4addef21f8ee199d6d04eeb07f54cadab2e8c13205ce"]
+      - values: {"r":10,"p":81}
+        answers: ["sha256:ba04762636f20d5075c460f4451d8033989d65b5e7c5b1419a4e8b3db0a2d3bb","sha256:4b49faaa170b57ab77b4477dbd5d4c21f348ac7370371cc0b1c5014c60ad7a8d","sha256:08bb405c6aa2c62f7dde1100b217507589c88132339599e70cb7fabfedddb558"]
+  - id: r-unitario
+    tier: 1
+    type: numero
+    review: true
+    sig: 6
+    prompt: |
+      Si ${{k}}$ kg de manzanas cuestan ${{c}}$ euros, ¿cuánto cuestan ${{m}}$ kg al mismo precio? Respuesta: euros.
+    variants:
+      - values: {"k":5,"c":"7{,}50","m":3}
+        answers: ["sha256:4ce5467078f84e9e0425b2dee0bc2604c32650777525ace09b8473ed79d17a20","sha256:e22625ac91d9f3cce5d3d82a49de565715b0c0f79ea47f6af867d73607a4682c","sha256:09bb874ef35b2606f87fb4539326187af08dcfc56adbac15f377aff62758f534"]
+      - values: {"k":4,"c":"6{,}20","m":6}
+        answers: ["sha256:8060a42678fa7969d1dcbcb75d3ee5d21697c152ab6462ec9c63b5baf048587f","sha256:a8139c2dbde88f893209395c84fc2231ae69930b56bf434e56d79f53394e85e4","sha256:b694b116c65f23adbfd17f4d07a3fafe3d7a75587265b9169dc1cdf62e5abde0"]
+      - values: {"k":3,"c":"4{,}35","m":7}
+        answers: ["sha256:8cb700911d21aac117d1b29b7635ad2298574d897083373453e880abc4e349af","sha256:934b52f3c3b9b71c9aa7881ad6bb04c9a6c5caf5d4836cadeb6d08158737a579","sha256:ad16c3b005f23868e03b3e330585ad0a81aa3b9b1972b1b8ec1760285d9fd0f5"]
+      - values: {"k":6,"c":"12{,}90","m":4}
+        answers: ["sha256:b964d3f49954c4a47f70756379a48a3eb30195d87fe1c7e51d1773b425a8d53d","sha256:546dfb602579a850b8c647c57d01c8b455c5cee9e03675fc9a6f160654096068","sha256:86fe263a4e0aa910c87bc3e4218c11965028725219bbd9a59f647bb375478c82"]
+      - values: {"k":8,"c":"10{,}00","m":5}
+        answers: ["sha256:a1527bc905f1b7d14235a771c66f8bb02327b74ea25b921032e07d4dac369730","sha256:61ac71fba80b030f9468fc9cfd9c1aa0d651b3ccde639cf59cd4112321a092d8","sha256:17a5122c35de138629867311a821158d0fbfeff571258369754a8d0f80de31ed"]
 ---
 
 # Proporcionalidad, porcentajes e interés

@@ -16,14 +16,50 @@ hints:
 exercises:
   - id: limite-factorizando
     tier: 1
+    type: numero
+    sig: 8
     prompt: |
-      Calcula $\displaystyle\lim_{x \to 3}\frac{x^2 - 9}{x - 3}$. (Factoriza el numerador antes de sustituir.) Respuesta: un número.
-    answers: ["sha256:e7f6c011776e8db7cd330b54174fd76f7d0216b612387a5ffcfb81e6f0919683"]
+      Calcula $\displaystyle\lim_{x\to {{a}}} \frac{x^2 - {{a2}}}{x - {{a}}}$. Respuesta: un número.
+    variants:
+      - values: {"a":3,"a2":9}
+        answers: ["sha256:0a8a817a5f84b54d887ce4deb3a74bca834213c57da05df36da3a23e9c0f12f1","sha256:7cde7250d4ae0c0278c04e4770fc2d3a7ac83654cbaffc085b62acc2259e6579","sha256:d707186fe8fb77b1de9a59d08c88ddda746c4c87845778401a0e9813efbd1f90"]
+      - values: {"a":4,"a2":16}
+        answers: ["sha256:fd40f38d3d415393fde02069ca5ae4b3c0dbd54f31e8f09ddfb1159bd53e0075","sha256:22fafb9f69f25dd382e92dbd5936e68452be60bee8fd307aa1557d67ee43ae30","sha256:0b390692792211f95866a07ae4ebb3591d43ebc371aa5d990edd3c0e5b34cb45"]
+      - values: {"a":5,"a2":25}
+        answers: ["sha256:aa537ced45e06a3698b65689c9b06a824183ca38e446fc3bfe49dab85f8aa6c1","sha256:a3cd8795fe929d3152365b7dc4149859dbf6036784a052d5e3a5b71048a5ccd9","sha256:d1c0b4b36cf20b4e4430fcaa6b249930d0c1d749ce700c1f3de451aec844e6f7"]
+      - values: {"a":7,"a2":49}
+        answers: ["sha256:88973b803231ee432516c941811c62230f9f56d94d118b35463c9126f6a656ee","sha256:200ee2409aa7db8f0aee2b1145d8f5715a933e71f58b0df412fe573ee2ffec29","sha256:3418a3be1049c02b20baf8652de86763d1401b69679df7850f61ba984d4f8dcb"]
+      - values: {"a":2,"a2":4}
+        answers: ["sha256:a49a831d69f208c3c7ad9972c27b19c55bc214aa324626d34f3f6e61829dae63","sha256:c02c4a83b5cd7834e300d7e622d539f1d5cd62aa94116406ab2467fb12c97b4e","sha256:4a39345ad97339975a0885b545ee6ff12fc954be7281a668480802b61687aefa"]
+      - values: {"a":6,"a2":36}
+        answers: ["sha256:b4e86fc0a562cfa7d2e951d10f5599ae0254f4e47802b2f16944fa09fbafa401","sha256:15ee440f2a541a140cf9481da6551bcf157907e73e5a5f2dc60afc7fc9c78aae","sha256:6e7167e7915bff8ab2788f09330e8a920076b3bcb31e55f0660711a8d22fd961"]
+      - values: {"a":9,"a2":81}
+        answers: ["sha256:f19733d9cbea68324060d07edc3aeeab2e811c29b71b0ac984a54d8ac0fbe5cf","sha256:e0af001e1a0f184bcfe3510e49868be57d3ac618738bd8fd6b79002fa8cd658a","sha256:59af736f365b7657839a37b99a6aa9c82c8c8861a611e7703acce6049da20e65"]
+      - values: {"a":11,"a2":121}
+        answers: ["sha256:a19d88f983fee1f34fad9d2021307e8b84d6552b70e2488080da2d0020c12bdd","sha256:3c65decd0326276c29393cdaffb489ca15c5452672a6e293025a7befc1e06140","sha256:487868058b91699089abba8385ab756aa1e94c29e45c6a61f0869fb5045c20a2"]
   - id: derivada-polinomio
     tier: 1
+    type: numero
+    sig: 8
     prompt: |
-      Sea $f(x) = 3x^4 - 2x^2 + 7$. Calcula $f'(2)$. Respuesta: un número.
-    answers: ["sha256:8b940be7fb78aaa6b6567dd7a3987996947460df1c668e698eb92ca77e425349"]
+      Sea $f(x) = {{a}}x^4 - {{b}}x^2 + {{c}}$. Calcula $f'({{k}})$. Respuesta: un número.
+    variants:
+      - values: {"a":3,"b":2,"c":7,"k":2}
+        answers: ["sha256:082d9377593f6457a8fe50247b24e30d513141718f04b6d4f1ee66ae692c99d7","sha256:0fedd067253ffe581b8e49a4fcb00a23c4508ef36ce77e487a60f38f48de1aff","sha256:a9626329ce48d1798ae80a24616718a60acc8537bd6fc96f1479ba16b516bf66"]
+      - values: {"a":2,"b":5,"c":1,"k":1}
+        answers: ["sha256:d6e4d7f0f09a32287ecab0ae950656fba4d737ffb07b44fa715cb5392dcf6334","sha256:b10e7ed7e646e5876cbd65bc938a93b50fbf3d0ba90af50ca1d36bd891b5264e","sha256:9a2a3ddd8b1981fc1e7aaaa6675f31785a7e599371871c621bf3ed2ebaa01df0"]
+      - values: {"a":6,"b":3,"c":4,"k":3}
+        answers: ["sha256:ef809f694a5cd572a35956b8d37dba7dc4bd4b987f28aed3d8885fd50deb981e","sha256:04d692eb37b58eab3d4ac0c0192671b10a648b12797b7c041c10bcf952d36022","sha256:b06a6707ceaac2db12b946b9df821c73b99b52374bc8eccc8ca2f8e32bc650b4"]
+      - values: {"a":4,"b":3,"c":9,"k":-1}
+        answers: ["sha256:2a9d690a29ab19084f0dc695df95032fb37366464fce121c34e057a1123d50a9","sha256:8a735532c3cd90b6f04104076d920a7425b25fa0fd0455c4ab902d16fd824a09","sha256:fdec211d6eb7790abfbb49e42f1fa957963b76f74d76c68a866294f8521ad97c"]
+      - values: {"a":2,"b":7,"c":3,"k":2}
+        answers: ["sha256:3bd7553190a457b683651b51c50f6b198c879c1a569b761d23d4b692aa1adab2","sha256:f970ffc30fac0a49b035e1fe5664308a95d5c33e5d7bb590184ce961d5a89757","sha256:ff6efb1dc150f373d046ffc69699a1d13802844680eed9052890525ca2dcc910"]
+      - values: {"a":5,"b":2,"c":6,"k":-2}
+        answers: ["sha256:45530fb79eacc985a2803ac7d90b59cfcf3e609caed18cc80650112ab88441db","sha256:21e1f8462fb3584ee9b89b9436638cb2b0b2af9f581d44790b16f19b1cc9e639","sha256:873ff38a36ad98392774e2630af6ba5faea376c23952f75bdd82ec3551eb62d7"]
+      - values: {"a":2,"b":6,"c":2,"k":4}
+        answers: ["sha256:2c31e26c7021c1a8dfa1e32f4078b4d76f8740190ac9aeb656e2fdc5e5ac43d6","sha256:bb3708ff673155fd7f6310916152ac584096ea188240397cacfddb5b3c8bbf7c","sha256:e926ec1fbec85455f219202c71ea090ee8335345c86261eeb7a16817bae561be"]
+      - values: {"a":3,"b":4,"c":8,"k":-3}
+        answers: ["sha256:fb7a1b15a73c21bc13650b845ecdd5070ea36d45b0601b15ca4b6db6cd7bb8b1","sha256:4210c5c6bcb3b4aace7f79c6fca1cafe3ecf827c9f05decb5feb82ce0139c0a4","sha256:95f470df0512db8d895feda687db4e960af37e1765ccca6f0438000d91158612"]
   - id: pendiente-de-la-tangente
     tier: 1
     prompt: |
@@ -36,19 +72,42 @@ exercises:
     answers: ["sha256:ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d"]
   - id: derivada-del-producto
     tier: 2
+    type: expresion
+    vars: ["x"]
+    domain: [-2,2]
     prompt: |
-      Sea $f(x) = x^2 e^x$. Calcula $f'(1)$. Respuesta: **cuatro decimales**.
-    answers: ["sha256:2e25f1847165cad406d73ee95dfeb021ff05f333d701ba3e00e65a84705fcb66"]
+      Sea $f(x) = x^2 e^x$. Escribe $f'(x)$. Respuesta: una expresión en $x$ (por ejemplo `x^2*e^x` o en LaTeX); vale
+      cualquier forma equivalente.
+    answers: ["sha256:6e66fb54b9506fdc7f26cd46eb4cead5968fe2287d97f326c39c6001f5be0062","sha256:eb9cebcb799ac5008fab90541db7be6a6aaae4d2175f1d2be947c28835d74eeb","sha256:a7643cc176136853a462261d5ea940c5d70ad6c522eca7a97f36afbdbd58bc54","sha256:06935b3e14a5cdf25dad017678e7ac9eadbb2cb4a88a8f4f8a0d457fbe8c30f2","sha256:dda9c5a61ffe774dd8e3189a087afb2c80a2b70dfd0e6cf40e53717233f0aa3d","sha256:2107d293d90d3203ab2dac3165a3030315c1be97edd32c0cc9457b0fd64ce6b4","sha256:74014929ef31f657d4d77d7751968650fe728c27058e022d432bfa7ef1034e1f","sha256:01b2ae67c4b78a13e474c7b49ad7365dc31d7e086fc9b1edf14ef78f34556577"]
   - id: derivada-de-ln
     tier: 2
+    type: expresion
+    vars: ["x"]
+    domain: [-2,2]
     prompt: |
-      Sea $f(x) = \ln(x^2 + 1)$. Calcula $f'(1)$. Respuesta: un número.
-    answers: ["sha256:6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"]
+      Sea $f(x) = \ln(x^2 + {{a}})$. Escribe $f'(x)$. Respuesta: una expresión en $x$.
+    variants:
+      - values: {"a":1}
+        answers: ["sha256:9cfd06326f8f96222d9cafa0fa0525c5bb8e4f3af7c0c41e5ba562e4891246f7","sha256:ad705758485d2e422c13606a5611a3a93a491a9f872ec470118004a586b24f82","sha256:dcb0ee76281a1c4459d830a02171ca5fd06b48cf2127915f998f2e1e431df5da","sha256:1bf46bd30ea78e3a149ffabc4e789b1e4e99537bb649d9124fae94823862a5a9","sha256:bf66e72c73244f3a51b9b06c8a5c473646d2b3d5e956fb1911761c7d0f76c22c","sha256:363a4bf484d5d84467c97ddfe16130d82cdf0d9a20a8fcd7ff37af3848e2c7a2","sha256:1041616c6627ad677a62573e4fd96e2922d00e6ca76c84aa5653c98dd1f79599","sha256:d14bfdd4a5e7807807c217cf16b0000a4ca322cb225c294e772cdd58a54cc2e2"]
+      - values: {"a":2}
+        answers: ["sha256:d0fe6c6e8e48a37bc660666543c336f8d65cd149534677ce0abec687819bec9b","sha256:7b0071945cf49c3147a921dae3e6a999bddbd8569cd15d3e66dcd7722396f19a","sha256:950f2c5584b745da3d1b8195febf601d202bedd2131bf7d33dec5149abbfdcc8","sha256:1169587f8dcfda1e228e4ef8b5b2cff8dc3d76f61f3bb7d60dd814ef35d1a975","sha256:80e55729ac1a3edb55efa6255c6cb483547162187a96c78254551eca384d01c8","sha256:14549d16a19eb00d37d3fc16147d28d43d222a2e9409d40332f6d4790c2c85e9","sha256:66319f3f9c767a7ce39070cec796e79527d632dfb76bc042ed7557159e4123ba","sha256:a36638e97648aef7684cd10c54e16cb54b4d054418edd4c0e12d5faf21f2b2f3"]
+      - values: {"a":3}
+        answers: ["sha256:4a22defb913f1c860a785211329695958ccdf110da8ea74b84fa8877aa1b16f3","sha256:8bae8c25fe925c0e38802354eda48ee91423701bcfbbb0acaf66c4010f1a91fe","sha256:734cfe3cd5a09bf29cc85d3a4589d3d8fc7eb424df6f9fd3e4321196e95dfc46","sha256:0ec4c3520975fce0d6cdb02e5adee852e72b5bc0c06ed636ad7a3fb38226cf35","sha256:dc752edb13185c6043ca2be9e26a0949c453b0a86b979f4fdd0d34c7ad259238","sha256:1bda5feb5ed694435f1ceb9e173ffdf1bc5d784db77343d4d2f4236627b697d3","sha256:679dfe8f3c16635d783ee3e4c54b6d5a7198aadfd3320d5e9ca2aac0b30dc548","sha256:80208f575a6d0fabbff3bbc3c4f899221f88885feaae5a4a7214641b788e4992"]
+      - values: {"a":4}
+        answers: ["sha256:f1b7f124dff4fb61c87ef8ea8a9783ba4e18f08793d7ea00123cb020857eca8a","sha256:ae5d54f7a403a6ace8edf7f3097b6bc5b683107b5c180803285d7b0069329af7","sha256:0754ddbb3170789469370b1be234033474cd2dc1e407cbdacd2daa57bf5d7287","sha256:526e6afc8adb4a507dc2442a67b918ba919926186c5e443cbcab07b28431ee9e","sha256:0669e28b380026454e9ffc8d561312abe4431ee60a74c4c3946b9222465afcc8","sha256:4bc9caa0082a1d6abfac6ecbd3c3498d70dad566db8ed159859d74dd6c11403f","sha256:5dcff51cc0f2e6cfdab1d97f1cf8c8b32df17b1fef6e6d7f05312062c02e96fe","sha256:ce8334d18f8be0acf524f816c1d8d851696f16727629372f16a3b822b823f4c8"]
+      - values: {"a":5}
+        answers: ["sha256:4e44cc8d3faed4aabc4ac263547ce02735a775e9c9ffcf9cb14382a1cb488848","sha256:674133063510a5aa2db31cbd53bfe4d8a6071c0a34cbd34f155df4eeb414cb82","sha256:763af7ce21ec397b6fd05150b212f765c3a4ec3cf690a315fd1ad84a7fb7ddc1","sha256:8b5faa19f163aa15655beca7275b23bc15959558779d99ef2cb8100296369e1a","sha256:ba7d51b7e65da3f295eb57d54d354721d867d21fb89bdd6ac0c8193ab9c3d489","sha256:79ab62cac7c336a08be2945c420bd4bc6169dd5a57d636ed1ec786c34b301a9f","sha256:e2a33eb00c5aad361c1e0491d46be9744c8bbc68f6a5c91974712102b462c6ae","sha256:b12c112d071bfa4f9b871c875a6b25fcf8a5b567fc92fb401f40c5a2354ae35d"]
+      - values: {"a":9}
+        answers: ["sha256:dd6e10bb2d48d0402601bbe9e73a016fbdb496041602c2a2ebcf6077a8213e44","sha256:6469c7dad1bc2f73d07b758c05f5c35a26bfda43fd47d1d082281f0d1d6f52b4","sha256:1ba72bd3d154e2602cb70a268bcda8fbb5fb17c0e3aec448d97507b716927711","sha256:d6db34e0a398586901a172e7eeb4324487a6694c9c44b2b6ae066956d4b3f61a","sha256:71b02e1441d2c986edd809e0ef82fcb56ae95615157b241d930b184aefd34c75","sha256:4a63ad238fbfc0d30218ea6965c83c292314a0d5055c4f27e6613fed89706c42","sha256:f2dfb0c9a81b42bcec782a9f5749fe29ae9ff902d08ac3801410ea634300301b","sha256:0d4b39024136b11deecb4ff6fd0cd48381f033629dbf476e0092ceb45dbcaccf"]
   - id: regla-de-la-cadena
     tier: 2
+    type: expresion
+    vars: ["x"]
+    domain: [-2,2]
     prompt: |
-      Sea $f(x) = \sin(x^2)$ (con $x$ en radianes). Calcula $f'(1)$. Respuesta: **cuatro decimales**.
-    answers: ["sha256:e6e5b8113c7a712315b5e9c5da6ba3db0728f3c14bf933205bcf8cb3253026ef"]
+      Sea $f(x) = \sin(x^2)$. Escribe $f'(x)$. Respuesta: una expresión en $x$ (`sin`, `cos`, `^`); vale cualquier forma
+      equivalente.
+    answers: ["sha256:cdde19f3bbc93a4d2040bb3a4f1433c70b570568e185ca012a103ee825bf12e8","sha256:4044811e7cb02ca976ede1c99f035ed61e749d35550c6018f8e153c811c91d1e","sha256:ba50efc155cdf0ed12c8af9ef7fc51aea5c6e1936cb37525d797b80bbaeef429","sha256:53b41b3f09509725f158f0ded4ca23791cb9b47903ccf348009fce032744dda3","sha256:4868fe08e143fe442583bb2768b515b541bdfabf815dafb1f1e750e76ca7d6e1","sha256:a3ceca64f62677a9e19d25d8c3bf206b948ef3ed07d3b1ecc8fa8c8dcb1b6a01","sha256:ae0648a049ee043661efc24ebe00710d5a88a069bc1d52bf1abf4eb4f0966563","sha256:60dcbb09639f9f3bbbd4bb6a4df590b4c524d57557fa10553a75c961c9225cbe"]
   - id: maximo-de-parabola
     tier: 2
     prompt: |
@@ -56,10 +115,24 @@ exercises:
     answers: ["sha256:4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5233ade6af1dd5"]
   - id: caja-de-volumen-maximo
     tier: 2
+    type: numero
+    sig: 8
     prompt: |
-      De una lámina cuadrada de cartón de $12$ cm de lado se recortan cuadrados de lado $x$ en las cuatro esquinas y se doblan los lados para formar una caja **sin tapa**.
-      ¿Cuál es el volumen máximo de la caja, en cm$^3$? Respuesta: un número.
-    answers: ["sha256:2747b7c718564ba5f066f0523b03e17f6a496b06851333d2d59ab6d863225848"]
+      Con una lámina cuadrada de cartón de {{L}} cm de lado se hace una caja sin tapa: se recorta un cuadrado de lado $x$ en
+      cada esquina y se doblan los bordes. ¿Cuál es el **volumen máximo** de la caja, en cm³? Respuesta: un número.
+    variants:
+      - values: {"L":12}
+        answers: ["sha256:77b390c3a9113f42d4b393dd8d034a5e8715c4ffd7942c2b260277a14d6e57ee","sha256:667a6f76db77c83d961a1b6a856b23613427b2512c6deea3964a737510ac7e88","sha256:7e5661330cd005658f8024cf238430cf1de5e45a0165b7265681bf42419ec366"]
+      - values: {"L":6}
+        answers: ["sha256:0b6af0e24ab54c03b69ea8dfd04f16039b79f58f4a7266b4b455f590c9b86abb","sha256:b1ec05969cc8a27b96e8ba40c31621ebb18d2faceef4021135dc82dc5f3b2ef6","sha256:03297a934026a7c50ffca4245b2c0f06a457a5114f53810a8502b87efca05521"]
+      - values: {"L":18}
+        answers: ["sha256:449127719a0cd488b98553a4735e3d4c8a3cb67bf1c1ed298258fa3080f4d545","sha256:483f5926dda73dbc2299d125d9a550a1f786e356d49865aefbeea37f6ad6a6b2","sha256:2eb49221954ff2928eb7e9222245879e6c6d988cc0f7477b741de833e0333645"]
+      - values: {"L":24}
+        answers: ["sha256:3bdaeca837dd5292e9c14dc14fc80102eb3d6dee853c6e9578a86f9032933a7a","sha256:10d03efeef4734f0c7b4bab8dc46ef1813fe700470f02942bb659c44aa4fe163","sha256:3b9eb9a730d958d1656e6a34fd35fbd242c8843ea40d0d3d8d0d1bed689c1864"]
+      - values: {"L":30}
+        answers: ["sha256:149629d8e308b8d895ada90c98ec6d4e58c280835731284032351decc03aa75b","sha256:58b963eb417a7bb1a2d3abd076ba19cb598d3a434b2f511b504f52c0c7cfad84","sha256:1a1a2885adba1f525b8eabffcf1ce5d3e47747d75a5d65b5e143ca5a034c870c"]
+      - values: {"L":36}
+        answers: ["sha256:749707fffae983c9c539b699d39c00a9f0f62fdb62468e4f11bb511f932c3a92","sha256:e523a309e141c4e486f7424c57355b5eda0e98f2b9ff2180ffe1db7aed3fa66c","sha256:f5e8534e6032f46c5de040135e2ae6a72c9713ba7e48255919ab343a2b2c47ee"]
   - id: velocidad-cero
     tier: 2
     prompt: |
@@ -99,6 +172,64 @@ exercises:
       El método de bisección parte de un intervalo $[1, 2]$ donde $f(x) = x^3 - x - 1$ cambia de signo (teorema del valor intermedio) y lo divide por la mitad en cada paso.
       ¿Cuántas bisecciones hacen falta, como mínimo, para que el intervalo final mida **menos de $10^{-6}$**? Respuesta: un entero.
     answers: ["sha256:f5ca38f748a1d6eaf726b8a42fb575c3c71f1864a8143301782de13da2d9202b"]
+  - id: r-derivada-cociente
+    tier: 2
+    type: expresion
+    review: true
+    vars: ["x"]
+    domain: [0,3]
+    prompt: |
+      Deriva $f(x) = \dfrac{x}{x+1}$ y escribe $f'(x)$ (cualquier forma equivalente).
+    answers: ["sha256:bfd68be50c07b549c1bd038efa8bd4d862ecc6e26afd9bc59f6bd15ffb673634","sha256:d24565a142e2b7dba3c91c11a4971c5108f4afdb324977fccc58e6c44225a573","sha256:403cc3eb54f110b9f57d678f7e62e0c26dc8dd386a746b66895a478426371128","sha256:56a4752ec764ebafd84245df8a2b0060ce9628ae62df7b7086e8e5fff7cb914b","sha256:7654b95161f19b67c67db6d64d6e7c88dce98370e1b6e9cbb686f8f9139d6241","sha256:cb241648ad6a887b070451e2c2a7f9bc02eeecd2a279b60c2f1e4f032195d5b1","sha256:de4c43d541a011d640360561e108e990b6cbb9818d9bde537c952f98ee8f0b94","sha256:447c7a70d18da78f86c6a7bbfb60e9fb85a19c7a34654a0b7064c75752302c07"]
+  - id: r-derivada-factorizada
+    tier: 2
+    type: expresion
+    review: true
+    vars: ["x"]
+    form: factorizada
+    prompt: |
+      Deriva $f(x) = x^3 - 12x$ y escribe $f'(x)$ **factorizada** (como producto de factores). Te dice dónde la tangente es
+      horizontal.
+    answers: ["sha256:f8a64fe9d14d7e8ecbec6fc2d255f7bb5884eff946752f1ca7b84353a51ab710","sha256:eca1771ceed8398c5bb3384ff4367615a484ed624dd1524d96e34c0647edcb95","sha256:71ea2795da3c6cedbc64d3d7a162fd2a51afc7d68312c5d65f4038e5bd7b9dcf","sha256:bd0c7847d4e214e9e2a9873bf7dcd75b3277ab20b3a2b5795a9515518541b26e","sha256:2ab46d8993e072d443d1906ad16f17880fd71dad8f7835832a130d7911f18282","sha256:5ad49eccbcc8e35032199b880e43f269de3f3ae8b5c23746f90839234c10f11f","sha256:83bd732bdeb716031091fcc067dd95bf47314c6ba6afb1e8c7c80fd00aa0c880","sha256:6ac6e692af392cf399129f5424b8f450ffa54ba2a8a7e1720cfab70bf39353fb","sha256:975f084e348d0b4f1498954565fc7c935256307f3236cb4af92a1bf6d50b908a"]
+  - id: r-velocidad
+    tier: 1
+    type: expresion
+    review: true
+    vars: ["t"]
+    domain: [0,4]
+    prompt: |
+      Un objeto se mueve según $s(t) = t^3 - 6t^2 + 9t$ (metros, segundos). Escribe su velocidad $v(t)$.
+    answers: ["sha256:0a93e3c84b3956eaacd34d4d3cc119e99c63130186610f6c3bbece9bba4c3843","sha256:8660155ce48641893a54e3ec2b37478ae6d7911f23545df47579c0dd2d592e5e","sha256:7bd73ad4b50dba08628d4f3bced2bdc10567c72c00f68c74fe460a073e201b11","sha256:216a03bce6a82331a57d628842ca2ce9081360616da3af0dbc966e8f1ce706d5","sha256:d4962f15d0a6d4143763e47d8d79be5c50d460847b96a1c4bc3d2bbeb55daf39","sha256:2178a4484d88e3b602da39c7fdde9171f94e2926d95c79e5de97a41efe8454d7","sha256:f76f5e82ac11d41cf3feee3e71c75bcdb3ee88949af263c7f22fa87102cf0f69","sha256:cbea2da479a061d39d5b15348d8b96470a8de7d5707424eb558ea2f3cb79d0a0"]
+  - id: r-tangente-horizontal
+    tier: 2
+    type: opcion
+    review: true
+    prompt: |
+      Si $f'(a) = 0$, ¿qué puedes asegurar **siempre**? (Piensa en $f(x) = x^3$ en $a = 0$.)
+    options:
+      - |
+        $f$ tiene un máximo o un mínimo en $a$
+      - |
+        La recta tangente a la gráfica en $a$ es horizontal
+      - |
+        $f(a) = 0$
+      - |
+        $f$ no es derivable en $a$
+    answers: ["sha256:2311f9e3e6c127cdbd5e064e686d1374d0a3a464188a2079e6daaa678f8d1412"]
+  - id: r-lhopital-trampa
+    tier: 3
+    type: opcion
+    review: true
+    prompt: |
+      ¿Se puede aplicar la regla de L'Hôpital a $\displaystyle\lim_{x\to 1}\frac{x^2+1}{x-1}$?
+    options:
+      - |
+        Sí: derivando arriba y abajo da $2x/1 \to 2$
+      - |
+        Sí, y el límite vale $0$
+      - |
+        No: no es una indeterminación $0/0$ ni $\infty/\infty$; el límite no existe (por la derecha tiende a $+\infty$ y por la izquierda a $-\infty$)
+    answers: ["sha256:044c6b25a6bd60b5e7e98f60a95c1bcfa22167b80a47a8753e2f3b26585148a5"]
 ---
 
 # Cálculo I: límites, derivadas y optimización
