@@ -129,7 +129,11 @@ export function terminosEn(texto: string, patron: ReturnType<typeof patronTermin
   const out = new Set<Termino>();
   if (!patron) return out;
   // Sin código ni fórmulas: ahí un término no es una palabra del texto.
-  const limpio = texto.replace(/```[\s\S]*?```|`[^`\n]*`|\$\$[\s\S]*?\$\$|\$[^$\n]*\$/g, " ");
+  const limpio = texto
+    .replace(/```[\s\S]*?```|`[^`\n]*`|\$\$[\s\S]*?\$\$|\$[^$\n]*\$/g, " ")
+    // Wikilinks: el id del nodo enlazado no es texto; el alias sí.
+    .replace(/\[\[[^\]|]*\|([^\]]*)\]\]/g, "$1")
+    .replace(/\[\[[^\]]*\]\]/g, " ");
   for (const m of limpio.matchAll(patron.re)) {
     const t = terminoEn(limpio, m.index!, m[1], patron);
     if (t) out.add(t);

@@ -12,13 +12,14 @@ glosario: fisica
 terminos:
   - termino: fuerza
     sinonimos: [fuerzas]
-    excepto: [fuerza bruta]
+    excepto: [fuerza bruta, misma fuerza]
     llano: "Un empujón o un tirón. Como $F = ma$."
     formal: "$\\\\vec F = m\\\\vec a$"
     nodo: base
   - termino: energía cinética
     llano: "La energía del movimiento."
     nodo: base
+    tambien: [base]
   - termino: fuerza
     llano: "repetido"
     nodo: base
@@ -52,6 +53,9 @@ test("glosario: palabras completas, sin mayúsculas, el más largo gana y las ex
   assert.deepEqual(en("refuerza el muro"), [], "solo palabras completas");
   assert.deepEqual(en("las fuerzas"), ["fuerza"], "sinónimo");
   assert.deepEqual(en("`fuerza` en código y $fuerza$ en fórmulas"), []);
+  assert.deepEqual(en("con la misma fuerza que antes"), [], "excepción con el término al final");
+  assert.deepEqual(en("ver [[nodo-de-fuerza]] y [[otro-fuerza|la fuerza]]"), ["fuerza"], "el id de un wikilink no cuenta; el alias sí");
+  assert.deepEqual(loadGlosario(dir).terminos[1].tambien, ["base"]);
 });
 
 test("glosario: el render resalta solo la primera aparición, fuera de código, títulos y enlaces, sin LaTeX en el aviso", async () => {
