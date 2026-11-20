@@ -14,6 +14,10 @@ attachments: [prueba.sh, texto.txt]
 exercises:
   - id: hito-1-tokenizador-bpe
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 1
     prompt: |
       **Hito 1.** `gpt bpe FICHERO K [FRASE…]` entrena un BPE a nivel de bytes sobre el fichero con las reglas del §2 (como mucho K fusiones; par más frecuente, con empate el menor; nuevo token 256 + k; se para si ningún par aparece dos veces) e imprime una línea `fusion id a b texto frecuencia` por fusión (el texto del token con los bytes fuera de 0x21–0x7e y la barra invertida como `\xHH`), después `tokens N de M` (longitud final frente a bytes originales) y, para cada frase, `codifica` y sus tokens tras aplicar las fusiones en orden. Un fichero que no existe o un K que no sea un entero no negativo terminan con código 1.
 
@@ -23,6 +27,10 @@ exercises:
     answers: ["sha256:0b29bade73621a9d78c4a60629591362577c19d160d0b59f0fc15534b007188a"]
   - id: hito-2-transformer
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 2
     prompt: |
       **Hito 2.** `gpt adelante D-H-L SEMILLA SECUENCIA` inicializa el modelo del §3 (vocabulario de 13 caracteres, contexto 9, pre-LN, atención causal multicabeza, MLP con GELU, pesos atados, inicialización con el generador de Exodus en el orden exacto del §3), lo aplica a los n − 1 primeros caracteres de la secuencia (de 2 a 10 caracteres del vocabulario) e imprime `perdida` (la entropía cruzada media de predecir los n − 1 siguientes), `logits` (los 13 de la última posición) y una línea `atencion l h` por bloque y cabeza con los pesos de atención de la última posición. Valores con `%.6e`, como el redondeo de x·(1 + 10⁻¹²). Una configuración en la que H no divide a D, un carácter fuera del vocabulario o una longitud fuera de 2–10 terminan con código 1.
 
@@ -32,6 +40,10 @@ exercises:
     answers: ["sha256:6d43b3289f6660e098a28b0d9c66e8ee2bf5c74c31f7926ad63f5e128aa91771"]
   - id: hito-3-retropropagacion
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 3
     prompt: |
       **Hito 3.** `gpt gradiente D-H-L SEMILLA S1 S2 …` (secuencias de exactamente 10 caracteres) calcula sobre el lote la pérdida de las posiciones de la respuesta (§3: las de índice 5 a 8) y su gradiente respecto a todos los parámetros, e imprime `perdida`, una línea `nombre norma` por parámetro en el orden del §3 (norma de Frobenius de su gradiente) y `total` (la norma global). Valores con `%.6e`, como el redondeo de x·(1 + 10⁻¹²).
 
@@ -41,6 +53,10 @@ exercises:
     answers: ["sha256:c3288cf63ce5826dd3188b6f246525f9e140e40082b3b50046a0f6c4030caaba"]
   - id: hito-4-entrenamiento
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 4
     prompt: |
       **Hito 4.** `gpt entrena D-H-L SEMILLA PASOS LR LOTE` entrena con los datos, la partición aleatoria y el AdamW del §5 (recorte de la norma, calentamiento y caída coseno, decaimiento solo en las matrices de los bloques) e imprime `paso t perdida L norma N lr X` en los pasos 1, ⌊P/4⌋, ⌊P/2⌋, ⌊3P/4⌋ y P, y al final `prueba perdida L aciertos k de n` sobre las sumas de prueba (con `%.3e`). LR y LOTE deben ser positivos; si no, código 1.
 
@@ -50,6 +66,10 @@ exercises:
     answers: ["sha256:d787422a176e4b03f203d37f727d7a2c14916ed74f3e584c7454cc168779b59c"]
   - id: hito-5-generacion
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 5
     prompt: |
       **Hito 5.** `gpt genera D-H-L SEMILLA PASOS LR LOTE TEMPERATURA aa+bb= …` entrena como el hito 4 y, para cada prompt, genera como mucho 4 caracteres (§6): con temperatura 0, el de mayor logit; si no, muestrea de softmax(logits/τ) con el mismo generador, que continúa tras el entrenamiento. Imprime `prompt continuación`, con el salto de línea escrito como `\n`. Un prompt que no tenga la forma `aa+bb=` o una temperatura negativa terminan con código 1.
 
@@ -59,6 +79,10 @@ exercises:
     answers: ["sha256:f8dde8b071edbb32660f6fdae3bc9e08e340ad6b18afa6114a23cb08a4dc7c02"]
   - id: hito-6-generalizacion
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 6
     prompt: |
       **Hito 6.** `gpt evalua D-H-L SEMILLA PASOS LR LOTE PARTICION` entrena con la partición `aleatoria` (§5) o `unidades` (prueba: las sumas con 7a + 3b múltiplo de 10) e imprime `entrenamiento perdida L aciertos k de n`, `prueba perdida L aciertos k de n` y `acarreos c aciertos k de n` para c = 0, 1 y 2 (sobre la prueba). Los entrenamientos largos se comprueban por tramos de aciertos; una partición desconocida termina con código 1.
 

@@ -7,7 +7,7 @@ import { previewAnswerAction, type PreviewState } from "@/app/nodo/[id]/actions"
 export interface AnswerSpec {
   nodeId: string;
   exerciseId: string;
-  type: "texto" | "numero" | "expresion" | "matriz" | "opcion" | "flag" | "desarrollo";
+  type: "texto" | "numero" | "expresion" | "matriz" | "opcion" | "flag" | "desarrollo" | "codigo";
   unit?: string;
   sig?: number;
   vars?: string[];
@@ -97,7 +97,9 @@ export default function AnswerField({ spec, disabled, placeholder, formId }: { s
       ? `Número${spec.unit ? ` (en ${spec.unit} u otra unidad compatible)` : ""}${spec.sig && spec.sig <= 4 ? `, redondeado a ${spec.sig} cifras significativas` : ""}`
       : spec.type === "expresion"
         ? `Expresión en ${spec.vars?.join(", ") || "x"}`
-        : "Tu respuesta");
+        : spec.type === "codigo"
+          ? "Código de 12 caracteres que imprime el script de pruebas"
+          : "Tu respuesta");
 
   return (
     <div className="respuesta">

@@ -13,6 +13,10 @@ attachments: [prueba.sh]
 exercises:
   - id: hito-1-respaldo
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 1
     prompt: |
       **Hito 1.** `kitops respaldo ORIGEN DESTINO [-n N]` crea `DESTINO/respaldo-FECHA.tar.gz` (con `FECHA` tomada de la variable `KITOPS_FECHA` si existe, o `AAAAmmdd-HHMMSS` actual) que contiene el directorio `ORIGEN` con su nombre (y los archivos ocultos), escribe a su lado `respaldo-FECHA.tar.gz.sha256` en el formato de `sha256sum`, conserva solo las `N` copias más recientes por nombre (7 si no se indica) borrando las demás con su manifiesto, e imprime el nombre del archivo creado.
 
@@ -22,6 +26,10 @@ exercises:
     answers: ["sha256:191de06572557748916bf64b44cd3855768a45ec58415f2de8e26a6610c8c6b1"]
   - id: hito-2-verificacion
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 2
     prompt: |
       **Hito 2.** `kitops verifica DESTINO` comprueba cada `respaldo-*.tar.gz` (en orden de nombre) contra su `.sha256` e imprime `OK nombre`, `CORRUPTO nombre` o `SIN-MANIFIESTO nombre`. Termina con 0 si todo está bien y con 4 si no.
 
@@ -31,6 +39,10 @@ exercises:
     answers: ["sha256:afd18927ad18be386a2fcd9ba11027a0d9c0ba909c1b4b3b92f2bbbf01e37f39"]
   - id: hito-3-auditoria
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 3
     prompt: |
       **Hito 3.** `kitops audita DIR` recorre `DIR` e imprime `ESCRIBIBLE ruta` (archivos y directorios escribibles por otros), `SUID ruta` (archivos con el bit SUID) y `GRANDE ruta` (archivos de más de 1 MiB), con rutas relativas a `DIR`, agrupadas en ese orden y ordenadas por ruta (orden de bytes) dentro de cada grupo. Un archivo puede aparecer en varios grupos.
 
@@ -40,6 +52,10 @@ exercises:
     answers: ["sha256:953291dd81137e82d2236dd5ab60052b104138980515c7fbd81134406bdb7834"]
   - id: hito-4-registros
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 4
     prompt: |
       **Hito 4.** `kitops logs ARCHIVO` resume un registro de nginx en formato combinado con cuatro líneas: `peticiones N`, `ip_top IP N` (la IP con más peticiones; en empate, la menor como texto; `- 0` si no hay ninguna), `errores_5xx N` y `bytes N` (suma del campo de tamaño, ignorando `-`).
 
@@ -49,6 +65,10 @@ exercises:
     answers: ["sha256:2b08aa394d9952682ad2a14f62fe4151dd6027185ea2239b819f5652e65f2b48"]
   - id: hito-5-limpieza
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 5
     prompt: |
       **Hito 5.** `kitops limpia DIR -d DIAS` borra, recursivamente, los archivos regulares modificados hace más de `DIAS` días (cualquier nombre, incluidos espacios) e imprime `borrados N`.
 
@@ -58,6 +78,10 @@ exercises:
     answers: ["sha256:ce57c0217be09d0dc0508f798c6f90ad789358427172b86083fe234c5b485719"]
   - id: hito-6-robustez-y-bloqueo
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 6
     prompt: |
       **Hito 6.** Errores y concurrencia: sin argumentos o con una orden desconocida o un argumento inválido (por ejemplo `-n cero`), mensaje de uso por la salida de error y código 1; origen inexistente, código 2. `respaldo` toma un cerrojo exclusivo no bloqueante con `flock` sobre `DESTINO/.kitops.lock`: si otro proceso lo tiene, termina con código 3 sin hacer nada; al liberarse, funciona con normalidad.
 

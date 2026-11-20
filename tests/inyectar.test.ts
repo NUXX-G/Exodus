@@ -78,3 +78,23 @@ test("ex-inject: desarrollo sellado (ni solución ni rúbrica en claro) que se a
   assert.ok(!texto.includes("Construye") && !texto.includes("N = p_1"), "nada en claro");
   assert.throws(() => insertar(NODO, [{ id: "x", tier: 1, type: "desarrollo", prompt: "?" }]), /solution y rubric/);
 });
+
+test("ex-inject: código con casos (las salidas esperadas no quedan en el vault, solo la huella del código)", async () => {
+  const { codeFor } = await import("../src/lib/codigo");
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "exodus-iny-cod-"));
+  const cases = [{ name: "a", stdin: "1 2\n" }, { name: "b", stdin: "5 7\n", args: ["--suma"] }];
+  const outputs = [{ stdout: "SALIDA-SECRETA-3\n" }, { stdout: "SALIDA-SECRETA-12\n", status: 0 }];
+  const spec: Spec[] = [{ id: "suma", tier: 1, type: "codigo", language: "python", template: "import sys\n...\n", cases, outputs, prompt: "Suma." }];
+  fs.writeFileSync(path.join(dir, "prueba.md"), insertar(NODO, spec));
+  process.env.VAULT_PATH = dir;
+  const { nodes, issues } = loadVault();
+  assert.deepEqual(issues, []);
+  const e = nodes.get("prueba")!.exercises[0];
+  assert.equal(e.type, "codigo");
+  assert.deepEqual(e.cases, cases);
+  assert.equal(e.template, "import sys\n...\n");
+  const r = corregir(defDe(e), e.answers, codeFor(cases, outputs), salDe(e.id, null));
+  assert.ok("correcto" in r && r.correcto);
+  assert.ok(!fs.readFileSync(path.join(dir, "prueba.md"), "utf8").includes("SALIDA-SECRETA"));
+  assert.throws(() => insertar(NODO, [{ id: "x", tier: 1, type: "codigo", cases, prompt: "?" }]), /outputs/);
+});

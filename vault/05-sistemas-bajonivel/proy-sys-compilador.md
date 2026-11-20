@@ -13,6 +13,10 @@ attachments: [prueba.sh, runtime.c]
 exercises:
   - id: hito-1-lexico
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 1
     prompt: |
       **Hito 1.** `mini lex ARCHIVO` imprime un token por línea con el formato `línea:columna TIPO lexema` (`NUM`, `ID`, `KW` u `OP`, según el §2) y al final `línea:columna EOF` con la posición justo después del último carácter. Comentarios `//` y espacios se descartan; un carácter que no pertenece al lenguaje o un número mayor que 9223372036854775807 es un error léxico: mensaje por la salida de error y código 1.
 
@@ -22,6 +26,10 @@ exercises:
     answers: ["sha256:27a5db49eecef0f45b1024d6ea4432e97c1ab0c223edb3119824968ea73069be"]
   - id: hito-2-sintactico
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 2
     prompt: |
       **Hito 2.** `mini ast ARCHIVO` analiza el programa con la gramática del §2 e imprime cada función en una línea como expresión S, con el formato exacto del §3. Un error sintáctico (o léxico) termina con mensaje por la salida de error y código 1.
 
@@ -31,6 +39,10 @@ exercises:
     answers: ["sha256:d9a61668912821e5bf77bf8bb1bd4433510db579cdb4a742447c9d731d493eff"]
   - id: hito-3-semantico
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 3
     prompt: |
       **Hito 3.** `mini check ARCHIVO` aplica las reglas de ámbito y de funciones del §4 e imprime cada error como `línea:columna código nombre`, ordenados por posición, con código de salida 1; si no hay ninguno imprime `ok` y termina con 0.
 
@@ -40,6 +52,10 @@ exercises:
     answers: ["sha256:d73c9ac3abf05b6cddf14fd4b0794f947ab19052cd2a822baa2fcbe63552a9d9"]
   - id: hito-4-interprete
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 4
     prompt: |
       **Hito 4.** `mini run ARCHIVO` ejecuta el programa con la semántica del §5 (enteros de 64 bits en complemento a dos, división truncada, cortocircuito, evaluación de izquierda a derecha): `print` escribe el número y un salto de línea, el código de salida es el valor de `main` módulo 256, y una división por cero escribe un mensaje por la salida de error y termina con 3.
 
@@ -49,6 +65,10 @@ exercises:
     answers: ["sha256:eaefad3722f58ad7540c345180323eb92314570ddfc96f279f27f771a4f2cae7"]
   - id: hito-5-codigo-de-main
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 5
     prompt: |
       **Hito 5.** `mini asm ARCHIVO` genera ensamblador x86-64 (GNU as, sintaxis AT&T o Intel) que, enlazado con `runtime.c`, se comporta igual que el intérprete. En este hito los programas solo tienen `main`: variables en el marco, expresiones, `if`, `while`, bloques con sombreado, cortocircuito y división por cero mediante `mini_div0`.
 
@@ -58,6 +78,10 @@ exercises:
     answers: ["sha256:c9299ae319e7acf51aa12509facd755850ea7ef3744290a3b28bc412e3549078"]
   - id: hito-6-funciones
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 6
     prompt: |
       **Hito 6.** Funciones con hasta 6 parámetros según la ABI System V (argumentos en `rdi`, `rsi`, `rdx`, `rcx`, `r8`, `r9`; resultado en `rax`), recursión (también mutua y de 50 000 niveles) y llamadas dentro de expresiones, con la pila alineada a 16 bytes en cada `call`.
 
@@ -67,6 +91,10 @@ exercises:
     answers: ["sha256:52861e73d28aed0f471a82e97b1719cfd76ca3995bcd558cd3bcdc209d647fff"]
   - id: hito-7-robustez-y-rendimiento
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 7
     prompt: |
       **Hito 7.** Programas exigentes compilados: cuenta de primos por división hasta 200 000 en menos de 10 segundos, Ackermann, expresiones anidadas profundamente, aritmética en los límites de 64 bits y división por cero dentro de una llamada. Además, `mini asm` rechaza con código 1 los programas con errores sintácticos o semánticos.
 
@@ -76,6 +104,10 @@ exercises:
     answers: ["sha256:8f7da038130e46e8c4da08c745d551894fd38a559fa20f5be7da5a0d2cff775a"]
   - id: hito-8-plegado
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 8
     prompt: |
       **Hito 8.** `mini fold ARCHIVO` imprime el AST (formato del §3) tras aplicar exactamente las reglas de plegado de constantes y eliminación de código muerto del §6.
 

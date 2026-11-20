@@ -149,7 +149,12 @@ export function buildExport(vault: Vault, data: UserExportData, root = ""): Expo
         const estadoEj = when ? `✅ resuelto el ${day(when)}${due ? ` · próximo repaso el ${due}` : ""}` : "⬜ pendiente";
         // Plantillas: se exporta la primera variante; el banco de repaso (`review`) no se exporta nunca.
         const enunciado = e.variants?.length ? rellenar(e.prompt, e.variants[0].values) : e.prompt;
-        const opciones = e.options?.length ? `\n\n${e.options.map((o, k) => `${String.fromCharCode(97 + k)}) ${o}`).join("\n")}` : "";
+        const opciones = e.options?.length
+          ? `\n\n${e.options.map((o, k) => `${String.fromCharCode(97 + k)}) ${o}`).join("\n")}`
+          : // Ejercicios de código: la plantilla sí; los casos de prueba no (el script se descarga en Exodus).
+            e.type === "codigo" && e.template
+            ? `\n\n\`\`\`${e.language && e.language !== "cualquiera" ? e.language : ""}\n${e.template.replace(/\n+$/, "")}\n\`\`\``
+            : "";
         body += `\n### ${i + 1}. \`${e.id}\` (${TIER[e.tier]})\n\n${enunciado.trim()}${opciones}\n\n*${estadoEj}*\n`;
         // Desarrollos: tras entregar y puntuarse, la última entrega y la solución modelo. Antes, nada.
         const entrega = e.type === "desarrollo" ? (data.developments ?? []).filter((d) => d.nodeId === n.id && d.exerciseId === e.id).at(-1) : undefined;

@@ -14,6 +14,10 @@ attachments: [prueba.sh]
 exercises:
   - id: hito-1-cinematica-directa
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 1
     prompt: |
       **Hito 1.** `brazo directa q1 q2 q3` (radianes) multiplica las matrices de Denavit-Hartenberg (convención estándar, §2) de la tabla (θ, d, a, α) = (q1, 0.4, 0, π/2), (q2, 0, 0.5, 0), (q3, 0, 0.4, 0) e imprime la posición del extremo `p x y z` y la orientación R₀³ en tres líneas `R r_i1 r_i2 r_i3`. Cada número se imprime con `%.6e` como el redondeo de x·(1 + 10⁻¹²), y `0.000000e+00` si |x| < 10⁻¹². Un número de argumentos incorrecto o un argumento no numérico terminan con código 1.
 
@@ -23,6 +27,10 @@ exercises:
     answers: ["sha256:eb37e38a4ef04e8b88cc8bd27a4c29b9023d01caad1ff49b5bfa22015f6df5ad"]
   - id: hito-2-cinematica-inversa
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 2
     prompt: |
       **Hito 2.** `brazo inversa x y z` imprime las dos soluciones de la inversa geométrica del §3 con q1 = atan2(y, x): `codo-arriba q1 q2 q3` (q3 = −arccos D) y `codo-abajo q1 q2 q3` (q3 = +arccos D), con D = (r² + s² − a₂² − a₃²)/(2a₂a₃), r = √(x² + y²), s = z − d₁, y q2 en (−π, π]. Si r < 10⁻⁹ imprime solo `singular` y si |D| > 1, solo `inalcanzable`. Cada número se imprime con `%.6e` como el redondeo de x·(1 + 10⁻¹²), y `0.000000e+00` si |x| < 10⁻¹². Un número de argumentos incorrecto o un argumento no numérico terminan con código 1.
 
@@ -32,6 +40,10 @@ exercises:
     answers: ["sha256:ca631142e7339b17f0ac4402159b59f52cd6ffb5dd60dcf07c2c3de2d8c451ed"]
   - id: hito-3-jacobiano
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 3
     prompt: |
       **Hito 3.** `brazo jacobiano q1 q2 q3` imprime el jacobiano lineal J_v = ∂p/∂q (3 × 3) en tres líneas `J`, su determinante `det` y la `manipulabilidad` de Yoshikawa √det(J_v·J_vᵀ). Cada número se imprime con `%.6e` como el redondeo de x·(1 + 10⁻¹²), y `0.000000e+00` si |x| < 10⁻¹². Un número de argumentos incorrecto o un argumento no numérico terminan con código 1.
 
@@ -41,6 +53,10 @@ exercises:
     answers: ["sha256:662f168f91ff136d37ef051a32f8ab8122c13b10086e8079115a179552b51d71"]
   - id: hito-4-trayectoria-quintica
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 4
     prompt: |
       **Hito 4.** `brazo trayectoria q0 qf T t1 t2 …` imprime, para cada instante, una línea `t q dq ddq` con la posición, velocidad y aceleración de la quíntica de reposo a reposo q(t) = q0 + (qf − q0)·(10τ³ − 15τ⁴ + 6τ⁵), τ = t/T. Fuera de [0, T] la articulación está parada en q0 (antes) o qf (después), con velocidad y aceleración nulas. T ≤ 0 o ningún instante, código 1. Cada número se imprime con `%.6e` como el redondeo de x·(1 + 10⁻¹²), y `0.000000e+00` si |x| < 10⁻¹². Un número de argumentos incorrecto o un argumento no numérico terminan con código 1.
 
@@ -50,6 +66,10 @@ exercises:
     answers: ["sha256:928df69bf7b3bea71941ab3cdb20d8ba53bf5d44d3042ab352b19dc5a817e9bb"]
   - id: hito-5-dinamica
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 5
     prompt: |
       **Hito 5.** `brazo dinamica q2 q3 dq2 dq3 tau2 tau3` usa el modelo del §5: el brazo en su plano vertical (q1 fijo) como dos varillas uniformes de longitudes a₂ = 0.5 y a₃ = 0.4 m y masas m₂ = 2 y m₃ = 1.5 kg (centro de masas en la mitad, momento de inercia m·a²/12 respecto a él), g = 9.81 m/s² y q2 medido desde la horizontal. Imprime `M M11 M12 M22` (matriz de inercia), `C` (el vector C(q, q̇)·q̇), `g` (el vector de gravedad) y `ddq` (las aceleraciones que da M·q̈ + C·q̇ + g = τ). Cada número se imprime con `%.6e` como el redondeo de x·(1 + 10⁻¹²), y `0.000000e+00` si |x| < 10⁻¹². Un número de argumentos incorrecto o un argumento no numérico terminan con código 1.
 
@@ -59,6 +79,10 @@ exercises:
     answers: ["sha256:1444ab46ce75c0870ed442c80e52e68c1ee59e8515ba9629a36f50e9f4e66d7e"]
   - id: hito-6-par-calculado
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 6
     prompt: |
       **Hito 6.** `brazo control a2 a3 b2 b3 T kp kd m2e m3e`: la referencia de cada articulación es la quíntica del hito 4 de (a2, a3) a (b2, b3) en T segundos. El brazo real (el modelo del hito 5) parte del reposo en (a2 + 0.1, a3 − 0.05) y lo mueve el control por par calculado τ = M̂(q)·(q̈d + kd·(q̇d − q̇) + kp·(qd − q)) + Ĉ(q, q̇)·q̇ + ĝ(q), cuyo modelo usa las masas estimadas m2e y m3e. Integra con RK4 de paso 0.001 s durante round(1000·(T + 1)) pasos, recalculando τ en cada etapa con el estado y el tiempo de esa etapa. Imprime `error_max_tras_0.5s` (el máximo de ‖qd − q‖ al final de los pasos que terminan en t ≥ 0.5), `error_final` (‖qd − q‖ en t = T + 1), `par_max` (el máximo de |τ2| y |τ3| calculados con el estado al principio de cada paso) y `q_final q2 q3`. Si T, kp, kd, m2e o m3e no son positivos, código 1. Cada número se imprime con `%.6e` como el redondeo de x·(1 + 10⁻¹²), y `0.000000e+00` si |x| < 10⁻¹². Un número de argumentos incorrecto o un argumento no numérico terminan con código 1.
 

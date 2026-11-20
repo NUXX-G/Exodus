@@ -152,6 +152,31 @@ async function main() {
   assert.ok(db.prepare("select 1 from exercise_solved where user_id=? and exercise_id='induccion-suma-de-impares'").get(uid), "cuenta para el dominio");
   ok(`desarrollo: nota ${entrega.score}/${entrega.max_score} guardada y cuenta para el dominio`);
 
+  // Ejercicio de código (fase 4): se descarga el script de pruebas, se ejecuta en local y se pega el código.
+  db.prepare("insert or replace into node_progress (user_id,node_id,status,completed_at) values (?,?,'completed',unixepoch())").run(uid, "prog-terminal-linux-git");
+  const resp = await ctx.request.get(`${BASE}/api/codigo/prog-bash-scripting`);
+  assert.equal(resp.status(), 200);
+  const script = await resp.text();
+  assert.ok(script.includes("resumen-de-notas") && !script.includes("media: 7.58"), "el script lleva entradas, no salidas esperadas");
+  const anonCtx = await browser.newContext();
+  const anon = await anonCtx.request.get(`${BASE}/api/codigo/prog-bash-scripting`);
+  assert.equal(anon.status(), 401, "sin sesión no se descarga");
+  await anonCtx.close();
+  const fs = require("node:fs"), os = require("node:os"), { spawnSync } = require("node:child_process");
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "e2e-cod-"));
+  fs.writeFileSync(path.join(dir, "prueba.sh"), script);
+  fs.writeFileSync(path.join(dir, "mal.sh"), "echo 'alumnos: 0'\n");
+  const run = spawnSync("bash", ["prueba.sh", "resumen-de-notas", "--", "bash", "mal.sh"], { cwd: dir, encoding: "utf8" });
+  const cod = /: ([0-9a-f]{12})$/m.exec(run.stdout)?.[1];
+  assert.ok(cod, run.stdout + run.stderr);
+  await page.goto(`${BASE}/nodo/prog-bash-scripting`);
+  const liC = page.locator('li:has(input[name="exerciseId"][value="resumen-de-notas"])');
+  await liC.locator(".codigo-info").waitFor();
+  await liC.locator('input[name="answer"]').fill(cod);
+  await liC.locator('button[type="submit"]').click();
+  await liC.locator('.mensaje:has-text("incorrecta")').waitFor();
+  ok(`código: script descargado (${script.length} B), ejecutado en local y código ${cod} rechazado por ser de un programa incorrecto`);
+
   assert.deepEqual(errores, [], "errores de JavaScript en la página");
   await browser.close();
   console.log(`\n${pasos.length} comprobaciones superadas`);

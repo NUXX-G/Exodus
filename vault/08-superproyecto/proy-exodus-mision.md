@@ -15,6 +15,10 @@ attachments: [prueba.sh, mision.txt]
 exercises:
   - id: hito-1-fisica-de-la-travesia
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 1
     prompt: |
       **Hito 1.** `rover fisica MISION dt` integra con RK4 la dinámica longitudinal del vehículo sobre el perfil del terreno (gravedad, rodadura, arrastre y motor limitado por fuerza y potencia, §2) hasta recorrer la longitud de la misión: tiempos y velocidades cada 10 m, energías del motor y perdida, y el balance energético. Un parámetro que falta o una pendiente imposible dan código 1.
 
@@ -24,6 +28,10 @@ exercises:
     answers: ["sha256:1ab95fa4f57833401a3f7fd7b916f845078032bc70e80bda1605176879255230"]
   - id: hito-2-estimacion
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 2
     prompt: |
       **Hito 2.** `rover estima MISION λ` localiza 20 posiciones por trilateración con Gauss-Newton a partir de distancias ruidosas a las balizas, y suaviza la trayectoria resolviendo (I + λDᵀD)z = p (§3). Con menos de tres balizas, código 1.
 
@@ -33,6 +41,10 @@ exercises:
     answers: ["sha256:4737a1a59bb1077c6dcd0938ad7ff91aea6627688863843f22f934a159355268"]
   - id: hito-3-energia
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 3
     prompt: |
       **Hito 3.** `rover energia MISION dt` alimenta el perfil de potencia de la travesía desde una batería con curva de tensión en vacío y resistencia interna (§4) y calcula cuántas travesías completas permite antes de bajar del 20 % de carga.
 
@@ -42,6 +54,10 @@ exercises:
     answers: ["sha256:f5ea8e82aa6a007588ecc4c01b6a966915589ad884a196055bba78e21482883e"]
   - id: hito-4-navegacion
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 4
     prompt: |
       **Hito 4.** `rover navega MISION` genera el mapa de alturas de la zona, marca como impracticables las celdas con pendiente excesiva y planifica con A* con un coste que penaliza la pendiente (§5).
 
@@ -51,6 +67,10 @@ exercises:
     answers: ["sha256:0293b79694455b0c606726e6b4e2f364b58af4e758330f4af3653d3d2b698a17"]
   - id: hito-5-sistemas
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 5
     prompt: |
       **Hito 5.** `rover telemetria MISION` empaqueta la telemetría en tramas con CRC-32, la pasa por un canal que pierde, corrompe, duplica y reordena, y la reconstruye; `rover planifica MISION` analiza las tareas del ordenador de a bordo con tiempos de respuesta en prioridad monótona en tasa y con EDF (§6).
 
@@ -60,6 +80,10 @@ exercises:
     answers: ["sha256:fa3a57853ed9eebe162172aa3ae8c92d6a3aa0152009d064eb178b26de8e8e36"]
   - id: hito-6-enlace-seguro
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 6
     prompt: |
       **Hito 6.** `rover enlace MISION` deriva la clave con HKDF, cifra cada paquete con ChaCha20-Poly1305 usando el número de secuencia como nonce y como datos asociados, y rechaza las falsificaciones, las manipulaciones y las repeticiones de un atacante (§7).
 
@@ -69,6 +93,10 @@ exercises:
     answers: ["sha256:7dfb2590ff9406f4b544bf27d09ea4c60ad76500bf461163fc9791d2b49de4b8"]
   - id: hito-7-percepcion
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 7
     prompt: |
       **Hito 7.** `rover terreno MISION epocas` clasifica el terreno (roca, arena, regolito) con regresión logística multinomial sobre rasgos normalizados y detecta anomalías en la corriente con la mediana y la desviación absoluta mediana (§8).
 
@@ -78,6 +106,10 @@ exercises:
     answers: ["sha256:930e7649ae190ae2ce3c03794cd88f61066d1c1ad6d75539caa4d16089e3c349"]
   - id: hito-8-clave-cuantica
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 8
     prompt: |
       **Hito 8.** `rover bb84 MISION n espia ruido` simula la distribución cuántica de claves BB84 con o sin espía y con ruido: criba, estimación del QBER, aborto por encima del 11 % y amplificación de privacidad con una matriz de Toeplitz (§9).
 
@@ -87,6 +119,10 @@ exercises:
     answers: ["sha256:167fc3ce561c2511cb908e6f8b825a5272f585f88257800342d6a1c9c77926b8"]
   - id: hito-9-mision-completa
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 9
     prompt: |
       **Hito 9.** `rover mision MISION` encadena todo: ruta, travesía por esa ruta, energía, telemetría, clave BB84, enlace cifrado con esa clave y percepción, y emite el informe con el código de misión (§10).
 

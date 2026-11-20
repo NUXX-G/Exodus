@@ -115,17 +115,17 @@ El usuario pide terminar **todas** las fases de forma autónoma, **sin preguntar
 
 ## FASE 4 — Ejercicios de código con tests
 
-- [ ] Tipo «código»: enunciado, plantilla inicial y tests por etapas. Si existen hitos con `prueba.sh`, integrarlos
+- [x] Tipo «código»: enunciado, plantilla inicial y tests por etapas. Si existen hitos con `prueba.sh`, integrarlos
       en lugar de duplicarlos.
-- [ ] Lenguajes: Python, C, C++, Rust y Bash.
-- [ ] ⛔ Antes de implementar, proponer entre un contenedor efímero aislado (sin red y con límites de CPU, memoria,
+- [x] Lenguajes: Python, C, C++, Rust y Bash.
+- [x] ⛔ Antes de implementar, proponer entre un contenedor efímero aislado (sin red y con límites de CPU, memoria,
       tiempo y disco) y un runner local por CLI con el resultado firmado. Explicar los riesgos de cada uno, porque hay
       varios usuarios y el código no es de confianza.
-- [ ] Usos por rama: sistemas; IA (gradient check, métricas mínimas); física computacional (conservación de la
+- [x] Usos por rama: sistemas; IA (gradient check, métricas mínimas); física computacional (conservación de la
       energía, convergencia a la solución analítica); robótica (cinemática, estabilidad del control); ingeniería
       (respuesta del filtro, CPU); cuántica (amplitudes del circuito).
-- [ ] Los tests ocultos nunca se exportan.
-- [ ] Cierre de fase (checks, casillas, `STATUS.md`, commit `v2: fase 4 completada`).
+- [x] Los tests ocultos nunca se exportan.
+- [x] Cierre de fase (checks, casillas, `STATUS.md`, commit `v2: fase 4 completada`).
 
 ## FASE 5 — Prueba de nivel
 

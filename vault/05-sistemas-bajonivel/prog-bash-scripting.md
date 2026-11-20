@@ -262,6 +262,33 @@ exercises:
 
       Respuesta: la línea tal cual.
     answers: ["sha256:86e50149658661312a9e0b35558d84f6c6d3da797f552a9657fe0558ca40cdef"]
+  - id: resumen-de-notas
+    tier: 2
+    type: codigo
+    language: bash
+    prompt: |
+      **Ejercicio de código.** Escribe `solucion.sh`, que lee de la entrada estándar líneas con el formato `nombre nota`
+      (separados por espacios o tabuladores; la nota es un número con punto decimal) y escribe:
+
+      ```
+      alumnos: <cuántos>
+      media: <media con 2 decimales>
+      mejor: <nombre> <nota tal como aparece en la entrada>
+      ```
+
+      - Ignora las líneas vacías (o solo con espacios) y las que empiezan por `#` (aunque tengan espacios delante).
+      - Si hay empate en la mejor nota, gana **el primero** que aparece.
+      - Si no hay ningún alumno, escribe `sin datos` y termina con **código de salida 1**.
+
+      Pruébalo con `bash prueba.sh resumen-de-notas -- bash solucion.sh` y pega el código que imprime.
+    template: |
+      #!/usr/bin/env bash
+      # Resumen de notas: lee líneas «nombre nota» de la entrada estándar.
+      set -u
+
+      # Tu código aquí (puedes usar un bucle while read o awk).
+    cases: [{"name":"basico","stdin":"ana 7.5\nluis 6\nmarta 9.25\n"},{"name":"comentarios","stdin":"# lista de 1.º B\n\nana 5\n   # repetidor\npedro 8\n\n"},{"name":"empate","stdin":"ana 8\nbea 8\ncarlos 7\n"},{"name":"tabuladores","stdin":"ana\t10\nbea\t0\n"},{"name":"decimales","stdin":"x 3.333\ny 3.334\n"},{"name":"sin-salto-final","stdin":"ana 4\nbea 6"},{"name":"vacio","stdin":""},{"name":"solo-comentarios","stdin":"# nada\n\n   \n"}]
+    answers: ["sha256:45b0f2c93db844963adfc2e631cc56374d2242cef6fe86535b638314afa8955d"]
 ---
 
 El shell es el pegamento de todo sistema Unix: arranque de servicios, compilación, despliegues, CI, copias de seguridad, análisis

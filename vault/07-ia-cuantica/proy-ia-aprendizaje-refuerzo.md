@@ -14,6 +14,10 @@ attachments: [prueba.sh]
 exercises:
   - id: hito-1-simulador
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 1
     prompt: |
       **Hito 1.** `rl simula FISICA X XD TH THD ACCIONES` parte del estado dado y aplica las acciones (una cadena de 0 y 1, de 1 a 600) con la física exacta de CartPole-v1 del §2 (Euler con τ = 0,02 s y el orden de operaciones de Gymnasium) e imprime una línea `t x xd th thd` por paso. Se para cuando el paso deja |x| > 2,4 o |θ| > 12° (`fin terminado`), al llegar a 500 pasos (`fin truncado`) o al acabar las acciones (`fin acciones`), y termina con `recompensa R` (1 por paso, incluido el último). FISICA es una de las del §2. Valores con `%.6e` (medias con `%.3e`), como el redondeo de x·(1 + 10⁻¹²), y 0 si |x| < 10⁻¹². Una física desconocida, un estado no numérico o una acción que no sea 0 o 1 terminan con código 1.
 
@@ -23,6 +27,10 @@ exercises:
     answers: ["sha256:c0961624f5c8921c2eac543f7778b7a0c666193933334fc54f8d4f9afe8fea9e"]
   - id: hito-2-lqr
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 2
     prompt: |
       **Hito 2.** `rl lqr FISICA Q1 Q2 Q3 Q4 R EPISODIOS SEMILLA` linealiza la física en torno al equilibrio, la discretiza con el mismo Euler (A = I + τA_c, B = τB_c), resuelve la ecuación de Riccati discreta por iteración desde P = Q hasta que ningún elemento cambie más de 10⁻¹⁰ (§3), e imprime `A` (cuatro filas), `B`, la ganancia `K` y `episodios n media M minimo a maximo b` con la política «empuja a la derecha si −K·s > 0» en EPISODIOS episodios que empiezan como en el §2 con el generador en SEMILLA. Valores con `%.6e` (medias con `%.3e`), como el redondeo de x·(1 + 10⁻¹²), y 0 si |x| < 10⁻¹². Pesos de Q negativos o R ≤ 0, código 1.
 
@@ -32,6 +40,10 @@ exercises:
     answers: ["sha256:840e7a74d50453c4e53ba823ff4f2a0bf6dece7b952cf1cf91d71067573f8c95"]
   - id: hito-3-q-learning
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 3
     prompt: |
       **Hito 3.** `rl q FISICA EPISODIOS SEMILLA` aprende con Q-learning tabular con la discretización, la exploración ε y las reglas exactas del §4 e imprime la media de los retornos en cinco bloques iguales de episodios (`bloque b media M`), `tabla S visitadas V` (la suma de la tabla y las casillas con algún valor distinto de cero) y `evaluacion media M minimo a maximo b` con la política codiciosa en 20 episodios. Los entrenamientos largos se comprueban por tramos. Menos de 5 episodios, código 1.
 
@@ -41,6 +53,10 @@ exercises:
     answers: ["sha256:91eb01900a741bce21b29c963615838db21523b040f03b812c2994c21ee738e4"]
   - id: hito-4-reinforce
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 4
     prompt: |
       **Hito 4.** `rl reinforce FISICA EPISODIOS SEMILLA LR simple` entrena la política logística π(empujar a la derecha | s) = σ(w·(x, ẋ, θ, θ̇, 1)) con REINFORCE (§5): w empieza en 0, se muestrea cada acción con un u del generador, y al final de cada episodio w ← w + LR·Σₜ Gₜ(aₜ − πₜ)φₜ con los retornos descontados Gₜ (γ = 0,99). Imprime los cinco bloques, `pesos` y la evaluación de la política determinista (empujar a la derecha si w·φ > 0) en 20 episodios. LR debe ser positivo; si no, código 1.
 
@@ -50,6 +66,10 @@ exercises:
     answers: ["sha256:92257efe7668b2dbeb4bfece36d313c5c82adfa35139b539e3cffbfa2372bc49"]
   - id: hito-5-normalizacion
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 5
     prompt: |
       **Hito 5.** Añade la variante `normalizado` de `rl reinforce`: antes de actualizar, cada episodio estandariza sus retornos, Gₜ ← (Gₜ − media)/(desviación + 10⁻⁸) (desviación poblacional), una línea base que reduce la varianza del gradiente (§5). Misma salida. Con la misma tasa, la versión normalizada aprende y la simple no.
 
@@ -59,6 +79,10 @@ exercises:
     answers: ["sha256:c1c84ddc3812748eefc31f4f37da7e9d18fcca793e223689ba148ab1c0dae051"]
   - id: hito-6-robustez
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 6
     prompt: |
       **Hito 6.** `rl robustez METODO SEMILLA` prepara un controlador con la física normal y lo evalúa 30 episodios en cada física del §2 (en su orden, con el mismo generador), imprimiendo `fisica media M minimo a maximo b`. METODO: `lqr` (Q = diag(1, 1, 10, 1), R = 1), `lqr-redisenado` (el mismo diseño, pero hecho con el modelo de cada física), `q` (5000 episodios del hito 3) o `reinforce` (500 episodios normalizados con LR = 0,01). Se comprueba por tramos de la media; un método desconocido termina con código 1.
 

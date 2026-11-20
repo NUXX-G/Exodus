@@ -14,6 +14,10 @@ attachments: [prueba.sh]
 exercises:
   - id: hito-1-odometria
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 1
     prompt: |
       **Hito 1.** `robot odometria ARCHIVO` lee el radio de las ruedas, la distancia entre ellas, los pulsos por vuelta y los incrementos de pulsos de cada paso, integra la pose de un robot diferencial con arcos exactos (§2) e imprime la pose cada 10 pasos y al final, y la distancia recorrida. Si falta un parámetro, código 1.
 
@@ -23,6 +27,10 @@ exercises:
     answers: ["sha256:c3116c5cb39e3b4d71d95dc59481609dc8df9caa57445a008cab0047ae013cfa"]
   - id: hito-2-ekf
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 2
     prompt: |
       **Hito 2.** `robot ekf ARCHIVO` localiza el robot con un filtro de Kalman extendido: predicción con el modelo de movimiento y corrección con medidas de distancia y rumbo a marcas conocidas, con los ángulos normalizados (§3). Imprime la pose, las varianzas y el número de observaciones; una marca desconocida da código 1.
 
@@ -32,6 +40,10 @@ exercises:
     answers: ["sha256:b355b132f2539caa927772289b768208fafd56807d236097c592c07ad98b7120"]
   - id: hito-3-a-estrella
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 3
     prompt: |
       **Hito 3.** `robot astar MAPA astar|dijkstra` busca el camino más barato en una rejilla con 8 vecinos (coste 10 y 14, sin cortar esquinas) con la heurística octil o sin ella, con el desempate exacto del §4, e imprime el coste, los nodos expandidos, los pasos y el mapa con el camino.
 
@@ -41,6 +53,10 @@ exercises:
     answers: ["sha256:9bbdb63e279200b1ce97317ed8d69fc65e7e54f59cb3d503e47b7c0fa42a086e"]
   - id: hito-4-persecucion-pura
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 4
     prompt: |
       **Hito 4.** `robot sigue ARCHIVO` sigue una ruta poligonal con el controlador de persecución pura (§5) e imprime si llega, en cuántos pasos, el error lateral máximo y la pose final.
 
@@ -50,6 +66,10 @@ exercises:
     answers: ["sha256:128aa0ab0383ae5bc7a2246488c72b0b818c533ed70e9130952419fd8fd38659"]
   - id: hito-5-mision
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 5
     prompt: |
       **Hito 5.** `robot mision MAPA CELDA v Ld` planifica con A*, simplifica el camino a sus vértices, lo convierte a metros y lo sigue con persecución pura (§6).
 

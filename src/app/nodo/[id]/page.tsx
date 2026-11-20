@@ -14,6 +14,7 @@ import { answerSpec } from "@/lib/answer-spec";
 import { ETIQUETA_TIPO } from "@/lib/tipos-ejercicio";
 import ReportForm from "@/components/ReportForm";
 import DevelopmentForm from "@/components/DevelopmentForm";
+import CodeInfo from "@/components/CodeInfo";
 import { devInitial } from "@/lib/desarrollo-inicial";
 import { loadRecursos } from "@/lib/recursos";
 import { studyOrder } from "@/lib/study";
@@ -76,6 +77,15 @@ export default async function PaginaNodo({ params }: Props) {
     const optionsHtml = opciones[i].length ? fragmentos.slice(cursor, (cursor += opciones[i].length)) : undefined;
     return { e, html: fragmentos[i + 1], spec: answerSpec(node.id, e, variantes[i], optionsHtml) };
   });
+  // Ejercicios de código: plantilla resaltada (sin fórmulas: no pasa por compactarFormulas).
+  const FENCE: Record<string, string> = { python: "python", c: "c", cpp: "cpp", rust: "rust", bash: "bash" };
+  const plantillas = new Map(
+    await Promise.all(
+      node.exercises
+        .filter((e) => e.type === "codigo" && e.template)
+        .map(async (e) => [e.id, await renderMarkdown("```" + (FENCE[e.language ?? ""] ?? "text") + "\n" + e.template!.replace(/\n+$/, "") + "\n```", resolve)] as const),
+    ),
+  );
   // Desarrollos: estado de la última entrega (la solución solo se renderiza si ya hay una).
   const desarrollos = new Map(
     await Promise.all(node.exercises.filter((e) => e.type === "desarrollo").map(async (e) => [e.id, await devInitial(user.id, node.id, e)] as const)),
@@ -139,6 +149,7 @@ export default async function PaginaNodo({ params }: Props) {
                     {solvedIds.includes(e.id) ? " · resuelto" : ""}
                   </p>
                   <div className="prosa ejercicio-enunciado" dangerouslySetInnerHTML={{ __html: h }} />
+                  {e.type === "codigo" && <CodeInfo nodeId={node.id} ex={e} plantillaHtml={plantillas.get(e.id)} />}
                   {e.type === "desarrollo" ? (
                     <DevelopmentForm nodeId={node.id} exerciseId={e.id} locked={state === "locked"} initial={desarrollos.get(e.id)!} />
                   ) : (

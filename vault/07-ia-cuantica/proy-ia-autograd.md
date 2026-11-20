@@ -14,6 +14,10 @@ attachments: [prueba.sh]
 exercises:
   - id: hito-1-grafo-adelante
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 1
     prompt: |
       **Hito 1.** `ag adelante GRAFO` lee un grafo de cómputo escalar (formato del §2) y imprime el valor de cada nodo en el orden en que se define. Una variable no definida, una redefinición, una operación desconocida, un error de dominio (log de un no positivo, raíz de un negativo, división por cero), la falta de `salida` o un exponente no constante en `pow` terminan con código 1.
 
@@ -23,6 +27,10 @@ exercises:
     answers: ["sha256:a655f2fbaee9d240df2e5be0e5c31b0f63fb413cebc8081bf241a643b8aa8b3c"]
   - id: hito-2-diferenciacion-inversa
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 2
     prompt: |
       **Hito 2.** `ag atras GRAFO` calcula por diferenciación automática en modo inverso el gradiente de la salida respecto a cada entrada, acumulando las contribuciones de los nodos que se usan varias veces (§3).
 
@@ -32,6 +40,10 @@ exercises:
     answers: ["sha256:e686b7f0281c6b41f4e82f0274892abfa67168380a106e513ac2e5e722887995"]
   - id: hito-3-perceptron-multicapa
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 3
     prompt: |
       **Hito 3.** `ag mlp RED DATOS` carga una red con sus pesos y un lote de datos (§4), calcula la entropía cruzada media con softmax e imprime la pérdida y los gradientes de todos los pesos y sesgos.
 
@@ -41,6 +53,10 @@ exercises:
     answers: ["sha256:8c6445890ebf0dddd80fd3c1caccec5dcee3f3986f603e74f7771ebc24e50eed"]
   - id: hito-4-entrenamiento
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 4
     prompt: |
       **Hito 4.** `ag entrena PROBLEMA N ARQUITECTURA ACTIVACION SEMILLA EPOCAS LR sgd` genera los datos (§5), inicializa la red con Glorot y el generador de Exodus, entrena con descenso de gradiente por lotes completos e imprime la pérdida en cinco momentos y los aciertos finales; los entrenamientos largos se comprueban con umbrales.
 
@@ -50,6 +66,10 @@ exercises:
     answers: ["sha256:c6e046d7990746409fa35443767fe0ad97c674585dd4c39e84e4fbbe5f7aa402"]
   - id: hito-5-optimizadores
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 5
     prompt: |
       **Hito 5.** Añade los optimizadores `momentum` y `adam` con las fórmulas exactas del §6 y compara su progreso con el descenso de gradiente simple en las espirales.
 
@@ -59,6 +79,10 @@ exercises:
     answers: ["sha256:b235f95644ce92f36c15aec6d7ef8101ca9f67ba9150bed85d28dc7efbbb8073"]
   - id: hito-6-generalizacion
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 6
     prompt: |
       **Hito 6.** `ag evalua … LAMBDA` separa entrenamiento y prueba (un punto de cada cinco a prueba), entrena con regularización L2 de intensidad LAMBDA e imprime la pérdida y los aciertos de entrenamiento, los aciertos de prueba y la matriz de confusión (§7).
 

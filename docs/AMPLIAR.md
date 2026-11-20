@@ -45,6 +45,7 @@ solo hay hashes con sal (id del ejercicio y de la variante); la solución nunca 
 | `matriz` | Matriz o vector (fila = columna en vectores), `sig` 6 por defecto | `sig` | `"[[1, 1/2], [0, 1]]"` |
 | `opcion` | Opción u opciones elegidas | `options`, `multiple` | `"b"` o `"a, c"` |
 | `flag` | Texto exacto sin normalizar | — | `"EXODUS{…}"` |
+| `codigo` | El «código del ejercicio» (12 hex) que imprime el script de pruebas al ejecutar el programa del alumno en su ordenador | `language`, `template`, `cases` (o `harness` y `stage`) | `outputs` (salidas esperadas; no se publican) |
 | `desarrollo` | No se corrige solo: el alumno entrega (texto o «en papel»), ve la solución y se puntúa con la rúbrica; con el 60 % cuenta como resuelto | `solution`, `rubric` | — (ver abajo) |
 
 - `form` (expresiones): `factorizada`, `expandida` o `sin-raices-en-denominador`. Además de ser equivalente, la
@@ -60,6 +61,15 @@ solo hay hashes con sal (id del ejercicio y de la variante); la solución nunca 
   ejercicio del nodo, Exodus alterna entre el banco y una variante nueva del ejercicio; si no hay ni banco ni
   variantes, repite el original.
 - `ex-inject` comprueba que cada respuesta de referencia se acepta con el propio corrector antes de escribir nada.
+- **Código** (Python, C, C++, Rust, Bash o cualquiera): el programa del alumno **nunca se ejecuta en el servidor**.
+  Con `cases` (entradas: `{ name, stdin, args? }`) y `outputs` (salidas esperadas en el spec), Exodus genera el
+  script `/api/codigo/<nodo>` (`src/lib/codigo.ts`) con las entradas; el alumno lo ejecuta
+  (`bash prueba.sh <ejercicio> -- python3 solucion.py`) y pega el código que imprime. En el vault solo queda la huella
+  de ese código. Calcula `outputs` en JS y ejecuta además una solución de referencia en otro lenguaje con el script real
+  (`.soluciones/_codigo.mjs`: `comprueba`, `pythonDocker`, `cDocker`, `fmtF`, `fmtE`): si los dos códigos no coinciden,
+  `ex-inject` falla. Formatea los números con un número fijo de decimales y evita empates de redondeo (`fmtF` lo
+  comprueba). Los proyectos con un `prueba.sh` propio usan `harness: prueba.sh` y `stage: N`
+  (`node scripts/dev/marcar-hitos.cjs` los marca). Los casos no se exportan a Obsidian; la plantilla sí.
 - **Desarrollo** (demostraciones, derivaciones, informes, explicación de algoritmos): en el spec, `type: "desarrollo"`,
   `solution` (Markdown con LaTeX y código) y `rubric: [{ criterio, puntos }]` (puntos enteros). `ex-inject` los
   guarda **sellados** en `sealed` (gzip + base64, `src/lib/sellado.ts`): no es cifrado, solo evita leerlos sin querer en

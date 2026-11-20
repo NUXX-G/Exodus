@@ -101,6 +101,44 @@ exercises:
 
       Respuesta: con 4 decimales.
     answers: ["sha256:d3d98d340645c95ce85f9b0b41b9a2fefa40408121bdecb64bf97afa52c934b4"]
+  - id: gradiente-logistica
+    tier: 3
+    type: codigo
+    language: python
+    prompt: |
+      **Ejercicio de código (regresión logística a mano).** Lee de la entrada estándar: una línea `n m`; después $n$ filas
+      con $m$ características y la etiqueta $y \in \{0, 1\}$; y al final los pesos $w_1, \dots, w_m$ y el sesgo $b$. Con
+      $z_i = w\cdot x_i + b$, calcula la **pérdida logística media**
+      $$
+      L = \frac1n\sum_{i=1}^n \bigl[\log\bigl(1 + e^{z_i}\bigr) - y_i z_i\bigr]
+      $$
+      y su gradiente $\partial L/\partial w_j = \frac1n\sum_i (\sigma(z_i) - y_i)\,x_{ij}$, $\partial L/\partial b = \frac1n\sum_i (\sigma(z_i) - y_i)$.
+      Escribe, con 6 decimales:
+
+      ```
+      perdida: <L>
+      grad_w: <g_1> <g_2> … <g_m>
+      grad_b: <g_b>
+      ```
+
+      Hay casos con $\lvert z\rvert = 800$: si calculas $e^{800}$ directamente se desborda. Usa
+      $\log(1 + e^{z}) = \max(z, 0) + \log\bigl(1 + e^{-\lvert z\rvert}\bigr)$ y una sigmoide estable. Antes de probar,
+      comprueba tu gradiente con diferencias centrales en un caso pequeño (es lo que harías en un proyecto real).
+    template: |
+      import math
+      import sys
+
+
+      def main():
+          datos = sys.stdin.read().split()
+          # n ejemplos, m características; después n filas «x_1 … x_m y»; al final «w_1 … w_m b».
+          # Calcula la pérdida logística media y su gradiente, de forma estable.
+          ...
+
+
+      main()
+    cases: [{"name":"un-ejemplo","stdin":"1 1\n2 1\n0.5 0.1\n"},{"name":"lote","stdin":"4 2\n1 2 1\n-1 0.5 0\n0.3 -2 1\n2 2 0\n0.2 -0.4 0.05\n"},{"name":"pesos-cero","stdin":"3 3\n1 0 0 1\n0 1 0 0\n0 0 1 1\n0 0 0 0\n"},{"name":"muy-seguro-y-acierta","stdin":"1 1\n1 1\n800 0\n"},{"name":"muy-seguro-y-falla","stdin":"1 1\n1 0\n800 0\n"},{"name":"negativo-extremo","stdin":"2 1\n-1 1\n1 0\n700 0\n"}]
+    answers: ["sha256:024a1e6b4889b25fa807359a67aba844b931744128fc24ca787fcb024dd0aae9"]
 ---
 
 [[ia-redes-profundas]] explica qué es una red neuronal y por qué funciona; este nodo la **construye** con las propias manos, sin bibliotecas que oculten nada: matrices, derivadas y bucles. Quien ha

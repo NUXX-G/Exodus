@@ -2112,3 +2112,38 @@ details.callout:not([open]) > summary.callout-titulo {
 .rubrica .boton {
   align-self: flex-start;
 }
+
+/* ───────── v2 fase 4: ejercicios de código ───────── */
+
+.codigo-info {
+  margin: 10px 0 4px;
+  padding: 10px 14px;
+  border: 1px solid var(--trazo);
+  border-left: 3px solid var(--menta);
+  border-radius: var(--radio);
+  font-size: 0.9rem;
+}
+
+.codigo-info details {
+  margin: 6px 0;
+}
+
+.codigo-info summary {
+  cursor: pointer;
+  color: var(--tiza-tenue);
+}
+
+.pasos-codigo {
+  margin: 6px 0 0;
+  padding-left: 1.4em;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pasos-codigo code,
+.codigo-info .meta code {
+  font-family: var(--fuente-codigo), monospace;
+  font-size: 0.85em;
+  word-break: break-all;
+}

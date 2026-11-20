@@ -14,6 +14,10 @@ attachments: [prueba.sh, programas.s]
 exercises:
   - id: hito-1-decodificador
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 1
     prompt: |
       **Hito 1.** `cpu decodifica W1 W2 …` (palabras de 8 cifras hexadecimales) imprime una línea por palabra con la instrucción RV32I en el formato del §2: `add x1, x2, x3`, `addi x1, x2, -5` (inmediatos en decimal; los desplazamientos de `slli`, `srli` y `srai`, también), `lw x1, -4(x2)`, `sw x3, 8(x2)`, `jalr x1, 4(x2)`, `beq x1, x2, -16` y `jal x1, 2048` (desplazamiento relativo en decimal), `lui x3, 0x12345` y `auipc` (los 20 bits superiores en hexadecimal, sin ceros a la izquierda), `fence` (toda codificación con opcode MISC-MEM y funct3 = 0), `ecall` y `ebreak` (solo sus codificaciones exactas). Cualquier otra palabra (extensiones, instrucciones CSR, codificaciones reservadas) imprime `ilegal`. Sin palabras o con una que no tenga 8 cifras hexadecimales, código 1.
 
@@ -23,6 +27,10 @@ exercises:
     answers: ["sha256:fefd74cb495e1780f59f4a832fa79b13bf8b5163a360303aabc7b6607933986a"]
   - id: hito-2-alu
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 2
     prompt: |
       **Hito 2.** `cpu ejecuta PROG.hex [MAX]` carga el programa (una palabra hexadecimal por línea, como mucho 1024) desde la dirección 0 en una memoria de 64 KiB a cero, con extremo pequeño, pone los registros y el pc a 0 y ejecuta hasta `ecall`, `ebreak`, una excepción o MAX instrucciones completadas (100000 por defecto). En este hito, las instrucciones de la ALU: OP, OP-IMM, LUI y AUIPC. Imprime `fin MOTIVO` (`ecall`, `ebreak`, `limite` o `excepcion CAUSA`), `pc` (8 cifras hexadecimales en minúscula), `instrucciones` (las completadas, sin contar el ecall o ebreak final ni la que provoca la excepción), una línea `xN valor` por cada registro distinto de cero en orden (valor con 8 cifras hexadecimales) y una línea `m dirección valor` por cada palabra alineada distinta de cero desde 0x1000 hasta el final de la memoria. Un fichero que no existe, una línea que no sea una palabra de 8 cifras hexadecimales, más de 1024 palabras o un MAX que no sea un entero positivo terminan con código 1.
 
@@ -32,6 +40,10 @@ exercises:
     answers: ["sha256:9ec5c8df3f3000af43b1680eb6e4dceeddc312a341010037bd96aef1f0fa8b68"]
   - id: hito-3-memoria
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 3
     prompt: |
       **Hito 3.** Añade a `cpu ejecuta` las cargas y los almacenamientos de 8, 16 y 32 bits (LB, LH, LW con extensión de signo; LBU, LHU con ceros; SB, SH, SW), con extremo pequeño. Misma salida que el hito 2.
 
@@ -41,6 +53,10 @@ exercises:
     answers: ["sha256:cb3279e71d8a61633358d52ce6607f055186798bdd06d5e3b0d0d480eba4a5b5"]
   - id: hito-4-saltos
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 4
     prompt: |
       **Hito 4.** Añade a `cpu ejecuta` los saltos condicionales (BEQ, BNE, BLT, BGE con signo; BLTU, BGEU sin signo) y los incondicionales JAL y JALR (que pone a 0 el bit 0 del destino y guarda pc + 4 en rd). Misma salida que el hito 2.
 
@@ -50,6 +66,10 @@ exercises:
     answers: ["sha256:63f541122d52c9c4f641db17b3fe5bf718e2bd3fd419a00c3628abf353c5b6e0"]
   - id: hito-5-excepciones
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 5
     prompt: |
       **Hito 5.** Las excepciones son **precisas**: la instrucción que la provoca no cambia nada, se para y `pc` es su dirección. Causas (las del manual privilegiado): 0, destino de un salto tomado no múltiplo de 4 (la excepción es del salto); 1, búsqueda fuera de la memoria (pc ≥ 0x10000; aquí `pc` es esa dirección); 2, instrucción ilegal (las del hito 1); 4 y 6, carga o almacenamiento desalineado (media palabra en dirección impar, palabra en dirección no múltiplo de 4); 5 y 7, carga o almacenamiento fuera de la memoria (algún byte por encima de 0xFFFF; la dirección es de 32 bits sin signo). Si se dan dos, la desalineación va antes. Con `limite`, `pc` es la dirección de la siguiente instrucción. FENCE no hace nada. Misma salida que el hito 2.
 
@@ -59,6 +79,10 @@ exercises:
     answers: ["sha256:0d34c69209573e8e791c9e5d7e30651d8ce0851a7c138a27ed797510a5309057"]
   - id: hito-6-cauce
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 6
     prompt: |
       **Hito 6.** `cpu ciclos PROG.hex [MAX]` ejecuta el programa en el cauce clásico de 5 etapas del §6 (IF, ID, EX, MEM, WB; anticipación desde EX/MEM y MEM/WB hasta EX; el banco de registros escribe en la primera mitad del ciclo y lee en la segunda; una burbuja cuando la instrucción en ID lee, como rs1 o rs2, el registro destino distinto de x0 de una carga que está en EX; saltos y JAL/JALR resueltos en EX con predicción de no tomado, de modo que un salto tomado vacía las dos instrucciones que lo siguen). La primera instrucción está en IF en el ciclo 1. Imprime `ciclos` (el ciclo en el que el ecall llega a WB), `paradas` (burbujas por cargas), `vaciadas` (instrucciones vaciadas) y después lo mismo que `ejecuta`. Qué instrucciones leen rs1: JALR, saltos condicionales, cargas, almacenamientos, OP-IMM y OP; rs2: saltos condicionales, almacenamientos y OP. Si el programa no termina en ecall dentro de MAX instrucciones, código 1.
 

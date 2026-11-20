@@ -95,6 +95,35 @@ exercises:
     prompt: |
       Dos bloques de $3$ kg y $1$ kg, libres sobre una mesa sin rozamiento, están unidos por un muelle de $12$ N/m. Su movimiento relativo es el de una sola masa, la masa reducida $\mu$. ¿Cuánto vale $\mu$ y el periodo de la oscilación, en segundos? Respuesta: `mu;periodo`, el periodo con **4 decimales**.
     answers: ["sha256:5495746abee3804b5d48c7c535a4ef18026fe13cddd82d6dac2fb5634fe5932f"]
+  - id: verlet-oscilador
+    tier: 3
+    type: codigo
+    language: cualquiera
+    prompt: |
+      **Ejercicio de código (física computacional).** Un oscilador armónico $m\ddot x = -kx$. Lee de la entrada estándar
+      `m k x0 v0 dt N` e integra $N$ pasos con el método de **Verlet de velocidades**, exactamente en este orden:
+      $$
+      a_0 = -\tfrac{k}{m}x_0,\qquad x_{n+1} = x_n + v_n\,\Delta t + \tfrac12 a_n \Delta t^2,\qquad a_{n+1} = -\tfrac{k}{m}x_{n+1},\qquad v_{n+1} = v_n + \tfrac12(a_n + a_{n+1})\,\Delta t .
+      $$
+      Con $E = \tfrac12 m v^2 + \tfrac12 k x^2$, escribe (como `printf` de C o los f-strings de Python):
+
+      ```
+      x: <x_N con 6 decimales>
+      v: <v_N con 6 decimales>
+      deriva: <(E_N − E_0)/E_0 en notación científica con 3 decimales, p. ej. 1.234e-05>
+      ```
+
+      Usa el lenguaje que quieras (la plantilla es Python). Después, piensa: ¿por qué la deriva no crece sin límite aunque
+      hagas $10^5$ pasos (caso `muchas-vueltas`), y qué pasa al dividir $\Delta t$ entre 2? (Verlet es simpléctico: el error
+      de energía está acotado y es de orden $\Delta t^2$.)
+    template: |
+      import sys
+
+      # Lee «m k x0 v0 dt N», integra con Verlet de velocidades y escribe x, v y la deriva relativa de la energía.
+      m, k, x0, v0, dt, n = sys.stdin.read().split()
+      ...
+    cases: [{"name":"un-periodo","stdin":"1 1 1 0 0.01 628\n"},{"name":"rigido","stdin":"0.5 200 0.1 0 0.002 2500\n"},{"name":"con-velocidad","stdin":"2 8 0 3 0.01 1000\n"},{"name":"paso-grande","stdin":"1 1 1 0 0.5 40\n"},{"name":"muchas-vueltas","stdin":"1 4 0.5 1 0.005 100000\n"}]
+    answers: ["sha256:1956f6c8d48555a8fb7a14ddbd1913da490c9d9efd3c4bdd64fa2cf1b99d8803"]
 ---
 
 # Mecánica clásica: Lagrange, Hamilton, fuerzas centrales, sólido rígido, marcos en rotación y pequeñas oscilaciones

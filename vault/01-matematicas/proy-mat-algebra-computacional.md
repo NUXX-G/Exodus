@@ -14,6 +14,10 @@ attachments: [prueba.sh]
 exercises:
   - id: hito-1-racionales
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 1
     prompt: |
       **Hito 1.** `alg racional EXPRESION` evalúa con racionales exactos y enteros de tamaño arbitrario una expresión con enteros no negativos, `+ - * / ^`, paréntesis y menos unario (precedencia habitual; `^` con exponente entero no negativo, más fuerte que `*` y `/`, y menos unario más fuerte que `^`) e imprime el resultado irreducible `p/q` con q > 0, o `p` si q = 1. Una división por cero, una expresión mal formada o un exponente negativo o no entero terminan con código 1.
 
@@ -23,6 +27,10 @@ exercises:
     answers: ["sha256:358c9bde25b867660d5458cc793136bc44072dce9606b85a4cdb632cfdd2bd34"]
   - id: hito-2-polinomios
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 2
     prompt: |
       **Hito 2.** `alg poli suma|producto|division P Q`: los polinomios se escriben como sus coeficientes racionales del grado mayor al menor, separados por espacios (`1 -3/2 0 5` es x³ − 3/2·x² + 5), y se imprimen igual, sin ceros a la izquierda (el polinomio nulo es `0`). `division` imprime `cociente …` y `resto …` (división euclídea, grado del resto menor que el del divisor). Dividir entre el polinomio nulo termina con código 1.
 
@@ -32,6 +40,10 @@ exercises:
     answers: ["sha256:7c664aabcf69b6205fd94c2809a3b6a0cd182775e826955a9febf1f87f589328"]
   - id: hito-3-mcd-extendido
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 3
     prompt: |
       **Hito 3.** `alg mcd P Q` imprime el máximo común divisor **mónico** `mcd` y los coeficientes de Bézout `s` y `t` con s·P + t·Q = mcd que da el algoritmo de Euclides extendido (los de grado mínimo). Si los dos son nulos, código 1.
 
@@ -41,6 +53,10 @@ exercises:
     answers: ["sha256:97d456417013dfef47970c915076989f708fb3541d6f2874085084957f38d1ec"]
   - id: hito-4-factorizacion-libre-de-cuadrados
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 4
     prompt: |
       **Hito 4.** `alg factoriza P` (coeficientes enteros) imprime `contenido c` (el mcd de los coeficientes con el signo del coeficiente principal) y la factorización libre de cuadrados f = c·Π aₖᵏ: una línea `k: aₖ` por cada k con grado de aₖ positivo, con aₖ primitivo (coeficientes enteros sin factor común) y coeficiente principal positivo, en orden creciente de k. Grado 0, código 1.
 
@@ -50,6 +66,10 @@ exercises:
     answers: ["sha256:cb49682b60a991de4bb45ab7804af56a777ff49a2e572c06f539b3a019255d5a"]
   - id: hito-5-factorizacion-sobre-fp
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 5
     prompt: |
       **Hito 5.** `alg fp p P` (p primo impar, coeficientes enteros que se reducen módulo p) imprime `coeficiente c` (el principal módulo p) y la factorización en irreducibles mónicos: una línea `multiplicidad: coeficientes` por factor (del grado mayor al menor, en [0, p)), ordenadas por grado, después por coeficientes (lexicográficamente) y después por multiplicidad. p = 2, p no primo o grado 0 terminan con código 1.
 
@@ -59,6 +79,10 @@ exercises:
     answers: ["sha256:30d9eb8c6040f5d32a2edf5a0d8eda54abb2393c13580cef6ed5ecdafdc5597e"]
   - id: hito-6-bases-de-groebner
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 6
     prompt: |
       **Hito 6.** `alg grobner n P1 P2 …` calcula la base de Gröbner **reducida** del ideal en ℚ[x₁, …, xₙ] con el orden lexicográfico x₁ > … > xₙ. Cada polinomio se escribe como términos `coef[e1,…,en]` separados por espacios (`1[2,0] -1/2[0,1]` es x₁² − ½x₂). Imprime un polinomio por línea, mónico, con sus términos en orden decreciente y los polinomios en orden decreciente de su monomio principal. Un término mal formado termina con código 1.
 

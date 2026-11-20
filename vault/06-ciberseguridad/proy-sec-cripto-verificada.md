@@ -14,6 +14,10 @@ attachments: [prueba.sh]
 exercises:
   - id: hito-1-chacha20
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 1
     prompt: |
       **Hito 1.** `cripto bloque-chacha CLAVE NONCE CONTADOR` y `cripto chacha20 CLAVE NONCE CONTADOR DATOS` implementan la función de bloque y el cifrado en flujo ChaCha20 de la RFC 8439 (§2), con los vectores oficiales, un mensaje de 1000 bytes y entradas inválidas.
 
@@ -23,6 +27,10 @@ exercises:
     answers: ["sha256:4286c1d6d5fe9428fcc595f64c266ca13f21ddc25b203bfc65ac1961d764020b"]
   - id: hito-2-poly1305
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 2
     prompt: |
       **Hito 2.** `cripto poly1305 CLAVE MENSAJE` implementa el autenticador de un solo uso Poly1305 (aritmética módulo 2¹³⁰ − 5 y la máscara de r), con el vector de la RFC 8439 y casos límite (§3).
 
@@ -32,6 +40,10 @@ exercises:
     answers: ["sha256:a0ac490f4c5a623d1dffd9c501a1d0543da052a11ef8937e7f963cf3bf2ccb5d"]
   - id: hito-3-aead-chacha20-poly1305
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 3
     prompt: |
       **Hito 3.** `cripto sella-chacha` y `cripto abre-chacha` implementan el AEAD ChaCha20-Poly1305 de la RFC 8439 (clave de un solo uso, relleno y longitudes, comparación de etiquetas en tiempo constante) y rechazan con código 1 cualquier manipulación del cifrado, de la etiqueta o de los datos asociados (§4).
 
@@ -41,6 +53,10 @@ exercises:
     answers: ["sha256:f0473d92a6bb886980d7c4e3a2bf4cfd94e9adf214823787566cb96791b58f0b"]
   - id: hito-4-sha256-hmac-hkdf
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 4
     prompt: |
       **Hito 4.** `cripto sha256`, `cripto hmac` y `cripto hkdf SAL IKM INFO L` implementan SHA-256 (FIPS 180-4), HMAC-SHA-256 (RFC 2104) y HKDF (RFC 5869), con los vectores oficiales y entradas largas (§5).
 
@@ -50,6 +66,10 @@ exercises:
     answers: ["sha256:80be20b8ef7f8963d05297fbd371825567de93eb0b2bf6a684562da34add90df"]
   - id: hito-5-aes
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 5
     prompt: |
       **Hito 5.** `cripto aes CLAVE BLOQUE` cifra un bloque con AES-128, AES-192 o AES-256 según la longitud de la clave (FIPS 197): expansión de clave, SubBytes, ShiftRows, MixColumns y AddRoundKey, con los vectores del apéndice C (§6).
 
@@ -59,6 +79,10 @@ exercises:
     answers: ["sha256:5771731f568fc50b0ac6cf5340eabeb18d4777e8342636f358c1ffe60224505c"]
   - id: hito-6-aes-gcm
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 6
     prompt: |
       **Hito 6.** `cripto sella-gcm` y `cripto abre-gcm` implementan AES-GCM (NIST SP 800-38D) con IV de 96 bits: contador, GHASH en GF(2¹²⁸) y etiqueta, con el caso de prueba oficial, mensajes largos, solo datos asociados y rechazo de manipulaciones (§7).
 

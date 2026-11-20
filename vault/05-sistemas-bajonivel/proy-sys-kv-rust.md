@@ -13,6 +13,10 @@ attachments: [prueba.sh]
 exercises:
   - id: hito-1-ordenes-en-memoria
     tier: 1
+    type: codigo
+    language: rust
+    harness: prueba.sh
+    stage: 1
     prompt: |
       **Hito 1.** `kv DIR` lee órdenes de la entrada estándar (una por línea, palabras separadas por espacios) y responde una línea por orden: `SET k v` → `OK`; `GET k` → el valor o `(nil)`; `DEL k` → `1` si existía, `0` si no; `COUNT` → número de claves; `KEYS` → claves ordenadas separadas por un espacio, o `(empty)`. Errores: orden desconocida → `ERR unknown command`; número de argumentos incorrecto → `ERR wrong number of arguments`.
 
@@ -22,6 +26,10 @@ exercises:
     answers: ["sha256:c459f0b2bb1069e4ae8d8a3591d4071cf09c4d7ce4be5dd33a3b6cf996ed2ae9"]
   - id: hito-2-incr
     tier: 1
+    type: codigo
+    language: rust
+    harness: prueba.sh
+    stage: 2
     prompt: |
       **Hito 2.** `INCR k` suma 1 al valor entero de `k` (una clave inexistente vale 0) y responde el nuevo valor; si el valor no es un entero (con signo opcional), responde `ERR not an integer` sin cambiar nada.
 
@@ -31,6 +39,10 @@ exercises:
     answers: ["sha256:35862c9ceeee14484ff22ec510ea9f490f8a82ebc96878d5b6c7d17fc208d902"]
   - id: hito-3-persistencia
     tier: 1
+    type: codigo
+    language: rust
+    harness: prueba.sh
+    stage: 3
     prompt: |
       **Hito 3.** Los datos sobreviven al reinicio: cada orden que modifica el estado se añade a `DIR/kv.log` antes de responder, y al arrancar se reconstruye el estado leyendo el registro.
 
@@ -40,6 +52,10 @@ exercises:
     answers: ["sha256:f07c6446bd7a97134ff4e893f1dd4a955f6296ea9bc10951aaeb9ba2a9078cdd"]
   - id: hito-4-registro-y-compactacion
     tier: 2
+    type: codigo
+    language: rust
+    harness: prueba.sh
+    stage: 4
     prompt: |
       **Hito 4.** El registro tiene un formato fijo: una línea por cambio, `SET k v` o `DEL k` (un `INCR` se registra como el `SET` del nuevo valor). `COMPACT` reescribe el registro con una línea `SET k v` por clave viva, en orden de clave, de forma atómica (archivo temporal y `rename`), y responde `OK`; las órdenes posteriores se siguen añadiendo al registro compactado.
 
@@ -49,6 +65,10 @@ exercises:
     answers: ["sha256:d7894138f77a2dac91c7a521da51cf41b2efeac6cf9fc82132b17464392d844c"]
   - id: hito-5-servidor-tcp
     tier: 2
+    type: codigo
+    language: rust
+    harness: prueba.sh
+    stage: 5
     prompt: |
       **Hito 5.** `kv DIR --serve PUERTO` escucha en `127.0.0.1:PUERTO` y atiende el mismo protocolo por TCP: una línea por orden, una línea por respuesta. Al cerrar un cliente la conexión, el servidor sigue atendiendo a los siguientes.
 
@@ -58,6 +78,10 @@ exercises:
     answers: ["sha256:057f12de9cef4006b9908044f8064afc1837553574ff1fa2999d520bb89d4a69"]
   - id: hito-6-clientes-concurrentes
     tier: 2
+    type: codigo
+    language: rust
+    harness: prueba.sh
+    stage: 6
     prompt: |
       **Hito 6.** Varios clientes a la vez: la prueba conecta 8 clientes simultáneos que hacen 50 `INCR` cada uno sobre la misma clave. Ninguna actualización puede perderse ni repetirse (cada respuesta es un valor distinto).
 
@@ -67,6 +91,10 @@ exercises:
     answers: ["sha256:436ec768438a288aff0a697d78b8d0cd86b461a7247e91a2d9824f4465e3516d"]
   - id: hito-7-durabilidad
     tier: 3
+    type: codigo
+    language: rust
+    harness: prueba.sh
+    stage: 7
     prompt: |
       **Hito 7.** Una orden cuya respuesta ya recibió el cliente no puede perderse aunque el servidor muera con `kill -9` justo después: escribe y vacía el registro antes de responder.
 
@@ -76,6 +104,10 @@ exercises:
     answers: ["sha256:90af393942c20585108f51d0f8af00cad96920ae2a7439a861e9286814f6296a"]
   - id: hito-8-rendimiento
     tier: 3
+    type: codigo
+    language: rust
+    harness: prueba.sh
+    stage: 8
     prompt: |
       **Hito 8.** El servidor procesa 20 000 `SET` enviados seguidos por una sola conexión (sin esperar cada respuesta) en menos de 15 segundos, con todas las respuestas en orden.
 

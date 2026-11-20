@@ -14,6 +14,10 @@ attachments: [prueba.sh]
 exercises:
   - id: hito-1-un-cubit
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 1
     prompt: |
       **Hito 1.** `qsim estado ARCHIVO` lee un circuito (formato del §2) con puertas de un cúbit (`h x y z s sdg t tdg rx ry rz p`) e imprime el vector de estado final con el formato del §3. Un circuito mal formado (cúbit fuera de rango, puerta desconocida, ángulo inválido, sin la línea `qubits`, o una puerta de dos cúbits sobre el mismo cúbit) termina con código 1.
 
@@ -23,6 +27,10 @@ exercises:
     answers: ["sha256:4bac5a402948aed6ff75339f1c8212fa9e537fee5dc4ecd39159057d8d6619e7"]
   - id: hito-2-entrelazamiento
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 2
     prompt: |
       **Hito 2.** Añade `cx cz cp swap ccx` y comprueba estados entrelazados (Bell, GHZ), una QFT de 3 cúbits escrita puerta a puerta y un circuito de 5 cúbits.
 
@@ -32,6 +40,10 @@ exercises:
     answers: ["sha256:42a1380bda6262b0e4222ea05cc6b3bb754327803528b2e1bfb8a516869885b0"]
   - id: hito-3-medida
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 3
     prompt: |
       **Hito 3.** `qsim probs ARCHIVO` imprime las probabilidades de la base; `qsim muestras ARCHIVO N SEMILLA` ejecuta el circuito `N` veces con medidas a mitad de circuito, `reset` e instrucciones `if`, usando el generador del §4, e imprime cuántas veces sale cada valor del registro clásico (incluida la teleportación). `qsim estado` rechaza con código 1 un circuito con medidas.
 
@@ -41,6 +53,10 @@ exercises:
     answers: ["sha256:b6bace04c4c36c36d54608b1b9255e83ec96b760b3adf71b3b73ea2f5b262cc0"]
   - id: hito-4-grover
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 4
     prompt: |
       **Hito 4.** `qsim grover n m` simula el algoritmo de Grover con `n` cúbits y el estado marcado `m`, e imprime el número óptimo de iteraciones `K` y la probabilidad de medir `m` tras 0, 1, …, K+1 iteraciones (§5).
 
@@ -50,6 +66,10 @@ exercises:
     answers: ["sha256:f77d8c393e3a9d0467f7355ee079b61676141776ba572130a7ea3785a252b0fd"]
   - id: hito-5-qft-y-fase
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 5
     prompt: |
       **Hito 5.** `qsim qft n x` imprime QFT|x⟩ y `qsim fase n num den` simula la estimación de fase con `n` cúbits de conteo para el autovalor e^{2πi·num/den} e imprime los tres resultados más probables (§5).
 
@@ -59,6 +79,10 @@ exercises:
     answers: ["sha256:f1b028690483b30555f772746245b1910c9e22132ee2adcbd52baacdedb2dfa5"]
   - id: hito-6-shor
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 6
     prompt: |
       **Hito 6.** `qsim orden a N` simula la búsqueda del orden de Shor (registro de conteo de 2⌈log₂N⌉ cúbits, multiplicación modular controlada y QFT inversa), imprime la distribución del registro de conteo, el orden `r` hallado con fracciones continuas y los factores de `N` (§5).
 
@@ -68,6 +92,10 @@ exercises:
     answers: ["sha256:7e1cc56bdcc626e222c3b7cbd3709d18b5e3d9be4c63603212d5b38956706622"]
   - id: hito-7-ruido
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 7
     prompt: |
       **Hito 7.** `qsim ruido ARCHIVO p` simula el circuito con matrices densidad aplicando un canal despolarizante de parámetro `p` tras cada puerta en cada cúbit sobre el que actúa, e imprime la diagonal, la pureza y la fidelidad con el estado ideal (§6).
 
@@ -77,6 +105,10 @@ exercises:
     answers: ["sha256:08a5762d666b0ca2710053e0458e3347b8ed2ac10f01e4de694727185a70aede"]
   - id: hito-8-correccion-de-errores
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 8
     prompt: |
       **Hito 8.** `qsim codigo p a` protege el estado cos(a)|0⟩ + sin(a)|1⟩ con el código de repetición de 3 cúbits frente a un canal de inversión de bit de probabilidad `p` en cada cúbit, lo decodifica por mayoría y compara la fidelidad con la de un cúbit sin proteger (§6).
 

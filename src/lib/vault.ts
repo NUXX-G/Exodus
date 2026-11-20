@@ -28,6 +28,7 @@ import { z } from "zod";
 import { AREAS_FILE, mergeAreas, type AreaId, type AreaInfo } from "./areas";
 import { marcadores, TIPOS, type TipoId } from "./tipos-ejercicio";
 import { errorDeSellado } from "./sellado";
+import { LANGUAGES, type CodeCase, type Language } from "./codigo";
 
 const HASH = z.string().regex(/^sha256:[0-9a-f]{64}$/);
 
@@ -55,6 +56,16 @@ const exerciseSchema = z
     multiple: z.boolean().optional(),
     /** Solo para el repaso: no cuenta para el dominio ni aparece en el nodo (pregunta distinta del temario). */
     review: z.boolean().default(false),
+    /** codigo: lenguaje, plantilla inicial y casos de prueba (entradas; las salidas esperadas no se publican). */
+    language: z.enum(LANGUAGES).optional(),
+    template: z.string().max(20_000).optional(),
+    cases: z
+      .array(z.object({ name: z.string().regex(/^[A-Za-z0-9_.-]{1,40}$/), stdin: z.string().max(100_000), args: z.array(z.string().max(200)).max(20).optional() }))
+      .max(200)
+      .optional(),
+    /** codigo con un prueba.sh escrito a mano en los adjuntos del nodo (proyectos con hitos): su nombre y el hito. */
+    harness: z.string().regex(/^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/).optional(),
+    stage: z.number().int().min(1).max(99).optional(),
     /** desarrollo: solución modelo y rúbrica selladas (src/lib/sellado.ts); nunca llegan al navegador antes de entregar. */
     sealed: z.string().startsWith("gz64:").max(200_000).optional(),
     /** Plantilla parametrizada: cada intento usa otra variante, con sus datos y sus hashes. */
@@ -68,6 +79,8 @@ const exerciseSchema = z
       if (!e.sealed) ctx.addIssue({ code: "custom", message: "un ejercicio de desarrollo necesita sealed (solución y rúbrica)" });
       else if (errorDeSellado(e.sealed)) ctx.addIssue({ code: "custom", message: `sealed ilegible: ${errorDeSellado(e.sealed)}` });
     } else if (!e.variants?.length && e.answers.length === 0) ctx.addIssue({ code: "custom", message: "sin respuestas (answers o variants)" });
+    if (e.type === "codigo" && !e.cases?.length && !(e.harness && e.stage)) ctx.addIssue({ code: "custom", message: "un ejercicio de código necesita cases, o harness y stage" });
+    if (e.cases && new Set(e.cases.map((c) => c.name)).size !== e.cases.length) ctx.addIssue({ code: "custom", message: "nombres de caso repetidos" });
     if (e.type === "opcion" && !e.options) ctx.addIssue({ code: "custom", message: "un ejercicio de opción múltiple necesita options" });
     if (e.type === "expresion" && !e.vars) ctx.addIssue({ code: "custom", message: "un ejercicio de expresión necesita vars" });
     if (e.domain && !(e.domain[0] < e.domain[1])) ctx.addIssue({ code: "custom", message: "domain: el extremo izquierdo debe ser menor" });
@@ -126,6 +139,12 @@ export interface VaultExercise {
   options?: string[];
   multiple?: boolean;
   review: boolean;
+  language?: Language;
+  template?: string;
+  /** Entradas de las pruebas de un ejercicio de código (no se exportan a Obsidian). */
+  cases?: CodeCase[];
+  harness?: string;
+  stage?: number;
   /** Solo servidor: solución y rúbrica selladas de un ejercicio de desarrollo. */
   sealed?: string;
   /** Solo servidor (los hashes); los datos se muestran al rellenar el enunciado. */
@@ -291,6 +310,9 @@ function leerVault(root: string): Vault {
   for (const node of nodes.values()) {
     const ids = [...node.exercises, ...node.reviewBank].map((e) => e.id);
     if (new Set(ids).size !== ids.length) issues.push({ file: node.file, message: "ids de ejercicio repetidos" });
+    for (const e of [...node.exercises, ...node.reviewBank]) {
+      if (e.harness && !node.attachments.includes(e.harness)) issues.push({ file: node.file, message: `ejercicio ${e.id}: el script de pruebas ${e.harness} no está en attachments` });
+    }
   }
 
   // Adjuntos: deben existir, ser archivos normales y no superar el tamaño máximo.

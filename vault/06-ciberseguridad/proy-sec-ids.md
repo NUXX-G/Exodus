@@ -14,6 +14,10 @@ attachments: [prueba.sh, trafico.pcap, escaneo.pcap, raro.pcap, grande.pcap, reg
 exercises:
   - id: hito-1-decodificar-capturas
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 1
     prompt: |
       **Hito 1.** `ids paquetes CAPTURA.pcap` lee el formato pcap clásico (marcas de tiempo en micro o nanosegundos, en cualquier extremo; solo enlace Ethernet, tipo 1) e imprime una línea por paquete: `número tiempo longitud descripción`, con el tiempo relativo al primer paquete en segundos y 9 decimales, la longitud original de la trama y la descripción del §2: `arp peticion IP de IP`, `arp respuesta IP en MAC` o `arp op=N`; `tcp ORIGEN > DESTINO [BANDERAS] datos=N` (banderas en el orden S F R P A U; N = longitud IP menos cabeceras, sin el relleno Ethernet); `udp ORIGEN > DESTINO datos=N` (N = longitud UDP − 8); `icmp` o `icmp6 IP > IP tipo=T codigo=C`; `fragmento IP > IP proto=P desplazamiento=BYTES` (fragmentos IPv4 con desplazamiento > 0); `ip IP > IP proto=P` (otro protocolo); `ethertype=0xHHHH` (otro tipo Ethernet); y `truncado` si los bytes capturados no alcanzan para las cabeceras necesarias. ORIGEN y DESTINO son `IP:puerto`, o `[IPv6]:puerto` con la IPv6 en la forma canónica del RFC 5952. Con etiqueta 802.1Q, la descripción empieza por `vlan=ID `; una suma de comprobación de cabecera IPv4 errónea añade ` !suma` al final. Un fichero inexistente, que no sea pcap o con otro tipo de enlace termina con código 1.
 
@@ -23,6 +27,10 @@ exercises:
     answers: ["sha256:b2afc8f0778534793bb048f0a5cd5df3fe9bc318f6c01c657c9509da382b9902"]
   - id: hito-2-flujos
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 2
     prompt: |
       **Hito 2.** `ids flujos CAPTURA.pcap` agrupa los paquetes TCP y UDP (sin los truncados ni los fragmentos sin cabecera de transporte) en flujos por protocolo y par de extremos (en cualquier sentido); el iniciador es el origen del primer paquete. Imprime, en el orden del primer paquete de cada flujo, `proto INICIADOR > RESPONDEDOR paquetes=a/b datos=x/y duracion=D estado=E` (a, x del iniciador; b, y del respondedor; D, del primer al último paquete, con 9 decimales) con el estado TCP del §3: OTH si el primer paquete no es un SYN sin ACK; si no, REJ si el respondedor manda un RST antes de su SYN+ACK; S0 si no hay SYN+ACK; RST si hay algún RST desde el SYN+ACK; SF si ambos mandaron FIN; FIN1 si solo uno; S1 en otro caso. En UDP, `estado=-`.
 
@@ -32,6 +40,10 @@ exercises:
     answers: ["sha256:88e0c4c308f9319fb6b37c3b3669ec6329985fc70dc59959db6e0a89f32bd788"]
   - id: hito-3-firmas
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 3
     prompt: |
       **Hito 3.** `ids firmas CAPTURA.pcap REGLAS` aplica a cada paquete TCP o UDP (sin truncados) las reglas del §4, un subconjunto de Snort y Suricata: `alert tcp|udp|any ORIGEN PUERTO -> DESTINO PUERTO (opciones;)` con direcciones `any`, IP o red CIDR (IPv4 o IPv6; una dirección de una familia nunca está en una red de la otra), puertos `any`, `N` o rango `N:M` (extremos opcionales), `!` para negar, y las opciones `msg`, `content` (con bytes `|hex|` y escapes con barra invertida), `nocase` (afecta al content anterior), `flags` (exactamente esas entre S F R P A U, o con `+`: al menos esas), `dsize` (`N`, `<N` o `>N`, sobre los bytes de carga del paquete según sus cabeceras) y `sid` (obligatorio). Todos los content deben aparecer en la carga capturada. Imprime `alerta sid=S paquete=K ORIGEN > DESTINO "msg"` por cada coincidencia, por paquete y, dentro de él, en el orden de las reglas. Una regla mal formada o con una opción desconocida termina con código 1 sin imprimir nada.
 
@@ -41,6 +53,10 @@ exercises:
     answers: ["sha256:5137d5d37bc889cfc21aeb5895831d15ba671b97dd7acc37a14ae89a21f0d0c5"]
   - id: hito-4-escaneos
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 4
     prompt: |
       **Hito 4.** `ids escaneos CAPTURA.pcap N T` busca escaneos entre los intentos fallidos: flujos TCP en estado S0 o REJ, o RST sin datos en ningún sentido (el SYN medio abierto). Imprime `vertical ORIGEN > DESTINO puertos=K primero=t ultimo=t` si algún intervalo [t, t + T] contiene intentos de ORIGEN a DESTINO hacia N o más puertos distintos (K: todos los puertos distintos; t, los tiempos del primer y el último intento), y `horizontal ORIGEN puerto=P destinos=K primero=t ultimo=t` si los hay hacia N o más destinos distintos en un mismo puerto. Primero las verticales y luego las horizontales, cada grupo por su primer intento. N es un entero positivo y T, segundos (con decimales); si no, código 1.
 
@@ -50,6 +66,10 @@ exercises:
     answers: ["sha256:543ae017eda3f8a3fdf9cb3d6c751858d1c053156fb381d8fe02db98d57f8447"]
   - id: hito-5-fuerza-bruta-ssh
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 5
     prompt: |
       **Hito 5.** `ids ssh auth.log N W` analiza los mensajes de `sshd` de un auth.log (fechas sin año: son de 2024, en orden). Cuenta como fallos las líneas `Failed password|publickey|keyboard-interactive/pam for [invalid user ]USUARIO from IP port P ssh2`, toma la IP del **último** `from IP port P` (el nombre de usuario lo elige el atacante) y cuenta R veces las de `message repeated R times: [ …]`. Imprime `fuerza-bruta IP fallos=F usuarios=U inexistentes=I primera=FECHA ultima=FECHA` (fechas ISO 8601 sin zona) para cada IP con N o más fallos en algún intervalo de W segundos, en el orden de su primer fallo, y después `compromiso IP usuario=X fecha=FECHA` por cada `Accepted … for X from IP port P ssh2` de una IP que ya había alcanzado ese umbral.
 
@@ -59,6 +79,10 @@ exercises:
     answers: ["sha256:a94e9c591c5244da3b0377585be70a6b641be10fc0126a39c1e57a0aa591aaef"]
   - id: hito-6-ataques-web
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 6
     prompt: |
       **Hito 6.** `ids web access.log N W` lee un registro en formato combinado (Combined Log Format). Normaliza el objetivo de cada petición como en el §6 (en la consulta, `+` es un espacio; después, decodificación porcentual repetida hasta 3 veces mientras cambie) y, sobre él en minúsculas, con cada `/**/` cambiado por un espacio y los espacios en blanco seguidos reducidos a uno, busca las categorías `recorrido`, `sqli`, `xss` y `cmd` con los patrones del §6; añade `crlf` si el objetivo decodificado contiene CR o LF, y `escaner` si el agente de usuario nombra una herramienta de la lista. Imprime `línea IP categorías objetivo` (categorías separadas por comas en ese orden; el objetivo decodificado, con los bytes fuera de 0x21–0x7e y la barra invertida como `\xHH`), después `sondeo IP 404=K primera=FECHAZ ultima=FECHAZ` (UTC) para cada IP con N o más respuestas 404 en algún intervalo de W segundos, en el orden de su primera aparición, y al final `lineas=L malformadas=M`.
 

@@ -14,6 +14,10 @@ attachments: [prueba.sh]
 exercises:
   - id: hito-1-raices
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 1
     prompt: |
       **Hito 1.** `numlib raiz METODO FUNCION a b tol` encuentra un cero de una función del catálogo (§2) con `biseccion`, `newton` (desde `a`) o `secante` (desde `a` y `b`) con los criterios de parada exactos del §3, e imprime la raíz y el número de iteraciones. Un intervalo sin cambio de signo, un método o una función desconocidos terminan con código 1.
 
@@ -23,6 +27,10 @@ exercises:
     answers: ["sha256:8b6c075521c0949e3fac6fa8481c805287add079e4f0d6c991959af4442df9b8"]
   - id: hito-2-interpolacion-y-cuadratura
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 2
     prompt: |
       **Hito 2.** `numlib runge n equi|cheb` interpola 1/(1 + 25x²) en n + 1 nodos y mide el error máximo en 2001 puntos; `numlib integra REGLA INTEGRANDO n` calcula una integral del catálogo con `trapecio`, `simpson` (n par) o `gauss` (Gauss-Legendre de n puntos) e imprime el valor y el error frente al exacto (§4).
 
@@ -32,6 +40,10 @@ exercises:
     answers: ["sha256:b700209fb1dfd74c1a3bfabafbead670071e952065e3bdb8ff0810be12a25300"]
   - id: hito-3-ecuaciones-diferenciales
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 3
     prompt: |
       **Hito 3.** `numlib edo METODO PROBLEMA h T` integra un problema de valor inicial del catálogo con `euler`, `rk4` o `euler-implicito` (con Newton en cada paso) e imprime y(T) y el error, incluido un problema rígido (§5).
 
@@ -41,6 +53,10 @@ exercises:
     answers: ["sha256:3d6d169bcd41cd5b1dc3228cd6d47e210a3f742a6aa8057e474dbc2ab7fe7340"]
   - id: hito-4-sistemas-y-ajuste
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 4
     prompt: |
       **Hito 4.** `numlib resuelve ARCHIVO` resuelve Ax = b por eliminación gaussiana con pivoteo parcial e imprime x y det(A); `numlib cond-hilbert n` calcula κ∞ de la matriz de Hilbert; `numlib ajuste ARCHIVO grado` ajusta un polinomio por mínimos cuadrados con una factorización QR (§6).
 
@@ -50,6 +66,10 @@ exercises:
     answers: ["sha256:4f9200a0b26e30cedacd11e0f17a8e578090125a03c4e4c68733cf95206a6f62"]
   - id: hito-5-autovalores
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 5
     prompt: |
       **Hito 5.** `numlib autovalores ARCHIVO` calcula todos los autovalores de una matriz simétrica (en orden creciente) y `numlib potencia ARCHIVO tol` el dominante por el método de la potencia, con el número de iteraciones (§7).
 
@@ -59,6 +79,10 @@ exercises:
     answers: ["sha256:d4686cbb72f13c634e00dca5cc30aa4e970977b970d58e29e7fb5740b74888b5"]
   - id: hito-6-fft
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 6
     prompt: |
       **Hito 6.** `numlib multiplica A B` multiplica dos enteros no negativos de hasta decenas de miles de cifras con la transformada rápida de Fourier, de forma exacta, en menos de un minuto (§8).
 
@@ -68,6 +92,10 @@ exercises:
     answers: ["sha256:d759dcfc7896570115822925af5e62b35154e1422e73e37d7f2957d998f9bee8"]
   - id: hito-7-coma-flotante
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 7
     prompt: |
       **Hito 7.** `numlib suma N` suma 1/k² de k = 1 a N hacia delante, hacia atrás y con Kahan, y `numlib cuadratica a b c` calcula las raíces con la fórmula ingenua y con la estable, con 17 cifras significativas (§9).
 

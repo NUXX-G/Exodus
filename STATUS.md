@@ -23,9 +23,9 @@ registro de sesiones (una línea) o a `docs/`.
 
 ## 1. Ahora mismo
 
-- **Fase actual**: FASE 4 — Ejercicios de código con tests.
-- **Tarea actual**: tipo «código» (plantilla, tests por etapas, Python, C, C++, Rust y Bash). ⛔ decidido con la autorización del usuario: elegir el aislamiento más seguro.
-- **Siguiente paso concreto**: leer la FASE 4 del roadmap; estudiar los hitos con `prueba.sh` existentes (`grep -rl prueba.sh vault`) y decidir entre contenedor efímero aislado y runner local con resultado firmado (anotar en §6).
+- **Fase actual**: FASE 5 — Prueba de nivel.
+- **Tarea actual**: diagnóstico adaptativo por área que marca nodos como «dominado por diagnóstico» (distinto de completado y reversible).
+- **Siguiente paso concreto**: leer la FASE 5 del roadmap; diseñar el estado «diagnóstico» (tabla aparte, sin tocar node_progress) y el algoritmo adaptativo (búsqueda en el orden de estudio del área con preguntas del banco y variantes).
 - **Bloqueos**: ninguno.
 - **Prueba en navegador**: `scripts/dev/sesion-prueba.ts` (usuario y sesión en una base temporal) y
   `scripts/dev/e2e-v2.cjs` (Playwright 1.58 de la caché de npx: `PLAYWRIGHT_CORE=C:/Users/nelso/AppData/Local/npm-cache/_npx/787f53666b8d4740/node_modules/playwright-core`).
@@ -92,6 +92,8 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
   bucles de recarga.
 - **Python no está instalado**: scripts de apoyo en Node; para ejecutar Python, C, Rust… usar Docker
   (`python:3.12-slim`, `gcc:14`, etc.; con `MSYS_NO_PATHCONV=1` en Git Bash).
+- **Los heredocs de esta shell estropean las barras invertidas** (`\\n` llega como salto de línea real, `\\\\` como `\\`):
+  los scripts de parche se escriben con la herramienta Write en el scratchpad y se ejecutan con `node`.
 - Los `.ts`/`.tsx`/`.md` del repo pueden tener **CRLF**: para parchear, `node scripts/dev/reemplaza.cjs <archivo> <pares.json>`
   o la herramienta Edit. Los heredocs largos con comillas rompen la shell.
 - Wikilinks solo a nodos que ya existen (si no, `vault:check` falla). `|` dentro de LaTeX en tablas rompe la tabla:
@@ -152,6 +154,16 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
    más porque la nota es una autoevaluación). La nota se guarda como un intento más, así el diario de errores y el
    repaso funcionan igual. Con una entrega sin puntuar no se admite otra del mismo ejercicio.
 
+14. **2026-11-20 · ⛔ Ejercicios de código: runner local, ningún código de los alumnos en el servidor.** El alumno
+   descarga `prueba.sh` (generado con las entradas del vault, o el del proyecto), lo ejecuta en su máquina y pega el
+   «código del ejercicio» (SHA-256 truncado de todas las salidas); Exodus compara su hash. *Contenedor efímero
+   descartado*: exige dar al contenedor de Exodus acceso al demonio Docker (equivale a root en el VPS), compilar
+   Rust o C++ consume cientos de MB en un VPS de 2 GB compartido, y hay que defenderse de bombas de procesos, de
+   disco y de tiempo con varios usuarios. *Firma descartada*: no hace falta, porque las salidas esperadas nunca se
+   publican (solo su huella); falsificar el código exige conocer las salidas, es decir, resolver el ejercicio. *Riesgo
+   aceptado*: el alumno podría copiar el código de otro; en estudio personal solo se engaña a sí mismo (igual que con
+   cualquier respuesta). Los casos (entradas) son visibles; las salidas esperadas, no («tests ocultos»).
+
 ## 7. Preguntas abiertas
 
 - Ninguna todavía. (Las ⛔ de la fase 1 se preguntarán al llegar a ellas.)
@@ -164,6 +176,7 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
 
 | Fecha | Qué se hizo | Commit |
 | --- | --- | --- |
+| 2026-11-20 | Fase 4: tipo «código» con runner local (prueba.sh generado con las entradas del vault; Exodus solo guarda la huella del código), 132 hitos de 20 proyectos integrados (harness + stage), 3 ejercicios nuevos verificados contra referencias reales (bash+awk, Python en Docker): resumen de notas, gradiente logístico estable con gradient check, Verlet con deriva de energía | `v2: fase 4 completada` |
 | 2026-11-20 | Fase 3: tipo «desarrollo» (respuesta Markdown/LaTeX/código o en papel; solución modelo y rúbrica selladas que solo se muestran tras entregar; autopuntuación por criterios, 60 % para resolver; cuenta para dominio, repaso y diario de errores; exportación a Obsidian solo tras puntuarse); 4 desarrollos (cálculo, cinemática, inducción, informe de incidente) | `v2: fase 3 completada` |
 | 2026-11-20 | Fase 2: diario de errores (etiquetas y nota tras cada fallo, /errores con patrones, consejo y evolución), repaso ordenado por fallos recientes ponderados por tipo e intervalos frenados tras fallos de concepto, práctica intercalada de nodos dominados con filtro por área | `v2: fase 2 completada` |
 | 2026-11-20 | Fase 1: tipos de ejercicio (CAS en JS, unidades, matrices, opción, flag), variantes, banco de repaso, intentos con variante y tiempo, reportes y `/reportes`, vista previa, 9 nodos convertidos, e2e con Playwright | `v2: fase 1 completada` |

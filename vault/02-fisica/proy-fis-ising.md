@@ -14,6 +14,10 @@ attachments: [prueba.sh]
 exercises:
   - id: hito-1-energia
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 1
     prompt: |
       **Hito 1.** `ising energia ARCHIVO` lee una configuración (formato del §2) e imprime cuatro líneas: `E` (la energía E = −J·Σ⟨ij⟩ sᵢsⱼ − h·Σ sᵢ, calculada exactamente como −J·S − h·M con S la suma entera de los productos de vecinos y M la magnetización), `M` (entero), `e` = E/N y `m` = M/N, con el formato del §3. Un archivo con un carácter distinto de `+` y `-`, con un número de filas o de columnas distinto de L, con L < 2 o inexistente termina con código 1.
 
@@ -23,6 +27,10 @@ exercises:
     answers: ["sha256:90f9417dd4541f5d413e9deb30b940249c287d55a5920503562bc155bc67d8e6"]
   - id: hito-2-enumeracion-exacta
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 2
     prompt: |
       **Hito 2.** `ising exacto L T` (2 ≤ L ≤ 4, J = 1, h = 0, T > 0) enumera los 2^(L²) estados, agrupándolos por (E, M), y calcula por espín la energía media `e` = ⟨E⟩/N, la magnetización absoluta media `m` = ⟨|M|⟩/N, el calor específico `c` = (⟨E²⟩ − ⟨E⟩²)/(N·T²) y la susceptibilidad `chi` = (⟨M²⟩ − ⟨|M|⟩²)/(N·T). Usa pesos e^(−(E − E_min)/T) para no desbordar. Otros valores de L o una T no positiva terminan con código 1.
 
@@ -32,6 +40,10 @@ exercises:
     answers: ["sha256:428329a933c073bdb0fc2f248fa3c390b0740679898e0d8853c1a57c439647c1"]
   - id: hito-3-metropolis
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 3
     prompt: |
       **Hito 3.** `ising metropolis L T BARRIDOS TERM SEMILLA` empieza con todos los espines a +1 y hace BARRIDOS barridos secuenciales (sitio 0, 1, …, N − 1; el sitio i = y·L + x) con el algoritmo de Metropolis del §5: en cada sitio se extrae **siempre** un u del generador y se invierte el espín si ΔE ≤ 0 o si u < e^(−ΔE/T). Tras los TERM primeros barridos, mide E y M al final de cada barrido. Imprime `E` y `M` finales (enteros), `e_media` = ΣE/(n·N), `m_media` = Σ|M|/(n·N) y `aceptacion` (inversiones aceptadas entre BARRIDOS·N). Si TERM ≥ BARRIDOS, código 1.
 
@@ -41,6 +53,10 @@ exercises:
     answers: ["sha256:54fdc62633ca36d0c9c690591fd98831f22cebcb3420182255ac817de013891c"]
   - id: hito-4-wolff
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 4
     prompt: |
       **Hito 4.** `ising wolff L T PASOS SEMILLA` empieza con todos los espines a +1 y hace PASOS pasos del algoritmo de Wolff con el orden exacto del §6: el sitio semilla es ⌊u·N⌋, se invierte y se apila; al desapilar un sitio se recorren sus vecinos en el orden derecha, izquierda, abajo, arriba, y por cada vecino con el espín original de la semilla se extrae un u y, si u < 1 − e^(−2/T), se invierte y se apila. Imprime `total` (suma de los tamaños de los grupos), `media` (total/PASOS), y `M` y `E` finales.
 
@@ -50,6 +66,10 @@ exercises:
     answers: ["sha256:300bbd75d9953a6bd3616d8a26bcac8b91eecc613f92ddc5c136709907ad8739"]
   - id: hito-5-onsager
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 5
     prompt: |
       **Hito 5.** `ising onsager T1 T2 …` imprime `Tc` = 2/ln(1 + √2) y, para cada temperatura, una línea `T e m` con la energía por espín exacta de Onsager, e = −coth(2β)·[1 + (2/π)(2·tanh²(2β) − 1)·K(κ)] con κ = 2·sinh(2β)/cosh²(2β) y K la integral elíptica completa de primera especie (calculada con la media aritmético-geométrica: K = π/(2·AGM(1, √(1 − κ²)))), y la magnetización espontánea de Yang, m = (1 − sinh(2β)⁻⁴)^(1/8) por debajo de Tc y 0 por encima. Sin temperaturas, código 1.
 
@@ -59,6 +79,10 @@ exercises:
     answers: ["sha256:1432f1b01f2f3865986c75d4c081a9b04b8244df28268845f55419c0d2d3db6a"]
   - id: hito-6-cumulante-de-binder
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 6
     prompt: |
       **Hito 6.** `ising binder L T BARRIDOS TERM SEMILLA` hace la misma simulación de Metropolis que el hito 3 y, con las medidas tras la termalización, imprime el cumulante de Binder `U4` = 1 − ⟨M⁴⟩/(3⟨M²⟩²) y la susceptibilidad `chi` = (⟨M²⟩ − ⟨|M|⟩²)/(N·T). Las sumas de potencias de M son enteras: calcúlalas sin pérdida de precisión.
 

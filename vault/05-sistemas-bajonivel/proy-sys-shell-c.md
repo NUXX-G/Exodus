@@ -13,6 +13,10 @@ attachments: [prueba.sh]
 exercises:
   - id: hito-1-ejecutar-ordenes
     tier: 1
+    type: codigo
+    language: c
+    harness: prueba.sh
+    stage: 1
     prompt: |
       **Hito 1.** Tu shell lee órdenes línea a línea de la entrada estándar, las parte en palabras separadas por espacios y ejecuta cada una con `fork`, `execvp` y `waitpid`. Si la orden no existe, el estado es 127. `exit [n]` termina la shell con el código `n` (o el de la última orden). Las líneas vacías no hacen nada. Al acabar la entrada, la shell termina con el estado de la última orden.
 
@@ -22,6 +26,10 @@ exercises:
     answers: ["sha256:fd42292ec88a4e0f0ea5bf6ae6ce90f242b9ed959dca48f4e2fb8ceabd2baf41"]
   - id: hito-2-variables-y-estado
     tier: 1
+    type: codigo
+    language: c
+    harness: prueba.sh
+    stage: 2
     prompt: |
       **Hito 2.** Expande `$NOMBRE`, `${NOMBRE}` (las inexistentes, a cadena vacía) y `$?` (estado de la última orden). Una palabra `NOMBRE=valor` sola es una asignación. Implementa como órdenes internas `cd [dir]` (en el propio proceso de la shell), `pwd` y `export NOMBRE=valor` (la variable debe llegar al entorno de los hijos).
 
@@ -31,6 +39,10 @@ exercises:
     answers: ["sha256:fe7c808515474fdcfd84f75a9a64535bfe39dfb307159ee23c2905ad6945fd70"]
   - id: hito-3-redirecciones
     tier: 1
+    type: codigo
+    language: c
+    harness: prueba.sh
+    stage: 3
     prompt: |
       **Hito 3.** Implementa las redirecciones `< archivo`, `> archivo` (crea o trunca), `>> archivo` (añade) y `2> archivo`, aplicadas en el hijo con `open` y `dup2` antes de `execvp`.
 
@@ -40,6 +52,10 @@ exercises:
     answers: ["sha256:1cd45e35c964d39cfa53a128e67040cfa915a2fed58fd9c498c9e903d813acff"]
   - id: hito-4-tuberias
     tier: 2
+    type: codigo
+    language: c
+    harness: prueba.sh
+    stage: 4
     prompt: |
       **Hito 4.** Implementa tuberías de cualquier longitud (`a | b | c`) con `pipe` y `dup2`, cerrando en cada proceso todos los extremos que no usa. El estado de una tubería es el de su última orden. Las redirecciones deben seguir funcionando dentro de una tubería.
 
@@ -49,6 +65,10 @@ exercises:
     answers: ["sha256:64b5e0ca7a759ea8b8aa12ddac8130235ea50e12b6cb57f900806ffd955b4ea4"]
   - id: hito-5-comillas
     tier: 2
+    type: codigo
+    language: c
+    harness: prueba.sh
+    stage: 5
     prompt: |
       **Hito 5.** Implementa las comillas simples (todo literal) y dobles (literal salvo `$`; dentro, la barra solo escapa `\"`, `\$` y `\`), y la barra invertida fuera de comillas. Las partes entrecomilladas y sin comillas pegadas forman una sola palabra (`'a'"b"c` es `abc`).
 
@@ -58,6 +78,10 @@ exercises:
     answers: ["sha256:4945f39fe04850bef9f60354d9e2d3b230d058e93ee73aeaa180702f15d5248e"]
   - id: hito-6-operadores
     tier: 2
+    type: codigo
+    language: c
+    harness: prueba.sh
+    stage: 6
     prompt: |
       **Hito 6.** Implementa `;`, `&&` y `||` con la semántica de POSIX: misma precedencia, de izquierda a derecha, y una orden saltada no cambia `$?`.
 
@@ -67,6 +91,10 @@ exercises:
     answers: ["sha256:1377286c7dadb26202f0fe41bf31e2f5073859f09c7848225450eceb47703258"]
   - id: hito-7-segundo-plano
     tier: 3
+    type: codigo
+    language: c
+    harness: prueba.sh
+    stage: 7
     prompt: |
       **Hito 7.** Implementa `orden &` (la shell no espera y sigue con la siguiente) y la orden interna `wait`, que espera a todos los procesos en segundo plano. Ningún proceso debe quedar zombi.
 
@@ -76,6 +104,10 @@ exercises:
     answers: ["sha256:08ca81d1c4a74cadb190b316b87fdcf7ebaf37490b85fc1ca1514c0bc2718613"]
   - id: hito-8-guiones-completos
     tier: 3
+    type: codigo
+    language: c
+    harness: prueba.sh
+    stage: 8
     prompt: |
       **Hito 8.** Admite comentarios (`#` al principio de una palabra hasta el final de la línea; `a#b` es una palabra) y espacios al principio y al final, y ejecuta guiones completos que mezclan todo lo anterior.
 

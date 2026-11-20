@@ -14,6 +14,10 @@ attachments: [prueba.sh]
 exercises:
   - id: hito-1-diseno-fir
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 1
     prompt: |
       **Hito 1.** `dsp fir N fc VENTANA` diseña un filtro FIR paso bajo de N coeficientes (N impar) por el método de la ventana (`rect`, `hamming` o `blackman`), normalizado a ganancia 1 en continua, e imprime los coeficientes y la respuesta en dB en cinco frecuencias (§2). N par, fc fuera de (0, 0,5) o una ventana desconocida dan código 1.
 
@@ -23,6 +27,10 @@ exercises:
     answers: ["sha256:28a0e5cab136e3b9ef77c34db1ff9f79c33690215e5401316e09d10250e1af15"]
   - id: hito-2-filtrado
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 2
     prompt: |
       **Hito 2.** `dsp filtra N fc VENTANA SEMILLA` filtra por convolución directa una señal de prueba (tono útil, tono interferente y ruido, §3) y mide la relación señal-ruido antes y después, compensando el retardo de grupo del filtro de fase lineal.
 
@@ -32,6 +40,10 @@ exercises:
     answers: ["sha256:1628401e8cccd4be0dacdb00e81fc0d70489454c23a57e52ed1accb43c50ccdc"]
   - id: hito-3-biquad
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 3
     prompt: |
       **Hito 3.** `dsp biquad TIPO f0 Q` calcula los coeficientes de un filtro IIR de segundo orden (`pasabajos`, `pasaaltos` o `banda-eliminada`, fórmulas del §4), el módulo de sus polos, si es estable y su respuesta en dB en tres frecuencias.
 
@@ -41,6 +53,10 @@ exercises:
     answers: ["sha256:d26fdd5615913971916a9e0533c4a2711bbffb68839f027885e771364af7bff3"]
   - id: hito-4-coma-fija
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 4
     prompt: |
       **Hito 4.** `dsp q15 N fc VENTANA SEMILLA` cuantifica el filtro a Q15 y la señal a Q13 y filtra con aritmética entera con acumulador ancho, redondeo y saturación exactos (§5): imprime la suma de los coeficientes, las primeras salidas, sumas de control y el error máximo frente al filtro en coma flotante.
 
@@ -50,6 +66,10 @@ exercises:
     answers: ["sha256:1cd23e80bfaaff730a9a33537b81cf2ce35aa94e8d49fd0261de38c047637180"]
   - id: hito-5-diezmado-polifasico
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 5
     prompt: |
       **Hito 5.** `dsp diezma M N fc VENTANA SEMILLA` reduce la frecuencia de muestreo por M calculando solo las salidas que se conservan (estructura polifásica) y comprueba que coinciden exactamente con filtrar y descartar, contando las multiplicaciones de cada forma (§6). Con fc > 0,5/M, código 1 (habría solapamiento).
 
@@ -59,6 +79,10 @@ exercises:
     answers: ["sha256:d744ae9af84f1a941a80278c4b91b28008f09e7dcd4d22b3b9a32d5065367d16"]
   - id: hito-6-dtmf
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 6
     prompt: |
       **Hito 6.** `dsp dtmf DIGITOS SEMILLA` genera los tonos DTMF de una secuencia de teclas con ruido y los decodifica con el algoritmo de Goertzel por bloques de 205 muestras, con la regla de detección y de confirmación del §7.
 

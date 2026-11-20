@@ -1,6 +1,7 @@
 /** Generación del bloque `exercises:` de un nodo a partir de un spec (lo usa scripts/ex-inject.ts). */
 import { marcadores, REGISTRO, salDe, TIPOS, type DefEjercicio, type TipoId } from "../../src/lib/tipos-ejercicio";
 import { sellar } from "../../src/lib/sellado";
+import { codeFor, type CodeCase, type Language } from "../../src/lib/codigo";
 
 export interface Spec extends Omit<DefEjercicio, "type"> {
   type?: TipoId;
@@ -9,6 +10,13 @@ export interface Spec extends Omit<DefEjercicio, "type"> {
   answers?: string[];
   review?: boolean;
   variants?: { values: Record<string, string | number>; answers: string[] }[];
+  /** codigo: lenguaje, plantilla, casos (entradas) y salidas esperadas (no se publican: solo el código que dan). */
+  language?: Language;
+  template?: string;
+  cases?: CodeCase[];
+  outputs?: { stdout: string; status?: number }[];
+  harness?: string;
+  stage?: number;
   /** desarrollo: solución modelo (Markdown) y rúbrica; se sellan (src/lib/sellado.ts). */
   solution?: string;
   rubric?: { criterio: string; puntos: number }[];
@@ -48,12 +56,21 @@ export function bloqueEjercicio(s: Spec): string {
   if (s.domain) l.push(`    domain: ${JSON.stringify(s.domain)}`);
   if (s.form) l.push(`    form: ${s.form}`);
   if (s.multiple) l.push(`    multiple: true`);
+  if (s.language) l.push(`    language: ${s.language}`);
+  if (s.harness) l.push(`    harness: ${s.harness}`);
+  if (s.stage !== undefined) l.push(`    stage: ${s.stage}`);
   l.push(`    prompt: ${literal(s.prompt, 6)}`);
   if (s.options) {
     l.push(`    options:`);
     for (const o of s.options) l.push(`      - ${literal(o, 8)}`);
   }
-  if (type === "desarrollo") {
+  if (s.template) l.push(`    template: ${literal(s.template, 6)}`);
+  if (s.cases) l.push(`    cases: ${JSON.stringify(s.cases)}`);
+  if (type === "codigo" && s.cases && !s.outputs) throw new Error(`${s.id}: un ejercicio de código con cases necesita outputs (salidas esperadas)`);
+  if (type === "codigo" && s.cases && s.outputs) {
+    // La respuesta es el código que imprime el script de pruebas con las salidas correctas.
+    l.push(`    answers: ${JSON.stringify(hashes(s, def, [codeFor(s.cases, s.outputs)], null))}`);
+  } else if (type === "desarrollo") {
     if (!s.solution || !s.rubric?.length) throw new Error(`${s.id}: un desarrollo necesita solution y rubric`);
     const limpio = (x: string) => x.split("\\`").join("`").replace(/^\n+|\s+$/g, "");
     l.push(`    sealed: "${sellar({ solution: limpio(s.solution), rubric: s.rubric.map((r) => ({ ...r, criterio: limpio(r.criterio) })) })}"`);

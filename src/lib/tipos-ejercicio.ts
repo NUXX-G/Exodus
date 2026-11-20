@@ -16,6 +16,8 @@
  *   matriz     matriz o vector de números (admite fracciones y expresiones sin variables)
  *   opcion     opción múltiple (`options`; `multiple: true` para varias correctas)
  *   flag       texto exacto sin normalizar (como la flag de un nodo)
+ *   codigo     programa propio que se prueba en el ordenador del alumno (src/lib/codigo.ts); la respuesta es el
+ *              «código del ejercicio» que imprime el script de pruebas (se compara como texto)
  *   desarrollo demostración, derivación, informe…: no se corrige solo; el alumno se puntúa con la rúbrica sellada
  *              (src/lib/sellado.ts) tras ver la solución modelo
  *
@@ -26,7 +28,7 @@ import { aLatex, analizar, aTexto, cumpleForma, ErrorExpresion, evaluar, leerNum
 import { describirDimension, ErrorUnidad, leerUnidad, mismaDimension } from "./unidades";
 import { hashAnswer } from "./exercises";
 
-export const TIPOS = ["texto", "numero", "expresion", "matriz", "opcion", "flag", "desarrollo"] as const;
+export const TIPOS = ["texto", "numero", "expresion", "matriz", "opcion", "flag", "desarrollo", "codigo"] as const;
 export type TipoId = (typeof TIPOS)[number];
 
 export const ETIQUETA_TIPO: Record<TipoId, string> = {
@@ -37,6 +39,7 @@ export const ETIQUETA_TIPO: Record<TipoId, string> = {
   opcion: "Opción múltiple",
   flag: "Flag",
   desarrollo: "Desarrollo",
+  codigo: "Código",
 };
 
 /** Lo que un tipo necesita saber del ejercicio (subconjunto del frontmatter). */
@@ -216,6 +219,12 @@ export const REGISTRO: Record<TipoId, TipoEjercicio> = {
     referencia: (r) => [hashAnswer(r)],
     coincide: igualCualquiera,
   },
+  codigo: {
+    id: "codigo",
+    leer: (envio) => ({ ok: true, huellas: [hashAnswer(envio)] }),
+    referencia: (r) => [hashAnswer(r)],
+    coincide: igualCualquiera,
+  },
   flag: {
     id: "flag",
     leer: (envio) => ({ ok: true, huellas: ["sha256:" + crypto.createHash("sha256").update(envio.trim(), "utf8").digest("hex")] }),
@@ -296,14 +305,14 @@ function clavesMatriz(m: number[][], def: DefEjercicio, sal: string): string[] {
 /** Corrige un envío. Devuelve si es correcto, o el error de lectura (que no cuenta como intento). */
 export function corregir(def: DefEjercicio, aceptadas: string[], envio: string, sal: string): { correcto: boolean; huella: string; interpretacion?: string } | { error: string } {
   const tipo = REGISTRO[def.type];
-  const l = tipo.leer(envio, def, def.type === "texto" || def.type === "flag" ? def.id : sal);
+  const l = tipo.leer(envio, def, def.type === "texto" || def.type === "flag" || def.type === "codigo" ? def.id : sal);
   if (!l.ok) return { error: l.error };
   return { correcto: tipo.coincide(aceptadas, l.huellas), huella: l.huellas[0], interpretacion: l.interpretacion };
 }
 
 /** Vista previa sin corregir: cómo ha entendido Exodus la respuesta. */
 export function interpretar(def: DefEjercicio, envio: string): { ok: true; texto: string; latex?: string } | { ok: false; error: string } {
-  if (def.type === "texto" || def.type === "flag" || def.type === "opcion") return { ok: true, texto: envio.trim() };
+  if (def.type === "texto" || def.type === "flag" || def.type === "opcion" || def.type === "codigo") return { ok: true, texto: envio.trim() };
   const l = REGISTRO[def.type].leer(envio, def, "vista");
   if (!l.ok) return { ok: false, error: l.error };
   let latex: string | undefined;

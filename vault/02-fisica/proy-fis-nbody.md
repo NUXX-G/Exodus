@@ -14,6 +14,10 @@ attachments: [prueba.sh]
 exercises:
   - id: hito-1-energia-y-momentos
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 1
     prompt: |
       **Hito 1.** `nbody energia ARCHIVO` lee un sistema (formato del §2) e imprime la energía cinética, la potencial (con suavizado), la total, el momento lineal, el momento angular respecto al origen y el centro de masas, con el formato numérico del §3. Un archivo con una masa no positiva, una línea mal formada o sin cuerpos termina con código 1.
 
@@ -23,6 +27,10 @@ exercises:
     answers: ["sha256:48b0963097195f31573a0c019ffe3c0fdf5bec790b68b19d509a322dd45260eb"]
   - id: hito-2-fuerzas
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 2
     prompt: |
       **Hito 2.** `nbody fuerzas ARCHIVO` imprime la aceleración de cada cuerpo, a_i = Σ_j G m_j (r_j − r_i) / (|r_j − r_i|² + ε²)^{3/2}, una línea por cuerpo.
 
@@ -32,6 +40,10 @@ exercises:
     answers: ["sha256:db6929c4cc7de0a3dd881ad08249faa36c48ca5aea209be9e6fb0f0c7c4bfbef"]
   - id: hito-3-integradores
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 3
     prompt: |
       **Hito 3.** `nbody integra ARCHIVO METODO dt PASOS` integra con `euler`, `euler-simplectico`, `verlet` (velocidad de Verlet: medio impulso, deriva, medio impulso), `rk4` o `yoshida4` (composición de Verlet de cuarto orden) e imprime posición y velocidad finales de cada cuerpo y el error relativo de energía. Un método desconocido termina con código 1.
 
@@ -41,6 +53,10 @@ exercises:
     answers: ["sha256:20a3c861531e234ae178b4058b1a3e838b67f3443ace923a6327fbf40eb40421"]
   - id: hito-4-kepler
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 4
     prompt: |
       **Hito 4.** `nbody kepler ARCHIVO t` resuelve analíticamente el problema de dos cuerpos: imprime la posición y la velocidad del cuerpo 2 respecto al 1 en el instante `t`, resolviendo la ecuación de Kepler (§5). Con un número de cuerpos distinto de dos, código 1.
 
@@ -50,6 +66,10 @@ exercises:
     answers: ["sha256:062d38780c06f1cb4c13fb2ee9687bed49baa375d53e4e2da6e993607538dc83"]
   - id: hito-5-orden-de-convergencia
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 5
     prompt: |
       **Hito 5.** `nbody orden ARCHIVO METODO T N1 N2 …` integra hasta `T` con `N` pasos para cada `N`, mide el error de la posición relativa frente a la solución de Kepler y estima el orden del método entre resultados consecutivos (§5).
 
@@ -59,6 +79,10 @@ exercises:
     answers: ["sha256:880bb3dd368db3491b82e257e82735b7f771fec5c866c6551b5f8a80a19f4af1"]
   - id: hito-6-conservacion
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 6
     prompt: |
       **Hito 6.** `nbody deriva ARCHIVO METODO dt PASOS` mide el máximo y el final del error relativo de energía y el máximo cambio del momento angular a lo largo de la integración (§6), para comparar métodos simplécticos y no simplécticos.
 
@@ -68,6 +92,10 @@ exercises:
     answers: ["sha256:b50e6acf10da94fb7b80501884670b806c4cb83151fa3f6b19be1ff2160e0514"]
   - id: hito-7-barnes-hut
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 7
     prompt: |
       **Hito 7.** `nbody bh N SEMILLA θ ε` genera `N` cuerpos con el generador del §7, calcula las aceleraciones con un octárbol de Barnes-Hut con el criterio de apertura `lado/d < θ` y las compara con la suma directa: número de interacciones y errores relativos máximo y medio.
 

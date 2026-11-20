@@ -14,6 +14,10 @@ attachments: [prueba.sh]
 exercises:
   - id: hito-1-autovalores
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 1
     prompt: |
       **Hito 1.** `schro autovalores N L K POTENCIAL…` discretiza H = −½ d²/dx² + V(x) con diferencias finitas de tres puntos en N puntos interiores de [−L/2, L/2] (h = L/(N + 1), xⱼ = −L/2 + (j + 1)·h, ψ = 0 en los extremos) e imprime los K autovalores más bajos, uno por línea. Potenciales: `armonico ω` (½ω²x²), `pozo V0 a` (−V0 si |x| < a/2, 0 fuera) y `cuartico g` (g·x⁴). N < 10, K fuera de [1, N] o un potencial desconocido terminan con código 1.
 
@@ -23,6 +27,10 @@ exercises:
     answers: ["sha256:aaf715fd5e8f6259214bc1c05d138ca902af6429ac0e19342edeba9b553fd608"]
   - id: hito-2-orden-de-convergencia
     tier: 1
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 2
     prompt: |
       **Hito 2.** `schro orden ω N1 N2 …` calcula, con L = 20, el error |E₀ − ω/2| del estado fundamental del oscilador para cada N, imprime `N error` (error con 2 cifras significativas, `%.1e`) y, para cada par consecutivo, `orden p` con p = ln(error_anterior/error_siguiente) / ln((N_siguiente + 1)/(N_anterior + 1)) con un decimal (h es proporcional a 1/(N + 1)).
 
@@ -32,6 +40,10 @@ exercises:
     answers: ["sha256:d03e30f75f4ac8cadf4ace4e1f7921ae7e866efd25b7ce8513de5b16bafd30b8"]
   - id: hito-3-pozo-finito
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 3
     prompt: |
       **Hito 3.** `schro pozo V0 a` resuelve de forma exacta los estados ligados del pozo finito de profundidad V0 y anchura a: con z = k·a/2 y z₀ = (a/2)·√(2·V0), los estados pares cumplen z·tan z = √(z₀² − z²) y los impares −z·cot z = √(z₀² − z²); E = k²/2 − V0. Imprime `estados n` y las energías de menor a mayor. V0 o a no positivos terminan con código 1.
 
@@ -41,6 +53,10 @@ exercises:
     answers: ["sha256:eb5ac63344f365e85f82131b2ea010197f85315742af0a99f8c2f77a41d1bd50"]
   - id: hito-4-valores-esperados
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 4
     prompt: |
       **Hito 4.** `schro esperados N L POTENCIAL…` obtiene el estado fundamental de la discretización del hito 1 (por iteración inversa, normalizado con Σψ²·h = 1) e imprime `E0`, `x2` = ⟨x²⟩, `p2` = ⟨p²⟩ = 2(E₀ − ⟨V⟩) y `dxdp` = √(⟨x²⟩ − ⟨x⟩²)·√⟨p²⟩, que debe cumplir el principio de incertidumbre (≥ 1/2).
 
@@ -50,6 +66,10 @@ exercises:
     answers: ["sha256:2dd8d09c9ee715451d6b90e0e659fefe74618b526d34e848c0dee33347d93835"]
   - id: hito-5-transmision
     tier: 2
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 5
     prompt: |
       **Hito 5.** `schro transmision E V1 a1 [V2 a2 …]` calcula, para una partícula de energía E > 0 que llega desde la izquierda, los coeficientes de transmisión `T` y de reflexión `R` de un potencial constante a trozos que empieza en x = 0 (capas de altura Vᵢ y anchura aᵢ, potencial nulo fuera), imponiendo la continuidad de ψ y ψ′ en cada frontera (matrices de transferencia). E ≤ 0 o una anchura no positiva terminan con código 1.
 
@@ -59,6 +79,10 @@ exercises:
     answers: ["sha256:44afabdd161582932f9573b517343674a8a02dec3bb0dc366fbefe1c191a7b5a"]
   - id: hito-6-paquete-de-ondas
     tier: 3
+    type: codigo
+    language: cualquiera
+    harness: prueba.sh
+    stage: 6
     prompt: |
       **Hito 6.** `schro paquete N L x0 σ k0 V0 a dt PASOS` evoluciona con Crank-Nicolson, (I + iΔt·H/2)·ψⁿ⁺¹ = (I − iΔt·H/2)·ψⁿ, el paquete gaussiano ψ ∝ exp(−(x − x0)²/(4σ²) + i·k0·x) (normalizado en la malla) sobre la malla del hito 1 con una barrera de altura V0 en |x| < a/2. Tras PASOS pasos imprime `norma` (Σ|ψ|²·h − 1, con 2 cifras y 0.0e+00 por debajo de 10⁻¹²), `transmitida` (probabilidad en x ≥ a/2), `reflejada` (en x ≤ −a/2) y `x_medio`.
 
