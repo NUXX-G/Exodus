@@ -81,7 +81,16 @@ async function main() {
       problemas.push(`${n.id}: no se puede regenerar desde el spec: ${(e as Error).message}`);
       continue;
     }
-    const porId = (xs: unknown[]) => new Map((xs as { id: string }[]).map((x) => [x.id, JSON.stringify(x)]));
+    // Los hitos con prueba.sh llevan en el vault `type: codigo`, `language`, `harness` y `stage`, que pone
+    // scripts/dev/marcar-hitos.cjs (los specs antiguos no los generan): se comparan sin esos campos.
+    const conHarness = new Set((actual as { id: string; harness?: string }[]).filter((x) => x.harness).map((x) => x.id));
+    const canon = (x: Record<string, unknown>) => {
+      if (!conHarness.has(x.id as string)) return JSON.stringify(x);
+      const { type: _t, language: _l, harness: _h, stage: _s, ...resto } = x;
+      void _t, void _l, void _h, void _s;
+      return JSON.stringify(resto);
+    };
+    const porId = (xs: unknown[]) => new Map((xs as Record<string, unknown>[]).map((x) => [x.id as string, canon(x)]));
     const a = porId(actual), b = porId(regenerado);
     for (const [id, v] of b) {
       if (!a.has(id)) problemas.push(`${n.id}: el ejercicio ${id} está en el spec pero no en el vault (falta inyectar)`);

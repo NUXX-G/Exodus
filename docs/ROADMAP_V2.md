@@ -154,12 +154,12 @@ El usuario pide terminar **todas** las fases de forma autónoma, **sin preguntar
 
 ## FASE 8 — Objetivos recomendados
 
-- [ ] Objetivos opcionales definidos en el vault como listas ordenadas de nodos de cualquier área. Ejemplos:
+- [x] Objetivos opcionales definidos en el vault como listas ordenadas de nodos de cualquier área. Ejemplos:
       «Primero de Física y Matemáticas», «Junior de sistemas», «Analista SOC nivel 1».
-- [ ] Se pueden activar varios, con avance, ritmo estimado y siguiente nodo recomendado.
-- [ ] Registro opcional de tiempo de estudio por día y por área en el heatmap.
-- [ ] Estructura preparada para que mates y física crezcan hasta el grado completo sin reorganizar el árbol.
-- [ ] Cierre de fase (checks, casillas, `STATUS.md`, commit `v2: fase 8 completada`).
+- [x] Se pueden activar varios, con avance, ritmo estimado y siguiente nodo recomendado.
+- [x] Registro opcional de tiempo de estudio por día y por área en el heatmap.
+- [x] Estructura preparada para que mates y física crezcan hasta el grado completo sin reorganizar el árbol.
+- [x] Cierre de fase (checks, casillas, `STATUS.md`, commit `v2: fase 8 completada`).
 
 ## FASE 8A — Explicación en escalera y glosario
 

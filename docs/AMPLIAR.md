@@ -155,6 +155,32 @@ temario y Obsidian detrás de las integradas, en el orden del archivo. La misma 
 o el color de un área integrada (`id: fisica`, `label: ...`). `vault:check` avisa de cualquier nodo con un área
 sin declarar. Crea también la carpeta `vault/08-quimica/` para mantener el orden.
 
+## 3b. Objetivos recomendados y cómo crecer hasta el grado completo
+
+Un **objetivo** es una nota en `vault/_objetivos/<id>.md` (sin `id` de nodo) con una lista ordenada de nodos de
+cualquier área:
+
+```yaml
+---
+objetivo: uned-primero
+title: Primero del doble grado de Matemáticas y Física (UNED)
+resumen: Una línea para la tarjeta.
+horas_semana: 20                # ritmo sugerido; cada usuario pone el suyo al activarlo
+fuente: "UNED, folleto … (URL), consultado el AAAA-MM-DD"
+nodos: [mat-logica-demostraciones, mat-algebra-lineal-1, …]
+---
+Qué se consigue y qué cubre cada bloque (Markdown).
+```
+
+- Se activan en `/objetivos` (varios a la vez); Inicio muestra el avance, las semanas que faltan al ritmo elegido, el
+  ritmo necesario si hay fecha y el siguiente nodo (si está bloqueado, el prerequisito disponible más cercano).
+- Un id de la lista que aún no existe es un **aviso** de `vault:check` («pendiente de escribir»): marca un hueco del
+  temario. Al escribir ese nodo con ese id, el objetivo lo incluye solo.
+- **Crecer hasta el grado completo sin reorganizar el árbol**: los nodos nuevos de un curso (p. ej. segundo de la UNED,
+  `docs/contenido/uned-doble-grado.md`) se añaden como cualquier nodo, con sus prerequisitos apuntando a los que ya
+  hay; luego se crea su objetivo (`uned-segundo`) con la lista en orden. Ni los ids ni las carpetas existentes cambian,
+  así que el progreso se conserva. Un nodo puede estar en varios objetivos.
+
 ## 4. Qué pasa con el progreso al cambiar contenido
 
 | Cambio | Efecto en el progreso |

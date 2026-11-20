@@ -23,10 +23,9 @@ registro de sesiones (una línea) o a `docs/`.
 
 ## 1. Ahora mismo
 
-- **Fase actual**: FASE 8 — Objetivos recomendados.
-- **Tarea actual**: objetivos opcionales en el vault (listas ordenadas de nodos de cualquier área), activables por usuario, con avance, ritmo y siguiente nodo.
-- **Siguiente paso concreto**: leer la FASE 8 del roadmap; formato `vault/_objetivos/<id>.md` (sin id de nodo, como los recursos), tabla de objetivos activos por usuario, panel en Inicio con avance y ritmo, registro opcional de tiempo de estudio por día y área.
-- **Pendiente de la fase 8**: ejecutar el e2e (objetivos y tiempo), sección de AMPLIAR sobre crecer hasta el grado y cierre. **Además**: `vault:soluciones` completo (con Docker) da 134 discrepancias, todas en los hitos de proyectos marcados por `scripts/dev/marcar-hitos.cjs` (los specs base no ponen `type: codigo`/`harness`/`stage`): hacer que vault-soluciones aplique la misma marca antes de comparar (o crear specs .v2) y confirmar que no queda ninguna otra.
+- **Fase actual**: FASE 8A — Explicación en escalera y glosario.
+- **Tarea actual**: formato de nodo con registros «práctico» y «formal» conmutables, y glosario por área con términos resaltados y /glosario.
+- **Siguiente paso concreto**: leer la FASE 8A del roadmap y docs/PEDAGOGIA.md; diseñar el marcado en el Markdown del nodo (p. ej. callouts `> [!practico]` / `> [!formal]` o secciones `## Práctico`/`## Formal`) que Obsidian también entienda, el conmutador en la página del nodo (preferencia del usuario) y el formato de `vault/_glosario/<area>.md`.
 - **Bloqueos**: ninguno.
 - **Prueba en navegador**: `scripts/dev/sesion-prueba.ts` (usuario y sesión en una base temporal) y
   `scripts/dev/e2e-v2.cjs` (Playwright 1.58 de la caché de npx: `PLAYWRIGHT_CORE=C:/Users/nelso/AppData/Local/npm-cache/_npx/787f53666b8d4740/node_modules/playwright-core`).
@@ -180,6 +179,11 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
    rama técnica: cadenas de pasos de los nodos de la rama, de dificultad creciente (`vault/09-simulacros/`). *Por qué*:
    reutilizar los ejercicios ya verificados por dos métodos es más fiable que escribir exámenes nuevos sin verificar.
 
+17. **2026-11-20 · Objetivos en `vault/_objetivos`** (listas ordenadas de ids, como notas sin id) y tiempo de estudio
+   opcional en `study_time` (manual o temporizador), sumado en el heatmap. Los ids pendientes de escribir son avisos,
+   no errores, para que un objetivo como «primero UNED» muestre los huecos reales. `vault:soluciones` compara los hitos
+   marcados por `marcar-hitos.cjs` sin sus campos de código (los specs antiguos no los generan).
+
 ## 7. Preguntas abiertas
 
 - Ninguna todavía. (Las ⛔ de la fase 1 se preguntarán al llegar a ellas.)
@@ -192,6 +196,7 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
 
 | Fecha | Qué se hizo | Commit |
 | --- | --- | --- |
+| 2026-11-20 | Fase 8: objetivos recomendados en vault/_objetivos (6: acceso a la universidad, primero UNED con el plan oficial 2026-27, junior de sistemas, analista SOC 1, junior de IA, junior de robótica) con avance, semanas al ritmo elegido, ritmo necesario para una fecha y siguiente nodo, en /objetivos y en Inicio; tiempo de estudio opcional por nodo sumado en el heatmap; cómo crecer hasta el grado completo (AMPLIAR §3b); vault:soluciones compara los hitos marcados sin sus campos de código | `v2: fase 8 completada` |
 | 2026-11-20 | Fase 7: vault:check ampliado (renderiza cada variante, opción y banco; variantes repetidas, datos sin rellenar, huellas por tipo; avisos de fuentes sin capítulo o sección), vault:soluciones (doble comprobación de cada spec, vault sincronizado con el spec, variantes degeneradas: 6 corregidas), vault:cobertura (docs/contenido/cobertura.md); arreglado un wikilink falso en ia-pytorch | `v2: fase 7 completada` |
 | 2026-11-20 | Fase 6: simulacros y retos (kind: examen): items referenciados con variantes, cronómetro con entrega automática, guardado automático, modo papel, desarrollos con rúbrica tras entregar, retos encadenados, historial con mejor y media; 5 simulacros (ESO, Bachillerato mates y física, primero de grado mates, física de grado) y 5 retos finales por rama técnica | `v2: fase 6 completada` |
 | 2026-11-20 | Fase 5: prueba de nivel adaptativa por área (búsqueda binaria de la frontera en el orden de estudio, 2-3 preguntas por sonda, «No lo sé»), marcas «dominado por diagnóstico» que desbloquean sin completar y se quitan por nodo o área, /diagnostico con resultado y nodo por el que empezar | `v2: fase 5 completada` |
