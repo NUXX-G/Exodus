@@ -694,8 +694,9 @@ $$
 \sigma(n) = \prod_{i=1}^{r} \frac{p_i^{a_i + 1} - 1}{p_i - 1},
 $$
 
-donde $\tau$ es el número de divisores y $\sigma$ su suma (la suma de una progresión geométrica
-$1 + p + \cdots + p^a$ da la fracción). **Ejemplo resuelto: $n = 48 = 2^4 \cdot 3$.**
+donde $\tau$ es el número de divisores y $\sigma$ su suma. La fracción sale de un truco: si
+$S = 1 + p + \cdots + p^a$, entonces $pS - S = p^{a+1} - 1$ (casi todo se cancela); se estudia en
+[[mat-sucesiones-progresiones]]. **Ejemplo resuelto: $n = 48 = 2^4 \cdot 3$.**
 $\tau = 5 \cdot 2 = 10$ divisores; $\sigma = \frac{2^5 - 1}{2 - 1}\cdot\frac{3^2 - 1}{3 - 1} = 31 \cdot 4 = 124$.
 Comprobación enumerando: $1, 2, 3, 4, 6, 8, 12, 16, 24, 48$ son $10$ y suman $124$. $\checkmark$
 
