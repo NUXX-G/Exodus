@@ -26,7 +26,7 @@ const terminoSchema = z.object({
   termino: z.string().min(1).max(80),
   sinonimos: z.array(z.string().min(1).max(80)).max(10).optional(),
   /** Expresiones hechas que empiezan por el término pero no son él («fuerza bruta» no es una fuerza). */
-  excepto: z.array(z.string().min(1).max(80)).max(10).optional(),
+  excepto: z.array(z.string().min(1).max(80)).max(30).optional(),
   llano: z.string().min(1).max(600),
   formal: z.string().max(1500).optional(),
   nodo: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/),
@@ -109,8 +109,15 @@ export function patronTerminos(terminos: Termino[]): { re: RegExp; porForma: Map
 export function terminoEn(texto: string, i: number, forma: string, patron: NonNullable<ReturnType<typeof patronTerminos>>): Termino | null {
   const t = patron.porForma.get(forma.toLowerCase());
   if (!t) return null;
-  const resto = texto.slice(i, i + 100).toLowerCase();
-  return t.excepto.some((e) => resto.startsWith(e)) ? null : t;
+  // Excluido si la aparición queda dentro de una de las expresiones exceptuadas («fuerza bruta», «misma fuerza»).
+  const desde = Math.max(0, i - 80);
+  const ventana = texto.slice(desde, i + forma.length + 80).toLowerCase();
+  const pos = i - desde;
+  const dentro = t.excepto.some((e) => {
+    for (let k = ventana.indexOf(e); k >= 0; k = ventana.indexOf(e, k + 1)) if (k <= pos && pos + forma.length <= k + e.length) return true;
+    return false;
+  });
+  return dentro ? null : t;
 }
 
 /** Términos que aparecen en un texto (para vault:check). */

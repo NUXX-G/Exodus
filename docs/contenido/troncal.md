@@ -143,6 +143,12 @@ que los ejercicios, y fuente con sección. Orden (el de estudio):
 
 Tras cada bloque de nodos: revisión independiente (d) por un subagente que no haya visto la redacción.
 
+### Registro de redacción
+
+| Nodo | Qué se hizo | Fecha |
+| --- | --- | --- |
+| `tro-aprender-a-aprender` | Escalera en §1, §2, §3 y §6; §3 actualizada a la v2 (escalera, glosario, repaso con variantes, diario de errores, temporizador); plan con cifras actuales; fuentes con páginas; 3 ejercicios con variantes y 4 preguntas de repaso; glosario del troncal (4 términos) | 2026-11-20 |
+
 ## d) Revisión independiente
 
 (Se anota aquí cada nodo revisado, qué encontró el revisor y qué se cambió.)
