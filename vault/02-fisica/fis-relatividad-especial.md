@@ -10,9 +10,27 @@ academic_sources:
 exercises:
   - id: factor-de-lorentz
     tier: 1
+    type: numero
+    sig: 5
     prompt: |
-      ¿Cuánto vale el factor de Lorentz $\gamma$ para $v = 0{,}8c$? Respuesta: con **4 decimales**.
-    answers: ["sha256:69a9b5f97e16b15f8cf0d08d0cfbd4c5ea3e97c91adc8ea41fd0d3ab1ae7c1ca"]
+      ¿Cuánto vale el factor de Lorentz $\gamma$ para $v = {{b}}\,c$? Respuesta: con **5 cifras significativas**.
+    variants:
+      - values: {"b":"0{,}8"}
+        answers: ["sha256:9045b3cb3b0b50fb677bef655c06a41536c7a9cebc2570ca8eb3775f0810564c","sha256:69bc8f7339f0f6bd7c1442b1c219b7b059de14c3e0ce48e05278affc22cf573c","sha256:8f45d9a47e7054d981826beafa65775a922fdad47b74c6f39c2851bfcebf677a"]
+      - values: {"b":"0{,}6"}
+        answers: ["sha256:73548375d99f3f29b0c0e9fba46377f09d3ef44a8592ce0af30d6252a3eb53eb","sha256:cbfd108c9f792acd818b2e2fbf42031bdaf18d827198bf404c6c42327f3d47ff","sha256:9e7aa19bc9dfd8cb891d37c18d037de2888a864b9c7873e4317f0b902d1a5164"]
+      - values: {"b":"0{,}9"}
+        answers: ["sha256:09b5ca213786bc3af2f4fe63e9b6c275c1cb9e3a7f6fdffed1d4fa0ef3506570","sha256:099df35a4c8fe2ebdfb8af99bfc3045b34259853e4cbb8fef34b06027ffcc0e8","sha256:96e5bc3ab7943fb9a9ea3bbcb1632d0ca7b54ac225993e8ae2edaab694852fb8"]
+      - values: {"b":"0{,}5"}
+        answers: ["sha256:37a11eecef879c1c701d304b050c48ba38dac989154a93deb67dcbfd2c272fba","sha256:0c119e645cefd5a9ce584c8f6485561463e53161a24e1164f958160df58af8af","sha256:1e6d0d1274539ec43da8d98615437704ec52d216f5cd1dc3bef8c896024d934f"]
+      - values: {"b":"0{,}95"}
+        answers: ["sha256:ffc65e1f5f4094c71ec633e9b504aecf9bb9a85608b9c227451359a6fd43b320","sha256:6205bdbb37b2775ef917c9c0871f523b47434edbe616e5080dae4531c018ccdf","sha256:29b1266bff7a998b3f3aefd90b021af61accb35665b724d65154931408c5da74"]
+      - values: {"b":"0{,}99"}
+        answers: ["sha256:f55159de084ca52e533990773f09452546a5fc720916e3677402d132fecdc574","sha256:06a782a19b21262cd8e97c99352fb29ce67e8ed9409b4e13d492a72d6a99f8b6","sha256:ef8defccb817a75d25590fcd0a8bc22b9457ff79a4788bebdeaf6dab76eb56f0"]
+      - values: {"b":"0{,}3"}
+        answers: ["sha256:589cd90dbdd96b63929ae2650c90a0ece8da03fcb69939b4297420fcdaa2e9eb","sha256:cc3325badb7c14adcbe8783f5e02a19facf48dafe783265c3c301798cffdac14","sha256:c422cc14c137745f33910cd9c3cc51270cd2b698b26b5f011dbfc0ab8fc9aba7"]
+      - values: {"b":"0{,}75"}
+        answers: ["sha256:205edfaf82e4b850c9aaba1321887059323818e03a9c8392ba9126da05ed013c","sha256:cab530b470bbc298a99b13fd44a55b1a6143879e07ae525521d50468e22d67a7","sha256:2cc2c98ecda39fcf6ca8aec1a6ed1d6dcdfff001bc60e5e62656882f69ee362c"]
   - id: vida-del-muon
     tier: 1
     prompt: |
@@ -20,14 +38,45 @@ exercises:
     answers: ["sha256:785f3ec7eb32f30b90cd0fcf3657d388b5ff4297f2f9716ff66e9b69c05ddd09"]
   - id: contraccion-de-longitudes
     tier: 1
+    type: numero
+    sig: 5
+    unit: "m"
     prompt: |
-      Una nave de 100 m de longitud propia pasa a $0{,}6c$. ¿Cuánto mide en el sistema del observador? Respuesta: en metros.
-    answers: ["sha256:48449a14a4ff7d79bb7a1b6f3d488eba397c36ef25634c111b49baf362511afc"]
+      Una nave de ${{L0}}$ m de longitud propia pasa a ${{b}}\,c$. ¿Cuánto mide en el sistema del observador? Respuesta: en
+      metros, con **5 cifras significativas**.
+    variants:
+      - values: {"L0":100,"b":"0{,}6"}
+        answers: ["sha256:331e412b54eca84d2cb71bfbe548e423ba2d0ef628d695f94073c3b739e2c838","sha256:997cc12384724d00ecfa6046139a9483cee441476f054e8607346d985f6d858e","sha256:bc2213226089eea6f03c0c68155c2c27023b92716117ec6e8c3bf7ce076a689b"]
+      - values: {"L0":50,"b":"0{,}8"}
+        answers: ["sha256:9419887c8489d96eace51b9305799526897f1b3ff703d3729f63be502973a107","sha256:00ebaa7c5ce78f4fb7dc1d5351887330f53f6043447630f8735290854fe6bead","sha256:bd7841d86ab0a0b60520ddca5862acf03bec136035a674c4b33736f8b27a9a1e"]
+      - values: {"L0":200,"b":"0{,}6"}
+        answers: ["sha256:e950a14b02800aa1a972a2ed889aa07be6501823bb124ea5f88d3a05a0e7ba32","sha256:010c3894bc0d0a97d676f4c9ea47aee030d7fbddfc0b8f9f79b4daddcf55622b","sha256:4c2e96b8c0060130f72ea7cb93f089873957e3d698c10e7a320eb965715c905d"]
+      - values: {"L0":120,"b":"0{,}8"}
+        answers: ["sha256:0ea2cadbf8d30e2e575ff5d188d154873504a0655b53aebf38eaf8f3e976bb9d","sha256:2abec43378f68b77d5107c1facbb65970d3c4e3af8678f15ca9a6a0bd17b1370","sha256:bf2015b9a0d9f52735e1c917ee1ed5e2c89be8f93068bb85d7745bcf26afb390"]
+      - values: {"L0":300,"b":"0{,}28"}
+        answers: ["sha256:fec2cff354a34f60bbc317085209b41ffbfb46e25e1d140445271d10b3940e9d","sha256:833851066df2ddba77c3667753cd22ec904b068f703c890c60ac59417bf8324d","sha256:fb132d1b1a5e2b0f4db5348d47da97d5065b76a0f5f32313780d3b18bc5d37c0"]
+      - values: {"L0":75,"b":"0{,}96"}
+        answers: ["sha256:496421269b4e70f963d7fcd98aef4dac04c3fb2239b331842a2a6539072cc025","sha256:4ab7156188eb4ed1a4dea8338200e1d837f813a1241371973a13f84758063733","sha256:6d4364763ea74085b875277d9cfd5268ff3452b194d5c113892019d302b63c9e"]
   - id: composicion-de-velocidades
     tier: 1
+    type: numero
+    sig: 4
     prompt: |
-      Una nave se aleja de la Tierra a $0{,}6c$ y lanza hacia delante una sonda a $0{,}7c$ respecto a ella. ¿A qué velocidad (en unidades de $c$) se aleja la sonda de la Tierra? Respuesta: con **4 decimales**.
-    answers: ["sha256:60ced2445e8a99d5919cefa1fc1cfc599744a50245b3e59447432972ca34c78b"]
+      Una nave se aleja de la Tierra a ${{v}}\,c$ y lanza hacia delante una sonda a ${{u}}\,c$ respecto a ella. ¿A qué velocidad
+      se aleja la sonda de la Tierra, en unidades de $c$? Respuesta: con **4 cifras significativas**.
+    variants:
+      - values: {"v":"0{,}6","u":"0{,}7"}
+        answers: ["sha256:7b96f60b8cb289c62f5eab17d640a6532c3ece9f8576f1ebe331438f7a80cf6b","sha256:9b6db56a019242865d92e0965c102e43f31b0886c206eea31e636671c1647566","sha256:51fa6d75f8c484ebdd88c284da38e0b3d47b63fa94ddf4cbe5e5d236b0cd07c1"]
+      - values: {"v":"0{,}5","u":"0{,}5"}
+        answers: ["sha256:39a257ed9c5411189aa6bac073e0d0e52ded547087c448772264a0f4a339a45a","sha256:80ed4954880f133ca908b06648e99ef366138c19386223e2f5c898d7f8f966bb","sha256:9f6507b08f79e33a5569f63a06b64f7c63ce7aad3c67030379ad8fa62a1e659b"]
+      - values: {"v":"0{,}8","u":"0{,}8"}
+        answers: ["sha256:f28fe9327a7251c360d0ccefd0cccd9940176cb101153c702501d06aedbfdd06","sha256:959b4672152fa124bb300812bf3d6f929c506ad595abbba5b4db434923c8b56b","sha256:bb5996a4bca2c116f2090ea73a01cb92ec24d9fa4cb2e6b59f49c57a720fa5a0"]
+      - values: {"v":"0{,}9","u":"0{,}3"}
+        answers: ["sha256:80d5765cd836d6769e678d8c5eca85cf17d61878a92619ce2de2169147026511","sha256:53ae3feca5ccc572f2bbd2030e49001a4fd92228e7dd5e0a6b0333947736c93c","sha256:4fd6f1ccf04fa0d35831d9b850355868930f4ff5052eb7c7195c411d8194dc24"]
+      - values: {"v":"0{,}4","u":"0{,}9"}
+        answers: ["sha256:ad8045f2dcc6437da309301f342814ca9a2536f336590d0903635afd222af9c2","sha256:0f57bb2c4fad9de3afa59dff62d8051264a3051dca90120969a79f18e4fe6a07","sha256:88b04fbe71a16b18dbb18d6351a7a7a0b6616a1602d2bb01dc5f8abac25fc887"]
+      - values: {"v":"0{,}7","u":"0{,}7"}
+        answers: ["sha256:804e8dfd44842a09160e1fa7d65a62c3d148501c5b48c732d69f40d3bb595938","sha256:5592877c4c631304229858888e3020ecb732da3e4053f0dce722bc644eab9e26","sha256:413640af221c5d38616e46a638ae91b0972a0b4262179eec61c8ebfb95472d4a"]
   - id: intervalo-y-tiempo-propio
     tier: 1
     prompt: |
@@ -88,6 +137,66 @@ exercises:
     prompt: |
       En el laboratorio hay un campo magnético $B_z = 1$ T y ningún campo eléctrico. ¿Qué campo eléctrico $E'_y$ (en MV/m) mide un observador que se mueve a $0{,}6c$ en $+x$? Respuesta: con **4 decimales**.
     answers: ["sha256:e606b969e5ac66e11b3adb00e532845dac919d4ac024a7577b72ccfb83d34563"]
+  - id: r-quien-envejece
+    tier: 2
+    type: opcion
+    review: true
+    prompt: |
+      Paradoja de los gemelos: una gemela viaja a una estrella y vuelve; la otra se queda en la Tierra. Al reencontrarse,
+      ¿quién es más joven y por qué no es simétrico?
+    options:
+      - |
+        Los dos igual: el movimiento es relativo
+      - |
+        El que se quedó en la Tierra, porque es él quien ve moverse a la nave
+      - |
+        La gemela viajera: cambia de sistema inercial al dar la vuelta y su línea de universo es más corta en tiempo propio
+      - |
+        Depende de quién haga la medida
+    answers: ["sha256:3f3b22754eb1795bcdb39f7303abef1b237ed17401d9e9635d25515d7faae082"]
+  - id: r-superar-c
+    tier: 1
+    type: opcion
+    review: true
+    prompt: |
+      Una nave a $0{,}9c$ lanza una sonda hacia delante a $0{,}9c$ respecto a ella. ¿Puede la sonda ir más rápido que la luz
+      respecto a la Tierra?
+    options:
+      - |
+        Sí: $0{,}9c + 0{,}9c = 1{,}8c$
+      - |
+        No: con la composición relativista, si $u, v < c$, el resultado es siempre menor que $c$
+      - |
+        Solo si las dos velocidades van en el mismo sentido
+      - |
+        Sí, pero solo para la luz
+    answers: ["sha256:fa989b23878faf14f95c262298210f009ffb100b508ee9cc1b875fcf491ac74c"]
+  - id: r-gamma-baja-velocidad
+    tier: 1
+    type: numero
+    review: true
+    sig: 8
+    prompt: |
+      Calcula $\gamma$ para un coche a $30$ m/s ($c = 299\,792\,458$ m/s). Respuesta: con **8 cifras significativas**. ¿Por qué no
+      notamos la relatividad en la vida diaria?
+    answers: ["sha256:ee3fd7d4dcb57f9527e7f03ff75eb41408e25464ed022c51cecd416e4630494a","sha256:b52a90260a558310957f8bf2873b1bb5e7836ee00b7d476f115bd8856d321cd6","sha256:0380e922835a1a006fe0977dfe03cbc29250c041f5060cefabcc2d488011ac13"]
+  - id: r-simultaneidad
+    tier: 2
+    type: opcion
+    review: true
+    prompt: |
+      Dos rayos caen a la vez (en el sistema del andén) en los dos extremos de un tren que pasa. ¿Son simultáneos para un
+      pasajero del tren?
+    options:
+      - |
+        No: dos sucesos simultáneos y separados en el espacio en un sistema no lo son en otro que se mueve respecto a él
+      - |
+        Sí: la simultaneidad es absoluta
+      - |
+        Solo si los sucesos ocurren en el mismo punto
+      - |
+        Solo a velocidades cercanas a la luz se puede saber
+    answers: ["sha256:b8f393c0bf874b57b2197d14a0e735e68327582951009a305f3fb36ad8a26a40"]
 ---
 
 # Relatividad especial: Lorentz, espaciotiempo de Minkowski, cinemática y dinámica relativistas, colisiones y campos

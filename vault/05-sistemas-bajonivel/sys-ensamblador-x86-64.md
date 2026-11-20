@@ -22,9 +22,26 @@ exercises:
     answers: ["sha256:65aff7a32a638f1300203574981ba81197d9e179138bc4b7eb805922f442c84c"]
   - id: lea-como-aritmetica
     tier: 1
+    type: numero
+    sig: 12
     prompt: |
-      Con `rdi = 7`, ¿cuánto vale `rax` tras `lea rax, [rdi + rdi*4]` y `lea rax, [rax*2 + 3]`? Respuesta: un entero.
-    answers: ["sha256:96061e92f58e4bdcdee73df36183fe3ac64747c81c26f6c83aada8d2aabb1864"]
+      Con `rdi = {{rdi}}`, ¿cuánto vale `rax` (como entero con signo) tras `lea rax, [rdi + rdi*4]` y `lea rax, [rax*2 + 3]`?
+      Respuesta: un entero.
+    variants:
+      - values: {"rdi":7}
+        answers: ["sha256:8063f9fef2b77d4021dcc2473b800d04e42e90b9bfd9414d14b5d5d5ef2ed989","sha256:61cbc9b3634138ef00fff00f6d0c77e53880731eaedce7cbd0899365ded007fa","sha256:425f228222813d669dd73c56e1c7f43f136f3df728c2692c09269aad04e62205"]
+      - values: {"rdi":12}
+        answers: ["sha256:85e10a70287a482c526d1524e1529270e2e6b9d0541a48fcf5f9e7c9654fe739","sha256:6457ad95676421395a8c4aaaeb0e30d0c7c6ac0ba9fcc241782d24035d58f844","sha256:59df364c4a588bd49c5616aab01630cc0ff4a136326b3bb89e61e5850342053d"]
+      - values: {"rdi":100}
+        answers: ["sha256:9eafd6060fc33bfd2e1077b5e5cfb744f5c46bbc42711d6dbd54c7df037c79c9","sha256:1a9ebe569aac73c2496f947968b48ed633ac04bc8fadcfd76009389876ba8c29","sha256:488c28d337aa2931234b4fbed10bcb43a63de00cb38e2243b01989eeebeaf0b2"]
+      - values: {"rdi":-4}
+        answers: ["sha256:4539ea2617c77b1e5c27aaef00b2e48880f2a5e08394ce5587e0b45d0b1dc76c","sha256:64d797938e1f408b83dd8a77958239ec3d811d193cd2c94704794cbfdc11461e","sha256:44244a51bbb9fd0b4ce6b80c9a692b5d4b28a5bbe818336c6eb4f7c0af984a4a"]
+      - values: {"rdi":0}
+        answers: ["sha256:425213075c0a89c9bd7d65432323a79634499271859414f8f45820ebf7d60b7a","sha256:d66862313593fffbfa8bf6489fbf86fb052c3a665677e3609783357f55a172dd","sha256:b4ba05d4fdc934c52bc581b06253a6ca253b44131ac9f8ab8686b13f0349bab4"]
+      - values: {"rdi":31}
+        answers: ["sha256:bc3072903bfe2c2716df69c89ef92879bcf7b3fd20f48463a4a1f8b23a1fff67","sha256:333b4c5320d1584007b0759efc3f723fe38116a7a5776da7c2e4a9ccf01915e6","sha256:8543f9531af63800206f7f5fcd8c8ac2a390ffbf5ec4686a4db26192f2c9ed3f"]
+      - values: {"rdi":255}
+        answers: ["sha256:b54796cdd50d400074d55d02217310972b38dcdc8e6510f269e3fbcce2a0acd0","sha256:ae6d575da60b4c505b01a92b325d5035e02b74642f299997864688c2a62eff5c","sha256:b5c52a00c31c1b6bcfb355ca12e39e93fc8f6a0b8e3009c641a4592fcf03b579"]
   - id: saltos-con-y-sin-signo
     tier: 1
     prompt: |
@@ -44,8 +61,21 @@ exercises:
   - id: direccion-de-un-elemento
     tier: 1
     prompt: |
-      Un array de `int32_t` empieza en `0x1000` (en `rdi`) y el índice está en `rsi = 5`. ¿Qué dirección calcula `lea rax, [rdi + rsi*4]`? Respuesta: en hexadecimal con prefijo `0x`.
-    answers: ["sha256:6039b10de95cce928e39fff5207220507f46a632c6413f8d46a942b592cb7025"]
+      Un array de `{{t}}` empieza en `{{base}}` (en `rdi`) y el índice está en `rsi = {{i}}`. ¿Qué dirección calcula
+      `lea rax, [rdi + rsi*{{esc}}]`? Respuesta: en hexadecimal con prefijo `0x`, sin ceros a la izquierda.
+    variants:
+      - values: {"t":"int32_t","base":"0x1000","i":"5","esc":"4"}
+        answers: ["sha256:6039b10de95cce928e39fff5207220507f46a632c6413f8d46a942b592cb7025"]
+      - values: {"t":"int64_t","base":"0x2000","i":"3","esc":"8"}
+        answers: ["sha256:9b824aa27d003782b0d4e586b24fd78bbea4576330c92b9d558a5ede4f590bac"]
+      - values: {"t":"int16_t","base":"0x7ffe0000","i":"10","esc":"2"}
+        answers: ["sha256:820dd74d360d3a25a15cdf988f61aae35ead0705805b12e5139920e0352004fd"]
+      - values: {"t":"int32_t","base":"0x40","i":"100","esc":"4"}
+        answers: ["sha256:216a092664b44a908eaf6554a80b445e3bebc28d2e75bb57d6725db62c890268"]
+      - values: {"t":"int64_t","base":"0x600010","i":"7","esc":"8"}
+        answers: ["sha256:4e3017bec17dfc53a43f346d0d6b3bf47b42e2b954d2a4d72ea1fb8657591e52"]
+      - values: {"t":"uint8_t","base":"0xff0","i":"33","esc":"1"}
+        answers: ["sha256:5b1f2aff465779a3b37285d2e512ed2d26c6eb73b06959d45e1cc4d940bc7c61"]
   - id: alineacion-de-la-pila
     tier: 1
     prompt: |
@@ -120,6 +150,62 @@ exercises:
     prompt: |
       La división sin signo entre 3 se compila como `mul` por `0xAAAAAAAAAAAAAAAB` y `shr rdx, 1`. ¿Qué devuelve para `x = 2^{64} - 1`? Respuesta: un entero.
     answers: ["sha256:9894d012e2ee60ec005b256c1dbea589184abdca50b22ff507850a287f69300c"]
+  - id: r-mov-eax
+    tier: 1
+    type: opcion
+    review: true
+    prompt: |
+      En x86-64, ¿qué pasa con los 32 bits altos de `rax` al ejecutar `mov eax, 7`?
+    options:
+      - |
+        Solo cambian los 32 bits bajos; los altos conservan lo que tenían
+      - |
+        Los 32 bits altos de `rax` se ponen a cero
+      - |
+        Los 32 bits altos se rellenan con el bit de signo de `eax`
+      - |
+        Depende del procesador
+    answers: ["sha256:87e1598f82705aad73e628d74deefa1866eae1cc3e236e88187dd3d7a998fe2c"]
+  - id: r-saltos-signo
+    tier: 2
+    type: opcion
+    review: true
+    prompt: |
+      Tras `cmp rdi, rsi`, ¿qué diferencia hay entre `jae` y `jge`?
+    options:
+      - |
+        `jae` y `jge` son equivalentes
+      - |
+        `jae` interpreta los operandos con signo y `jge` sin signo
+      - |
+        `jae`/`jb` comparan sin signo (bandera CF); `jge`/`jl` con signo (SF y OF)
+      - |
+        Ninguno de los dos mira las banderas
+    answers: ["sha256:4f2d1e951e5cf55a4d979f3cc4f24a30f56fac351a6cccc7319bcc3b0ad66f20"]
+  - id: r-callee-saved
+    tier: 2
+    type: opcion
+    review: true
+    prompt: |
+      En la ABI System V AMD64 (Linux), ¿qué registros debe **conservar** una función (callee-saved)?
+    options:
+      - |
+        `rbx`, `rbp` y `r12`–`r15` (y `rsp`)
+      - |
+        `rax`, `rcx` y `rdx`
+      - |
+        `rdi`, `rsi`, `rdx`, `rcx`, `r8` y `r9`
+      - |
+        Todos: la función llamada debe dejarlos como estaban
+    answers: ["sha256:8092b6dad7cf1657e66d0c3100b965bcdc7cc21e00cbba5cbce9c55a29b7ed09"]
+  - id: r-alineacion-call
+    tier: 2
+    type: numero
+    review: true
+    sig: 6
+    prompt: |
+      Justo antes de un `call`, la ABI System V AMD64 exige que `rsp` sea múltiplo de… Respuesta: un número de bytes.
+    answers: ["sha256:0f8fe44e9b29385cb17db383ad2a587856561ed4ed610ec1376c99c12f323074","sha256:a7474a3c38a11c7ee3e15badcb21d36932dce4807de6fdec85da5f05df905301","sha256:3e0d9e10dbdac3a1332f428bf9946d4ffaf13ab375a60011ca09c375ba721de5"]
 ---
 
 # Ensamblador x86-64: registros, direccionamiento, instrucciones, pila, convención de llamada y lectura de código compilado

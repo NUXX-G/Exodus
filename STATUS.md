@@ -23,11 +23,15 @@ registro de sesiones (una línea) o a `docs/`.
 
 ## 1. Ahora mismo
 
-- **Fase actual**: FASE 1 — Ejercicios verificados y parametrizados.
-- **Tarea actual**: formato de los ejercicios y registro de tipos (decidido en §6.8; en implementación).
-- **Siguiente paso concreto**: `src/lib/ejercicios/` (registro de tipos, CAS mínimo, unidades), ampliar
-  `exerciseSchema` en `vault.ts`, migración 0006 (intentos con variante/tiempo, reportes), UI y `ex-inject.ts`.
+- **Fase actual**: FASE 2 — Diario de errores y repaso inteligente.
+- **Tarea actual**: ninguna empezada. Primera: etiquetar el error tras un fallo (migración con tabla de etiquetas).
+- **Siguiente paso concreto**: leer la sección de la FASE 2 del roadmap; diseñar la etiqueta del error sobre
+  `exercise_attempts` (columna o tabla aparte) y la página `/errores`.
 - **Bloqueos**: ninguno.
+- **Prueba en navegador**: `scripts/dev/sesion-prueba.ts` (usuario y sesión en una base temporal) y
+  `scripts/dev/e2e-v2.cjs` (Playwright 1.58 de la caché de npx: `PLAYWRIGHT_CORE=C:/Users/nelso/AppData/Local/npm-cache/_npx/787f53666b8d4740/node_modules/playwright-core`).
+  En Git Bash, con `MSYS_NO_PATHCONV=1` las rutas `/tmp` no se traducen: usa `cygpath -w`. Para el servidor de
+  prueba antes de `guardar.sh` (que reconstruye `.next`): el `node` hijo sobrevive a TaskStop; ciérralo por PID.
 
 ## 2. Reglas de la v2 (resumen; el texto completo está en el roadmap)
 
@@ -141,12 +145,13 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
 
 ## 8. Reportes «creo que esto está mal» pendientes
 
-- (La función llega en la fase 1; aquí irá el resumen por área.)
+- Ninguno (resumen con `DATABASE_PATH=<copia de la base> npm run -s reportes`; página `/reportes`).
 
 ## 9. Registro de sesiones (una línea por sesión, la más reciente arriba)
 
 | Fecha | Qué se hizo | Commit |
 | --- | --- | --- |
+| 2026-11-20 | Fase 1: tipos de ejercicio (CAS en JS, unidades, matrices, opción, flag), variantes, banco de repaso, intentos con variante y tiempo, reportes y `/reportes`, vista previa, 9 nodos convertidos, e2e con Playwright | `v2: fase 1 completada` |
 | 2026-11-15 | Seguridad en v1: motor MathJax aparte para contenido de usuario (PR #210), fusionado en `v2` | merge de `main` |
 | 2026-11-15 | Urgente en v1: la instancia se quedaba sin memoria (fuga de MathJax) y los nodos pesaban 2,4 MB. PR #209 en `main`, fusionado en `v2` | merge de `main` |
 | 2026-11-15 | Paso 0: rama `v2`, `docs/ROADMAP_V2.md`, `STATUS.md` nuevo, `docs/HISTORIAL_V1.md`, `scripts/dev/`, `CLAUDE.md` | `v2: fase 0 completada` |

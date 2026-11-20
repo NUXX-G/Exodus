@@ -25,19 +25,68 @@ exercises:
     answers: ["sha256:dfeba01aedd9a60c93fcfe4f69772ce018dfa7d7b1dcb1aa4377e6853a98bc7a"]
   - id: potencia-modular
     tier: 1
+    type: numero
+    sig: 10
     prompt: |
-      Calcula $3^{100} \bmod 7$ con el pequeño teorema de Fermat. Respuesta: un entero.
-    answers: ["sha256:4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"]
+      Calcula ${{b}}^{{{e}}} \bmod {{p}}$ (${{p}}$ es primo: usa el pequeño teorema de Fermat). Respuesta: un entero.
+    variants:
+      - values: {"b":3,"e":100,"p":7}
+        answers: ["sha256:874ce54ef1619cd479ea3dd29120f8e42fc44970451e56bab3c8c4d1c6ef0698","sha256:095372d8232fc8d946a8a4d6d08ba27059d131388a998e00a883da2ba22be48d","sha256:1fdeaff5354c94e3750fc61ab42af0d7a9adc7225e5bcae36e0803834765625e"]
+      - values: {"b":2,"e":50,"p":11}
+        answers: ["sha256:0f539e82934c09e403c19f7d380b4d5178e3875c3d212a4eeeddd84e3e6c5542","sha256:93f55b315c25663b0383bba40c48c5f136b13881c05b4abf67f2a281082d4a31","sha256:b136dc2d7f07e762f7be9d1669ef92958a82785af01c45caf1cab20bb91ebc63"]
+      - values: {"b":5,"e":77,"p":13}
+        answers: ["sha256:f4bea811733dd6a759a255dc3311266546e6d5696a65a42d28c200457bace4ae","sha256:25bc8a2218f9a0c679802d7cc4adcb9663066f08536c7777a3f7ffa8c34aaa14","sha256:47c09e375835e6926ccf34c9689b92b8bf9fa3ffa79a83303999e4f2594e41fe"]
+      - values: {"b":7,"e":222,"p":17}
+        answers: ["sha256:dcd4b9f97b90416524c780c10b5d2e089c6f1addf2e353a91eae9db68b816b7b","sha256:c0072d05f6c9f9ad753d08883925b66b346880cfbe3a2d63cc05673bb0613833","sha256:3c456b5dbd5f96d74d96df0f4d8d01cf72e186a9fb591f432c96bac6eaf7bacb"]
+      - values: {"b":6,"e":1000,"p":19}
+        answers: ["sha256:27cd2e3adfcc77076ab3f169f2da29ee8b5095ff5dafb14adf3be18cef8c75b1","sha256:b891fde389feead8b1f8146952470b3c30afb216c586eff4ad623c42a3c84bd2","sha256:6c1da0af8c17589e39751cd3ba39af1c811acfe3fd2c58a7aeaaf7cb4967fe4d"]
+      - values: {"b":10,"e":123,"p":7}
+        answers: ["sha256:3bd56200a05026dae4d3a3688d9279c93e8cc24ac690c71420231fc2f4261f57","sha256:38bd301184e6b2e21a8e2cfde85cc89f08ada4aa9f35bf9a2b3004af4be3b721","sha256:e86b7d1e04fc7655cacf7c7d2c5f909b171e4816e847c8f472edc75b639cb6e4"]
+      - values: {"b":4,"e":85,"p":23}
+        answers: ["sha256:f18e30d721630962259b3595cf9e3d171078c49d566fa155ea84566069385e9a","sha256:c6f64d2d4d16db9f35eb116c6b3814a7fac01a1bcbe4df1fa5ad54a3eaabcd76","sha256:6338301a0467f5343fb8667346bd8ff0dab83327593159383fbdcbb7872809e2"]
   - id: inverso-modular
     tier: 2
+    type: numero
+    sig: 10
     prompt: |
-      ¿Cuál es el inverso de $17$ módulo $3120$? Respuesta: un entero entre $0$ y $3119$.
-    answers: ["sha256:8e6dbcb8a3461e581f3859d45d8cb900814b396f76566d227c2d668e30c62828"]
+      ¿Cuál es el inverso de ${{a}}$ módulo ${{m}}$? Respuesta: un entero entre $0$ y ${{m1}}$.
+    variants:
+      - values: {"a":17,"m":3120,"m1":3119}
+        answers: ["sha256:9a51c54c3c0437c85128dc3aa3a8490052fb48792dfc9a0a78f2284ee2ea132b","sha256:59307e97708842f39ec47406f1462742e4b135cb9b13d82d51f90fa65159e7eb","sha256:144c3c51b3a10184c559f7e98cb96772323bf8e315c2dc9c4fbb20b58c1fc4c5"]
+      - values: {"a":7,"m":40,"m1":39}
+        answers: ["sha256:1c093cc815822b4bbc0ec4c6b5e32f5993ce7bfaf5c2407267002d66e20f6d79","sha256:ed05b9282614cdc056cc368e775fe935f584bac0745c0de1a28b40d1c4968c2e","sha256:b90182083f22f012c6a6eff350994be13159adb295c68e767428c676918a9a29"]
+      - values: {"a":11,"m":26,"m1":25}
+        answers: ["sha256:9c8da2683cd3e60fcd8a06766e22a436cf63af778a048b64504d731013797284","sha256:20e43ccbcf3cd7912d5370f931c7ba09e5305bb243c8ee6bfe7e01621395ef44","sha256:94b1f9894998691e51f1edbf05a03e1f5eab94692a99d2247d09e6ff394469e3"]
+      - values: {"a":23,"m":120,"m1":119}
+        answers: ["sha256:8a34cb3316d23e1537133b094e6a0557aa9a072ff37349a5cba80375c34ceb1a","sha256:da78acbcb4ddaac9e46117f82aa95f46bd61d73fdcab9f2e940099c718f7638a","sha256:6ec9e2ee9ac12ecb94ee93566a80cc609c000632af579d9177a360d4460c9f6c"]
+      - values: {"a":5,"m":72,"m1":71}
+        answers: ["sha256:70ec2e137779dea9e5c21ff4871638510a8fed3653b52faad25c2c199973dbd5","sha256:49bcb7dc90c0604eb2f5075a34f19402e875c3b64e31ea4e5d7180f95053e414","sha256:eaa0cf503b36308d480ab21f7b0059aad08a08d49c34f39946a7ff8f4609d336"]
+      - values: {"a":31,"m":100,"m1":99}
+        answers: ["sha256:bf89801f3554c2eb7abf86c725710633e4e8d77a6d668c2ac505cca93614dc5b","sha256:2dd8b30e992baeaf68332920a053f30a2fd64737bd14b7f0e735cc46c846dd6e","sha256:4a593ba75485ccaf78765c9a58d10e6179f8fcf84624f3e6d978ec73e30c7875"]
+      - values: {"a":13,"m":210,"m1":209}
+        answers: ["sha256:d1dd7a47d8efe410204ffc6c733787eafd6ec9e6e615978f0c53cc7ed93c48df","sha256:0267296570724162e97f366392213d80b32eea2ab2f80b2acb8218a6e5b16618","sha256:3fc6ef44d5bcc52ee0bd02639cd244e30f90fd43fc376f3494c54108bf5bb979"]
+      - values: {"a":19,"m":360,"m1":359}
+        answers: ["sha256:2f4f5fdfb0b72b9937cb9eca29464e43b27fdb5e89d2c3b9c2bd2cfda725a0ea","sha256:35195eb2b34a938e05864fb6eb7fa6ceefc03a9f63661d7f14a7d63c9e40773d","sha256:7d94fabe716c86de9c26f08017034f4067efa1ea59f427562607a20099a0ccbd"]
   - id: teorema-chino-del-resto
     tier: 2
+    type: numero
+    sig: 10
     prompt: |
-      Halla el menor $x \ge 0$ con $x \equiv 2 \pmod 3$, $x \equiv 3 \pmod 5$ y $x \equiv 2 \pmod 7$. Respuesta: un entero.
-    answers: ["sha256:535fa30d7e25dd8a49f1536779734ec8286108d115da5045d77f3b4185d8f790"]
+      Halla el menor $x \ge 0$ con $x \equiv {{r1}} \pmod{{{m1}}}$, $x \equiv {{r2}} \pmod{{{m2}}}$ y $x \equiv {{r3}} \pmod{{{m3}}}$.
+      Respuesta: un entero.
+    variants:
+      - values: {"r1":2,"m1":3,"r2":3,"m2":5,"r3":2,"m3":7}
+        answers: ["sha256:99062693fc4a1bc9e3348877a762072f7c9f806be7694fc4efa741531027f401","sha256:ae5c0b7decc0e1e672bb007c36884928f8e45afefe4e54e42b9b23b24ebed4af","sha256:c2039e233784efe6be4633eb5e51b8fc6c701313e6343f1a7761d768d7c6ea29"]
+      - values: {"r1":1,"m1":3,"r2":2,"m2":5,"r3":3,"m3":7}
+        answers: ["sha256:1c543257a7d4e82ba6fae14989d972fdd57a5cd4abd4f7ee21e7df6840ffb6a1","sha256:6c1ed825726ca48652b257c0e433f1f1fee5a8aabfb98e50ec7eb366ef7099a0","sha256:0b07ac89c282fde9a0e3762849f76e6db3e7bba6d83aa2fc4dd891ed96434bb2"]
+      - values: {"r1":3,"m1":4,"r2":1,"m2":5,"r3":2,"m3":9}
+        answers: ["sha256:65254cfc99ae514243b72d63d4839d9f95f794303087c0aa1dc4baf8a775947c","sha256:f38dcb41fe2ab7451989e0efedc8e5cef5b5d90eda5a5b7497b8e6a995500cf9","sha256:cfb2928017d16ed8e19d9fc9ab69f343b153eb6a0a271b6c814520f6f4a572db"]
+      - values: {"r1":0,"m1":2,"r2":2,"m2":3,"r3":4,"m3":5}
+        answers: ["sha256:c75f72513f03f7167462715ef80661cdfbe12e007e5b240b207cc75831ce6494","sha256:b39897492bdf7975c25b2f37a1cbce8998fd17bd5354923dc603da8e9b35fc37","sha256:6ff87415af0a2d1ea0a5355978aaec8ccb34a96de94b70ecec8b880b62e01f4a"]
+      - values: {"r1":5,"m1":7,"r2":3,"m2":11,"r3":1,"m3":2}
+        answers: ["sha256:8c643e3c2c1567e6ef42e2d0228a6bdc515f56b6e506097215a8d789705b3ae5","sha256:6f96b79c3ecc3e4b6c07f771b414142e9f5b99bab258ec2b41bcc217dc2d673d","sha256:2a332a7d395589e8527fbf8c2013bdf9712f67fe13a319f922bcb55ee54d1cf8"]
+      - values: {"r1":2,"m1":5,"r2":6,"m2":7,"r3":0,"m3":3}
+        answers: ["sha256:297d154fc6e47aa8b1cc00ce71512a3d2da198f4f4d7e0470ddd4d58b852e2f9","sha256:3796139b53d8d5cafbe359015ba3d123e7db5b50f792d321ac7cb4a60882205e","sha256:7bbb587f8a5c2827edf8530d2a8e0fb60312c990c7f9b6febbf9c0e5918d6fb7"]
   - id: simbolo-de-legendre
     tier: 2
     prompt: |
@@ -88,6 +137,75 @@ exercises:
     prompt: |
       ¿Cuál es la menor raíz primitiva módulo $23$ y cuántas raíces primitivas hay? Respuesta: `menor;cuantas`.
     answers: ["sha256:6124945d516d5a8438fb0639a9a4da472eb42574a89934893040c4bf616adc30"]
+  - id: r-sin-inverso
+    tier: 1
+    type: opcion
+    review: true
+    prompt: |
+      ¿Tiene $6$ inverso módulo $15$ (un $x$ con $6x \equiv 1 \pmod{15}$)? ¿Por qué?
+    options:
+      - |
+        Sí, es $6^{-1} = 1/6$
+      - |
+        Sí, porque $15$ no es primo
+      - |
+        No, porque $\gcd(6, 15) = 3 \ne 1$
+      - |
+        No, porque $6$ es par
+    answers: ["sha256:ac126fadf5591bee0283350900e4fcde2772acd1054bc8863f68f6b2e21ec21e"]
+  - id: r-ultima-cifra
+    tier: 2
+    type: numero
+    review: true
+    sig: 10
+    prompt: |
+      ¿Cuál es la **última cifra** de $7^{{{k}}}$? (Pista: trabaja módulo $10$ y busca un ciclo.) Respuesta: una cifra.
+    variants:
+      - values: {"k":2026}
+        answers: ["sha256:3ad6a48bbf6009997e44c37e88b6d587f6722fc9262021777f83a106b086d6ca","sha256:d81a375f63c72ca8b384f6e2f3e3d77650bfa30ec16a609d8f40c75964540dce","sha256:2a34e2cfa9f55345be1e29468dd2934c330dde152ff3dad51fb8af6347176466"]
+      - values: {"k":100}
+        answers: ["sha256:80e9eb0941ac6518594b8fad3bc7bfe5e547121c1a13e821ee5d027063f60d78","sha256:6436b1fecebf364ce469b6b96a3948f71fb0b1f1848a2ffa1a8446a46e68d552","sha256:07742c0f039857889d87830ddfa0ca6ea14f4e246f41f94abe8931cc268cf340"]
+      - values: {"k":343}
+        answers: ["sha256:acd0a35d06d51df13cf76bd80fda5a7452bfe22604ccbb480242f22973a5051c","sha256:3df383050233058abf61550730dcbd38e5104a245be430ee2bd7aa503f7e1450","sha256:815f75e944ab40c1b740b3ddf5d64c23e7ffdd893946644e031536c5fac46de8"]
+      - values: {"k":999}
+        answers: ["sha256:40048efbe56dcbe70ff688cbf8f8583a63201d783529fc2b1e95e63129e6eaac","sha256:a5800a8f9de839753cdde3ffc5a207300003923db95eff1228a4872d309f2f02","sha256:6e5df0f23a1ffa9d32eb039ee57cfc3873a81c2f51b6f9b57eb72dbff38160d1"]
+      - values: {"k":58}
+        answers: ["sha256:0dc4f82cb2b5eea8cad05a261a925191ece92f934aaef78d1b63d3390766e59e","sha256:6f40efce422e3572ee1ea0dbb1d6275903b6b21967a7c5f2ec68d2725d1c7a86","sha256:16dacbc7bc329b392afe32965368ee4b2186cba97055595ee5d149784049d0f7"]
+  - id: r-mcd-mcm
+    tier: 1
+    type: numero
+    review: true
+    sig: 10
+    prompt: |
+      Calcula el mínimo común múltiplo de ${{a}}$ y ${{b}}$ usando que $\operatorname{mcd}(a,b)\cdot\operatorname{mcm}(a,b) = a\,b$.
+      Respuesta: un entero.
+    variants:
+      - values: {"a":12,"b":18}
+        answers: ["sha256:d6b072f3ed42caed687bd0112f977c4cb9c2afa809f4cb8df516ad2eaeff8d18","sha256:76cb1385b389db8612807abe25324cce4050874bcec17e56bdfe6f9a0c409dc5","sha256:81fb239aec7518a6aeab061f9b524162fd83c27d5b04bfd2cae2a80e1973cf90"]
+      - values: {"a":21,"b":6}
+        answers: ["sha256:b209c32f1028c33860a228556054769bdb9e2b9350bb9adb45b7eaf77ac08210","sha256:eb9c8cf119031007a0ef16924a399ad8378c50a476ea78991990bcd82d55fb1f","sha256:df1c6a8b11fa496d40d22d622b290d35c3be3395986c8823751f2146dc6f3618"]
+      - values: {"a":35,"b":49}
+        answers: ["sha256:33d4a11ce1fb300bfda3429ca2e62620c9169ff781ea696f6b4125e15a2aa499","sha256:4f09178623b020e1d0ede129d52fa6e095f7363b8409394a86b276e37fc2861e","sha256:118f8e74c252dfb929d396ba9f3016a429a30e46ee55eb6859c389ec98f40d41"]
+      - values: {"a":8,"b":30}
+        answers: ["sha256:b3f8ec6b7c42eb85ab3fd4828f024d37b84cedacae2ab68742e40e63900f1add","sha256:61104a8ee39d75d08e02856f0e329d5ae0bc2bb8ce841005520e85bff74b7fac","sha256:495ecf8acbebc2dd8a97b465c95575eb411186f5460dd173a580b0097a7ced32"]
+      - values: {"a":44,"b":66}
+        answers: ["sha256:9b8401613f1b69652825ed1247fab749c340730017d7a7bcaedbff2a1278ee3d","sha256:976286406098b38364695174a3fd09b21ba75a36edacab5e7a107ce6072781ed","sha256:a83548eeaa79d27b0785e5dbf9e7155f63c442adeda11049f20a284b14bd599e"]
+  - id: r-fermat-condicion
+    tier: 2
+    type: opcion
+    review: true
+    prompt: |
+      ¿Cuándo se puede asegurar que $a^{p-1} \equiv 1 \pmod p$?
+    options:
+      - |
+        Para todo entero $a$ y todo $n$
+      - |
+        Si $p$ es primo y $p$ no divide a $a$
+      - |
+        Solo si $a$ es primo
+      - |
+        Si $a < p$
+    answers: ["sha256:8f2bc9ca76e72e892e5038904a34ba337440629717e2f64d91b7ffcfd2497c06"]
 ---
 
 # Teoría de números: divisibilidad, congruencias, funciones aritméticas, residuos cuadráticos, primalidad y ecuaciones diofánticas

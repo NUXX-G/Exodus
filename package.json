@@ -16,7 +16,8 @@
     "vault:relevel": "tsx scripts/relevel.ts",
     "test": "tsx --conditions=react-server --test tests/*.test.ts",
     "vault:fugas": "node scripts/vault-fugas.mjs",
-    "obsidian:plugin": "tsx scripts/obsidian-plugin.ts"
+    "obsidian:plugin": "tsx scripts/obsidian-plugin.ts",
+    "reportes": "tsx --conditions=react-server scripts/reportes.ts"
   },
   "dependencies": {
     "@shikijs/rehype": "^4.6.0",

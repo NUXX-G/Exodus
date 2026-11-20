@@ -71,26 +71,28 @@ El usuario pide terminar **todas** las fases de forma autónoma, **sin preguntar
 
 ## FASE 1 — Ejercicios verificados y parametrizados
 
-- [ ] Ejercicios en el frontmatter o en un archivo hermano del nodo (elegir el formato más limpio y documentarlo en
+- [x] Ejercicios en el frontmatter o en un archivo hermano del nodo (elegir el formato más limpio y documentarlo en
       `docs/AMPLIAR.md`). Los nodos con `ctf_flag` siguen funcionando.
-- [ ] Sistema extensible de tipos de ejercicio (registro de tipos).
-- [ ] Tipos iniciales: numérico con tolerancia y unidades opcionales.
-- [ ] Tipo expresión simbólica (equivalencia matemática, no igualdad de texto).
-- [ ] Tipo vectores y matrices.
-- [ ] Tipo opción múltiple.
-- [ ] Tipo flag.
-- [ ] Plantillas parametrizadas: variables y rangos, de modo que cada intento sea una variante nueva con su solución
+- [x] Sistema extensible de tipos de ejercicio (registro de tipos).
+- [x] Tipos iniciales: numérico con tolerancia y unidades opcionales.
+- [x] Tipo expresión simbólica (equivalencia matemática, no igualdad de texto).
+- [x] Tipo vectores y matrices.
+- [x] Tipo opción múltiple.
+- [x] Tipo flag.
+- [x] Plantillas parametrizadas: variables y rangos, de modo que cada intento sea una variante nueva con su solución
       calculada.
-- [ ] ⛔ Antes de implementar la verificación simbólica, proponer un servicio Python con SymPy en docker-compose o un
-      CAS en JS, con pros y contras.
-- [ ] Respuestas en LaTeX o notación sencilla, con vista previa.
-- [ ] Cada intento se guarda: resultado, tiempo y variante.
-- [ ] Botón «creo que esto está mal» en cada nodo y ejercicio. Los reportes van a una página de pendientes y se
+- [x] ⛔ Antes de implementar la verificación simbólica, proponer un servicio Python con SymPy en docker-compose o un
+      CAS en JS, con pros y contras. (Decidido con la autorización del 2026-11-20: CAS en JS; STATUS.md §6.9.)
+- [x] Respuestas en LaTeX o notación sencilla, con vista previa.
+- [x] Cada intento se guarda: resultado, tiempo y variante.
+- [x] Botón «creo que esto está mal» en cada nodo y ejercicio. Los reportes van a una página de pendientes y se
       resumen en `STATUS.md`.
-- [ ] Repaso con variantes: en `/repaso` un ejercicio parametrizado sale con otros datos, y cada nodo puede tener
+- [x] Repaso con variantes: en `/repaso` un ejercicio parametrizado sale con otros datos, y cada nodo puede tener
       un banco `review` de preguntas distintas (conceptuales/aplicación) que solo salen en el repaso.
-- [ ] Convertir como ejemplo 3 nodos del troncal y 1 de cada rama con contenido.
-- [ ] Cierre de fase: tests, `vault:check`, `typecheck`, casillas, `STATUS.md`, commit `v2: fase 1 completada`.
+- [x] Convertir como ejemplo 3 nodos del troncal y 1 de cada rama con contenido. (Troncal: `mat-proporcionalidad-porcentajes`,
+      `mat-calculo-1`, `fis-medida-movimiento`; ramas: `mat-teoria-numeros`, `fis-relatividad-especial`, `rob-cinematica`,
+      `sys-ensamblador-x86-64`, `sec-criptografia`, `cua-computacion-cuantica`. Specs en `.soluciones/<id>.v2.mjs`.)
+- [x] Cierre de fase: tests, `vault:check`, `typecheck`, casillas, `STATUS.md`, commit `v2: fase 1 completada`.
 
 ## FASE 2 — Diario de errores y repaso inteligente
 

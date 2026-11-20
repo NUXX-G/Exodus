@@ -48,9 +48,26 @@ exercises:
     answers: ["sha256:f3499b6fd23711d2e243b8074433b1e25ba1fe9f21b6040a0133d8f6ab50050c"]
   - id: grover-64
     tier: 2
+    type: numero
+    sig: 5
     prompt: |
-      Grover sobre $N = 64$ elementos con uno marcado, haciendo $k = \lfloor\frac\pi4\sqrt N\rfloor$ iteraciones. ¿Con qué probabilidad se mide el marcado? Respuesta: con **5 decimales**.
-    answers: ["sha256:43c2c5454273c40065f204d23afcd4d347225068dd4c4602673983335edb30a0"]
+      Grover sobre $N = {{N}}$ elementos con uno marcado, haciendo $k = \lfloor\frac\pi4\sqrt N\rfloor = {{k}}$ iteraciones. ¿Con qué
+      probabilidad se mide el marcado? Respuesta: con **5 cifras significativas**.
+    variants:
+      - values: {"N":64,"k":6}
+        answers: ["sha256:a5af5e26e2524558dc3920318f69da29391ce0be33f5a397f6efef6c3d869b11","sha256:09169b8c23d07e26e20961e72630d50c99102a0f073f590f388a405dc64f937b","sha256:d5127d11856e7d2459fd4998e3463ec6df05c63e7c3bb0aecd5aa8de30f6a4da"]
+      - values: {"N":16,"k":3}
+        answers: ["sha256:347eca9cf95565c8f31db95774eb8ad466a3d89f368220cb45f5f738936f8a41","sha256:9a7d348cbf894adc0f75b801ed711e8aeb3a41247a8599a233f7f3468e8ff4fa","sha256:df29c2cb9419b524978c7c4040b0e9db5b82970e04556069ebb1693d4d754628"]
+      - values: {"N":32,"k":4}
+        answers: ["sha256:314f7ae26c1effbdbdc370292eaeb421dc29508fd113be971f6d3564a0d0d06e","sha256:b061794a235cfca3654e351fd16d57a74e68c253bd7d86e601ee04cbaee240db","sha256:774971bcf284fd2880700a0add2ca5a00b1901a28bb8bab3771abc8b0292df78"]
+      - values: {"N":128,"k":8}
+        answers: ["sha256:97069f5237541b3f0f309e15d29e9da83b9542d46af4279842593f364a062c8a","sha256:8be1da7e9008d335fbd4f7da9c690015af81588aef027ce4807a9f58a176f30b","sha256:aa4a6c0fdd5cb95421ffe1fd3f59bed7bc76c33aec50eff85318df165b7f4e37"]
+      - values: {"N":256,"k":12}
+        answers: ["sha256:e984f115e97337a61c93b139c274b9f5e4638a8107b6d27d9a68f7abb6f86300","sha256:0ae3ee37c3548544d3ebdb2eba17b9fb4fb3b74edc8008821791cc6fb350d690","sha256:bead49bdcab0659f71b345e27e49ede0f7bfde764991d84863aff3a85fe72298"]
+      - values: {"N":512,"k":17}
+        answers: ["sha256:85a828d173b2740da079c0862e879a78bd5921b6a51ea08eab833e40fbfcf70f","sha256:058b6f1280603376fd616ec8dc7d221d915a0b8f1688e85d8e963a321a75229b","sha256:707d7c81e84804b5085c2843ff7e44bfc7b98c0c689d4f2ec68569e03fb4abd5"]
+      - values: {"N":1024,"k":25}
+        answers: ["sha256:4c2f22e58684433acb0aa1cfcf166e1629970c94a4a07c11aa716846fc71ed12","sha256:55faa3477864eba798b0569d682f98327ff0ddf5e9afd51bee193a000fdfa68b","sha256:be38b7921d35c0785759bb660ebbbb53b168de28296edf6b785b3d7bfa65636e"]
   - id: grover-con-varios-marcados
     tier: 2
     prompt: |
@@ -78,9 +95,24 @@ exercises:
     answers: ["sha256:205dedb85ccba3c703f3285ff30538c0a7545c12dc75442b7da6344e7f054711"]
   - id: puerta-t
     tier: 2
+    type: numero
+    sig: 3
     prompt: |
-      ¿Con qué probabilidad da $0$ el estado $HTH\lvert0\rangle$, con $T = \operatorname{diag}(1, e^{i\pi/4})$? Respuesta: con **3 decimales**.
-    answers: ["sha256:a3141f7c8d3308426e4e88ee3704aff0cbc9442fd7061f536486366a987236c3"]
+      ¿Con qué probabilidad da $0$ el estado $H\,{{nombre}}\,H\lvert0\rangle$, donde ${{nombre}} = \operatorname{diag}(1, e^{i\varphi})$ con
+      $\varphi = {{tex}}$? Respuesta: con **3 cifras significativas**.
+    variants:
+      - values: {"nombre":"T","tex":"\\pi/4"}
+        answers: ["sha256:d85456c500c5092a3f6b910b19838bfdcc2fe91704ed989624ff1e231b4f74e1","sha256:659d6a1ece6865aedeb921a1fd350cdeedf00403418bdbfb91afc19f3955cf57","sha256:62b93f800b62c61e4873387c9c187498d9124efb390dc19e96300f4074b8b0f8"]
+      - values: {"nombre":"S","tex":"\\pi/2"}
+        answers: ["sha256:c0aa227e1a5f4a578b4629386f183408d8bdad4b8de2255e6a7675662dfbfa11","sha256:71de41e844209d6c9ca0658df659844df6aa7c13ee1c391f90db2c5dc5d8c56c","sha256:a15f2c01d3394d56757952dc97ceda986394ffb1363bdc88d19deab065ce7937"]
+      - values: {"nombre":"P(\\pi/8)","tex":"\\pi/8"}
+        answers: ["sha256:398b12f4af9c50073b6acdd3b1b0c01bf3ae12215f0424e809a4b0005585158f","sha256:2dc96f51562342414c9a8204a837abedb49a82ee29ace54e215a740278c7320e","sha256:ff6293abd3e5c35c24581691d4f5c3ce4db2af4ebde73150a872d311478640c1"]
+      - values: {"nombre":"P(3\\pi/4)","tex":"3\\pi/4"}
+        answers: ["sha256:2f9a312df0b9c32c561ce361fd5ac9b8c7e7ba8bdb0e01cacf420bcbfb2911d9","sha256:15f72438bb9f37d6e3f6f72b878febf987e8fdeff275b104ee3af1254348110a","sha256:9387e2cdb9d5042b4c5a0a89ac25dd85af5fc1c21bfc08e052ca8f96b1eed153"]
+      - values: {"nombre":"P(\\pi/3)","tex":"\\pi/3"}
+        answers: ["sha256:22165d8c9b549d8a28765598d54ed32618db40de27fffd20c5d179ba22a8e992","sha256:fca5d1c8c718ce52db0e21a7dbf6d76b86e85f1e9d23e6d1df16cb9a6b29a6ff","sha256:453bbc8922fac090880cd14648849d05f0e9480c59421172ba8f889e37818d3e"]
+      - values: {"nombre":"Z","tex":"\\pi"}
+        answers: ["sha256:d284e094c0cd0a580a6bf9f01b70377c86e561e961fa63d8b479029f061f6c30","sha256:90cf55c555a3543f6e20b165e28391f58a261744337a8006a589e9b80e41e0b0","sha256:b3ff2d94a20b958f679f7c8617df1edd970a068f1855ceaff5b66a21e1d4796b"]
   - id: bernstein-vazirani
     tier: 2
     prompt: |
@@ -101,6 +133,73 @@ exercises:
     prompt: |
       Grover sobre $N = 16$ con un marcado. ¿Cuál es la probabilidad de éxito con $k = 3$ iteraciones y con $k = 6$? Respuesta: `P3;P6`, ambas con **4 decimales**.
     answers: ["sha256:adafc342cf8940866ee54bdb3936e6af5a97173325441ff08db55e25389cc334"]
+  - id: r-h-sobre-0
+    tier: 1
+    type: matriz
+    review: true
+    sig: 4
+    prompt: |
+      Escribe el vector de estado (amplitudes de $\lvert0\rangle$ y $\lvert1\rangle$) que resulta de aplicar $H$ a $\lvert0\rangle$.
+      Respuesta: `(a, b)`; vale `1/sqrt(2)`.
+    answers: ["sha256:c5aad6aabf64d10c5510a46898e2aa98967662b01de22467cea215fe2c40a7b2","sha256:187ca350c5a6921caf6ba7c2d090c3389813ec0c19cce06fe981dc8cbdcab378"]
+  - id: r-h-sobre-1
+    tier: 1
+    type: matriz
+    review: true
+    sig: 4
+    prompt: |
+      Escribe el vector de estado que resulta de aplicar $H$ a $\lvert1\rangle$. Respuesta: `(a, b)`.
+    answers: ["sha256:4fb35135513c9b77fa538d69f913deecadbaa6fbd3653a21da6ad29e8ed610ae","sha256:ba9ba0ea3b6d747d110e7f25652f51678062dbd01822a92ad2e0e230c0e3fca3"]
+  - id: r-amplitudes-n-qubits
+    tier: 1
+    type: numero
+    review: true
+    sig: 10
+    prompt: |
+      ¿Cuántas amplitudes complejas hacen falta para describir un estado general de ${{n}}$ qubits? Respuesta: un entero.
+    variants:
+      - values: {"n":10}
+        answers: ["sha256:a23f8bad53420632da250874ab73e4f6f9c4248e3b8ff4f8ea876da5177e6728","sha256:64ee7887884933b44c120a6c765d9c804153cd368ebcf06bd8f99237d5020960","sha256:4203e5944499f42ac6da9376d4241e7c664a568a23ce7be150bef1aff41eb16f"]
+      - values: {"n":20}
+        answers: ["sha256:357e5902e3f1eace71a33c8657a634a06156835a7571ed5ea62a269938434e64","sha256:edc47b724fe3a721ba283fae4ed2548b3e4ffe9808208a014280411eca22cc31","sha256:af38263dc8ded0a448b930fcccd18cb3e3a91bb68f48ee9035cccfda77863919"]
+      - values: {"n":30}
+        answers: ["sha256:d16d735db9db10c62e2e4fecec1d0f26431adcb8187153441966ab1d25165b29","sha256:8dae209525944a6e33283d2f58abfd42d8c306a3ddfc802c529cf58517253858","sha256:34caaf35ccbb1865008a76dce814cb2748fad4f46192c0888b39ffc166a505e8"]
+      - values: {"n":5}
+        answers: ["sha256:c90ecd06babb0bf242167d58e9ac7f967482928cc249091aa4b7d130d4b2824b","sha256:7ac6e05afe3534a2af502354bcae57eca6f650906b7719e4a15a0a94c96f668d","sha256:f0b9596e543edb50ee2100c9cc625a20cae1f5a111184aeb965f6423a1d86500"]
+      - values: {"n":16}
+        answers: ["sha256:aa59f9aa2bbfaf75326e81492049240ea30b17781aba0323334bc96e04a75875","sha256:b64e46a2bf51b888e5e311749d9b4aa4648a5dfaf6cf6984fbc9b1d9584935ef","sha256:41392faba840686aa6b806da7f247665efc58dfb7d01cbced67cda9ced31f944"]
+  - id: r-medir-superposicion
+    tier: 2
+    type: opcion
+    review: true
+    prompt: |
+      Se mide en la base computacional un qubit en el estado $\tfrac{1}{\sqrt2}(\lvert0\rangle + \lvert1\rangle)$. ¿Qué pasa?
+    options:
+      - |
+        Se obtiene «la mitad de 0 y la mitad de 1»
+      - |
+        Sale 0 o 1 con probabilidad $1/2$ cada uno, y después el qubit queda en el estado medido
+      - |
+        Siempre sale 0, porque es el primer estado
+      - |
+        La medida no cambia el estado
+    answers: ["sha256:f9b84f1a253032fb0450e934f911fa20b7fa14c983ec4b5ec1678e2d2fcd6222"]
+  - id: r-no-clonacion
+    tier: 2
+    type: opcion
+    review: true
+    prompt: |
+      ¿Se puede copiar un qubit en un estado **desconocido** $\alpha\lvert0\rangle + \beta\lvert1\rangle$ en otro qubit?
+    options:
+      - |
+        Sí, con una puerta CNOT basta para cualquier estado
+      - |
+        Sí, midiéndolo y preparando otro igual
+      - |
+        No: el teorema de no clonación prohíbe copiar un estado cuántico desconocido
+      - |
+        Solo si el estado es una superposición
+    answers: ["sha256:474eefdf210ebcc368fa344fa3945bf829ac30e0527b8a80612f8345d27fa0e2"]
 ---
 
 # Computación cuántica: qubits, circuitos, entrelazamiento, Grover, Shor y corrección de errores

@@ -18,14 +18,47 @@ hints:
 exercises:
   - id: rotar-un-punto
     tier: 1
+    type: matriz
+    sig: 4
     prompt: |
-      ¿Dónde queda el punto $(2, 0, 0)$ al aplicarle $R_z(30°)$? Respuesta: `x;y;z`, la $x$ con **3 decimales**.
-    answers: ["sha256:69048e4c77a7cb8d5e7cdb5651046c28f1c13e73b90c816cb823e2c8973bde5c"]
+      ¿Dónde queda el punto $({{r}}, 0, 0)$ al aplicarle $R_z({{g}}°)$? Respuesta: el vector $(x, y, z)$, por ejemplo `(1, 2, 3)`. Vale escribir valores exactos como `sqrt(3)` o decimales con al menos 4 cifras significativas.
+    variants:
+      - values: {"r":2,"g":30}
+        answers: ["sha256:5b9dee34eb79731e82dc13e1d0d93bab7b708d00483601611a50420298f7485b","sha256:084692ba4faaa90b23c06b45b6c5782a44ec67c02aa1aeab468e2c49f2005908"]
+      - values: {"r":4,"g":60}
+        answers: ["sha256:f8da237492c313b3734d59e3be8bbea9808f50af44f0e73c50f6e178a2111d41","sha256:89d3388e05436fa263b89fc6bcc16d14807f020d930a7fd3c5d740c9b2929a93"]
+      - values: {"r":3,"g":90}
+        answers: ["sha256:156b500aef1789f03af5ba78b01d36be635d952ecef3e4b830e785497615d822","sha256:5c9912b0a8f961f0f863b88bb162f3bd66f5472273ae3acca4bec90d874dcb91"]
+      - values: {"r":2,"g":45}
+        answers: ["sha256:6fd6f05b4d4bb31935050ae9ed71c06a0692ea6c515c7f433d658e1276c7372b","sha256:b27d8f1172e6f7917d3bdfd918447b3cb0c4045a73689e8520068c27e53789ca"]
+      - values: {"r":6,"g":120}
+        answers: ["sha256:56bbfa8685acc941bdff7bd661b26b9efca6c7b8d4a049306b1749d34a9aea8b","sha256:6374e9abb23907d9d7cdd5fa011b09c96d2d97c7ec62c226ef469e7918a22c43"]
+      - values: {"r":1,"g":150}
+        answers: ["sha256:78470e012e81fdf83f5d7bf7e8c2e8362779acdec9eb2a89bd064e797bcb95c4","sha256:8e84c346195900d786604172f9e72838eb319878e1b1b5f1097d29c68a6df2f9"]
+      - values: {"r":5,"g":180}
+        answers: ["sha256:48d7b1c89a518a50060452d6c9f91fe18dbf40bb431dfe0a1dc9ebb8070d26e3","sha256:ecedb598d584fe477d0d4a0dd88f4401e2248bbd4ef1cc04513d41b166c0d332"]
+      - values: {"r":2,"g":-60}
+        answers: ["sha256:bb2eabf88c7490602b6d9ea52b834c09b40f2b0d4257b2bc18701b7ce0572c5f","sha256:abd9be7e0a2a683e7cb9987ba04a68ed7ca4d6aa43a0e0b3d1109b3db68a6690"]
   - id: inversa-homogenea
     tier: 1
+    type: matriz
+    sig: 4
     prompt: |
-      Una pose tiene $R = R_z(90°)$ y $p = (1, 2, 0)$. ¿Qué punto se obtiene al aplicar $T^{-1}$ al origen (es decir, dónde está el origen fijo visto desde el cuerpo)? Respuesta: `x;y;z`.
-    answers: ["sha256:5af9a0573baa1457d28d50886835cde2a0a42aad9a038e9d1eb149140139e15f"]
+      Una pose tiene $R = R_z({{g}}°)$ y $p = ({{px}}, {{py}}, {{pz}})$. ¿Qué punto se obtiene al aplicar $T^{-1}$ al origen (es decir,
+      dónde ve el sistema móvil el origen del fijo)? Respuesta: el vector $(x, y, z)$, por ejemplo `(1, 2, 3)`. Vale escribir valores exactos como `sqrt(3)` o decimales con al menos 4 cifras significativas.
+    variants:
+      - values: {"g":90,"px":1,"py":2,"pz":0}
+        answers: ["sha256:372a326a3f7ad1b5e218e00016e7a7d5bdb598e673c4118d0a87fb64cfa45cff","sha256:067c40c85ed4820e11210c936d23a9fca6df9c28a7cac83cd11653d27ae85efa"]
+      - values: {"g":180,"px":3,"py":1,"pz":0}
+        answers: ["sha256:7a95c8aabed4e732363ccd931e8a111f898b5105e0ec089aa3b33ee84ffbb64d","sha256:908d68f540e5a9c33f8b909fdeb2fe5d9bacf78ced2d934ce3ce8271c4bde2ef"]
+      - values: {"g":-90,"px":2,"py":-1,"pz":4}
+        answers: ["sha256:bb104b44fa7cd2786cc2fdab287c51cc1e1b18c83bc587440821fe76c7e72c00","sha256:253b68e1c812067527611c5d500f4bbb2a8e8c93b443d26b17545dd796303ff8"]
+      - values: {"g":90,"px":0,"py":5,"pz":1}
+        answers: ["sha256:773108c86fbbe9edee09ba9106408c38f1daac1a56137a3988b952fcea17fd8d","sha256:f77b2e17eb4abcdf3b71318e576830466e8e6ea7056d46bff53709dcdcab01ac"]
+      - values: {"g":180,"px":-2,"py":2,"pz":3}
+        answers: ["sha256:c03311a6474c5041a4a21a010a392728b9a2f8ff7d55a8702084305d476aa622","sha256:300b55fe040edccb9df3a4a67250fbbb263bb91f371055890cf9166203a268a1"]
+      - values: {"g":270,"px":1,"py":1,"pz":1}
+        answers: ["sha256:a84e2a3d4fbfd20c67653df48df9c52025be696b3b6fb8e4efebfc4611699191","sha256:f7613ec1af4a0d97b44f70e91ec3aea6cbfcf243cdd2453a2b4c07f43636ea4c"]
   - id: angulo-de-una-rotacion
     tier: 1
     prompt: |
@@ -96,6 +129,56 @@ exercises:
     prompt: |
       ¿Qué ángulo hay que girar para pasar de la orientación $R_1 = R_x(30°)$ a $R_2 = R_y(40°)$, es decir, cuál es el ángulo de $R_1^{\mathsf T}R_2$? Respuesta: en grados, con **2 decimales**.
     answers: ["sha256:51a5300c1cc15c054b2227070f1c02b5a1ff76ef8cece0b9e608b37274af2760"]
+  - id: r-matriz-rz90
+    tier: 1
+    type: matriz
+    review: true
+    sig: 4
+    prompt: |
+      Escribe la matriz de rotación $R_z(90°)$ (gira $90°$ alrededor del eje $z$). Respuesta: la matriz $3\times3$, filas separadas por
+      `;`, por ejemplo `1 0 0; 0 1 0; 0 0 1`.
+    answers: ["sha256:e6a3e56a15307ea5595786e6b52f345d6bcd2ff2acebd01f36f012f7a686660d"]
+  - id: r-inversa-rotacion
+    tier: 1
+    type: opcion
+    review: true
+    prompt: |
+      ¿Cuál es la inversa de una matriz de rotación $R$, y por qué es tan fácil de calcular?
+    options:
+      - |
+        Hay que calcularla con Gauss-Jordan
+      - |
+        Es $-R$
+      - |
+        Es su traspuesta $R^\top$
+      - |
+        No siempre existe
+    answers: ["sha256:0c71ef947e1bd08261b153ad919596a87e3fe49df9f548661899a18d102ce822"]
+  - id: r-orden-rotaciones
+    tier: 2
+    type: opcion
+    review: true
+    prompt: |
+      ¿Da lo mismo girar un objeto $90°$ alrededor de $z$ y luego $90°$ alrededor de $x$ que hacerlo en el orden contrario?
+      (Pruébalo con un libro.)
+    options:
+      - |
+        Sí: el orden de las rotaciones no importa
+      - |
+        No: las rotaciones en 3D no conmutan; $R_z R_x \ne R_x R_z$ en general
+      - |
+        Solo da igual si los dos ángulos son iguales
+      - |
+        Solo importa en 2D
+    answers: ["sha256:eca41bedc0f7c9579ea87e64bac1b258be99adb71124bb4f8e1c9209e7978496"]
+  - id: r-determinante
+    tier: 2
+    type: numero
+    review: true
+    sig: 6
+    prompt: |
+      ¿Cuánto vale el determinante de cualquier matriz de rotación (sin reflexión) en 3D? Respuesta: un número.
+    answers: ["sha256:e2a358ec7bb54507f6e835f5e8452ddca9302d3a28980e62aa920bb14d1b3516","sha256:1f436897b5b706ac3d2256a2760a51c9465459a1d563d0bdc379faf97845808c","sha256:78f6b78983d1c04f72c8587a192bb7fc534fe20cc1c1dfc1b0692d154ee47ee3"]
 ---
 
 # Cinemática de robots: rotaciones, poses, cinemática directa e inversa, jacobiano y singularidades

@@ -20,8 +20,21 @@ exercises:
   - id: cifrado-cesar
     tier: 1
     prompt: |
-      El criptograma `KHOOR` se obtuvo con un cifrado de César (desplazar cada letra $k$ posiciones). Descífralo; prueba los 26 desplazamientos si hace falta. Respuesta: la palabra en minúsculas.
-    answers: ["sha256:2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"]
+      El criptograma `{{c}}` se obtuvo con un cifrado de César (desplazar cada letra $k$ posiciones en el alfabeto inglés de
+      26 letras). Descífralo. Respuesta: el texto en claro, en minúsculas.
+    variants:
+      - values: {"c":"KHOOR"}
+        answers: ["sha256:2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"]
+      - values: {"c":"JYPWAV"}
+        answers: ["sha256:52ea4d748b0a6c8d8bec475cf10c08d3aad609bf59b09be1dd2009b41adb64f2"]
+      - values: {"c":"XFYOZ"}
+        answers: ["sha256:cb9c245f6cf4910aca447a02e910139b5456d63d53be538e386ed48472eaca5f"]
+      - values: {"c":"VETOX"}
+        answers: ["sha256:6d5074b4bf2b913866157d7674f1eda042c5c614876de876f7512702d2572a06"]
+      - values: {"c":"XJHWJYT"}
+        answers: ["sha256:df733656293a19c54f69093ba916f0a1a2a3c151fc95c13f3a794c2631eeb3a6"]
+      - values: {"c":"RKBQHF"}
+        answers: ["sha256:4995baa63e0e2487000039c1a829fadc3e90a69b115a47b2280064292497bbc0"]
   - id: cumpleanos
     tier: 1
     prompt: |
@@ -29,19 +42,59 @@ exercises:
     answers: ["sha256:41e20b7d9413241e193d5f3da71766e5508cfdf387424451e8e8022380af2026"]
   - id: pequeno-teorema-de-fermat
     tier: 1
+    type: numero
+    sig: 10
     prompt: |
-      ¿Cuánto vale $7^{128} \bmod 13$? Usa el pequeño teorema de Fermat para reducir el exponente. Respuesta: un entero.
-    answers: ["sha256:4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"]
+      ¿Cuánto vale ${{a}}^{{{n}}} \bmod {{p}}$? Usa el pequeño teorema de Fermat para reducir el exponente. Respuesta: un entero.
+    variants:
+      - values: {"a":7,"n":128,"p":13}
+        answers: ["sha256:84e043142251f39e2e8ac086386bc8fc55e2210cc7fc6d2d1cf7e6cff21b1590","sha256:02994cd14285361182757351aa041513ecb98eff5c3a498491dc8082bcd54179","sha256:61b5d53e17bfae87aaaf90b1e535e04579de624d4bf1723d1c66f6102e0a6e0c"]
+      - values: {"a":3,"n":200,"p":11}
+        answers: ["sha256:f1a928a7dbae212c04dc65eb16602d6fea6bc474b0553de5105cb33c4dc32027","sha256:9c4e45cfa3df409f42a5e338abc666e79957b0fe5f911d50550ff01977992dd9","sha256:646ed222bc8ef9370ca63bb38d4e4e98537745533424fc2d877263e7d88bfbcb"]
+      - values: {"a":5,"n":1000,"p":17}
+        answers: ["sha256:62bf3548daa17fc406f6a0dabc66ff779d1383b3040f4d76b920ba0a785d0d15","sha256:552eb3bbbe6ccd3761c2c81b6ade5b33985555ce1517e2093b8428a7f22ad543","sha256:12c81e829ba33f2e2624cbf8384e23d1f398d1d7cca98336306865aca5be9240"]
+      - values: {"a":2,"n":345,"p":19}
+        answers: ["sha256:8f40b13fee6d5be8331f815a702fbc6396ed3edaab8592bfffe7f3d40eefa306","sha256:099c1492a09796285b496f41b4556c232bf5bb72af19f119d7a0904e5515128e","sha256:440c6adb5fdab9aaf1c91bd9fee65faeca0848838b75351ef0cc1ac40f0a8df0"]
+      - values: {"a":10,"n":99,"p":23}
+        answers: ["sha256:009a8e8387bf861e5111d904647f9c57c5187e7be772469deab82a02499978a2","sha256:7881491e1f3856ed13e4afdd9997120104584522f6bab7dd65aade4dbba0d65b","sha256:dfbd062e121c4b6383ae19522d477324483ec546a7f85ecb649d6048c110835e"]
+      - values: {"a":6,"n":777,"p":29}
+        answers: ["sha256:71ee7a6d34ce74a3e70213b6059142c6d8c10094876656468b72fa2e5de968a6","sha256:56b54fa35be30f6104f1f74eec7347cc4a1c5b204a5a93eeae083e4e2459e55d","sha256:8e39cecc1723640bd7aee54a97165305e73117effb959a65b7d563c16c4943d9"]
   - id: rsa-de-juguete
     tier: 1
     prompt: |
-      RSA con $p = 61$, $q = 53$ y $e = 17$. ¿Cuál es el exponente privado $d$ y cuál es el cifrado de $m = 65$? Respuesta: `d;c`.
-    answers: ["sha256:a055b3e5563343de271b88d62561780fd129f08d336a8065459f35f38d8af5b6"]
+      RSA con $p = {{p}}$, $q = {{q}}$ y $e = {{e}}$. ¿Cuál es el exponente privado $d$ (entre $0$ y $\varphi(n)-1$) y cuál es
+      el cifrado de $m = {{m}}$? Respuesta: `d;c`.
+    variants:
+      - values: {"p":61,"q":53,"e":17,"m":65}
+        answers: ["sha256:a055b3e5563343de271b88d62561780fd129f08d336a8065459f35f38d8af5b6"]
+      - values: {"p":47,"q":59,"e":17,"m":100}
+        answers: ["sha256:a42d2b17b65ed510e2471de5a70f1bbad70ce5e06e23bc5c5268e8de004074ed"]
+      - values: {"p":53,"q":61,"e":7,"m":42}
+        answers: ["sha256:979d89aa7a5dbc70eeff97b80b547c715e19ba2da2fc04f0843f2326a6184a54"]
+      - values: {"p":43,"q":67,"e":13,"m":1000}
+        answers: ["sha256:8c6659ad373fe94f915097c94e62998e372d048f9186943dd16e7a4cff75de29"]
+      - values: {"p":71,"q":83,"e":11,"m":1234}
+        answers: ["sha256:4f27e66421a60cfa2be1215f5ded7eb378d759308fe6ac9798ae8026d6e863dc"]
+      - values: {"p":59,"q":73,"e":5,"m":777}
+        answers: ["sha256:d85e924c9ff204803eb2b43d0a6bfa7a8601e8bbea88df127874a54cb46be14e"]
   - id: diffie-hellman
     tier: 1
     prompt: |
-      Diffie-Hellman en $\mathbb Z_{23}^*$ con $g = 5$: Alicia elige $a = 6$ y Bernardo $b = 15$. ¿Qué valores públicos $A$ y $B$ se envían y qué secreto comparten? Respuesta: `A;B;K`.
-    answers: ["sha256:ef6197baad408ba2ee55b791d1bdc1864df8fe79a8baede4538239516e96bbd6"]
+      Diffie-Hellman en $\mathbb Z_{{{p}}}^*$ con $g = {{g}}$: Alicia elige $a = {{a}}$ y Bernardo $b = {{b}}$. ¿Qué valores públicos
+      $A$, $B$ intercambian y cuál es el secreto compartido $K$? Respuesta: `A;B;K`.
+    variants:
+      - values: {"p":23,"g":5,"a":6,"b":15}
+        answers: ["sha256:ef6197baad408ba2ee55b791d1bdc1864df8fe79a8baede4538239516e96bbd6"]
+      - values: {"p":23,"g":5,"a":4,"b":9}
+        answers: ["sha256:bbe1b7bee8ce6c1df677f47a471799595b6cbd1b8df90ea64397dc528de21d75"]
+      - values: {"p":29,"g":2,"a":7,"b":11}
+        answers: ["sha256:19adb8853698f188c518961a35c14bdd4664dd72f869cc88d179bb7e68b799b2"]
+      - values: {"p":31,"g":3,"a":5,"b":17}
+        answers: ["sha256:21bbdfb513fce9c368e091e69a47dd9de66d58adfacc8864d14dc14908477a28"]
+      - values: {"p":37,"g":2,"a":10,"b":21}
+        answers: ["sha256:6519860734e0af95d09dd29aae91dc9b5e64be4160fd26e70d18e92e9eca7d9e"]
+      - values: {"p":41,"g":6,"a":3,"b":25}
+        answers: ["sha256:2406149ac7bb6ae13bf718a2471b59428b03256ea0a45fd1ae23455d88d81729"]
   - id: libreta-reutilizada
     tier: 2
     prompt: |
@@ -97,6 +150,70 @@ exercises:
     prompt: |
       ¿Cuántos generadores tiene el grupo cíclico $\mathbb Z_{65521}^*$? Respuesta: un entero.
     answers: ["sha256:619b9764b0f5da3d20548bf11d493fb78b5a6790c625aae87e95f3dd1a15a289"]
+  - id: r-ecb-pinguino
+    tier: 1
+    type: opcion
+    review: true
+    prompt: |
+      ¿Por qué no se debe cifrar una imagen (o una base de datos) con AES en modo ECB?
+    options:
+      - |
+        Porque AES es inseguro con claves de 128 bits
+      - |
+        Porque bloques de texto en claro iguales dan bloques cifrados iguales y se ve la estructura de los datos
+      - |
+        Porque ECB no admite mensajes largos
+      - |
+        Porque ECB necesita un nonce y casi nunca se pone
+    answers: ["sha256:fe009b1aa26d3cfb13fd58fd5666f12dd1e5783d29cf0dce04f190f2edf508db"]
+  - id: r-nonce-ctr
+    tier: 2
+    type: opcion
+    review: true
+    prompt: |
+      Se cifran dos mensajes con AES-CTR, la misma clave y el **mismo nonce**. ¿Qué consecuencia tiene?
+    options:
+      - |
+        Nada: AES sigue siendo seguro
+      - |
+        Se puede recuperar la clave de AES
+      - |
+        El XOR de los dos criptogramas es el XOR de los dos textos en claro: conociendo uno se obtiene el otro
+      - |
+        Solo se pierde la integridad, no la confidencialidad
+    answers: ["sha256:c1d9e1357b9e0db11f56e0df7864afb0b2bdb1c418ab13659a99d37d49ba137f"]
+  - id: r-hash-contrasenas
+    tier: 1
+    type: opcion
+    review: true
+    prompt: |
+      ¿Cómo se deben guardar las contraseñas de los usuarios de una web?
+    options:
+      - |
+        SHA-256 del texto, que es rápido
+      - |
+        MD5 con una sal fija para todos los usuarios
+      - |
+        Cifrarlas con AES y guardar la clave en el servidor
+      - |
+        Una función lenta y con sal por usuario: Argon2id, scrypt o bcrypt
+    answers: ["sha256:2286e9af79dd3d9af1c17f1508084a90437c655eff8e1dcd3325d80048c4ae9c"]
+  - id: r-rsa-sin-relleno
+    tier: 3
+    type: opcion
+    review: true
+    prompt: |
+      ¿Qué problema tiene usar RSA «de libro» (sin relleno aleatorio como OAEP) para cifrar un «sí» o un «no»?
+    options:
+      - |
+        Es determinista: el mismo mensaje da siempre el mismo criptograma, y un atacante puede probar candidatos
+      - |
+        Es más lento que con relleno
+      - |
+        No funciona con mensajes pequeños porque da error
+      - |
+        Ninguno: el relleno solo sirve para mensajes largos
+    answers: ["sha256:52f1f8eaaa51d7b221663dca8a405ff683c233298fa228f27edbf30b89e4529d"]
 ---
 
 # Criptografía: secreto perfecto, cifrado simétrico, integridad, RSA, logaritmo discreto y curvas elípticas

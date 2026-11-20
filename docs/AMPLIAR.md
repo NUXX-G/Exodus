@@ -59,6 +59,9 @@ solo hay hashes con sal (id del ejercicio y de la variante); la solución nunca 
   ejercicio del nodo, Exodus alterna entre el banco y una variante nueva del ejercicio; si no hay ni banco ni
   variantes, repite el original.
 - `ex-inject` comprueba que cada respuesta de referencia se acepta con el propio corrector antes de escribir nada.
+- Redondea en el spec los resultados de coma flotante que deban ser exactos: un `0` calculado puede salir como
+  `1e-33` y entonces «0» no se aceptaría. En los enunciados con datos, escribe `\{{dato}}` dentro de `String.raw`
+  (JavaScript leería `${{` como interpolación) y quita la barra al exportar.
 - Una respuesta que no se entiende («tres», una unidad incompatible) no cuenta como intento: el alumno ve el error.
 
 ### Proyectos y laboratorios
