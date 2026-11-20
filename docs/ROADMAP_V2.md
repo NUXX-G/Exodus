@@ -180,9 +180,9 @@ El usuario pide terminar **todas** las fases de forma autónoma, **sin preguntar
 
 ## FASE 8C — Comodidad de estudio
 
-- [ ] Investigar y añadir funciones que ayuden a estudiar solo con Exodus (p. ej. temporizador Pomodoro, modo
+- [x] Investigar y añadir funciones que ayuden a estudiar solo con Exodus (p. ej. temporizador Pomodoro, modo
       concentración, tarjetas de glosario, atajos de teclado, impresión de hojas de ejercicios). Decidir y anotar.
-- [ ] Cierre de fase (checks, casillas, `STATUS.md`, commit `v2: fase 8C completada`).
+- [x] Cierre de fase (checks, casillas, `STATUS.md`, commit `v2: fase 8C completada`).
 
 # PARTE 2: CONTENIDO (un ciclo por área)
 

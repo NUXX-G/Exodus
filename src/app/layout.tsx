@@ -4,6 +4,8 @@ import { Suspense } from "react";
 import { Archivo, JetBrains_Mono, STIX_Two_Text } from "next/font/google";
 import IndicadorCarga from "@/components/IndicadorCarga";
 import Calculadora from "@/components/Calculadora";
+import Temporizador from "@/components/Temporizador";
+import Atajos from "@/components/Atajos";
 import { getSessionUser } from "@/lib/auth";
 import { logoutAction } from "./(cuenta)/actions";
 import "./globals.css";
@@ -88,6 +90,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         </Suspense>
         {children}
         {user && <Calculadora />}
+        {user && <Temporizador />}
+        {user && <Atajos />}
       </body>
     </html>
   );

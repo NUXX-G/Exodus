@@ -19,6 +19,7 @@ import ExamIntro from "@/components/ExamIntro";
 import RegistroSelector, { type Registro } from "@/components/RegistroSelector";
 import { cookies } from "next/headers";
 import StudyTimeForm from "@/components/StudyTimeForm";
+import { BotonConcentracion } from "@/components/Atajos";
 import { undoDiagnosisAction } from "@/app/diagnostico/actions";
 import { devInitial } from "@/lib/desarrollo-inicial";
 import { loadRecursos } from "@/lib/recursos";
@@ -140,7 +141,15 @@ export default async function PaginaNodo({ params }: Props) {
         )}
         {/* HTML generado en el servidor a partir del vault; el HTML crudo del Markdown se descarta. */}
         {definiciones && <div className="formulas-definiciones" dangerouslySetInnerHTML={{ __html: definiciones }} />}
-        {tieneEscalera && <RegistroSelector inicial={registro} />}
+        <div className="nodo-herramientas no-imprimir">
+          <BotonConcentracion />
+          {node.exercises.some((e) => e.type !== "codigo") && (
+            <Link href={`/nodo/${node.id}/hoja`} prefetch={false} className="boton-secundario">
+              Hoja para imprimir
+            </Link>
+          )}
+          {tieneEscalera && <RegistroSelector inicial={registro} />}
+        </div>
         <article className="prosa" data-registro={registro} dangerouslySetInnerHTML={{ __html: html }} />
 
         {ejercicios.length > 0 && (

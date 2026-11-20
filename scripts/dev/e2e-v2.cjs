@@ -276,6 +276,32 @@ async function main() {
   assert.match(await page.locator(".calc-resultado").innerText(), /= 5/);
   ok("calculadora: 2·sin(30°) + √16 = 5 en grados");
 
+  // Comodidad (fase 8C): temporizador que anota el bloque, modo concentración, atajos y hoja imprimible.
+  const antes = db.prepare("select coalesce(sum(minutes),0) m from study_time where user_id=?").get(uid).m;
+  await page.goto(`${BASE}/nodo/mat-calculo-1`);
+  await page.evaluate(() =>
+    localStorage.setItem("exodus_pomodoro", JSON.stringify({ modo: "25/5", fase: "estudio", fin: Date.now() - 1000, resto: 0, nodo: "mat-calculo-1", bloques: 0 })),
+  );
+  await page.reload();
+  await page.locator('.pomo .mensaje:has-text("25 min anotados")').waitFor();
+  const despues = db.prepare("select coalesce(sum(minutes),0) m from study_time where user_id=?").get(uid).m;
+  assert.equal(despues - antes, 25, "el bloque de 25 min se anota en el nodo");
+  await page.locator(".pomo .calc-cerrar").click();
+  ok("temporizador: al acabar un bloque anota 25 min en el nodo");
+  await page.locator("article.prosa").click({ position: { x: 5, y: 5 } });
+  await page.keyboard.press("f");
+  assert.equal(await page.locator(".barra-superior").isVisible(), false, "modo concentración oculta la barra");
+  await page.keyboard.press("Escape");
+  assert.equal(await page.locator(".barra-superior").isVisible(), true);
+  await page.keyboard.press("?");
+  await page.locator('.atajos h2:has-text("Atajos")').waitFor();
+  await page.keyboard.press("Escape");
+  ok("modo concentración con f/Esc y ayuda de atajos con ?");
+  await page.goto(`${BASE}/nodo/mat-calculo-1/hoja`);
+  const nHoja = await page.locator(".hoja-lista > li").count();
+  assert.equal(nHoja, 17, "todos los ejercicios del nodo (sin código)");
+  ok(`hoja imprimible con ${nHoja} ejercicios`);
+
   assert.deepEqual(errores, [], "errores de JavaScript en la página");
   await browser.close();
   console.log(`\n${pasos.length} comprobaciones superadas`);

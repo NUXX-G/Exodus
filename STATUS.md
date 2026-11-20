@@ -23,9 +23,9 @@ registro de sesiones (una línea) o a `docs/`.
 
 ## 1. Ahora mismo
 
-- **Fase actual**: FASE 8C — Comodidad de estudio.
-- **Tarea actual**: investigar y añadir funciones que ayuden a estudiar solo con Exodus (temporizador Pomodoro que anota el tiempo, modo concentración, tarjetas de glosario, atajos de teclado, hojas de ejercicios imprimibles…); decidir y anotar.
-- **Siguiente paso concreto**: leer la FASE 8C del roadmap; buscar evidencia (técnica Pomodoro, intercalado, recuperación) y elegir 4-6 funciones de más rendimiento por esfuerzo; anotarlas en §6 con su porqué antes de implementarlas.
+- **Fase actual**: FASE 9 — Contenido: troncal (desde cero hasta Bachillerato).
+- **Tarea actual**: a) Mapa: elegir 1-2 fuentes de referencia (gratuitas y en español si existen: OpenStax, materiales oficiales) y escribir docs/contenido/troncal.md con la tabla sección de la fuente → nodo / hueco / sobra.
+- **Siguiente paso concreto**: leer la FASE 9 y la sección «PARTE 2» del roadmap (ciclo a-f, escalera práctico/formal obligatoria, glosario, fuentes con capítulo); el troncal es solo el ~20 % de fundamentos (1.º ESO → Bachillerato): delimitar qué nodos actuales son troncal y cuáles pertenecen ya a una rama (muchos de 00-troncal/ son de grado; no se cambian ids).
 - **Bloqueos**: ninguno.
 - **Prueba en navegador**: `scripts/dev/sesion-prueba.ts` (usuario y sesión en una base temporal) y
   `scripts/dev/e2e-v2.cjs` (Playwright 1.58 de la caché de npx: `PLAYWRIGHT_CORE=C:/Users/nelso/AppData/Local/npm-cache/_npx/787f53666b8d4740/node_modules/playwright-core`).
@@ -217,6 +217,7 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
 
 | Fecha | Qué se hizo | Commit |
 | --- | --- | --- |
+| 2026-11-20 | Fase 8C: comodidad de estudio: temporizador Pomodoro flotante (Alt+P) que anota cada bloque terminado en el nodo, modo concentración (f/Esc), atajos con ayuda (?), hoja de ejercicios imprimible por nodo (sin soluciones, con espacio para el desarrollo). Fin de la PARTE 1 (plataforma). | `v2: fase 8C completada` |
 | 2026-11-20 | Fase 8B: lienzo de dibujo en la Libreta (lápiz con presión, borrador de trazos, 6 colores, 4 grosores, deshacer/rehacer con Ctrl+Z/Ctrl+Y, cuadrícula), guardado vectorial y exportación a Obsidian como SVG (plugin 1.1); calculadora científica flotante en todas las páginas (Alt+C, grados/radianes, Ans, historial) con el CAS propio; arreglados 2 enunciados de la v1 | `v2: fase 8B completada` |
 | 2026-11-20 | Fase 8A: explicación en escalera (callouts práctico/formal con títulos propios y conmutador recordado), glosario por área (58 términos en 7 notas) resaltado en el texto con explicación al pasar el ratón, /glosario con búsqueda, aviso de tecnicismos usados antes de explicarse, documentado en PEDAGOGIA y AMPLIAR; ejemplo en mat-proporcionalidad-porcentajes (y corregida una fuga en su banco de repaso) | `v2: fase 8A completada` |
 | 2026-11-20 | Fase 8: objetivos recomendados en vault/_objetivos (6: acceso a la universidad, primero UNED con el plan oficial 2026-27, junior de sistemas, analista SOC 1, junior de IA, junior de robótica) con avance, semanas al ritmo elegido, ritmo necesario para una fecha y siguiente nodo, en /objetivos y en Inicio; tiempo de estudio opcional por nodo sumado en el heatmap; cómo crecer hasta el grado completo (AMPLIAR §3b); vault:soluciones compara los hitos marcados sin sus campos de código | `v2: fase 8 completada` |
@@ -232,6 +233,12 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
 | 2026-11-15 | Paso 0: rama `v2`, `docs/ROADMAP_V2.md`, `STATUS.md` nuevo, `docs/HISTORIAL_V1.md`, `scripts/dev/`, `CLAUDE.md` | `v2: fase 0 completada` |
 ` como patrón de reemplazo (`prog-powershell-batch`,
    `prog-unix-texto`); reinyectados (respuestas iguales, progreso intacto).
+
+21. **2026-11-20 · Fase 8C: qué funciones de comodidad.** Elegidas: (1) temporizador Pomodoro flotante que anota el
+   tiempo en el nodo donde estás (alimenta el heatmap y el ritmo de los objetivos); (2) modo concentración en el nodo;
+   (3) hoja de ejercicios imprimible por nodo (practicar en papel, como el examen de la UNED); (4) atajos de teclado con
+   ayuda en «?». Descartadas aquí porque las cubre la tarea en cola `docs/APRENDIZAJE.md` (priming, modo estudio con
+   bloques y reconstrucción, tarjetas de datos, quiz, socrático): no duplicar; esa tarea reutilizará el temporizador.
 
 ## 7. Preguntas abiertas
 

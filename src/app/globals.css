@@ -2679,3 +2679,167 @@ a.termino:focus-visible::after {
   font-family: var(--fuente-codigo), monospace;
   cursor: pointer;
 }
+
+/* ───────── v2 fase 8C: temporizador, concentración, atajos e impresión ───────── */
+
+.pomo-boton {
+  position: fixed;
+  right: 76px;
+  bottom: 18px;
+  z-index: 40;
+  min-width: 48px;
+  height: 48px;
+  padding: 0 10px;
+  font-size: 1.2rem;
+  background: var(--lamina);
+  color: var(--tiza);
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.pomo-boton[data-activo="true"] {
+  font-family: var(--fuente-codigo), monospace;
+  font-size: 0.95rem;
+  border-color: var(--ambar);
+}
+
+.pomo {
+  position: fixed;
+  right: 76px;
+  bottom: 18px;
+  z-index: 41;
+  width: min(300px, calc(100vw - 36px));
+  padding: 12px;
+  background: var(--tinta-honda);
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: var(--radio);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+}
+
+.pomo select {
+  background: var(--tinta);
+  color: var(--tiza);
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: var(--radio);
+}
+
+.pomo-reloj {
+  margin: 6px 0 10px;
+  font-family: var(--fuente-codigo), monospace;
+  font-size: 2.6rem;
+  text-align: center;
+}
+
+.nodo-herramientas {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+
+.nodo-herramientas .registro-selector {
+  margin: 0;
+}
+
+body[data-concentracion="true"] .barra-superior,
+body[data-concentracion="true"] .lateral,
+body[data-concentracion="true"] .boton-volver,
+body[data-concentracion="true"] .migas {
+  display: none;
+}
+
+body[data-concentracion="true"] .nodo-pagina {
+  display: block;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+body[data-concentracion="true"] .boton-concentracion {
+  border-color: var(--ambar);
+}
+
+.atajos {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.atajos-caja {
+  width: min(520px, calc(100vw - 32px));
+  padding: 18px 22px;
+  background: var(--tinta-honda);
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: var(--radio);
+}
+
+.atajos-caja dl > div {
+  display: flex;
+  gap: 12px;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--trazo);
+}
+
+.atajos-caja dt {
+  min-width: 160px;
+}
+
+.atajos-caja dd {
+  margin: 0;
+}
+
+kbd {
+  padding: 1px 6px;
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: 4px;
+  font-family: var(--fuente-codigo), monospace;
+  font-size: 0.85em;
+}
+
+.hoja-lista > li {
+  margin-bottom: 18px;
+  break-inside: avoid;
+}
+
+.hoja-espacio {
+  height: 7rem;
+  border-bottom: 1px dashed var(--trazo-fuerte);
+}
+
+.hoja-lista > li[data-desarrollo="true"] .hoja-espacio {
+  height: 20rem;
+}
+
+@media print {
+  .barra-superior,
+  .no-imprimir,
+  .calc-boton,
+  .calc,
+  .pomo-boton,
+  .pomo,
+  .atajos,
+  .indicador-carga {
+    display: none !important;
+  }
+
+  body,
+  .pagina {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .hoja-ejercicios .prosa,
+  .hoja-ejercicios .nota,
+  .hoja-ejercicios h1 {
+    color: #000 !important;
+  }
+
+  .hoja-espacio {
+    border-bottom-color: #999;
+  }
+}
