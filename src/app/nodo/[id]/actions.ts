@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { requireUser } from "@/lib/auth";
 import { linkResolverFor, renderMarkdown } from "@/lib/markdown";
-import { createReport, defDe, MAX_REPORT_CHARS, revealNextHint, submitExercise, submitFlag } from "@/lib/progress";
+import { createReport, defDe, lastAttemptId, MAX_REPORT_CHARS, revealNextHint, submitExercise, submitFlag } from "@/lib/progress";
 import { interpretar } from "@/lib/tipos-ejercicio";
 import { metaFrom } from "@/lib/form-meta";
 import { loadVault } from "@/lib/vault";
@@ -55,6 +55,8 @@ export async function reportAction(_prev: ReportState | null, form: FormData): P
 export interface FlagFormState {
   tone: "ok" | "error";
   message: string;
+  /** Tras un fallo: el intento, para etiquetarlo en el diario de errores. */
+  attemptId?: number;
 }
 
 const MENSAJES = {
@@ -112,6 +114,7 @@ export async function submitExerciseAction(_prev: FlagFormState | null, form: Fo
       espera: "Demasiados intentos fallidos. Espera un minuto.",
       variante: "Los datos de este ejercicio han cambiado (lo resolviste en otra pestaña). Recarga la página.",
     }[r.reason];
+    if (r.reason === "incorrecta") return { tone: "error", message: msg, attemptId: lastAttemptId(user.id) ?? undefined };
     return { tone: "error", message: msg };
   }
   revalidatePath("/");

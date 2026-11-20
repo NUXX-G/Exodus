@@ -25,10 +25,15 @@ import {
   promptOf,
   resolveReport,
   reviewQuestion,
+  errorStats,
+  interleavedSet,
+  lastAttemptId,
+  submitPractice,
+  tagAttempt,
 } from "../src/lib/progress";
 import { sha256, type Vault, type VaultExercise, type VaultNode } from "../src/lib/vault";
 import { REGISTRO, salDe } from "../src/lib/tipos-ejercicio";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 
 const FLAG = "EXODUS{prueba}";
 
@@ -268,4 +273,67 @@ test("reportes: se guardan pendientes, con límite y resolución", () => {
   assert.equal(listReports("pendiente").filter((r) => r.nodeId === "nodo-x").length, 0);
   for (let i = 0; i < 19; i++) createReport(u, "nodo-y", null, "x");
   assert.equal(createReport(u, "nodo-y", null, "uno más"), "espera");
+});
+
+/* ───────── v2 fase 2: diario de errores, prioridad y práctica intercalada ───────── */
+
+test("diario de errores: solo se etiquetan fallos propios", () => {
+  const u = makeUser();
+  const otro = makeUser();
+  const nd = node("diario", { exercises: ejercicios(2) });
+  submitExercise(u, nd, "e0", "mal");
+  const id = lastAttemptId(u)!;
+  assert.equal(tagAttempt(otro, id, "concepto", null), false, "no es suyo");
+  assert.equal(tagAttempt(u, id, "concepto", "  confundí la definición  "), true);
+  submitExercise(u, nd, "e1", "1");
+  assert.equal(tagAttempt(u, lastAttemptId(u)!, "despiste", null), false, "un acierto no se etiqueta");
+  const fila = getDb().select().from(schema.exerciseAttempts).where(eq(schema.exerciseAttempts.id, id)).get()!;
+  assert.equal(fila.errorTag, "concepto");
+  assert.equal(fila.errorNote, "confundí la definición");
+  const vault = { nodes: new Map([[nd.id, nd]]), areas: mergeAreas(undefined).areas, issues: [] } as unknown as Vault;
+  const s = errorStats(u, vault);
+  assert.equal(s.total, 1);
+  assert.equal(s.porTipo.get("concepto"), 1);
+  assert.equal(s.porNodo[0].nodeId, "diario");
+});
+
+test("repaso ponderado: primero el ejercicio con fallo de concepto; su intervalo no pasa de 7 días", () => {
+  const u = makeUser();
+  const nd = node("ponderado", { exercises: ejercicios(2) });
+  submitExercise(u, nd, "e0", "0");
+  submitExercise(u, nd, "e1", "1");
+  // e1 falla por concepto (en estudio); los dos repasos vencen hoy, e0 desde hace más días.
+  submitExercise(u, nd, "e1", "mal");
+  tagAttempt(u, lastAttemptId(u)!, "concepto", null);
+  getDb().update(schema.reviews).set({ dueDay: addDays(dayKey(), -2), step: 4 }).where(and(eq(schema.reviews.userId, u), eq(schema.reviews.exerciseId, "e0"))).run();
+  getDb().update(schema.reviews).set({ dueDay: dayKey(), step: 4 }).where(and(eq(schema.reviews.userId, u), eq(schema.reviews.exerciseId, "e1"))).run();
+  assert.deepEqual(getDueReviews(u).map((r) => r.exerciseId), ["e1", "e0"]);
+  assert.equal(submitReview(u, nd, "e1", "1"), "ok");
+  const r1 = getDb().select().from(schema.reviews).where(and(eq(schema.reviews.userId, u), eq(schema.reviews.exerciseId, "e1"))).get()!;
+  assert.equal(r1.step, 2, "con un fallo de concepto reciente, como mucho 7 días");
+  assert.equal(submitReview(u, nd, "e0", "0"), "ok");
+  const r0 = getDb().select().from(schema.reviews).where(and(eq(schema.reviews.userId, u), eq(schema.reviews.exerciseId, "e0"))).get()!;
+  assert.equal(r0.step, 5);
+});
+
+test("práctica intercalada: solo nodos completados, alternando nodos; un fallo reprograma para mañana", () => {
+  const u = makeUser();
+  const a = node("int-a", { exercises: ejercicios(5) });
+  const b = node("int-b", { exercises: ejercicios(5) });
+  const c = node("int-c", { exercises: ejercicios(5) });
+  for (const n of [a, b]) for (let i = 0; i < 5; i++) submitExercise(u, n, `e${i}`, String(i));
+  const vault = { nodes: new Map([a, b, c].map((n) => [n.id, n])), areas: mergeAreas(undefined).areas, issues: [] } as unknown as Vault;
+  const set = interleavedSet(u, vault, null, 4);
+  assert.equal(set.length, 4);
+  assert.ok(set.every((p) => p.node.id !== "int-c"), "int-c no está completado");
+  for (let i = 1; i < set.length; i++) assert.notEqual(set[i].node.id, set[i - 1].node.id, "alterna nodos");
+  assert.deepEqual(interleavedSet(u, vault, null, 4).map((p) => p.ex.id), set.map((p) => p.ex.id), "estable en el día");
+  const p = set[0];
+  assert.equal(submitPractice(u, p.node, p.ex.id, "mal"), "incorrecta");
+  const fila = getDb().select().from(schema.reviews).where(and(eq(schema.reviews.userId, u), eq(schema.reviews.nodeId, p.node.id), eq(schema.reviews.exerciseId, p.ex.id))).get()!;
+  assert.equal(fila.dueDay, addDays(dayKey(), 1));
+  assert.equal(fila.step, 0);
+  const ult = getDb().select().from(schema.exerciseAttempts).where(eq(schema.exerciseAttempts.id, lastAttemptId(u)!)).get()!;
+  assert.equal(ult.mode, "intercalado");
+  assert.equal(submitPractice(u, p.node, p.ex.id, p.ex.id.slice(1)), "ok");
 });

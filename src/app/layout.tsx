@@ -25,6 +25,7 @@ const SECCIONES = [
   ["/practica", "Práctica"],
   ["/recursos", "Recursos"],
   ["/repaso", "Repaso"],
+  ["/errores", "Errores"],
   ["/buscar", "Buscar"],
   ["/libreta", "Libreta"],
   ["/guia", "Guía"],

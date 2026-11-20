@@ -1811,3 +1811,187 @@ details.callout:not([open]) > summary.callout-titulo {
   min-width: 200px;
   width: auto;
 }
+
+/* ───────── v2 fase 2: diario de errores, repaso intercalado ───────── */
+
+.pestanas {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--trazo);
+  margin: 12px 0 16px;
+}
+
+.pestanas a {
+  padding: 8px 14px;
+  color: var(--tiza-tenue);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+.pestanas a[aria-current="page"] {
+  color: var(--tiza);
+  border-bottom-color: var(--ambar);
+}
+
+.filtro-area {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.filtro-area select {
+  padding: 6px 8px;
+  background: var(--tinta-honda);
+  color: var(--tiza);
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: var(--radio);
+}
+
+.etiquetar-error {
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px dashed var(--trazo-fuerte);
+  border-radius: var(--radio);
+  font-size: 0.875rem;
+}
+
+.etiquetar-error fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.etiquetar-error legend {
+  margin-bottom: 6px;
+  color: var(--tiza-tenue);
+}
+
+.etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.etiquetas label {
+  cursor: pointer;
+}
+
+.etiquetas input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.etiquetas span {
+  display: inline-block;
+  padding: 4px 10px;
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: 999px;
+}
+
+.etiquetas input:checked + span {
+  border-color: var(--ambar);
+  background: rgba(245, 185, 66, 0.15);
+  color: var(--tiza);
+}
+
+.etiquetas input:focus-visible + span {
+  outline: 2px solid var(--ambar);
+}
+
+.etiquetar-error input[type="text"] {
+  padding: 8px 10px;
+  background: var(--tinta-honda);
+  color: var(--tiza);
+  border: 1px solid var(--trazo-fuerte);
+  border-radius: var(--radio);
+}
+
+.etiquetar-error .boton-secundario {
+  align-self: flex-start;
+}
+
+.etiqueta-hecha {
+  flex-basis: 100%;
+}
+
+.barra-h {
+  display: inline-block;
+  width: 100%;
+  min-width: 80px;
+  height: 8px;
+  background: var(--trazo);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.barra-h i {
+  display: block;
+  height: 100%;
+  background: var(--coral);
+}
+
+.tabla-errores {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.tabla-errores th,
+.tabla-errores td {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--trazo);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.tabla-errores th[scope="row"] {
+  font-weight: normal;
+  white-space: nowrap;
+}
+
+.tabla-errores .num {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.tipos-semana {
+  color: var(--tiza-tenue);
+  font-size: 0.8125rem;
+}
+
+.consejo {
+  padding: 10px 14px;
+  border-left: 3px solid var(--ambar);
+  background: rgba(245, 185, 66, 0.07);
+}
+
+.fallos-recientes {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fallos-recientes > li {
+  padding: 8px 12px;
+  border: 1px solid var(--trazo);
+  border-radius: var(--radio);
+}
+
+.fallos-recientes blockquote {
+  margin: 4px 0;
+  color: var(--tiza-tenue);
+}
+
+.pagina-errores section + section,
+.pagina-errores .consejo + section {
+  margin-top: 32px;
+}

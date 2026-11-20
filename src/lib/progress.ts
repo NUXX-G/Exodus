@@ -2,7 +2,8 @@ import "server-only";
 import { and, eq, gte, lte, sql } from "drizzle-orm";
 import { getDb, schema } from "./db";
 import { checkFlag, sha256, type Vault, type VaultExercise, type VaultNode } from "./vault";
-import { firstReview, masteryNeeded, nextReview } from "./exercises";
+import { firstReview, masteryNeeded } from "./exercises";
+import { interleave, isErrorTag, weekOf, RECENT_DAYS, reviewPriority, weightedNextReview, type ErrorTag, type RecentFail } from "./errores";
 import { corregir, rellenar, salDe } from "./tipos-ejercicio";
 import { defDe } from "./ejercicio-def";
 import { semillaDe } from "./cas";
@@ -331,13 +332,26 @@ export interface DueReview {
   dueDay: string;
 }
 
+/**
+ * Repasos pendientes hoy, ordenados por prioridad: primero los más atrasados y los de ejercicios (y nodos) con fallos
+ * recientes, pesando más los fallos de concepto que los despistes (src/lib/errores.ts).
+ */
 export function getDueReviews(userId: number, today = dayKey()): DueReview[] {
-  return getDb()
+  const rows = getDb()
     .select({ nodeId: reviews.nodeId, exerciseId: reviews.exerciseId, step: reviews.step, dueDay: reviews.dueDay })
     .from(reviews)
     .where(and(eq(reviews.userId, userId), lte(reviews.dueDay, today)))
     .orderBy(reviews.dueDay)
     .all();
+  if (rows.length < 2) return rows;
+  const fails = recentFails(userId, today);
+  const prioridad = new Map(
+    rows.map((r) => [
+      `${r.nodeId}/${r.exerciseId}`,
+      reviewPriority(r.dueDay, today, failsOf(fails, r.nodeId, r.exerciseId), fails.filter((f) => f.nodeId === r.nodeId)),
+    ]),
+  );
+  return rows.sort((a, b) => prioridad.get(`${b.nodeId}/${b.exerciseId}`)! - prioridad.get(`${a.nodeId}/${a.exerciseId}`)! || a.dueDay.localeCompare(b.dueDay));
 }
 
 export interface ReviewQuestion {
@@ -392,7 +406,7 @@ export function submitReview(
   const r = grade(q.ex, q.variant, submission);
   if ("error" in r) return { error: r.error };
   const correct = r.correcto;
-  const next = nextReview(row.step, correct, today);
+  const next = weightedNextReview(row.step, correct, today, failsOf(recentFails(userId, today), node.id, exerciseId));
   db.transaction((tx) => {
     tx.insert(exerciseAttempts)
       .values({ userId, nodeId: node.id, exerciseId: q.ex.id, submittedHash: r.huella, correct, variant: q.variant, elapsedMs: clampMs(meta.elapsedMs), mode: "repaso", reviewOf: exerciseId })
@@ -452,4 +466,196 @@ export function resolveReport(id: number, status: ReportStatus, resolution: stri
     .set({ status, resolution: resolution?.trim().slice(0, MAX_REPORT_CHARS) || null, resolvedAt: status === "pendiente" ? null : new Date() })
     .where(eq(reports.id, id))
     .run();
+}
+
+/* ───────── Diario de errores (fase 2) ───────── */
+
+export interface FailRow extends RecentFail {
+  id: number;
+  nodeId: string;
+  exerciseId: string;
+  /** En el repaso, el ejercicio programado al que sustituía la pregunta. */
+  reviewOf: string | null;
+}
+
+/** Fallos de los últimos RECENT_DAYS días (para ponderar el repaso). */
+export function recentFails(userId: number, today = dayKey()): FailRow[] {
+  const [y, m, d] = today.split("-").map(Number);
+  const desde = new Date(y, m - 1, d - RECENT_DAYS);
+  return getDb()
+    .select({ id: exerciseAttempts.id, nodeId: exerciseAttempts.nodeId, exerciseId: exerciseAttempts.exerciseId, reviewOf: exerciseAttempts.reviewOf, tag: exerciseAttempts.errorTag, createdAt: exerciseAttempts.createdAt })
+    .from(exerciseAttempts)
+    .where(and(eq(exerciseAttempts.userId, userId), eq(exerciseAttempts.correct, false), gte(exerciseAttempts.createdAt, desde)))
+    .all()
+    .map((r) => ({ id: r.id, nodeId: r.nodeId, exerciseId: r.exerciseId, reviewOf: r.reviewOf, day: dayKey(r.createdAt), tag: isErrorTag(r.tag) ? r.tag : null }));
+}
+
+/** Fallos que cuentan para un ejercicio: los suyos y los de las preguntas de repaso que lo sustituían. */
+export function failsOf(fails: FailRow[], nodeId: string, exerciseId: string): FailRow[] {
+  return fails.filter((f) => f.nodeId === nodeId && (f.exerciseId === exerciseId || f.reviewOf === exerciseId));
+}
+
+/** Último intento del usuario (para ofrecer etiquetar el fallo que acaba de cometer). */
+export function lastAttemptId(userId: number): number | null {
+  return (
+    getDb()
+      .select({ id: sql<number>`max(${exerciseAttempts.id})` })
+      .from(exerciseAttempts)
+      .where(eq(exerciseAttempts.userId, userId))
+      .get()?.id ?? null
+  );
+}
+
+export const MAX_ERROR_NOTE = 1000;
+
+/** Etiqueta un fallo propio. Solo los intentos incorrectos del mismo usuario. */
+export function tagAttempt(userId: number, attemptId: number, tag: ErrorTag, note: string | null): boolean {
+  const row = getDb()
+    .select({ userId: exerciseAttempts.userId, correct: exerciseAttempts.correct })
+    .from(exerciseAttempts)
+    .where(eq(exerciseAttempts.id, attemptId))
+    .get();
+  if (!row || row.userId !== userId || row.correct) return false;
+  getDb()
+    .update(exerciseAttempts)
+    .set({ errorTag: tag, errorNote: note?.trim().slice(0, MAX_ERROR_NOTE) || null })
+    .where(eq(exerciseAttempts.id, attemptId))
+    .run();
+  return true;
+}
+
+export interface ErrorStats {
+  total: number;
+  sinEtiqueta: number;
+  porTipo: Map<ErrorTag | "sin-etiqueta", number>;
+  porNodo: { nodeId: string; total: number; tipos: Map<ErrorTag | "sin-etiqueta", number> }[];
+  porArea: Map<string, number>;
+  /** Por semana (lunes): fallos por tipo y aciertos, para ver la evolución. */
+  semanas: { semana: string; fallos: number; aciertos: number; tipos: Map<ErrorTag | "sin-etiqueta", number> }[];
+  /** Fallos recientes, para etiquetarlos o releer las notas. */
+  recientes: { id: number; nodeId: string; exerciseId: string; day: string; tag: ErrorTag | null; note: string | null; mode: string }[];
+}
+
+/** Estadísticas del diario de errores de un usuario (todos sus intentos; el volumen es pequeño: decenas de miles). */
+export function errorStats(userId: number, vault: Vault, weeks = 12): ErrorStats {
+  const rows = getDb()
+    .select({ id: exerciseAttempts.id, nodeId: exerciseAttempts.nodeId, exerciseId: exerciseAttempts.exerciseId, correct: exerciseAttempts.correct, tag: exerciseAttempts.errorTag, note: exerciseAttempts.errorNote, mode: exerciseAttempts.mode, createdAt: exerciseAttempts.createdAt })
+    .from(exerciseAttempts)
+    .where(eq(exerciseAttempts.userId, userId))
+    .all();
+  const porTipo = new Map<ErrorTag | "sin-etiqueta", number>();
+  const porNodo = new Map<string, Map<ErrorTag | "sin-etiqueta", number>>();
+  const porArea = new Map<string, number>();
+  const semanas = new Map<string, { fallos: number; aciertos: number; tipos: Map<ErrorTag | "sin-etiqueta", number> }>();
+  const suma = <K>(m: Map<K, number>, k: K) => m.set(k, (m.get(k) ?? 0) + 1);
+  const hoy = dayKey();
+  const [y, mo, d] = hoy.split("-").map(Number);
+  const desdeSemana = weekOf(dayKey(new Date(y, mo - 1, d - 7 * (weeks - 1))));
+  let total = 0;
+  for (const r of rows) {
+    const semana = weekOf(dayKey(r.createdAt));
+    if (semana >= desdeSemana) {
+      const s = semanas.get(semana) ?? { fallos: 0, aciertos: 0, tipos: new Map() };
+      if (r.correct) s.aciertos++;
+      else s.fallos++;
+      semanas.set(semana, s);
+    }
+    if (r.correct) continue;
+    total++;
+    const tag: ErrorTag | "sin-etiqueta" = isErrorTag(r.tag) ? r.tag : "sin-etiqueta";
+    suma(porTipo, tag);
+    if (!porNodo.has(r.nodeId)) porNodo.set(r.nodeId, new Map());
+    suma(porNodo.get(r.nodeId)!, tag);
+    suma(porArea, vault.nodes.get(r.nodeId)?.area ?? "desconocida");
+    if (semana >= desdeSemana) suma(semanas.get(semana)!.tipos, tag);
+  }
+  const recientes = rows
+    .filter((r) => !r.correct)
+    .sort((a, b) => b.id - a.id)
+    .slice(0, 30)
+    .map((r) => ({ id: r.id, nodeId: r.nodeId, exerciseId: r.exerciseId, day: dayKey(r.createdAt), tag: isErrorTag(r.tag) ? r.tag : null, note: r.note, mode: r.mode }));
+  return {
+    total,
+    sinEtiqueta: porTipo.get("sin-etiqueta") ?? 0,
+    porTipo,
+    porNodo: [...porNodo]
+      .map(([nodeId, tipos]) => ({ nodeId, tipos, total: [...tipos.values()].reduce((a, b) => a + b, 0) }))
+      .sort((a, b) => b.total - a.total),
+    porArea,
+    semanas: [...semanas].map(([semana, s]) => ({ semana, ...s })).sort((a, b) => a.semana.localeCompare(b.semana)),
+    recientes,
+  };
+}
+
+/* ───────── Repaso intercalado (fase 2) ───────── */
+
+export interface PracticeItem {
+  node: VaultNode;
+  ex: VaultExercise;
+  variant: number | null;
+}
+
+/** Mezcla determinista (Fisher-Yates con semilla). */
+function barajar<T>(xs: T[], semilla: number): T[] {
+  const a = [...xs];
+  let s = semilla >>> 0;
+  for (let i = a.length - 1; i > 0; i--) {
+    s = (Math.imul(s, 1664525) + 1013904223) >>> 0;
+    const j = s % (i + 1);
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/**
+ * Sesión de práctica intercalada: preguntas de nodos ya completados (de un área o de todas), alternando nodos.
+ * Usa el banco de repaso y los ejercicios del nodo (con su variante actual). Estable durante el día, salvo que la
+ * pida otra vez con `ronda` distinta.
+ */
+export function interleavedSet(userId: number, vault: Vault, area: string | null, max = 12, ronda = 0, today = dayKey()): PracticeItem[] {
+  const completados = getCompleted(userId);
+  const nodos = [...vault.nodes.values()].filter((n) => completados.has(n.id) && (!area || n.area === area) && n.exercises.length + n.reviewBank.length > 0);
+  const semilla = semillaDe(`${userId}:${today}:${area ?? "*"}:${ronda}`);
+  const fails = recentFails(userId, today);
+  // Primero los nodos con más peso de fallos recientes; el resto, en orden aleatorio.
+  const pesoNodo = (id: string) => fails.filter((f) => f.nodeId === id).length;
+  const orden = barajar(nodos, semilla).sort((a, b) => pesoNodo(b.id) - pesoNodo(a.id));
+  const grupos = orden.map((n, i) =>
+    barajar([...n.reviewBank, ...n.exercises], semilla + i)
+      .slice(0, 2)
+      .map((ex) => ({ node: n, ex, variant: currentVariant(userId, n.id, ex) })),
+  );
+  return interleave(grupos, max);
+}
+
+export type PracticeResult = "ok" | "incorrecta" | "espera" | "cambiada" | "sin-ejercicio" | { error: string };
+
+/**
+ * Respuesta en la práctica intercalada. No cuenta para el dominio ni adelanta el calendario; un fallo en un ejercicio
+ * del nodo lo vuelve a programar para mañana (se ha olvidado).
+ */
+export function submitPractice(userId: number, node: VaultNode, exerciseId: string, submission: string, meta: AttemptMeta = {}): PracticeResult {
+  const ex = [...node.exercises, ...node.reviewBank].find((e) => e.id === exerciseId);
+  if (!ex) return "sin-ejercicio";
+  if (recentExerciseFails(userId, node.id) >= MAX_EXERCISE_FAILS_PER_MINUTE) return "espera";
+  const variant = currentVariant(userId, node.id, ex);
+  if (meta.variant !== undefined && (meta.variant ?? null) !== variant) return "cambiada";
+  const r = grade(ex, variant, submission);
+  if ("error" in r) return { error: r.error };
+  const today = dayKey();
+  const db = getDb();
+  db.transaction((tx) => {
+    tx.insert(exerciseAttempts)
+      .values({ userId, nodeId: node.id, exerciseId: ex.id, submittedHash: r.huella, correct: r.correcto, variant, elapsedMs: clampMs(meta.elapsedMs), mode: "intercalado" })
+      .run();
+    tx.insert(activityLog).values({ userId, nodeId: node.id, day: today, kind: "review_done" }).run();
+    if (!r.correcto && !ex.review) {
+      const sch = { step: 0, dueDay: weightedNextReview(0, false, today, []).dueDay };
+      tx.insert(reviews)
+        .values({ userId, nodeId: node.id, exerciseId: ex.id, ...sch })
+        .onConflictDoUpdate({ target: [reviews.userId, reviews.nodeId, reviews.exerciseId], set: sch })
+        .run();
+    }
+  });
+  return r.correcto ? "ok" : "incorrecta";
 }

@@ -56,6 +56,14 @@ async function main() {
   await li.locator('button[type="submit"]').click();
   await li.locator('.mensaje:has-text("incorrecta")').waitFor();
   ok("respuesta incorrecta");
+  // Diario de errores: tras el fallo se ofrece etiquetarlo.
+  await li.locator('.etiquetar-error label:has-text("Concepto")').click();
+  await li.locator('.etiquetar-error input[name="note"]').fill("Confundí porcentaje con fracción");
+  await li.locator('.etiquetar-error button:has-text("Anotar")').click();
+  await li.locator('.etiqueta-hecha').waitFor();
+  const etiquetado = db.prepare("select error_tag, error_note from exercise_attempts where user_id=? and correct=0 order by id desc").get(uid);
+  assert.equal(etiquetado.error_tag, "concepto");
+  ok("fallo etiquetado en el diario de errores");
   await campo.fill(bien);
   await li.locator(".vista-previa .prosa").waitFor();
   await li.locator('button[type="submit"]').click();
@@ -96,6 +104,29 @@ async function main() {
   const meta = await page.locator(".repasos li .meta").first().innerText();
   assert.match(meta, /datos nuevos|Pregunta nueva/);
   ok(`repaso: «${meta.split("·").pop().trim()}»`);
+
+  // /errores muestra el fallo etiquetado y el consejo.
+  await page.goto(`${BASE}/errores`);
+  await page.locator('.consejo:has-text("Concepto")').waitFor();
+  await page.locator('text=Confundí porcentaje con fracción').waitFor();
+  ok("/errores: patrón por tipo, consejo y nota");
+
+  // Práctica intercalada con los nodos completados.
+  db.prepare("insert or replace into node_progress (user_id,node_id,status,completed_at) values (?,?,'completed',unixepoch())").run(uid, "mat-proporcionalidad-porcentajes");
+  await page.goto(`${BASE}/repaso?modo=intercalado`);
+  const primero = page.locator(".repasos li").first();
+  await primero.waitFor();
+  const n = await page.locator(".repasos li").count();
+  ok(`práctica intercalada: ${n} preguntas`);
+  const campoP = primero.locator('input[name="answer"], textarea[name="answer"]');
+  if (await campoP.count()) {
+    await campoP.first().fill("999999");
+  } else {
+    await primero.locator('input[name="answer"]').first().check();
+  }
+  await primero.locator('button[type="submit"]').click();
+  await primero.locator(".mensaje").first().waitFor();
+  ok(`práctica intercalada: respuesta procesada («${(await primero.locator(".mensaje").first().innerText()).slice(0, 40)}»)`);
 
   assert.deepEqual(errores, [], "errores de JavaScript en la página");
   await browser.close();

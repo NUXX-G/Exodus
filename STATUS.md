@@ -23,10 +23,9 @@ registro de sesiones (una línea) o a `docs/`.
 
 ## 1. Ahora mismo
 
-- **Fase actual**: FASE 2 — Diario de errores y repaso inteligente.
-- **Tarea actual**: ninguna empezada. Primera: etiquetar el error tras un fallo (migración con tabla de etiquetas).
-- **Siguiente paso concreto**: leer la sección de la FASE 2 del roadmap; diseñar la etiqueta del error sobre
-  `exercise_attempts` (columna o tabla aparte) y la página `/errores`.
+- **Fase actual**: FASE 3 — Respuesta desarrollada con rúbrica.
+- **Tarea actual**: tipo «desarrollo» (respuesta en Markdown/LaTeX/código o «hecha en papel», autocorrección con rúbrica).
+- **Siguiente paso concreto**: leer la FASE 3 del roadmap; diseñar `type: desarrollo` con `rubric` y `solution` ocultas (no se exportan a Obsidian ni se envían al navegador antes de entregar) y una tabla de entregas.
 - **Bloqueos**: ninguno.
 - **Prueba en navegador**: `scripts/dev/sesion-prueba.ts` (usuario y sesión en una base temporal) y
   `scripts/dev/e2e-v2.cjs` (Playwright 1.58 de la caché de npx: `PLAYWRIGHT_CORE=C:/Users/nelso/AppData/Local/npm-cache/_npx/787f53666b8d4740/node_modules/playwright-core`).
@@ -139,6 +138,14 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
    N variantes (datos + hash de la solución, verificada por dos métodos) y el servidor elige una no vista en cada
    intento. *Por qué*: mantiene la regla de no tener soluciones ni fórmulas en claro y la doble verificación offline.
 
+11. **2026-11-20 · Pesos del diario de errores** (`src/lib/errores.ts`): concepto y «no sabía empezar» 3, caso
+   límite y bug 2, cálculo 1,5, mala lectura 1, despiste 0,5; se desvanecen en 21 días. Un acierto con fallos de
+   peso ≥ 2 en esa ventana no pasa de 7 días de intervalo (≥ 1: 16 días). *Por qué*: un fallo de comprensión pide
+   volver pronto sobre la idea y un despiste no; los pesos son una decisión de diseño, no un dato empírico (la
+   literatura respalda espaciar e intercalar: Dunlosky et al. 2013; Rohrer y Taylor 2007), y se pueden ajustar.
+12. **2026-11-20 · Práctica intercalada** en `/repaso?modo=intercalado`: no cambia el dominio; un fallo reprograma
+   ese ejercicio para mañana. *Por qué*: intercalar sirve para elegir la herramienta adecuada, como en un examen;
+   un fallo indica olvido.
 ## 7. Preguntas abiertas
 
 - Ninguna todavía. (Las ⛔ de la fase 1 se preguntarán al llegar a ellas.)
@@ -151,6 +158,7 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
 
 | Fecha | Qué se hizo | Commit |
 | --- | --- | --- |
+| 2026-11-20 | Fase 2: diario de errores (etiquetas y nota tras cada fallo, /errores con patrones, consejo y evolución), repaso ordenado por fallos recientes ponderados por tipo e intervalos frenados tras fallos de concepto, práctica intercalada de nodos dominados con filtro por área | `v2: fase 2 completada` |
 | 2026-11-20 | Fase 1: tipos de ejercicio (CAS en JS, unidades, matrices, opción, flag), variantes, banco de repaso, intentos con variante y tiempo, reportes y `/reportes`, vista previa, 9 nodos convertidos, e2e con Playwright | `v2: fase 1 completada` |
 | 2026-11-15 | Seguridad en v1: motor MathJax aparte para contenido de usuario (PR #210), fusionado en `v2` | merge de `main` |
 | 2026-11-15 | Urgente en v1: la instancia se quedaba sin memoria (fuga de MathJax) y los nodos pesaban 2,4 MB. PR #209 en `main`, fusionado en `v2` | merge de `main` |

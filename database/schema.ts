@@ -211,10 +211,14 @@ export const exerciseAttempts = sqliteTable(
     variant: integer("variant"),
     /** Tiempo desde que se mostró el enunciado hasta el envío (lo mide el navegador; orientativo). */
     elapsedMs: integer("elapsed_ms"),
-    /** `estudio` (en el nodo), `repaso` (en /repaso). */
-    mode: text("mode", { enum: ["estudio", "repaso"] }).notNull().default("estudio"),
+    /** `estudio` (en el nodo), `repaso` (programado, en /repaso), `intercalado` (práctica mezclada de nodos dominados). */
+    mode: text("mode", { enum: ["estudio", "repaso", "intercalado"] }).notNull().default("estudio"),
     /** En el repaso: el ejercicio programado al que sustituye esta pregunta (puede ser otra del banco). */
     reviewOf: text("review_of"),
+    /** Diario de errores: tipo de error que el alumno asigna a un fallo (ver ERROR_TAGS en src/lib/errores.ts). */
+    errorTag: text("error_tag"),
+    /** Nota opcional del alumno sobre el fallo. */
+    errorNote: text("error_note"),
     createdAt: integer("created_at", { mode: "timestamp" }).notNull().default(now),
   },
   (t) => [

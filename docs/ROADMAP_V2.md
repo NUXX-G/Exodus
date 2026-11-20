@@ -96,12 +96,12 @@ El usuario pide terminar **todas** las fases de forma autónoma, **sin preguntar
 
 ## FASE 2 — Diario de errores y repaso inteligente
 
-- [ ] Tras un fallo, el usuario etiqueta el error: concepto, cálculo/álgebra, despiste, no sabía empezar, mala
+- [x] Tras un fallo, el usuario etiqueta el error: concepto, cálculo/álgebra, despiste, no sabía empezar, mala
       lectura, bug de implementación o caso límite. Nota opcional.
-- [ ] Página `/errores` con patrones por tipo, por nodo, por área y su evolución.
-- [ ] El repaso espaciado pondera también los fallos recientes y su tipo.
-- [ ] Sesiones de repaso intercaladas entre nodos dominados, filtrables por área.
-- [ ] Cierre de fase (checks, casillas, `STATUS.md`, commit `v2: fase 2 completada`).
+- [x] Página `/errores` con patrones por tipo, por nodo, por área y su evolución.
+- [x] El repaso espaciado pondera también los fallos recientes y su tipo.
+- [x] Sesiones de repaso intercaladas entre nodos dominados, filtrables por área.
+- [x] Cierre de fase (checks, casillas, `STATUS.md`, commit `v2: fase 2 completada`).
 
 ## FASE 3 — Respuesta desarrollada con rúbrica
 
