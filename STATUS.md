@@ -25,7 +25,7 @@ registro de sesiones (una línea) o a `docs/`.
 
 - **Fase actual**: FASE 9 — Contenido: troncal (desde cero hasta Bachillerato).
 - **Tarea actual**: c) redacción del troncal en escalera, nodo a nodo en el orden de `docs/contenido/troncal.md` §b.
-- **Siguiente paso concreto**: nodo 10, `mat-numeros-reales` (NUEVO; Marea Verde 4.º ESO B cap. 1; al crearlo, enlazarlo desde el «Siguiente» de mat-sucesiones-progresiones; hechos 1-9). Receta: script de parche en el scratchpad con `practico()`/`formal()` (ver registro en troncal.md), spec `.soluciones/<id>.v2.mjs` con variantes doble-comprobadas y banco `r-*`, `ex-inject`, `vault:soluciones`, `vault:fugas`, `vault:check -- --avisos` sin avisos del nodo.
+- **Siguiente paso concreto**: nodo 11, `mat-algebra-secundaria` (hechos 1-10). Receta: script de parche en el scratchpad con `practico()`/`formal()` (ver registro en troncal.md), spec `.soluciones/<id>.v2.mjs` con variantes doble-comprobadas y banco `r-*`, `ex-inject`, `vault:soluciones`, `vault:fugas`, `vault:check -- --avisos` sin avisos del nodo.
 - **Bloqueos**: ninguno.
 - **Prueba en navegador**: `scripts/dev/sesion-prueba.ts` (usuario y sesión en una base temporal) y
   `scripts/dev/e2e-v2.cjs` (Playwright 1.58 de la caché de npx: `PLAYWRIGHT_CORE=C:/Users/nelso/AppData/Local/npm-cache/_npx/787f53666b8d4740/node_modules/playwright-core`).
@@ -103,7 +103,11 @@ frontmatter; la respuesta se normaliza y se compara por hash. Detalle en `docs/H
 - **Python no está instalado**: scripts de apoyo en Node; para ejecutar Python, C, Rust… usar Docker
   (`python:3.12-slim`, `gcc:14`, etc.; con `MSYS_NO_PATHCONV=1` en Git Bash).
 - **Los heredocs de esta shell estropean las barras invertidas** (`\n` llega como salto de línea real, `\\` como `\`):
-  los scripts de parche se escriben con la herramienta Write en el scratchpad y se ejecutan con `node`.
+  los scripts de parche se escriben con la herramienta Write en el scratchpad y se ejecutan con `node`. **Nunca `sed`
+  ni `node -e '…'` con LaTeX**: sed convierte `\a`, `\f`… en caracteres de control y en `node -e` `"\{"` pierde la barra.
+  Para texto con barras, Edit o un script escrito con Write.
+- Una línea de Markdown que empieza por `+ ` o `- ` dentro de una fórmula en línea la convierte en lista (vault:check:
+  «queda un "$" sin procesar»): no partir fórmulas en un `+`/`-`.
 - Los `.ts`/`.tsx`/`.md` del repo pueden tener **CRLF**: para parchear, `node scripts/dev/reemplaza.cjs <archivo> <pares.json>`
   o la herramienta Edit. Los heredocs largos con comillas rompen la shell.
 - Wikilinks solo a nodos que ya existen (si no, `vault:check` falla). `|` dentro de LaTeX en tablas rompe la tabla:

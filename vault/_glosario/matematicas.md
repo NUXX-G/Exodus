@@ -122,6 +122,11 @@ terminos:
     llano: "Una lista de números en la que se multiplica siempre por la misma cantidad para pasar de uno al siguiente, como 2, 6, 18, 54…"
     formal: "Sucesión con $a_{n+1} = r\\,a_n$; término general $a_n = a_1 r^{n-1}$ y, si $r \\ne 1$, suma $S_n = a_1\\frac{r^n - 1}{r - 1}$."
     nodo: mat-sucesiones-progresiones
+  - termino: número irracional
+    sinonimos: [números irracionales]
+    llano: "Un número que no se puede escribir como fracción: su parte decimal sigue para siempre sin repetirse, como la raíz cuadrada de 2 o el número pi."
+    formal: "Número real que no pertenece a $\\mathbb{Q}$; por ejemplo $\\sqrt{2}$ (prueba por reducción al absurdo) o $\\pi$."
+    nodo: mat-numeros-reales
 ---
 
 Glosario de matemáticas (esta nota no es un nodo). Cada término: explicación llana, definición formal y el nodo donde

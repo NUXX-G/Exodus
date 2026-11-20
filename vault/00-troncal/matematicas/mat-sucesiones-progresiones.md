@@ -528,5 +528,5 @@ manera de pasar un decimal periódico a fracción ([[mat-enteros-fracciones]]).
 
 ## Siguiente
 
-Con las sucesiones, el nodo de números reales completa la recta numérica (los números a los que se acercan muchas
+Con las sucesiones, [[mat-numeros-reales]] completa la recta numérica (los números a los que se acercan muchas
 sucesiones de fracciones), y [[mat-calculo-1]] convierte la idea de límite en una herramienta.
