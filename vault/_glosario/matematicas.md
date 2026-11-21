@@ -34,12 +34,12 @@ terminos:
     sinonimos: [directamente proporcionales]
     llano: "Dos cantidades que crecen a la vez y al mismo ritmo: si una se duplica, la otra también (kilos de fruta y precio a pagar)."
     formal: "Las magnitudes $x$ e $y$ son directamente proporcionales si existe $k \\ne 0$ con $y = kx$ para todos los pares de valores; $k$ es la constante de proporcionalidad."
-    nodo: mat-proporcionalidad-porcentajes
+    nodo: mat-proporcionalidad
   - termino: proporcionalidad inversa
     sinonimos: [inversamente proporcionales]
     llano: "Dos cantidades en las que si una se duplica la otra se reduce a la mitad: más obreros, menos días para la misma obra."
     formal: "Las magnitudes $x$ e $y$ (no nulas) son inversamente proporcionales si $xy = k$ constante, es decir, $y = k/x$."
-    nodo: mat-proporcionalidad-porcentajes
+    nodo: mat-proporcionalidad
   - termino: hipotenusa
     llano: "En un triángulo con un ángulo recto (como una esquina de un folio), el lado más largo: el que está enfrente de esa esquina."
     formal: "En un triángulo rectángulo, el lado opuesto al ángulo recto. Por el teorema de Pitágoras, $c^2 = a^2 + b^2$, donde $c$ es la hipotenusa y $a, b$ los catetos."

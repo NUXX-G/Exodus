@@ -3,7 +3,7 @@ id: mat-proporcionalidad-porcentajes
 title: "Proporcionalidad, porcentajes e interés"
 area: matematicas
 trunk_level: 2
-prerequisites: [mat-enteros-fracciones, mat-sistema-metrico]
+prerequisites: [mat-enteros-fracciones, mat-sistema-metrico, mat-proporcionalidad]
 academic_sources:
   - "Euclides. Elementos, libro V (teoría de la razón y la proporción, atribuida a Eudoxo). Edición en línea de D. E. Joyce, Clark University: mathcs.clarku.edu/~djoyce/elements/bookV/bookV.html"
   - "Kellison, S. G. The Theory of Interest, 3ª ed. McGraw-Hill/Irwin, 2009."

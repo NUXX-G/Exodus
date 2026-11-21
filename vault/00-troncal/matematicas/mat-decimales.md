@@ -491,4 +491,4 @@ pasa de media unidad de la última cifra ($0{,}5 \cdot 10^{-k}$), mientras que t
 
 ## Siguiente
 
-[[mat-sistema-metrico]] (las unidades de medida son decimales), el tema `mat-proporcionalidad` y el tema `mat-porcentajes-finanzas`.
+[[mat-sistema-metrico]] (las unidades de medida son decimales), [[mat-proporcionalidad]] y el tema `mat-porcentajes-finanzas`.

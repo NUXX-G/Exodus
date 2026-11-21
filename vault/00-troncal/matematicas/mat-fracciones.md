@@ -527,4 +527,4 @@ $10$ €, la paga es $40$ €. *Comprobación:* gasta $10$, quedan $30$; gasta $
 
 ## Siguiente
 
-[[mat-decimales]] (otra forma de escribir las fracciones), el tema `mat-proporcionalidad` y el tema `mat-expresiones-algebraicas`.
+[[mat-decimales]] (otra forma de escribir las fracciones), [[mat-proporcionalidad]] y el tema `mat-expresiones-algebraicas`.

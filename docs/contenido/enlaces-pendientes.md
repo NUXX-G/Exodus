@@ -12,12 +12,12 @@ Nodos que mencionan un nodo de tema aún no escrito. Al crear el nodo, sustituir
 | vault/00-troncal/matematicas/mat-numeros-enteros.md | `fis-cinematica-rectilinea` |
 | vault/00-troncal/matematicas/mat-numeros-enteros.md | `mat-expresiones-algebraicas` |
 | vault/00-troncal/matematicas/mat-fracciones.md | `mat-probabilidad-elemental` |
-| vault/00-troncal/matematicas/mat-fracciones.md | `mat-proporcionalidad` |
 | vault/00-troncal/matematicas/mat-fracciones.md | `mat-expresiones-algebraicas` |
 | vault/00-troncal/matematicas/mat-decimales.md | `fis-magnitudes-medida` |
-| vault/00-troncal/matematicas/mat-decimales.md | `mat-proporcionalidad` |
 | vault/00-troncal/matematicas/mat-decimales.md | `mat-porcentajes-finanzas` |
 | vault/00-troncal/matematicas/mat-sistema-metrico.md | `fis-magnitudes-medida` |
 | vault/00-troncal/matematicas/mat-sistema-metrico.md | `mat-semejanza-tales` |
-| vault/00-troncal/matematicas/mat-sistema-metrico.md | `mat-proporcionalidad` |
 | vault/00-troncal/matematicas/mat-sistema-metrico.md | `mat-cuerpos-geometricos` |
+| vault/00-troncal/matematicas/mat-proporcionalidad.md | `mat-funciones-lineales-cuadraticas` |
+| vault/00-troncal/matematicas/mat-proporcionalidad.md | `mat-porcentajes-finanzas` |
+| vault/00-troncal/matematicas/mat-proporcionalidad.md | `mat-funciones-graficas` |
