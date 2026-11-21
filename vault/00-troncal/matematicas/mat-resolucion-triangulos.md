@@ -483,4 +483,4 @@ centrada en $C$ corta en dos puntos al lado donde está $B$.
 
 ## Siguiente
 
-el tema `mat-identidades-ecuaciones-trigonometricas` (fórmulas de suma y ángulo doble, identidades y ecuaciones).
+[[mat-identidades-ecuaciones-trigonometricas]] (fórmulas de suma y ángulo doble, identidades y ecuaciones).
