@@ -499,4 +499,4 @@ y el momento en que pasa **bajando**.
 
 ## Siguiente
 
-[[mat-polinomios-factorizacion]] (factorizar polinomios usando sus raíces) e el tema `mat-inecuaciones` (desigualdades con la incógnita).
+[[mat-polinomios-factorizacion]] (factorizar polinomios usando sus raíces) e [[mat-inecuaciones]] (desigualdades con la incógnita).

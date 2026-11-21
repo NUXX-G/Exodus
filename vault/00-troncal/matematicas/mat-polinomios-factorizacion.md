@@ -364,7 +364,7 @@ Al terminar sabrás:
 
 - **Resolver ecuaciones de grado mayor que dos**: factorizando, se parten en ecuaciones pequeñas (si un producto es $0$, algún factor lo es).
 - **Simplificar** expresiones con fracciones de polinomios, como se simplifican las fracciones numéricas.
-- **Estudiar el signo** de una expresión (el tema `mat-inecuaciones`) y dibujar sus gráficas.
+- **Estudiar el signo** de una expresión ([[mat-inecuaciones]]) y dibujar sus gráficas.
 - **Más adelante**: límites que dan $\frac00$, cálculo de áreas con fracciones de polinomios (el tema `mat-integral-riemann`) y
   buena parte del álgebra lineal.
 
@@ -482,4 +482,4 @@ fracciones numéricas ([[mat-fracciones]]):
 
 ## Siguiente
 
-el tema `mat-inecuaciones` (el signo de un polinomio factorizado) y el tema `mat-exponenciales-logaritmos`.
+[[mat-inecuaciones]] (el signo de un polinomio factorizado) y el tema `mat-exponenciales-logaritmos`.
