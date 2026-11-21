@@ -3,7 +3,7 @@ id: mat-funciones-elementales
 title: "Funciones elementales: hipérbolas, raíces, valor absoluto, funciones a trozos y transformaciones"
 area: matematicas
 trunk_level: 5
-prerequisites: [mat-funciones-basicas, mat-algebra-secundaria, mat-movimientos-plano, mat-numeros-reales]
+prerequisites: [mat-funciones-basicas, mat-algebra-secundaria, mat-movimientos-plano, mat-numeros-reales, mat-funciones-exponencial-logaritmica]
 academic_sources:
   - "Miranda Suárez, D. Matemáticas orientadas a las enseñanzas académicas, 4.º B ESO (LOMLOE), capítulo 11: «Funciones polinómicas, definidas a trozos y de proporcionalidad inversa», secciones 1-4 (rectas, parábolas y traslaciones en el plano, proporcionalidad inversa e hipérbola y = k/(x − b) + a, funciones definidas a trozos). Apuntes Marea Verde, rev. 10/08/2024. https://www.apuntesmareaverde.org.es/grupos/mat/LOMLOE/4B/11_funciones_lineales_cuadraticas.pdf (CC BY-NC-SA 3.0)."
   - "Gallegos Fernández, J. Matemáticas I, 1.º Bachillerato (LOMLOE), capítulo 6: «Funciones», secciones 1 (racionales, raíz, exponenciales y logarítmicas, a trozos, valor absoluto, oferta y demanda), 2 (operaciones, composición, inversa) y 3 (dominio, recorrido, simetrías, periodicidad, cortes y signo). Apuntes Marea Verde, rev. 10/08/2024. https://www.apuntesmareaverde.org.es/grupos/mat/LOMLOE/Bachillerato/BC1_06_Funciones.pdf"

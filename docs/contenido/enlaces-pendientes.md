@@ -24,3 +24,7 @@ Nodos que mencionan un nodo de tema aún no escrito. Al crear el nodo, sustituir
 | vault/00-troncal/matematicas/mat-identidades-ecuaciones-trigonometricas.md | `fis-ondas-sonido` |
 | vault/00-troncal/matematicas/mat-identidades-ecuaciones-trigonometricas.md | `mat-funciones-trigonometricas` |
 | vault/00-troncal/matematicas/mat-conicas.md | `fis-gravitacion` |
+| vault/00-troncal/matematicas/mat-funciones-exponencial-logaritmica.md | `mat-derivadas` |
+| vault/00-troncal/matematicas/mat-funciones-exponencial-logaritmica.md | `prog-algoritmos-complejidad` |
+| vault/00-troncal/matematicas/mat-funciones-exponencial-logaritmica.md | `mat-funciones-trigonometricas` |
+| vault/00-troncal/matematicas/mat-funciones-exponencial-logaritmica.md | `mat-limites-continuidad` |
