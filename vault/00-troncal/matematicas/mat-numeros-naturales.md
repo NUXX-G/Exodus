@@ -344,7 +344,7 @@ Al terminar sabrás:
   los colores usan base $16$.
 - **Organizar.** Horarios que coinciden, repartos sin sobrantes y piezas que encajan son problemas de
   múltiplos y divisores.
-- **Seguridad.** El cifrado RSA con el que se protege casi toda comunicación en internet se apoya en que
+- **Seguridad.** El cifrado RSA, uno de los sistemas de clave pública más usados (por ejemplo, en los certificados de las webs), se apoya en que
   factorizar números enormes es difícil, aunque multiplicarlos sea fácil
   (se verá en [[sec-criptografia]]).
 
@@ -353,7 +353,7 @@ Al terminar sabrás:
 > [!practico]
 > Piensa en un cuentakilómetros o en el contador de una gasolinera: cuando las unidades llegan a 9 y suman una más,
 > vuelven a 0 y la rueda de al lado avanza una. Eso es el sistema **posicional**: una cifra vale más o menos según el
-> **sitio** que ocupa. En $4,096$, el $4$ son cuatro *millares*, no cuatro unidades.
+> **sitio** que ocupa. En $4\,096$, el $4$ son cuatro *millares*, no cuatro unidades.
 >
 > Usamos el diez porque tenemos diez dedos, pero se puede contar con cualquier número de cifras. Los ordenadores usan
 > solo dos (0 y 1, apagado y encendido): es la **base 2** o binario. Pasar de una base a otra es como cambiar dinero de
@@ -449,7 +449,7 @@ $10^k \le n < 10^{k+1}$, es decir, $k = \lfloor \log_{10} n \rfloor$. El **logar
 > de la criptografía.
 >
 > Las propiedades de la suma y el producto son cosas que ya usas sin nombrarlas: da igual el orden en que sumes la compra
-> (conmutativa) y $17 	imes 12$ es «$17$ por $10$ más $17$ por $2$» (distributiva).
+> (conmutativa) y $17 \times 12$ es «$17$ por $10$ más $17$ por $2$» (distributiva).
 
 
 **Suma y producto** cumplen, para cualesquiera naturales $a, b, c$:

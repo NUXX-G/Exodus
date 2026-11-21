@@ -376,8 +376,8 @@ exercises:
 
 # Geometría básica: figuras, Pitágoras y semejanza
 
-La geometría es la ciencia de la forma y del espacio. Es donde nació la **demostración** (Euclides, hacia el
-300 a. C.) y sigue siendo el lugar donde mejor se aprende a razonar: cada afirmación se apoya en otras ya
+La geometría es la ciencia de la forma y del espacio. Es donde nació la **demostración** (Tales, siglo VI a. C.) y donde Euclides (hacia el
+300 a. C.) la organizó en un sistema axiomático, y sigue siendo el lugar donde mejor se aprende a razonar: cada afirmación se apoya en otras ya
 probadas. Aquí se conserva esa tradición, y a la vez se usa el álgebra del nodo anterior para
 calcular longitudes, ángulos, áreas y volúmenes que sirven a quien diseña, construye, programa gráficos o
 simplemente quiere saber cuánta pintura comprar.
@@ -509,7 +509,7 @@ $\frac{14\cdot 12}{2} = 84$. $\checkmark$
 > guardan la misma proporción que vuestras alturas, porque los rayos del sol llegan paralelos.
 
 
-Dos figuras son **semejantes** si tienen la misma forma y distinto tamaño: ángulos iguales y lados proporcionales,
+Dos figuras son **semejantes** si tienen la misma forma (el tamaño puede ser distinto): ángulos iguales y lados proporcionales,
 con una **razón de semejanza** $k$. Dos triángulos son semejantes si tienen **dos ángulos iguales** (criterio AA).
 
 **Teorema de Tales.** Si una paralela a $BC$ corta a los lados $AB$ y $AC$ de un triángulo en $D$ y $E$, entonces
@@ -605,7 +605,7 @@ cuadrado del diámetro.
 
 El factor $\frac{1}{3}$ de pirámides y conos (frente al prisma o cilindro de la misma base y altura) es
 sorprendente y se demuestra con el **principio de Cavalieri** (dos cuerpos con la misma sección a cada altura tienen el
-mismo volumen) o, más adelante, con el cálculo ([[mat-calculo-2]]).
+mismo volumen) junto con la división de un prisma triangular en tres pirámides de igual volumen (Euclides XII.7) o, más adelante, con el cálculo ([[mat-calculo-2]]).
 
 **Ejemplo (una lata).** $r = 3{,}3$ cm y $h = 11{,}5$ cm: $V = \pi\cdot 3{,}3^2\cdot 11{,}5 \approx 393$ cm$^3 \approx
 0{,}39$ L. **Ejemplo (la Tierra).** Con $r = 6371$ km: área $4\pi r^2 \approx 5{,}10\cdot 10^8$ km$^2$; volumen

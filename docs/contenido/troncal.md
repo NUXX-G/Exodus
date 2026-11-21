@@ -198,3 +198,10 @@ Tras cada bloque de nodos: revisión independiente (d) por un subagente que no h
 ## d) Revisión independiente
 
 (Se anota aquí cada nodo revisado, qué encontró el revisor y qué se cambió.)
+
+**Bloque 1** (2026-11-21; subagente revisor sin acceso a la redacción; rehízo con `node` todas las cuentas de los ejemplos y comprobó las referencias históricas): `tro-aprender-a-aprender`, `mat-numeros-naturales`, `mat-enteros-fracciones`, `mat-algebra-basica`, `mat-proporcionalidad-porcentajes`, `mat-geometria-basica`, `mat-movimientos-plano` (sin hallazgos), `mat-funciones-basicas`, `mat-sucesiones-progresiones`, `mat-numeros-reales`. 19 hallazgos, todos aplicados:
+
+- **Errores de hecho (4)**: «nadie salvo el jefe gana la media» (el jefe tampoco); un `\t` convertido en tabulador rompía $17 \times 12$ y una coma sin barra dejaba «4,096» (decimal en España): causa, cadenas de JS sin `String.raw` en los primeros scripts de parche (se rastreó todo el vault: no hay más casos; de paso se corrigió una errata antigua de `mat-analisis-numerico`); criterio de rectas paralelas mal enunciado en la tabla de sistemas.
+- **Huecos de razonamiento (2)**: la regla del 72 (la cuenta da 69,3: ahora se explica por qué se usa 72) y el volumen del cono (Cavalieri necesita además dividir el prisma en tres pirámides, Euclides XII.7).
+- **Bloques prácticos o términos engañosos (4)**: «función lineal» frente a «afín» en el currículo español; la batería como decaimiento exponencial (sustituida por un medicamento en sangre); «se acercan, se suman»; el «pero» de $(-2)^3$ y $-2^3$.
+- **Afirmaciones matizadas (9)**: RSA «casi toda internet», «nació la demostración con Euclides», el «espanto» de los griegos (leyenda), medianas y causalidad, semejanza con $k = 1$, divergencia a $-\infty$, la TAE legal con comisiones, «causa número uno», «pasos correctos» que llevan a un absurdo.

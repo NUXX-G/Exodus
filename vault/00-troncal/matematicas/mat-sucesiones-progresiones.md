@@ -475,7 +475,7 @@ aparece una suma aritmética).
 - Una sucesión es **creciente** si $a_{n+1} \ge a_n$ para todo $n$, y **decreciente** si $a_{n+1} \le a_n$.
 - Está **acotada** si todos sus términos quedan entre dos números fijos.
 - Es **convergente** con **límite** $L$ si sus términos se acercan a $L$ tanto como se quiera a partir de un lugar en
-  adelante; se escribe $\lim a_n = L$. Si crece sin tope es **divergente** (tiende a $+\infty$), y si no hace ni lo uno
+  adelante; se escribe $\lim a_n = L$. Si crece o decrece sin tope es **divergente** (tiende a $+\infty$ o a $-\infty$), y si no hace ni lo uno
   ni lo otro (como $1, -1, 1, -1, \dots$) es **oscilante**.
 
 **Ejemplos.** $a_n = \frac{n}{n+1}$ es creciente, acotada entre $0$ y $1$, y converge a $1$. $a_n = 2^n$ diverge.

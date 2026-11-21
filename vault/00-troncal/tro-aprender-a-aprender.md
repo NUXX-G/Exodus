@@ -296,7 +296,7 @@ te parece familiar y fluido porque lo estás mirando delante, puede que no.
 - **Ilusión de competencia**: confundir «lo reconozco» con «lo sé producir». Se corrige autoexaminándose antes de dar un tema por
   aprendido.
 - **Estudio en maratón**: concentrar todo en un día, con la esperanza de que se quede. Se olvida mucho más rápido.
-- **Saltar prerrequisitos**: es la causa número uno de atascos. Retrocede sin miedo.
+- **Saltar prerrequisitos**: es una causa muy frecuente de atascos. Retrocede sin miedo.
 - **Evitar el error**: equivocarse **es** el aprendizaje, siempre que lo corrijas pronto.
 - **Cambiar de método cada semana** sin darle tiempo a funcionar.
 
@@ -304,7 +304,7 @@ te parece familiar y fluido porque lo estás mirando delante, puede que no.
 
 Las matemáticas y la informática exigen una habilidad que se entrena como cualquier otra: comprobar que cada paso **se sigue** del
 anterior. Es lo que enseña la sección de demostraciones de cada nodo. Un ejemplo clásico: «demostrar» que $2 = 1$ parte de $a = b$ y, tras
-varios pasos correctos, llega a un absurdo. Hay **un paso** ilegal (en uno se divide entre una cantidad que vale cero). Encontrar ese paso,
+varios pasos aparentemente correctos, llega a un absurdo. Hay **un paso** ilegal (en uno se divide entre una cantidad que vale cero). Encontrar ese paso,
 y no solo creer en el resultado final, es pensar bien.
 
 Pólya (1945) propone, para cualquier problema, **cuatro fases**: entender, trazar un plan, ejecutarlo y mirar atrás. Todo ejercicio

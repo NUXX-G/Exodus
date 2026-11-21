@@ -472,11 +472,11 @@ pequeña, pero a $30$ años el compuesto da $2000\cdot 1{,}03^{30} \approx 4854$
 
 **Tasa equivalente (TAE).** Un $1\,\%$ mensual compuesto **no** equivale a un $12\,\%$ anual: equivale a
 $(1{,}01)^{12} - 1 = 12{,}68\,\%$. En general, si se capitaliza $m$ veces al año con tasa $i$ por periodo, el
-interés anual efectivo es $(1 + i)^m - 1$. Por eso se compara siempre con la **tasa anual equivalente**.
+interés anual efectivo es $(1 + i)^m - 1$. Por eso se compara siempre con la **tasa anual equivalente**. (En España la TAE legal incluye además las comisiones y gastos; sin ellos, coincide con $(1 + i)^m - 1$.)
 
 **Tiempo de duplicación.** Se busca $n$ con $(1 + r)^n = 2$. Con logaritmos (que se estudian a fondo en
 [[mat-algebra-secundaria]]), $n = \ln 2 / \ln(1 + r)$. Como $\ln(1 + r) \approx r$ para $r$ pequeño y $\ln 2 \approx 0{,}693$, resulta la
-**regla del $72$** (aproximada): $n \approx \dfrac{72}{r\,[\%]}$. Al $6\,\%$, unos $12$ años (el valor exacto es
+**regla del $72$** (aproximada; la cuenta daría $69{,}3$, pero como $\ln(1 + r) < r$ esa cifra se queda corta a los tipos habituales del $5$ al $10\,\%$, y $72$ además tiene muchos divisores para calcular de cabeza): $n \approx \dfrac{72}{r\,[\%]}$. Al $6\,\%$, unos $12$ años (el valor exacto es
 $11{,}9$). Es una estimación mental, no una fórmula exacta.
 
 **Inflación.** Con una inflación del $3\,\%$ anual el poder adquisitivo de un euro baja a

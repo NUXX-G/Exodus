@@ -458,7 +458,7 @@ $f(x) = \dfrac{\sqrt{x + 2}}{x - 1}$ exige $x + 2 \ge 0$ y $x \ne 1$: dominio $[
 > es la **pendiente**, lo «empinada» que es la recta; y los $3$ € de partida son donde la recta corta al eje vertical.
 
 
-Una función **lineal** es $y = mx + n$. Su gráfica es una **recta**.
+Una función **afín** es $y = mx + n$; si $n = 0$ se llama **lineal** o de proporcionalidad directa (en muchos textos fuera del currículo español se llama «lineal» también a la afín). Su gráfica es una **recta**.
 
 - $m$ es la **pendiente**: cuánto sube $y$ por cada unidad que avanza $x$, $m = \dfrac{\Delta y}{\Delta x} = \dfrac{y_2 - y_1}{x_2 - x_1}$.
 - $n$ es la **ordenada en el origen**: el valor de $y$ cuando $x = 0$ (donde la recta corta al eje vertical).
@@ -521,8 +521,8 @@ otro mide $20 - x$ y el área es $A(x) = x(20 - x) = -x^2 + 20x$, con vértice e
 > [!practico]
 > Un rumor: hoy lo sabes tú; mañana se lo cuentas a $2$ amigos; al día siguiente cada uno se lo cuenta a otros $2$… El número
 > de personas nuevas cada día se **multiplica** por $2$: $1, 2, 4, 8, 16, \dots$ A los $30$ días serían más de mil millones.
-> Eso es crecer exponencialmente. Lo contrario, que algo se reduzca a la mitad cada cierto tiempo (la batería de un
-> móvil viejo, una sustancia radiactiva), es el **decaimiento** exponencial.
+> Eso es crecer exponencialmente. Lo contrario, que algo se reduzca a la mitad cada cierto tiempo (un medicamento que se
+> elimina de la sangre, una sustancia radiactiva), es el **decaimiento** exponencial.
 
 
 Una función **exponencial** es $y = a\cdot b^x$ con $a > 0$ y $b > 0$, $b \ne 1$. Si $b > 1$ **crece**; si $0 < b < 1$ **decrece**.
@@ -584,8 +584,8 @@ La **estadística descriptiva** resume un conjunto de datos con pocos números. 
 varianza $8$, $\sigma = \sqrt{8} \approx 2{,}83$.
 
 **Media o mediana.** La media se deja arrastrar por los valores extremos; la mediana no. En una empresa de cinco empleados
-que ganan $1500, 1600, 1700, 1800$ y $12\,000$, la media es $3720$, pero **nadie** (salvo el jefe) gana eso; la mediana,
-$1700$, describe mejor al empleado típico. Por eso los salarios, los precios de las casas y la riqueza se dan con **medianas**.
+que ganan $1500, 1600, 1700, 1800$ y $12\,000$, la media es $3720$, pero **nadie** gana eso (el jefe gana mucho más y los demás, mucho menos); la mediana,
+$1700$, describe mejor al empleado típico. Por eso conviene dar los salarios, los precios de las casas y la riqueza con **medianas** (o con ambas medidas).
 
 **Media ponderada.** Si cada dato tiene un peso $w_i$: $\bar{x} = \dfrac{\sum w_i x_i}{\sum w_i}$. Es lo que usa la nota final de un
 curso (examen $60\,\%$, trabajos $40\,\%$) y la mezcla de concentraciones.
@@ -596,7 +596,7 @@ rango intercuartílico $Q_3 - Q_1$ mide la dispersión sin dejarse engañar por 
 ### Correlación no es causalidad
 
 Dos magnitudes pueden crecer juntas sin que una cause la otra: las ventas de helados y los ahogamientos suben en verano
-(la causa común es el calor). Para afirmar causalidad se necesitan **experimentos controlados**, no solo gráficas.
+(la causa común es el calor). Para afirmar causalidad, lo más fiable son los **experimentos controlados**; con datos observados también se puede, pero solo con diseños muy cuidadosos (así se estableció que el tabaco causa cáncer), nunca con una gráfica sola.
 
 ### La paradoja de Simpson
 

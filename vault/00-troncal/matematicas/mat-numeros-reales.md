@@ -273,7 +273,7 @@ exercises:
 # Números reales: irracionales, intervalos, valor absoluto y errores
 
 Con las fracciones se puede medir casi todo… pero no todo. La diagonal de un cuadrado de lado $1$ mide $\sqrt 2$, y
-ese número **no es una fracción**: los griegos lo descubrieron con espanto. Este nodo completa la recta numérica con los
+ese número **no es una fracción**: según una leyenda tardía, su descubrimiento causó escándalo entre los pitagóricos. Este nodo completa la recta numérica con los
 **irracionales**, da el lenguaje para hablar de trozos de la recta (intervalos), de distancias (valor absoluto) y de lo
 que se pierde al redondear (errores). Es el suelo sobre el que se construye todo el cálculo.
 

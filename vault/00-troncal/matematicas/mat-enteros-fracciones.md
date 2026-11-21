@@ -363,7 +363,7 @@ $$
 (+)(+) = +,\qquad (+)(-) = -,\qquad (-)(+) = -,\qquad (-)(-) = + .
 $$
 
-La división sigue los mismos signos. Cuidado con las potencias: $(-2)^3 = -8$, pero $-2^3 = -(2^3) = -8$ y
+La división sigue los mismos signos. Cuidado con las potencias: $(-2)^3 = -8$ y también $-2^3 = -(2^3) = -8$ (con exponente impar coinciden), pero
 $(-2)^2 = 4$ mientras que $-2^2 = -4$. El paréntesis cambia el resultado.
 
 **Ejemplo resuelto:** $5 - 2\cdot(-3) + (-4)^2 \div (-8)$.

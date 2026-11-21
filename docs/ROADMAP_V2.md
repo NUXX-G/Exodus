@@ -223,7 +223,7 @@ Ciclo por cada área (una fase por área), con estas tareas:
 - [x] b) Plan (⛔ si cambia ids o afecta al progreso) — sin cambios de id
 - [x] c) Redacción — 31 nodos en orden (ver `docs/contenido/troncal.md` §b); hechos: 31/31
 - [ ] d) Revisión independiente (subagente)
-- [ ] e) Reportes «creo que esto está mal» del área
+- [x] e) Reportes «creo que esto está mal» del área — `npm run reportes` (2026-11-21): ninguno pendiente
 - [ ] f) Cierre (checks, cobertura, `STATUS.md`, commit `v2: fase 9 completada`)
 
 ## FASE 10 — Contenido: matemáticas (doble grado UNED completo y máster)

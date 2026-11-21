@@ -310,7 +310,7 @@ for _ in range(5):
 assert abs(float(x) - math.sqrt(2)) < 1e-15
 ```
 
-(La referencia sale de desarrollar en serie la raíz pequeña: $x = 2/(b + sqrt{b^2 - 4}) = 1/b + 1/b^3 + cdots$.)
+(La referencia sale de desarrollar en serie la raíz pequeña: $x = 2/(b + \sqrt{b^2 - 4}) = 1/b + 1/b^3 + \cdots$.)
 
 ## 9. Errores típicos
 

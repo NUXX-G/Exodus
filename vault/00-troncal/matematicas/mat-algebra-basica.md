@@ -503,7 +503,7 @@ Comprobación: $2(10 + 15) = 50$. $\checkmark$
 
 **Esquemas típicos:**
 
-- **Movimiento**: $d = v\,t$. Si dos móviles se acercan, las velocidades se **suman**; si uno alcanza a otro, se
+- **Movimiento**: $d = v\,t$. Si dos móviles van uno hacia el otro (en sentidos opuestos), las velocidades se **suman**; si uno alcanza a otro, se
   **restan**.
 - **Mezclas**: la cantidad de sustancia pura se conserva: $\text{volumen}\cdot\text{concentración}$ antes $=$ después.
 - **Edades**: la diferencia de edades no cambia con el tiempo; todos suman lo mismo cada año.
@@ -537,7 +537,7 @@ encontrar su punto de corte. Por eso hay tres casos:
 | Rectas | Soluciones | Señal |
 |---|---|---|
 | se cortan en un punto | **una** | no son paralelas: $a_1b_2 - a_2b_1 \ne 0$ |
-| paralelas distintas | **ninguna** | mismos coeficientes de $x, y$ pero distinto término independiente |
+| paralelas distintas | **ninguna** | coeficientes de $x$ e $y$ proporcionales ($a_1b_2 = a_2b_1$) pero términos independientes no en la misma proporción |
 | coincidentes | **infinitas** | una ecuación es múltiplo de la otra |
 
 Para $\begin{cases} a_1x + b_1y = c_1 \\ a_2x + b_2y = c_2 \end{cases}$ el sistema tiene **solución única** si y solo si
