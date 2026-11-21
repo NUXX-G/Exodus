@@ -371,7 +371,7 @@ Al terminar sabrás:
 - **Física**: el momento de giro y el momento angular son productos vectoriales, y el trabajo es un producto escalar ([[fis-mecanica-newtoniana]]).
 - **Gráficos 3D y videojuegos**: las normales de las superficies (para la iluminación) se calculan con productos vectoriales.
 - **Robótica y navegación**: orientaciones, ejes de giro y cinemática en 3D ([[rob-cinematica]]).
-- **Geometría del espacio**: ecuaciones de planos, distancias y volúmenes (el tema `mat-rectas-planos-espacio`).
+- **Geometría del espacio**: ecuaciones de planos, distancias y volúmenes ([[mat-rectas-planos-espacio]]).
 
 ## 2. Vectores, dependencia lineal y bases
 
@@ -452,4 +452,4 @@ $\frac16|[\overrightarrow{AB}, \overrightarrow{AC}, \overrightarrow{AD}]|$.
 
 ## Siguiente
 
-el tema `mat-rectas-planos-espacio` (ecuaciones de rectas y planos y sus posiciones relativas).
+[[mat-rectas-planos-espacio]] (ecuaciones de rectas y planos y sus posiciones relativas).
