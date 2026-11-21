@@ -437,7 +437,7 @@ valor de $x$. Con $x = 1$: $(2 + 3)(1 - 1 + 4) = 20$ y $2 + 1 + 5 + 12 = 20$ ✓
 > [!formal] Con rigor: por qué basta comprobar en unos pocos puntos
 > Si dos polinomios de grado como mucho $n$ dan el mismo valor en $n + 1$ números distintos, son iguales (su diferencia sería un
 > polinomio de grado $\le n$ con $n + 1$ raíces, y eso solo le pasa al polinomio cero; se demuestra en
-> el tema `mat-polinomios-factorizacion`). Por eso, para comprobar un producto de grado $3$, bastan $4$ valores; uno solo ya detecta casi
+> [[mat-polinomios-factorizacion]]). Por eso, para comprobar un producto de grado $3$, bastan $4$ valores; uno solo ya detecta casi
 > todos los errores, pero no los descarta todos.
 
 ## 5. Productos notables
@@ -465,7 +465,7 @@ $$
 
 $6x^2 + 9x = 3x(2x + 3)$: el factor común es el **mcd de los coeficientes** ($3$) por cada letra común con su **menor exponente** ($x$).
 Se comprueba multiplicando: $3x \cdot 2x + 3x \cdot 3 = 6x^2 + 9x$ ✓. Sacar factor común es el primer paso de casi toda factorización
-(el tema `mat-polinomios-factorizacion`) y de muchos problemas en los que se busca un número desconocido.
+([[mat-polinomios-factorizacion]]) y de muchos problemas en los que se busca un número desconocido.
 
 ## 7. Errores típicos
 
@@ -495,5 +495,5 @@ Se comprueba multiplicando: $3x \cdot 2x + 3x \cdot 3 = 6x^2 + 9x$ ✓. Sacar fa
 
 ## Siguiente
 
-[[mat-ecuaciones-primer-grado]] (igualdades con letras que hay que resolver) y el tema `mat-polinomios-factorizacion` (dividir y factorizar
+[[mat-ecuaciones-primer-grado]] (igualdades con letras que hay que resolver) y [[mat-polinomios-factorizacion]] (dividir y factorizar
 polinomios).
