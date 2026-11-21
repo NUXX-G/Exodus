@@ -132,6 +132,11 @@ terminos:
     llano: "Un número de la forma a + bi, donde i es un número inventado que cumple i·i = −1. Se dibuja como un punto o una flecha en un plano; multiplicar por él gira y estira."
     formal: "Elemento $a + bi$ de $\\mathbb{C}$, con $a, b \\in \\mathbb{R}$ e $i^2 = -1$; en forma polar $r(\\cos\\theta + i\\sin\\theta)$, y el producto multiplica módulos y suma argumentos."
     nodo: mat-numeros-complejos
+  - termino: recta de regresión
+    sinonimos: [rectas de regresión, regresión lineal]
+    llano: "La recta que pasa lo más cerca posible de una nube de puntos de datos; sirve para resumir la relación entre dos variables y hacer predicciones."
+    formal: "Recta $y - \\bar y = \\frac{s_{xy}}{s_x^2}(x - \\bar x)$, que minimiza la suma de los cuadrados de los errores verticales (mínimos cuadrados)."
+    nodo: mat-estadistica-bidimensional
 ---
 
 Glosario de matemáticas (esta nota no es un nodo). Cada término: explicación llana, definición formal y el nodo donde

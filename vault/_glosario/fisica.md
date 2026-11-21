@@ -17,7 +17,7 @@ terminos:
     nodo: fis-medida-movimiento
   - termino: fuerza
     sinonimos: [fuerzas]
-    excepto: [fuerza bruta, fuerzas armadas, a la fuerza, por fuerza, misma fuerza, con fuerza, más fuerza, fuerza de voluntad]
+    excepto: [fuerza bruta, fuerzas armadas, a la fuerza, por fuerza, misma fuerza, con fuerza, más fuerza, fuerza de voluntad, su fuerza]
     llano: "Un empujón o un tirón que puede cambiar cómo se mueve algo (acelerarlo, frenarlo, desviarlo) o deformarlo. Se mide en newtons."
     formal: "Magnitud vectorial que mide la interacción entre cuerpos; segunda ley de Newton: $\\vec F_{\\text{neta}} = m\\vec a$ (masa constante). $1\\ \\mathrm N = 1\\ \\mathrm{kg\\,m/s^2}$."
     nodo: fis-fuerzas-energia
@@ -43,7 +43,7 @@ terminos:
     formal: "$\\vec p = m\\vec v$; $\\vec F_{\\text{neta}} = d\\vec p/dt$. En un sistema aislado, $\\sum \\vec p$ se conserva."
     nodo: fis-mecanica-newtoniana
   - termino: frecuencia
-    excepto: [con frecuencia, frecuencia absoluta, frecuencia relativa, frecuencia acumulada, frecuencias absolutas, frecuencias relativas, frecuencia de aparición, frecuencias de aparición, frecuencia de palabras, frecuencia de las letras, frecuencia de uso]
+    excepto: [con frecuencia, frecuencia absoluta, frecuencia relativa, frecuencia acumulada, frecuencias absolutas, frecuencias relativas, frecuencia de aparición, frecuencias de aparición, frecuencia de palabras, frecuencia de las letras, frecuencia de uso, tabla de frecuencias, tablas de frecuencias, con frecuencias, las frecuencias, frecuencia conjunta, frecuencias conjuntas, frecuencias marginales, distribución de frecuencias, frecuencias acumuladas]
     llano: "Cuántas veces se repite algo por segundo: una cuerda que vibra 440 veces por segundo da la nota la. Se mide en hercios."
     formal: "$f = 1/T$, inversa del periodo; en una onda, $v = \\lambda f$. $1\\ \\mathrm{Hz} = 1\\ \\mathrm s^{-1}$."
     nodo: fis-ondas-calor-fluidos
