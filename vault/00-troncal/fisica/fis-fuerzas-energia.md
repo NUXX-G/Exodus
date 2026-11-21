@@ -478,7 +478,7 @@ $P = m g$ (N), con $g \approx 9{,}81$ m/s$^2$ en la Tierra y $1{,}62$ en la Luna
 La **fuerza normal** $N$ es la que una superficie ejerce **perpendicular** a ella. Sobre un suelo horizontal, sin otras fuerzas verticales, $N = mg$, pero **no siempre**:
 
 **Ejemplo (ascensor).** Una persona de $70$ kg ($g = 10$) en un ascensor que sube con $a = 1{,}5$ m/s$^2$: $N - mg = ma$, luego
-$N = m(g + a) = 70\cdot 11{,}5 = 805$ N: **se siente más pesada**. Si baja con $a = 2$: $N = 70\cdot 8 = 560$ N, más ligera. En caída libre
+$N = m(g + a) = 70\cdot 11{,}5 = 805$ N: **se siente más pesada**. Si acelera hacia abajo con $a = 2$ m/s$^2$: $N = 70\cdot 8 = 560$ N, más ligera. En caída libre
 $N = 0$: **ingravidez** aparente (los astronautas en órbita están en caída libre, no «sin gravedad»).
 
 ## 3. El método del diagrama de cuerpo libre
@@ -515,7 +515,7 @@ Entre superficies en contacto aparece una fuerza **paralela** a ellas que se opo
 el plano hasta que se mueve. Con $\mu = 0{,}5$ ese **ángulo crítico** es $\arctan 0{,}5 \approx 26{,}6^\circ$. Con $\mu = 0{,}3$ y $30^\circ$: $a = 10(0{,}5 - 0{,}3\cdot 0{,}866) \approx 2{,}4$ m/s$^2$.
 
 **Frenada de un coche.** Si la única fuerza horizontal es el rozamiento máximo, $a = \mu g$ y la distancia de frenado es $\dfrac{v^2}{2\mu g}$: la que vimos en
-cinemática, ahora con la causa. Con hielo ($\mu \approx 0{,}1$) es **seis veces** mayor que con asfalto seco ($\mu \approx 0{,}6$–$0{,}8$). El **ABS** evita que la rueda se bloquee,
+cinemática, ahora con la causa. Con hielo ($\mu \approx 0{,}1$) es **entre seis y ocho veces** mayor que con asfalto seco ($\mu \approx 0{,}6$–$0{,}8$). El **ABS** evita que la rueda se bloquee,
 porque el rozamiento estático (máximo mayor) frena más que el cinético.
 
 ### Tensión y poleas: la máquina de Atwood
@@ -556,6 +556,7 @@ tensión de un péndulo), el trabajo es **cero**. Llevar una mochila horizontalm
 **Energía cinética:** $E_c = \tfrac12 m v^2$.
 
 **Teorema trabajo-energía.** El trabajo **neto** sobre un cuerpo es igual a la variación de su energía cinética: $W_{\text{neto}} = \Delta E_c$.
+
 > [!formal] Con rigor: demostración del teorema trabajo-energía
 > *Demostración (aceleración constante).* De $v^2 = v_0^2 + 2a\Delta x$, multiplicando por $\tfrac{m}{2}$:
 > $\tfrac12 m v^2 - \tfrac12 m v_0^2 = m a\,\Delta x = F\,\Delta x$. $\blacksquare$
@@ -580,7 +581,7 @@ La **potencia** es el trabajo por unidad de tiempo: $P = \dfrac{W}{t} = F\,v$ (p
 ## 5. Cantidad de movimiento y choques
 
 > [!practico]
-> Parar un camión lento cuesta tanto como parar una moto rápida: lo que cuenta es la masa **por** la velocidad, la
+> Parar un camión lento puede costar tanto como parar una moto rápida: lo que cuenta es la masa **por** la velocidad, la
 > **cantidad de movimiento** (también llamada **momento lineal**). Cuando dos coches chocan, la que uno pierde la gana el otro:
 > el total se conserva. Y un airbag protege porque, para la misma pérdida de cantidad de movimiento, alarga el tiempo del
 > golpe, y así la fuerza es menor.

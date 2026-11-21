@@ -391,6 +391,7 @@ El grado de un producto es la **suma** de grados: $(x^2 + 1)(x^3 - x)$ tiene gra
 $A = B\,Q + R$ y $\text{grado}(R) < \text{grado}(B)$.
 
 **Teorema del resto.** El resto de dividir $p(x)$ entre $x - a$ es $p(a)$.
+
 > [!formal] Con rigor: demostración del teorema del resto
 > *Demostración.* Como $x - a$ tiene grado $1$, el resto es una constante $r$: $p(x) = (x - a)Q(x) + r$. Sustituyendo $x = a$: $p(a) = r$. $\blacksquare$
 
@@ -407,6 +408,7 @@ Se baja el primero; cada resultado se multiplica por $2$ y se suma al siguiente 
 $x^3 - 7x + 6 = (x - 2)(x^2 + 2x - 3) = (x - 2)(x + 3)(x - 1)$, con raíces $2, -3, 1$.
 
 **Raíces racionales.** Si $p$ tiene coeficientes **enteros** y $\frac{r}{s}$ (irreducible) es raíz, entonces $r$ divide al término independiente $a_0$ y $s$ divide al coeficiente principal $a_n$.
+
 > [!formal] Con rigor: demostración
 > *Demostración.* Sustituyendo y multiplicando por $s^n$: $a_n r^n + a_{n-1} r^{n-1}s + \cdots + a_0 s^n = 0$. Todos los términos salvo el primero son múltiplos de $s$, luego $s \mid a_n r^n$;
 > como $\gcd(r, s) = 1$, $s \mid a_n$. Análogamente $r \mid a_0$. $\blacksquare$ 

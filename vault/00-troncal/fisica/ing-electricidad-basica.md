@@ -555,7 +555,7 @@ $\frac{R_1}{R_2} = \frac{R_3}{R_4}$; sirve para medir una resistencia desconocid
 **Error grave y frecuente:** poner un amperímetro **en paralelo** (como si fuese un voltímetro) hace un **cortocircuito** y puede dañar el aparato, quemar el fusible o provocar un accidente.
 
 **Código de colores de resistencias:** bandas de color que dan dos o tres cifras, un multiplicador y una tolerancia. Los valores comerciales siguen **series** (E12: $10, 12, 15, 18, 22, 27, 33,
-39, 47, 56, 68, 82$ y sus múltiplos de $10$) con $5\,\%$ o $1\,\%$ de tolerancia: el valor calculado se redondea al más próximo.
+39, 47, 56, 68, 82$ y sus múltiplos de $10$, para $\pm 10\,\%$; la E24 es la de $\pm 5\,\%$ y la E96 la de $\pm 1\,\%$, según IEC 60063): el valor calculado se redondea al más próximo.
 
 ## 6. Corriente alterna
 
@@ -565,9 +565,10 @@ $\frac{R_1}{R_2} = \frac{R_3}{R_4}$; sirve para medir una resistencia desconocid
 > onda, la tensión llega a unos $325$ V.
 
 
-En **corriente continua** (CC) la tensión es constante; en **alterna** (CA) varía senoidalmente, $v(t) = V_p\sin(2\pi f t)$, con $f = 50$ Hz en Europa. > [!formal] Con rigor: de dónde sale el $\sqrt 2$
-> Para comparar su efecto calorífico con el
-> de la CC se define el **valor eficaz**: el de una CC que disiparía la misma potencia en una resistencia. Como el valor medio de $\sin^2$ es $\tfrac12$,
+En **corriente continua** (CC) la tensión es constante; en **alterna** (CA) varía senoidalmente, $v(t) = V_p\sin(2\pi f t)$, con $f = 50$ Hz en Europa.
+
+> [!formal] Con rigor: de dónde sale el $\sqrt 2$
+> Para comparar su efecto calorífico con el de la CC se define el **valor eficaz**: el de una CC que disiparía la misma potencia en una resistencia. Como el valor medio de $\sin^2$ es $\tfrac12$,
 >
 > $$
 > V_{\text{ef}} = \frac{V_p}{\sqrt{2}} .
@@ -581,7 +582,7 @@ transporta a alta tensión (menos corriente, menos pérdidas $I^2R$) y se reduce
 > [!practico]
 > Un **condensador** es un pequeño depósito de carga, como un cubo que se llena de agua a través de un grifo (la resistencia):
 > al principio se llena deprisa y cada vez más despacio. Con un grifo más cerrado (más resistencia) o un cubo más grande
-> (más capacidad), tarda más. Por eso sirve para hacer temporizadores, como el que apaga poco a poco la luz del rellano.
+> (más capacidad), tarda más. Por eso sirve para hacer temporizadores, como el que apaga la luz del rellano al cabo de un rato.
 
 
 Un **condensador** almacena carga: $Q = C\,V$ (la capacidad $C$ se mide en **faradios**, F; lo habitual son $\mu$F, nF y pF). Almacena energía $E = \tfrac12 C V^2$. Cargado a través de

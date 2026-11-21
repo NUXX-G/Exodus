@@ -499,9 +499,9 @@ chmod go-rwx secreto     # quitar todo a grupo y otros
 chown ana:dev archivo    # cambiar dueño y grupo (requiere privilegios)
 ```
 
-En un **directorio**, `r` permite **listar**, `w` permite **crear y borrar** entradas y `x` permite **entrar** (atravesarlo). Un directorio sin `x` no se puede cruzar aunque se pueda listar.
+En un **directorio**, `r` permite **listar**, `w` (junto con `x`) permite **crear y borrar** entradas y `x` permite **entrar** (atravesarlo). Un directorio sin `x` no se puede cruzar aunque se pueda listar.
 
-**umask.** Los archivos nuevos no nacen con todos los permisos: el sistema parte de $666$ (archivos) o $777$ (directorios) y **quita** los bits de la máscara. Con `umask 022`: archivos $666 - 022 = 644$ (`rw-r--r--`),
+**umask.** Los archivos nuevos no nacen con todos los permisos: el sistema parte de $666$ (archivos) o $777$ (directorios) y **quita** los bits de la máscara. Con `umask 022`: archivos: $666$ sin los bits de $022$ $= 644$ (`rw-r--r--`),
 directorios $755$. Con `umask 027`: $640$ y $750$ (el grupo no escribe y los demás **nada**). Es una de las decisiones de seguridad más sencillas y más descuidadas.
 
 **Seguridad.** Principio de **mínimo privilegio**: da solo los permisos necesarios. Una clave privada SSH debe ser `600` (si es legible por otros, SSH se niega a usarla). Un archivo con contraseñas nunca debe ser `777`. El
@@ -668,7 +668,7 @@ El flujo habitual en equipo: rama por tarea $\to$ *pull request* $\to$ revisión
 
 | Situación | Comando |
 |---|---|
-| Descartar cambios de un archivo (no guardados) | `git restore archivo` |
+| Descartar cambios de un archivo (no preparados con `git add`) | `git restore archivo` |
 | Sacar del índice lo que añadí con `git add` | `git restore --staged archivo` |
 | Corregir el **último** mensaje o añadir algo olvidado | `git commit --amend` (solo si **no** se ha publicado) |
 | Deshacer un commit **ya publicado** con otro que lo revierte | `git revert COMMIT` |
@@ -685,7 +685,7 @@ El flujo habitual en equipo: rama por tarea $\to$ *pull request* $\to$ revisión
 
 - **Mínimo privilegio**: usa `sudo` solo cuando haga falta; no trabajes como root.
 - **No ejecutes lo que no entiendes**: el patrón `curl URL | sh` ejecuta código remoto sin que lo hayas leído; descarga, lee y después ejecuta.
-- **Cuidado con los espacios y el comodín** en `rm`, y con las variables vacías: `rm -rf "$DIR/"` con `$DIR` vacío borra desde la raíz (`set -u` lo evita).
+- **Cuidado con los espacios y el comodín** en `rm`, y con las variables vacías: `rm -rf "$DIR"/*` con `$DIR` vacío se convierte en `rm -rf /*`. Protégelo con `"${DIR:?}"/*`, que aborta si la variable está vacía o sin definir (`set -u` solo detecta las **sin definir**, no las vacías; GNU `rm` se niega por defecto a borrar `/` mismo, pero no `/*`).
 - **Claves SSH**: la privada con permisos `600`, protegida con contraseña, y **nunca** subida a un repositorio.
 - **Registros**: `/var/log` es la primera fuente al investigar un incidente; aprende a filtrarlo.
 
@@ -701,7 +701,7 @@ El flujo habitual en equipo: rama por tarea $\to$ *pull request* $\to$ revisión
 
 ## Repaso: lo que debe quedarte dentro de un mes
 
-1. Permisos: $r=4$, $w=2$, $x=1$; `chmod 754` $=$ `rwxr-xr--`; umask resta a $666$ / $777$.
+1. Permisos: $r=4$, $w=2$, $x=1$; `chmod 754` $=$ `rwxr-xr--`; la umask **quita bits** de $666$ / $777$ (no es una resta cifra a cifra).
 2. `>` sobrescribe, `>>` añade, `|` conecta; salida $=1$, error $=2$; `$?` $=0$ es éxito.
 3. `sort | uniq -c | sort -rn | head` para frecuencias; `grep`, `cut`, `awk`, `find`.
 4. Git: directorio de trabajo $\to$ índice $\to$ repositorio; rama = etiqueta que apunta a un commit; fusión; `reflog` salva.

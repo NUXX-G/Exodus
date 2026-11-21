@@ -400,6 +400,7 @@ $1{,}21\,P = 121$, luego $P = 100$ €. Error típico: restar el $21\,\%$ de $12
 
 
 Una subida del $p\,\%$ seguida de otra del $q\,\%$ multiplica por $\bigl(1 + \frac{p}{100}\bigr)\bigl(1 + \frac{q}{100}\bigr)$.
+
 > [!formal] Con rigor: por qué no se suman
 > Desarrollando:
 >

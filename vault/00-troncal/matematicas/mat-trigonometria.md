@@ -535,6 +535,7 @@ Cada una devuelve **un** ángulo, pero las ecuaciones trigonométricas tienen **
 
 
 **Coseno de una diferencia.** $\cos(\alpha - \beta) = \cos\alpha\cos\beta + \sin\alpha\sin\beta$.
+
 > [!formal] Con rigor: demostración con el círculo unidad
 > *Demostración.* Sean $P = (\cos\alpha, \sin\alpha)$ y $Q = (\cos\beta, \sin\beta)$ en el círculo unidad. La distancia al cuadrado entre ellos es, por coordenadas,
 > $(\cos\alpha - \cos\beta)^2 + (\sin\alpha - \sin\beta)^2 = 2 - 2(\cos\alpha\cos\beta + \sin\alpha\sin\beta)$. Pero $|PQ|$ solo depende del ángulo $\alpha - \beta$ entre ellos (giremos

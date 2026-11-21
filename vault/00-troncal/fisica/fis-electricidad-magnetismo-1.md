@@ -535,8 +535,8 @@ La energía está **en el campo**: la densidad de energía es $u = \tfrac12\vare
 
 > [!practico]
 > Un imán desvía las cargas que se **mueven**, pero de una forma rara: siempre de lado, perpendicular a su velocidad. Por eso
-> no las acelera ni las frena, solo las hace girar. Así funcionan los motores eléctricos (una corriente en un imán recibe un
-> empuje) y las auroras boreales (partículas del Sol que el campo magnético de la Tierra desvía hacia los polos).
+> no las acelera ni las frena, solo las hace girar. Así funcionan los motores eléctricos (un cable con corriente dentro del campo de un
+> imán recibe un empuje) y las auroras boreales (partículas del Sol que el campo magnético de la Tierra desvía hacia los polos).
 
 
 Las cargas **en movimiento** (corrientes) crean y sienten el **campo magnético** $\vec B$ (tesla, T). La fuerza de **Lorentz** sobre una carga $q$ con velocidad $\vec v$ es
@@ -552,6 +552,7 @@ r = \frac{mv}{qB}, \qquad \omega = \frac{qB}{m}\ \ (\text{frecuencia de ciclotr�
 $$
 
 **Ejemplo:** protón a $10^6$ m/s en $0{,}5$ T: $r = 1{,}67\times10^{-27}\cdot10^6\big/(1{,}6\times10^{-19}\cdot0{,}5) \approx 2{,}09$ cm. Es el principio del espectrómetro de masas y del ciclotrón.
+
 > [!formal] Con rigor: fuerza sobre un hilo con corriente
 > **Sobre un hilo** con corriente $I$ y longitud $L$ en un campo uniforme: $\vec F = I\,\vec L\times\vec B$, de módulo $F = ILB\sin\theta$.
 

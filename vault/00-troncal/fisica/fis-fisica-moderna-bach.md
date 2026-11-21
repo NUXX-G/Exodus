@@ -437,7 +437,7 @@ Al terminar sabrás:
 > Einstein partió de dos ideas sencillas: las leyes de la física son las mismas para todos los que se mueven a velocidad
 > constante, y la luz va **siempre** a la misma velocidad, te muevas como te muevas. Si la velocidad de la luz no cambia,
 > algo tiene que ceder: el **tiempo** y el **espacio**. Un reloj que se mueve muy deprisa respecto a ti va más lento, y una
-> regla en movimiento se ve más corta. A las velocidades de la vida diaria el efecto es minúsculo; cerca de la velocidad de
+> regla en movimiento se mide más corta. A las velocidades de la vida diaria el efecto es minúsculo; cerca de la velocidad de
 > la luz es enorme.
 
 **Postulados (1905).** (1) Las leyes de la física son las mismas en todos los sistemas de referencia inerciales. (2) La
@@ -537,7 +537,7 @@ falla en átomos con más electrones; la mecánica cuántica completa ([[fis-mec
 
 > [!practico]
 > Si pesas por separado los protones y neutrones de un núcleo de helio, y luego pesas el núcleo entero, el núcleo pesa
-> **menos**. Esa masa que falta se convirtió en la energía que los mantiene unidos ($E = mc^2$). Es una cantidad enorme: por
+> **menos**. Esa masa que falta salió en forma de energía al formarse el núcleo ($E = mc^2$), y es la que habría que devolverle para separarlo. Es una cantidad enorme: por
 > gramo, millones de veces más que la energía química de quemar carbón. Algunos núcleos son inestables y se rompen solos
 > (radiactividad), a un ritmo que se describe con el **periodo de semidesintegración**: el tiempo en que se desintegra la
 > mitad.
@@ -569,7 +569,7 @@ carbono-14,** $T_{1/2} \approx 5730$ años): un hueso con el $25\,\%$ del C-14 o
 
 El **modelo estándar** clasifica las partículas elementales en **fermiones** (materia: seis cuarks y seis leptones, entre ellos
 el electrón y los neutrinos) y **bosones** (portadores de las interacciones: el fotón para la electromagnética, los gluones para
-la fuerte, los bosones W y Z para la débil, y el bosón de Higgs, descubierto en el CERN en 2012). El protón es $uud$ y el neutrón
+la fuerte, los bosones W y Z para la débil), más el bosón de Higgs, asociado al mecanismo que da masa a las partículas y descubierto en el CERN en 2012. El protón es $uud$ y el neutrón
 $udd$ (cargas $u = +\frac23 e$, $d = -\frac13 e$). La gravedad no está incluida.
 
 ## 8. Errores típicos

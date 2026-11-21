@@ -506,7 +506,7 @@ da $I = \dfrac{P}{4\pi r^2}$: la intensidad cae con el **cuadrado de la distanci
 exposición prolongada ya daña el oído, $\approx 120$ dB está cerca del umbral de dolor.
 
 **Efecto Doppler.** Si la fuente se **acerca** a un observador con velocidad $v_s$, la frecuencia percibida **aumenta**: $f' = f\,\dfrac{v}{v - v_s}$; si se **aleja**, $f' = f\,\dfrac{v}{v + v_s}$. Es el
-cambio de tono de una ambulancia que pasa, y el principio del radar de velocidad y de la medida del movimiento de las galaxias (el corrimiento al rojo).
+cambio de tono de una ambulancia que pasa, y el principio del radar de velocidad y, con un efecto análogo en la luz (con otra fórmula), de la medida del movimiento de las galaxias (el corrimiento al rojo).
 
 ## 4. La luz y el espectro electromagnético
 
@@ -521,8 +521,8 @@ $c = 299\,792\,458$ m/s (valor exacto por definición). Se cumple $c = \lambda f
 
 | Región | Longitud de onda (orden de magnitud) | Uso |
 |---|---|---|
-| Radio | $> 10$ cm | emisoras, wifi ($2{,}4$ GHz $\to \lambda = 12{,}5$ cm), TV |
-| Microondas | cm | hornos, radar, telefonía |
+| Radio | $> 1$ m | emisoras, TV |
+| Microondas | $1$ mm – $1$ m | wifi ($2{,}4$ GHz $\to \lambda = 12{,}5$ cm), hornos ($2{,}45$ GHz), radar, telefonía |
 | Infrarrojo | $\mu$m – mm | mandos, cámaras térmicas, calor |
 | **Visible** | **$\approx 400$ – $700$ nm** | visión (violeta → rojo) |
 | Ultravioleta | $10$ – $400$ nm | esterilización, bronceado |
@@ -550,7 +550,7 @@ n_1 \sin\theta_1 = n_2 \sin\theta_2, \qquad n = \frac{c}{v}\ \text{(índice de r
 $$
 
 Índices típicos: aire $\approx 1{,}000$; agua $1{,}33$; vidrio $\approx 1{,}5$; diamante $2{,}42$. **Ejemplo resuelto:** de aire a vidrio con $\theta_1 = 30^\circ$: $\sin\theta_2 = \frac{\sin 30^\circ}{1{,}5} = 0{,}333$,
-$\theta_2 \approx 19{,}5^\circ$: el rayo se **acerca a la normal** al entrar en un medio más denso.
+$\theta_2 \approx 19{,}5^\circ$: el rayo se **acerca a la normal** al entrar en un medio de mayor índice (ópticamente más denso).
 
 - **Reflexión total interna**: al pasar a un medio **menos** denso ($n_1 > n_2$) el rayo se aleja de la normal; a partir del **ángulo crítico** $\sin\theta_c = \frac{n_2}{n_1}$ no sale y se refleja del todo. Para
   vidrio a aire, $\theta_c = \arcsin\frac{1}{1{,}5} \approx 41{,}8^\circ$. Es la base de la **fibra óptica**: la luz queda atrapada en el núcleo y recorre kilómetros con pérdidas mínimas, llevando la mayor parte de internet.
@@ -566,7 +566,7 @@ $\theta_2 \approx 19{,}5^\circ$: el rayo se **acerca a la normal** al entrar en 
 > $0\,^\circ$C.
 
 
-La **temperatura** mide la energía cinética media de las partículas de un cuerpo; el **calor** $Q$ es la **energía que se transfiere** entre cuerpos por una diferencia de temperatura. Un
+La **temperatura** es una medida de la agitación de las partículas (en un gas ideal, es proporcional a su energía cinética media); el **calor** $Q$ es la **energía que se transfiere** entre cuerpos por una diferencia de temperatura. Un
 vaso de agua caliente no «contiene calor»: tiene energía interna; el calor es la transferencia.
 
 **Escalas.** Celsius ($0\ ^\circ$C fusión del hielo, $100\ ^\circ$C ebullición del agua a nivel del mar), Fahrenheit y **Kelvin**, la escala absoluta: $T_K = T_C + 273{,}15$. El **cero absoluto** ($0$ K $= -273{,}15\ ^\circ$C) es el límite inferior.
@@ -645,6 +645,7 @@ $$
 **Principio de Pascal:** un cambio de presión en un fluido encerrado se transmite **íntegro**; la **prensa hidráulica** multiplica fuerzas: $\frac{F_1}{A_1} = \frac{F_2}{A_2}$.
 
 **Principio de Arquímedes:** un cuerpo sumergido recibe un **empuje vertical hacia arriba igual al peso del fluido que desaloja**: $E = \rho_{\text{fluido}}\,V_{\text{sum}}\,g$.
+
 > [!formal] Con rigor: demostración para un cubo
 > *Demostración (un cubo de lado $\ell$).* La presión en la cara inferior ($h_2$) supera a la de la superior ($h_1$) en $\rho g (h_2 - h_1)$; la fuerza neta hacia arriba es $\rho g(h_2 - h_1)\ell^2 = \rho g \ell^3 = \rho g V$. $\blacksquare$
 

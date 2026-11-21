@@ -425,8 +425,8 @@ magnitud) y [[mat-combinatoria-probabilidad-basica]] (probabilidad condicionada)
 - **En cualquier profesión técnica**: depurar un programa, diagnosticar una avería o investigar un incidente de seguridad es aplicar el
   método científico (hipótesis, prueba que podría refutarla, conclusión).
 - **Ingeniería**: una medida sin incertidumbre no sirve para decidir si una pieza cumple una tolerancia.
-- **Salud y dinero**: «reduce el riesgo un 25 %» puede significar medio punto; una prueba con 99 % de acierto puede equivocarse casi siempre
-  si la enfermedad es rara.
+- **Salud y dinero**: «reduce el riesgo un 25 %» puede significar medio punto; con una prueba que acierta el 99 % de las veces, la mayoría
+  de sus positivos pueden ser falsos si la enfermedad es rara.
 - **Ciudadanía**: distinguir un estudio sólido de un titular, un gráfico honesto de uno manipulado.
 
 ## 2. El método científico y la falsabilidad

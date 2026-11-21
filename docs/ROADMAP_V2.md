@@ -222,9 +222,9 @@ Ciclo por cada área (una fase por área), con estas tareas:
 - [x] a) Mapa (`docs/contenido/troncal.md`)
 - [x] b) Plan (⛔ si cambia ids o afecta al progreso) — sin cambios de id
 - [x] c) Redacción — 31 nodos en orden (ver `docs/contenido/troncal.md` §b); hechos: 31/31
-- [ ] d) Revisión independiente (subagente)
+- [x] d) Revisión independiente (subagente) — 3 bloques, 59 hallazgos (58 aplicados): `docs/contenido/troncal.md` §d
 - [x] e) Reportes «creo que esto está mal» del área — `npm run reportes` (2026-11-21): ninguno pendiente
-- [ ] f) Cierre (checks, cobertura, `STATUS.md`, commit `v2: fase 9 completada`)
+- [x] f) Cierre (checks, cobertura, `STATUS.md`, commit `v2: fase 9 completada`) — 2026-11-21; cobertura: 392 ejercicios con variantes y 213 preguntas de repaso en todo el vault (al empezar la fase: 27 con variantes); el troncal sin avisos de fuentes vagas
 
 ## FASE 10 — Contenido: matemáticas (doble grado UNED completo y máster)
 

@@ -426,6 +426,7 @@ son $360^\circ$, un ángulo **llano** $180^\circ$, uno **recto** $90^\circ$. Es 
 **obtuso** si es mayor. Dos ángulos son **complementarios** si suman $90^\circ$ y **suplementarios** si suman $180^\circ$.
 
 **Teorema (ángulos opuestos por el vértice).** Si dos rectas se cortan, los ángulos opuestos son iguales.
+
 > [!formal] Con rigor: demostración
 > *Demostración.* Si $\alpha$ y $\beta$ son ángulos contiguos, $\alpha + \beta = 180^\circ$; el opuesto de $\alpha$, $\alpha'$,
 > también cumple $\alpha' + \beta = 180^\circ$. Restando, $\alpha = \alpha'$. $\blacksquare$
@@ -462,6 +463,7 @@ Por eso no existe un triángulo de lados $2$, $3$ y $7$.
 que forman** (LAL) o **un lado y los dos ángulos adyacentes** (ALA).
 
 **Área.** $A = \dfrac{b\,h}{2}$, con $h$ la altura sobre la base $b$.
+
 > [!formal] Con rigor: por qué el área es la mitad de base por altura
 > *Justificación.* Un paralelogramo de base $b$ y altura $h$ tiene área $bh$ (se corta un triángulo de un extremo y se
 > pega en el otro para formar un rectángulo), y una diagonal lo parte en dos triángulos iguales. $\blacksquare$

@@ -611,7 +611,7 @@ que une el punto inicial con el final. Si das una vuelta completa a una pista, l
 
 > [!practico]
 > En una gráfica posición-tiempo, una recta inclinada es velocidad constante, y cuanto más empinada, más rápido. En una gráfica
-> velocidad-tiempo, el **área** bajo la línea es la distancia recorrida: a $20$ m/s durante $3$ s, el rectángulo mide
+> velocidad-tiempo, el **área** bajo la línea es la distancia recorrida (si no cambia de sentido): a $20$ m/s durante $3$ s, el rectángulo mide
 > $20 \times 3 = 60$ m. Con eso y la idea de que acelerar es «cambiar la velocidad cada segundo» se deducen todas las fórmulas de
 > esta sección.
 

@@ -468,16 +468,16 @@ Todo valor tiene un **tipo**. Los básicos:
 
 **Conversión:** `int("42")`, `float("3.5")`, `str(7)`. `int("3.5")` falla (`ValueError`); `int(3.9)` da `3` (trunca).
 
-**Flotantes y precisión.** Como en [[mat-enteros-fracciones]], un decimal en binario es aproximado: `0.1 + 0.2 == 0.3` es **`False`**. Para dinero
+**Flotantes y precisión.** Como en [[mat-enteros-fracciones]], muchos decimales (como $0{,}1$) son aproximados en binario: `0.1 + 0.2 == 0.3` es **`False`**. Para dinero
 o para cálculo exacto usa enteros (céntimos), `decimal.Decimal` o `fractions.Fraction`. Para comparar flotantes, `math.isclose(a, b)`.
 
-**Verdad y falsedad.** En una condición, `0`, `0.0`, `""` (texto vacío), `[]`, `{}`, `set()` y `None` cuentan como **falsos**; el resto, como verdaderos.
+**Verdad y falsedad.** En una condición, `False`, `0`, `0.0`, `None` y toda colección vacía (`""`, `[]`, `()`, `{}`, `set()`) cuentan como **falsos**; el resto, como verdaderos.
 
 ## 4. Texto
 
 > [!practico]
 > Un texto es una fila de letras numeradas **empezando por el cero**: en «hola», la «h» es la posición $0$ y la «a» la $3$.
-> Con esas posiciones puedes recortar trozos («dame de la $1$ a la $3$»), y Python trae muchas herramientas ya hechas:
+> Con esas posiciones puedes recortar trozos («dame de la $1$ hasta antes de la $3$»), y Python trae muchas herramientas ya hechas:
 > pasar a mayúsculas, buscar, reemplazar, partir en palabras.
 
 
@@ -619,7 +619,7 @@ while True:
 > [!practico]
 > Una **función** es una receta con nombre: la escribes una vez («cómo calcular el IVA de un precio») y la usas cuantas veces
 > quieras, con distintos ingredientes (los argumentos). Lo que pasa dentro de la función se queda dentro: sus variables no
-> estropean las de fuera.
+> estropean las de fuera (aunque, si le pasas una lista y la modifica, el cambio sí se ve fuera).
 
 
 ```python

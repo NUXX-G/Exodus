@@ -526,7 +526,7 @@ Unicode), las imágenes (números por píxel), el sonido (números por muestra).
 Mil millones ($10^9$) cabe en $30$ bits, porque $2^{30} = 1\,073\,741\,824$.
 
 **Por qué importa:** un entero de $32$ bits **sin signo** llega a $2^{32} - 1 = 4\,294\,967\,295$; al pasarse, **da la vuelta** a $0$. Esa limitación
-causa errores reales (ver el nodo de explotación binaria, [[sec-explotacion-binaria]]). Y los decimales en binario son **aproximaciones**: por eso `0.1 + 0.2` no da
+causa errores reales (ver el nodo de explotación binaria, [[sec-explotacion-binaria]]). Y muchos decimales (como $0{,}1$) solo se pueden guardar en binario como **aproximaciones**: por eso `0.1 + 0.2` no da
 exactamente `0.3` en un ordenador.
 
 ## 6. Cuánto cuesta un algoritmo
@@ -600,8 +600,8 @@ una iteración), no inicializar una variable y usar un valor de una ejecución a
 
 1. Algoritmo: pasos finitos, precisos, con entrada y salida; Euclides es de los más antiguos.
 2. `x = x + 1` es **asignar**, no igualar; el estado cambia con cada instrucción; la traza es la herramienta de comprobación.
-3. $n$ bits distinguen $2^n$ casos; los enteros de ancho fijo dan la vuelta; los decimales binarios son aproximados.
-4. Búsqueda binaria: $\lceil \log_2 n \rceil$ pasos frente a $n$.
+3. $n$ bits distinguen $2^n$ casos; los enteros de ancho fijo dan la vuelta; muchos decimales (como $0{,}1$) son aproximados en binario.
+4. Búsqueda binaria: $\lceil \log_2 (n + 1) \rceil$ pasos frente a $n$.
 5. Depurar: reproducir, aislar, hipótesis, comprobar y fijar con una prueba.
 
 ## Siguiente

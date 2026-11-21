@@ -494,6 +494,7 @@ $$
 $$
 
 con $\theta$ el ángulo entre ellos.
+
 > [!formal] Con rigor: demostración con el teorema del coseno
 > *Demostración de la igualdad.* Por el teorema del coseno (ver [[mat-trigonometria]]) aplicado al triángulo de lados $\vec u$, $\vec v$ y $\vec u - \vec v$: $|\vec u - \vec v|^2 = |\vec u|^2 + |\vec v|^2 - 2|\vec u||\vec v|\cos\theta$.
 > Desarrollando el primer miembro en coordenadas, $|\vec u|^2 + |\vec v|^2 - 2(u_1v_1 + u_2v_2)$; igualando, sale el resultado. $\blacksquare$

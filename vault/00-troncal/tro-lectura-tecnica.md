@@ -424,7 +424,7 @@ definiciones y el texto normativo, separado de las notas y los ejemplos **inform
 
 > [!practico]
 > La hoja de datos es el «manual de instrucciones» que el fabricante da de cada componente electrónico. Lo crucial es separar
-> dos cosas: los **límites que lo destruyen** si los pasas (aunque sea un instante) y las **condiciones en las que funciona
+> dos cosas: los **límites que pueden destruirlo** si los pasas (aunque sea un instante) y las **condiciones en las que funciona
 > bien**. Diseñar justo en el límite es como conducir siempre a la velocidad máxima de un coche: funciona hasta que no.
 
 
