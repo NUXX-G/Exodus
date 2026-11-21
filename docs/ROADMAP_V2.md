@@ -321,7 +321,19 @@ Ciclo por cada área (una fase por área), con estas tareas:
 - [ ] e) Reportes «creo que esto está mal» del área
 - [ ] f) Cierre (checks, cobertura, `STATUS.md`, commit `v2: fase 17 completada`)
 
+## FASE 18 — Cierre: README y ampliación sencilla (pedida por el usuario el 2026-11-21)
+
+- [ ] a) **Ampliar con una orden**: que un Claude Code futuro (o una persona) pueda añadir un área o rama nueva con el mínimo
+      esfuerzo. Revisar `docs/AMPLIAR.md` (§2 y §3) y añadir lo que falte: un script de andamiaje (`npm run nueva-rama -- <área>
+      <rama>` o similar) que cree la carpeta del vault, el glosario del área, un objetivo de ejemplo, un nodo plantilla en escalera
+      y su spec `.soluciones/` con variantes; y una receta corta paso a paso (mapa → plan por temas → redacción → revisión) para
+      que una sesión nueva la siga sin contexto previo.
+- [ ] b) **README al día**: qué es Exodus, cómo se instala y arranca, cómo se estudia (objetivos, nodos por tema, repaso, libreta,
+      calculadora), cómo se amplía (enlace a `docs/AMPLIAR.md`), estructura del repositorio y estado del contenido (números finales
+      de nodos, ejercicios y variantes de `npm run vault:cobertura`).
+- [ ] c) Cierre (checks, `STATUS.md`, commit `v2: fase 18 completada`).
+
 ## FIN DEL PLAN
 
-- [ ] Resumen final al usuario: qué se hizo, decisiones tomadas, preguntas abiertas y callouts «Revisar» pendientes
+- [ ] Resumen final al usuario (con el número final de nodos): qué se hizo, decisiones tomadas, preguntas abiertas y callouts «Revisar» pendientes
       por área. No fusionar `v2` en la rama principal: lo decide el usuario.
