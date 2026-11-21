@@ -9,9 +9,7 @@ Nodos que mencionan un nodo de tema aún no escrito. Al crear el nodo, sustituir
 | vault/00-troncal/matematicas/mat-fracciones.md | `mat-probabilidad-elemental` |
 | vault/00-troncal/matematicas/mat-decimales.md | `fis-magnitudes-medida` |
 | vault/00-troncal/matematicas/mat-sistema-metrico.md | `fis-magnitudes-medida` |
-| vault/00-troncal/matematicas/mat-proporcionalidad.md | `mat-funciones-lineales-cuadraticas` |
 | vault/00-troncal/matematicas/mat-sistemas-dos-incognitas.md | `mat-sistemas-lineales` |
-| vault/00-troncal/matematicas/mat-sistemas-dos-incognitas.md | `mat-funciones-lineales-cuadraticas` |
 | vault/00-troncal/matematicas/mat-sistemas-dos-incognitas.md | `mat-determinantes` |
 | vault/00-troncal/matematicas/mat-polinomios-factorizacion.md | `mat-integral-riemann` |
 | vault/00-troncal/matematicas/mat-inecuaciones.md | `mat-limites-continuidad` |
@@ -23,5 +21,5 @@ Nodos que mencionan un nodo de tema aún no escrito. Al crear el nodo, sustituir
 | vault/00-troncal/matematicas/mat-semejanza-tales.md | `fis-optica` |
 | vault/00-troncal/matematicas/mat-cuerpos-geometricos.md | `mat-integral-riemann` |
 | vault/00-troncal/matematicas/mat-funciones-graficas.md | `mat-derivadas` |
-| vault/00-troncal/matematicas/mat-funciones-graficas.md | `mat-funciones-lineales-cuadraticas` |
 | vault/00-troncal/matematicas/mat-funciones-graficas.md | `mat-estadistica-descriptiva` |
+| vault/00-troncal/matematicas/mat-funciones-lineales-cuadraticas.md | `mat-estadistica-descriptiva` |

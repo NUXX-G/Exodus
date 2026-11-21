@@ -412,7 +412,7 @@ y el que se generaliza a sistemas grandes (método de Gauss).
 
 *Ejemplo:* $y = 2x - 1$ e $y = -x + 5$. Igualando, $2x - 1 = -x + 5$, $x = 2$, $y = 3$: las rectas se cortan en el punto $(2, 3)$. Dibujar es
 útil para ver la solución aproximada y para entender los casos especiales, pero el cálculo algebraico es el que da el valor exacto
-(más sobre rectas en el tema `mat-funciones-lineales-cuadraticas`).
+(más sobre rectas en [[mat-funciones-lineales-cuadraticas]]).
 
 ## 5. Clasificación: una, ninguna o infinitas soluciones
 

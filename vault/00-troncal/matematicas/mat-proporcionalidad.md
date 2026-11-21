@@ -426,7 +426,7 @@ Una **razón** entre $a$ y $b$ es el cociente $\frac ab$. Una **proporción** es
 
 Las magnitudes $x$ e $y$ son **directamente proporcionales** si el cociente $\frac yx$ es siempre el mismo número $k$, la **constante de
 proporcionalidad** (en una tabla, todas las columnas dan el mismo cociente). Entonces $y = k \cdot x$: la gráfica es una recta que pasa
-por el origen (el tema `mat-funciones-lineales-cuadraticas`).
+por el origen ([[mat-funciones-lineales-cuadraticas]]).
 
 **Regla de tres directa.** *Ejemplo resuelto 1.* Si $3$ kg cuestan $7{,}50$ €, ¿cuánto cuestan $8$ kg?
 - *Reducción a la unidad:* $1$ kg cuesta $7{,}50 : 3 = 2{,}50$ €; $8$ kg cuestan $8 \cdot 2{,}50 = 20$ €.

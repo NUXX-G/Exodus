@@ -479,4 +479,4 @@ límite, da la tasa de cambio instantánea (el tema `mat-derivadas`).
 
 ## Siguiente
 
-el tema `mat-funciones-lineales-cuadraticas` (las rectas y las parábolas, las funciones más usadas) y el tema `mat-estadistica-descriptiva`.
+[[mat-funciones-lineales-cuadraticas]] (las rectas y las parábolas, las funciones más usadas) y el tema `mat-estadistica-descriptiva`.
