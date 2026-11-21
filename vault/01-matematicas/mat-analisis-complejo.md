@@ -3,7 +3,7 @@ id: mat-analisis-complejo
 title: "Análisis complejo: holomorfía, integración de contorno, Cauchy, series de Laurent, residuos y transformaciones conformes"
 area: matematicas
 trunk_level: 11
-prerequisites: [mat-analisis-real, mat-calculo-multivariable]
+prerequisites: [mat-analisis-real, mat-calculo-multivariable, mat-numeros-complejos]
 academic_sources:
   - "Ahlfors, L. V. Complex Analysis, 3ª ed. McGraw-Hill, 1979."
   - "Stein, E. M.; Shakarchi, R. Complex Analysis (Princeton Lectures in Analysis II). Princeton University Press, 2003."

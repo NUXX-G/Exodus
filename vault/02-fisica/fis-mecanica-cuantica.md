@@ -3,7 +3,7 @@ id: fis-mecanica-cuantica
 title: "Mecánica cuántica: postulados, pozos y túnel, oscilador, hidrógeno, espín y entrelazamiento"
 area: fisica
 trunk_level: 13
-prerequisites: [fis-mecanica-clasica, mat-algebra-lineal-avanzada, fis-ondas-optica]
+prerequisites: [fis-mecanica-clasica, mat-algebra-lineal-avanzada, fis-ondas-optica, mat-numeros-complejos]
 academic_sources:
   - "Griffiths, D. J.; Schroeter, D. F. Introduction to Quantum Mechanics, 3ª ed. Cambridge University Press, 2018."
   - "Sakurai, J. J.; Napolitano, J. Modern Quantum Mechanics, 3ª ed. Cambridge University Press, 2020."

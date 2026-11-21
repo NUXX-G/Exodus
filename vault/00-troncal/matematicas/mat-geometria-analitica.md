@@ -607,5 +607,5 @@ $\pi\cdot 100 \approx 314{,}2$.
 
 ## Siguiente
 
-Con el álgebra, la trigonometría y la geometría analítica listas, el troncal pasa a los números complejos
+Con el álgebra, la trigonometría y la geometría analítica listas, el troncal pasa a [[mat-numeros-complejos|un nuevo tipo de número]]
 y después al [[mat-calculo-1|cálculo]]: qué ocurre cuando las cantidades **cambian** de forma continua.

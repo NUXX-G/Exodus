@@ -127,6 +127,11 @@ terminos:
     llano: "Un número que no se puede escribir como fracción: su parte decimal sigue para siempre sin repetirse, como la raíz cuadrada de 2 o el número pi."
     formal: "Número real que no pertenece a $\\mathbb{Q}$; por ejemplo $\\sqrt{2}$ (prueba por reducción al absurdo) o $\\pi$."
     nodo: mat-numeros-reales
+  - termino: número complejo
+    sinonimos: [números complejos]
+    llano: "Un número de la forma a + bi, donde i es un número inventado que cumple i·i = −1. Se dibuja como un punto o una flecha en un plano; multiplicar por él gira y estira."
+    formal: "Elemento $a + bi$ de $\\mathbb{C}$, con $a, b \\in \\mathbb{R}$ e $i^2 = -1$; en forma polar $r(\\cos\\theta + i\\sin\\theta)$, y el producto multiplica módulos y suma argumentos."
+    nodo: mat-numeros-complejos
 ---
 
 Glosario de matemáticas (esta nota no es un nodo). Cada término: explicación llana, definición formal y el nodo donde

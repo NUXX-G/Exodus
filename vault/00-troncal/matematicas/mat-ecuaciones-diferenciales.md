@@ -3,7 +3,7 @@ id: mat-ecuaciones-diferenciales
 title: "Ecuaciones diferenciales ordinarias: modelos, métodos exactos, sistemas, Laplace y métodos numéricos"
 area: matematicas
 trunk_level: 10
-prerequisites: [mat-calculo-2, mat-algebra-lineal-1]
+prerequisites: [mat-calculo-2, mat-algebra-lineal-1, mat-numeros-complejos]
 academic_sources:
   - "Boyce, W. E.; DiPrima, R. C.; Meade, D. B. Elementary Differential Equations and Boundary Value Problems, 11ª ed. Wiley, 2017."
   - "Strogatz, S. H. Nonlinear Dynamics and Chaos, 2ª ed. Westview Press, 2015 (reeditado por CRC Press)."

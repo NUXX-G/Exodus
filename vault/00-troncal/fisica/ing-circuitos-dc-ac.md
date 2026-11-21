@@ -3,7 +3,7 @@ id: ing-circuitos-dc-ac
 title: "Circuitos en continua y en alterna: análisis nodal, Thévenin, transitorios y fasores"
 area: ingenieria
 trunk_level: 12
-prerequisites: [fis-electricidad-magnetismo-1, mat-algebra-lineal-1]
+prerequisites: [fis-electricidad-magnetismo-1, mat-algebra-lineal-1, mat-numeros-complejos]
 academic_sources:
   - "Alexander, C. K.; Sadiku, M. N. O. Fundamentals of Electric Circuits, 7ª ed. McGraw-Hill, 2021."
   - "Agarwal, A.; Lang, J. H. Foundations of Analog and Digital Electronic Circuits. Morgan Kaufmann (Elsevier), 2005."

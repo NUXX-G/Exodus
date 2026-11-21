@@ -3,7 +3,7 @@ id: mat-calculo-2
 title: "Cálculo II: integrales, series y polinomios de Taylor"
 area: matematicas
 trunk_level: 9
-prerequisites: [mat-calculo-1]
+prerequisites: [mat-calculo-1, mat-numeros-complejos]
 academic_sources:
   - "Spivak, M. Calculus, 4ª ed. Publish or Perish, 2008."
   - "Apostol, T. M. Calculus, vol. 1, 2ª ed. Wiley, 1967."

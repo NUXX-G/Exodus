@@ -3,7 +3,7 @@ id: ing-senales-sistemas
 title: "Señales y sistemas: convolución, Fourier, Laplace, muestreo, DFT y filtros digitales"
 area: ingenieria
 trunk_level: 11
-prerequisites: [mat-ecuaciones-diferenciales, mat-algebra-lineal, mat-trigonometria]
+prerequisites: [mat-ecuaciones-diferenciales, mat-algebra-lineal, mat-trigonometria, mat-numeros-complejos]
 academic_sources:
   - "Oppenheim, A. V.; Willsky, A. S.; Nawab, S. H. Signals and Systems, 2ª ed. Prentice Hall, 1997."
   - "Oppenheim, A. V.; Schafer, R. W. Discrete-Time Signal Processing, 3ª ed. Pearson, 2010."
