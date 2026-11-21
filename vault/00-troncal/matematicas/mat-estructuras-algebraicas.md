@@ -3,7 +3,7 @@ id: mat-estructuras-algebraicas
 title: "Estructuras algebraicas: grupos, anillos, ideales y cuerpos finitos"
 area: matematicas
 trunk_level: 8
-prerequisites: [mat-logica-demostraciones, mat-matematica-discreta]
+prerequisites: [mat-logica-demostraciones, mat-matematica-discreta, mat-conjuntos-numeros]
 academic_sources:
   - "Dummit, D. S.; Foote, R. M. Abstract Algebra, 3ª ed. Wiley, 2004."
   - "Artin, M. Algebra, 2ª ed. Pearson, 2011."

@@ -138,6 +138,16 @@ terminos:
     llano: "La recta que pasa lo más cerca posible de una nube de puntos de datos; sirve para resumir la relación entre dos variables y hacer predicciones."
     formal: "Recta $y - \\bar y = \\frac{s_{xy}}{s_x^2}(x - \\bar x)$, que minimiza la suma de los cuadrados de los errores verticales (mínimos cuadrados)."
     nodo: mat-estadistica-bidimensional
+  - termino: supremo
+    sinonimos: [supremos]
+    llano: "El «techo» más bajo posible de un conjunto de números: el menor número que no es superado por ninguno del conjunto. Puede no pertenecer al conjunto: el supremo de 0,9; 0,99; 0,999… es 1."
+    formal: "Para $S \\subseteq \\mathbb R$ no vacío y acotado superiormente, $\\sup S$ es la menor de sus cotas superiores. El axioma del supremo afirma que existe en $\\mathbb R$; en $\\mathbb Q$ puede no existir."
+    nodo: mat-conjuntos-numeros
+  - termino: conjunto cociente
+    sinonimos: [conjuntos cociente]
+    llano: "El conjunto que resulta de agrupar en montones las cosas que una relación considera «iguales» y tratar cada montón como un objeto nuevo, como las horas de un reloj."
+    formal: "Dada una relación de equivalencia $\\sim$ en $A$, $A/\\!\\sim\\; = \\{[a] : a \\in A\\}$ es el conjunto de sus clases de equivalencia."
+    nodo: mat-conjuntos-numeros
 ---
 
 Glosario de matemáticas (esta nota no es un nodo). Cada término: explicación llana, definición formal y el nodo donde

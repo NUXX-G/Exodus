@@ -3,7 +3,7 @@ id: mat-teoria-informacion
 title: "Teoría de la información: entropía, compresión, información mutua, capacidad de canal y códigos correctores"
 area: matematicas
 trunk_level: 12
-prerequisites: [mat-probabilidad, mat-matematica-discreta]
+prerequisites: [mat-probabilidad, mat-matematica-discreta, mat-conjuntos-numeros]
 academic_sources:
   - "Cover, T. M.; Thomas, J. A. Elements of Information Theory, 2ª ed. Wiley-Interscience, 2006."
   - "MacKay, D. J. C. Information Theory, Inference, and Learning Algorithms. Cambridge University Press, 2003."

@@ -3,7 +3,7 @@ id: mat-analisis-real
 title: "Análisis real: completitud, sucesiones, series, continuidad, derivada, integral y convergencia uniforme"
 area: matematicas
 trunk_level: 10
-prerequisites: [mat-logica-demostraciones, mat-calculo-2]
+prerequisites: [mat-logica-demostraciones, mat-calculo-2, mat-conjuntos-numeros]
 academic_sources:
   - "Abbott, S. Understanding Analysis, 2ª ed. Springer (Undergraduate Texts in Mathematics), 2015."
   - "Tao, T. Analysis I, 3ª ed. Hindustan Book Agency / Springer (Texts and Readings in Mathematics, 37), 2016."
