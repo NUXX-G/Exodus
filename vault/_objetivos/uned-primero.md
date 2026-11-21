@@ -19,7 +19,7 @@ Sigue el plan oficial del primer curso (ver `docs/contenido/uned-doble-grado.md`
 | Álgebra lineal II | 2.º | Álgebra lineal |
 | Funciones de una variable II | 2.º | Cálculo II; análisis real |
 | Funciones de varias variables I | 2.º | Cálculo multivariable |
-| Geometría básica | 2.º | Geometría analítica; geometría euclídea (pendiente) |
+| Geometría básica | 2.º | Geometría analítica; geometría euclídea |
 | Fundamentos de Física II | 2.º | Ondas, calor y fluidos; electricidad y magnetismo |
 | Física computacional I | 2.º | Python; análisis numérico; física computacional (pendiente) |
 

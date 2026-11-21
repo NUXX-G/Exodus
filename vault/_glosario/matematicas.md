@@ -148,6 +148,18 @@ terminos:
     llano: "El conjunto que resulta de agrupar en montones las cosas que una relación considera «iguales» y tratar cada montón como un objeto nuevo, como las horas de un reloj."
     formal: "Dada una relación de equivalencia $\\sim$ en $A$, $A/\\!\\sim\\; = \\{[a] : a \\in A\\}$ es el conjunto de sus clases de equivalencia."
     nodo: mat-conjuntos-numeros
+  - termino: espacio métrico
+    sinonimos: [espacios métricos]
+    llano: "Un conjunto en el que se ha fijado una forma de medir la distancia entre dos puntos cualesquiera, con tres reglas: solo vale cero entre un punto y sí mismo, de A a B es lo mismo que de B a A, y nunca es más corto dar un rodeo."
+    formal: "Un par $(X, d)$ con $d : X \\times X \\to [0, \\infty)$ tal que $d(x, y) = 0 \\iff x = y$, $d(x, y) = d(y, x)$ y $d(x, z) \\le d(x, y) + d(y, z)$ (desigualdad triangular)."
+    nodo: mat-geometria-euclidea
+    tambien: [mat-topologia]
+  - termino: isometría
+    sinonimos: [isometrías]
+    llano: "Un movimiento que no deforma: conserva todas las distancias, como deslizar, girar o dar la vuelta a una figura de papel."
+    formal: "Una aplicación $f$ entre espacios métricos con $d(f(x), f(y)) = d(x, y)$ para todo $x, y$. En el plano euclídeo son las traslaciones, los giros, las simetrías y las simetrías con deslizamiento."
+    nodo: mat-geometria-euclidea
+    tambien: [mat-movimientos-plano]
 ---
 
 Glosario de matemáticas (esta nota no es un nodo). Cada término: explicación llana, definición formal y el nodo donde
