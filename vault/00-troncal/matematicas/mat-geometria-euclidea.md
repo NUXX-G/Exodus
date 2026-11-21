@@ -17,7 +17,7 @@ exercises:
   - id: tres-distancias
     tier: 1
     prompt: |
-      Calcula la distancia entre $P = \{{P}}$ y $Q = \{{Q}}$ con la métrica del taxista $d_1$, la euclídea $d_2$ y la del máximo
+      Calcula la distancia entre $P = {{P}}$ y $Q = {{Q}}$ con la métrica del taxista $d_1$, la euclídea $d_2$ y la del máximo
       $d_\infty$. Respuesta: `d1;d2;dinf`.
     variants:
       - values: {"P":"(0, 0)","Q":"(3, 4)"}
@@ -52,8 +52,8 @@ exercises:
     type: numero
     sig: 6
     prompt: |
-      Se compone la simetría respecto a la recta por el origen de ángulo $\{{a}}^\circ$ (primero) con la simetría respecto a la recta
-      por el origen de ángulo $\{{b}}^\circ$ (después). El resultado es un giro alrededor del origen. ¿De cuántos grados (entre $0$ y
+      Se compone la simetría respecto a la recta por el origen de ángulo ${{a}}^\circ$ (primero) con la simetría respecto a la recta
+      por el origen de ángulo ${{b}}^\circ$ (después). El resultado es un giro alrededor del origen. ¿De cuántos grados (entre $0$ y
       $360$, en sentido antihorario)?
     variants:
       - values: {"a":0,"b":45}
@@ -88,7 +88,7 @@ exercises:
     type: numero
     sig: 6
     prompt: |
-      A la misma hora, un palo vertical de $\{{h}}$ m da una sombra de $\{{s}}$ m y un edificio da una sombra de $\{{S}}$ m. ¿Qué altura
+      A la misma hora, un palo vertical de ${{h}}$ m da una sombra de ${{s}}$ m y un edificio da una sombra de ${{S}}$ m. ¿Qué altura
       tiene el edificio, en metros?
     variants:
       - values: {"h":"1{,}5","s":"2","S":"18"}
@@ -108,8 +108,8 @@ exercises:
     type: numero
     sig: 6
     prompt: |
-      Un punto $P$ está a distancia $\{{d}}$ del centro de una circunferencia de radio $\{{r}}$. Una recta por $P$ corta la
-      circunferencia en $A$ y $B$, con $PA = \{{a}}$. ¿Cuánto mide $PB$?
+      Un punto $P$ está a distancia ${{d}}$ del centro de una circunferencia de radio ${{r}}$. Una recta por $P$ corta la
+      circunferencia en $A$ y $B$, con $PA = {{a}}$. ¿Cuánto mide $PB$?
     variants:
       - values: {"d":13,"r":5,"a":8}
         answers: ["sha256:eaf26c137ae177db92569c7eb4d9248da4d23f9c6451a2cfbd6a9bf1142dbe81","sha256:146a6d2f0658dd0b6db355564c56760c6dd6356142a0acd610f2754c774b48a8","sha256:8ed1ad048704c839b009ee19b6714a42cb59ff5963bf67c90a9e6b95d7424dce"]
@@ -128,8 +128,8 @@ exercises:
     type: numero
     sig: 6
     prompt: |
-      En la inversión respecto a la circunferencia de centro $O$ y radio $\{{r}}$, ¿a qué distancia de $O$ va a parar un punto que
-      está a distancia $\{{d}}$ de $O$?
+      En la inversión respecto a la circunferencia de centro $O$ y radio ${{r}}$, ¿a qué distancia de $O$ va a parar un punto que
+      está a distancia ${{d}}$ de $O$?
     variants:
       - values: {"r":3,"d":1}
         answers: ["sha256:20d3c66c7e209f6b7716904b329a2babd62370546cfeec450d06f0b382753a04","sha256:325d9ba1340c8bd35ccc3249f28c9c6110468874e6f9a9e9acd082aceb86687a","sha256:1ec57aeccb1330ba46b710a2e23819bda9685b18db7c378e7d031b906d5db0bc"]
@@ -148,7 +148,7 @@ exercises:
     type: numero
     sig: 6
     prompt: |
-      Una recta que no pasa por $O$ está a distancia $\{{h}}$ de $O$. Su imagen por la inversión de centro $O$ y radio $\{{r}}$ es una
+      Una recta que no pasa por $O$ está a distancia ${{h}}$ de $O$. Su imagen por la inversión de centro $O$ y radio ${{r}}$ es una
       circunferencia que pasa por $O$. ¿Cuánto mide su **diámetro**?
     variants:
       - values: {"r":2,"h":1}
@@ -166,7 +166,7 @@ exercises:
   - id: area-hiperbolica
     tier: 2
     prompt: |
-      En el plano hiperbólico (curvatura $-1$), un triángulo tiene ángulos $\{{a}}^\circ$, $\{{b}}^\circ$ y $\{{c}}^\circ$ (un ángulo de
+      En el plano hiperbólico (curvatura $-1$), un triángulo tiene ángulos ${{a}}^\circ$, ${{b}}^\circ$ y ${{c}}^\circ$ (un ángulo de
       $0^\circ$ indica un vértice en el infinito). ¿Cuál es su área? Respuesta: en radianes con **cuatro decimales**.
     variants:
       - values: {"a":30,"b":30,"c":30}
@@ -186,7 +186,7 @@ exercises:
     type: numero
     sig: 6
     prompt: |
-      ¿Cuántos polígonos regulares de $n$ lados, con $3 \le n \le \{{N}}$, se pueden construir con regla y compás?
+      ¿Cuántos polígonos regulares de $n$ lados, con $3 \le n \le {{N}}$, se pueden construir con regla y compás?
       (Teorema de Gauss-Wantzel.)
     variants:
       - values: {"N":30}
@@ -204,7 +204,7 @@ exercises:
   - id: balones-y-euler
     tier: 2
     prompt: |
-      Un poliedro convexo tiene solo caras pentagonales y hexagonales, $\{{h}}$ de ellas hexágonos, y en cada vértice concurren
+      Un poliedro convexo tiene solo caras pentagonales y hexagonales, ${{h}}$ de ellas hexágonos, y en cada vértice concurren
       exactamente $3$ aristas. Con la fórmula de Euler, ¿cuántos vértices y cuántas aristas tiene? Respuesta: `V;E`.
     variants:
       - values: {"h":0}
@@ -222,7 +222,7 @@ exercises:
   - id: areas-semejantes
     tier: 1
     prompt: |
-      Dos figuras planas son semejantes con razón de semejanza $\frac{\{{a}}}{\{{b}}}$ (longitudes de la segunda partido por las de la
+      Dos figuras planas son semejantes con razón de semejanza $\frac{{{a}}}{{{b}}}$ (longitudes de la segunda partido por las de la
       primera). ¿Cuál es la razón entre sus áreas? Respuesta: fracción «p/q».
     variants:
       - values: {"a":3,"b":2}
@@ -367,7 +367,7 @@ Al terminar sabrás:
 ## 1. Para qué sirve
 
 - **Matemáticas**: es el primer contacto con un **sistema axiomático** completo, y el modelo de cómo se construyen el álgebra,
-  la topología o la geometría diferencial (la geometría lineal de 2.º la generaliza con álgebra lineal).
+  la topología o la geometría diferencial ([[mat-geometrias-lineales]] la generaliza con álgebra lineal).
 - **Gráficos y robótica**: los movimientos rígidos (isometrías) son las transformaciones de las piezas y las cámaras
   ([[rob-cinematica]]).
 - **Física**: la geometría no euclídea es la del espacio-tiempo curvo de la relatividad general; la inversión aparece en
@@ -588,5 +588,5 @@ Formato de la flag: `EXODUS{a-b-c}`
 
 ## Siguiente
 
-El nodo de geometrías lineales (tramo 2 de matemáticas) reescribirá esta geometría con álgebra lineal (espacios afines, euclídeos y proyectivos);
+[[mat-geometrias-lineales]] reescribe esta geometría con álgebra lineal (espacios afines, euclídeos y proyectivos);
 [[mat-topologia]] generaliza los espacios métricos; [[mat-geometria-diferencial]] trata la curvatura y Gauss-Bonnet.

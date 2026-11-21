@@ -3,7 +3,7 @@ id: mat-geometria-diferencial
 title: "Geometría diferencial: curvas, superficies, curvatura de Gauss, geodésicas, variedades, formas diferenciales y conexiones"
 area: matematicas
 trunk_level: 13
-prerequisites: [mat-calculo-multivariable, mat-algebra-lineal-avanzada, mat-topologia]
+prerequisites: [mat-calculo-multivariable, mat-algebra-lineal-avanzada, mat-topologia, mat-geometrias-lineales]
 academic_sources:
   - "do Carmo, M. P. Differential Geometry of Curves and Surfaces. Prentice-Hall, 1976."
   - "Lee, J. M. Introduction to Smooth Manifolds, 2ª ed. Springer (Graduate Texts in Mathematics 218), 2012."

@@ -19,7 +19,7 @@ exercises:
     type: numero
     sig: 6
     prompt: |
-      En $A = \{0, 1, \dots, \{{N}}\}$ se define $x \sim y \iff x^2 \equiv y^2 \pmod{\{{m}}}$ (es decir, $\{{m}} \mid x^2 - y^2$). Es una
+      En $A = \{0, 1, \dots, {{N}}\}$ se define $x \sim y \iff x^2 \equiv y^2 \pmod{{{m}}}$ (es decir, ${{m}} \mid x^2 - y^2$). Es una
       relación de equivalencia. ¿Cuántas clases tiene el conjunto cociente $A/\!\sim$?
     variants:
       - values: {"m":7,"N":40}
@@ -54,7 +54,7 @@ exercises:
     type: numero
     sig: 6
     prompt: |
-      En $\{2, 3, \dots, \{{N}}\}$ ordenado por la divisibilidad ($a \preceq b \iff a \mid b$), ¿cuántos elementos **maximales** hay?
+      En $\{2, 3, \dots, {{N}}\}$ ordenado por la divisibilidad ($a \preceq b \iff a \mid b$), ¿cuántos elementos **maximales** hay?
     variants:
       - values: {"N":20}
         answers: ["sha256:2f4ea145fcfacb063ace50917b001ea217c415b7664e5d853ca5a507a7a1fce0","sha256:50cd260e365aa879b0c957632182d3c8f125b67cd7ca99744db1f65d73b9a83c","sha256:f5bb26881ff940401e5a17a9b9d913a17a5c024455d3c868617ab35c52912493"]
@@ -73,7 +73,7 @@ exercises:
     type: numero
     sig: 6
     prompt: |
-      Calcula el ínfimo del conjunto $\left\{ n + \dfrac{\{{k}}}{n} : n \in \mathbb N,\ n \ge 1 \right\}$ (aquí es un mínimo). Respuesta
+      Calcula el ínfimo del conjunto $\left\{ n + \dfrac{{{k}}}{n} : n \in \mathbb N,\ n \ge 1 \right\}$ (aquí es un mínimo). Respuesta
       con al menos seis cifras significativas.
     variants:
       - values: {"k":10}
@@ -93,7 +93,7 @@ exercises:
     type: numero
     sig: 6
     prompt: |
-      Sea $f : \mathbb Z \to \mathbb Z$, $f(x) = x^2$. ¿Cuántos elementos tiene la preimagen $f^{-1}([\{{a}}, \{{b}}])$?
+      Sea $f : \mathbb Z \to \mathbb Z$, $f(x) = x^2$. ¿Cuántos elementos tiene la preimagen $f^{-1}([{{a}}, {{b}}])$?
     variants:
       - values: {"a":10,"b":50}
         answers: ["sha256:89ab4be09a2c00ffeb40bcb542fec8bb45bafda3e5759c92ce42d64ba0701d6c","sha256:b107f908305a7ac95f494ad92b87d8e95f2163271b7e523ee38f2379d23d9791","sha256:214d8336e2b64f53c8d4648a0c1e959672d6dec7d50e7f5a8400bfc0ec94086a"]
@@ -127,7 +127,7 @@ exercises:
     type: numero
     sig: 6
     prompt: |
-      Sean $f, g : \mathbb R \to \mathbb R$, $f(x) = \{{a}}x \{{b}}$ y $g(x) = \{{c}}x \{{d}}$. Calcula $(g \circ f)^{-1}(\{{y}})$.
+      Sean $f, g : \mathbb R \to \mathbb R$, $f(x) = {{a}}x {{b}}$ y $g(x) = {{c}}x {{d}}$. Calcula $(g \circ f)^{-1}({{y}})$.
     variants:
       - values: {"a":2,"b":"+ 1","c":3,"d":"- 4","y":23}
         answers: ["sha256:db3c4a113df2598496ee414e9938f6b6761209f2bbfa13fdac26ea1ce5442af5","sha256:c8daacfc9b532ee3129a5b178df98bbb6301eca502d7ef13abcad01f8091ff97","sha256:a2e560f2d5f4691962cb0b82fac581d794a27c6143128f64cc37fb63660821cd"]
@@ -146,7 +146,7 @@ exercises:
     type: numero
     sig: 6
     prompt: |
-      Si $|A| = \{{m}}$ y $|B| = \{{n}}$, ¿cuántos elementos tiene $\mathcal P(A \times B)$?
+      Si $|A| = {{m}}$ y $|B| = {{n}}$, ¿cuántos elementos tiene $\mathcal P(A \times B)$?
     variants:
       - values: {"m":2,"n":3}
         answers: ["sha256:9dead0a3ac6fb115b9ce14959ca50fb3e71eb49ce6f4d577d2c7d8b223bdc522","sha256:6345a7b7143375d3705d8f68d77393f274a851a4910ff6826126ae416600c08d","sha256:bde6659458c9251ba5a1ccc089bdfae0d1afc094768e998171984cfdf2d59eb6"]
@@ -166,8 +166,8 @@ exercises:
     sig: 6
     prompt: |
       En la construcción de $\mathbb Z$ como clases de pares de naturales, $(a, b) \sim (c, d) \iff a + d = b + c$, y la clase de
-      $(a, b)$ representa el entero $a - b$. ¿Cuántos pares $(a, b)$ con $a, b \in \{0, 1, \dots, \{{N}}\}$ representan el entero
-      $\{{k}}$?
+      $(a, b)$ representa el entero $a - b$. ¿Cuántos pares $(a, b)$ con $a, b \in \{0, 1, \dots, {{N}}\}$ representan el entero
+      ${{k}}$?
     variants:
       - values: {"N":10,"k":"3"}
         answers: ["sha256:819a7d428396abafa55188d725f539a057141c3dc4809324cf8a8b77038eb439","sha256:7aea9838ab7b647b9fb1c19a4b644223f202d257a69138a3e0279ea910b3e26a","sha256:1217e8a8e6e2d876d3cd7c202d23687b8792fd342c46e3fe6b562066c032ea8e"]
@@ -187,7 +187,7 @@ exercises:
     sig: 6
     prompt: |
       En la construcción de $\mathbb Q$, $(p, q) \sim (p', q') \iff pq' = p'q$. ¿Cuántos pares $(p, q)$ con
-      $1 \le p, q \le \{{N}}$ representan el racional $\dfrac{\{{a}}}{\{{b}}}$?
+      $1 \le p, q \le {{N}}$ representan el racional $\dfrac{{{a}}}{{{b}}}$?
     variants:
       - values: {"a":3,"b":7,"N":100}
         answers: ["sha256:e2b48a3960568d91b26735c69da13ae8b9a2413df79dd30a8bde4de929892071","sha256:72ccdaf33edcaa46e76e78793789ee33e19f84aa012babaab48e571cbb99a42a","sha256:5aa5fd788ac403c2ca40b2159838c77b9bf0bf87d4d070c0d34ee784c24ad3ae"]
@@ -204,7 +204,7 @@ exercises:
   - id: bezout
     tier: 2
     prompt: |
-      Calcula $d = \operatorname{mcd}(\{{a}}, \{{b}})$ y los enteros $x, y$ con $\{{a}}x + \{{b}}y = d$ y $0 \le x < \{{b}}/d$ (con esa
+      Calcula $d = \operatorname{mcd}({{a}}, {{b}})$ y los enteros $x, y$ con ${{a}}x + {{b}}y = d$ y $0 \le x < {{b}}/d$ (con esa
       condición son únicos). Respuesta: `d;x;y`.
     variants:
       - values: {"a":252,"b":198}
@@ -223,7 +223,7 @@ exercises:
     tier: 1
     prompt: |
       Con $\mathbb C$ definido como $\mathbb R^2$ con el producto $(a, b)\cdot(c, d) = (ac - bd,\ ad + bc)$, calcula
-      $(\{{a}}, \{{b}})\cdot(\{{c}}, \{{d}})$. Respuesta: `p;q`.
+      $({{a}}, {{b}})\cdot({{c}}, {{d}})$. Respuesta: `p;q`.
     variants:
       - values: {"a":3,"b":2,"c":1,"d":4}
         answers: ["sha256:5859e2e479d374660228b11559ffa7f0526fd1a9e9c5eafddd77c353ffa604aa"]
@@ -243,7 +243,7 @@ exercises:
     sig: 6
     prompt: |
       La propiedad arquimediana dice que, dados $\varepsilon > 0$ y $M$, existe un natural $n$ con $n\varepsilon > M$. Con
-      $\varepsilon = \{{eps}}$ y $M = \{{M}}$, ¿cuál es el **menor** $n$ que lo cumple?
+      $\varepsilon = {{eps}}$ y $M = {{M}}$, ¿cuál es el **menor** $n$ que lo cumple?
     variants:
       - values: {"eps":"0{,}003","M":7}
         answers: ["sha256:c0e0a35a6a96604a22f8f5a61db85b7f7f08b77b267bf51442a6a142bda36990","sha256:7ab5fae7c92ec5bd7000f9de86a614a89203e1a103e30807959246cc8bc59528","sha256:ca686c3bb7981f24cdc77a9c20478da82a2c9e3efa74b58bb8e40193dcf97dfc"]
