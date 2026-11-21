@@ -755,5 +755,5 @@ de $3$ por recorrer hasta $20$. El primer jugador gana diciendo $2$ y luego siem
 
 ## Siguiente
 
-el nodo de sistema decimal operaciones (los números naturales y sus operaciones) y, en paralelo, el nodo de rectas angulos (los
+[[mat-sistema-decimal-operaciones]] (los números naturales y sus operaciones) y, en paralelo, el nodo de rectas angulos (los
 primeros elementos de geometría). Todas las estrategias de este nodo se usarán en cada tema.
