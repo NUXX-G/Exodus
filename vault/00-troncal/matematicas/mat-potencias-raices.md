@@ -494,7 +494,7 @@ $2^5 = 2\cdot2\cdot2\cdot2\cdot2 = 32$. Además se conviene que $a^1 = a$.
   $4\,652\,031 = 4\cdot10^6 + 6\cdot10^5 + \dots$ ([[mat-sistema-decimal-operaciones]]).
 - **Base negativa**: $(-2)^3 = (-2)(-2)(-2) = -8$ y $(-2)^4 = 16$. Con exponente par el resultado es positivo; con impar, conserva
   el signo de la base. Cuidado: $-2^4 = -(2^4) = -16$, no es lo mismo que $(-2)^4$. (Los números negativos se estudian en
-  el tema `mat-numeros-enteros`.)
+  [[mat-numeros-enteros]].)
 - **No confundas** $a^n$ con $a \cdot n$: $3^4 = 81$, mientras que $3 \cdot 4 = 12$.
 
 ## 3. Propiedades de las potencias
@@ -577,7 +577,7 @@ porque ningún cuadrado es negativo); las de índice impar sí: $\sqrt[3]{-8} = 
 
 > [!formal] Con rigor: raíz y potencia son operaciones inversas
 > Para $N \ge 0$, $\left(\sqrt N\right)^2 = N$ y $\sqrt{r^2} = r$ si $r \ge 0$. Pero $\sqrt{(-3)^2} = \sqrt 9 = 3$, no $-3$: en general
-> $\sqrt{r^2} = |r|$, el valor absoluto (el tema `mat-numeros-enteros`). Por eso hay dos números cuyo cuadrado es $9$, $x = 3$ y
+> $\sqrt{r^2} = |r|$, el valor absoluto ([[mat-numeros-enteros]]). Por eso hay dos números cuyo cuadrado es $9$, $x = 3$ y
 > $x = -3$, mientras que $\sqrt 9$ es solo $3$: la raíz cuadrada se define como la **no negativa**.
 
 ## 7. Operaciones con radicales
@@ -625,5 +625,5 @@ $\sqrt 2 + \sqrt 3$ **no** se simplifica, y $\sqrt{9 + 16} = 5$ no es $\sqrt 9 +
 
 ## Siguiente
 
-el tema `mat-numeros-enteros` (números negativos), el tema `mat-fracciones` y, más adelante, [[mat-numeros-reales]] (los irracionales como
+[[mat-numeros-enteros]] (números negativos), el tema `mat-fracciones` y, más adelante, [[mat-numeros-reales]] (los irracionales como
 $\sqrt 2$) y el tema `mat-exponenciales-logaritmos`.

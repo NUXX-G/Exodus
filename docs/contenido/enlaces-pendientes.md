@@ -9,6 +9,8 @@ Nodos que mencionan un nodo de tema aún no escrito. Al crear el nodo, sustituir
 | vault/00-troncal/matematicas/mat-divisibilidad.md | `mat-fracciones` |
 | vault/00-troncal/matematicas/mat-potencias-raices.md | `fis-magnitudes-medida` |
 | vault/00-troncal/matematicas/mat-potencias-raices.md | `mat-porcentajes-finanzas` |
-| vault/00-troncal/matematicas/mat-potencias-raices.md | `mat-numeros-enteros` |
 | vault/00-troncal/matematicas/mat-potencias-raices.md | `mat-fracciones` |
 | vault/00-troncal/matematicas/mat-potencias-raices.md | `mat-exponenciales-logaritmos` |
+| vault/00-troncal/matematicas/mat-numeros-enteros.md | `fis-cinematica-rectilinea` |
+| vault/00-troncal/matematicas/mat-numeros-enteros.md | `mat-fracciones` |
+| vault/00-troncal/matematicas/mat-numeros-enteros.md | `mat-expresiones-algebraicas` |
