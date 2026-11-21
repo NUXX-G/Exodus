@@ -21,4 +21,4 @@ Nodos que mencionan un nodo de tema aún no escrito. Al crear el nodo, sustituir
 | vault/00-troncal/matematicas/mat-semejanza-tales.md | `fis-optica` |
 | vault/00-troncal/matematicas/mat-cuerpos-geometricos.md | `mat-integral-riemann` |
 | vault/00-troncal/matematicas/mat-funciones-graficas.md | `mat-derivadas` |
-| vault/00-troncal/matematicas/mat-estadistica-descriptiva.md | `mat-combinatoria` |
+| vault/00-troncal/matematicas/mat-combinatoria.md | `mat-probabilidad-elemental` |

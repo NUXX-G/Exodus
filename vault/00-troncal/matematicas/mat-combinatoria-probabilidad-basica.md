@@ -3,7 +3,7 @@ id: mat-combinatoria-probabilidad-basica
 title: "Combinatoria y probabilidad básica: contar, azar y Bayes"
 area: matematicas
 trunk_level: 6
-prerequisites: [mat-algebra-secundaria, mat-enteros-fracciones]
+prerequisites: [mat-algebra-secundaria, mat-enteros-fracciones, mat-combinatoria]
 academic_sources:
   - "Grinstead, C. M.; Snell, J. L. Introduction to Probability, 2ª ed. American Mathematical Society, 1997, caps. 1 (probabilidad discreta), 3 (combinatoria), 4 (probabilidad condicionada), 6 (esperanza y varianza) y 8 (ley de los grandes números). Gratis en https://math.dartmouth.edu/~prob/prob/prob.pdf"
   - "Apuntes Marea Verde (LOMLOE). Matemáticas 4.º B ESO, cap. 15 (combinatoria) y cap. 16 (probabilidad); Matemáticas II, cap. 11 (probabilidad y combinatoria). https://www.apuntesmareaverde.org.es/grupos/mat/index.html"

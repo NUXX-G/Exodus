@@ -512,5 +512,5 @@ pictogramas que agrandan en dos dimensiones algo que solo se dobla en una.
 
 ## Siguiente
 
-[[mat-funciones-basicas]] repasa el bloque; después viene el tema `mat-combinatoria` (contar de forma ordenada), y más adelante la estadística
+[[mat-funciones-basicas]] repasa el bloque; después viene [[mat-combinatoria]] (contar de forma ordenada), y más adelante la estadística
 bidimensional ([[mat-estadistica-bidimensional]]).
