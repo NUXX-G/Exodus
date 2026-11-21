@@ -371,7 +371,7 @@ distributiva de [[mat-sistema-decimal-operaciones]].
   que valen para cualquier valor de las letras.
 - **Hojas de cálculo y programación**: una fórmula de Excel como `=B2*1,21` o una variable de un programa son álgebra
   ([[prog-python-fundamentos]]).
-- **Resolver problemas**: con letras se plantea un problema antes de conocer la solución (el tema `mat-ecuaciones-primer-grado`).
+- **Resolver problemas**: con letras se plantea un problema antes de conocer la solución ([[mat-ecuaciones-primer-grado]]).
 - **Demostrar**: con letras se prueba que algo vale **siempre** (como el truco del $1089$ de [[mat-resolucion-problemas]]).
 
 ## 2. El lenguaje algebraico
@@ -495,5 +495,5 @@ Se comprueba multiplicando: $3x \cdot 2x + 3x \cdot 3 = 6x^2 + 9x$ ✓. Sacar fa
 
 ## Siguiente
 
-el tema `mat-ecuaciones-primer-grado` (igualdades con letras que hay que resolver) y el tema `mat-polinomios-factorizacion` (dividir y factorizar
+[[mat-ecuaciones-primer-grado]] (igualdades con letras que hay que resolver) y el tema `mat-polinomios-factorizacion` (dividir y factorizar
 polinomios).

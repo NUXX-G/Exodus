@@ -19,12 +19,12 @@ terminos:
     sinonimos: [incógnitas]
     llano: "El dato que no conocemos y queremos averiguar en una ecuación; se le pone una letra, normalmente x."
     formal: "Variable cuyo valor se busca: los valores que la sustituyen y hacen verdadera la ecuación son sus soluciones."
-    nodo: mat-algebra-basica
+    nodo: mat-ecuaciones-primer-grado
   - termino: ecuación
     sinonimos: [ecuaciones]
     llano: "Una igualdad con algo desconocido. Resolverla es encontrar qué valores hacen que los dos lados valgan lo mismo."
     formal: "Igualdad $f(x) = g(x)$ entre dos expresiones; su conjunto solución es $\\{x : f(x) = g(x)\\}$ dentro del dominio considerado."
-    nodo: mat-algebra-basica
+    nodo: mat-ecuaciones-primer-grado
   - termino: porcentaje
     sinonimos: [porcentajes, tanto por ciento]
     llano: "Una forma de decir «cuántos de cada 100». Un 25 % es 25 de cada 100, es decir, la cuarta parte."
