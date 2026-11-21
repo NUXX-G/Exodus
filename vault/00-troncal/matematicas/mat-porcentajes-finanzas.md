@@ -416,7 +416,7 @@ $$
 *Ejemplo:* $1\,000$ € al $5\,\%$ compuesto durante $3$ años: $1\,000 \cdot 1{,}05^3 = 1\,157{,}63$ € (en simple serían $1\,150$).
 
 **¿Cuánto tarda en duplicarse?** La **regla del $72$** da una estimación rápida: unos $72 : r$ años (al $6\,\%$, unos $12$). Para saberlo
-exactamente se prueba año a año (o con la herramienta del tema `mat-exponenciales-logaritmos`).
+exactamente se prueba año a año (o con la herramienta d[[mat-exponenciales-logaritmos]]).
 
 ## 5. La TAE
 

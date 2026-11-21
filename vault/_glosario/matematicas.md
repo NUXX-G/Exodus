@@ -58,7 +58,7 @@ terminos:
     sinonimos: [logaritmos]
     llano: "La pregunta «¿a qué número hay que elevar la base para obtener este resultado?». Como 10 × 10 × 10 = 1000, el logaritmo en base 10 de 1000 es 3."
     formal: "Para $b > 0$, $b \\ne 1$ y $x > 0$: $\\log_b x = y \\iff b^y = x$. Cumple $\\log_b(xy) = \\log_b x + \\log_b y$."
-    nodo: mat-algebra-secundaria
+    nodo: mat-exponenciales-logaritmos
     tambien: [mat-numeros-naturales]
   - termino: seno
     llano: "En un triángulo rectángulo, el cociente entre el lado opuesto a un ángulo y la hipotenusa. Dice «cuánto sube» por cada unidad de longitud inclinada."

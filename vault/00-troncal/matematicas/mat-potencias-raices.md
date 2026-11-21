@@ -626,4 +626,4 @@ $\sqrt 2 + \sqrt 3$ **no** se simplifica, y $\sqrt{9 + 16} = 5$ no es $\sqrt 9 +
 ## Siguiente
 
 [[mat-numeros-enteros]] (números negativos), [[mat-fracciones]] y, más adelante, [[mat-numeros-reales]] (los irracionales como
-$\sqrt 2$) y el tema `mat-exponenciales-logaritmos`.
+$\sqrt 2$) y [[mat-exponenciales-logaritmos]].

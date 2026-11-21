@@ -482,4 +482,4 @@ fracciones numéricas ([[mat-fracciones]]):
 
 ## Siguiente
 
-[[mat-inecuaciones]] (el signo de un polinomio factorizado) y el tema `mat-exponenciales-logaritmos`.
+[[mat-inecuaciones]] (el signo de un polinomio factorizado) y [[mat-exponenciales-logaritmos]].

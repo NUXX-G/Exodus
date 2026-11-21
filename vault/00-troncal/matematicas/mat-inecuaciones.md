@@ -499,4 +499,4 @@ cuando $10 + 0{,}05\,x < 0{,}10\,x$, es decir, $10 < 0{,}05\,x$, $x > 200$: a pa
 
 ## Siguiente
 
-el tema `mat-exponenciales-logaritmos` (último tema del bloque de álgebra) y, más adelante, el tema `mat-limites-continuidad`.
+[[mat-exponenciales-logaritmos]] (último tema del bloque de álgebra) y, más adelante, el tema `mat-limites-continuidad`.
