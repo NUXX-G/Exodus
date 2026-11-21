@@ -4,7 +4,7 @@ title: "Primero del doble grado de Matemáticas y Física (UNED)"
 resumen: "Las 12 asignaturas de primer curso del doble grado de la UNED (72 ECTS), tema a tema."
 horas_semana: 20
 fuente: "UNED, Facultad de Ciencias, folleto del Doble Grado en Matemáticas y Física, curso 2026-2027 (https://www.uned.es/universidad/inicio/en/dam/jcr:423a7122-1b67-4823-8f0f-f2a77fc85eec/DOBLE-GRADO-MATEMATICAS-F%C3%8DSICA-2026-27-QR.pdf), consultado el 2026-11-20."
-nodos: ["mat-logica-demostraciones","mat-conjuntos-numeros","mat-matematica-discreta","mat-algebra-lineal-1","mat-calculo-1","mat-estadistica-bidimensional","mat-combinatoria-probabilidad-basica","mat-probabilidad","fis-medida-movimiento","fis-fuerzas-energia","fis-mecanica-newtoniana","mat-algebra-lineal","mat-calculo-2","mat-analisis-real","mat-calculo-multivariable","mat-geometria-analitica","mat-geometria-euclidea","fis-ondas-calor-fluidos","fis-electricidad-magnetismo-1","prog-python-fundamentos","mat-analisis-numerico","fis-computacional-1","mat-estadistica-inferencia","sim-mat-primero-grado"]
+nodos: ["mat-estadistica-bidimensional","mat-combinatoria-probabilidad-basica","mat-logica-demostraciones","mat-matematica-discreta","fis-medida-movimiento","fis-fuerzas-energia","mat-geometria-analitica","mat-conjuntos-numeros","mat-algebra-lineal-1","mat-calculo-1","mat-algebra-lineal","mat-calculo-2","fis-mecanica-newtoniana","mat-analisis-real","mat-calculo-multivariable","mat-probabilidad","mat-geometria-euclidea","fis-ondas-calor-fluidos","fis-electricidad-magnetismo-1","prog-python-fundamentos","mat-analisis-numerico","fis-computacional-1","mat-estadistica-inferencia","sim-mat-primero-grado"]
 ---
 Sigue el plan oficial del primer curso (ver `docs/contenido/uned-doble-grado.md` en el repositorio):
 

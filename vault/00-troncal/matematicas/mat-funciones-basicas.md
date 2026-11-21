@@ -3,7 +3,7 @@ id: mat-funciones-basicas
 title: "Funciones, gráficas y estadística descriptiva"
 area: matematicas
 trunk_level: 4
-prerequisites: [mat-algebra-basica, mat-geometria-basica, mat-proporcionalidad-porcentajes, mat-funciones-graficas, mat-funciones-lineales-cuadraticas]
+prerequisites: [mat-algebra-basica, mat-geometria-basica, mat-proporcionalidad-porcentajes, mat-funciones-graficas, mat-funciones-lineales-cuadraticas, mat-estadistica-descriptiva]
 academic_sources:
   - "Gelfand, I. M.; Glagoleva, E. G.; Shnol, E. E. Functions and Graphs. Dover Publications, 2002."
   - "Freedman, D.; Pisani, R.; Purves, R. Statistics, 4ª ed. W. W. Norton, 2007."

@@ -447,4 +447,4 @@ continua).
 
 ## Siguiente
 
-el tema `mat-estadistica-descriptiva` y, más adelante, [[mat-funciones-elementales]] (más familias de funciones).
+[[mat-estadistica-descriptiva]] y, más adelante, [[mat-funciones-elementales]] (más familias de funciones).
