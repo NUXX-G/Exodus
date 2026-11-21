@@ -15,6 +15,9 @@ Nodos que mencionan un nodo de tema aún no escrito. Al crear el nodo, sustituir
 | vault/00-troncal/matematicas/mat-fracciones.md | `mat-proporcionalidad` |
 | vault/00-troncal/matematicas/mat-fracciones.md | `mat-expresiones-algebraicas` |
 | vault/00-troncal/matematicas/mat-decimales.md | `fis-magnitudes-medida` |
-| vault/00-troncal/matematicas/mat-decimales.md | `mat-sistema-metrico` |
 | vault/00-troncal/matematicas/mat-decimales.md | `mat-proporcionalidad` |
 | vault/00-troncal/matematicas/mat-decimales.md | `mat-porcentajes-finanzas` |
+| vault/00-troncal/matematicas/mat-sistema-metrico.md | `fis-magnitudes-medida` |
+| vault/00-troncal/matematicas/mat-sistema-metrico.md | `mat-semejanza-tales` |
+| vault/00-troncal/matematicas/mat-sistema-metrico.md | `mat-proporcionalidad` |
+| vault/00-troncal/matematicas/mat-sistema-metrico.md | `mat-cuerpos-geometricos` |
