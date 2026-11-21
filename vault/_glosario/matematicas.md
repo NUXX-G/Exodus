@@ -29,7 +29,7 @@ terminos:
     sinonimos: [porcentajes, tanto por ciento]
     llano: "Una forma de decir «cuántos de cada 100». Un 25 % es 25 de cada 100, es decir, la cuarta parte."
     formal: "Un $p\\,\\%$ es la razón $p/100$. Aplicar un aumento del $p\\,\\%$ equivale a multiplicar por $1 + p/100$; una disminución, por $1 - p/100$."
-    nodo: mat-proporcionalidad-porcentajes
+    nodo: mat-porcentajes-finanzas
   - termino: proporcionalidad directa
     sinonimos: [directamente proporcionales]
     llano: "Dos cantidades que crecen a la vez y al mismo ritmo: si una se duplica, la otra también (kilos de fruta y precio a pagar)."

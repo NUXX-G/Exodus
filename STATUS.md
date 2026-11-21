@@ -25,7 +25,34 @@ registro de sesiones (una línea) o a `docs/`.
 
 - **Fase actual**: FASE 9B — Troncal por temas (un nodo por tema, extenso). La FASE 10 queda en pausa tras el tramo 1 y se retoma por temas.
 - **Tarea actual**: 9B c) redacción por temas, bloque de aritmética (nodos 1-10 de `docs/contenido/troncal-temas.md`).
-- **Siguiente paso concreto**: nodo 10, `mat-porcentajes-finanzas` (Marea Verde 1.º ESO cap. 10 §2.3 y §3, 3.º ESO cap. 6 §1.4-1.6 y cap. 7 completo: intereses, préstamos, comisiones, divisas; PDF de 3.º ya en el scratchpad o con curl, URL en `docs/contenido/troncal-temas.md` §a2); después, cierre del bloque de aritmética: rehacer el orden del objetivo `acceso-universidad` para que los temas 1-10 vayan antes de sus nodos de bloque (`mat-numeros-naturales`, `mat-enteros-fracciones`, `mat-proporcionalidad-porcentajes`), `vault:check`, tests y commit; y seguir con el bloque de álgebra (temas 11-17). Al crear cada nodo: `enlaces-pendientes.cjs` y `enlaces-restaurar.cjs`; si el tema introduce términos del glosario asignados al bloque, mover el `nodo:` y añadir el tema como prerrequisito del bloque **en el mismo paso** (si no, los nodos que cuelgan del bloque avisan). Ids en minúsculas y sin tildes; `sig` máximo 12; cuidado con `$` en sustituciones de `String.replace`; el símbolo de dólar como moneda no va con `# STATUS — Exodus v2
+- **Siguiente paso concreto**: bloque de álgebra: nodo 11, `mat-expresiones-algebraicas` (Marea Verde 1.º ESO cap. 11, 2.º ESO cap. 10 y 3.º ESO cap. 4; URL en `docs/contenido/troncal-temas.md` §a2), después 12 `mat-ecuaciones-primer-grado`, 13 `mat-sistemas-dos-incognitas`, 14 `mat-ecuaciones-segundo-grado`, 15 `mat-polinomios-factorizacion`, 16 `mat-inecuaciones` y 17 `mat-exponenciales-logaritmos`; al cerrar el bloque, `objetivo-insertar.cjs` para ponerlos antes de `mat-algebra-basica` y `mat-algebra-secundaria` en `acceso-universidad`. Al crear cada nodo: `enlaces-pendientes.cjs` y `enlaces-restaurar.cjs`; si el tema introduce términos del glosario asignados al bloque, mover el `nodo:` y añadir el tema como prerrequisito del bloque en el mismo paso. Ids en minúsculas y sin tildes; `sig` máximo 12; nada de `$` en sustituciones de `String.replace` (usar el Edit si hay LaTeX); el dólar como moneda no va con `# STATUS — Exodus v2
+
+Última actualización: 2026-11-15 · Rama de trabajo: **`v2`** · Plan: `docs/ROADMAP_V2.md`
+
+Este archivo es el **panel de control** entre sesiones. Es corto a propósito: con él, más la sección de la fase actual
+del roadmap, una sesión nueva puede seguir trabajando sin leer nada más. Mantenlo corto: lo que sea historia va al
+registro de sesiones (una línea) o a `docs/`.
+
+## 0. Arranque de una sesión nueva
+
+1. `git checkout v2 && git pull -q && git status --short && git log --oneline -3`
+2. Lee este archivo entero.
+3. Lee **solo** la sección de la fase actual en `docs/ROADMAP_V2.md`:
+   `grep -n "^## " docs/ROADMAP_V2.md` y lee desde `## FASE <n>` hasta la siguiente `## `.
+4. Retoma en «Ahora mismo → Siguiente paso». No releas el plan completo ni explores el repo: el mapa de §4 basta.
+5. Consulta, sin leer enteros: `docs/HISTORIAL_V1.md` (estado de la v1 y lista de nodos; usa `grep`),
+   `docs/PEDAGOGIA.md` (al escribir contenido), `docs/AMPLIAR.md` (formato de nodos y efectos sobre el progreso),
+   `docs/CURRICULO.md` (árbol de la v1).
+6. Antes de que se llene el contexto: termina la tarea en curso, actualiza §1 y el registro (§9) y ejecuta
+   `bash scripts/dev/guardar.sh "v2: fase N · <tarea>"`. **Desde el 2026-11-20 no se para nunca la sesión ni se
+   pide abrir otra**: el contexto se resume solo y se sigue. Un trabajo cron de la sesión («continúa con el roadmap»,
+   cada hora en el minuto 17) reanuda el trabajo tras los límites de uso; si no existe (`CronList`), recréalo.
+
+## 1. Ahora mismo
+
+- **Fase actual**: FASE 9B — Troncal por temas (un nodo por tema, extenso). La FASE 10 queda en pausa tras el tramo 1 y se retoma por temas.
+- **Tarea actual**: 9B c) redacción por temas, bloque de aritmética (nodos 1-10 de `docs/contenido/troncal-temas.md`).
+. Criterios en §a. Registrar con `node scripts/dev/vault/registro-9b.cjs`. En este entorno, Bash puede alterar las barras invertidas: parches con LaTeX en scripts escritos con Write o con el Edit; specs nuevos con `export default ejercicios.map(limpia)`.
 
 Última actualización: 2026-11-15 · Rama de trabajo: **`v2`** · Plan: `docs/ROADMAP_V2.md`
 
