@@ -56,6 +56,19 @@ El usuario pide terminar **todas** las fases de forma autónoma, **sin preguntar
    pero con presupuesto ajustado: cada proyecto indica lista de materiales con coste aproximado, alternativas
    baratas y normas de seguridad/legales.
 
+## Ampliación del 2026-11-21: un nodo por tema (pedida por el usuario; manda sobre lo anterior si choca)
+
+Los nodos del tamaño de una asignatura entera (6-7,5 ECTS en una página y 15-20 ejercicios) sirven de resumen, no para
+estudiar desde cero. El usuario elige la **opción B**: cada asignatura (y cada bloque del troncal) se divide en **un nodo por
+tema** de su guía docente o de su libro de referencia, y cada nodo se escribe **completo, extenso y en profundidad**: escalera
+práctico → formal en cada sección, varios ejemplos resueltos, todas las demostraciones del temario, ejercicios abundantes y
+graduados (con variantes comprobadas dos veces), desarrollo con rúbrica y banco de repaso. Se aceptan 600-1000 nodos en total.
+
+- Los nodos existentes **no se borran ni cambian de id** (guardan progreso): pasan a ser la **visión general** de su asignatura
+  o bloque, y los nodos de tema son prerrequisitos de los temas siguientes y la ampliación de cada parte.
+- Vale para todas las fases de contenido que quedan (9B, 10-17).
+- Orden: primero el troncal por temas (FASE 9B), porque es lo que el usuario estudia primero; después se retoma la FASE 10.
+
 ## PASO 0 — Preparación
 
 - [x] Leer `CLAUDE.md`, `STATUS.md`, `FASE_1.md` y `docs/AMPLIAR.md`.
@@ -226,11 +239,21 @@ Ciclo por cada área (una fase por área), con estas tareas:
 - [x] e) Reportes «creo que esto está mal» del área — `npm run reportes` (2026-11-21): ninguno pendiente
 - [x] f) Cierre (checks, cobertura, `STATUS.md`, commit `v2: fase 9 completada`) — 2026-11-21; cobertura: 392 ejercicios con variantes y 213 preguntas de repaso en todo el vault (al empezar la fase: 27 con variantes); el troncal sin avisos de fuentes vagas
 
+## FASE 9B — Troncal por temas (de 1.º de ESO a 2.º de Bachillerato, un nodo por tema)
+
+- [ ] a) Mapa por temas: cada capítulo de Marea Verde (matemáticas, 1.º ESO a Matemáticas II) y cada bloque de física y de las
+      destrezas → un nodo de tema (nuevo) o el nodo existente si ya es de un solo tema (`docs/contenido/troncal-temas.md`)
+- [ ] b) Plan: ids, prerrequisitos, orden de estudio y objetivo `acceso-universidad` actualizado
+- [ ] c) Redacción tema a tema, extensa (escalera, ejemplos, demostraciones, ejercicios abundantes con variantes, repaso)
+- [ ] d) Revisión independiente (subagente), por bloques
+- [ ] e) Reportes «creo que esto está mal» del área
+- [ ] f) Cierre (checks, cobertura, `STATUS.md`, commit `v2: fase 9B completada`)
+
 ## FASE 10 — Contenido: matemáticas (doble grado UNED completo y máster)
 
 - [x] a) Mapa (`docs/contenido/matematicas.md`, con la guía docente de la UNED) — 19 guías del grado y el máster de Matemáticas Avanzadas, leídos el 2026-11-21
 - [x] b) Plan (⛔ si cambia ids o afecta al progreso) — sin cambios de id: 15 nodos nuevos y puesta al día de los existentes, en 5 tramos
-- [ ] c) Redacción — tramo 1 completo (11 nodos), tramo 2 en curso; hechos: 12
+- [ ] c) Redacción — tramo 1 completo (11 nodos de asignatura), tramo 2 empezado; **se replanifica por temas tras la FASE 9B** (ver «Ampliación del 2026-11-21»); hechos: 12
 - [ ] d) Revisión independiente (subagente)
 - [ ] e) Reportes «creo que esto está mal» del área
 - [ ] f) Cierre (checks, cobertura, `STATUS.md`, commit `v2: fase 10 completada`)

@@ -177,6 +177,14 @@ de memoria: se comprueban al redactar cada nodo.
 Cada tramo se cierra con `vault:check`, los objetivos actualizados (`vault/_objetivos/`), las entradas de glosario y un
 commit.
 
+## b2) Replanificación por temas (2026-11-21)
+
+El usuario pide un nodo por **tema** de cada guía docente, extenso y completo (opción B, ver `docs/ROADMAP_V2.md`, «Ampliación
+del 2026-11-21»). Los nodos de §b siguen siendo válidos como **visión general** de cada asignatura (no se borran: guardan
+progreso), y cada asignatura se completará con un nodo por tema de su guía (§a recoge los temarios). Ejemplo: «Álgebra lineal I»
+(4 temas) → `mat-algebra-lineal-1` (visión general) más cuatro nodos de tema (matrices, sistemas, espacios vectoriales,
+aplicaciones lineales). Esta replanificación se hará al retomar la fase 10, después de la FASE 9B (troncal por temas).
+
 ## c) Registro de redacción
 
 | Nodo | Cambios | Fecha |
