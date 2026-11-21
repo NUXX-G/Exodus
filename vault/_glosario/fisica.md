@@ -35,6 +35,7 @@ terminos:
     formal: "Fuerza tangente al contacto; en el modelo de Coulomb, estático $f_s \\le \\mu_s N$ y dinámico $f_k = \\mu_k N$, opuesto a la velocidad relativa."
     nodo: fis-fuerzas-energia
   - termino: inercia
+    excepto: [ley de inercia de Sylvester]
     llano: "La tendencia de las cosas a seguir como están: si van, seguir yendo; si están quietas, seguir quietas. Por eso te vas hacia delante cuando el autobús frena."
     formal: "Primera ley de Newton: en un sistema de referencia inercial, un cuerpo sin fuerza neta mantiene su velocidad. La masa inercial mide la resistencia a cambiarla."
     nodo: fis-mecanica-newtoniana
