@@ -394,7 +394,7 @@ Al terminar sabrás:
 
 ## 1. Para qué sirve
 
-- **El azar**: la regla de Laplace necesita contar casos favorables y posibles (el tema `mat-probabilidad-elemental`).
+- **El azar**: la regla de Laplace necesita contar casos favorables y posibles ([[mat-probabilidad-elemental]]).
 - **Seguridad informática**: la robustez de una contraseña o de una clave es el número de posibilidades que hay que probar
   ([[sec-criptografia]]).
 - **Algoritmos**: cuántos casos debe examinar un programa (ordenaciones, subconjuntos) y por qué algunos problemas son intratables.
@@ -505,4 +505,4 @@ alternan de signo.
 
 ## Siguiente
 
-el tema `mat-probabilidad-elemental` (usar estos recuentos para medir lo probable que es un suceso).
+[[mat-probabilidad-elemental]] (usar estos recuentos para medir lo probable que es un suceso).

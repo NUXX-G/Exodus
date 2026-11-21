@@ -106,7 +106,7 @@ terminos:
   - termino: probabilidad
     llano: "Un número entre 0 y 1 que mide lo esperable que es que algo pase: 0 es imposible, 1 seguro, 0,5 tan probable como no."
     formal: "Medida $P$ sobre los sucesos de un espacio muestral con $P(\\Omega) = 1$, $P(A) \\ge 0$ y aditividad numerable (axiomas de Kolmogórov)."
-    nodo: mat-combinatoria-probabilidad-basica
+    nodo: mat-probabilidad-elemental
   - termino: variable aleatoria
     sinonimos: [variables aleatorias]
     llano: "Un número que depende del azar, como el resultado de lanzar un dado o la altura de una persona elegida al azar."

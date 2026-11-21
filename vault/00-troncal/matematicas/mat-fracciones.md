@@ -395,7 +395,7 @@ Al terminar sabrás:
 - **En la vida diaria**: recetas («$\frac34$ de taza»), rebajas («un tercio menos»), horarios («un cuarto de hora»), música (corcheas y
   semicorcheas son fracciones del pulso).
 - **Azar**: de las $40$ cartas de una baraja española, $4$ son ases: la fracción de casos favorables es $\frac{4}{40} = \frac{1}{10}$
-  (el tema `mat-probabilidad-elemental`).
+  ([[mat-probabilidad-elemental]]).
 - **Álgebra y ciencias**: las proporciones, las escalas, las velocidades y casi todas las fórmulas tienen fracciones.
 
 ## 2. Qué significa una fracción
