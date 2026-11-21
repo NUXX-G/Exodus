@@ -385,7 +385,7 @@ Al terminar sabrás:
 ## 1. Para qué sirve
 
 - **Física**: velocidad y aceleración instantáneas; todas las leyes del movimiento se escriben con derivadas ([[fis-medida-movimiento]]).
-- **Optimización**: los máximos y mínimos de una función están donde la derivada se anula (el tema `mat-aplicaciones-derivada`).
+- **Optimización**: los máximos y mínimos de una función están donde la derivada se anula ([[mat-aplicaciones-derivada]]).
 - **Economía**: coste e ingreso marginales.
 - **Inteligencia artificial**: entrenar un modelo de aprendizaje automático es ajustar sus parámetros siguiendo derivadas (el gradiente).
 
@@ -480,4 +480,4 @@ laterales en los puntos de unión.
 
 ## Siguiente
 
-el tema `mat-aplicaciones-derivada` (crecimiento, extremos, optimización y representación de funciones).
+[[mat-aplicaciones-derivada]] (crecimiento, extremos, optimización y representación de funciones).

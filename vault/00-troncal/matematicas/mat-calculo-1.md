@@ -3,7 +3,7 @@ id: mat-calculo-1
 title: "Cálculo I: límites, derivadas y optimización"
 area: matematicas
 trunk_level: 8
-prerequisites: [mat-algebra-secundaria, mat-trigonometria, mat-geometria-analitica, mat-sucesiones-progresiones, mat-funciones-elementales, mat-numeros-reales, mat-limites-continuidad, mat-derivadas]
+prerequisites: [mat-algebra-secundaria, mat-trigonometria, mat-geometria-analitica, mat-sucesiones-progresiones, mat-funciones-elementales, mat-numeros-reales, mat-limites-continuidad, mat-derivadas, mat-aplicaciones-derivada]
 academic_sources:
   - "Spivak, M. Calculus, 4ª ed. Publish or Perish, 2008, caps. 5 (límites), 6 (funciones continuas), 7 (tres teoremas «difíciles»: valor intermedio, acotación, máximo), 9-10 (derivadas y reglas de derivación) y 11 (significado de la derivada)."
   - "Abramson, J. et al. Precálculo, 2.ª ed. (en español). OpenStax, 2022, cap. 12 (12.1-12.2 límites, 12.3 continuidad, 12.4 derivadas). https://openstax.org/books/prec%C3%A1lculo-2ed/pages/12-introduccion"
