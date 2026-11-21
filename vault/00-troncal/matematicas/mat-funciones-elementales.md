@@ -7,11 +7,11 @@ prerequisites: [mat-funciones-basicas, mat-algebra-secundaria, mat-movimientos-p
 academic_sources:
   - "Miranda Suárez, D. Matemáticas orientadas a las enseñanzas académicas, 4.º B ESO (LOMLOE), capítulo 11: «Funciones polinómicas, definidas a trozos y de proporcionalidad inversa», secciones 1-4 (rectas, parábolas y traslaciones en el plano, proporcionalidad inversa e hipérbola y = k/(x − b) + a, funciones definidas a trozos). Apuntes Marea Verde, rev. 10/08/2024. https://www.apuntesmareaverde.org.es/grupos/mat/LOMLOE/4B/11_funciones_lineales_cuadraticas.pdf (CC BY-NC-SA 3.0)."
   - "Gallegos Fernández, J. Matemáticas I, 1.º Bachillerato (LOMLOE), capítulo 6: «Funciones», secciones 1 (racionales, raíz, exponenciales y logarítmicas, a trozos, valor absoluto, oferta y demanda), 2 (operaciones, composición, inversa) y 3 (dominio, recorrido, simetrías, periodicidad, cortes y signo). Apuntes Marea Verde, rev. 10/08/2024. https://www.apuntesmareaverde.org.es/grupos/mat/LOMLOE/Bachillerato/BC1_06_Funciones.pdf"
-  - "Abramson, J. et al. Precálculo, 2.ª ed. (en español). OpenStax, 2023, cap. 3 («Funciones»), secciones 3.5 («Transformación de funciones») y 3.6 («Funciones de valor absoluto»). https://openstax.org/books/prec%C3%A1lculo-2ed/pages/3-introduccion (CC BY 4.0)."
+  - "Abramson, J. et al. Precálculo, 2.ª ed. (en español). OpenStax, 2023, cap. 1, secciones 1.5 («Transformación de funciones»), 1.6 («Funciones de valor absoluto») y 1.7 («Funciones inversas»); cap. 3, sección 3.7 («Funciones racionales»). https://openstax.org/books/prec%C3%A1lculo-2ed/pages/1-5-transformacion-de-funciones (CC BY 4.0)."
 hints:
   - "Concepto: casi todas las gráficas de este nodo salen de unas pocas básicas (y = x², y = 1/x, y = √x, y = |x|, y = 2^x) moviéndolas: f(x) + a sube a unidades; f(x − b) desplaza b unidades a la DERECHA; −f(x) refleja en el eje X; f(−x) refleja en el eje Y; k·f(x) estira en vertical."
   - "Herramienta: haz una tabla con 5-7 valores, incluidos los puntos «críticos» (donde se anula un denominador, donde empieza una raíz, donde cambia un tramo). Comprueba en GeoGebra o Desmos escribiendo la función. Para saber si es par o impar, calcula f(−x) y compáralo con f(x) y −f(x)."
-  - "Documentación: Marea Verde 4.º B ESO, cap. 11 (secciones 2.2, 3 y 4); Matemáticas I, cap. 6 (secciones 1.5, 2 y 3); OpenStax Precálculo 2ed, secciones 3.5 y 3.6."
+  - "Documentación: Marea Verde 4.º B ESO, cap. 11 (secciones 2.2, 3 y 4); Matemáticas I, cap. 6 (secciones 1.5, 2 y 3); OpenStax Precálculo 2ed, secciones 1.5, 1.6 y 3.7."
 exercises:
   - id: asintotas-hiperbola
     tier: 1

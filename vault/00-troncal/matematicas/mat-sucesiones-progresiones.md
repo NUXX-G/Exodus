@@ -7,11 +7,11 @@ prerequisites: [mat-algebra-basica, mat-proporcionalidad-porcentajes, mat-funcio
 academic_sources:
   - "Ramos Rodríguez, F.; Latasa Asso, M. Matemáticas 3.º ESO (LOMLOE), capítulo 3: «Sucesiones», secciones 1-3 (definiciones, progresiones aritméticas y geométricas, sumas, productos y aplicaciones). Apuntes Marea Verde, rev. 27/08/2022. https://www.apuntesmareaverde.org.es/grupos/mat/LOMLOE/3ESO/03%20Sucesiones%203.pdf (CC BY-NC-SA 3.0)."
   - "Ramos Rodríguez, F. Matemáticas I, 1.º Bachillerato (LOMLOE), capítulo 3: «Sucesiones», secciones 1.4-1.6 (convergencia, suma de infinitos términos de una progresión geométrica, monotonía y acotación) y 2.1-2.2 (límite de una sucesión). Apuntes Marea Verde, rev. 10/08/2024. https://www.apuntesmareaverde.org.es/grupos/mat/LOMLOE/Bachillerato/BC1_03_Sucesiones.pdf"
-  - "Abramson, J. et al. Precálculo, 2.ª ed. (en español). OpenStax, 2023, cap. 9: «Sucesiones, probabilidad y teoría de conteo», secciones 9.1-9.4. https://openstax.org/books/prec%C3%A1lculo-2ed/pages/9-introduccion (CC BY 4.0)."
+  - "Abramson, J. et al. Precálculo, 2.ª ed. (en español). OpenStax, 2023, cap. 11, secciones 11.1 («Secuencias y sus notaciones»), 11.2 («Secuencias aritméticas»), 11.3 («Secuencias geométricas») y 11.4 («Series y sus notaciones»). https://openstax.org/books/prec%C3%A1lculo-2ed/pages/11-introduccion (CC BY 4.0)."
 hints:
   - "Concepto: en una progresión aritmética se SUMA siempre la misma diferencia d (a_n = a_1 + (n − 1)d); en una geométrica se MULTIPLICA siempre por la misma razón r (a_n = a_1·r^(n−1)). Para sumar n términos: aritmética, (a_1 + a_n)·n/2; geométrica, a_1(r^n − 1)/(r − 1)."
   - "Herramienta: escribe los cinco primeros términos para ver el patrón, y comprueba cada fórmula con n = 1 y n = 2. En Python, sum(range(...)) o un bucle comprueba cualquier suma. Para la suma infinita de una geométrica, mira primero si |r| < 1."
-  - "Documentación: Marea Verde 3.º ESO, cap. 3 (secciones 2.1-2.2 y 3.1-3.4); Matemáticas I, cap. 3, sección 1.5 para la suma infinita; OpenStax Precálculo 2ed, secciones 9.2 y 9.3."
+  - "Documentación: Marea Verde 3.º ESO, cap. 3 (secciones 2.1-2.2 y 3.1-3.4); Matemáticas I, cap. 3, sección 1.5 para la suma infinita; OpenStax Precálculo 2ed, secciones 11.2 y 11.3."
 exercises:
   - id: termino-aritmetica
     tier: 1

@@ -19,6 +19,21 @@ no cambia de id ni de área; solo se aclara aquí qué es troncal.
    capítulos con el nivel matemático de cada curso (sin cálculo hasta Bachillerato). La licencia que muestra la web es
    CC BY-NC-SA 4.0 en el pie y CC BY 4.0 en el prefacio: indiferente para Exodus, que no reproduce su texto.
 
+### Índice verificado de OpenStax Precálculo 2ed (en español)
+
+Comprobado el 2026-11-21 en las páginas `https://openstax.org/books/prec%C3%A1lculo-2ed/pages/N-introduccion` (no citar
+secciones de memoria). Cap. 1: 1.1 funciones y notación, 1.2 dominio y rango, 1.3 tasas de variación, 1.4 composición,
+1.5 transformación de funciones, 1.6 valor absoluto, 1.7 inversas. Cap. 2: funciones lineales (2.1-2.4). Cap. 3: 3.1
+números complejos, 3.2 cuadráticas, 3.3-3.4 polinómicas, 3.5 dividir polinomios, 3.6 ceros, 3.7 racionales, 3.8 inversas y
+radicales, 3.9 variación. Cap. 4: exponenciales y logaritmos (4.1-4.8). Cap. 5: 5.1 ángulos, 5.2 círculo unitario, 5.3 otras
+funciones trigonométricas, 5.4 triángulos rectángulos. Cap. 6: 6.1-6.2 gráficas, 6.3 inversas. Cap. 7: 7.1 ecuaciones con
+identidades, 7.2 suma y resta, 7.3 ángulo doble y mitad, 7.4 suma a producto, 7.5 ecuaciones, 7.6 modelado. Cap. 8: 8.1 ley
+de senos, 8.2 ley de cosenos, 8.3-8.4 polares, 8.5 forma polar de los complejos, 8.6-8.7 paramétricas, 8.8 vectores. Cap. 9:
+sistemas (9.1-9.3), 9.4 fracciones parciales, 9.5-9.8 matrices, Gauss-Jordan, inversas, Cramer. Cap. 10: 10.1 elipse, 10.2
+hipérbola, 10.3 parábola, 10.4 rotación de ejes, 10.5 cónicas en polares. Cap. 11: 11.1-11.4 sucesiones y series, 11.5
+conteo, 11.6 binomio, 11.7 probabilidad. Cap. 12: 12.1-12.2 límites, 12.3 continuidad, 12.4 derivadas. Licencia: la página
+dice CC BY 4.0 con condiciones no comerciales y el pie CC BY-NC-SA 4.0 (Exodus no copia texto; solo cita).
+
 ## a) Mapa: Marea Verde (matemáticas) → nodos
 
 Leyenda: ✔ cubierto · ◐ parcial (qué falta) · ✗ hueco (nodo nuevo en el plan).
@@ -38,6 +53,7 @@ Leyenda: ✔ cubierto · ◐ parcial (qué falta) · ✗ hueco (nodo nuevo en el
 | `mat-algebra-secundaria` | Bloque práctico en §2-§7 (raíces como cortes, soluciones falsas, por qué $2^{-3} = 1/8$, contar multiplicaciones, tabla de signos, máquinas encadenadas); demostraciones en bloques formales; la de √2 se remite a `mat-numeros-reales` (prerequisito nuevo); fuentes Marea Verde; 13 ejercicios con variantes (contraste por Ruffini, raíces numéricas, iteración); 6 de repaso | 2026-11-21 |
 | `mat-funciones-elementales` (**nuevo**) | Escrito desde Marea Verde 4.º B cap. 11 y Matemáticas I cap. 6 (PDF leídos) y OpenStax Precálculo 3.5-3.6: proporcionalidad inversa e hipérbolas, raíz, valor absoluto, exponencial/logarítmica, funciones a trozos (impuesto por tramos: tipo marginal frente a medio), transformaciones de gráficas (demostración), características (par/impar, periodicidad), composición, inversa y su gráfica, oferta y demanda; 14 ejercicios (10 con variantes; 1 desarrollo); 7 de repaso. Añadido al objetivo (y `mat-algebra-secundaria` adelantada a su sitio en el orden) | 2026-11-21 |
 | `mat-combinatoria-probabilidad-basica` | Bloque práctico en §2, §3, condicionada y §5 (camisetas y pantalones, bolsa de bolas, rey de oros, ruleta); 2 demostraciones en bloques formales; sin «axioma», «función hash» ni «variable aleatoria» antes de su nodo; fuentes con capítulos (Grinstead y Snell) y Marea Verde; 15 ejercicios con variantes contrastadas por enumeración exhaustiva; 6 de repaso | 2026-11-21 |
+| `mat-trigonometria` | Bloque práctico en §2-§8 (cuerda y pizza, rampa, noria, ondas, combinar giros, topógrafo y río, noria a media altura); 3 demostraciones en bloques formales; prerequisitos nuevos (`mat-funciones-elementales`, `mat-movimientos-plano`); «frecuencia» explicada aquí (glosario `tambien`); fuentes con secciones verificadas de OpenStax (caps. 5-8) y Marea Verde; 16 ejercicios con variantes (barrido numérico, coordenadas, Herón); 6 de repaso. Corregidas además las citas de OpenStax de `mat-funciones-elementales` y `mat-sucesiones-progresiones` con el índice verificado | 2026-11-21 |
 e 0$ (la pendiente llega en funciones); 12 ejercicios con variantes (expresiones: tipo `expresion` con forma expandida); 6 de repaso | 2026-11-20 |
 | 1.º ESO | 3 Potencias y raíces | `mat-numeros-naturales` §5, `mat-algebra-secundaria` §4 | ◐ raíz cuadrada (cálculo y estimación) en ESO |
 | 1.º ESO | 4 Números enteros | `mat-enteros-fracciones` | ✔ |
