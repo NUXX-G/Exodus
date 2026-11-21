@@ -3,7 +3,7 @@ id: mat-geometria-basica
 title: "Geometría básica: figuras, Pitágoras y semejanza"
 area: matematicas
 trunk_level: 3
-prerequisites: [mat-algebra-basica, mat-rectas-angulos, mat-triangulos-pitagoras]
+prerequisites: [mat-algebra-basica, mat-rectas-angulos, mat-triangulos-pitagoras, mat-poligonos-circunferencia]
 academic_sources:
   - "Kiselev, A. P. Kiselev's Geometry, Book I: Planimetry (trad. de A. Givental). Sumizdat, 2006."
   - "Euclides. Elementos, libro I (rectas paralelas, suma de ángulos de un triángulo, teorema de Pitágoras) y libro VI (semejanza y teorema de Tales). Edición en línea de D. E. Joyce, Clark University: mathcs.clarku.edu/~djoyce/elements/"

@@ -555,4 +555,4 @@ Las **ternas pitagóricas** son tríos de enteros que cumplen el teorema: $(3, 4
 
 ## Siguiente
 
-el tema `mat-poligonos-circunferencia` (polígonos, circunferencia y círculo) y el tema `mat-semejanza-tales`.
+[[mat-poligonos-circunferencia]] (polígonos, circunferencia y círculo) y el tema `mat-semejanza-tales`.
