@@ -393,7 +393,7 @@ cuadrantes).
 
 - **Topografía, navegación y astronomía**: alturas, distancias inaccesibles, triangulación, posicionamiento.
 - **Física**: descomponer vectores (desplazamientos, velocidades) en componentes ([[fis-medida-movimiento]]); planos inclinados.
-- **Ondas y señales**: sonido, luz y corriente alterna se describen con senos y cosenos (el tema `mat-funciones-trigonometricas`).
+- **Ondas y señales**: sonido, luz y corriente alterna se describen con senos y cosenos ([[mat-funciones-trigonometricas]]).
 - **Gráficos, videojuegos y robótica**: giros, rotaciones y cinemática de brazos articulados ([[rob-cinematica]]).
 
 ## 2. Grados y radianes

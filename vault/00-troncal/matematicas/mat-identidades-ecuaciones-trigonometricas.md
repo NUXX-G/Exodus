@@ -318,7 +318,7 @@ Al terminar sabrás:
   (el tema `fis-ondas-sonido`).
 - **Electrónica y señales**: corriente alterna, modulación de radio, análisis de Fourier.
 - **Geometría y gráficos**: rotaciones en el plano (las coordenadas de un punto girado usan $\cos(\alpha + \theta)$ y $\operatorname{sen}(\alpha + \theta)$).
-- **Cálculo**: simplificar antes de derivar o integrar (el tema `mat-funciones-trigonometricas`).
+- **Cálculo**: simplificar antes de derivar o integrar ([[mat-funciones-trigonometricas]]).
 
 ## 2. Suma y diferencia de ángulos
 
@@ -419,4 +419,4 @@ Para valores no notables se usa la calculadora ($\arcsin$, $\arccos$, $\arctan$)
 
 ## Siguiente
 
-[[mat-trigonometria]] repasa el bloque; después, [[mat-vectores-rectas-plano]] y el tema `mat-funciones-trigonometricas`.
+[[mat-trigonometria]] repasa el bloque; después, [[mat-vectores-rectas-plano]] y [[mat-funciones-trigonometricas]].

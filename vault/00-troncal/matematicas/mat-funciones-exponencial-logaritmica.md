@@ -483,4 +483,4 @@ inutilizables muy pronto (el tema `prog-algoritmos-complejidad`).
 
 ## Siguiente
 
-el tema `mat-funciones-trigonometricas` (las funciones periódicas) y, en el cálculo, el tema `mat-limites-continuidad`.
+[[mat-funciones-trigonometricas]] (las funciones periódicas) y, en el cálculo, el tema `mat-limites-continuidad`.
