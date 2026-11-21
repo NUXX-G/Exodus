@@ -29,6 +29,41 @@ entera 61022062, Análisis numérico matricial 61022085, Cálculo de probabilida
 Campos y formas 61023050, Cálculo de probabilidades II 61023038, Análisis de Fourier y EDP 61023073, Inferencia
 estadística 61023104, Resolución numérica de ecuaciones 6102308-, Sistemas dinámicos (optativa) 61044098.
 
+### Temario y texto base de las guías (resumen, para redactar)
+
+Leídas el 2026-11-21 con el mismo patrón de URL (`codAsignatura` entre paréntesis).
+
+- **Matemática discreta** (61021051). Tema 1, teoría elemental de números: división y Euclides, primos y factorización,
+  inducción, ecuaciones diofánticas, congruencias, sistemas de numeración y criterios de divisibilidad. Tema 2, grafos:
+  grafos, digrafos y multigrafos, eulerianos y hamiltonianos, exploración, mapas y coloraciones. Tema 3, combinatoria:
+  técnicas básicas, permutaciones, variaciones y combinaciones, binomio, inclusión-exclusión, recurrencias. Texto base:
+  Bujalance et al., *Elementos de Matemática Discreta*, 3.ª ed., Sanz y Torres.
+- **Álgebra lineal I** (61021016). Matrices (Gauss, rango, inversa, determinante); sistemas (Rouché-Frobenius); espacios
+  vectoriales (base, coordenadas, cambio de base, subespacios, suma e intersección, cociente); aplicaciones lineales
+  (núcleo, imagen, matriz, endomorfismos, proyecciones y simetrías, dual). Texto base: Borobia y Estrada, *Álgebra
+  Lineal y Geometría Vectorial*, 2.ª ed., Sanz y Torres, 2019, caps. 1-4.
+- **Álgebra lineal II** (61021068). Formas canónicas (diagonalización, Jordan, Jordan real); subespacios invariantes;
+  formas bilineales y cuadráticas (congruencia, clasificación real); espacio euclídeo (ortonormales, proyección,
+  diagonalización ortogonal); isometrías (clasificación en dimensión 2 y 3, Cartan-Dieudonné). Borobia y Estrada, caps.
+  5-9; Axler como recomendado.
+- **Funciones de una variable I** (61021022). Sucesiones; los reales; límites infinitos; topología de ℝ; límites de
+  funciones; continuas; derivables; derivables en intervalos; Taylor; límites superior e inferior; series (I y II).
+  Texto base: Fernández Novoa, *Análisis Matemático I*, UNED.
+- **Funciones de varias variables I** (61021080). Geometría del espacio euclídeo (escalar, vectorial, cilíndricas y
+  esféricas); continuidad; diferenciación (diferencial, parciales, cadena, gradiente, direccionales); orden superior,
+  Taylor, hessiana, máximos y mínimos. Texto base: Marsden y Tromba, *Cálculo Vectorial*, 6.ª ed.
+- **Estadística básica** (61021045). R; descriptiva; probabilidad; modelos; muestreo; intervalos; contrastes;
+  no paramétricos; ANOVA; regresión y correlación. Texto base: García Pérez, *Estadística Básica con R*, 2.ª ed., UNED,
+  2023.
+- **Introducción a las ecuaciones diferenciales** (61023021). Conceptos; primer orden (separables, homogéneas, lineales,
+  Bernoulli, exactas, factor integrante); existencia y unicidad (Peano, Picard-Lindelöf); modelos; lineales de orden
+  superior; sistemas lineales; Laplace. Texto base: Simmons, *Ecuaciones diferenciales con aplicaciones y notas
+  históricas*.
+- **Geometría diferencial de curvas y superficies** (61023067). Curvas planas y en el espacio (Frenet, teorema
+  fundamental); superficies; geometría intrínseca (primera forma, geodésicas, isometrías); Weingarten, segunda forma,
+  curvaturas; Christoffel, *Theorema Egregium*, Gauss-Bonnet. Texto base: Costa, Gamboa y Porto, *Geometría Diferencial
+  de Curvas y Superficies*, Sanz y Torres.
+
 ## a) Mapa: asignaturas del grado → nodos
 
 Leyenda: ✔ cubierto · ◐ parcial (qué falta) · ✗ hueco (nodo nuevo en el plan). Entre paréntesis, el texto base de la guía.
@@ -148,3 +183,4 @@ commit.
 | --- | --- | --- |
 | `mat-logica-demostraciones` | Bloque práctico en §2-§8 (promesa «si apruebas», «todos» y «alguno», receta comprobada, caja de herramientas y escalera, lista de la compra, agrupar y ordenar, DNI y buzones); 4 demostraciones en bloques formales (validez de la inducción, inclusión-exclusión, clases y particiones, Cantor); fuentes concretas: texto base UNED (Delgado y Muñoz, temas 1-3) y Hammack 3.ª ed. por capítulos (índice comprobado en richardhammack.github.io); 14 ejercicios con variantes contrastadas por fuerza bruta (tablas de verdad, relaciones sobre $2^{n^2}$ casos, funciones, Stirling, involuciones, anticadenas, Cantor); 9 de repaso | 2026-11-21 |
 | `mat-conjuntos-numeros` (**nuevo**) | Escrito desde el temario de la guía UNED de «Lenguaje matemático, conjuntos y números» (temas 3-7; texto base de Delgado y Muñoz), Hammack caps. 11, 12 y 14 (índice comprobado) y Spivak cap. 8: equivalencia y cociente («bien definida»), órdenes (maximal, máximo, supremo), imagen y preimagen, composición e inversa, idempotentes, cardinalidad (diagonal, Cantor-Bernstein), estructuras, Peano, división euclídea y Bézout, $\mathbb Z$ y $\mathbb Q$ como cocientes, axioma del supremo (arquimediana, densidad, cortaduras y Cauchy), $\mathbb C$ como $\mathbb R^2$ y por qué no se ordena; 4 bloques formales; 12 ejercicios con variantes contrastadas por fuerza bruta, 1 de desarrollo con rúbrica, 7 de repaso, reto con flag; glosario: «supremo», «conjunto cociente»; prerrequisito de `mat-analisis-real`, `mat-estructuras-algebraicas` y `mat-teoria-informacion`; objetivo `uned-primero` alineado con los ids del plan | 2026-11-21 |
+| `mat-matematica-discreta` | Bloque práctico en §2-§7 (§2-§3 marcados como repaso de los nodos de lógica y conjuntos; dominó y buzones; recurrencias paso a paso; mapas y redes; reloj); 3 demostraciones en bloques formales (árbol, inverso modular, Fermat); temas de la guía UNED que faltaban: hamiltonianos (Dirac, Ore), digrafos y multigrafos, coloraciones ($\chi$, ciclos, voraz $\le \Delta + 1$), §7b ecuaciones diofánticas (con demostración de la solución general), bases y criterios de divisibilidad, §7c variaciones y combinaciones con y sin repetición y binomio; texto base UNED (Bujalance et al.) en las fuentes; prerrequisito `mat-logica-demostraciones`; variantes en los 16 ejercicios (9 repetían ejemplos de la teoría: 7⁻¹ mod 26, 3¹⁰⁰ mod 7, D₈, K₈, el árbol, Bell(4)…), 3 ejercicios nuevos, 8 de repaso; el doble cálculo cazó un error mío en una pregunta de repaso (123 456 mod 9 = 3, no 6) | 2026-11-21 |
