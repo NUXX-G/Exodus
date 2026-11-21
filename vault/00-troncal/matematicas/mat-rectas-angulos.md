@@ -445,7 +445,7 @@ Con las paralelas $r \parallel s$ y una secante $t$:
 > (Euclides, I.15). La igualdad de los correspondientes es equivalente al **postulado de las paralelas** de Euclides (por un punto exterior
 > a una recta pasa una única paralela): no se puede demostrar a partir de las demás reglas de partida de Euclides, y negarlo da lugar a geometrías no
 > euclídeas, igual de coherentes ([[mat-geometria-euclidea]]). Con ella se demuestra que los ángulos de un triángulo suman $180^\circ$
-> (el tema `mat-triangulos-pitagoras`). $\blacksquare$
+> ([[mat-triangulos-pitagoras]]). $\blacksquare$
 
 ## 6. Mediatriz y bisectriz
 
@@ -461,7 +461,7 @@ Con las paralelas $r \parallel s$ y una secante $t$:
   compás: un arco desde el vértice corta los dos lados; desde esos cortes, dos arcos iguales se cortan en un punto de la bisectriz.
 
 Estas propiedades de «equidistar» son las que hacen que las mediatrices de un triángulo se corten en el centro de la circunferencia
-que pasa por sus vértices y las bisectrices en el centro de la que toca sus lados (el tema `mat-triangulos-pitagoras`).
+que pasa por sus vértices y las bisectrices en el centro de la que toca sus lados ([[mat-triangulos-pitagoras]]).
 
 ## 7. Errores típicos
 
@@ -490,4 +490,4 @@ que pasa por sus vértices y las bisectrices en el centro de la que toca sus lad
 
 ## Siguiente
 
-el tema `mat-triangulos-pitagoras` (triángulos, sus rectas notables y la relación de Pitágoras).
+[[mat-triangulos-pitagoras]] (triángulos, sus rectas notables y la relación de Pitágoras).

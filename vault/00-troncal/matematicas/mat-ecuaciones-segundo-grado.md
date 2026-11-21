@@ -370,7 +370,7 @@ los productos notables de [[mat-expresiones-algebraicas]].
 ## 1. Para qué sirve
 
 - **Geometría**: áreas de rectángulos, cuadrados y triángulos con un lado desconocido; el teorema de Pitágoras con una incógnita
-  (el tema `mat-triangulos-pitagoras`).
+  ([[mat-triangulos-pitagoras]]).
 - **Física**: un objeto lanzado hacia arriba sigue $h = v t - 5t^2$; saber cuándo está a cierta altura es una ecuación de segundo grado
   ([[fis-medida-movimiento]]).
 - **Economía**: beneficios que primero crecen y luego bajan con el precio; puntos de equilibrio.

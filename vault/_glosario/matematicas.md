@@ -43,7 +43,7 @@ terminos:
   - termino: hipotenusa
     llano: "En un triángulo con un ángulo recto (como una esquina de un folio), el lado más largo: el que está enfrente de esa esquina."
     formal: "En un triángulo rectángulo, el lado opuesto al ángulo recto. Por el teorema de Pitágoras, $c^2 = a^2 + b^2$, donde $c$ es la hipotenusa y $a, b$ los catetos."
-    nodo: mat-geometria-basica
+    nodo: mat-triangulos-pitagoras
   - termino: función
     sinonimos: [funciones]
     llano: "Una regla que a cada valor de entrada le asigna exactamente un valor de salida, como «a cada hora del día, la temperatura»."
@@ -73,7 +73,7 @@ terminos:
     llano: "Una afirmación matemática que se ha demostrado que es verdad a partir de otras ya aceptadas."
     formal: "Proposición que se deduce, mediante reglas lógicas, de axiomas, definiciones y resultados ya demostrados."
     nodo: mat-logica-demostraciones
-    tambien: [mat-numeros-naturales, mat-divisibilidad]
+    tambien: [mat-numeros-naturales, mat-divisibilidad, mat-triangulos-pitagoras]
   - termino: axioma
     sinonimos: [axiomas]
     llano: "Una regla de partida que se acepta sin demostrarla, como los cimientos de una casa: todo lo demás se construye encima."

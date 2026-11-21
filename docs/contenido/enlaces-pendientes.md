@@ -16,9 +16,10 @@ Nodos que mencionan un nodo de tema aún no escrito. Al crear el nodo, sustituir
 | vault/00-troncal/matematicas/mat-sistemas-dos-incognitas.md | `mat-sistemas-lineales` |
 | vault/00-troncal/matematicas/mat-sistemas-dos-incognitas.md | `mat-funciones-lineales-cuadraticas` |
 | vault/00-troncal/matematicas/mat-sistemas-dos-incognitas.md | `mat-determinantes` |
-| vault/00-troncal/matematicas/mat-ecuaciones-segundo-grado.md | `mat-triangulos-pitagoras` |
 | vault/00-troncal/matematicas/mat-polinomios-factorizacion.md | `mat-integral-riemann` |
 | vault/00-troncal/matematicas/mat-inecuaciones.md | `mat-limites-continuidad` |
 | vault/00-troncal/matematicas/mat-exponenciales-logaritmos.md | `fis-ondas-sonido` |
 | vault/00-troncal/matematicas/mat-exponenciales-logaritmos.md | `prog-algoritmos-complejidad` |
-| vault/00-troncal/matematicas/mat-rectas-angulos.md | `mat-triangulos-pitagoras` |
+| vault/00-troncal/matematicas/mat-triangulos-pitagoras.md | `ing-estatica-estructuras` |
+| vault/00-troncal/matematicas/mat-triangulos-pitagoras.md | `mat-semejanza-tales` |
+| vault/00-troncal/matematicas/mat-triangulos-pitagoras.md | `mat-poligonos-circunferencia` |
