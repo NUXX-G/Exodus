@@ -120,8 +120,8 @@ exercises:
     prompt: |
       Resuelve $\log_{{{b}}} x + \log_{{{b}}} (x - {{c}}) = {{k}}$. Respuesta: la solución válida (recuerda el dominio del logaritmo).
     variants:
-      - values: {"b":3,"c":2,"k":1}
-        answers: ["sha256:3e9bce2c0786d1a489dccc2fd31be81534687ecf18e8597b53fcc5e3d741746f","sha256:f8c9799ff41912b5f5b777d2224711d818f044a6da181f8356567a1dc0c3cc8d","sha256:10b41132ab990ae21f1b208a11126e87e638e66e4035b1d6145fda014c7fbe85"]
+      - values: {"b":3,"c":6,"k":3}
+        answers: ["sha256:489b34b67d4db33e364b1dc5bce9ca0c46f832fa4e03514ffb59331dde430cc7","sha256:5c2e371d7d42d51e1effe6e58cdcd2e0ef067b7315abc75f849397eb53e5717f","sha256:e96302baf3ad25cb7ca155b465a89928d903bd275d682cf370aa5fafac496330"]
       - values: {"b":2,"c":3,"k":2}
         answers: ["sha256:277b60199932faf9061c8a55a9fa2d9def10a81256e0789ff30766a8f69a4db3","sha256:3b6ab8d172cb55c0e0d9e87c419d16c2521f25bbad10356f98b2fa9a551e5a32","sha256:bbb143d6b2fce9d0226b2e276b778264624203dc8387f1e8ef216de02c4e0c0e"]
       - values: {"b":2,"c":6,"k":4}
