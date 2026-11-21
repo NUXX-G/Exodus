@@ -466,5 +466,5 @@ poner paréntesis en las bases negativas: para $(-3)^2$ hay que escribir los par
 
 ## Siguiente
 
-el tema `mat-fracciones` (partes de la unidad, también con signo) y el tema `mat-expresiones-algebraicas` (las letras pueden valer números
+[[mat-fracciones]] (partes de la unidad, también con signo) y el tema `mat-expresiones-algebraicas` (las letras pueden valer números
 negativos).

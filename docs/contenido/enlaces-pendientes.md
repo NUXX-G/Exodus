@@ -6,11 +6,12 @@ Nodos que mencionan un nodo de tema aún no escrito. Al crear el nodo, sustituir
 | --- | --- |
 | vault/00-troncal/matematicas/mat-resolucion-problemas.md | `mat-expresiones-algebraicas` |
 | vault/00-troncal/matematicas/mat-resolucion-problemas.md | `mat-rectas-angulos` |
-| vault/00-troncal/matematicas/mat-divisibilidad.md | `mat-fracciones` |
 | vault/00-troncal/matematicas/mat-potencias-raices.md | `fis-magnitudes-medida` |
 | vault/00-troncal/matematicas/mat-potencias-raices.md | `mat-porcentajes-finanzas` |
-| vault/00-troncal/matematicas/mat-potencias-raices.md | `mat-fracciones` |
 | vault/00-troncal/matematicas/mat-potencias-raices.md | `mat-exponenciales-logaritmos` |
 | vault/00-troncal/matematicas/mat-numeros-enteros.md | `fis-cinematica-rectilinea` |
-| vault/00-troncal/matematicas/mat-numeros-enteros.md | `mat-fracciones` |
 | vault/00-troncal/matematicas/mat-numeros-enteros.md | `mat-expresiones-algebraicas` |
+| vault/00-troncal/matematicas/mat-fracciones.md | `mat-probabilidad-elemental` |
+| vault/00-troncal/matematicas/mat-fracciones.md | `mat-decimales` |
+| vault/00-troncal/matematicas/mat-fracciones.md | `mat-proporcionalidad` |
+| vault/00-troncal/matematicas/mat-fracciones.md | `mat-expresiones-algebraicas` |

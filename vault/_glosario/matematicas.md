@@ -14,7 +14,7 @@ terminos:
     sinonimos: [fracciones irreducibles]
     llano: "Una fracción que ya no se puede simplificar más: arriba y abajo no tienen ningún divisor común salvo el 1, como 3/4 (y no 6/8)."
     formal: "Una fracción $a/b$ con $b > 0$ y $\\gcd(a, b) = 1$. Todo número racional tiene exactamente una representación irreducible."
-    nodo: mat-enteros-fracciones
+    nodo: mat-fracciones
   - termino: incógnita
     sinonimos: [incógnitas]
     llano: "El dato que no conocemos y queremos averiguar en una ecuación; se le pone una letra, normalmente x."

@@ -533,7 +533,7 @@ juntar potencias de distinta base y distinto exponente: $2^3 \cdot 3^2 = 8 \cdot
 
 Para $a \neq 0$ y $n$ natural, se define $a^{-n} = \dfrac{1}{a^n}$. Con esta definición, todas las propiedades de la sección 3 siguen
 valiendo con exponentes enteros cualesquiera, y la del cociente ya no necesita $m \ge n$: $5^2 : 5^4 = 5^{-2} = \frac{1}{25}$. Las
-fracciones se estudian en el tema `mat-fracciones`; aquí basta saber leer $a^{-n}$ como «uno entre $a^n$». Con base $10$:
+fracciones se estudian en [[mat-fracciones]]; aquí basta saber leer $a^{-n}$ como «uno entre $a^n$». Con base $10$:
 $10^{-1} = 0{,}1$, $10^{-2} = 0{,}01$, $10^{-3} = 0{,}001$.
 
 ## 5. Notación científica
@@ -625,5 +625,5 @@ $\sqrt 2 + \sqrt 3$ **no** se simplifica, y $\sqrt{9 + 16} = 5$ no es $\sqrt 9 +
 
 ## Siguiente
 
-[[mat-numeros-enteros]] (números negativos), el tema `mat-fracciones` y, más adelante, [[mat-numeros-reales]] (los irracionales como
+[[mat-numeros-enteros]] (números negativos), [[mat-fracciones]] y, más adelante, [[mat-numeros-reales]] (los irracionales como
 $\sqrt 2$) y el tema `mat-exponenciales-logaritmos`.

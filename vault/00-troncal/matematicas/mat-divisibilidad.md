@@ -410,7 +410,7 @@ Al terminar sabrás:
 - **Repartos y medidas**: cortar sin que sobre, hacer grupos iguales, cubrir un suelo con baldosas enteras (mcd).
 - **Calendarios y ciclos**: cuándo vuelven a coincidir dos autobuses, dos turnos o dos planetas (mcm).
 - **Fracciones**: simplificar es dividir por el mcd, y sumar fracciones exige un denominador común, el mcm
-  (el tema `mat-fracciones`).
+  ([[mat-fracciones]]).
 - **Criptografía**: el cifrado RSA se apoya en que multiplicar dos primos grandes es fácil y factorizar el resultado, no.
 
 ## 2. Múltiplos y divisores
@@ -559,5 +559,5 @@ Dos números con $\operatorname{mcd} = 1$ se llaman **primos entre sí** (o copr
 
 ## Siguiente
 
-[[mat-potencias-raices]] (los exponentes de la factorización son potencias) y el tema `mat-fracciones` (simplificar y sumar
+[[mat-potencias-raices]] (los exponentes de la factorización son potencias) y [[mat-fracciones]] (simplificar y sumar
 fracciones con el mcd y el mcm).
