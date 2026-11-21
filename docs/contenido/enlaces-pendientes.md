@@ -9,7 +9,6 @@ Nodos que mencionan un nodo de tema aún no escrito. Al crear el nodo, sustituir
 | vault/00-troncal/matematicas/mat-fracciones.md | `mat-probabilidad-elemental` |
 | vault/00-troncal/matematicas/mat-decimales.md | `fis-magnitudes-medida` |
 | vault/00-troncal/matematicas/mat-sistema-metrico.md | `fis-magnitudes-medida` |
-| vault/00-troncal/matematicas/mat-sistema-metrico.md | `mat-semejanza-tales` |
 | vault/00-troncal/matematicas/mat-sistema-metrico.md | `mat-cuerpos-geometricos` |
 | vault/00-troncal/matematicas/mat-proporcionalidad.md | `mat-funciones-lineales-cuadraticas` |
 | vault/00-troncal/matematicas/mat-proporcionalidad.md | `mat-funciones-graficas` |
@@ -21,8 +20,8 @@ Nodos que mencionan un nodo de tema aún no escrito. Al crear el nodo, sustituir
 | vault/00-troncal/matematicas/mat-exponenciales-logaritmos.md | `fis-ondas-sonido` |
 | vault/00-troncal/matematicas/mat-exponenciales-logaritmos.md | `prog-algoritmos-complejidad` |
 | vault/00-troncal/matematicas/mat-triangulos-pitagoras.md | `ing-estatica-estructuras` |
-| vault/00-troncal/matematicas/mat-triangulos-pitagoras.md | `mat-semejanza-tales` |
 | vault/00-troncal/matematicas/mat-poligonos-circunferencia.md | `ing-mecanismos` |
 | vault/00-troncal/matematicas/mat-poligonos-circunferencia.md | `mat-limites-continuidad` |
-| vault/00-troncal/matematicas/mat-poligonos-circunferencia.md | `mat-semejanza-tales` |
 | vault/00-troncal/matematicas/mat-poligonos-circunferencia.md | `mat-cuerpos-geometricos` |
+| vault/00-troncal/matematicas/mat-semejanza-tales.md | `fis-optica` |
+| vault/00-troncal/matematicas/mat-semejanza-tales.md | `mat-cuerpos-geometricos` |

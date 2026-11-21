@@ -431,7 +431,7 @@ lleno de agua pesa unos $72$ kg (más el cristal). *Atajo:* pasar las medidas a 
 > Si una unidad de longitud $u$ equivale a $k$ unidades $v$ ($u = k\,v$), un cuadrado de lado $u$ tiene área $u^2 = (kv)^2 = k^2v^2$ y un
 > cubo de arista $u$ tiene volumen $u^3 = k^3v^3$. Con $k = 10$ salen los factores $100$ y $1\,000$; con $k = 100$ (de m a cm), $10^4$ y
 > $10^6$. Es la misma razón por la que, en una semejanza de razón $k$, las áreas se multiplican por $k^2$ y los volúmenes por $k^3$
-> (el tema `mat-semejanza-tales`). $\blacksquare$
+> ([[mat-semejanza-tales]]). $\blacksquare$
 
 ## 6. El tiempo y los ángulos: el sistema sexagesimal
 

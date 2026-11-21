@@ -466,7 +466,7 @@ comprobar las seis cosas; basta uno de estos **criterios**:
 - **ALA**: un lado y los dos ángulos contiguos.
 
 Tres ángulos iguales **no** bastan: dan triángulos de la misma forma pero quizá de distinto tamaño (semejantes,
-el tema `mat-semejanza-tales`). Los criterios de igualdad son la herramienta para demostrar casi todo en geometría elemental (por ejemplo,
+[[mat-semejanza-tales]]). Los criterios de igualdad son la herramienta para demostrar casi todo en geometría elemental (por ejemplo,
 que los puntos de la mediatriz equidistan de los extremos).
 
 ## 4. Rectas y puntos notables
@@ -555,4 +555,4 @@ Las **ternas pitagóricas** son tríos de enteros que cumplen el teorema: $(3, 4
 
 ## Siguiente
 
-[[mat-poligonos-circunferencia]] (polígonos, circunferencia y círculo) y el tema `mat-semejanza-tales`.
+[[mat-poligonos-circunferencia]] (polígonos, circunferencia y círculo) y [[mat-semejanza-tales]].
