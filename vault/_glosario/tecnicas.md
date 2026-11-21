@@ -6,7 +6,7 @@ terminos:
     llano: "Una receta exacta, paso a paso, para resolver un problema, tan precisa que la puede seguir una máquina sin pensar."
     formal: "Secuencia finita de instrucciones bien definidas que, para cada entrada válida, termina y produce una salida."
     nodo: prog-pensamiento-computacional
-    tambien: [mat-numeros-naturales]
+    tambien: [mat-numeros-naturales, mat-divisibilidad]
   - termino: compilador
     sinonimos: [compiladores]
     llano: "Un programa que traduce el código que escribes (en C, Rust…) al lenguaje de instrucciones que entiende el procesador."

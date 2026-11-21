@@ -515,7 +515,7 @@ $$
 D = d \cdot c + r, \qquad 0 \le r < d .
 $$
 *Ejemplo:* $33 = 6 \cdot 5 + 3$; $3\,658 = 65 \cdot 56 + 18$. La división es **exacta** si $r = 0$; entonces $d$ es divisor de $D$
-(lo estudiarás en el nodo de divisibilidad).
+(lo estudiarás en [[mat-divisibilidad]]).
 
 **El resto con calculadora.** La calculadora da $325 : 15 = 21{,}666\ldots$. La parte entera, $21$, es el cociente, y el resto es
 $325 - 15 \cdot 21 = 10$. Comprobación: $15 \cdot 21 + 10 = 325$ ✓ y $10 < 15$ ✓.
@@ -575,5 +575,5 @@ si quieres otro orden, tienes que poner los paréntesis.
 
 ## Siguiente
 
-el nodo de divisibilidad (múltiplos, divisores, primos, mcd y mcm) y el nodo de potencias raices (multiplicar un número por sí mismo
+[[mat-divisibilidad]] (múltiplos, divisores, primos, mcd y mcm) y el nodo de potencias raices (multiplicar un número por sí mismo
 muchas veces).

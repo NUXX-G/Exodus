@@ -5,11 +5,11 @@ terminos:
     sinonimos: [números primos]
     llano: "Un número mayor que 1 que solo se puede dividir exactamente entre 1 y entre sí mismo, como 2, 3, 5, 7 u 11. Son las «piezas» con las que se construyen todos los demás multiplicando."
     formal: "Un entero $p > 1$ cuyos únicos divisores positivos son $1$ y $p$. Teorema fundamental de la aritmética: todo entero $n > 1$ se escribe de forma única (salvo el orden) como producto de primos."
-    nodo: mat-numeros-naturales
+    nodo: mat-divisibilidad
   - termino: máximo común divisor
     llano: "El número más grande que divide exactamente a dos números a la vez. El de 12 y 18 es 6. Sirve para simplificar fracciones."
     formal: "Para enteros $a, b$ no ambos nulos, $\\gcd(a, b)$ es el mayor entero positivo $d$ con $d \\mid a$ y $d \\mid b$. Se calcula con el algoritmo de Euclides: $\\gcd(a, b) = \\gcd(b, a \\bmod b)$."
-    nodo: mat-numeros-naturales
+    nodo: mat-divisibilidad
   - termino: fracción irreducible
     sinonimos: [fracciones irreducibles]
     llano: "Una fracción que ya no se puede simplificar más: arriba y abajo no tienen ningún divisor común salvo el 1, como 3/4 (y no 6/8)."
@@ -73,7 +73,7 @@ terminos:
     llano: "Una afirmación matemática que se ha demostrado que es verdad a partir de otras ya aceptadas."
     formal: "Proposición que se deduce, mediante reglas lógicas, de axiomas, definiciones y resultados ya demostrados."
     nodo: mat-logica-demostraciones
-    tambien: [mat-numeros-naturales]
+    tambien: [mat-numeros-naturales, mat-divisibilidad]
   - termino: axioma
     sinonimos: [axiomas]
     llano: "Una regla de partida que se acepta sin demostrarla, como los cimientos de una casa: todo lo demás se construye encima."
