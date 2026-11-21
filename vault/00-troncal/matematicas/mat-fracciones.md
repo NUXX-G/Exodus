@@ -442,7 +442,7 @@ cero: $\frac23 = \frac46 = \frac{10}{15}$.
 - En general, se pasan a **común denominador** (el mcm de los denominadores) o se comparan los productos cruzados:
   $\frac ab < \frac cd$ (con denominadores positivos) si y solo si $ad < bc$. *Ejemplo:* $\frac34$ y $\frac58$: $3 \cdot 8 = 24 > 5 \cdot 4 = 20$, luego
   $\frac34 > \frac58$.
-- También se puede pasar a decimal ($0{,}75 > 0{,}625$); se estudia en el tema `mat-decimales`.
+- También se puede pasar a decimal ($0{,}75 > 0{,}625$); se estudia en [[mat-decimales]].
 
 **En la recta**: para colocar $\frac ab$ se divide cada unidad en $b$ partes iguales y se cuentan $a$. Las **fracciones negativas**
 ($-\frac34 = \frac{-3}{4} = \frac{3}{-4}$) van a la izquierda del cero, y entre ellas el orden se invierte: $-\frac34 < -\frac58$.
@@ -527,4 +527,4 @@ $10$ €, la paga es $40$ €. *Comprobación:* gasta $10$, quedan $30$; gasta $
 
 ## Siguiente
 
-el tema `mat-decimales` (otra forma de escribir las fracciones), el tema `mat-proporcionalidad` y el tema `mat-expresiones-algebraicas`.
+[[mat-decimales]] (otra forma de escribir las fracciones), el tema `mat-proporcionalidad` y el tema `mat-expresiones-algebraicas`.

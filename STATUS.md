@@ -25,7 +25,34 @@ registro de sesiones (una línea) o a `docs/`.
 
 - **Fase actual**: FASE 9B — Troncal por temas (un nodo por tema, extenso). La FASE 10 queda en pausa tras el tramo 1 y se retoma por temas.
 - **Tarea actual**: 9B c) redacción por temas, bloque de aritmética (nodos 1-10 de `docs/contenido/troncal-temas.md`).
-- **Siguiente paso concreto**: nodo 7, `mat-decimales` (Marea Verde 1.º ESO cap. 6 y 3.º ESO cap. 1: decimales, operaciones, redondeo, periódicos y fracción generatriz; URL en `docs/contenido/troncal-temas.md` §a2), después 8 `mat-sistema-metrico`, 9 `mat-proporcionalidad` y 10 `mat-porcentajes-finanzas` (cierre del bloque de aritmética: objetivo `acceso-universidad` con los temas 1-10 antes de su nodo de bloque, `vault:check`, commit). Al crear cada nodo: `enlaces-pendientes.cjs` y `enlaces-restaurar.cjs`; mover al tema los términos del glosario que introduce y hacerlo prerrequisito del bloque. Ids sin tildes; `sig` máximo 12. Criterios en §a. Registrar con `node scripts/dev/vault/registro-9b.cjs`. En este entorno, Bash puede alterar las barras invertidas: parches con LaTeX en scripts escritos con Write; specs nuevos con `export default ejercicios.map(limpia)`.
+- **Siguiente paso concreto**: nodo 8, `mat-sistema-metrico` (Marea Verde 1.º ESO cap. 7 y 2.º ESO cap. 5; URL en `docs/contenido/troncal-temas.md` §a2), después 9 `mat-proporcionalidad` y 10 `mat-porcentajes-finanzas` (cierre del bloque de aritmética: objetivo `acceso-universidad` con los temas 1-10 antes de su nodo de bloque, `vault:check`, commit). Al crear cada nodo: `enlaces-pendientes.cjs` y `enlaces-restaurar.cjs`; mover al tema los términos del glosario que introduce y hacerlo prerrequisito del bloque. Ids sin tildes; `sig` máximo 12; en los scripts de parche con `String.replace`, cuidado con `$` en la cadena de sustitución (se convierte en un solo `# STATUS — Exodus v2
+
+Última actualización: 2026-11-15 · Rama de trabajo: **`v2`** · Plan: `docs/ROADMAP_V2.md`
+
+Este archivo es el **panel de control** entre sesiones. Es corto a propósito: con él, más la sección de la fase actual
+del roadmap, una sesión nueva puede seguir trabajando sin leer nada más. Mantenlo corto: lo que sea historia va al
+registro de sesiones (una línea) o a `docs/`.
+
+## 0. Arranque de una sesión nueva
+
+1. `git checkout v2 && git pull -q && git status --short && git log --oneline -3`
+2. Lee este archivo entero.
+3. Lee **solo** la sección de la fase actual en `docs/ROADMAP_V2.md`:
+   `grep -n "^## " docs/ROADMAP_V2.md` y lee desde `## FASE <n>` hasta la siguiente `## `.
+4. Retoma en «Ahora mismo → Siguiente paso». No releas el plan completo ni explores el repo: el mapa de §4 basta.
+5. Consulta, sin leer enteros: `docs/HISTORIAL_V1.md` (estado de la v1 y lista de nodos; usa `grep`),
+   `docs/PEDAGOGIA.md` (al escribir contenido), `docs/AMPLIAR.md` (formato de nodos y efectos sobre el progreso),
+   `docs/CURRICULO.md` (árbol de la v1).
+6. Antes de que se llene el contexto: termina la tarea en curso, actualiza §1 y el registro (§9) y ejecuta
+   `bash scripts/dev/guardar.sh "v2: fase N · <tarea>"`. **Desde el 2026-11-20 no se para nunca la sesión ni se
+   pide abrir otra**: el contexto se resume solo y se sigue. Un trabajo cron de la sesión («continúa con el roadmap»,
+   cada hora en el minuto 17) reanuda el trabajo tras los límites de uso; si no existe (`CronList`), recréalo.
+
+## 1. Ahora mismo
+
+- **Fase actual**: FASE 9B — Troncal por temas (un nodo por tema, extenso). La FASE 10 queda en pausa tras el tramo 1 y se retoma por temas.
+- **Tarea actual**: 9B c) redacción por temas, bloque de aritmética (nodos 1-10 de `docs/contenido/troncal-temas.md`).
+: usar `split/join` o el Edit). Criterios en §a. Registrar con `node scripts/dev/vault/registro-9b.cjs`. En este entorno, Bash puede alterar las barras invertidas: parches con LaTeX en scripts escritos con Write; specs nuevos con `export default ejercicios.map(limpia)`.
 - **Pedido del usuario (2026-11-21), al final del plan**: README al día y una forma muy sencilla de añadir ramas nuevas (FASE 18 de `docs/ROADMAP_V2.md`). Estimación de tamaño final: unos 1100-1500 nodos (troncal ~100, matemáticas y física ~400, otras seis ramas ~100-150 cada una).
 - **Bloqueos**: `next build` (Turbopack) se cuelga desde el 2026-11-21 en «Creating an optimized production build» (1 núcleo al 100 %, >4 GB, sin escribir en `.next`); la última vez que terminó fue en el guardado del nodo 25 (de1f531, ya tardó >10 min). Mientras no se resuelva, guardar con `RAPIDO=1 bash scripts/dev/guardar.sh …` (vault:check, typecheck y tests sí corren). Pendiente: investigar en una sesión con memoria libre (¿crece el vault que se importa en el bundle?, probar `next build --webpack`).
 - **Prueba en navegador**: `scripts/dev/sesion-prueba.ts` (usuario y sesión en una base temporal) y
