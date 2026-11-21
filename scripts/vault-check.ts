@@ -30,6 +30,8 @@ async function main() {
     for (const m of html.matchAll(/wikilink-rota[^>]*>([^<]*)/g)) problems.push(`${donde}: wikilink roto: [[${m[1]}]]`);
     const prosa = html.replace(/<pre[\s\S]*?<\/pre>|<code[\s\S]*?<\/code>|<svg[\s\S]*?<\/svg>/g, "");
     if (/\$[^<\s]/.test(prosa)) problems.push(`${donde}: queda un "$" sin procesar (¿fórmula mal cerrada?)`);
+    // La coma decimal «{,}» solo tiene sentido dentro de LaTeX (p. ej., el valor de una variante fuera de $…$).
+    if (prosa.includes("{,}")) problems.push(`${donde}: hay un "{,}" fuera de una fórmula (¿valor de variante sin $…$?)`);
   };
 
   for (const node of vault.nodes.values()) {

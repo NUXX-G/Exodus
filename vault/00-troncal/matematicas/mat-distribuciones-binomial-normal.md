@@ -43,17 +43,17 @@ exercises:
 
       Calcula su media (esperanza).
     variants:
-      - values: {"tabla":"| $x$ | 0 | 1 | 2 | 3 |\n|---|---|---|---|---|\n| $P$ | 0{,}1 | 0{,}3 | 0{,}4 | 0{,}2 |"}
+      - values: {"tabla":"| $x$ | 0 | 1 | 2 | 3 |\n|---|---|---|---|---|\n| $P$ | $0{,}1$ | $0{,}3$ | $0{,}4$ | $0{,}2$ |"}
         answers: ["sha256:8e3bc864a6591f584a97e8148f4aa8b7c4d37d668fb1ba22156718e31504f95e","sha256:bb1a8160adb7a61ff6ec515f1bfb0d4dcb4fa2fc5a4f36fedbd44f5ca325c747","sha256:94d71abfa0935b8b1d3f5407d811f61acf222fcaa3eca8b6cad7ae3ea7e87c21"]
-      - values: {"tabla":"| $x$ | 1 | 2 | 3 |\n|---|---|---|---|\n| $P$ | 0{,}5 | 0{,}3 | 0{,}2 |"}
+      - values: {"tabla":"| $x$ | 1 | 2 | 3 |\n|---|---|---|---|\n| $P$ | $0{,}5$ | $0{,}3$ | $0{,}2$ |"}
         answers: ["sha256:02192f91e5c751d2f4e30bab233c631dc95df9a25bdcb9811a94399f44bb0997","sha256:38fd77fbbdaf05b09c532be272de6a6c7ecc1f5775bbae659e8a93f7ade64983","sha256:f4d041d9fce969b16201b8d657c88680f2eb76bd44d2a8663acc894f0251fc2c"]
-      - values: {"tabla":"| $x$ | 0 | 5 | 10 |\n|---|---|---|---|\n| $P$ | 0{,}6 | 0{,}3 | 0{,}1 |"}
+      - values: {"tabla":"| $x$ | 0 | 5 | 10 |\n|---|---|---|---|\n| $P$ | $0{,}6$ | $0{,}3$ | $0{,}1$ |"}
         answers: ["sha256:9594beceeabcb9f4096b130b0cb5888ad3b00e06ebeb20855158e592d725ce08","sha256:5ead1236e7d53c351e03c46a69f8949ee2b3ae951e8ab7cff6082a259844b56b","sha256:e167100f42903de81925b1982b2d236004278c66f2ae54fcecb0a4eef002ba38"]
-      - values: {"tabla":"| $x$ | -1 | 0 | 2 |\n|---|---|---|---|\n| $P$ | 0{,}2 | 0{,}5 | 0{,}3 |"}
+      - values: {"tabla":"| $x$ | -1 | 0 | 2 |\n|---|---|---|---|\n| $P$ | $0{,}2$ | $0{,}5$ | $0{,}3$ |"}
         answers: ["sha256:7b441fc93804920b93907187f2d091eea34585850454029a0d87c73013bc501d","sha256:e0c206a3fc177e20deaf3ab055076063bc756704b9c0f051434d149f0c0c6fdb","sha256:b598298ff727d24ebc0f3728d8295941300fd0efee695a7cff3fa0fbacf28d91"]
-      - values: {"tabla":"| $x$ | 2 | 4 | 6 | 8 |\n|---|---|---|---|---|\n| $P$ | 0{,}25 | 0{,}25 | 0{,}25 | 0{,}25 |"}
+      - values: {"tabla":"| $x$ | 2 | 4 | 6 | 8 |\n|---|---|---|---|---|\n| $P$ | $0{,}25$ | $0{,}25$ | $0{,}25$ | $0{,}25$ |"}
         answers: ["sha256:a3c0359b64aa6b36c5b0318f24b87df008aa049dbae0a918d5aab7f6edab5c5d","sha256:1404988fd4d910cb41ab24593a33626f220d962cda7cbd6977e715a4d98f5da4","sha256:a2781767f2d08b4b77a83a89b82a44cf296b2557103cc1ad77cfed44454ea115"]
-      - values: {"tabla":"| $x$ | 0 | 1 | 4 |\n|---|---|---|---|\n| $P$ | 0{,}3 | 0{,}5 | 0{,}2 |"}
+      - values: {"tabla":"| $x$ | 0 | 1 | 4 |\n|---|---|---|---|\n| $P$ | $0{,}3$ | $0{,}5$ | $0{,}2$ |"}
         answers: ["sha256:dde2a19af1314760419f195b6a5635d1f4b16ce04936f5b6ab82e501ff8fa237","sha256:1c2e79c2c4953721fc123f4fbae21ef61a57fc3b9c62f465287b7e95f00a2c62","sha256:8db9229df64256dca4aae72adabca7ae54346559d1de649e20dbb6fae6e8e6c1"]
   - id: es-binomial
     tier: 1
