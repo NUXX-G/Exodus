@@ -480,5 +480,5 @@ sustitución, $x = 20 - y$, $2(20 - y) + 4y = 56$, $2y = 16$, $y = 8$, $x = 12$.
 
 ## Siguiente
 
-el tema `mat-ecuaciones-segundo-grado` (ecuaciones con la incógnita al cuadrado) y, más adelante, el tema `mat-sistemas-lineales` (sistemas de
+[[mat-ecuaciones-segundo-grado]] (ecuaciones con la incógnita al cuadrado) y, más adelante, el tema `mat-sistemas-lineales` (sistemas de
 cualquier tamaño y el método de Gauss).
