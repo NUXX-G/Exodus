@@ -3,7 +3,7 @@ id: ia-bayesiana
 title: "Aprendizaje bayesiano: teorema de Bayes y priores conjugados, distribuciones a posteriori y predictivas, comparación de modelos, regresión bayesiana y procesos gaussianos, MCMC (Metropolis-Hastings, Gibbs, HMC), inferencia variacional y calibración"
 area: ia-cuantica
 trunk_level: 14
-prerequisites: [ia-aprendizaje-estadistico, mat-estadistica-matematica, mat-procesos-estocasticos]
+prerequisites: [ia-aprendizaje-estadistico, mat-estadistica-matematica, mat-procesos-estocasticos, mat-estadistica-bidimensional]
 academic_sources:
   - "Gelman, A. et al. Bayesian Data Analysis, 3ª ed. CRC Press, 2013 (stat.columbia.edu/~gelman/book); Bishop, C. M. Pattern Recognition and Machine Learning. Springer, 2006 (caps. 2, 3, 10 y 11)."
   - "Rasmussen, C. E.; Williams, C. K. I. Gaussian Processes for Machine Learning. MIT Press, 2006 (gaussianprocess.org/gpml); Murphy, K. P. Probabilistic Machine Learning: An Introduction. MIT Press, 2022."

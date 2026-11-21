@@ -3,7 +3,7 @@ id: mat-estadistica-inferencia
 title: "Estadística e inferencia: estimación, intervalos de confianza, contrastes, regresión e inferencia bayesiana"
 area: matematicas
 trunk_level: 12
-prerequisites: [mat-probabilidad]
+prerequisites: [mat-probabilidad, mat-estadistica-bidimensional]
 academic_sources:
   - "Wasserman, L. All of Statistics: A Concise Course in Statistical Inference. Springer, 2004."
   - "Casella, G.; Berger, R. L. Statistical Inference, 2ª ed. Duxbury (Wadsworth), 2002."

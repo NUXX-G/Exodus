@@ -3,7 +3,7 @@ id: mat-analisis-numerico
 title: "Análisis numérico: coma flotante, ecuaciones, interpolación, integración y sistemas lineales"
 area: matematicas
 trunk_level: 11
-prerequisites: [mat-ecuaciones-diferenciales, prog-python-fundamentos]
+prerequisites: [mat-ecuaciones-diferenciales, prog-python-fundamentos, mat-estadistica-bidimensional]
 academic_sources:
   - "Burden, R. L.; Faires, J. D.; Burden, A. M. Numerical Analysis, 10ª ed. Cengage Learning, 2016."
   - "Trefethen, L. N.; Bau, D. Numerical Linear Algebra. SIAM, 1997."

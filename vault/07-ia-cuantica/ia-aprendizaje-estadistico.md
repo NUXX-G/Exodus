@@ -3,7 +3,7 @@ id: ia-aprendizaje-estadistico
 title: "Aprendizaje estadístico: riesgo, mínimos cuadrados, sesgo y varianza, validación, clasificación y no supervisado"
 area: ia-cuantica
 trunk_level: 13
-prerequisites: [mat-algebra-lineal, mat-estadistica-inferencia]
+prerequisites: [mat-algebra-lineal, mat-estadistica-inferencia, mat-estadistica-bidimensional]
 academic_sources:
   - "Hastie, T.; Tibshirani, R.; Friedman, J. The Elements of Statistical Learning, 2ª ed. Springer, 2009."
   - "Bishop, C. M. Pattern Recognition and Machine Learning. Springer, 2006."

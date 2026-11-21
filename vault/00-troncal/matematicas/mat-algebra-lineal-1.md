@@ -3,7 +3,7 @@ id: mat-algebra-lineal-1
 title: "Álgebra lineal I: sistemas, matrices, determinantes y autovalores"
 area: matematicas
 trunk_level: 8
-prerequisites: [mat-geometria-analitica, mat-algebra-secundaria]
+prerequisites: [mat-geometria-analitica, mat-algebra-secundaria, mat-estadistica-bidimensional]
 academic_sources:
   - "Strang, G. Introduction to Linear Algebra, 5ª ed. Wellesley-Cambridge Press, 2016."
   - "Axler, S. Linear Algebra Done Right, 4ª ed. Springer, 2024."
