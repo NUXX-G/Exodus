@@ -139,8 +139,8 @@ exercises:
     variants:
       - values: {"a":8,"m":2,"n":3,"b":27,"k":3}
         answers: ["sha256:88a09c48f589386b2d18d8be987cffe6a938c9e22314f3542082f7f6243efdb5"]
-      - values: {"a":16,"m":3,"n":4,"b":8,"k":3}
-        answers: ["sha256:4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"]
+      - values: {"a":16,"m":3,"n":4,"b":27,"k":3}
+        answers: ["sha256:5bdb15b49f6ce00d8f14a9b691a06657c8983dde480ba2a5066d89ff7a5e53a3"]
       - values: {"a":25,"m":3,"n":2,"b":8,"k":3}
         answers: ["sha256:0d784c787eccbcf0f25468cac07e06fd189bdf88b082d3ded62f2af9e00f1735"]
       - values: {"a":27,"m":2,"n":3,"b":4,"k":2}
