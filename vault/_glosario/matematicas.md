@@ -98,7 +98,7 @@ terminos:
     sinonimos: [matrices]
     llano: "Una tabla rectangular de números en filas y columnas. Sirve para guardar datos y, sobre todo, para describir transformaciones como girar o estirar."
     formal: "Una matriz $m\\times n$ sobre un cuerpo $K$ es una familia $(a_{ij})$ con $1 \\le i \\le m$, $1 \\le j \\le n$; representa una aplicación lineal $K^n \\to K^m$."
-    nodo: mat-algebra-lineal-1
+    nodo: mat-matrices
   - termino: determinante
     llano: "Un número que se calcula a partir de una matriz cuadrada y dice cuánto «estira» el área o el volumen la transformación; si vale 0, la aplasta y no se puede deshacer."
     formal: "Función $\\det\\colon M_n(K) \\to K$ multilineal y alternada en las columnas con $\\det I = 1$. $A$ es invertible si y solo si $\\det A \\ne 0$."
