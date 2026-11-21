@@ -410,7 +410,7 @@ La **función exponencial** de base $a$ ($a > 0$, $a \neq 1$) es $f(x) = a^x$. S
 **Traslaciones**: $y = c\,a^{x - h} + k$ desplaza, estira o refleja la gráfica; su asíntota horizontal pasa a ser $y = k$.
 
 **El número $e$**: la base «natural», $e = \lim_{n \to \infty}\left(1 + \frac1n\right)^n = 2{,}71828\ldots$ (el resultado de un interés del $100\,\%$ capitalizado
-continuamente). La función $e^x$ es la que mejor se comporta en el cálculo (el tema `mat-derivadas`), y todo crecimiento continuo se escribe
+continuamente). La función $e^x$ es la que mejor se comporta en el cálculo ([[mat-derivadas]]), y todo crecimiento continuo se escribe
 $P(t) = P_0\,e^{kt}$ (con $k > 0$ crece; con $k < 0$ decrece). Su inversa es el **logaritmo neperiano** $\ln x = \log_e x$.
 
 ## 3. La función logarítmica

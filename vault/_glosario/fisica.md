@@ -10,7 +10,7 @@ terminos:
     llano: "Lo rápido que cambia la velocidad: un coche que pasa de 0 a 100 km/h en pocos segundos tiene mucha aceleración. Frenar también es acelerar (en sentido contrario)."
     formal: "$\\vec a = d\\vec v/dt$, derivada de la velocidad respecto del tiempo. En el SI se mide en m/s²."
     nodo: fis-medida-movimiento
-    tambien: [mat-calculo-1]
+    tambien: [mat-calculo-1, mat-derivadas]
   - termino: magnitud vectorial
     sinonimos: [magnitudes vectoriales]
     llano: "Una cantidad que no se describe solo con un número: también importa hacia dónde apunta. La velocidad o la fuerza lo son; la masa o la temperatura, no."

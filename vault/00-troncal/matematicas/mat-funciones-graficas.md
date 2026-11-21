@@ -449,7 +449,7 @@ punto. Una circunferencia no lo es.
 
 **Tasa de variación media** en $[a, b]$: $\dfrac{f(b) - f(a)}{b - a}$, lo que cambia $y$ por cada unidad de $x$, en promedio. Para $f(x) = x^2$ en $[1, 3]$:
 $\frac{9 - 1}{2} = 4$. Si $x$ es el tiempo y $f$ la posición, es lo que se avanza por unidad de tiempo en promedio. Es la idea que, llevada al
-límite, da la tasa de cambio instantánea (el tema `mat-derivadas`).
+límite, da la tasa de cambio instantánea ([[mat-derivadas]]).
 
 ## 6. Errores típicos
 

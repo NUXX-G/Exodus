@@ -376,7 +376,7 @@ Al terminar sabrás:
 
 ## 1. Para qué sirve
 
-- **Tasas de cambio instantáneas**: la velocidad instantánea y la pendiente de una curva son límites (el tema `mat-derivadas`).
+- **Tasas de cambio instantáneas**: la velocidad instantánea y la pendiente de una curva son límites ([[mat-derivadas]]).
 - **Áreas y acumulaciones**: el área bajo una curva es el límite de sumas de rectángulos (el tema `mat-integrales-bachillerato`).
 - **Comportamiento a largo plazo**: hacia dónde tiende una población, una temperatura o una inversión (asíntotas).
 - **Métodos numéricos**: el teorema de Bolzano garantiza que la bisección encuentra raíces; es la base de cómo los programas resuelven ecuaciones.
@@ -471,4 +471,4 @@ mitad. (Otro resultado importante es el de **Weierstrass**: una función continu
 
 ## Siguiente
 
-el tema `mat-derivadas` (la tasa de cambio instantánea, que es un límite).
+[[mat-derivadas]] (la tasa de cambio instantánea, que es un límite).

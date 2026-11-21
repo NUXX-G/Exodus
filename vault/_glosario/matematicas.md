@@ -88,7 +88,7 @@ terminos:
     sinonimos: [derivadas]
     llano: "Lo rápido que cambia algo en un instante: la velocidad es la derivada de la posición. Gráficamente, la inclinación de la curva en un punto."
     formal: "$f'(a) = \\displaystyle\\lim_{h\\to0}\\frac{f(a+h) - f(a)}{h}$, si el límite existe. Es la pendiente de la recta tangente a la gráfica en $(a, f(a))$."
-    nodo: mat-calculo-1
+    nodo: mat-derivadas
   - termino: integral
     sinonimos: [integrales]
     llano: "La forma de sumar infinitos trocitos muy pequeños: por ejemplo, el área bajo una curva, o la distancia recorrida a partir de la velocidad."
