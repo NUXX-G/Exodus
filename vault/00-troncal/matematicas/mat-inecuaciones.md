@@ -369,7 +369,7 @@ el valor absoluto).
 - **Decidir**: a partir de cuántas unidades sale rentable una compra, qué tarifa conviene, qué nota mínima hace falta.
 - **Ciencia e ingeniería**: márgenes de seguridad y tolerancias (una pieza vale si $|x - 50| \le 0{,}1$ mm), rangos de funcionamiento.
 - **Matemáticas posteriores**: el dominio de una expresión (dónde existe una raíz o un logaritmo), el crecimiento de una gráfica, la
-  definición de límite (el tema `mat-limites-continuidad`).
+  definición de límite ([[mat-limites-continuidad]]).
 - **Optimización**: las regiones del plano definidas por varias inecuaciones son la base de la programación lineal.
 
 ## 2. Intervalos
@@ -499,4 +499,4 @@ cuando $10 + 0{,}05\,x < 0{,}10\,x$, es decir, $10 < 0{,}05\,x$, $x > 200$: a pa
 
 ## Siguiente
 
-[[mat-exponenciales-logaritmos]] (último tema del bloque de álgebra) y, más adelante, el tema `mat-limites-continuidad`.
+[[mat-exponenciales-logaritmos]] (último tema del bloque de álgebra) y, más adelante, [[mat-limites-continuidad]].

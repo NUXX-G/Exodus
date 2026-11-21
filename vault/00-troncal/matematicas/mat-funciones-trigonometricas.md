@@ -426,4 +426,4 @@ Ese ángulo es el **valor principal** (el que da la calculadora); las demás sol
 
 ## Siguiente
 
-[[mat-funciones-elementales]] repasa el bloque; después empieza el cálculo con el tema `mat-limites-continuidad`.
+[[mat-funciones-elementales]] repasa el bloque; después empieza el cálculo con [[mat-limites-continuidad]].

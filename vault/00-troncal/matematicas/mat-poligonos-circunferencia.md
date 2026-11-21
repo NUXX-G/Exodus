@@ -527,7 +527,7 @@ perpendicular al radio en ese punto) o **secante** (la corta en dos puntos: dist
 *Ejemplos:* círculo de radio $5$: longitud $10\pi \approx 31{,}42$, área $25\pi \approx 78{,}54$. Sector de $60^\circ$ de ese círculo: $\frac{25\pi}{6} \approx 13{,}09$.
 
 **Por qué el área es $\pi r^2$**: si se corta el círculo en muchos sectores finos y se colocan alternados, forman casi un rectángulo de
-altura $r$ y base media circunferencia, $\pi r$: área $\pi r \cdot r$. (La justificación precisa usa límites: el tema `mat-limites-continuidad`.)
+altura $r$ y base media circunferencia, $\pi r$: área $\pi r \cdot r$. (La justificación precisa usa límites: [[mat-limites-continuidad]].)
 
 ## 8. Errores típicos
 
