@@ -17,6 +17,19 @@ la **visión de conjunto y repaso del bloque**, y los nodos de tema nuevos son s
    citarlo) y, en física, el capítulo de OpenStax *Física universitaria*; un segundo texto de contraste cuando haga falta.
 4. **Orden de estudio**: el del objetivo `acceso-universidad`, que se rehace con los nodos de tema en orden.
 
+## a2) PDF de Marea Verde (LOMLOE) por curso
+
+Índices: https://www.apuntesmareaverde.org.es/grupos/mat/ESOLL.htm (ESO). Para leerlos: `curl -s -L -o x.pdf <url>`,
+`pdftotext -layout x.pdf x.txt` e `iconv -f latin1 -t utf-8` (el texto sale en Latin-1).
+
+- **1.º ESO** (rev. 11/08/2024; página https://www.apuntesmareaverde.org.es/grupos/mat/LOMLOE/1ESOLL.htm): base
+  `https://www.apuntesmareaverde.org.es/grupos/mat/LOMLOE/1ESO/` + `1%2001%20Resolucion%20problemas.pdf`,
+  `1%2002%20DIVISIBILIDAD.pdf`, `1%2003%20Potencias.pdf`, `1%2004%20Numeros%20enteros.pdf`, `1%2005%20Fracciones.pdf`,
+  `1%2006%20Decimales.pdf`, `1%2007%20Unidades%20medida.pdf`, `1%2008%20FigurasPlanas.pdf`, `1%2009%20Longitudes.pdf`,
+  `1%2010%20Proporciones.pdf`, `1%2011%20algebra.pdf`, `1%2012%20graficas.pdf`, `1%2013%20Estadistica.pdf`.
+- **4.º ESO B y Bachillerato**: las URL ya citadas en los nodos de la fase 9 (`LOMLOE/4B/…`, `LOMLOE/Bachillerato/…`).
+- **2.º y 3.º ESO**: buscar en `ESOLL.htm` cuando se redacten sus temas.
+
 ## b) Mapa y plan: matemáticas
 
 Columnas: id nuevo · tema · fuente (Marea Verde, curso y capítulo) · prerrequisitos (nodos de tema) · bloque al que alimenta
@@ -119,3 +132,4 @@ glosario, `vault:check` y commit. La revisión independiente (d) se hace por blo
 
 | Nodo | Cambios | Fecha |
 | --- | --- | --- |
+| `mat-resolucion-problemas` (1) | Escrito desde Marea Verde 1.º ESO cap. 1 (secciones 1-4, PDF leído), Pólya y Engel: problema frente a ejercicio; las cuatro fases con sus preguntas; nueve estrategias, cada una con bloque práctico y ejemplo resuelto (estimar y Fermi, 1089 con su demostración, Hanoi, barras, ensayo ordenado con tabla, hacia atrás, lista sistemática, problema parecido, invariante del tablero mutilado con demostración); comprobar de cinco formas; bloqueos y «¡eureka!»; juego del 20; 18 ejercicios (15 con variantes contrastadas por fuerza bruta: simulación de Hanoi, BFS del río, programación dinámica de monedas, fechas), 1 desarrollo con rúbrica (las cuatro fases), 7 de repaso; prerrequisito de `mat-numeros-naturales` (que pasa a ser repaso de conjunto del bloque) | 2026-11-21 |
