@@ -377,7 +377,7 @@ Al terminar sabrás:
 ## 1. Para qué sirve
 
 - **Tasas de cambio instantáneas**: la velocidad instantánea y la pendiente de una curva son límites ([[mat-derivadas]]).
-- **Áreas y acumulaciones**: el área bajo una curva es el límite de sumas de rectángulos (el tema `mat-integrales-bachillerato`).
+- **Áreas y acumulaciones**: el área bajo una curva es el límite de sumas de rectángulos ([[mat-integrales-bachillerato]]).
 - **Comportamiento a largo plazo**: hacia dónde tiende una población, una temperatura o una inversión (asíntotas).
 - **Métodos numéricos**: el teorema de Bolzano garantiza que la bisección encuentra raíces; es la base de cómo los programas resuelven ecuaciones.
 

@@ -93,7 +93,7 @@ terminos:
     sinonimos: [integrales]
     llano: "La forma de sumar infinitos trocitos muy pequeños: por ejemplo, el área bajo una curva, o la distancia recorrida a partir de la velocidad."
     formal: "La integral de Riemann $\\int_a^b f(x)\\,dx$ es el límite de las sumas $\\sum f(\\xi_i)\\,\\Delta x_i$ cuando la partición se hace fina; si $F' = f$ (continua), vale $F(b) - F(a)$."
-    nodo: mat-calculo-2
+    nodo: mat-integrales-bachillerato
   - termino: matriz
     sinonimos: [matrices]
     llano: "Una tabla rectangular de números en filas y columnas. Sirve para guardar datos y, sobre todo, para describir transformaciones como girar o estirar."

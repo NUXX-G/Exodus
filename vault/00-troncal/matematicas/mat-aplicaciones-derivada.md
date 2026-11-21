@@ -476,4 +476,4 @@ calculadora y se comprueba con un programa (GeoGebra, Desmos).
 
 ## Siguiente
 
-[[mat-calculo-1]] repasa el bloque; después viene el cálculo de áreas y acumulaciones con el tema `mat-integrales-bachillerato`.
+[[mat-calculo-1]] repasa el bloque; después viene el cálculo de áreas y acumulaciones con [[mat-integrales-bachillerato]].

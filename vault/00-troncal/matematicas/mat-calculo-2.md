@@ -3,7 +3,7 @@ id: mat-calculo-2
 title: "Cálculo II: integrales, series y polinomios de Taylor"
 area: matematicas
 trunk_level: 9
-prerequisites: [mat-calculo-1, mat-numeros-complejos]
+prerequisites: [mat-calculo-1, mat-numeros-complejos, mat-integrales-bachillerato]
 academic_sources:
   - "Fernández Novoa, J. Análisis Matemático I, 5.ª ed. UNED: texto base de «Funciones de una variable II» (61021074; guía 2026-27: integral de Riemann, teoremas fundamentales, exponencial, logaritmo y trigonométricas, primitivas, integrales impropias, integrales eulerianas, sucesiones y series de funciones, series de potencias)."
   - "Spivak, M. Calculus, 4ª ed. Publish or Perish, 2008, caps. 13-14 (integral y teorema fundamental), 18-19 (logaritmo, exponencial e integración en términos elementales), 20 (aproximación por polinomios) y 22-24 (sucesiones, series, series de potencias). Índice: https://mathpop.com/pages/calculus-spivak-4th-edition-table-of-contents"
