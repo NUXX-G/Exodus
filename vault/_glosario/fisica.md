@@ -38,11 +38,13 @@ terminos:
     llano: "La tendencia de las cosas a seguir como están: si van, seguir yendo; si están quietas, seguir quietas. Por eso te vas hacia delante cuando el autobús frena."
     formal: "Primera ley de Newton: en un sistema de referencia inercial, un cuerpo sin fuerza neta mantiene su velocidad. La masa inercial mide la resistencia a cambiarla."
     nodo: fis-mecanica-newtoniana
+    tambien: [fis-fuerzas-energia]
   - termino: momento lineal
     sinonimos: [cantidad de movimiento]
     llano: "La «cantidad de movimiento» de algo: su masa por su velocidad. En un choque, la suma total se conserva."
     formal: "$\\vec p = m\\vec v$; $\\vec F_{\\text{neta}} = d\\vec p/dt$. En un sistema aislado, $\\sum \\vec p$ se conserva."
     nodo: fis-mecanica-newtoniana
+    tambien: [fis-fuerzas-energia]
   - termino: frecuencia
     excepto: [con frecuencia, frecuencia absoluta, frecuencia relativa, frecuencia acumulada, frecuencias absolutas, frecuencias relativas, frecuencia de aparición, frecuencias de aparición, frecuencia de palabras, frecuencia de las letras, frecuencia de uso, tabla de frecuencias, tablas de frecuencias, con frecuencias, las frecuencias, frecuencia conjunta, frecuencias conjuntas, frecuencias marginales, distribución de frecuencias, frecuencias acumuladas]
     llano: "Cuántas veces se repite algo por segundo: una cuerda que vibra 440 veces por segundo da la nota la. Se mide en hercios."
