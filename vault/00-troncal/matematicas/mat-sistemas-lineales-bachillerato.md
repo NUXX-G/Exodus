@@ -380,4 +380,4 @@ incógnitas libres al segundo miembro.)
 
 ## Siguiente
 
-[[mat-algebra-lineal-1]] (espacios vectoriales y aplicaciones lineales) y el tema `mat-vectores-espacio` (geometría en tres dimensiones).
+[[mat-algebra-lineal-1]] (espacios vectoriales y aplicaciones lineales) y [[mat-vectores-espacio]] (geometría en tres dimensiones).
