@@ -241,10 +241,10 @@ Ciclo por cada área (una fase por área), con estas tareas:
 
 ## FASE 9B — Troncal por temas (de 1.º de ESO a 2.º de Bachillerato, un nodo por tema)
 
-- [ ] a) Mapa por temas: cada capítulo de Marea Verde (matemáticas, 1.º ESO a Matemáticas II) y cada bloque de física y de las
+- [x] a) Mapa por temas (2026-11-21: 68 nodos de tema nuevos, `docs/contenido/troncal-temas.md`): cada capítulo de Marea Verde (matemáticas, 1.º ESO a Matemáticas II) y cada bloque de física y de las
       destrezas → un nodo de tema (nuevo) o el nodo existente si ya es de un solo tema (`docs/contenido/troncal-temas.md`)
-- [ ] b) Plan: ids, prerrequisitos, orden de estudio y objetivo `acceso-universidad` actualizado
-- [ ] c) Redacción tema a tema, extensa (escalera, ejemplos, demostraciones, ejercicios abundantes con variantes, repaso)
+- [x] b) Plan: ids, prerrequisitos, orden de estudio y objetivo `acceso-universidad` actualizado (el objetivo se rehace al cerrar cada bloque)
+- [ ] c) Redacción tema a tema, extensa (escalera, ejemplos, demostraciones, ejercicios abundantes con variantes, repaso); hechos: 0/68
 - [ ] d) Revisión independiente (subagente), por bloques
 - [ ] e) Reportes «creo que esto está mal» del área
 - [ ] f) Cierre (checks, cobertura, `STATUS.md`, commit `v2: fase 9B completada`)
