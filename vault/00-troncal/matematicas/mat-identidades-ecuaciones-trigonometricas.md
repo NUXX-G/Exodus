@@ -419,4 +419,4 @@ Para valores no notables se usa la calculadora ($\arcsin$, $\arccos$, $\arctan$)
 
 ## Siguiente
 
-[[mat-trigonometria]] repasa el bloque; después, el tema `mat-vectores-rectas-plano` y el tema `mat-funciones-trigonometricas`.
+[[mat-trigonometria]] repasa el bloque; después, [[mat-vectores-rectas-plano]] y el tema `mat-funciones-trigonometricas`.

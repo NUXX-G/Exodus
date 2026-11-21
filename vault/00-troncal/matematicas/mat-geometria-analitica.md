@@ -3,7 +3,7 @@ id: mat-geometria-analitica
 title: "Geometría analítica: rectas, vectores, circunferencias y cónicas"
 area: matematicas
 trunk_level: 7
-prerequisites: [mat-geometria-basica, mat-algebra-secundaria, mat-trigonometria]
+prerequisites: [mat-geometria-basica, mat-algebra-secundaria, mat-trigonometria, mat-vectores-rectas-plano]
 academic_sources:
   - "Gelfand, I. M.; Glagoleva, E. G.; Kirillov, A. A. The Method of Coordinates. Birkhäuser, 1990."
   - "Abramson, J. et al. Precálculo, 2.ª ed. (en español). OpenStax, 2022, sección 8.8 (vectores) y cap. 10 (10.1 la elipse, 10.2 la hipérbola, 10.3 la parábola). https://openstax.org/books/prec%C3%A1lculo-2ed/pages/10-introduccion"
