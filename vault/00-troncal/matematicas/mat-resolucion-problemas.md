@@ -578,7 +578,7 @@ $495 + 594 = 1089$. Con $821$: $821 - 128 = 693$, $693 + 396 = 1089$. ¡Siempre 
 > Sea el número $100a + 10b + c$ con $a > c$. Al revés es $100c + 10b + a$, y la diferencia es $99(a - c)$. Como $a - c$ va de
 > $1$ a $9$, la diferencia es uno de $99, 198, 297, \dots, 891$: números de la forma $100x + 10\cdot9 + y$ con $x + y = 9$
 > (escribiendo $099$ para el primero). Al darle la vuelta y sumar, $(100x + 90 + y) + (100y + 90 + x) = 101(x + y) + 180 = 101\cdot9 + 180 = 1089$.
-> $\blacksquare$ (Este razonamiento usa letras en lugar de números: es álgebra, que verás en el tema `mat-expresiones-algebraicas`.)
+> $\blacksquare$ (Este razonamiento usa letras en lugar de números: es álgebra, que verás en [[mat-expresiones-algebraicas]].)
 
 ### 4.3 Hazlo más fácil para empezar
 

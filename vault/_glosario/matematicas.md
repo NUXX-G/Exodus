@@ -53,7 +53,7 @@ terminos:
     sinonimos: [polinomios]
     llano: "Una expresión hecha sumando potencias de una letra multiplicadas por números, como 3x² − 5x + 2."
     formal: "Expresión $a_n x^n + \\dots + a_1 x + a_0$ con coeficientes $a_i$ en un cuerpo (o anillo) y $n \\in \\mathbb N$; si $a_n \\ne 0$, su grado es $n$."
-    nodo: mat-algebra-secundaria
+    nodo: mat-expresiones-algebraicas
   - termino: logaritmo
     sinonimos: [logaritmos]
     llano: "La pregunta «¿a qué número hay que elevar la base para obtener este resultado?». Como 10 × 10 × 10 = 1000, el logaritmo en base 10 de 1000 es 3."

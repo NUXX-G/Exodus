@@ -480,4 +480,4 @@ retiradas de efectivo pueden encarecer mucho una operación: conviene leer la le
 ## Siguiente
 
 [[mat-numeros-naturales]], [[mat-enteros-fracciones]] y [[mat-proporcionalidad-porcentajes]] repasan el bloque de aritmética; después
-empieza el álgebra con el tema `mat-expresiones-algebraicas`.
+empieza el álgebra con [[mat-expresiones-algebraicas]].

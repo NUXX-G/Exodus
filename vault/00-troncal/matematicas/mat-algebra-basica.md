@@ -3,7 +3,7 @@ id: mat-algebra-basica
 title: "Álgebra básica: letras, ecuaciones y sistemas"
 area: matematicas
 trunk_level: 2
-prerequisites: [mat-enteros-fracciones]
+prerequisites: [mat-enteros-fracciones, mat-expresiones-algebraicas]
 academic_sources:
   - "Gelfand, I. M.; Shen, A. Algebra. Birkhäuser, 1993."
   - "Euclides. Elementos, libro II, proposición 4 (el cuadrado de una suma, en forma geométrica). Edición de Heath; texto en línea: claymath.org/library/historical/euclid/files/elem.2.4.html"
