@@ -473,4 +473,4 @@ salen de igualar distancias; elevando al cuadrado o quitando valores absolutos s
 
 ## Siguiente
 
-el tema `mat-conicas` (circunferencia, elipse, hipérbola y parábola como lugares geométricos).
+[[mat-conicas]] (circunferencia, elipse, hipérbola y parábola como lugares geométricos).

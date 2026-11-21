@@ -23,4 +23,4 @@ Nodos que mencionan un nodo de tema aún no escrito. Al crear el nodo, sustituir
 | vault/00-troncal/matematicas/mat-razones-trigonometricas.md | `mat-funciones-trigonometricas` |
 | vault/00-troncal/matematicas/mat-identidades-ecuaciones-trigonometricas.md | `fis-ondas-sonido` |
 | vault/00-troncal/matematicas/mat-identidades-ecuaciones-trigonometricas.md | `mat-funciones-trigonometricas` |
-| vault/00-troncal/matematicas/mat-vectores-rectas-plano.md | `mat-conicas` |
+| vault/00-troncal/matematicas/mat-conicas.md | `fis-gravitacion` |
