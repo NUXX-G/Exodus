@@ -4,7 +4,6 @@ Nodos que mencionan un nodo de tema aún no escrito. Al crear el nodo, sustituir
 
 | Archivo | Nodo pendiente |
 | --- | --- |
-| vault/00-troncal/matematicas/mat-resolucion-problemas.md | `mat-rectas-angulos` |
 | vault/00-troncal/matematicas/mat-potencias-raices.md | `fis-magnitudes-medida` |
 | vault/00-troncal/matematicas/mat-numeros-enteros.md | `fis-cinematica-rectilinea` |
 | vault/00-troncal/matematicas/mat-fracciones.md | `mat-probabilidad-elemental` |
@@ -22,4 +21,4 @@ Nodos que mencionan un nodo de tema aún no escrito. Al crear el nodo, sustituir
 | vault/00-troncal/matematicas/mat-inecuaciones.md | `mat-limites-continuidad` |
 | vault/00-troncal/matematicas/mat-exponenciales-logaritmos.md | `fis-ondas-sonido` |
 | vault/00-troncal/matematicas/mat-exponenciales-logaritmos.md | `prog-algoritmos-complejidad` |
-| vault/00-troncal/matematicas/mat-exponenciales-logaritmos.md | `mat-rectas-angulos` |
+| vault/00-troncal/matematicas/mat-rectas-angulos.md | `mat-triangulos-pitagoras` |

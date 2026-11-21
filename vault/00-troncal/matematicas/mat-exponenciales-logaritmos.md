@@ -488,4 +488,4 @@ se descarta. Solución: $x = 5$ (comprobación: $\log 5 + \log 2 = \log 10 = 1$ 
 ## Siguiente
 
 [[mat-numeros-reales]] y [[mat-algebra-secundaria]] repasan el bloque de álgebra; después empieza la geometría con
-el tema `mat-rectas-angulos`.
+[[mat-rectas-angulos]].
