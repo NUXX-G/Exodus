@@ -435,7 +435,7 @@ y el que se generaliza a sistemas grandes (método de Gauss).
 > $$
 > Si $D = 0$ (coeficientes proporcionales), las dos igualdades quedan $0 = cb' - c'b$ y $0 = ac' - a'c$: o se cumplen siempre (indeterminado)
 > o alguna es falsa (incompatible). Este número $D$ tiene nombre propio y se estudia a fondo en
-> el tema `mat-determinantes`. $\blacksquare$
+> [[mat-determinantes]]. $\blacksquare$
 
 ## 6. Problemas con sistemas
 

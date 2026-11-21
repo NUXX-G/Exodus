@@ -420,4 +420,4 @@ La **matriz de adyacencia** de un grafo con $n$ vértices tiene $a_{ij} = 1$ si 
 
 ## Siguiente
 
-el tema `mat-determinantes` (un número que dice si una matriz es invertible) y el tema `mat-sistemas-lineales-bachillerato`.
+[[mat-determinantes]] (un número que dice si una matriz es invertible) y el tema `mat-sistemas-lineales-bachillerato`.

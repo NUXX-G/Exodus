@@ -3,7 +3,7 @@ id: mat-algebra-lineal-1
 title: "Álgebra lineal I: sistemas, matrices, determinantes y autovalores"
 area: matematicas
 trunk_level: 8
-prerequisites: [mat-geometria-analitica, mat-algebra-secundaria, mat-estadistica-bidimensional, mat-matrices]
+prerequisites: [mat-geometria-analitica, mat-algebra-secundaria, mat-estadistica-bidimensional, mat-matrices, mat-determinantes]
 academic_sources:
   - "Borobia, A.; Estrada, B. Álgebra Lineal y Geometría Vectorial, 2.ª ed. Sanz y Torres, 2019, caps. 1-4 (matrices, sistemas, espacios vectoriales, aplicaciones lineales): texto base de «Álgebra lineal I» (61021016), 1.º del Grado en Matemáticas y del doble grado de la UNED."
   - "Strang, G. Introduction to Linear Algebra, 5ª ed. Wellesley-Cambridge Press, 2016, caps. 1 (vectores), 2 (sistemas y eliminación), 3 (espacios y subespacios), 4 (ortogonalidad y mínimos cuadrados), 5 (determinantes) y 6 (autovalores). Índice: https://math.mit.edu/~gs/linearalgebra/ila5/indexila5.html"

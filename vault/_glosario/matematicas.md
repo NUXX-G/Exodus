@@ -102,7 +102,7 @@ terminos:
   - termino: determinante
     llano: "Un número que se calcula a partir de una matriz cuadrada y dice cuánto «estira» el área o el volumen la transformación; si vale 0, la aplasta y no se puede deshacer."
     formal: "Función $\\det\\colon M_n(K) \\to K$ multilineal y alternada en las columnas con $\\det I = 1$. $A$ es invertible si y solo si $\\det A \\ne 0$."
-    nodo: mat-algebra-lineal-1
+    nodo: mat-determinantes
   - termino: probabilidad
     llano: "Un número entre 0 y 1 que mide lo esperable que es que algo pase: 0 es imposible, 1 seguro, 0,5 tan probable como no."
     formal: "Medida $P$ sobre los sucesos de un espacio muestral con $P(\\Omega) = 1$, $P(A) \\ge 0$ y aditividad numerable (axiomas de Kolmogórov)."
