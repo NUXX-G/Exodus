@@ -5,8 +5,9 @@ area: matematicas
 trunk_level: 7
 prerequisites: [mat-algebra-secundaria, mat-combinatoria-probabilidad-basica]
 academic_sources:
+  - "Delgado Pineda, M.; Muñoz Bouzo, M. J. Lenguaje matemático, conjuntos y números, 3.ª ed. Sanz y Torres, 2025, temas 1 (lógica), 2 (conjuntos) y 3 (relaciones y aplicaciones): texto base de la asignatura «Lenguaje matemático, conjuntos y números» (61021039) de la UNED."
   - "Velleman, D. J. How to Prove It: A Structured Approach, 3ª ed. Cambridge University Press, 2019."
-  - "Hammack, R. Book of Proof, 3ª ed. Richard Hammack, 2018 (libre, licencia CC BY-NC-ND 4.0: people.vcu.edu/~rhammack/BookOfProof)."
+  - "Hammack, R. Book of Proof, 3ª ed. (3.4, 2025), caps. 1 (conjuntos), 2 (lógica), 4-7 (demostración directa, contrarrecíproco, reducción al absurdo, enunciados no condicionales), 9 (refutar), 10 (inducción), 11 (relaciones), 12 (funciones) y 14 (cardinalidad). Gratuito en https://richardhammack.github.io/BookOfProof/"
   - "Lehman, E.; Leighton, F. T.; Meyer, A. R. Mathematics for Computer Science. MIT OpenCourseWare (2018, gratuito)."
   - "Graham, R. L.; Knuth, D. E.; Patashnik, O. Concrete Mathematics, 2ª ed. Addison-Wesley, 1994."
 ctf_flag: "sha256:5074242c1f1877b75304a40239bca5283b6a205f92bbdc70dced9f833b2d6683"
@@ -18,8 +19,20 @@ exercises:
   - id: dos-implicaciones
     tier: 1
     prompt: |
-      ¿En cuántas de las $16$ asignaciones de valores de verdad a $p, q, r, s$ es verdadera $(p \Rightarrow q) \land (r \Rightarrow s)$? Respuesta: un entero.
-    answers: ["sha256:19581e27de7ced00ff1ce50b2047e7a567c76b1cbaebabe5ef03f7c3017bb5b7"]
+      ¿En cuántas de las ${{N}}$ asignaciones de valores de verdad a ${{vars}}$ es verdadera ${{f}}$? Respuesta: un entero.
+    variants:
+      - values: {"N":16,"vars":"p, q, r, s","f":"(p \\lor q) \\land (r \\lor s)"}
+        answers: ["sha256:19581e27de7ced00ff1ce50b2047e7a567c76b1cbaebabe5ef03f7c3017bb5b7"]
+      - values: {"N":16,"vars":"p, q, r, s","f":"(p \\land q) \\lor (r \\land s)"}
+        answers: ["sha256:7902699be42c8a8e46fbbb4501726517e86b22c56a189f7625a6da49081b2451"]
+      - values: {"N":16,"vars":"p, q, r, s","f":"(p \\Rightarrow q) \\lor (r \\Rightarrow s)"}
+        answers: ["sha256:e629fa6598d732768f7c726b4b621285f9c3b85303900aa912017db7617d8bdb"]
+      - values: {"N":16,"vars":"p, q, r, s","f":"(p \\Leftrightarrow q) \\land (r \\Leftrightarrow s)"}
+        answers: ["sha256:4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"]
+      - values: {"N":8,"vars":"p, q, r","f":"(p \\Rightarrow q) \\land (q \\Rightarrow r)"}
+        answers: ["sha256:4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"]
+      - values: {"N":64,"vars":"p, q, r, s, t, u","f":"(p \\Rightarrow q) \\land (r \\Rightarrow s) \\land (t \\Rightarrow u)"}
+        answers: ["sha256:670671cd97404156226e507973f2ab8330d3022ca96e0c93bdbdb320c41adcaf"]
   - id: cuales-son-tautologias
     tier: 1
     prompt: |
@@ -32,8 +45,14 @@ exercises:
   - id: funciones-booleanas
     tier: 1
     prompt: |
-      Una función booleana de $3$ variables asigna $V$ o $F$ a cada fila de una tabla de verdad de $3$ variables. ¿Cuántas funciones booleanas distintas de $3$ variables hay? Respuesta: un entero.
-    answers: ["sha256:51e8ea280b44e16934d4d611901f3d3afc41789840acdff81942c2f65009cd52"]
+      Una función booleana de ${{n}}$ variables asigna $V$ o $F$ a cada fila de una tabla de verdad de ${{n}}$ variables. ¿Cuántas funciones booleanas distintas de ${{n}}$ variables hay? Respuesta: un entero.
+    variants:
+      - values: {"n":1}
+        answers: ["sha256:4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"]
+      - values: {"n":4}
+        answers: ["sha256:0f255ec16482c343fd099ba9668863778be40dc166a6856b1d470e0bc97cc6fd"]
+      - values: {"n":5}
+        answers: ["sha256:6c1ca4002509bc24e93aa4211830738fce7e205e41364e11301ac5a0635cb4b5"]
   - id: negar-cuantificadores
     tier: 1
     prompt: |
@@ -46,7 +65,7 @@ exercises:
   - id: cuantificadores-en-un-dominio
     tier: 2
     prompt: |
-      En el dominio $D = \{0, 1, \dots, 9\}$ sea $P(x, y)$: «$x + y$ es múltiplo de $10$». Di si es verdadera (V) o falsa (F) cada afirmación:
+      En el dominio $D = \{0, 1, \dots, {{ult}}\}$ sea $P(x, y)$: «$x + y$ es múltiplo de ${{m}}$». Di si es verdadera (V) o falsa (F) cada afirmación:
 
       1. $\forall x\,\exists y\; P(x, y)$
       2. $\exists y\,\forall x\; P(x, y)$
@@ -55,37 +74,121 @@ exercises:
       5. $\forall x\;\bigl(P(x, x) \Rightarrow x = 0\bigr)$
 
       Respuesta: cinco letras `v` o `f` en orden, separadas por `;` (por ejemplo `v;v;f;f;v`).
-    answers: ["sha256:eb1c25cb1639322239a179e41087d4bd8c62adc87461a1c625e02c6003066c92"]
+    variants:
+      - values: {"m":7,"ult":6}
+        answers: ["sha256:c049e80dad1b968a001b754783ab30667cf527c8ebef51c2923ee29bc14aabb6"]
+      - values: {"m":12,"ult":11}
+        answers: ["sha256:eb1c25cb1639322239a179e41087d4bd8c62adc87461a1c625e02c6003066c92"]
+      - values: {"m":9,"ult":8}
+        answers: ["sha256:c049e80dad1b968a001b754783ab30667cf527c8ebef51c2923ee29bc14aabb6"]
+      - values: {"m":6,"ult":5}
+        answers: ["sha256:eb1c25cb1639322239a179e41087d4bd8c62adc87461a1c625e02c6003066c92"]
+      - values: {"m":11,"ult":10}
+        answers: ["sha256:c049e80dad1b968a001b754783ab30667cf527c8ebef51c2923ee29bc14aabb6"]
+      - values: {"m":8,"ult":7}
+        answers: ["sha256:eb1c25cb1639322239a179e41087d4bd8c62adc87461a1c625e02c6003066c92"]
   - id: contraejemplo-de-euler
     tier: 2
     prompt: |
-      Euler observó que $n^2 + n + 41$ es primo para $n = 0, 1, 2, \dots$ durante mucho tiempo. ¿Cuál es el **menor** $n \ge 0$ para el que $n^2 + n + 41$ **no** es primo? Respuesta: un entero.
-    answers: ["sha256:d59eced1ded07f84c145592f65bdf854358e009c5cd705f5215bf18697fed103"]
+      El polinomio $n^2 + n + {{p}}$ da números primos para los primeros valores de $n = 0, 1, 2, \dots$ ¿Cuál es el **menor** $n \ge 0$ para el que $n^2 + n + {{p}}$ **no** es primo? Respuesta: un entero.
+    variants:
+      - values: {"p":17}
+        answers: ["sha256:b17ef6d19c7a5b1ee83b907c595526dcb1eb06db8227d650d5dda0a9f4ce8cd9"]
+      - values: {"p":11}
+        answers: ["sha256:4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5233ade6af1dd5"]
+      - values: {"p":5}
+        answers: ["sha256:4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"]
+      - values: {"p":3}
+        answers: ["sha256:d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"]
+      - values: {"p":7}
+        answers: ["sha256:6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"]
+      - values: {"p":13}
+        answers: ["sha256:6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"]
   - id: sellos-de-5-y-8
     tier: 2
     prompt: |
-      Con sellos de $5$ y $8$ céntimos (tantos de cada uno como se quiera), ¿cuál es el **mayor** franqueo en céntimos que **no** se puede pagar exactamente? (A partir del siguiente valor todos se pueden pagar: se demuestra por inducción fuerte con cinco casos base.) Respuesta: un entero.
-    answers: ["sha256:670671cd97404156226e507973f2ab8330d3022ca96e0c93bdbdb320c41adcaf"]
+      Con sellos de ${{a}}$ y ${{b}}$ céntimos (tantos de cada uno como se quiera), ¿cuál es el **mayor** franqueo en céntimos que **no** se puede pagar exactamente? (A partir del siguiente valor todos se pueden pagar: se demuestra por inducción fuerte con ${{casos}}$ casos base.) Respuesta: un entero.
+    variants:
+      - values: {"a":3,"b":7,"casos":3}
+        answers: ["sha256:4fc82b26aecb47d2868c4efbe3581732a3e7cbcc6c2efb32062c08170a05eeb8"]
+      - values: {"a":4,"b":9,"casos":4}
+        answers: ["sha256:535fa30d7e25dd8a49f1536779734ec8286108d115da5045d77f3b4185d8f790"]
+      - values: {"a":5,"b":7,"casos":5}
+        answers: ["sha256:535fa30d7e25dd8a49f1536779734ec8286108d115da5045d77f3b4185d8f790"]
+      - values: {"a":6,"b":11,"casos":6}
+        answers: ["sha256:0e17daca5f3e175f448bacace3bc0da47d0655a74c8dd0dc497a3afbdad95f1f"]
+      - values: {"a":7,"b":9,"casos":7}
+        answers: ["sha256:31489056e0916d59fe3add79e63f095af3ffb81604691f21cad442a85c7be617"]
+      - values: {"a":3,"b":10,"casos":3}
+        answers: ["sha256:4523540f1504cd17100c4835e85b7eefd49911580f8efff0599a8f283be6b9e3"]
   - id: base-de-la-induccion
     tier: 2
     prompt: |
-      ¿Cuál es el menor entero $n_0 \ge 0$ tal que $2^n > n^2$ para **todo** $n \ge n_0$? (Prueba los primeros valores y después demuestra el paso inductivo.) Respuesta: un entero.
-    answers: ["sha256:ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d"]
+      ¿Cuál es el menor entero $n_0 \ge 0$ tal que ${{izq}} > {{der}}$ para **todo** $n \ge n_0$? (Prueba los primeros valores y después demuestra el paso inductivo.) Respuesta: un entero.
+    variants:
+      - values: {"izq":"2^n","der":"n^3"}
+        answers: ["sha256:4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5233ade6af1dd5"]
+      - values: {"izq":"3^n","der":"n^3"}
+        answers: ["sha256:4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"]
+      - values: {"izq":"2^n","der":"n^4"}
+        answers: ["sha256:4523540f1504cd17100c4835e85b7eefd49911580f8efff0599a8f283be6b9e3"]
+      - values: {"izq":"2^n","der":"10n"}
+        answers: ["sha256:e7f6c011776e8db7cd330b54174fd76f7d0216b612387a5ffcfb81e6f0919683"]
+      - values: {"izq":"3^n","der":"n^4"}
+        answers: ["sha256:2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"]
+      - values: {"izq":"n!","der":"3^n"}
+        answers: ["sha256:7902699be42c8a8e46fbbb4501726517e86b22c56a189f7625a6da49081b2451"]
   - id: inclusion-exclusion-1000
     tier: 2
     prompt: |
-      ¿Cuántos enteros entre $1$ y $1000$ (ambos incluidos) son divisibles por $2$, por $3$ o por $5$? Respuesta: un entero.
-    answers: ["sha256:c2a181d8178a9f753b013fc4bb892ceeb5dc5bcb763352610844b93341ea52a4"]
+      ¿Cuántos enteros entre $1$ y ${{N}}$ (ambos incluidos) son divisibles por ${{a}}$, por ${{b}}$ o por ${{c}}$? Respuesta: un entero.
+    variants:
+      - values: {"N":600,"a":2,"b":3,"c":7}
+        answers: ["sha256:2d1007980f49215311f7f1012e84f99b801eb5daeca04dedea3ada41cc45353b"]
+      - values: {"N":1000,"a":3,"b":5,"c":7}
+        answers: ["sha256:18beb4813723e788a1d79bcbf80802538ec813aa19ded2e9c21cbf08bed6bee3"]
+      - values: {"N":500,"a":2,"b":5,"c":7}
+        answers: ["sha256:0791963ca2667a23cf3268ad25d7bb6ca0ed287b192869703cdbcf0e87934c33"]
+      - values: {"N":2000,"a":3,"b":4,"c":5}
+        answers: ["sha256:15197cf7214b58e67cae565e573ffd9aa44bcb81f8ee5d7185dfe8da0a16ef43"]
+      - values: {"N":360,"a":4,"b":6,"c":9}
+        answers: ["sha256:dbae772db29058a88f9bd830e957c695347c41b6162a7eb9a9ea13def34be56b"]
+      - values: {"N":1200,"a":5,"b":6,"c":8}
+        answers: ["sha256:ddfe0e8d462af661f81db36589c39882dc0f2330785b5d80cd34f2f520ad618f"]
   - id: relaciones-reflexivas-simetricas
     tier: 2
     prompt: |
-      ¿Cuántas relaciones en un conjunto de $4$ elementos son a la vez **reflexivas** y **simétricas**? Respuesta: un entero.
-    answers: ["sha256:a68b412c4282555f15546cf6e1fc42893b7e07f271557ceb021821098dd66c1b"]
+      ¿Cuántas relaciones en un conjunto de ${{n}}$ elementos son **{{prop}}**? Respuesta: un entero.
+    variants:
+      - values: {"n":3,"prop":"reflexivas y simétricas"}
+        answers: ["sha256:2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"]
+      - values: {"n":4,"prop":"simétricas"}
+        answers: ["sha256:e39eef82f61b21e2e7f762fcc4307358f165757f2e77ec855d6992f7e0191932"]
+      - values: {"n":3,"prop":"reflexivas"}
+        answers: ["sha256:a68b412c4282555f15546cf6e1fc42893b7e07f271557ceb021821098dd66c1b"]
+      - values: {"n":3,"prop":"antisimétricas"}
+        answers: ["sha256:0f4121d0ef1df4c86854c7ebb47ae1c93de8aec8f944035eeaa6495dd71a0678"]
+      - values: {"n":4,"prop":"reflexivas"}
+        answers: ["sha256:8b926d75599a618e21f1341318e66517be26e18cc7496783d2b59758c1333be8"]
+      - values: {"n":2,"prop":"antisimétricas"}
+        answers: ["sha256:6b51d431df5d7f141cbececcf79edf3dd861c3b4069f0b11661a3eefacbba918"]
   - id: funciones-inyectivas
     tier: 2
     prompt: |
-      ¿Cuántas funciones **inyectivas** hay de un conjunto de $4$ elementos en uno de $7$? Respuesta: un entero.
-    answers: ["sha256:fd0f7e53c5b02b688a57ee37f3d52065cb168a7b9fd5a3abd93d37e1559fbd30"]
+      ¿Cuántas funciones **inyectivas** hay de un conjunto de ${{m}}$ elementos en uno de ${{n}}$? Respuesta: un entero.
+    variants:
+      - values: {"m":3,"n":5}
+        answers: ["sha256:39fa9ec190eee7b6f4dff1100d6343e10918d044c75eac8f9e9a2596173f80c9"]
+      - values: {"m":5,"n":5}
+        answers: ["sha256:2abaca4911e68fa9bfbf3482ee797fd5b9045b841fdff7253557c5fe15de6477"]
+      - values: {"m":2,"n":9}
+        answers: ["sha256:8722616204217eddb39e7df969e0698aed8e599ba62ed2de1ce49b03ade0fede"]
+      - values: {"m":4,"n":6}
+        answers: ["sha256:838f461c2fa673cec73e6eecdafa88b127802d6cb0a61c53175197a122cb645a"]
+      - values: {"m":5,"n":8}
+        answers: ["sha256:3e8ab67ce1b66389c3ae94f9c8f8afdeb70b46a33640554f352868f99d2f5616"]
+      - values: {"m":3,"n":10}
+        answers: ["sha256:d829857eb1366e70be857a69886d1555af0d32681beab068afb93492c2e2b843"]
   - id: falsa-demostracion
     tier: 2
     prompt: |
@@ -104,28 +207,88 @@ exercises:
   - id: sobreyecciones-6-3
     tier: 3
     prompt: |
-      ¿Cuántas funciones **sobreyectivas** hay de un conjunto de $6$ elementos en uno de $3$? Respuesta: un entero.
-    answers: ["sha256:84f01dd97c687fb28a296bcc2ef1801446ea7405860595924eb2b5bb634718d1"]
+      ¿Cuántas funciones **sobreyectivas** hay de un conjunto de ${{m}}$ elementos en uno de ${{n}}$? Respuesta: un entero.
+    variants:
+      - values: {"m":5,"n":3}
+        answers: ["sha256:9ae2bdd7beedc2e766c6b76585530e16925115707dc7a06ab5ee4aa2776b2c7b"]
+      - values: {"m":6,"n":2}
+        answers: ["sha256:81b8a03f97e8787c53fe1a86bda042b6f0de9b0ec9c09357e107c99ba4d6948a"]
+      - values: {"m":7,"n":3}
+        answers: ["sha256:a78000a5ff6306012360b87357e93eb04bd07897b57167459c36c70215ddbc70"]
+      - values: {"m":5,"n":4}
+        answers: ["sha256:6af1f692e9496c6d0b668316eccb93276ae6b6774fa728aac31ff40a38318760"]
+      - values: {"m":6,"n":4}
+        answers: ["sha256:c649b15e769148e6b199b7a671140d60c77847fce6fe17277723dc91f0b27d4c"]
+      - values: {"m":7,"n":2}
+        answers: ["sha256:65a699905c02619370bcf9207f5a477c3d67130ca71ec6f750e07fe8d510b084"]
   - id: particiones-en-tres-bloques
     tier: 3
     prompt: |
-      ¿De cuántas formas se puede partir un conjunto de $6$ elementos en exactamente $3$ bloques no vacíos (sin orden entre los bloques)? (Es el número de Stirling de segunda clase $S(6, 3)$.) Respuesta: un entero.
-    answers: ["sha256:69f59c273b6e669ac32a6dd5e1b2cb63333d8b004f9696447aee2d422ce63763"]
+      ¿De cuántas formas se puede partir un conjunto de ${{n}}$ elementos en exactamente ${{k}}$ bloques no vacíos (sin orden entre los bloques)? (Es el número de Stirling de segunda clase $S({{n}}, {{k}})$.) Respuesta: un entero.
+    variants:
+      - values: {"n":5,"k":2}
+        answers: ["sha256:e629fa6598d732768f7c726b4b621285f9c3b85303900aa912017db7617d8bdb"]
+      - values: {"n":7,"k":3}
+        answers: ["sha256:c3ea99f86b2f8a74ef4145bb245155ff5f91cd856f287523481c15a1959d5fd1"]
+      - values: {"n":6,"k":2}
+        answers: ["sha256:eb1e33e8a81b697b75855af6bfcdbcbf7cbbde9f94962ceaec1ed8af21f5a50f"]
+      - values: {"n":5,"k":3}
+        answers: ["sha256:b7a56873cd771f2c446d369b649430b65a756ba278ff97ec81bb6f55b2e73569"]
+      - values: {"n":7,"k":4}
+        answers: ["sha256:deeeb5df3f2cee6bf4e597a8a3a878a6ce49b932b9e90b416922d4499f54fae6"]
+      - values: {"n":6,"k":4}
+        answers: ["sha256:108c995b953c8a35561103e2014cf828eb654a99e310f87fab94c2f4b7d2a04f"]
   - id: involuciones
     tier: 3
     prompt: |
-      Una **involución** de un conjunto $A$ es una biyección $f: A \to A$ con $f \circ f = \mathrm{id}_A$. ¿Cuántas involuciones tiene un conjunto de $6$ elementos? Respuesta: un entero.
-    answers: ["sha256:f74efabef12ea619e30b79bddef89cffa9dda494761681ca862cff2871a85980"]
+      Una **involución** de un conjunto $A$ es una biyección $f: A \to A$ con $f \circ f = \mathrm{id}_A$. ¿Cuántas involuciones tiene un conjunto de ${{n}}$ elementos? Respuesta: un entero.
+    variants:
+      - values: {"n":4}
+        answers: ["sha256:4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5233ade6af1dd5"]
+      - values: {"n":5}
+        answers: ["sha256:5f9c4ab08cac7457e9111a30e4664920607ea2c115a1433d7be98e97e64244ca"]
+      - values: {"n":7}
+        answers: ["sha256:835d5e8314340ab852a2f979ab4cd53e994dbe38366afb6eed84fe4957b980c8"]
+      - values: {"n":8}
+        answers: ["sha256:aaee0ce51abf0849e68b257ab97d83a36d9d082916b939cd1012f27d7f6bb873"]
+      - values: {"n":3}
+        answers: ["sha256:4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"]
+      - values: {"n":9}
+        answers: ["sha256:1483c82372b98e6864d52a9e4a66c92ac7b568d7f2ffca7f405ea0853af10e89"]
   - id: palomar-divisibilidad
     tier: 3
     prompt: |
-      ¿Cuál es el **menor** $k$ tal que, elegidos $k$ números distintos cualesquiera de $\{1, 2, \dots, 20\}$, siempre hay dos de ellos con uno divisor del otro? Respuesta: un entero.
-    answers: ["sha256:4fc82b26aecb47d2868c4efbe3581732a3e7cbcc6c2efb32062c08170a05eeb8"]
+      ¿Cuál es el **menor** $k$ tal que, elegidos $k$ números distintos cualesquiera de $\{1, 2, \dots, {{M}}\}$, siempre hay dos de ellos con uno divisor del otro? Respuesta: un entero.
+    variants:
+      - values: {"M":30}
+        answers: ["sha256:b17ef6d19c7a5b1ee83b907c595526dcb1eb06db8227d650d5dda0a9f4ce8cd9"]
+      - values: {"M":50}
+        answers: ["sha256:5f9c4ab08cac7457e9111a30e4664920607ea2c115a1433d7be98e97e64244ca"]
+      - values: {"M":24}
+        answers: ["sha256:3fdba35f04dc8c462986c992bcf875546257113072a909c162f7e470e581e278"]
+      - values: {"M":100}
+        answers: ["sha256:031b4af5197ec30a926f48cf40e11a7dbc470048a21e4003b7a3c07c5dab1baa"]
+      - values: {"M":16}
+        answers: ["sha256:19581e27de7ced00ff1ce50b2047e7a567c76b1cbaebabe5ef03f7c3017bb5b7"]
+      - values: {"M":60}
+        answers: ["sha256:eb1e33e8a81b697b75855af6bfcdbcbf7cbbde9f94962ceaec1ed8af21f5a50f"]
   - id: emparejamiento-de-cantor
     tier: 3
     prompt: |
-      La función $\pi(x, y) = \dfrac{(x + y)(x + y + 1)}{2} + y$ es una biyección de $\mathbb{N} \times \mathbb{N}$ en $\mathbb{N}$ (con $0 \in \mathbb{N}$). ¿Qué par $(x, y)$ cumple $\pi(x, y) = 100$? Respuesta: `x;y`.
-    answers: ["sha256:6fb73a3356b452f5575eeb852cf8242645f055592fa9ebbfb747165bdec5de1e"]
+      La función $\pi(x, y) = \dfrac{(x + y)(x + y + 1)}{2} + y$ es una biyección de $\mathbb{N} \times \mathbb{N}$ en $\mathbb{N}$ (con $0 \in \mathbb{N}$). ¿Qué par $(x, y)$ cumple $\pi(x, y) = {{z}}$? Respuesta: `x;y`.
+    variants:
+      - values: {"z":50}
+        answers: ["sha256:37aa7858d15e526023c427fea4c89851844c80d860819a6f2f7b889d1539d0a2"]
+      - values: {"z":77}
+        answers: ["sha256:c8730c504f54a49095f0e69e6f13acf28f89c617fade812c57b74c1496b2b75d"]
+      - values: {"z":200}
+        answers: ["sha256:1d5790e08fbafa4ace1456f27b2b7e301c02a9c562723d8e106ddbda1d305030"]
+      - values: {"z":31}
+        answers: ["sha256:4705493788fb5f8c7e7ed1fc8f84dae22845ae13fdec95541c3ae7bd229fb945"]
+      - values: {"z":1000}
+        answers: ["sha256:a842d115f6aaaad541fe1adf85bc3ce67a30cf080828cdd56a7351e9cd2df0cd"]
+      - values: {"z":64}
+        answers: ["sha256:1762a6b859ceda5a80a741c7d8881ef0722cb76eb483d310bcf42246ffd761b8"]
   - id: induccion-suma-de-impares
     tier: 2
     type: desarrollo
@@ -136,6 +299,119 @@ exercises:
       $$
       Escribe claramente la proposición $P(n)$, el caso base, la hipótesis de inducción y el paso inductivo.
     sealed: "gz64:H4sIAAAAAAACCn1TTW/TQBT8KyNrD3aSRrIRF0s5VSCQOFT0yJJqs36kq+6Hu+sFhcg/qOKEeoMb+WPI66bErejN8tuZN2/mvX0WnI6dcjars0sSYBe5LVgNxnmjQqvFLnQ7TZyHaK72N6uyX+9tj7y6wRnKAivYdcWW3HI7m52L4LARgWYz5MxihZIVNUhDi8ZBfb+NinzjQAGsZNgNpYY8yWsHVq6rhFjikiCjaTU98L5T7eG+o6ACGoKyTZRSHe7tcjbDZWyd3QrjAm4jDfpNwYYGUpHvBFrhBaIFM+B8SygZZBQ6KRFpzpPJTJ9XN2dpLPNvrIthrNS1U19dakoD7dCTNA6/dKeMQ4hG2MZhhxhSTQtcPyqvuWWM22m7edmfOMl5tA35jReS9s91pWf91T5p6zEH5xu11XmVm3lZDNX0wz+oxxyVwRwlVsjTR7GusBxlfIi0daNZ4Pyj2l53wnv3DReJ7DFQZ6WO4ej1uTMJVE4c3r3AM9rfucadBLBA6/zgXOuVlapVbhort+MWPk1xpLFHmqQxf9+QwJacOdx1XklRD2HLKBo/rFxDYJbzThkKsAxttJ0LCIQvzhsBcfgpGkVDbH9+UBhx4c/vBCwXeLXA6wU4b1wXjuhlkS0yHzdeyaz+tM+kVx155bI6e2Ojlep4RZDOovUk1ehgtshGhqwu+8UEeO5M6yNtxGCLPJ4RHm7oJeRb503UYrpsUz9PboBB+I3qvPDKIbdukg8rXmo0vYIaId3AoLc73HmjrAMbV/FsiFi0WsmnsnbQmrYCAiy9XFcMQVmQ985TOG1fPXNoWMUdQaoundn/92c6xef+Lz6I1yXlBAAA"
+  - id: r-contrarreciproco-lluvia
+    tier: 1
+    type: opcion
+    review: true
+    prompt: |
+      ¿Cuál es el **contrarrecíproco** de «si llueve, el suelo está mojado»?
+    options:
+      - |
+        Si el suelo está mojado, ha llovido
+      - |
+        Si no llueve, el suelo no está mojado
+      - |
+        Si el suelo no está mojado, no ha llovido
+      - |
+        Llueve y el suelo no está mojado
+    answers: ["sha256:e07ee1d8f6cef3a12b845c754c3270520c669d41292d4ff53a1f331627ed1d3a"]
+  - id: r-negar-todos-algun
+    tier: 1
+    type: opcion
+    review: true
+    prompt: |
+      ¿Cuál es la negación de «todos los alumnos aprobaron algún examen»?
+    options:
+      - |
+        Ningún alumno aprobó ningún examen
+      - |
+        Hay un alumno que no aprobó ningún examen
+      - |
+        Todos los alumnos suspendieron algún examen
+      - |
+        Hay un examen que nadie aprobó
+    answers: ["sha256:1e98a71439aec75b450a00f2e62f99ef765de838e01e0af5722ea1e5a53eae62"]
+  - id: r-relaciones-totales
+    tier: 1
+    type: numero
+    review: true
+    sig: 6
+    prompt: |
+      ¿Cuántas relaciones (subconjuntos de $A \times A$) hay en un conjunto $A$ de $3$ elementos? Respuesta: un entero.
+    answers: ["sha256:ff9e7bbf7594edead2eea68c671a631f0e90cc4c90e1f4b5dd0beac1ccb9a9a7","sha256:b86cb453f473803e16d6a8c72a69df2780bd6567215a672c5faed6534e956bb0","sha256:3bbfe0eeb55ea28411b5c9a863713fe03e2bee22a27cb5ff3a455f3fdfdadcdc"]
+  - id: r-partes-de-5
+    tier: 1
+    type: numero
+    review: true
+    sig: 6
+    prompt: |
+      ¿Cuántos elementos tiene el conjunto de partes $\mathcal P(A)$ si $A$ tiene $5$ elementos?
+    answers: ["sha256:29bc314566676bb4525712105ebeb727be669be098e4ec30ae8039ccf60869e4","sha256:725e39c831431a66a5e7a53a2591979b1dee8395e20847c401f7b33f43e93484","sha256:0a10d97bb936e5d4616ff108610ce931956d8266f00226344e9dc22a9a1de6eb"]
+  - id: r-funciones-totales
+    tier: 1
+    type: numero
+    review: true
+    sig: 6
+    prompt: |
+      ¿Cuántas funciones hay de un conjunto de $4$ elementos en uno de $3$ (sin ninguna condición)?
+    answers: ["sha256:a8aaa681a5d92258ac19e57acbfaaee405afa73269c29baf5f452c9e27e3470c","sha256:fc040c8e1f904b385736b7f145f1cb75c6b42eb0d299d1f83b3b7329e428cb6f","sha256:fb16601a45148ee8b0f7c9d840f246ad595092a2631026b2243687fa985ff225"]
+  - id: r-tecnica-existencia
+    tier: 2
+    type: opcion
+    review: true
+    prompt: |
+      Para demostrar un enunciado de la forma $\exists x\, P(x)$, ¿qué basta hacer?
+    options:
+      - |
+        Basta encontrar un $x$ concreto que lo cumpla y comprobarlo
+      - |
+        Hay que comprobarlo para todos los $x$
+      - |
+        Hay que suponer lo contrario siempre
+      - |
+        Basta comprobarlo con muchos ejemplos al azar
+    answers: ["sha256:02ca4421415ed08b9e7b57ca5771029a72b77a5eb4616284f89d445e2f67fbc2"]
+  - id: r-caballos-falla
+    tier: 2
+    type: numero
+    review: true
+    sig: 6
+    prompt: |
+      En la falsa demostración de que «todos los caballos son del mismo color», el paso inductivo $k \to k + 1$ falla para un único
+      valor de $k$. ¿Cuál? Respuesta: un entero.
+    answers: ["sha256:f182720a8a6e45931a838157b64a8dc633646aabe2bb47fd19faffbf494a3ccf","sha256:dddff5de85d57aa567f4c63e498fa289c7f5e341145b948b4fcdc237dc2e0cb6","sha256:313949d0fac57717f2e57b104d01fbc7fa5c3b38668692a961aae10c61829916"]
+  - id: r-no-numerable
+    tier: 2
+    type: opcion
+    review: true
+    prompt: |
+      ¿Cuál de estos conjuntos **no** es numerable?
+    options:
+      - |
+        $\mathbb Z$
+      - |
+        $\mathbb Q$
+      - |
+        $\mathbb N \times \mathbb N$
+      - |
+        $\mathcal P(\mathbb N)$
+    answers: ["sha256:ae79a9822c49c0e7a9a75809978571fd3aa41ced5cf65e752f9d92d99410f2e0"]
+  - id: r-orden-cuantificadores
+    tier: 2
+    type: opcion
+    review: true
+    prompt: |
+      En $\mathbb N$, compara (1) $\forall x\,\exists y\;(y > x)$ y (2) $\exists y\,\forall x\;(y > x)$.
+    options:
+      - |
+        Las dos son verdaderas
+      - |
+        La primera es verdadera y la segunda falsa
+      - |
+        La primera es falsa y la segunda verdadera
+      - |
+        Las dos son falsas
+    answers: ["sha256:2d3aca69f7582b5897cab32c86e53536a1001698d9c6edef6fdce3d84b047b77"]
 ---
 
 # Lógica y demostración: cómo se escribe una prueba
@@ -183,6 +459,14 @@ Al terminar sabrás:
   un contrato o una discusión.
 
 ## 2. Lógica de proposiciones
+
+> [!practico]
+> La lógica es la gramática de los argumentos. Frases como «llueve» o «tengo paraguas» son verdaderas o falsas, y palabras como
+> «y», «o», «no» y «si…, entonces…» las combinan. La única trampa está en el «si…, entonces…»: la promesa «si apruebas, te
+> invito» solo se rompe cuando apruebas y no invito. Si suspendes, haga yo lo que haga, no he mentido. Una **tabla de verdad**
+> es la lista de todos los casos posibles: con dos frases hay cuatro (las dos verdaderas, solo la primera, solo la segunda,
+> ninguna).
+
 
 Una **proposición** es un enunciado que es verdadero (V) o falso (F). Las letras $p, q, r, \dots$ las representan y los
 **conectivos** las combinan. Cada conectivo se define por su tabla de verdad:
@@ -244,6 +528,13 @@ demostración por casos.
 
 ## 3. Predicados y cuantificadores
 
+> [!practico]
+> «Es primo» no es verdadero ni falso hasta que dices de qué número hablas. Las palabras «**todos**» y «**alguno**» convierten
+> esas frases incompletas en afirmaciones: «todos los números de la lista son primos», «alguno es primo». Para negarlas hay que
+> tener cuidado: lo contrario de «todos los alumnos aprobaron» no es «ninguno aprobó», sino «**alguno** suspendió». Y el orden
+> cuenta: «cada persona tiene una madre» es cierto; «hay una madre de todas las personas», no.
+
+
 Un **predicado** $P(x)$ es un enunciado con una variable libre: «$x$ es primo» no es V ni F hasta que se fija $x$. Se
 convierte en proposición de dos maneras:
 
@@ -286,6 +577,13 @@ es un error frecuente.
 
 ## 4. Anatomía de una demostración
 
+> [!practico]
+> Una demostración es como una receta comprobada: cada paso se apoya en algo que ya sabes (una hipótesis, una definición o un
+> resultado anterior) y el último paso es justo lo que querías. La forma de lo que te piden te dice por dónde empezar: si es
+> «para todo número…», empiezas con «sea un número cualquiera»; si es «existe…», buscas uno concreto y lo enseñas; si es
+> «si A, entonces B», supones A y caminas hasta B.
+
+
 Una **demostración** es una sucesión finita de afirmaciones, cada una de las cuales es una hipótesis, una definición, un
 resultado ya demostrado o una consecuencia lógica de las anteriores, y que termina en lo que se quería probar. Se escribe
 en frases completas: las fórmulas sin texto no son una demostración.
@@ -315,6 +613,18 @@ $n = 2k + 1$; $a$ **divide** a $b$ ($a \mid b$) si $b = ak$ con $k \in \mathbb Z
 $p, q$ enteros y $q \neq 0$.
 
 ## 5. Técnicas de demostración, con ejemplos que se van desvaneciendo
+
+> [!practico]
+> Hay pocas formas de demostrar, y conviene tenerlas como herramientas en una caja:
+>
+> - ir **de frente** de la hipótesis a la conclusión;
+> - **dar la vuelta**: probar que si falla la conclusión, falla la hipótesis (el contrarrecíproco);
+> - **suponer lo contrario** y llegar a un disparate (reducción al absurdo);
+> - **partir en casos** (par o impar, positivo o negativo);
+> - **la escalera** (inducción): si puedes subir el primer peldaño y desde cualquier peldaño subir al siguiente, llegas a todos.
+>
+> Para tumbar una afirmación general basta un solo **contraejemplo**; mil ejemplos a favor no la demuestran.
+
 
 Cada técnica empieza con un ejemplo completamente resuelto; el siguiente deja huecos que debes rellenar tú antes de abrir la
 solución. Es el **desvanecimiento** de los ejemplos resueltos que pide [[tro-aprender-a-aprender]].
@@ -416,9 +726,10 @@ $40^2 + 40 + 41 = 41^2$. Cuarenta casos a favor y la afirmación es falsa.
 **Principio de inducción.** Si $P(n_0)$ es cierta (**base**) y, para todo $k \ge n_0$, $P(k) \Rightarrow P(k + 1)$
 (**paso**), entonces $P(n)$ es cierta para todo $n \ge n_0$.
 
-Es válido porque todo subconjunto no vacío de $\mathbb N$ tiene mínimo (**buena ordenación**): si $P$ fallase en algún
-$n \ge n_0$, habría un mínimo $m$ donde falla; $m \neq n_0$ por la base, luego $P(m - 1)$ es cierta y el paso da $P(m)$,
-contradicción.
+> [!formal] Con rigor: por qué funciona la inducción
+> Es válido porque todo subconjunto no vacío de $\mathbb N$ tiene mínimo (**buena ordenación**): si $P$ fallase en algún
+> $n \ge n_0$, habría un mínimo $m$ donde falla; $m \neq n_0$ por la base, luego $P(m - 1)$ es cierta y el paso da $P(m)$,
+> contradicción.
 
 **Ejemplo resuelto (una desigualdad).** Para todo $n \ge 5$, $2^n > n^2$.
 
@@ -456,6 +767,13 @@ imposible es $ab - a - b$ (con $3$ y $5$, $7$).
 
 ## 6. Conjuntos
 
+> [!practico]
+> Un conjunto es una colección de cosas en la que solo importa **qué** hay dentro, no el orden ni las repeticiones: la lista de
+> la compra $\{\text{pan}, \text{leche}\}$ es la misma escrita al revés. Unir dos listas, quedarte con lo que está en las dos o
+> quitar de una lo que está en la otra son las operaciones de conjuntos, y se comportan como el «o», el «y» y el «no» de la
+> lógica.
+
+
 Un **conjunto** queda determinado por sus elementos (**extensionalidad**): $A = B$ si y solo si
 $\forall x\,(x \in A \Leftrightarrow x \in B)$. Se escribe por extensión, $\{1, 2, 3\}$, o por comprensión,
 $\{x \in \mathbb Z : x^2 < 10\}$. Operaciones: $A \cup B = \{x : x \in A \lor x \in B\}$,
@@ -489,14 +807,21 @@ $$
 \Bigl\lvert\bigcup_{i=1}^{n} A_i\Bigr\rvert = \sum_{\varnothing \neq S \subseteq \{1,\dots,n\}} (-1)^{\lvert S\rvert + 1}\, \Bigl\lvert\bigcap_{i \in S} A_i\Bigr\rvert .
 $$
 
-*Demostración.* Un elemento que está en exactamente $m \ge 1$ de los conjuntos aparece en $\binom mj$ intersecciones de $j$
-conjuntos, así que se cuenta $\sum_{j=1}^{m}(-1)^{j+1}\binom mj = 1 - (1 - 1)^m = 1$ vez (binomio de Newton). Uno que no está
-en ninguno, $0$ veces. $\blacksquare$
+> [!formal] Con rigor: demostración de la inclusión-exclusión
+> *Demostración.* Un elemento que está en exactamente $m \ge 1$ de los conjuntos aparece en $\binom mj$ intersecciones de $j$
+> conjuntos, así que se cuenta $\sum_{j=1}^{m}(-1)^{j+1}\binom mj = 1 - (1 - 1)^m = 1$ vez (binomio de Newton). Uno que no está
+> en ninguno, $0$ veces. $\blacksquare$
 
 *Ejemplo:* entre $1$ y $100$, divisibles por $2$ o por $3$: $50 + 33 - 16 = 67$ (los divisibles por ambos son los
 múltiplos de $6$).
 
 ## 7. Relaciones
+
+> [!practico]
+> Una relación es una manera de emparejar cosas: «ser hermano de», «ser menor que», «terminar en la misma cifra». Unas
+> relaciones **agrupan** (los números que terminan en la misma cifra forman diez grupos que no se mezclan: son las relaciones
+> de equivalencia) y otras **ordenan** (como «ser menor o igual que», o «caber dentro de» entre cajas).
+
 
 Una **relación** $R$ en un conjunto $A$ es un subconjunto de $A \times A$; se escribe $x \mathrel R y$ si $(x, y) \in R$. Con
 $\lvert A\rvert = n$ hay $n^2$ pares posibles y, por tanto, $2^{n^2}$ relaciones. Propiedades:
@@ -513,14 +838,15 @@ $2^{\binom n2}$. La diagonal no deja elección (es obligatoria).
 Una relación **de equivalencia** es reflexiva, simétrica y transitiva (ejemplo: «tener el mismo resto módulo $m$»). La
 **clase** de $a$ es $[a] = \{x \in A : x \mathrel R a\}$.
 
-**Teorema.** Las clases de una relación de equivalencia en $A$ forman una **partición** de $A$ (bloques no vacíos, disjuntos
-dos a dos, que lo cubren), y toda partición de $A$ proviene de exactamente una relación de equivalencia.
-
-*Demostración.* Cada $a$ está en $[a]$ por reflexividad: las clases no son vacías y cubren $A$. Si $[a] \cap [b] \neq \varnothing$,
-tómese $c$ en ambas: $c \mathrel R a$ y $c \mathrel R b$; por simetría $a \mathrel R c$, y por transitividad $a \mathrel R b$.
-Entonces todo $x \in [a]$ cumple $x \mathrel R a \mathrel R b$, luego $x \in [b]$; y al revés. Así $[a] = [b]$: dos clases o
-coinciden o son disjuntas. Recíprocamente, dada una partición, «estar en el mismo bloque» es reflexiva, simétrica y
-transitiva, y sus clases son los bloques. $\blacksquare$
+> [!formal] Con rigor: clases de equivalencia y particiones
+> **Teorema.** Las clases de una relación de equivalencia en $A$ forman una **partición** de $A$ (bloques no vacíos, disjuntos
+> dos a dos, que lo cubren), y toda partición de $A$ proviene de exactamente una relación de equivalencia.
+>
+> *Demostración.* Cada $a$ está en $[a]$ por reflexividad: las clases no son vacías y cubren $A$. Si $[a] \cap [b] \neq \varnothing$,
+> tómese $c$ en ambas: $c \mathrel R a$ y $c \mathrel R b$; por simetría $a \mathrel R c$, y por transitividad $a \mathrel R b$.
+> Entonces todo $x \in [a]$ cumple $x \mathrel R a \mathrel R b$, luego $x \in [b]$; y al revés. Así $[a] = [b]$: dos clases o
+> coinciden o son disjuntas. Recíprocamente, dada una partición, «estar en el mismo bloque» es reflexiva, simétrica y
+> transitiva, y sus clases son los bloques. $\blacksquare$
 
 Por eso **contar relaciones de equivalencia es contar particiones**. El número de particiones de un conjunto de $n$ elementos
 en exactamente $k$ bloques es el **número de Stirling de segunda clase** $S(n, k)$, y cumple
@@ -538,6 +864,13 @@ Una relación **de orden** (parcial) es reflexiva, antisimétrica y transitiva: 
 $\mathbb N$, la inclusión entre conjuntos.
 
 ## 8. Funciones
+
+> [!practico]
+> Una función es una máquina que a cada entrada le da **una sola** salida: a cada persona, su DNI; a cada número, su cuadrado.
+> Si dos entradas distintas nunca dan la misma salida (como el DNI) es **inyectiva**; si todas las salidas posibles se alcanzan,
+> es **sobreyectiva**; si pasan las dos cosas, se puede **deshacer** (tiene inversa). Y una idea que parece obvia y es muy
+> potente, el **principio del palomar**: si metes $11$ cartas en $10$ buzones, algún buzón recibe dos.
+
 
 Una **función** $f : A \to B$ asigna a cada $a \in A$ exactamente un $f(a) \in B$. Es:
 
@@ -579,10 +912,11 @@ $\mathbb N \times \mathbb N$, mediante la **función de emparejamiento de Cantor
 $\pi(x, y) = \frac{(x + y)(x + y + 1)}{2} + y$, que recorre las diagonales $x + y = 0, 1, 2, \dots$ una tras otra. De ahí se
 deduce que $\mathbb Q$ es numerable.
 
-**Teorema (Cantor).** Para todo conjunto $A$, no existe ninguna sobreyección $f : A \to \mathcal P(A)$.
-
-*Demostración.* Dada $f$, sea $D = \{a \in A : a \notin f(a)\}$. Si fuese $D = f(d)$ para algún $d$, entonces
-$d \in D \iff d \notin f(d) = D$: contradicción. Luego $D$ no está en la imagen. $\blacksquare$
+> [!formal] Con rigor: el teorema de Cantor
+> **Teorema (Cantor).** Para todo conjunto $A$, no existe ninguna sobreyección $f : A \to \mathcal P(A)$.
+>
+> *Demostración.* Dada $f$, sea $D = \{a \in A : a \notin f(a)\}$. Si fuese $D = f(d)$ para algún $d$, entonces
+> $d \in D \iff d \notin f(d) = D$: contradicción. Luego $D$ no está en la imagen. $\blacksquare$
 
 Consecuencia: $\mathcal P(\mathbb N)$ no es numerable, y tampoco $\mathbb R$ (que tiene su mismo cardinal). Hay infinitos de
 tamaños distintos. El argumento de la **diagonal** es el mismo que, en informática, prueba que el problema de la parada es

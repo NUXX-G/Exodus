@@ -146,3 +146,4 @@ commit.
 
 | Nodo | Cambios | Fecha |
 | --- | --- | --- |
+| `mat-logica-demostraciones` | Bloque práctico en §2-§8 (promesa «si apruebas», «todos» y «alguno», receta comprobada, caja de herramientas y escalera, lista de la compra, agrupar y ordenar, DNI y buzones); 4 demostraciones en bloques formales (validez de la inducción, inclusión-exclusión, clases y particiones, Cantor); fuentes concretas: texto base UNED (Delgado y Muñoz, temas 1-3) y Hammack 3.ª ed. por capítulos (índice comprobado en richardhammack.github.io); 14 ejercicios con variantes contrastadas por fuerza bruta (tablas de verdad, relaciones sobre $2^{n^2}$ casos, funciones, Stirling, involuciones, anticadenas, Cantor); 9 de repaso | 2026-11-21 |

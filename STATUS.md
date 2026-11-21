@@ -25,7 +25,7 @@ registro de sesiones (una línea) o a `docs/`.
 
 - **Fase actual**: FASE 10 — Contenido: matemáticas (doble grado UNED completo y máster).
 - **Tarea actual**: c) Redacción de matemáticas, tramo 1 (plan en `docs/contenido/matematicas.md` §b).
-- **Siguiente paso concreto**: primer nodo del tramo 1, `mat-logica-demostraciones` (puesta al día con el método de la fase 9); después, `mat-conjuntos-numeros` (nuevo). Registrar cada nodo en `docs/contenido/matematicas.md` §c y actualizar el contador «hechos» en `docs/ROADMAP_V2.md`.
+- **Siguiente paso concreto**: tramo 1: `mat-conjuntos-numeros` (nuevo; Lenguaje matemático, temas 3-7; Hammack caps. 11-14), después `mat-matematica-discreta`. Método: `docs/contenido/troncal.md` (receta) y `docs/contenido/matematicas.md` §b; registrar cada nodo en §c y el contador «hechos» en `docs/ROADMAP_V2.md`.
 - **Bloqueos**: `next build` (Turbopack) se cuelga desde el 2026-11-21 en «Creating an optimized production build» (1 núcleo al 100 %, >4 GB, sin escribir en `.next`); la última vez que terminó fue en el guardado del nodo 25 (de1f531, ya tardó >10 min). Mientras no se resuelva, guardar con `RAPIDO=1 bash scripts/dev/guardar.sh …` (vault:check, typecheck y tests sí corren). Pendiente: investigar en una sesión con memoria libre (¿crece el vault que se importa en el bundle?, probar `next build --webpack`).
 - **Prueba en navegador**: `scripts/dev/sesion-prueba.ts` (usuario y sesión en una base temporal) y
   `scripts/dev/e2e-v2.cjs` (Playwright 1.58 de la caché de npx: `PLAYWRIGHT_CORE=C:/Users/nelso/AppData/Local/npm-cache/_npx/787f53666b8d4740/node_modules/playwright-core`).
