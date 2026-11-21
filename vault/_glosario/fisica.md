@@ -48,7 +48,7 @@ terminos:
     llano: "Cuántas veces se repite algo por segundo: una cuerda que vibra 440 veces por segundo da la nota la. Se mide en hercios."
     formal: "$f = 1/T$, inversa del periodo; en una onda, $v = \\lambda f$. $1\\ \\mathrm{Hz} = 1\\ \\mathrm s^{-1}$."
     nodo: fis-ondas-calor-fluidos
-    tambien: [mat-trigonometria]
+    tambien: [mat-trigonometria, fis-medida-movimiento]
   - termino: longitud de onda
     llano: "La distancia entre dos crestas seguidas de una onda, como entre dos olas consecutivas."
     formal: "Periodo espacial $\\lambda$ de una onda: $y(x + \\lambda, t) = y(x, t)$. Se relaciona con la velocidad de propagación por $v = \\lambda f$."
