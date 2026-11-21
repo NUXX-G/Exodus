@@ -230,7 +230,7 @@ Ciclo por cada área (una fase por área), con estas tareas:
 
 - [x] a) Mapa (`docs/contenido/matematicas.md`, con la guía docente de la UNED) — 19 guías del grado y el máster de Matemáticas Avanzadas, leídos el 2026-11-21
 - [x] b) Plan (⛔ si cambia ids o afecta al progreso) — sin cambios de id: 15 nodos nuevos y puesta al día de los existentes, en 5 tramos
-- [ ] c) Redacción — tramo 1 en curso; hechos: 6
+- [ ] c) Redacción — tramo 1 en curso; hechos: 7
 - [ ] d) Revisión independiente (subagente)
 - [ ] e) Reportes «creo que esto está mal» del área
 - [ ] f) Cierre (checks, cobertura, `STATUS.md`, commit `v2: fase 10 completada`)
