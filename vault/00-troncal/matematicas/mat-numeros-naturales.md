@@ -3,7 +3,7 @@ id: mat-numeros-naturales
 title: "Números naturales y aritmética"
 area: matematicas
 trunk_level: 0
-prerequisites: [mat-resolucion-problemas, mat-sistema-decimal-operaciones, mat-divisibilidad]
+prerequisites: [mat-resolucion-problemas, mat-sistema-decimal-operaciones, mat-divisibilidad, mat-potencias-raices]
 academic_sources:
   - "Niven, I.; Zuckerman, H. S.; Montgomery, H. L. An Introduction to the Theory of Numbers, 5ª ed. Wiley, 1991."
   - "Hardy, G. H.; Wright, E. M. An Introduction to the Theory of Numbers, 6ª ed. (rev. Heath-Brown y Silverman). Oxford University Press, 2008."

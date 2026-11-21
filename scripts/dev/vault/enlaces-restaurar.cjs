@@ -14,7 +14,7 @@ for (const l of lineas) {
   if (!m || !ids.has(m[2])) { quedan.push(l); continue; }
   const [, rel, id] = m; const f = path.join(raiz, rel);
   let t = fs.readFileSync(f, "utf8");
-  const texto = `el nodo de ${id.replace(/^(mat|fis|prog)-/, "").split("-").join(" ")}`;
+  const texto = "el tema `" + id + "`";
   if (t.includes(texto)) { t = t.split(texto).join(`[[${id}]]`); fs.writeFileSync(f, t); n++; }
 }
 fs.writeFileSync(reg, quedan.join("\n"));

@@ -578,7 +578,7 @@ $495 + 594 = 1089$. Con $821$: $821 - 128 = 693$, $693 + 396 = 1089$. ¡Siempre 
 > Sea el número $100a + 10b + c$ con $a > c$. Al revés es $100c + 10b + a$, y la diferencia es $99(a - c)$. Como $a - c$ va de
 > $1$ a $9$, la diferencia es uno de $99, 198, 297, \dots, 891$: números de la forma $100x + 10\cdot9 + y$ con $x + y = 9$
 > (escribiendo $099$ para el primero). Al darle la vuelta y sumar, $(100x + 90 + y) + (100y + 90 + x) = 101(x + y) + 180 = 101\cdot9 + 180 = 1089$.
-> $\blacksquare$ (Este razonamiento usa letras en lugar de números: es álgebra, que verás en el nodo de expresiones algebraicas.)
+> $\blacksquare$ (Este razonamiento usa letras en lugar de números: es álgebra, que verás en el tema `mat-expresiones-algebraicas`.)
 
 ### 4.3 Hazlo más fácil para empezar
 
@@ -596,7 +596,7 @@ hacen falta como mínimo?*
   $3 + 1 + 3 = 7$.
 
 Se ve la regla: con un disco más, hacen falta «el doble de antes más uno»: $1, 3, 7, 15, 31, \dots$, que es $2^n - 1$ (una potencia
-de $2$ menos uno; las potencias se estudian en el nodo de potencias raices). Con los $64$ discos de la leyenda,
+de $2$ menos uno; las potencias se estudian en [[mat-potencias-raices]]). Con los $64$ discos de la leyenda,
 $2^{64} - 1 \approx 1{,}8 \cdot 10^{19}$ movimientos: a uno por segundo, unos $585\,000$ millones de años.
 
 ### 4.4 Haz un dibujo, un esquema o una tabla
@@ -755,5 +755,5 @@ de $3$ por recorrer hasta $20$. El primer jugador gana diciendo $2$ y luego siem
 
 ## Siguiente
 
-[[mat-sistema-decimal-operaciones]] (los números naturales y sus operaciones) y, en paralelo, el nodo de rectas angulos (los
+[[mat-sistema-decimal-operaciones]] (los números naturales y sus operaciones) y, en paralelo, el tema `mat-rectas-angulos` (los
 primeros elementos de geometría). Todas las estrategias de este nodo se usarán en cada tema.

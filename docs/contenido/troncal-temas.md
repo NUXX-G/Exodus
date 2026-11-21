@@ -28,7 +28,15 @@ la **visión de conjunto y repaso del bloque**, y los nodos de tema nuevos son s
   `1%2006%20Decimales.pdf`, `1%2007%20Unidades%20medida.pdf`, `1%2008%20FigurasPlanas.pdf`, `1%2009%20Longitudes.pdf`,
   `1%2010%20Proporciones.pdf`, `1%2011%20algebra.pdf`, `1%2012%20graficas.pdf`, `1%2013%20Estadistica.pdf`.
 - **4.º ESO B y Bachillerato**: las URL ya citadas en los nodos de la fase 9 (`LOMLOE/4B/…`, `LOMLOE/Bachillerato/…`).
-- **2.º y 3.º ESO**: buscar en `ESOLL.htm` cuando se redacten sus temas.
+- **2.º ESO** (rev. 10/08/2024; https://www.apuntesmareaverde.org.es/grupos/mat/LOMLOE/2ESOLL.htm): base
+  `https://www.apuntesmareaverde.org.es/grupos/mat/LOMLOE/2ESO/` + `2_01_Problemas.pdf`, `2_02_Numeros.pdf`, `2_03_Potencias.pdf`,
+  `2_04_Divisibilidad.pdf`, `2_05_Medida.pdf`, `2_06_Longitudes.pdf`, `2_07_Cuerpos.pdf`, `2_08_Movimientos.pdf`,
+  `2_09_Proporciones.pdf`, `2_10_algebra.pdf`, `2_11_graficas.pdf`, `2_12_Estadistica.pdf`.
+- **3.º ESO** (rev. 27/08/2022 caps. 1-6 y 10/08/2024 caps. 7-12; https://www.apuntesmareaverde.org.es/grupos/mat/LOMLOE/3ESOLL.htm):
+  base `https://www.apuntesmareaverde.org.es/grupos/mat/LOMLOE/3ESO/` + `01%20Racionales%203.pdf`, `02%20potencias%203.pdf`,
+  `03%20Sucesiones%203.pdf`, `04%20Polinomios%203.pdf`, `05%20Ec%202%20grado%203.pdf`, `06%20proporciones%203.pdf`,
+  `07%20Educacion%20financiera%203.pdf`, `08%20Geometria%20en%20el%20plano%203.pdf`, `09%20Movimientos%203.pdf`,
+  `10%20geometria%20del%20espacio%203.pdf`, `11%20Funciones%203.pdf`, `12%20estadistica%203.pdf`.
 
 ## b) Mapa y plan: matemáticas
 
@@ -39,15 +47,15 @@ Columnas: id nuevo · tema · fuente (Marea Verde, curso y capítulo) · prerreq
 | ---: | --- | --- | --- | --- | --- |
 | 1 | `mat-resolucion-problemas` | Resolución de problemas (Pólya, estrategias, comprobar) | 1.º ESO cap. 1 | — | `mat-numeros-naturales` |
 | 2 | `mat-sistema-decimal-operaciones` | Números naturales: sistema decimal, operaciones, jerarquía, propiedades | 1.º ESO cap. 2 (1-2) | 1 | `mat-numeros-naturales` |
-| 3 | `mat-divisibilidad` | Divisibilidad: múltiplos, divisores, criterios, primos, factorización, mcd y mcm | 1.º ESO cap. 2; 2.º ESO cap. 2 | 2 | `mat-numeros-naturales` |
+| 3 | `mat-divisibilidad` | Divisibilidad: múltiplos, divisores, criterios, primos, factorización, mcd y mcm | 1.º ESO cap. 2; 2.º ESO cap. 4 | 2 | `mat-numeros-naturales` |
 | 4 | `mat-potencias-raices` | Potencias y raíces: exponente natural y entero, notación científica, raíz cuadrada | 1.º ESO cap. 3; 2.º ESO cap. 3; 3.º ESO cap. 2 | 2 | `mat-numeros-naturales` |
-| 5 | `mat-numeros-enteros` | Números enteros: recta, valor absoluto, operaciones y signos | 1.º ESO cap. 4; 2.º ESO cap. 1 | 2 | `mat-enteros-fracciones` |
-| 6 | `mat-fracciones` | Fracciones: equivalencia, comparación, operaciones, problemas | 1.º ESO cap. 5; 2.º ESO cap. 4; 3.º ESO cap. 1 | 3, 5 | `mat-enteros-fracciones` |
+| 5 | `mat-numeros-enteros` | Números enteros: recta, valor absoluto, operaciones y signos | 1.º ESO cap. 4; 2.º ESO cap. 2 | 2 | `mat-enteros-fracciones` |
+| 6 | `mat-fracciones` | Fracciones: equivalencia, comparación, operaciones, problemas | 1.º ESO cap. 5; 2.º ESO cap. 2; 3.º ESO cap. 1 | 3, 5 | `mat-enteros-fracciones` |
 | 7 | `mat-decimales` | Expresiones decimales: operaciones, redondeo, periódicos y fracción generatriz | 1.º ESO cap. 6; 3.º ESO cap. 1 | 6 | `mat-enteros-fracciones` |
 | 8 | `mat-sistema-metrico` | Sistemas de medida: métrico decimal, superficie, volumen, capacidad, sexagesimal | 1.º ESO cap. 7; 2.º ESO cap. 5 | 7 | `mat-proporcionalidad-porcentajes` |
-| 9 | `mat-proporcionalidad` | Proporcionalidad directa e inversa, regla de tres, repartos | 1.º ESO cap. 10; 2.º ESO cap. 6; 3.º ESO cap. 6 | 6, 7 | `mat-proporcionalidad-porcentajes` |
+| 9 | `mat-proporcionalidad` | Proporcionalidad directa e inversa, regla de tres, repartos | 1.º ESO cap. 10; 2.º ESO cap. 9; 3.º ESO cap. 6 | 6, 7 | `mat-proporcionalidad-porcentajes` |
 | 10 | `mat-porcentajes-finanzas` | Porcentajes, aumentos y descuentos, interés simple y compuesto, TAE, préstamos | 1.º ESO cap. 10; 3.º ESO cap. 7 | 9 | `mat-proporcionalidad-porcentajes` |
-| 11 | `mat-expresiones-algebraicas` | Lenguaje algebraico, monomios, polinomios, productos notables | 1.º ESO cap. 11; 2.º ESO cap. 9; 3.º ESO cap. 4 | 5, 6 | `mat-algebra-basica` |
+| 11 | `mat-expresiones-algebraicas` | Lenguaje algebraico, monomios, polinomios, productos notables | 1.º ESO cap. 11; 2.º ESO cap. 10; 3.º ESO cap. 4 | 5, 6 | `mat-algebra-basica` |
 | 12 | `mat-ecuaciones-primer-grado` | Ecuaciones de primer grado y problemas | 1.º ESO cap. 11; 2.º ESO cap. 10 | 11 | `mat-algebra-basica` |
 | 13 | `mat-sistemas-dos-incognitas` | Sistemas de dos ecuaciones lineales: métodos, interpretación y problemas | 2.º ESO cap. 10; 3.º ESO cap. 5 | 12 | `mat-algebra-basica` |
 | 14 | `mat-ecuaciones-segundo-grado` | Ecuaciones de segundo grado, bicuadradas, racionales e irracionales | 3.º ESO cap. 5; 4.º ESO B cap. 4 | 12, 4 | `mat-algebra-secundaria` |
@@ -57,7 +65,7 @@ Columnas: id nuevo · tema · fuente (Marea Verde, curso y capítulo) · prerreq
 | 18 | `mat-rectas-angulos` | Elementos del plano: rectas, ángulos, paralelas, mediatriz y bisectriz | 1.º ESO cap. 8 | 1 | `mat-geometria-basica` |
 | 19 | `mat-triangulos-pitagoras` | Triángulos: clasificación, rectas notables, congruencia, Pitágoras | 1.º ESO caps. 8-9; 2.º ESO cap. 6 | 18, 4 | `mat-geometria-basica` |
 | 20 | `mat-poligonos-circunferencia` | Polígonos, circunferencia y círculo: ángulos, perímetros y áreas | 1.º ESO caps. 8-9; 3.º ESO cap. 8 | 19 | `mat-geometria-basica` |
-| 21 | `mat-semejanza-tales` | Semejanza, Tales, escalas y razón de áreas y volúmenes | 2.º ESO cap. 6; 4.º ESO B cap. 7 | 9, 20 | `mat-geometria-basica` |
+| 21 | `mat-semejanza-tales` | Semejanza, Tales, escalas y razón de áreas y volúmenes | 2.º ESO cap. 6 (comprobar); 4.º ESO B cap. 7 | 9, 20 | `mat-geometria-basica` |
 | 22 | `mat-cuerpos-geometricos` | Poliedros y cuerpos de revolución: áreas y volúmenes | 2.º ESO cap. 7; 3.º ESO cap. 10 | 20, 8 | `mat-geometria-basica` |
 | 23 | `mat-funciones-graficas` | Plano cartesiano, tablas y gráficas, concepto de función y sus características | 1.º ESO cap. 12; 2.º ESO cap. 11; 3.º ESO cap. 11 | 5, 9 | `mat-funciones-basicas` |
 | 24 | `mat-funciones-lineales-cuadraticas` | Funciones lineales, afines y cuadráticas | 2.º ESO cap. 11; 3.º ESO cap. 11; 4.º ESO B cap. 10 | 23, 14 | `mat-funciones-basicas` |
@@ -135,3 +143,4 @@ glosario, `vault:check` y commit. La revisión independiente (d) se hace por blo
 | `mat-resolucion-problemas` (1) | Escrito desde Marea Verde 1.º ESO cap. 1 (secciones 1-4, PDF leído), Pólya y Engel: problema frente a ejercicio; las cuatro fases con sus preguntas; nueve estrategias, cada una con bloque práctico y ejemplo resuelto (estimar y Fermi, 1089 con su demostración, Hanoi, barras, ensayo ordenado con tabla, hacia atrás, lista sistemática, problema parecido, invariante del tablero mutilado con demostración); comprobar de cinco formas; bloqueos y «¡eureka!»; juego del 20; 18 ejercicios (15 con variantes contrastadas por fuerza bruta: simulación de Hanoi, BFS del río, programación dinámica de monedas, fechas), 1 desarrollo con rúbrica (las cuatro fases), 7 de repaso; prerrequisito de `mat-numeros-naturales` (que pasa a ser repaso de conjunto del bloque) | 2026-11-21 |
 | `mat-sistema-decimal-operaciones` (2) | Escrito desde Marea Verde 1.º ESO cap. 2, secciones 1.1-1.2 (PDF leído) e Ifrah: sistema decimal posicional y valor de posición (con demostración de la unicidad de la escritura), redondeo y estimación, romanos, binario, bases 12 y 60; propiedades de la suma y el producto, distributiva y cálculo mental, por qué funciona sumar en columna; división entera (existencia y unicidad del cociente y el resto demostradas), resto con calculadora, división por exceso; jerarquía de las operaciones; 15 ejercicios con variantes contrastadas (romanos por tabla y por análisis de cadenas, evaluador de expresiones propio, conversiones de base, restas sucesivas), 1 desarrollo (por qué funciona multiplicar en columna), 7 de repaso; prerrequisito de `mat-numeros-naturales`; nuevos scripts `enlaces-pendientes.cjs`, `enlaces-restaurar.cjs` y `registro-9b.cjs` | 2026-11-21 |
 | `mat-divisibilidad` (3) | Escrito desde Marea Verde 1.º ESO cap. 2, secciones 2-3 (PDF leído) y Euclides (VII.2, IX.20): múltiplos y divisores (por parejas hasta √n), criterios del 2 al 11 en tabla con la demostración del 4 (y el del 3 y el 9 como desarrollo), primos y compuestos, criba, prueba hasta √n, infinitud de los primos demostrada, factorización y número de divisores, mcd y mcm por factorización, Euclides y mcd·mcm = ab demostrados, coprimos; 14 ejercicios con variantes contrastadas por fuerza bruta (el doble cálculo cazó dos patrones imposibles del criterio del 11), 1 desarrollo, 7 de repaso; glosario: «número primo» y «máximo común divisor» pasan a este nodo (y `tambien` para «teorema» y «algoritmo»); prerrequisito de `mat-numeros-naturales` | 2026-11-21 |
+| `mat-potencias-raices` (4) | Escrito desde Marea Verde 1.º ESO cap. 3 (secciones 1-3), 2.º ESO cap. 3 (1.5, 2.4-2.6) y 3.º ESO cap. 2 (2.1, 3, 4.6), PDF leídos: potencias, cuadrados y cubos, base negativa, potencias de 10; propiedades en tabla con demostración por conteo de factores; exponente cero y negativo; notación científica (grandes y pequeños, operar); raíz cuadrada exacta, entera con resto y aproximada; raíz n-ésima; $\sqrt{r^2} = |r|$; extraer e introducir factores, radicales semejantes; 18 ejercicios con variantes contrastadas con BigInt y búsqueda, 1 desarrollo (por qué las propiedades y por qué $a^0 = 1$), 7 de repaso; prerrequisito de `mat-numeros-naturales`. Los enlaces pendientes pasan a escribirse «el tema `id`» para no disparar el glosario | 2026-11-21 |

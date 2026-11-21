@@ -9,7 +9,7 @@ const pendientes = [];
 t = t.replace(/\[\[([a-z0-9-]+)(\|[^\]]*)?\]\]/g, (m, id, alias) => {
   if (ids.has(id)) return m;
   pendientes.push(id);
-  return alias ? alias.slice(1) : `el nodo de ${id.replace(/^(mat|fis|prog)-/, "").split("-").join(" ")}`;
+  return alias ? alias.slice(1) : "el tema `" + id + "`";
 });
 fs.writeFileSync(f, t);
 if (pendientes.length) {

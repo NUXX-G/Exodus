@@ -575,5 +575,5 @@ si quieres otro orden, tienes que poner los paréntesis.
 
 ## Siguiente
 
-[[mat-divisibilidad]] (múltiplos, divisores, primos, mcd y mcm) y el nodo de potencias raices (multiplicar un número por sí mismo
+[[mat-divisibilidad]] (múltiplos, divisores, primos, mcd y mcm) y [[mat-potencias-raices]] (multiplicar un número por sí mismo
 muchas veces).
