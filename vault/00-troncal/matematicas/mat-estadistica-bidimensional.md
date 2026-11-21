@@ -530,5 +530,5 @@ cuidadoso de las variables de confusión (recuerda la paradoja de Simpson de [[m
 
 ## Siguiente
 
-[[mat-calculo-1]] empieza el cálculo. La estadística continúa con las distribuciones binomial y normal y, ya en la rama,
+[[mat-calculo-1]] empieza el cálculo. La estadística continúa en [[mat-distribuciones-binomial-normal]] y, ya en la rama,
 en la inferencia estadística.
