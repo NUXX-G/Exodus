@@ -518,4 +518,4 @@ $200$ €: $600$, $400$ y $200$ € (quien menos faltó, más recibe).
 
 ## Siguiente
 
-[[mat-porcentajes-finanzas]] (los tantos por ciento son proporciones sobre $100$) y el tema `mat-funciones-graficas` (las proporciones dibujadas en unos ejes).
+[[mat-porcentajes-finanzas]] (los tantos por ciento son proporciones sobre $100$) y [[mat-funciones-graficas]] (las proporciones dibujadas en unos ejes).

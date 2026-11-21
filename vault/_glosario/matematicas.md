@@ -48,7 +48,7 @@ terminos:
     sinonimos: [funciones]
     llano: "Una regla que a cada valor de entrada le asigna exactamente un valor de salida, como «a cada hora del día, la temperatura»."
     formal: "Una función $f\\colon A \\to B$ asigna a cada $a \\in A$ un único $f(a) \\in B$. $A$ es el dominio y $B$ el codominio."
-    nodo: mat-funciones-basicas
+    nodo: mat-funciones-graficas
   - termino: polinomio
     sinonimos: [polinomios]
     llano: "Una expresión hecha sumando potencias de una letra multiplicadas por números, como 3x² − 5x + 2."

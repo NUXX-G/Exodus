@@ -530,4 +530,4 @@ cateto, un **cono**; un semicírculo, una **esfera**.
 ## Siguiente
 
 Con este tema se cierra el bloque de geometría; [[mat-geometria-basica]] y [[mat-movimientos-plano]] lo repasan y lo amplían. Después
-empieza el bloque de gráficas con el tema `mat-funciones-graficas`.
+empieza el bloque de gráficas con [[mat-funciones-graficas]].
