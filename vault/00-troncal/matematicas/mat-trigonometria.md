@@ -3,7 +3,7 @@ id: mat-trigonometria
 title: "Trigonometría: ángulos, ondas y triángulos"
 area: matematicas
 trunk_level: 6
-prerequisites: [mat-geometria-basica, mat-algebra-secundaria, mat-funciones-elementales, mat-movimientos-plano, mat-razones-trigonometricas]
+prerequisites: [mat-geometria-basica, mat-algebra-secundaria, mat-funciones-elementales, mat-movimientos-plano, mat-razones-trigonometricas, mat-resolucion-triangulos]
 academic_sources:
   - "Gelfand, I. M.; Saul, M. Trigonometry. Birkhäuser, 2001."
   - "Abramson, J. et al. Precálculo, 2.ª ed. (en español). OpenStax, 2022, cap. 5 (5.1 ángulos, 5.2 círculo unitario, 5.4 triángulos rectángulos), cap. 6 (gráficas e inversas), cap. 7 (7.2 suma y resta, 7.3 ángulo doble, 7.5 ecuaciones) y cap. 8 (8.1 ley de senos, 8.2 ley de cosenos). https://openstax.org/books/prec%C3%A1lculo-2ed/pages/5-introduccion"

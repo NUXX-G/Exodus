@@ -500,4 +500,4 @@ que forma con el eje $X$):
 
 ## Siguiente
 
-el tema `mat-resolucion-triangulos` (triángulos cualesquiera: teoremas del seno y del coseno).
+[[mat-resolucion-triangulos]] (triángulos cualesquiera: teoremas del seno y del coseno).
