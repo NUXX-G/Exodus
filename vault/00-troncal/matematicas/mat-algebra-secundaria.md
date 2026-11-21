@@ -476,8 +476,8 @@ Que $\sqrt 2$ no es una fracción (y por qué hacen falta los números reales) s
 ## 5. Logaritmos
 
 > [!practico]
-> El logaritmo responde a la pregunta inversa de la potencia: «¿**cuántas veces** hay que multiplicar el $2$ para llegar a
-> $64$?» Seis veces: $\log_2 64 = 6$. Sirve para manejar cantidades que van de lo minúsculo a lo enorme, contando
+> El logaritmo responde a la pregunta inversa de la potencia: «¿**cuántos doses** hay que multiplicar entre sí para llegar a
+> $64$?» Seis: $\log_2 64 = 6$. Sirve para manejar cantidades que van de lo minúsculo a lo enorme, contando
 > **ceros** en vez de escribirlos: un terremoto de magnitud $7$ libera unas $32$ veces más energía que uno de $6$, y una
 > disolución de pH $3$ es diez veces más ácida que una de pH $4$. Y responde a preguntas de tiempo: «¿en cuántos años se
 > duplica mi dinero al $4\,\%$?».
@@ -514,7 +514,7 @@ $x(x + 2) = 8$, $x^2 + 2x - 8 = 0$, $x = 2$ o $x = -4$. Como $\log_2(-4)$ no exi
 - **Sonido:** $\beta = 10\log_{10}(I/I_0)$ dB (ver [[fis-ondas-calor-fluidos]]).
 - **Terremotos:** la energía crece como $10^{1{,}5M}$: **un punto de magnitud multiplica la energía por $10^{1{,}5} \approx 32$**; $2$ puntos, por $1000$.
 - **Desintegración radiactiva:** $N = N_0\,2^{-t/T}$; el tiempo para llegar a una fracción $f$ es $t = T\log_2(1/f)$.
-- **Informática:** $\log_2 n$ es el número de bits de $n$ y el de pasos de una búsqueda binaria.
+- **Informática:** $\log_2 n$ es, aproximadamente, el número de bits de $n$ (exactamente, $\lfloor\log_2 n\rfloor + 1$) y el de pasos de una búsqueda binaria.
 
 ## 6. Inecuaciones polinómicas y racionales
 
@@ -544,7 +544,7 @@ se **despeja $x$** y se intercambian los nombres. Si $f(x) = 2x - 3$: $y = 2x - 
 ## 8. Errores típicos
 
 - $(a + b)^2 = a^2 + b^2$ y $\sqrt{a^2 + b^2} = a + b$ (**ambas falsas**).
-- No comprobar las soluciones tras elevar al cuadrado, multiplicar por una expresión con $x$, o tomar logaritmos.
+- No comprobar las soluciones tras elevar al cuadrado, multiplicar por una expresión con $x$, o agrupar logaritmos ($\log a + \log b \to \log ab$ amplía el dominio).
 - $\log(a + b) = \log a + \log b$ (**falso**; el logaritmo convierte **productos** en sumas).
 - Olvidar que el argumento de un logaritmo debe ser positivo.
 - Simplificar una fracción «tachando» sumandos en lugar de factores.

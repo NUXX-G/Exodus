@@ -366,7 +366,7 @@ Al terminar sabrás:
 > [!practico]
 > Si un viaje de $120$ km lo haces a $60$ km/h tardas $2$ h; a $120$ km/h, $1$ h; a $30$ km/h, $4$ h. Velocidad y tiempo son
 > **inversamente proporcionales**: su producto es siempre $120$. La gráfica no es una recta, sino una curva que baja cada
-> vez más despacio y nunca toca los ejes (a ninguna velocidad tardas $0$ horas, y para tardar «infinito» harías falta ir a
+> vez más despacio y nunca toca los ejes (a ninguna velocidad tardas $0$ horas, y para tardar «infinito» haría falta ir a
 > velocidad $0$). Esa curva es una **hipérbola**, y las rectas a las que se acerca sin tocarlas son sus **asíntotas**.
 
 La función de **proporcionalidad inversa** es $f(x) = \frac{k}{x}$ con $k \ne 0$. Su dominio son todos los reales salvo el

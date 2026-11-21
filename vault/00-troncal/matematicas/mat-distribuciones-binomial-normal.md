@@ -444,7 +444,7 @@ Por simetría, $\Phi(-z) = 1 - \Phi(z)$, y $P(a \le Z \le b) = \Phi(b) - \Phi(a)
 ## 6. Aproximar la binomial por la normal
 
 > [!practico]
-> Calcular $P(X \le 60)$ en una binomial con $n = 100$ obliga a sumar $61$ términos enormes. Pero cuando $n$ es grande, el
+> Calcular $P(X \le 60)$ en una binomial con $n = 100$ obliga a sumar $61$ términos con números combinatorios enormes. Pero cuando $n$ es grande, el
 > diagrama de barras de la binomial tiene forma de campana, así que se puede usar la normal con la misma media y la
 > misma desviación típica. Como las barras de la binomial ocupan medio punto a cada lado, se suma o resta $0{,}5$ en los
 > extremos: es la **corrección por continuidad**.

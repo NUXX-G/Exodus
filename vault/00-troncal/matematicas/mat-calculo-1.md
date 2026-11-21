@@ -418,7 +418,7 @@ exercises:
 
 # Cálculo I: límites, derivadas y optimización
 
-El **cálculo** es el estudio matemático del **cambio**. Newton y Leibniz lo inventaron, cada uno por su cuenta, a finales del siglo XVII para describir el movimiento de los planetas, y desde entonces es el idioma de la física, la
+El **cálculo** es el estudio matemático del **cambio**. Newton y Leibniz lo inventaron, cada uno por su cuenta, a finales del siglo XVII (Newton, en buena parte para describir el movimiento; Leibniz, desde problemas de tangentes y áreas), y desde entonces es el idioma de la física, la
 ingeniería, la economía y el aprendizaje automático (entrenar un modelo consiste en seguir derivadas: ver [[ia-redes-profundas]]). Este nodo cubre la mitad **diferencial**: cómo se mide
 **qué tan deprisa cambia** una cantidad, y cómo se usa eso para optimizar y aproximar. La otra mitad, la acumulación, es `mat-calculo-2`.
 
@@ -478,7 +478,7 @@ $$
 
 > [!formal] Con rigor: demostración con áreas y el sándwich
 > *Demostración del primero.* En el círculo unidad, para $0 < x < \frac\pi2$, el área del triángulo $\frac12\sin x$ es menor que la del sector $\frac12 x$, que es menor que la del triángulo mayor $\frac12\tan x$. Dividiendo por $\frac12\sin x$:
-> $1 < \frac{x}{\sin x} < \frac{1}{\cos x}$, es decir $\cos x < \frac{\sin x}{x} < 1$. Como $\cos x \to 1$, por el **teorema del sándwich** $\frac{\sin x}{x} \to 1$. $\blacksquare$
+> $1 < \frac{x}{\sin x} < \frac{1}{\cos x}$, es decir $\cos x < \frac{\sin x}{x} < 1$. Como $\cos x \to 1$, por el **teorema del sándwich** $\frac{\sin x}{x} \to 1$ por la derecha; como $\frac{\sin x}{x}$ es par, también por la izquierda. $\blacksquare$
 
 Con él: $\displaystyle\lim_{x\to0}\frac{\sin 5x}{x} = 5\lim\frac{\sin 5x}{5x} = 5$.
 
@@ -542,7 +542,7 @@ $$
 > [!formal] Con rigor: demostraciones de tres reglas
 > *Demostración de la regla de la potencia ($n$ natural).* $(a + h)^n = a^n + n a^{n-1}h + \binom n2 a^{n-2}h^2 + \cdots$ (binomio de Newton); restando $a^n$ y dividiendo por $h$ queda $n a^{n-1} + h(\cdots) \to n a^{n-1}$. $\blacksquare$
 > *Demostración del producto.* $\dfrac{f(x + h)g(x + h) - f(x)g(x)}{h} = \dfrac{f(x + h) - f(x)}{h}g(x + h) + f(x)\dfrac{g(x + h) - g(x)}{h}$, y al hacer $h\to0$ (usando que $g$ es continua) sale $f'g + fg'$. $\blacksquare$
-> *La derivada de $\sin$:* $\dfrac{\sin(x + h) - \sin x}{h} = \sin x\,\dfrac{\cos h - 1}{h} + \cos x\,\dfrac{\sin h}{h} \to \cos x$, porque $\frac{\sin h}{h}\to1$ y $\frac{\cos h - 1}{h}\to0$. $\blacksquare$
+> *La derivada de $\sin$:* $\dfrac{\sin(x + h) - \sin x}{h} = \sin x\,\dfrac{\cos h - 1}{h} + \cos x\,\dfrac{\sin h}{h} \to \cos x$, porque $\frac{\sin h}{h}\to1$ y $\frac{\cos h - 1}{h} = -\frac{\sin^2 h}{h(\cos h + 1)} = -\frac{\sin h}{h}\cdot\frac{\sin h}{\cos h + 1} \to -1\cdot\frac{0}{2} = 0$. $\blacksquare$
 
 **Ejemplos resueltos.**
 
@@ -597,7 +597,7 @@ cuando $x = 3$ ($y = 4$): $2x\dot x + 2y\dot y = 0 \Rightarrow \dot y = -\frac{x
 > [!practico]
 > Mirada muy de cerca, cualquier curva suave parece una recta (como la Tierra parece plana desde el suelo). Esa idea da
 > aproximaciones rápidas ($\sqrt{9{,}3} \approx 3{,}05$) y un método para resolver ecuaciones a base de «seguir la tangente»
-> que las calculadoras usan por dentro: el método de Newton.
+> que muchas calculadoras y programas usan por dentro (por ejemplo, para raíces cuadradas): el método de Newton.
 
 
 **Aproximación lineal.** Cerca de $a$, $f(x) \approx f(a) + f'(a)(x - a)$ (la recta tangente). **Ejemplo:** $\sqrt{9{,}3}$: $f(9) = 3$, $f'(9) = \frac16$; $\sqrt{9{,}3} \approx 3 + \frac{0{,}3}{6} = 3{,}05$ (valor real $3{,}0496$). Es la base de casi

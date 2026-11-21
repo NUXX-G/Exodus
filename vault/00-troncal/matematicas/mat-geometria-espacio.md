@@ -311,7 +311,7 @@ Al terminar sabrás:
   vectorial da la orientación de cada triángulo de un modelo.
 - **Robótica y drones**: posiciones, orientaciones y distancias a obstáculos.
 - **Física**: el efecto de giro de un empujón sobre una llave inglesa y la desviación que sufre una partícula cargada
-  dentro de un imán se calculan con productos vectoriales.
+  que se mueve en un campo magnético (por ejemplo, entre los polos de un imán) se calculan con productos vectoriales.
 - **Ingeniería y arquitectura**: ángulos entre paredes, volúmenes, intersecciones de planos.
 
 ## 2. Vectores en el espacio
@@ -425,8 +425,8 @@ ejes en $1$, $2$ y $3$).
 ## 8. Posiciones relativas
 
 - **Dos planos**: paralelos (normales proporcionales), coincidentes o se cortan en una recta.
-- **Recta y plano**: si $\vec v \cdot \vec n \ne 0$, se cortan en un punto; si $\vec v \cdot \vec n = 0$, la recta es paralela al plano
-  o está contenida en él (según el punto $A$ esté o no en el plano).
+- **Recta y plano**: si $\vec v \cdot \vec n \ne 0$, se cortan en un punto; si $\vec v \cdot \vec n = 0$, la recta está contenida en el
+  plano si el punto $A$ está en él, y es paralela al plano si no lo está.
 - **Dos rectas** con puntos $A$, $B$ y directores $\vec u$, $\vec v$: si $\vec u$ y $\vec v$ son paralelos, son paralelas o
   coincidentes; si no, **se cortan** cuando $[\overrightarrow{AB}, \vec u, \vec v] = 0$ (están en un mismo plano) y **se cruzan**
   (no se tocan ni son paralelas, como dos carreteras a distinta altura en un paso elevado) cuando es distinto de $0$.
@@ -435,7 +435,7 @@ Con tres planos, las posiciones se estudian con el rango de la matriz del sistem
 
 ## 9. Ángulos y distancias
 
-**Ángulos.** Entre dos rectas, el de sus directores (agudo: con $|\vec u \cdot \vec v|$); entre dos planos, el de sus normales;
+**Ángulos.** Entre dos rectas, el de sus directores (agudo: con $|\vec u \cdot \vec v|$); entre dos planos, el de sus normales (agudo: con $|\vec n_1 \cdot \vec n_2|$);
 entre recta y plano, el **complementario** del ángulo entre $\vec v$ y $\vec n$: $\sin\alpha = \frac{|\vec v\cdot\vec n|}{|\vec v||\vec n|}$.
 
 **Distancias.**

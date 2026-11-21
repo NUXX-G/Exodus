@@ -398,7 +398,7 @@ exercises:
 
 # Geometría analítica: rectas, vectores, circunferencias y cónicas
 
-En 1637 Descartes y Fermat tuvieron la misma idea: **poner números a los puntos**. Con coordenadas, una curva se convierte en una ecuación y un problema geométrico en un problema de
+Hacia 1637, Descartes y Fermat, cada uno por su lado, tuvieron la misma idea: **poner números a los puntos**. Con coordenadas, una curva se convierte en una ecuación y un problema geométrico en un problema de
 álgebra. Esa traducción es la base del cálculo, de los gráficos por ordenador, de la robótica ([[rob-cinematica]]), del GPS y de casi toda la ingeniería. Este nodo la desarrolla
 para el plano (con una mirada al espacio) y estudia las curvas que más aparecen: la recta, la circunferencia y las **cónicas**.
 
@@ -578,7 +578,7 @@ Un receptor conoce la **distancia** a varios emisores en posiciones conocidas. E
 distancias al cuadrado $25$, $65$ y $45$. Las ecuaciones son $x^2 + y^2 = 25$; $(x - 10)^2 + y^2 = 65$; $x^2 + (y - 10)^2 = 45$. **Restando** la primera de las otras se eliminan los cuadrados y quedan ecuaciones **lineales**:
 $-20x + 100 = 40$, luego $x = 3$; $-20y + 100 = 20$, luego $y = 4$. Comprobación: $9 + 16 = 25$. $\checkmark$
 
-En el espacio, las esferas intersectan en un punto con **tres** satélites; en la práctica el GPS necesita **cuatro** porque también hay que calcular el **error del reloj** del receptor.
+En el espacio, tres esferas se cortan en general en **dos** puntos, y uno se descarta porque queda lejos de la Tierra; en la práctica el GPS necesita **cuatro** porque también hay que calcular el **error del reloj** del receptor.
 
 ## 8. Una mirada al espacio
 

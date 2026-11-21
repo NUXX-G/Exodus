@@ -520,7 +520,7 @@ $$
 y = A\sin(Bx + C) + D :
 $$
 
-**amplitud** $|A|$, **periodo** $\dfrac{2\pi}{B}$, **desfase** $-\dfrac{C}{B}$ (desplazamiento horizontal) y **línea media** $D$. En física, una onda o una oscilación es
+**amplitud** $|A|$, **periodo** $\dfrac{2\pi}{|B|}$, **desfase** $-\dfrac{C}{B}$ (desplazamiento horizontal) y **línea media** $D$. En física, una onda o una oscilación es
 $y(t) = A\sin(2\pi f t + \varphi)$ con $f$ la **frecuencia** (cuántas oscilaciones completas hay por segundo, en hercios): la tensión de la red $v(t) = 325\sin(100\pi t)$ tiene $f = \frac{100\pi}{2\pi} = 50$ Hz. Y $\tan$ tiene asíntotas verticales en $\frac\pi2 + k\pi$.
 
 **Funciones inversas.** $\arcsin$, $\arccos$ y $\arctan$ devuelven un ángulo a partir del valor: $\arcsin: [-1, 1] \to [-\frac\pi2, \frac\pi2]$, $\arccos: [-1, 1] \to [0, \pi]$, $\arctan: \mathbb{R} \to (-\frac\pi2, \frac\pi2)$.
@@ -589,7 +589,7 @@ $$
 | Datos | Método |
 |---|---|
 | dos ángulos y un lado (AAL, ALA) | el tercer ángulo es $180^\circ - A - B$; después, **seno** |
-| dos lados y el ángulo que forman (LAL) | **coseno** para el tercer lado; después **seno** (o coseno) |
+| dos lados y el ángulo que forman (LAL) | **coseno** para el tercer lado; después **seno** solo para el ángulo opuesto al lado menor (que es agudo), o **coseno** |
 | tres lados (LLL) | **coseno** para cada ángulo: $\cos A = \frac{b^2 + c^2 - a^2}{2bc}$ |
 | dos lados y un ángulo **no** comprendido (LLA) | **caso ambiguo** |
 
@@ -597,12 +597,12 @@ $$
 *Coseno:* lados $5$ y $6$ con ángulo $50^\circ$ entre ellos: $c^2 = 25 + 36 - 60\cos 50^\circ \approx 22{,}43$, $c \approx 4{,}74$.
 
 **El caso ambiguo (LLA).** Con $a$, $b$ y $A$ conocidos, $\sin B = \frac{b\sin A}{a}$. Casos: si $a < b\sin A$, **ningún** triángulo ($\sin B > 1$); si $a = b\sin A$, **uno** (rectángulo);
-si $b\sin A < a < b$, **dos** triángulos ($B$ y $180^\circ - B$); si $a \ge b$, **uno**. Ejemplo: $a = 5$, $b = 8$, $A = 30^\circ$: $b\sin A = 4 < 5 < 8$; $\sin B = 0{,}8$ da $B = 53{,}13^\circ$ **o** $126{,}87^\circ$, y ambos valen.
+si $b\sin A < a < b$, **dos** triángulos ($B$ y $180^\circ - B$); si $a \ge b$, **uno** (todo esto con $A$ agudo; si $A \ge 90^\circ$, no hay triángulo cuando $a \le b$ y hay uno cuando $a > b$). Ejemplo: $a = 5$, $b = 8$, $A = 30^\circ$: $b\sin A = 4 < 5 < 8$; $\sin B = 0{,}8$ da $B = 53{,}13^\circ$ **o** $126{,}87^\circ$, y ambos valen.
 
 ## 8. Ecuaciones trigonométricas
 
 > [!practico]
-> «¿Cuándo está la cabina de la noria a media altura subiendo?» tiene muchas respuestas: una en cada vuelta, y además hay
+> «¿Cuándo está la cabina de la noria a media altura?» tiene muchas respuestas: varias en cada vuelta, porque hay
 > dos momentos por vuelta a la misma altura (subiendo y bajando). Por eso las ecuaciones trigonométricas tienen **infinitas**
 > soluciones, y en un intervalo concreto hay que buscarlas todas.
 
@@ -639,7 +639,7 @@ gráficos 2D y de las rotaciones de la robótica (en [[mat-algebra-lineal-1]] se
 ## Repaso: lo que debe quedarte dentro de un mes
 
 1. $180^\circ = \pi$ rad; arco $s = r\theta$; $\sin^2 + \cos^2 = 1$; $(\cos\theta, \sin\theta)$ es un punto del círculo unidad.
-2. Valores notables de $30^\circ, 45^\circ, 60^\circ$; signos por cuadrantes; $y = A\sin(Bx + C)$: periodo $2\pi/B$.
+2. Valores notables de $30^\circ, 45^\circ, 60^\circ$; signos por cuadrantes; $y = A\sin(Bx + C)$: periodo $2\pi/|B|$.
 3. $\sin(\alpha\pm\beta)$, $\cos(\alpha\pm\beta)$, ángulo doble.
 4. Seno: $\frac{a}{\sin A} = \frac{b}{\sin B}$; coseno: $a^2 = b^2 + c^2 - 2bc\cos A$; área $\frac12 ab\sin C$.
 5. Ecuaciones: dos soluciones por vuelta; comprobar; rotaciones $(x\cos\theta - y\sin\theta,\ x\sin\theta + y\cos\theta)$.

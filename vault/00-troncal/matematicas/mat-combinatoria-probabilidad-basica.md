@@ -426,7 +426,7 @@ la variedad de símbolos:** cada carácter extra multiplica por $62$.
 ### Ordenaciones y selecciones
 
 - **Permutaciones** de $n$ objetos distintos (orden importa, usar todos): $n! = n(n-1)\cdots 1$. $6$ personas en fila: $6! = 720$. *(Por el principio del producto: $6$ opciones para el primero, $5$ para el segundo...)*
-- **Variaciones** de $n$ elegidos de $k$ (orden importa, sin repetir): $n(n-1)\cdots(n-k+1) = \dfrac{n!}{(n-k)!}$. PIN de $4$ cifras distintas: $10\cdot 9\cdot 8\cdot 7 = 5040$.
+- **Variaciones** de $n$ elementos tomados de $k$ en $k$ ($k$ elegidos de entre $n$) (orden importa, sin repetir): $n(n-1)\cdots(n-k+1) = \dfrac{n!}{(n-k)!}$. PIN de $4$ cifras distintas: $10\cdot 9\cdot 8\cdot 7 = 5040$.
 - **Con repetición**: $n^k$ (como las contraseñas).
 - **Combinaciones** (orden **no** importa): $\dbinom{n}{k} = \dfrac{n!}{k!\,(n-k)!}$. *Justificación:* las variaciones cuentan cada grupo de $k$ elementos $k!$ veces (una por orden); dividir. $\dbinom{8}{3} = 56$.
 - **Permutaciones con repetición**: ordenaciones de $n$ objetos con $n_1, n_2, \dots$ iguales: $\dfrac{n!}{n_1!\,n_2!\cdots}$. Los anagramas de «ANA» son $\frac{3!}{2!} = 3$.
@@ -477,7 +477,7 @@ Para dos conjuntos, $|A \cup B| = |A| + |B| - |A \cap B|$ (los comunes se contar
 
 Un **experimento aleatorio** tiene un **espacio muestral** $\Omega$ (todos los resultados posibles); un **suceso** es un subconjunto de $\Omega$. Kolmogorov (1933) axiomatizó la probabilidad $P$ con tres reglas:
 
-1. $0 \le P(A) \le 1$.  2. $P(\Omega) = 1$.  3. Si $A$ y $B$ son **incompatibles**, $P(A \cup B) = P(A) + P(B)$.
+1. $P(A) \ge 0$.  2. $P(\Omega) = 1$.  3. Si $A$ y $B$ son **incompatibles**, $P(A \cup B) = P(A) + P(B)$ (en la versión completa, para infinitos sucesos incompatibles dos a dos, la probabilidad de la unión es la suma de la serie).
 
 De ellos se deducen el **suceso contrario**, $P(\bar A) = 1 - P(A)$, y la unión general, $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
 
@@ -523,7 +523,7 @@ con una enfermedad rara, un positivo que es falso nueve de cada diez veces.** Ra
 
 **El problema del cumpleaños.** En un grupo de $n$ personas con $365$ días equiprobables, la probabilidad de que **todos** cumplan en días distintos es
 $\dfrac{365}{365}\cdot\dfrac{364}{365}\cdots\dfrac{365 - n + 1}{365}$. Con $n = 23$ baja a $0{,}493$: **con $23$ personas ya es más probable que no que haya una coincidencia.** Parece increíble porque hay $\binom{23}{2} = 253$ **parejas**
-posibles, no $23$. Es el mismo cálculo que **colisiones de hash**: con una función de $N$ valores, tras $\approx\sqrt{N}$ elementos ya hay una colisión probable (por eso los hashes necesitan el doble de bits que la seguridad buscada).
+posibles, no $23$. Es el mismo cálculo que **colisiones de hash**: con una función de $N$ valores, tras $\approx\sqrt{N}$ elementos ya hay una colisión probable (por eso, para resistir colisiones, los hashes necesitan el doble de bits que la seguridad buscada).
 
 **Monty Hall.** Hay $3$ puertas, un premio y dos cabras. Eliges una; el presentador, que **sabe** dónde está el premio, abre otra con cabra y te ofrece cambiar. **Conviene cambiar**: ganas con probabilidad $\frac23$.
 *Razón:* eliges bien con probabilidad $\frac13$ y entonces cambiar pierde; con probabilidad $\frac23$ eliges una cabra, y el presentador **te deja** la puerta del premio como única alternativa. Con $100$ puertas y $98$ abiertas, cambiar gana con $\frac{99}{100}$:
@@ -542,7 +542,7 @@ se ve mejor. La clave es que el presentador **no abre al azar**.
 
 La **esperanza** (valor esperado) de una variable $X$ con valores $x_i$ y probabilidades $p_i$ es $E[X] = \sum x_i p_i$: lo que se obtiene **de media a largo plazo**.
 **Ejemplo (ruleta europea, $37$ casillas, $0$ a $36$):** apostar $1$ € a un número paga $35$ € de ganancia si sale. $E = \frac{1}{37}\cdot 35 - \frac{36}{37}\cdot 1 = -\frac{1}{37} \approx -0{,}027$ €: la casa **gana de media un $2{,}7\,\%$**
-de lo apostado, haga lo que haga el jugador. Todo juego de casino tiene esperanza negativa para el jugador; la lotería, también (se paga solo una parte de lo recaudado).
+de lo apostado, haga lo que haga el jugador. Los juegos de casino contra la banca tienen esperanza negativa para el jugador; la lotería, también (se paga solo una parte de lo recaudado).
 
 La **esperanza es lineal**: $E[X + Y] = E[X] + E[Y]$ aunque no sean independientes. La **varianza** $\sigma^2 = E[(X - \mu)^2]$ mide la dispersión.
 
