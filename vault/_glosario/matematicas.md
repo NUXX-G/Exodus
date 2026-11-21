@@ -63,11 +63,11 @@ terminos:
   - termino: seno
     llano: "En un triángulo rectángulo, el cociente entre el lado opuesto a un ángulo y la hipotenusa. Dice «cuánto sube» por cada unidad de longitud inclinada."
     formal: "Para un ángulo $\\theta$, $\\sin\\theta$ es la ordenada del punto de la circunferencia unidad que forma un ángulo $\\theta$ con el eje $x$; en un triángulo rectángulo, cateto opuesto entre hipotenusa."
-    nodo: mat-trigonometria
+    nodo: mat-razones-trigonometricas
   - termino: coseno
     llano: "En un triángulo rectángulo, el cociente entre el lado pegado a un ángulo (no la hipotenusa) y la hipotenusa: «cuánto avanza» en horizontal."
     formal: "$\\cos\\theta$ es la abscisa del punto de la circunferencia unidad de ángulo $\\theta$; en un triángulo rectángulo, cateto contiguo entre hipotenusa. $\\sin^2\\theta + \\cos^2\\theta = 1$."
-    nodo: mat-trigonometria
+    nodo: mat-razones-trigonometricas
   - termino: teorema
     sinonimos: [teoremas]
     llano: "Una afirmación matemática que se ha demostrado que es verdad a partir de otras ya aceptadas."
