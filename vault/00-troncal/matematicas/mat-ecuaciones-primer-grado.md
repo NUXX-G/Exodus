@@ -514,5 +514,5 @@ años tendrán $40 + x$ y $10 + x$: $40 + x = 2(10 + x)$, $40 + x = 20 + 2x$, $x
 
 ## Siguiente
 
-el tema `mat-sistemas-dos-incognitas` (dos incógnitas y dos ecuaciones) y el tema `mat-ecuaciones-segundo-grado` (cuando la incógnita aparece al
+[[mat-sistemas-dos-incognitas]] (dos incógnitas y dos ecuaciones) y el tema `mat-ecuaciones-segundo-grado` (cuando la incógnita aparece al
 cuadrado).
