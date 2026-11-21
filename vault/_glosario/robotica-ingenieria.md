@@ -6,6 +6,7 @@ terminos:
     llano: "Cada forma independiente en que algo se puede mover: un brazo con tres articulaciones que giran tiene tres."
     formal: "Número de parámetros independientes que fijan la configuración de un sistema mecánico; un sólido libre en el espacio tiene 6."
     nodo: rob-cinematica
+    tambien: [mat-estadistica-inferencia]
   - termino: cinemática directa
     llano: "Calcular dónde acaba la mano de un robot sabiendo cuánto ha girado cada una de sus articulaciones."
     formal: "Aplicación $q \\mapsto T(q)$ que da la pose del efector final a partir de las variables articulares, por composición de transformaciones homogéneas."
