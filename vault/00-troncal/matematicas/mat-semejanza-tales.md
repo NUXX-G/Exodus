@@ -528,5 +528,5 @@ Sumando los dos teoremas del cateto, $a^2 + b^2 = c(m + n) = c^2$: otra demostra
 
 ## Siguiente
 
-el tema `mat-cuerpos-geometricos` (áreas y volúmenes en el espacio) y, más adelante, [[mat-trigonometria]] (que se basa en la semejanza de
+[[mat-cuerpos-geometricos]] (áreas y volúmenes en el espacio) y, más adelante, [[mat-trigonometria]] (que se basa en la semejanza de
 triángulos rectángulos).

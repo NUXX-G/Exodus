@@ -557,4 +557,4 @@ altura $r$ y base media circunferencia, $\pi r$: área $\pi r \cdot r$. (La just
 
 ## Siguiente
 
-[[mat-semejanza-tales]] (figuras con la misma forma y distinto tamaño) y el tema `mat-cuerpos-geometricos` (áreas y volúmenes en el espacio).
+[[mat-semejanza-tales]] (figuras con la misma forma y distinto tamaño) y [[mat-cuerpos-geometricos]] (áreas y volúmenes en el espacio).

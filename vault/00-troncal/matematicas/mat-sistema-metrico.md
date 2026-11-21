@@ -482,4 +482,4 @@ mapa $1 : 50\,000$ son $150\,000$ cm $= 1{,}5$ km. Las superficies reales, en ca
 
 ## Siguiente
 
-[[mat-proporcionalidad]] (las conversiones y las escalas son proporciones) y el tema `mat-cuerpos-geometricos` (volúmenes de cuerpos).
+[[mat-proporcionalidad]] (las conversiones y las escalas son proporciones) y [[mat-cuerpos-geometricos]] (volúmenes de cuerpos).
