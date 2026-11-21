@@ -346,7 +346,7 @@ Al terminar sabrás:
 
 ## 1. Para qué sirve
 
-- **Sistemas de ecuaciones**: decidir si un sistema tiene solución única y resolverlo con la regla de Cramer (el tema `mat-sistemas-lineales-bachillerato`).
+- **Sistemas de ecuaciones**: decidir si un sistema tiene solución única y resolverlo con la regla de Cramer ([[mat-sistemas-lineales-bachillerato]]).
 - **Geometría**: áreas de triángulos y paralelogramos, volúmenes de paralelepípedos, ecuaciones de rectas y planos (el tema `mat-vectores-espacio`).
 - **Cálculo en varias variables**: el jacobiano (un determinante) dice cómo cambian las áreas al cambiar de coordenadas ([[mat-calculo-multivariable]]).
 - **Álgebra lineal**: los valores propios se obtienen anulando un determinante ([[mat-algebra-lineal-1]]).
@@ -432,4 +432,4 @@ transformaciones seguidas multiplica los factores.
 
 ## Siguiente
 
-el tema `mat-sistemas-lineales-bachillerato` (Rouché-Frobenius, Cramer y discusión de sistemas).
+[[mat-sistemas-lineales-bachillerato]] (Rouché-Frobenius, Cramer y discusión de sistemas).

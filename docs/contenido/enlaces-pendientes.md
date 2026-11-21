@@ -22,6 +22,5 @@ Nodos que mencionan un nodo de tema aún no escrito. Al crear el nodo, sustituir
 | vault/00-troncal/matematicas/mat-funciones-trigonometricas.md | `fis-ondas-sonido` |
 | vault/00-troncal/matematicas/mat-derivadas.md | `ia-redes-neuronales` |
 | vault/00-troncal/matematicas/mat-integrales-bachillerato.md | `mat-distribucion-normal` |
-| vault/00-troncal/matematicas/mat-matrices.md | `mat-sistemas-lineales-bachillerato` |
-| vault/00-troncal/matematicas/mat-determinantes.md | `mat-sistemas-lineales-bachillerato` |
 | vault/00-troncal/matematicas/mat-determinantes.md | `mat-vectores-espacio` |
+| vault/00-troncal/matematicas/mat-sistemas-lineales-bachillerato.md | `mat-vectores-espacio` |

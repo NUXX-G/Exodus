@@ -338,7 +338,7 @@ Al terminar sabrás:
 
 ## 1. Para qué sirve
 
-- **Sistemas de ecuaciones**: se escriben como $AX = B$ y se resuelven con matrices (el tema `mat-sistemas-lineales-bachillerato`).
+- **Sistemas de ecuaciones**: se escriben como $AX = B$ y se resuelven con matrices ([[mat-sistemas-lineales-bachillerato]]).
 - **Gráficos y robótica**: giros, escalados y proyecciones son productos por matrices ([[rob-cinematica]]).
 - **Grafos y redes**: la matriz de adyacencia y sus potencias cuentan conexiones; así funcionaba el primer algoritmo de búsqueda de Google.
 - **Datos e IA**: una tabla de datos es una matriz, y los modelos de aprendizaje automático multiplican matrices sin parar ([[mat-algebra-lineal-1]]).
@@ -387,7 +387,7 @@ Una matriz cuadrada $A$ es **invertible** si existe $A^{-1}$ con $AA^{-1} = A^{-
 El **rango** de una matriz es el número máximo de filas (o, equivalentemente, de columnas) **linealmente independientes**: las que no se pueden
 obtener como combinación de las otras. Se calcula **escalonando** por Gauss (las operaciones elementales no cambian el rango): es el número de filas
 no nulas que quedan. *Ejemplo:* en $\begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 1 & 0 & 1 \end{pmatrix}$, la segunda fila es el doble de la primera; escalonando quedan dos filas no nulas: rango $2$. El
-rango decide si un sistema tiene solución (el tema `mat-sistemas-lineales-bachillerato`) y si una matriz cuadrada es invertible (rango máximo).
+rango decide si un sistema tiene solución ([[mat-sistemas-lineales-bachillerato]]) y si una matriz cuadrada es invertible (rango máximo).
 
 ## 6. Grafos y matrices
 
@@ -420,4 +420,4 @@ La **matriz de adyacencia** de un grafo con $n$ vértices tiene $a_{ij} = 1$ si 
 
 ## Siguiente
 
-[[mat-determinantes]] (un número que dice si una matriz es invertible) y el tema `mat-sistemas-lineales-bachillerato`.
+[[mat-determinantes]] (un número que dice si una matriz es invertible) y [[mat-sistemas-lineales-bachillerato]].
