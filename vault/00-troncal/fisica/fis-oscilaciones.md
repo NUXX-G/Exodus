@@ -354,7 +354,7 @@ y [[mat-derivadas]] (derivar senos y cosenos).
 
 - **Medida del tiempo**: péndulos, volantes de relojes mecánicos y cristales de cuarzo oscilan con un periodo fijo.
 - **Ingeniería**: suspensiones, amortiguadores, aislamiento de vibraciones, edificios antisísmicos.
-- **Música y sonido**: cuerdas, membranas y columnas de aire vibran (el tema `fis-ondas-sonido`).
+- **Música y sonido**: cuerdas, membranas y columnas de aire vibran ([[fis-ondas-sonido]]).
 - **Electrónica y física moderna**: circuitos oscilantes, osciladores de radio, vibraciones de moléculas, el oscilador armónico cuántico.
 
 ## 2. El movimiento armónico simple
@@ -434,4 +434,4 @@ De ahí, la velocidad en cualquier posición: $v = \omega\sqrt{A^2 - x^2}$. La e
 
 ## Siguiente
 
-el tema `fis-ondas-sonido` (cuando una oscilación se propaga: ondas y sonido).
+[[fis-ondas-sonido]] (cuando una oscilación se propaga: ondas y sonido).

@@ -315,7 +315,7 @@ Al terminar sabrás:
 ## 1. Para qué sirve
 
 - **Física de ondas**: sumar dos ondas (interferencias, batidos) es sumar senos; la fórmula de suma en producto lo explica
-  (el tema `fis-ondas-sonido`).
+  ([[fis-ondas-sonido]]).
 - **Electrónica y señales**: corriente alterna, modulación de radio, análisis de Fourier.
 - **Geometría y gráficos**: rotaciones en el plano (las coordenadas de un punto girado usan $\cos(\alpha + \theta)$ y $\operatorname{sen}(\alpha + \theta)$).
 - **Cálculo**: simplificar antes de derivar o integrar ([[mat-funciones-trigonometricas]]).

@@ -373,7 +373,7 @@ el cambio de variable) y [[mat-porcentajes-finanzas]] (interés compuesto).
 - **Finanzas**: tiempo necesario para que una inversión o una deuda alcance cierta cantidad ([[mat-porcentajes-finanzas]]).
 - **Biología y medicina**: crecimiento de bacterias, eliminación de un fármaco del cuerpo.
 - **Física y química**: desintegración radiactiva y datación, enfriamiento, el pH, el nivel sonoro en decibelios
-  (el tema `fis-ondas-sonido`).
+  ([[fis-ondas-sonido]]).
 - **Informática**: el número de pasos de una búsqueda binaria es un logaritmo en base $2$ (el tema `prog-algoritmos-complejidad`).
 
 ## 2. El crecimiento exponencial

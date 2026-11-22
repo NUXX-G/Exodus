@@ -339,7 +339,7 @@ Al terminar sabrás:
 
 ## 1. Para qué sirve
 
-- **Ondas**: sonido, luz y ondas en una cuerda son senos y cosenos (el tema `fis-ondas-sonido`).
+- **Ondas**: sonido, luz y ondas en una cuerda son senos y cosenos ([[fis-ondas-sonido]]).
 - **Electricidad**: la corriente alterna es $I(t) = I_0\operatorname{sen}(\omega t)$, con $\omega = 2\pi \cdot 50$ rad/s en Europa ([[ing-electricidad-basica]]).
 - **Movimientos que se repiten**: péndulos, muelles, ruedas, órbitas.
 - **Análisis de señales**: cualquier señal periódica se descompone en suma de senos y cosenos (series de Fourier).

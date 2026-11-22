@@ -56,7 +56,7 @@ terminos:
   - termino: longitud de onda
     llano: "La distancia entre dos crestas seguidas de una onda, como entre dos olas consecutivas."
     formal: "Periodo espacial $\\lambda$ de una onda: $y(x + \\lambda, t) = y(x, t)$. Se relaciona con la velocidad de propagación por $v = \\lambda f$."
-    nodo: fis-ondas-calor-fluidos
+    nodo: fis-ondas-sonido
   - termino: carga eléctrica
     llano: "Una propiedad de las partículas que hace que se atraigan o se repelan: cargas iguales se repelen y distintas se atraen."
     formal: "Magnitud escalar conservada y cuantizada (múltiplo de $e = 1{,}602\\,176\\,634\\times10^{-19}$ C); entre cargas puntuales, ley de Coulomb $F = k\\,|q_1q_2|/r^2$."
