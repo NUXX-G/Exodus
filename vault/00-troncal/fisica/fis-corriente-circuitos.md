@@ -366,7 +366,7 @@ Al terminar sabrás:
 
 - **Intensidad**: carga que atraviesa una sección por unidad de tiempo, $I = \frac{\Delta Q}{\Delta t}$, en **amperios** ($1$ A $= 1$ C/s).
 - Por convenio, el **sentido de la corriente** es el de las cargas positivas: del polo positivo al negativo por fuera del generador (los electrones van al revés).
-- **Corriente continua** (sentido constante, pilas) y **alterna** (cambia periódicamente, la red; el tema `fis-induccion`).
+- **Corriente continua** (sentido constante, pilas) y **alterna** (cambia periódicamente, la red; [[fis-induccion]]).
 
 ## 3. Resistencia y ley de Ohm
 

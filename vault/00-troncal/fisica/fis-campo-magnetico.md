@@ -361,7 +361,7 @@ Al terminar sabrás:
 
 ## 1. Para qué sirve
 
-- **Máquinas eléctricas**: motores, generadores, transformadores (el tema `fis-induccion`), altavoces, relés.
+- **Máquinas eléctricas**: motores, generadores, transformadores ([[fis-induccion]]), altavoces, relés.
 - **Medicina**: resonancia magnética, separación de isótopos para diagnóstico.
 - **Ciencia**: espectrometría de masas, aceleradores, fusión nuclear (confinamiento magnético).
 - **Información**: discos duros, tarjetas magnéticas, sensores Hall en móviles y coches.
@@ -446,4 +446,4 @@ Los materiales **ferromagnéticos** (hierro, níquel, cobalto) tienen dominios q
 
 ## Siguiente
 
-el tema `fis-induccion` (campos magnéticos que cambian generan corrientes).
+[[fis-induccion]] (campos magnéticos que cambian generan corrientes).
