@@ -424,7 +424,7 @@ de [[mat-triangulos-pitagoras]].
 
 - **Medir lo inaccesible**: alturas de edificios y árboles con sombras o espejos, anchuras de ríos.
 - **Mapas, planos y maquetas**: toda la cartografía y la arquitectura trabajan a escala.
-- **Fotografía y óptica**: la imagen de una cámara o de una lupa es semejante al objeto (el tema `fis-optica`).
+- **Fotografía y óptica**: la imagen de una cámara o de una lupa es semejante al objeto ([[fis-optica]]).
 - **Biología e ingeniería**: al escalar un objeto, su peso crece como $k^3$ y la resistencia de sus patas como $k^2$; por eso no hay
   hormigas gigantes y los puentes no se pueden ampliar sin rediseñarlos.
 

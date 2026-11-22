@@ -355,7 +355,7 @@ Al terminar sabrás:
 - **Música y acústica**: instrumentos, salas de conciertos, aislamiento acústico.
 - **Medicina**: ecografías (ultrasonidos), medida del flujo sanguíneo con Doppler.
 - **Ingeniería y ciencias de la Tierra**: sonar, ondas sísmicas, ensayos no destructivos, radar Doppler meteorológico y de tráfico.
-- **Base de la física moderna**: luz (el tema `fis-optica`), ondas electromagnéticas y mecánica cuántica (la materia también se comporta como onda, el tema `fis-cuantica-introduccion`).
+- **Base de la física moderna**: luz ([[fis-optica]]), ondas electromagnéticas y mecánica cuántica (la materia también se comporta como onda, el tema `fis-cuantica-introduccion`).
 
 ## 2. Qué es una onda
 

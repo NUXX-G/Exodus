@@ -427,4 +427,4 @@ en el diagrama $p$-$V$. Procesos típicos: **isócoro** ($W = 0$, $\Delta U = Q$
 
 ## Siguiente
 
-el tema `fis-optica` (la luz: reflexión, refracción, espejos y lentes).
+[[fis-optica]] (la luz: reflexión, refracción, espejos y lentes).

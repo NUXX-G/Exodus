@@ -3,7 +3,7 @@ id: fis-ondas-calor-fluidos
 title: "Ondas, luz, calor y fluidos"
 area: fisica
 trunk_level: 7
-prerequisites: [fis-fuerzas-energia, fis-oscilaciones, fis-ondas-sonido, fis-fluidos-presion-flotacion, fis-calor-temperatura]
+prerequisites: [fis-fuerzas-energia, fis-oscilaciones, fis-ondas-sonido, fis-fluidos-presion-flotacion, fis-calor-temperatura, fis-optica]
 academic_sources:
   - "Halliday, D.; Resnick, R.; Walker, J. Fundamentals of Physics, 11ª ed. Wiley, 2018, caps. 14 (fluidos), 16-17 (ondas y sonido), 18 (temperatura, calor y primer principio), 20 (entropía y segundo principio), 33-34 (ondas electromagnéticas e imágenes)."
   - "Ling, S. J.; Sanny, J.; Moebs, W. Física universitaria (en español). OpenStax, 2021: vol. 1, caps. 14 (mecánica de fluidos), 16 (ondas) y 17 (sonido); vol. 2, caps. 1 (temperatura y calor), 3 (primera ley) y 4 (segunda ley); vol. 3, caps. 1-2 (naturaleza de la luz y óptica geométrica). https://openstax.org/books/f%C3%ADsica-universitaria-volumen-1/pages/16-introduccion"
