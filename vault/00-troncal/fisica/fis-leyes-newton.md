@@ -406,7 +406,7 @@ se dice «peso 70 kilos», pero en física el peso se mide en newtons.
 - **Normal** $\vec N$: la que hace una superficie sobre un cuerpo apoyado, **perpendicular** a la superficie. No siempre es igual al peso: en un plano inclinado vale $mg\cos\theta$, y en un
   ascensor que acelera cambia.
 - **Tensión** $\vec T$: la que hace una cuerda tensa, a lo largo de la cuerda; en una cuerda ligera que pasa por una polea ideal es la misma en los dos extremos.
-- **Rozamiento**: la que se opone al deslizamiento entre superficies; se estudia a fondo en el tema `fis-dinamica-aplicaciones`. En este nodo se supone despreciable.
+- **Rozamiento**: la que se opone al deslizamiento entre superficies; se estudia a fondo en [[fis-dinamica-aplicaciones]]. En este nodo se supone despreciable.
 - **Fuerza elástica** de un muelle (ley de Hooke, $F = -kx$), que reaparecerá en el tema `fis-oscilaciones`.
 
 > [!practico]
@@ -452,4 +452,4 @@ para cada cuerpo; (4) resolver el sistema.
 
 ## Siguiente
 
-el tema `fis-dinamica-aplicaciones` (rozamiento, planos, poleas y dinámica del movimiento circular).
+[[fis-dinamica-aplicaciones]] (rozamiento, planos, poleas y dinámica del movimiento circular).

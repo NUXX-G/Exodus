@@ -33,7 +33,7 @@ terminos:
   - termino: rozamiento
     llano: "La fuerza que se opone a que una superficie deslice sobre otra; por eso un objeto que empujas acaba parándose."
     formal: "Fuerza tangente al contacto; en el modelo de Coulomb, estático $f_s \\le \\mu_s N$ y dinámico $f_k = \\mu_k N$, opuesto a la velocidad relativa."
-    nodo: fis-fuerzas-energia
+    nodo: fis-dinamica-aplicaciones
     tambien: [fis-leyes-newton]
   - termino: inercia
     excepto: [ley de inercia de Sylvester]

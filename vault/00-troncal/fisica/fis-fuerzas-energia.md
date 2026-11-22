@@ -3,7 +3,7 @@ id: fis-fuerzas-energia
 title: "Fuerzas, energía y gravitación: las leyes de Newton"
 area: fisica
 trunk_level: 6
-prerequisites: [fis-medida-movimiento, fis-leyes-newton]
+prerequisites: [fis-medida-movimiento, fis-leyes-newton, fis-dinamica-aplicaciones]
 academic_sources:
   - "Halliday, D.; Resnick, R.; Walker, J. Fundamentals of Physics, 11ª ed. Wiley, 2018, caps. 5-6 (fuerza, leyes de Newton, rozamiento), 7-8 (trabajo, energía cinética y potencial, conservación), 9 (centro de masas y momento lineal) y 13 (gravitación)."
   - "Ling, S. J.; Sanny, J.; Moebs, W. Física universitaria, volumen 1 (en español). OpenStax, 2021, caps. 5-6 (leyes de Newton y aplicaciones), 7-8 (trabajo, energía y conservación), 9 (momento lineal y choques) y 13 (gravitación). https://openstax.org/books/f%C3%ADsica-universitaria-volumen-1/pages/5-introduccion"
