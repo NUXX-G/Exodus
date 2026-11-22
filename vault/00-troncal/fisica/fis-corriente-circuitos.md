@@ -443,4 +443,4 @@ miliamperios a través del cuerpo pueden ser mortales.
 
 ## Siguiente
 
-el tema `fis-campo-magnetico` (imanes, corrientes y fuerzas magnéticas).
+[[fis-campo-magnetico]] (imanes, corrientes y fuerzas magnéticas).

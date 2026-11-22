@@ -357,7 +357,7 @@ a la de la gravitación de [[fis-gravitacion]].
 - **Electrónica**: condensadores en todos los circuitos, pantallas táctiles capacitivas, memorias.
 - **Industria**: fotocopiadoras e impresoras láser, pintura electrostática, filtros de humos.
 - **Seguridad**: pararrayos, jaulas de Faraday, protección frente a descargas en gasolineras y quirófanos.
-- **Ciencia**: estructura del átomo, química (enlaces), aceleradores de partículas (el tema `fis-campo-magnetico`).
+- **Ciencia**: estructura del átomo, química (enlaces), aceleradores de partículas ([[fis-campo-magnetico]]).
 
 ## 2. La carga eléctrica
 
