@@ -25,7 +25,34 @@ registro de sesiones (una línea) o a `docs/`.
 
 - **Fase actual**: FASE 9B — Troncal por temas (un nodo por tema, extenso). La FASE 10 queda en pausa tras el tramo 1 y se retoma por temas.
 - **Tarea actual**: 9B c) redacción por temas, bloque de aritmética (nodos 1-10 de `docs/contenido/troncal-temas.md`).
-- **Siguiente paso concreto**: bloque de distribuciones (nodo de bloque `mat-distribuciones-binomial-normal`): nodo 45, `mat-distribucion-binomial` (Marea Verde Matemáticas II cap. 12 `BC2%2012%20Distribuciones.pdf`, primera parte; URL en `docs/contenido/troncal-temas.md` §a2; aquí se introduce «variable aleatoria»: si su `nodo:` está en `mat-probabilidad`, añadir el tema a `tambien`), después 46 `mat-distribucion-normal` (segunda parte del capítulo); al cerrar el bloque, `objetivo-insertar.cjs . acceso-universidad mat-distribuciones-binomial-normal mat-distribucion-binomial mat-distribucion-normal` y `objetivo-ordenar.cjs . <objetivo>` en todos los objetivos, `vault:check`, tests y commit. Con eso termina la matemática del troncal (46 temas); después física (47-66, tabla §c, OpenStax Física universitaria) y programación (67-68). Al crear cada nodo: `enlaces-pendientes.cjs` y `enlaces-restaurar.cjs`; si el tema introduce términos del glosario asignados al bloque, mover el `nodo:` y añadir el tema como prerrequisito del bloque en el mismo paso (`prereq.cjs`); si un término de otra área choca o el tema lo explica en su sentido, `excepto.cjs` o `tambien.cjs`; si el texto usa «ecuación», el tema necesita a `mat-ecuaciones-primer-grado` entre sus antecesores. Ids en minúsculas y sin tildes; `sig` máximo 12; respuestas de tipo `texto` siempre exactas (si no, `numero` con `sig`); índices pequeños como cadenas no numéricas; comprobar con cálculo también el banco de repaso; variar las variantes; para Montecarlo, mulberry32 con semilla; nada de `$` en sustituciones de `String.replace`; el dólar como moneda no va con `# STATUS — Exodus v2
+- **Siguiente paso concreto**: bloque de distribuciones: nodo 46, `mat-distribucion-normal` (Marea Verde Matemáticas II cap. 12 §1.4-1.7, ya en el scratchpad `mvbach/BC2_12.u8`; URL en `docs/contenido/troncal-temas.md` §a2); al cerrar el bloque, `objetivo-insertar.cjs . acceso-universidad mat-distribuciones-binomial-normal mat-distribucion-binomial mat-distribucion-normal` y `objetivo-ordenar.cjs . <objetivo>` en todos los objetivos, `vault:check`, tests y commit. Con eso termina la matemática del troncal (46 temas); después física (47-66, tabla §c, OpenStax Física universitaria, `https://openstax.org/details/books/física-universitaria-volumen-1` y volúmenes 2-3) y programación (67-68). Al crear cada nodo: `enlaces-pendientes.cjs` y `enlaces-restaurar.cjs`; si el tema introduce términos del glosario asignados al bloque, mover el `nodo:` y añadir el tema como prerrequisito del bloque en el mismo paso (`prereq.cjs`); si un término de otra área choca o el tema lo explica en su sentido, `excepto.cjs` o `tambien.cjs`; si el texto usa «ecuación», el tema necesita a `mat-ecuaciones-primer-grado` entre sus antecesores. Ids en minúsculas y sin tildes; `sig` máximo 12; respuestas de tipo `texto` siempre exactas (si no, `numero` con `sig`); índices pequeños como cadenas no numéricas; comprobar con cálculo también el banco de repaso; variar las variantes; Montecarlo con mulberry32; nada de `$` en sustituciones de `String.replace`; el dólar como moneda no va con `# STATUS — Exodus v2
+
+Última actualización: 2026-11-15 · Rama de trabajo: **`v2`** · Plan: `docs/ROADMAP_V2.md`
+
+Este archivo es el **panel de control** entre sesiones. Es corto a propósito: con él, más la sección de la fase actual
+del roadmap, una sesión nueva puede seguir trabajando sin leer nada más. Mantenlo corto: lo que sea historia va al
+registro de sesiones (una línea) o a `docs/`.
+
+## 0. Arranque de una sesión nueva
+
+1. `git checkout v2 && git pull -q && git status --short && git log --oneline -3`
+2. Lee este archivo entero.
+3. Lee **solo** la sección de la fase actual en `docs/ROADMAP_V2.md`:
+   `grep -n "^## " docs/ROADMAP_V2.md` y lee desde `## FASE <n>` hasta la siguiente `## `.
+4. Retoma en «Ahora mismo → Siguiente paso». No releas el plan completo ni explores el repo: el mapa de §4 basta.
+5. Consulta, sin leer enteros: `docs/HISTORIAL_V1.md` (estado de la v1 y lista de nodos; usa `grep`),
+   `docs/PEDAGOGIA.md` (al escribir contenido), `docs/AMPLIAR.md` (formato de nodos y efectos sobre el progreso),
+   `docs/CURRICULO.md` (árbol de la v1).
+6. Antes de que se llene el contexto: termina la tarea en curso, actualiza §1 y el registro (§9) y ejecuta
+   `bash scripts/dev/guardar.sh "v2: fase N · <tarea>"`. **Desde el 2026-11-20 no se para nunca la sesión ni se
+   pide abrir otra**: el contexto se resume solo y se sigue. Un trabajo cron de la sesión («continúa con el roadmap»,
+   cada hora en el minuto 17) reanuda el trabajo tras los límites de uso; si no existe (`CronList`), recréalo.
+
+## 1. Ahora mismo
+
+- **Fase actual**: FASE 9B — Troncal por temas (un nodo por tema, extenso). La FASE 10 queda en pausa tras el tramo 1 y se retoma por temas.
+- **Tarea actual**: 9B c) redacción por temas, bloque de aritmética (nodos 1-10 de `docs/contenido/troncal-temas.md`).
+; evitar «axioma», «recta de regresión», «fuerza», «red neuronal», «en función de» en nodos sin esos antecesores; NUNCA `sed` con barras invertidas de LaTeX. Construir los datos a partir de la solución elegida; no repetir en los ejercicios números de los ejemplos de la teoría (`vault:fugas`). Criterios en §a. Registrar con `node scripts/dev/vault/registro-9b.cjs`. Specs nuevos con `export default ejercicios.map(limpia)`.
 
 Última actualización: 2026-11-15 · Rama de trabajo: **`v2`** · Plan: `docs/ROADMAP_V2.md`
 

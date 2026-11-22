@@ -412,4 +412,4 @@ Al terminar sabrás:
 
 ## Siguiente
 
-[[mat-geometria-espacio]] repasa el bloque; después, las distribuciones con el tema `mat-distribucion-binomial`.
+[[mat-geometria-espacio]] repasa el bloque; después, las distribuciones con [[mat-distribucion-binomial]].
