@@ -442,4 +442,4 @@ $$
 
 ## Siguiente
 
-el tema `fis-cuantica-introduccion` (la otra gran revolución: fotones, dualidad onda-partícula e incertidumbre).
+[[fis-cuantica-introduccion]] (la otra gran revolución: fotones, dualidad onda-partícula e incertidumbre).

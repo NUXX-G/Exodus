@@ -362,7 +362,7 @@ Al terminar sabrás:
 - **Salud**: gafas, lentes de contacto, cirugía refractiva, endoscopios.
 - **Tecnología**: cámaras, proyectores, pantallas, lectores de códigos, láseres.
 - **Comunicaciones**: la fibra óptica transporta casi todo el tráfico de internet.
-- **Ciencia**: microscopios y telescopios; espectroscopia (el tema `fis-cuantica-introduccion`).
+- **Ciencia**: microscopios y telescopios; espectroscopia ([[fis-cuantica-introduccion]]).
 
 ## 2. Naturaleza y velocidad de la luz
 

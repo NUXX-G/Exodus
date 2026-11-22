@@ -13,7 +13,5 @@ Nodos que mencionan un nodo de tema aún no escrito. Al crear el nodo, sustituir
 | vault/00-troncal/matematicas/mat-funciones-exponencial-logaritmica.md | `prog-algoritmos-complejidad` |
 | vault/00-troncal/matematicas/mat-derivadas.md | `ia-redes-neuronales` |
 | vault/00-troncal/fisica/fis-momento-choques.md | `fis-fisica-nuclear` |
-| vault/00-troncal/fisica/fis-ondas-sonido.md | `fis-cuantica-introduccion` |
-| vault/00-troncal/fisica/fis-optica.md | `fis-cuantica-introduccion` |
 | vault/00-troncal/fisica/fis-relatividad-bach.md | `fis-fisica-nuclear` |
-| vault/00-troncal/fisica/fis-relatividad-bach.md | `fis-cuantica-introduccion` |
+| vault/00-troncal/fisica/fis-cuantica-introduccion.md | `fis-fisica-nuclear` |
