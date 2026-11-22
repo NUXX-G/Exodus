@@ -412,7 +412,7 @@ Al terminar sabrás:
 - **Automatizar**: renombrar archivos, procesar hojas de cálculo, descargar datos ([[prog-bash-scripting]] para la terminal).
 - **Ciencia de datos e IA**: casi todas las bibliotecas de aprendizaje automático se usan desde Python ([[ia-python-datos]]).
 - **Ciberseguridad**: scripts de análisis, herramientas de auditoría y CTF ([[sec-fundamentos]]).
-- **Base de todo lo demás**: la segunda parte, el tema `prog-python-funciones-colecciones`, añade funciones, colecciones y archivos.
+- **Base de todo lo demás**: la segunda parte, [[prog-python-funciones-colecciones]], añade funciones, colecciones y archivos.
 
 ## 2. Primeros pasos
 
@@ -521,4 +521,4 @@ sangría forma parte de la sintaxis. Los `if` se pueden anidar, pero suele ser m
 
 ## Siguiente
 
-el tema `prog-python-funciones-colecciones` (funciones, listas, diccionarios, conjuntos y archivos).
+[[prog-python-funciones-colecciones]] (funciones, listas, diccionarios, conjuntos y archivos).
