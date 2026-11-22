@@ -3,7 +3,7 @@ id: fis-fluidos
 title: "Mecánica de fluidos: hidrostática, Bernoulli, Navier-Stokes, viscosidad, tuberías, flujo potencial, capa límite, ondas y compresibilidad"
 area: fisica
 trunk_level: 12
-prerequisites: [fis-mecanica-clasica, mat-calculo-multivariable]
+prerequisites: [fis-mecanica-clasica, mat-calculo-multivariable, fis-fluidos-presion-flotacion]
 academic_sources:
   - "Kundu, P. K.; Cohen, I. M.; Dowling, D. R. Fluid Mechanics, 6ª ed. Academic Press, 2015."
   - "Acheson, D. J. Elementary Fluid Dynamics. Clarendon Press (Oxford), 1990."
