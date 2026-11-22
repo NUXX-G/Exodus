@@ -25,11 +25,11 @@ terminos:
   - termino: energía cinética
     llano: "La energía que tiene algo por estar moviéndose: cuanto más pesado y, sobre todo, más rápido, más tiene (al doble de velocidad, cuatro veces más)."
     formal: "$E_c = \\tfrac12 m v^2$ para una partícula de masa $m$ y rapidez $v$ (mecánica no relativista). Teorema de las fuerzas vivas: el trabajo neto es igual a $\\Delta E_c$."
-    nodo: fis-fuerzas-energia
+    nodo: fis-trabajo-energia
   - termino: energía potencial
     llano: "Energía «guardada» por la posición: un libro en lo alto de una estantería la tiene y la convierte en movimiento si se cae."
     formal: "Para una fuerza conservativa $\\vec F$, $U$ tal que $\\vec F = -\\nabla U$; cerca de la superficie terrestre, $U = mgh$."
-    nodo: fis-fuerzas-energia
+    nodo: fis-trabajo-energia
   - termino: rozamiento
     llano: "La fuerza que se opone a que una superficie deslice sobre otra; por eso un objeto que empujas acaba parándose."
     formal: "Fuerza tangente al contacto; en el modelo de Coulomb, estático $f_s \\le \\mu_s N$ y dinámico $f_k = \\mu_k N$, opuesto a la velocidad relativa."

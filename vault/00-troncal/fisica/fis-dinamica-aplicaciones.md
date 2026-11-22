@@ -443,4 +443,4 @@ la fuerza neta es cero y se cae a la **velocidad límite** $v_L = \sqrt{mg/b}$. 
 
 ## Siguiente
 
-el tema `fis-trabajo-energia` (trabajo, energía y su conservación).
+[[fis-trabajo-energia]] (trabajo, energía y su conservación).

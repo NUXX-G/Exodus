@@ -19,4 +19,5 @@ Nodos que mencionan un nodo de tema aún no escrito. Al crear el nodo, sustituir
 | vault/00-troncal/matematicas/mat-derivadas.md | `ia-redes-neuronales` |
 | vault/00-troncal/fisica/fis-leyes-newton.md | `fis-momento-choques` |
 | vault/00-troncal/fisica/fis-leyes-newton.md | `fis-oscilaciones` |
-| vault/00-troncal/fisica/fis-dinamica-aplicaciones.md | `fis-trabajo-energia` |
+| vault/00-troncal/fisica/fis-trabajo-energia.md | `fis-calor-temperatura` |
+| vault/00-troncal/fisica/fis-trabajo-energia.md | `fis-momento-choques` |
