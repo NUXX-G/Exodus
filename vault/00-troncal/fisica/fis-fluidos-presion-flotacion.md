@@ -456,4 +456,4 @@ Para un fluido **ideal** (incompresible, sin viscosidad, flujo estacionario):
 
 ## Siguiente
 
-el tema `fis-calor-temperatura` (temperatura, calor y el primer principio de la termodinámica); para ir más lejos, [[fis-fluidos]].
+[[fis-calor-temperatura]] (temperatura, calor y el primer principio de la termodinámica); para ir más lejos, [[fis-fluidos]].

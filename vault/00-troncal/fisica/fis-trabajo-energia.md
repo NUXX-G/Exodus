@@ -358,7 +358,7 @@ Al terminar sabrás:
 - **Energía y sostenibilidad**: centrales hidroeléctricas (energía potencial del agua), consumo eléctrico en kWh, eficiencia de motores.
 - **Seguridad**: la energía cinética de un coche crece con el cuadrado de la velocidad, y es la que hay que disipar en un choque.
 - **Ingeniería y deporte**: montañas rusas, catapultas, saltos con pértiga, muelles y amortiguadores.
-- **Toda la física posterior**: termodinámica (el tema `fis-calor-temperatura`), electricidad, física moderna ($E = mc^2$) se construyen sobre la energía.
+- **Toda la física posterior**: termodinámica ([[fis-calor-temperatura]]), electricidad, física moderna ($E = mc^2$) se construyen sobre la energía.
 
 ## 2. Trabajo
 
