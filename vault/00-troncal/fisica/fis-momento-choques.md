@@ -445,4 +445,4 @@ el que apoyarse: funciona mejor en el vacío. Su **empuje** es la velocidad de l
 
 ## Siguiente
 
-el tema `fis-gravitacion` (gravitación universal, campo gravitatorio y órbitas).
+[[fis-gravitacion]] (gravitación universal, campo gravitatorio y órbitas).

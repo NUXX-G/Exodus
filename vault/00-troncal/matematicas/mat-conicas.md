@@ -376,7 +376,7 @@ Al terminar sabrás:
 
 ## 1. Para qué sirve
 
-- **Astronomía**: leyes de Kepler (órbitas elípticas con el Sol en un foco); cometas en órbitas parabólicas o hiperbólicas (el tema `fis-gravitacion`).
+- **Astronomía**: leyes de Kepler (órbitas elípticas con el Sol en un foco); cometas en órbitas parabólicas o hiperbólicas ([[fis-gravitacion]]).
 - **Óptica y telecomunicaciones**: los espejos parabólicos concentran en el foco los rayos que llegan paralelos (antenas, hornos solares, faros);
   los elípticos reflejan lo que sale de un foco hacia el otro (litotricia, salas de susurros).
 - **Física**: tiros parabólicos; la ley de Boyle da una hipérbola.
@@ -489,4 +489,4 @@ degenerados son un punto, un par de rectas o el vacío; el término en $xy$ corr
 
 ## Siguiente
 
-[[mat-geometria-analitica]] repasa el bloque; las cónicas reaparecen como órbitas en el tema `fis-gravitacion`.
+[[mat-geometria-analitica]] repasa el bloque; las cónicas reaparecen como órbitas en [[fis-gravitacion]].
