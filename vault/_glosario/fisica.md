@@ -60,12 +60,12 @@ terminos:
   - termino: carga eléctrica
     llano: "Una propiedad de las partículas que hace que se atraigan o se repelan: cargas iguales se repelen y distintas se atraen."
     formal: "Magnitud escalar conservada y cuantizada (múltiplo de $e = 1{,}602\\,176\\,634\\times10^{-19}$ C); entre cargas puntuales, ley de Coulomb $F = k\\,|q_1q_2|/r^2$."
-    nodo: fis-electricidad-magnetismo-1
+    nodo: fis-electrostatica
     tambien: [ing-electricidad-basica]
   - termino: campo eléctrico
     llano: "La «influencia» que una carga crea a su alrededor: cualquier otra carga que entre ahí siente una fuerza."
     formal: "$\\vec E = \\vec F/q$, fuerza por unidad de carga de prueba; para una carga puntual, $\\vec E = k\\,q\\,\\hat r/r^2$. Unidades: N/C = V/m."
-    nodo: fis-electricidad-magnetismo-1
+    nodo: fis-electrostatica
 ---
 
 Glosario de física (esta nota no es un nodo). Valor de $e$: exacto desde la redefinición del SI de 2019.

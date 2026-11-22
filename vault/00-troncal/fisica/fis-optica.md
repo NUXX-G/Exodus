@@ -443,4 +443,4 @@ $$
 
 ## Siguiente
 
-[[fis-ondas-calor-fluidos]] repasa el bloque; después, el tema `fis-electrostatica` (la ley de Coulomb y sus consecuencias).
+[[fis-ondas-calor-fluidos]] repasa el bloque; después, [[fis-electrostatica]] (la ley de Coulomb y sus consecuencias).
