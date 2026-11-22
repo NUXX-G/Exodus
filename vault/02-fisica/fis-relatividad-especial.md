@@ -3,7 +3,7 @@ id: fis-relatividad-especial
 title: "Relatividad especial: Lorentz, espaciotiempo de Minkowski, cinemática y dinámica relativistas, colisiones y campos"
 area: fisica
 trunk_level: 13
-prerequisites: [fis-mecanica-clasica, fis-electromagnetismo]
+prerequisites: [fis-mecanica-clasica, fis-electromagnetismo, fis-relatividad-bach]
 academic_sources:
   - "Taylor, E. F.; Wheeler, J. A. Spacetime Physics, 2ª ed. W. H. Freeman, 1992."
   - "Rindler, W. Relativity: Special, General, and Cosmological, 2ª ed. Oxford University Press, 2006."

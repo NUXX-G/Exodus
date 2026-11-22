@@ -3,7 +3,7 @@ id: fis-fisica-moderna-bach
 title: "Física moderna de Bachillerato: relatividad, fotones, átomo y núcleo"
 area: fisica
 trunk_level: 12
-prerequisites: [fis-electricidad-magnetismo-1, fis-ondas-calor-fluidos]
+prerequisites: [fis-electricidad-magnetismo-1, fis-ondas-calor-fluidos, fis-relatividad-bach]
 academic_sources:
   - "Ling, S. J.; Sanny, J.; Moebs, W. Física universitaria, volumen 3 (en español). OpenStax, 2021: cap. 5 (5.1-5.4 invariancia, simultaneidad, dilatación del tiempo y contracción de longitud; 5.9 energía relativista), cap. 6 (6.2 efecto fotoeléctrico, 6.4 modelo de Bohr, 6.5 ondas de De Broglie, 6.6 dualidad onda-partícula), cap. 7 (7.2 principio de incertidumbre), cap. 10 (10.1-10.6 núcleos, energía de enlace, desintegración, fisión y fusión) y cap. 11 (11.1, 11.3 y 11.5: partículas, cuarks y modelo estándar). https://openstax.org/books/f%C3%ADsica-universitaria-volumen-3/pages/5-introduccion"
   - "Bureau International des Poids et Mesures (BIPM). The International System of Units (SI), 9.ª ed., 2019: valores exactos de c, h y e. https://www.bipm.org/en/publications/si-brochure"

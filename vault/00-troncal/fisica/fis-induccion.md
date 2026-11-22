@@ -431,4 +431,4 @@ bobina se opone más a las frecuencias altas y un condensador, a las bajas: con 
 
 ## Siguiente
 
-[[fis-electricidad-magnetismo-1]] amplía el bloque con las ecuaciones de Maxwell; en la física moderna, el tema `fis-relatividad-bach`.
+[[fis-electricidad-magnetismo-1]] amplía el bloque con las ecuaciones de Maxwell; en la física moderna, [[fis-relatividad-bach]].
