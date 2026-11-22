@@ -290,7 +290,7 @@ exercises:
       **Desarrollo.** (a) Explica por qué un cubo se puede partir en tres pirámides iguales con vértice común en un vértice del cubo, y qué
       dice eso del volumen de una pirámide. (b) Enuncia el principio de Cavalieri y úsalo para explicar por qué un prisma oblicuo y uno recto
       con la misma base y la misma altura tienen el mismo volumen. (c) ¿Por qué solo hay cinco poliedros regulares convexos?
-    sealed: "gz64:H4sIAAAAAAACCoVUTY8bRRD9K09WH+zRyMquAYFDDijkihCIvWRYVO6pdVrqqRr6YxWz8o/xkUNO+Qn+Y6h7PWvvBsFpWjVdr17Xe1UPs6g+J6cyW8+aZk6LpsGvDpHB3m0ZWXB//DskZxnmxqBnD5s32sJTRAocYSlQxJ+Z0TSiTQOvsCrJsbAgqtSrG4oc0fNjzujC8TC4vqTr8xKvYaknZCFUiE5GDTW9kLGZ+kC9FiRfvoYMdihXyKccqAbmnkDBxUQYOYwsvbPZU1i02J2JF2pum8lzLGHPQoLT+xBd4e5ppBB5iR/i8VMnZnXzx0PXJf6YHkYX9nu8Ad2uCgPz5Z+uuwtkr1ag22t0ne01gS7jp9gprTxx/yL2+Ka9aWt/OcIT7o6fw5A9YcvCgfyyk06aZr4p2v0cnFg3utqgt3RP3nFwa0SHXiNs5jBqxEkcTxhcHGjq3Q5Jy7WYiy4hFaU0YPQkGjFSIM9eI6hkFr7t4/ESpO3kJfrxEJjaqSj7Glbcq88DyxK/CcZQb+rGO5sVO2RRBLapeukMVX2wm/hOiPLomVM0SyeV/aO6Z7br54VbmJsqx/+2H3Orgxb/DSrp+FlKdwcV7inCifVOqNfFpIQtSrw7kXrytlWxOQQWkMfApaMX8xN4WxzKcbJksWrR4XiQbS5N73lT5ikPFNA0FaBpChGz+ubVbddZF6zBPDqIVr/0FI6fqJMqHxSisBxCjS6WeKuCFNwT/tycYRZrmJVpYb4yUJivTfXB01PmiVMg7oO2UJtOJ2c11uPidRVtmtUC/d0ldFSvBb+TeZm10/WRJR0PW5WacPXq23/JwLzXnu1llQ/8ccraEczTVF1dTyXxBhcdWuInxQfaYTgeir2j2zjveuo5LmftLORNcHa2fv8ws8ElDk5n69mPHG1wGz4vj4sNVkbzxfbYoec+27JFcUc2aYCZxt6UMmOWpHG2vt63zwq9kyzW0Xl0y2ZS0OidLQZ/MSj/BfUL/aVC0/gU3xSzPMnN8my5z833l11aYAfd1Pmqb7ZOrH7ZrXPt3/f/AOGdiJ5MBgAA"
+    sealed: "gz64:H4sIAAAAAAACCp1VzW4jRRB+lZLVh/FoZG1iQOCwB7TkihCIXBiCaror3pbaVbP9E8VEfhgfOexpH8EvhqrjiZ3sCiRO06rp+uqrr376cZYklOyFZ6tZ2zY4b1v41UMioODXBIXh/vB3zN4SmBsDjgLYMkgHARPkSAksRkzwoRC0LUvbQhCwwtkTE0MSrlcHTJTA0ZPP6ONhv/FO3eVliCuw6BAKI1SInkeJ1V3J2IIuohNFCvo1aGALegVDLhGroQkIGH3KCCPFkdh5WwLGeQfbE3Gl5tcFAyU1B2JkOOYHySv3gCPGRAv4IR0+9myWN38+9n2mh/w4+rjbwVvA26UyMJ//6fu7iPZiCXh7CX1vnWTAc/vRdnTTFHevbE857cwCrlMWGGOhAStHTFWDqstRFKxaHmWoiQGGqtLVk4gUYIyerR99dX6H9xg8RQ+N5plVz2EOW6CUfUR2AgHhzq8VkCbornbHgxbHEaBGDx+Kp3iq6grMzf9MtOee27YZtBF//iLZFSQPThLYQnGUBMdOCwgbnzY4KbCFLHotFW2ymLXtJMIYkCXBiBEDBUmA6qmcuqfjOUjX82v0wz4SdlNQCtUscC+hbIgX8BuryHpThuBtEdhCYYFINtfBOEHV4m0nvhMiPw3A0Vq458p+qujEdvUycDdJ/p8SQ2NlIzpMG+F8+MSq7kaYHCbwbINndDKfKmG1EtdHUs+DaoVtibE2BWxIFT1bBpHWOm6UpvnSudM6HPa8Liq6o0GXQ9lghLatAG2rRMzymze3fW99tAaa5IGl0+XiMB4+Ys+1fCDAApZirNb5At4JQ47+Gb8xJ5j5CszSdGC+MiBgvja1D55TaTLliOSidCA2H0/eSqrH+VUt2rR4FPq7c+gkQRS/50YXx/H6SJwP+7Vwdbh48+0XPKBx4sieR3lPD5PXFsE8T87F5RQS3sKZQgv4SeA9bmFz2Gt7Jz/44B06SotZN4tliN7OVr8/zmz0maKX2Wr2IyUb/UCnTXi2jnWPv1qFW3DkitUnAe7QZolgptE2GmYsnCXNVpe77kWgay5sPZ7tma0+DjgGb7XBXw3Kv0H9gn8J4zQ+2jfaLM/lJn7xUjXm+3OVdKXJUOer5mw9W/lcrVPsP3b/AJfKsvYZBwAA"
   - id: r-prisma-piramide
     tier: 1
     type: opcion
@@ -422,13 +422,13 @@ Pitágoras ([[mat-triangulos-pitagoras]]).
 
 > [!practico]
 > En una habitación, el suelo y el techo son planos paralelos; una pared y el suelo son planos perpendiculares; la arista entre dos
-> paredes es una recta perpendicular al suelo. Dos rectas del espacio pueden no cortarse sin ser paralelas: piensa en una arista del
-> suelo y otra del techo en la pared de enfrente, cruzada.
+> paredes es una recta perpendicular al suelo. Dos rectas del espacio pueden no cortarse sin ser paralelas: piensa en la arista entre el
+> suelo y la pared del fondo y en la arista entre el techo y una pared lateral: no se cortan y no son paralelas (se cruzan).
 
 - **Dos rectas** en el espacio: secantes, paralelas, coincidentes o **que se cruzan** (no se cortan ni son paralelas: no hay un plano que
   contenga a las dos).
 - **Recta y plano**: la recta está contenida, corta al plano en un punto o es paralela a él. Una recta es **perpendicular** a un plano si
-  lo es a dos rectas del plano que pasan por su pie.
+  lo es a dos rectas distintas del plano que pasan por su pie.
 - **Dos planos**: secantes (se cortan en una recta) o paralelos. El ángulo entre dos planos que se cortan es un **ángulo diedro**.
 
 ## 3. Poliedros
@@ -486,7 +486,7 @@ cateto, un **cono**; un semicírculo, una **esfera**.
 | --- | --- | --- |
 | cilindro (radio $r$, altura $h$) | $2\pi r h + 2\pi r^2$ | $\pi r^2 h$ |
 | cono (generatriz $g = \sqrt{r^2 + h^2}$) | $\pi r g + \pi r^2$ | $\frac13 \pi r^2 h$ |
-| tronco de cono (radios $R$, $r$) | $\pi (R + r) g + \pi R^2 + \pi r^2$ | $\frac{\pi h}{3}(R^2 + r^2 + Rr)$ |
+| tronco de cono (radios $R$, $r$; generatriz $g = \sqrt{h^2 + (R - r)^2}$) | $\pi (R + r) g + \pi R^2 + \pi r^2$ | $\frac{\pi h}{3}(R^2 + r^2 + Rr)$ |
 | esfera (radio $r$) | $4\pi r^2$ | $\frac43 \pi r^3$ |
 
 - El **desarrollo** del cilindro es un rectángulo de base $2\pi r$ (la circunferencia) y altura $h$, más dos círculos.

@@ -145,27 +145,27 @@ exercises:
         answers: ["sha256:3c96f6cf6ffab149ee7bcac52d8d2082850e54d412631105be9cbe077001cd7c","sha256:fd390d0e2f955b502ab9edf57ed9434ea55d196c618cef164a741673c0663daf","sha256:70c8f811f7cce6b81c16418465dee25052b4a4a8395d8e2d5df680bd982377fd"]
       - values: {"pol":"un hexágono regular","L":"2{,}5"}
         answers: ["sha256:393b7ffc90cd41a87cdd29f62225e8bb4182777dab027860ef952ab90edf1ded","sha256:c5d83897b43c1af6f7133ffbc55cf3da347575f1534acd6f0ebe844b027b0f0f","sha256:e7545731084a8effb4a68455474eca6da9ec1692c1a0011ec98c8f746832ebb0"]
-      - values: {"pol":"un octógono regular","L":"5"}
-        answers: ["sha256:06ee7e26326e3cf9103247a67f2efc4de4f83d7216c08f32d6b9fdb315000f04","sha256:f5ad6ba8a08b3004974b284d2193c954aac0645a352ef53317dfed94a33587ca","sha256:2585b3ec5df6982fee33ee487b12af7e38a8765a887d171a6741b0f25afaa094"]
+      - values: {"pol":"un hexágono regular","L":"3"}
+        answers: ["sha256:5d53d7f43252d27739d5baf5c1708c3ddf4b634cd53d76dae3e419259a6635d1","sha256:aac5c55f76c102db2061a680cc50f8178f98af28604d95103567590509d878da","sha256:fbcf02385e3eff60c7fd7d59b660d8c8b6fbfbb477f8bb79ff60ba71802a56f2"]
   - id: apotema-desde-el-area
     tier: 2
     type: numero
-    sig: 10
+    sig: 4
     prompt: |
-      Un polígono regular tiene ${{P}}$ cm de perímetro y ${{A}}$ cm² de área. ¿Cuánto mide su apotema?
+      Un polígono regular tiene ${{P}}$ cm de perímetro y ${{A}}$ cm² de área. ¿Cuánto mide su apotema? (Al menos cuatro cifras significativas.)
     variants:
-      - values: {"P":60,"A":240}
-        answers: ["sha256:e151bf8d2043aa25e706dce8dd45e5bc9b28b5045b250ae73c451c3b79fe13d4","sha256:0c580a65877ea6dfacebddbb33c0ce320b97caa2fdc45db3a90acb2baabe3186","sha256:5067c90714937e27b15e44f000ea83aa3817a64feb2d722b436b99b550b5629f"]
-      - values: {"P":42,"A":126}
-        answers: ["sha256:c1520facec03b0fde8bb1f92bf705443ba5de89d2b3414830c51ecdb2ff109c6","sha256:81966b214df395984d964917b618a9d3ddb08ed258eb8454da14c45dddca1697","sha256:6c39e4e79507ce6005a06618103f0648db7dc1913ddebf9a57eba69039e41d9a"]
-      - values: {"P":80,"A":384}
-        answers: ["sha256:98e21febaaf677cbc5c105170fc1a4b0b49f8037435d2b98fbaeeb1fc4fc97d1","sha256:b9ff46574b20ab197a30a0e5fb23e810a3413ee81dc3c94bc72bea9be928c5a5","sha256:833bc0c500e8ebcd4f345f37a213e1a14823e1eb3e219db712bca7ec344cf911"]
-      - values: {"P":36,"A":81}
-        answers: ["sha256:da3335241c13474037b1917eae856e952228bb652c9b03ab9e5b5a5117648ef2","sha256:24ac9c474db8d0f9051644a7d46a6d83d469947c8d1dabde436bf3f3ebf3db05","sha256:a1a12d83e402396be7be1065cd2878a39113225c4352cf6f1966dc140c9fad63"]
-      - values: {"P":50,"A":172}
-        answers: ["sha256:613e782c3dd596c827fce432cabc4b27cceada5ec653a070763353b9d6bcdf35","sha256:985c34ab763f7d26234702c511d0dacc91119f3a7d869b8fa83969f6d9d84712","sha256:e8dc9a0319eb44e2c03e1640232479334314b47aec1fb563d73ee6a6d557762a"]
-      - values: {"P":96,"A":672}
-        answers: ["sha256:447a59b7935ebf82ae69dab48ba8d3cc2b1fa08b97b7c956c18eaf0cad9e56ba","sha256:9ccf2adbb5212c4de1532429276c57285d3727423befad724c27e5312658f1e6","sha256:bb3e47f7b712a1b399d0edcc18afea8ee3c2566f2f5da7d2e9eda88bc55cd17c"]
+      - values: {"P":36,"A":"81"}
+        answers: ["sha256:7a1aaeb4f0c7401b97a4e2301d6a0d9d5ae13d9ae785114139b42679a9acf828","sha256:0b31ade10c74327af12e9b22a4b561fe61ac7bccf9120124941d9c55d66140ce","sha256:bc5a4e2a1b46236ee42332f7cb1cffe96576a74765d2a7d01a7c98ac758bdce6"]
+      - values: {"P":24,"A":"36"}
+        answers: ["sha256:fda4c8db34e18fb22a0c51b85e8d0a5ac5b7540aeffa57ee03bc7ebefb49fe58","sha256:086a81ecd8920b6ed7e3254bff1004ac25b845c50e30ecef1276feb8b9eea415","sha256:c59584ec48dc8fa7d80d1d2851d9eca0068874b74d93a48b748cf3d2e46a201b"]
+      - values: {"P":60,"A":"259{,}81"}
+        answers: ["sha256:67f763be4ddc47761222545cc9b150fbe7467547ae134083d82a0a9c6bacfe26","sha256:6705c3a3d37553f3f8aa984adaedcc6c938adf47106d84266af592e8c5211576","sha256:ca870f5e9c6207134d1c994d6afa3ffe07113862f49cc22c18551622a1fd9fd4"]
+      - values: {"P":50,"A":"172{,}05"}
+        answers: ["sha256:5a3c6f1bb087879e109f561c7089711a6d12d9c421cba810e334e2107072278d","sha256:63107539acbf0ef4f3486559f46bc906488a22f95caaa9c844fefb10404930fc","sha256:129c67c2d25489da9abf095bf94517a52236ec11969a6c4ba315f07e9e0a5794"]
+      - values: {"P":36,"A":"62{,}35"}
+        answers: ["sha256:0d49c97415b5c70ca47568212cba9b4017abab8a5e93f0edd8b08b4f57327827","sha256:7ebff4316b08dabc7aec02fa7fc757472f3ea48d2199e1b4d7496a8fac9d3454","sha256:475191a1b626fed5c0f8dc1e115434d575a9da41b3d9e9a9acb1eae1740308bd"]
+      - values: {"P":24,"A":"41{,}57"}
+        answers: ["sha256:f613fe9109f8e32c3b7db67e7e79b3017e709024b3596d8f201765cb7b2c6f96","sha256:30f5b99406f1240cb850ddb36dded3285bd0b9825f3cf5a65b31e148d8fc0613","sha256:bbbce3e5035a4de2d03d081736ad9b9d4baea94e5e67f2f82f17d055270ab6c1"]
   - id: longitud-de-un-arco
     tier: 2
     type: numero
@@ -238,8 +238,8 @@ exercises:
         answers: ["sha256:e4b43ada67b0b785b3ee6d54bee61a0b52786160509fc53e844a5857108b6584","sha256:633f41561b67b0e695f142e7eeef7928cc5f9f6d1d93780dcd0338ff74710a6c","sha256:a68db3fd10d4ea13639b800d5c74d80a3fe29ef46058ed320addfe7e67a8369f"]
       - values: {"c":42}
         answers: ["sha256:d9306c7b54a17093bf1e11012de82447458e75f085695f9a645a48cb04c9bb82","sha256:b7d7558baeec416ba1cbbe0e4e5bb7f136109e44c43719ae6af7d465a08673bf","sha256:8fb776f0d7ef9c45f95d8117f2238b37b17ab23329c85528884ce318f5914d2c"]
-      - values: {"c":200}
-        answers: ["sha256:3e3817f76754ba33642372928b6cf8cec75aba445ef35314bcd45c47bbb52b6f","sha256:14abec9068ab72d792f15991e64b7cf273d49fb46ce828441a879d6d0d8b92e7","sha256:3af059c570df319f4db126fb2460fe1d56fa8f72f09e4104a9aa9392a49fd84d"]
+      - values: {"c":130}
+        answers: ["sha256:e7684954a62d91b0aa770d0f652e19396127a560aed27df94e651c25def91266","sha256:acb2ecccad9d31a9ab0502ce74a8ce5066430c6de704b8b9bf4f30222985681f","sha256:b7d23e1283bb47aea9e4d015d8fe8170031b967387fbe97915699ed8080c209c"]
       - values: {"c":96}
         answers: ["sha256:469664c9542f9270722eb668be2a800a49e723baae4f3ed5b255a23b0b2c46a1","sha256:c0ce137dfdcbb25a52ecdc0094c603664f5c4812183c690396b24a1aa4ace453","sha256:7c85efce4d88b76d0c14770960dbff71498b9508dcb7c7e19c81865fe3d11986"]
   - id: triangulo-en-semicircunferencia
@@ -473,7 +473,8 @@ semidiagonales, $\sqrt{16 + 9} = 5$, y su perímetro $20$.
 
 **Polígono regular**: partiéndolo en $n$ triángulos iguales con vértice en el centro, cada uno tiene base el lado y altura la apotema, de
 ahí $\frac{P \cdot a}{2}$. En el **hexágono regular** el radio es igual al lado (los seis triángulos son equiláteros), así que la apotema es
-$\sqrt{L^2 - (L/2)^2} = \frac{\sqrt3}{2}L$.
+$\sqrt{L^2 - (L/2)^2} = \frac{\sqrt3}{2}L$. En el **triángulo equilátero** la apotema es un tercio de la altura (el centro es el baricentro, que divide
+cada mediana en la proporción $2 : 1$): $a = \frac13 \cdot \frac{\sqrt3}{2}L = \frac{\sqrt3}{6}L$; en el **cuadrado**, la mitad del lado.
 
 **Polígonos irregulares**: se descomponen en triángulos, rectángulos o trapecios (o se calcula un rectángulo que lo contiene y se restan
 los trozos sobrantes).

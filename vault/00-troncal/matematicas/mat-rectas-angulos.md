@@ -164,7 +164,7 @@ exercises:
         answers: ["sha256:baa4f82f4f6f543ccea66fc5b2c84ee3bd573edea948c5cd0c14513cb68af824","sha256:0110e28feedf5673b8cc7f390182a226dd3cfee05d2f62c489731d9a10a13521","sha256:5d338b4cfb35d2f61dcd6e1343e24836fc3067bf0c3810026a4b812cb99dd9ee"]
       - values: {"e1":"5x - 20","e2":"3x + 30","tipo":"opuestos por el vértice"}
         answers: ["sha256:8ae5ed44fcd53e658d2b2beec26bf88a9f1f27f0187a0060eb7e0e9ed9739141","sha256:3f577d6093684f2976bbbc8651917e2a19e03aa1dc1c832a55c2d31803477420","sha256:881ddfd296ad697f72df7a05b5ecde0513eb4137879e09a7a6e8f39cd826b82a"]
-      - values: {"e1":"4x + 15","e2":"1x + 45","tipo":"adyacentes (juntos forman un ángulo llano)"}
+      - values: {"e1":"4x + 15","e2":"x + 45","tipo":"adyacentes (juntos forman un ángulo llano)"}
         answers: ["sha256:eb4e4b9e6ff5b93620c22914fbb53e4405c7fe8f6f6dd92c9ab853ac33fcfd6f","sha256:81764b608b6db6ddf06482c2e1aafa657820f543b3e2ccb37edd8eae3c3a3233","sha256:7bad4cf5543a6d28bfda22c69da0027c14c05b7874d9c0ac92e90e2070f38938"]
       - values: {"e1":"7x - 6","e2":"4x + 30","tipo":"opuestos por el vértice"}
         answers: ["sha256:585777a6bf6827cf399b94968e1ba8d01c1e14842439014becc22fa6b6b0c64e","sha256:22229091a20584091a31904c16a07f2f6e4eedc16e4a808ddc6596ce3f38f685","sha256:6088f40a10b7a700d45f6cffe9c0399cecdeaa7fd259660fe3246a7285278eed"]
@@ -234,7 +234,7 @@ exercises:
       **Desarrollo.** (a) Demuestra que dos ángulos opuestos por el vértice son iguales. (b) Demuestra que las bisectrices de dos ángulos
       adyacentes (que juntos forman un llano) son perpendiculares. (c) Explica por qué cualquier punto de la mediatriz de un segmento $AB$
       está a la misma distancia de $A$ que de $B$.
-    sealed: "gz64:H4sIAAAAAAACCn1TzW4TMRB+lU8rH5KwjUpPEJRDop4QkSI4siDN2tNgyWsHj7dSifIwHDn0BbjmxZD3J035u1jyzHi+nxkfCgmuTTb4YlHMZhOazmb4YGGCILJOJBCGDjGRL6HJEE7f/a51AXchNoTWwznyATp4SIt71taHBVRVkdt/IbxAVdWcCEu8fHX9uaq0jVrhIVd08Vywo6b5raKECd7wudHwpKtUkOArH/YtSwqCfYhgh/vTj5is5jnesyTyJpRPPK4uYK7VBcHlmFDzyld+NpvUgwkuyKhWQOaBNPvEgsYa9s+JPRHvgPpECWkFtRXWKVrN0nvmO6/YwZHJvjWnn/4Jp5d8F0kPbW4G5Tl0+BvO8XBzVGXlv7YMaXP/P6tzDZZ4fbZ31Ko7rUxQG5U57VufAho2NmTYrcoT7oOG4ahLUYr22xzvgiBFe6autptVR3a7WSskyz7btFlhic1alWfJartRo+6HHB1Xin3lM4+8efnWTcAEeZPnDbtrybFgoqNNHG3oul0Nj6/yZVqC5PSIbIXaZuDtWs0xuQ21y/vQKaR9PkN8pqaEWiloYkioI0Ot1XxalEVs62h1sfh4KEbYYlHccpNXLxImNO3GOTDtP4N0BHRo9hQT+2zhwHJelEXnphSLm2P5r6b1tJ+kyRrzwiUyLP97/LaVZO+sJkx0z+hyMqN1/Td1BLENp3h6pOc9Px1/AdRY6AgRBAAA"
+    sealed: "gz64:H4sIAAAAAAACCn2Uz27bMAzGX4UwdEgyx+h62gLk0KynYQGC7Vh3AC2xmQZb8kS5QBvkYXbsYS+wq19soGwn7f5dDFuiyN/3kfIhY1930XqXrbLFYobzxQI+WTCeIZCOyMAE2oeILgeNBqH/7vZd7eHOhwahc1DX6Dxo74A7uCdtnV+BKkus2y8Ir6AsK4oIa3j95uJzWWobtIIHiUjrErDHpvktIgfjnaFTovFIilTA3pXOtx1x9AytD0A13PdPIVpNBXwkjuiMz88cy2dlLtQzwPW0oYrSlW6xmFWjCbXnSS0DmgfU5CIxNNaQewl2Bk+Fho0cuGOoLJOOwWriwTOXvKIaajTiW9P/dOc6g+S7gHpMczkql6XD3+ocD5dHlZfuW0fAneT/M1piYA1vT/ZOWnXSSghqq4Sp7Vz00JCxXsrulHR4WDQENaYtjME+FvDBM8RgT+hqt71KsLvtRkG05MSm7RWsYbtR+Umy2m3VpPtBVqeRIlc64ZDJk6/UAeO5gGtf1dLQhIitPH14gZODulKgkYB9FQjURg3Jz4Qj4LBP9cC5klkCtk3/JE3ynANy/wPETbUT9t1GFTB710n90mnv/KNGTmw62EjBDm2z+w5rg0beb24ajMsYLA7eLFsbce8D8u1tDhGbyvZPTu7W146jvbMapymeciavliP6Uj6KeZZnoauC1dnq5pBNkdkqu6ZG7kJAmOE8zddo3XA7OcnRvmkxRHLS0zFxkeVZai9nq8tj/q+k1XwYLSNYcgMiGuL/HX5/0jXTA9HzUUleEcPw36hRGkAx9D/wZc7b4y8aK15KogQAAA=="
   - id: r-tipo-angulo
     tier: 1
     type: opcion
@@ -323,7 +323,7 @@ exercises:
       ¿Cuánto es la mitad de $25^\circ$?
     options:
       - |
-        $12{,}5^\circ$
+        $12{,}3^\circ$
       - |
         $12{,}05^\circ$
       - |
@@ -425,6 +425,9 @@ $1^\circ = 60'$, $1' = 60''$, así que $1^\circ = 3\,600''$. Para operar se trab
 **De decimal a sexagesimal**: la parte decimal de los grados se multiplica por $60$ para obtener minutos, y la de los minutos por $60$ para
 los segundos: $23{,}45^\circ = 23^\circ + 0{,}45 \cdot 60' = 23^\circ\, 27'$. **Al revés**, se divide: $12^\circ\, 30' = 12 + \frac{30}{60} = 12{,}5^\circ$ (¡no $12{,}30^\circ$!).
 
+*Ejemplo (reloj).* La esfera de un reloj tiene $360^\circ$ y $12$ horas, así que la aguja horaria recorre $30^\circ$ por hora, es decir, $0{,}5^\circ$ por minuto; la minutera
+recorre $360^\circ$ en $60$ minutos, $6^\circ$ por minuto. A las 4:30 la horaria está a $4 \cdot 30 + 30 \cdot 0{,}5 = 135^\circ$ de las 12 y la minutera a $180^\circ$: forman $45^\circ$.
+
 ## 5. Dos paralelas cortadas por una secante
 
 > [!practico]
@@ -442,10 +445,12 @@ Con las paralelas $r \parallel s$ y una secante $t$:
 
 > [!formal] Con rigor: de dónde salen estas igualdades
 > Que los opuestos por el vértice sean iguales se demuestra con los llanos: si $\alpha + \beta = 180^\circ$ y $\beta + \gamma = 180^\circ$, entonces $\alpha = \gamma$
-> (Euclides, I.15). La igualdad de los correspondientes es equivalente al **postulado de las paralelas** de Euclides (por un punto exterior
-> a una recta pasa una única paralela): no se puede demostrar a partir de las demás reglas de partida de Euclides, y negarlo da lugar a geometrías no
-> euclídeas, igual de coherentes ([[mat-geometria-euclidea]]). Con ella se demuestra que los ángulos de un triángulo suman $180^\circ$
-> ([[mat-triangulos-pitagoras]]). $\blacksquare$
+> (Euclides, I.15). Que dos paralelas formen con una secante ángulos correspondientes iguales (Euclides, I.29) es equivalente al **postulado de las
+> paralelas** (en la forma de Playfair: por un punto exterior a una recta pasa una única paralela): no se puede demostrar a partir de las demás reglas de
+> partida de Euclides, y negarlo da lugar a geometrías no euclídeas, igual de coherentes ([[mat-geometria-euclidea]]). (El recíproco, «si los correspondientes
+> son iguales, las rectas son paralelas», sí se demuestra sin él: Euclides, I.27-28.) Admitida la igualdad de los correspondientes, cada alterno interno es
+> opuesto por el vértice de un correspondiente (luego igual), y cada conjugado es adyacente de un correspondiente (luego suplementario). Con ello se demuestra
+> que los ángulos de un triángulo suman $180^\circ$ ([[mat-triangulos-pitagoras]]). $\blacksquare$
 
 ## 6. Mediatriz y bisectriz
 

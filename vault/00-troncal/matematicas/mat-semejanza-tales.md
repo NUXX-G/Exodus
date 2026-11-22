@@ -462,7 +462,7 @@ $100^2 = 10\,000$ cm² $= 1$ m² reales.
 > largueros que se abren). Los trozos que las paralelas cortan en una recta son proporcionales a los que cortan en la otra.
 
 **Teorema de Tales.** Si varias rectas paralelas cortan a dos rectas $r$ y $s$, los segmentos que determinan en $r$ son proporcionales a
-los que determinan en $s$: $\frac{AB}{A'B'} = \frac{BC}{B'C'}$. *Ejemplo:* si en $r$ los segmentos miden $3$ y $5$ cm y en $s$ el primero mide $6$ cm, el
+los que determinan en $s$: si las paralelas cortan a $r$ en $A$, $B$, $C$ y a $s$ en $A'$, $B'$, $C'$, entonces $\frac{AB}{A'B'} = \frac{BC}{B'C'}$. *Ejemplo:* si en $r$ los segmentos miden $3$ y $5$ cm y en $s$ el primero mide $6$ cm, el
 segundo mide $10$ cm.
 
 **Triángulos en posición de Tales**: si en un triángulo $ABC$ se traza una paralela a $BC$ que corta a $AB$ en $D$ y a $AC$ en $E$, el triángulo
@@ -473,9 +473,11 @@ bastón de $1$ m da una sombra de $1{,}5$ m cuando un árbol da $12$ m de sombra
 
 > [!formal] Con rigor: una demostración con áreas
 > En el triángulo $ABC$ con $DE \parallel BC$, los triángulos $DEB$ y $DEC$ tienen la misma base $DE$ y la misma altura (la distancia entre las
-> paralelas), luego la misma área. Sumando a ambos el triángulo $ADE$: áreas de $ADE$ y $DBE$ están en razón $\frac{AD}{DB}$ (misma altura desde
-> $E$), y las de $ADE$ y $DCE$, en razón $\frac{AE}{EC}$ (misma altura desde $D$). Como $DBE$ y $DCE$ tienen igual área, $\frac{AD}{DB} = \frac{AE}{EC}$ (Euclides,
-> VI.2). El **recíproco** también es cierto: si $\frac{AD}{DB} = \frac{AE}{EC}$, entonces $DE \parallel BC$. $\blacksquare$
+> paralelas), luego la misma área. Comparemos el triángulo $ADE$ con cada uno de ellos: las áreas de $ADE$ y $DBE$ están en razón $\frac{AD}{DB}$ (sus bases
+> $AD$ y $DB$ están sobre la misma recta y comparten la altura desde $E$), y las de $ADE$ y $DCE$, en razón $\frac{AE}{EC}$ (misma altura desde $D$). Como $DBE$
+> y $DCE$ tienen igual área, $\frac{AD}{DB} = \frac{AE}{EC}$ (Euclides, VI.2). El caso general (dos rectas $r$ y $s$ cortadas por varias paralelas) se reduce a este
+> trazando, por un punto de corte de $r$, la paralela a $s$. El **recíproco** también es cierto: si $\frac{AD}{DB} = \frac{AE}{EC}$, entonces $DE \parallel BC$ (la paralela
+> a $BC$ por $D$ corta a $AC$ en un punto que divide a $AC$ en esa misma razón, y solo hay uno: es $E$). $\blacksquare$
 
 ## 5. Criterios de semejanza de triángulos
 
@@ -498,7 +500,7 @@ iguales y no son semejantes.
 En un triángulo rectángulo con hipotenusa $c$, la altura $h$ sobre ella la divide en las **proyecciones** $m$ y $n$ de los catetos $a$ y $b$:
 
 - **Teorema de la altura**: $h^2 = m \cdot n$. *Ejemplo:* proyecciones $4$ y $9$ dan $h = 6$.
-- **Teorema del cateto**: $b^2 = c \cdot m$ (cada cateto al cuadrado es la hipotenusa por su proyección).
+- **Teorema del cateto**: $a^2 = c \cdot m$ y $b^2 = c \cdot n$ (cada cateto al cuadrado es la hipotenusa por su proyección).
 
 Sumando los dos teoremas del cateto, $a^2 + b^2 = c(m + n) = c^2$: otra demostración de Pitágoras.
 
@@ -516,7 +518,7 @@ Sumando los dos teoremas del cateto, $a^2 + b^2 = c(m + n) = c^2$: otra demostra
 - Longitudes $\times k$, áreas $\times k^2$, volúmenes $\times k^3$.
 - Tales: paralelas cortan segmentos proporcionales; posición de Tales; recíproco.
 - Criterios AA, LLL, LAL.
-- Altura $h^2 = mn$; cateto $b^2 = cm$.
+- Altura $h^2 = mn$; cateto $a^2 = cm$, $b^2 = cn$.
 
 ## Repaso: lo que debe quedarte dentro de un mes
 
