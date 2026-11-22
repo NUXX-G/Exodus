@@ -352,7 +352,7 @@ Al terminar sabrás:
 
 - **Temperaturas, altitudes y plantas**: $-5$ °C, el mar Muerto a unos $-430$ m, el sótano $-2$.
 - **Dinero**: saldos negativos (deudas), pérdidas, cargos en una cuenta.
-- **Tiempo histórico**: años antes de Cristo; **física**: velocidades con sentido (hacia delante o hacia atrás) (el tema `fis-cinematica-rectilinea`).
+- **Tiempo histórico**: años antes de Cristo; **física**: velocidades con sentido (hacia delante o hacia atrás) ([[fis-cinematica-rectilinea]]).
 - **Álgebra**: sin negativos no tiene respuesta una pregunta tan sencilla como «¿qué número sumado a $7$ da $3$?».
 
 ## 2. Los números enteros y la recta

@@ -435,4 +435,4 @@ suman deben tener las mismas dimensiones**, y los exponentes y los argumentos de
 
 ## Siguiente
 
-el tema `fis-cinematica-rectilinea` (describir el movimiento a lo largo de una recta).
+[[fis-cinematica-rectilinea]] (describir el movimiento a lo largo de una recta).

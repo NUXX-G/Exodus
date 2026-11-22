@@ -4,7 +4,6 @@ Nodos que mencionan un nodo de tema aún no escrito. Al crear el nodo, sustituir
 
 | Archivo | Nodo pendiente |
 | --- | --- |
-| vault/00-troncal/matematicas/mat-numeros-enteros.md | `fis-cinematica-rectilinea` |
 | vault/00-troncal/matematicas/mat-sistemas-dos-incognitas.md | `mat-sistemas-lineales` |
 | vault/00-troncal/matematicas/mat-polinomios-factorizacion.md | `mat-integral-riemann` |
 | vault/00-troncal/matematicas/mat-exponenciales-logaritmos.md | `fis-ondas-sonido` |
@@ -18,4 +17,5 @@ Nodos que mencionan un nodo de tema aún no escrito. Al crear el nodo, sustituir
 | vault/00-troncal/matematicas/mat-funciones-exponencial-logaritmica.md | `prog-algoritmos-complejidad` |
 | vault/00-troncal/matematicas/mat-funciones-trigonometricas.md | `fis-ondas-sonido` |
 | vault/00-troncal/matematicas/mat-derivadas.md | `ia-redes-neuronales` |
-| vault/00-troncal/fisica/fis-magnitudes-medida.md | `fis-cinematica-rectilinea` |
+| vault/00-troncal/fisica/fis-cinematica-rectilinea.md | `fis-leyes-newton` |
+| vault/00-troncal/fisica/fis-cinematica-rectilinea.md | `fis-vectores-movimiento-plano` |

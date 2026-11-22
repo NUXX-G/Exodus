@@ -4,12 +4,12 @@ terminos:
   - termino: velocidad media
     llano: "La distancia recorrida en una dirección dividida entre el tiempo empleado: si haces 120 km en 2 horas, 60 km/h de media, aunque a ratos fueras más rápido o más lento."
     formal: "$\\bar v = \\Delta x / \\Delta t$, cociente del desplazamiento entre el intervalo de tiempo. Es un vector en el caso tridimensional: $\\bar{\\vec v} = \\Delta\\vec r/\\Delta t$."
-    nodo: fis-medida-movimiento
+    nodo: fis-cinematica-rectilinea
     tambien: [mat-proporcionalidad-porcentajes]
   - termino: aceleración
     llano: "Lo rápido que cambia la velocidad: un coche que pasa de 0 a 100 km/h en pocos segundos tiene mucha aceleración. Frenar también es acelerar (en sentido contrario)."
     formal: "$\\vec a = d\\vec v/dt$, derivada de la velocidad respecto del tiempo. En el SI se mide en m/s²."
-    nodo: fis-medida-movimiento
+    nodo: fis-cinematica-rectilinea
     tambien: [mat-calculo-1, mat-derivadas]
   - termino: magnitud vectorial
     sinonimos: [magnitudes vectoriales]
