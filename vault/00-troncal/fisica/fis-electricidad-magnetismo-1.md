@@ -3,7 +3,7 @@ id: fis-electricidad-magnetismo-1
 title: "Electricidad y magnetismo I: campos, potencial, inducción"
 area: fisica
 trunk_level: 11
-prerequisites: [fis-mecanica-newtoniana, ing-electricidad-basica, mat-calculo-2, fis-electrostatica]
+prerequisites: [fis-mecanica-newtoniana, ing-electricidad-basica, mat-calculo-2, fis-electrostatica, fis-corriente-circuitos]
 academic_sources:
   - "Halliday, D.; Resnick, R.; Walker, J. Fundamentals of Physics, 11ª ed. Wiley, 2018, caps. 21-25 (carga, campo eléctrico, ley de Gauss, potencial, capacidad), 28-30 (campo magnético, fuentes, inducción) y 32 (ecuaciones de Maxwell)."
   - "Ling, S. J.; Sanny, J.; Moebs, W. Física universitaria, volumen 2 (en español). OpenStax, 2021, caps. 5-8 (cargas, Gauss, potencial, capacitancia) y 11-13 (fuerzas magnéticas, fuentes, inducción). https://openstax.org/books/f%C3%ADsica-universitaria-volumen-2/pages/5-introduccion"

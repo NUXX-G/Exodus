@@ -3,7 +3,7 @@ id: ing-electricidad-basica
 title: "Electricidad básica: corriente, tensión, Ohm y circuitos sencillos"
 area: ingenieria
 trunk_level: 7
-prerequisites: [fis-fuerzas-energia, mat-algebra-basica]
+prerequisites: [fis-fuerzas-energia, mat-algebra-basica, fis-corriente-circuitos]
 academic_sources:
   - "Halliday, D.; Resnick, R.; Walker, J. Fundamentals of Physics, 11ª ed. Wiley, 2018, caps. 21 (carga eléctrica), 25 (capacidad), 26 (corriente y resistencia) y 27 (circuitos)."
   - "Ling, S. J.; Sanny, J.; Moebs, W. Física universitaria, volumen 2 (en español). OpenStax, 2021, caps. 8 (capacitancia), 9 (corriente y resistencia) y 10 (circuitos de corriente continua). https://openstax.org/books/f%C3%ADsica-universitaria-volumen-2/pages/9-introduccion"

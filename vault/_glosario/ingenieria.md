@@ -4,7 +4,7 @@ terminos:
   - termino: ley de Ohm
     llano: "La regla que dice que en muchos materiales la corriente es proporcional a la tensión: a doble tensión, doble corriente."
     formal: "$V = IR$ para un conductor óhmico de resistencia $R$ (a temperatura constante)."
-    nodo: ing-electricidad-basica
+    nodo: fis-corriente-circuitos
   - termino: puerta lógica
     sinonimos: [puertas lógicas]
     llano: "Un circuito diminuto que recibe ceros y unos y devuelve un cero o un uno según una regla (Y, O, NO…). Con ellas se construyen los procesadores."

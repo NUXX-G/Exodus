@@ -441,4 +441,4 @@ práctica, μF, nF, pF).
 
 ## Siguiente
 
-el tema `fis-corriente-circuitos` (cargas en movimiento: corriente, resistencia y circuitos).
+[[fis-corriente-circuitos]] (cargas en movimiento: corriente, resistencia y circuitos).
