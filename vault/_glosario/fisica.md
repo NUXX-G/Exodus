@@ -15,7 +15,7 @@ terminos:
     sinonimos: [magnitudes vectoriales]
     llano: "Una cantidad que no se describe solo con un número: también importa hacia dónde apunta. La velocidad o la fuerza lo son; la masa o la temperatura, no."
     formal: "Magnitud representada por un vector: módulo, dirección y sentido; se suma con la regla del paralelogramo y cambia de componentes al girar los ejes."
-    nodo: fis-medida-movimiento
+    nodo: fis-vectores-movimiento-plano
   - termino: fuerza
     sinonimos: [fuerzas]
     excepto: [fuerza bruta, fuerzas armadas, a la fuerza, por fuerza, misma fuerza, con fuerza, más fuerza, fuerza de voluntad, su fuerza]
@@ -51,7 +51,7 @@ terminos:
     llano: "Cuántas veces se repite algo por segundo: una cuerda que vibra 440 veces por segundo da la nota la. Se mide en hercios."
     formal: "$f = 1/T$, inversa del periodo; en una onda, $v = \\lambda f$. $1\\ \\mathrm{Hz} = 1\\ \\mathrm s^{-1}$."
     nodo: fis-ondas-calor-fluidos
-    tambien: [mat-trigonometria, fis-medida-movimiento, mat-funciones-trigonometricas]
+    tambien: [mat-trigonometria, fis-medida-movimiento, mat-funciones-trigonometricas, fis-vectores-movimiento-plano]
   - termino: longitud de onda
     llano: "La distancia entre dos crestas seguidas de una onda, como entre dos olas consecutivas."
     formal: "Periodo espacial $\\lambda$ de una onda: $y(x + \\lambda, t) = y(x, t)$. Se relaciona con la velocidad de propagación por $v = \\lambda f$."

@@ -3,7 +3,7 @@ id: fis-medida-movimiento
 title: "Medida y movimiento: unidades, error y cinemática"
 area: fisica
 trunk_level: 5
-prerequisites: [mat-algebra-basica, mat-funciones-basicas, mat-trigonometria, mat-numeros-reales, fis-magnitudes-medida, fis-cinematica-rectilinea]
+prerequisites: [mat-algebra-basica, mat-funciones-basicas, mat-trigonometria, mat-numeros-reales, fis-magnitudes-medida, fis-cinematica-rectilinea, fis-vectores-movimiento-plano]
 academic_sources:
   - "Halliday, D.; Resnick, R.; Walker, J. Fundamentals of Physics, 11ª ed. Wiley, 2018, caps. 1 (medida), 2 (movimiento rectilíneo), 3 (vectores) y 4 (movimiento en dos y tres dimensiones)."
   - "Ling, S. J.; Sanny, J.; Moebs, W. Física universitaria, volumen 1 (en español). OpenStax, 2021, caps. 1 (unidades y medidas), 2 (vectores), 3 (movimiento rectilíneo) y 4 (movimiento en dos y tres dimensiones). https://openstax.org/books/f%C3%ADsica-universitaria-volumen-1/pages/1-introduccion"

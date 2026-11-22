@@ -460,4 +460,4 @@ $v < 0$).
 
 ## Siguiente
 
-el tema `fis-vectores-movimiento-plano` (vectores, tiro parabólico y movimiento circular).
+[[fis-vectores-movimiento-plano]] (vectores, tiro parabólico y movimiento circular).
