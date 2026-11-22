@@ -3,7 +3,7 @@ id: fis-fisica-nuclear-particulas
 title: "Física nuclear y de partículas: núcleos, desintegraciones, fisión y fusión, cinemática relativista, quarks, leptones e interacciones"
 area: fisica
 trunk_level: 14
-prerequisites: [fis-mecanica-cuantica, fis-relatividad-especial]
+prerequisites: [fis-mecanica-cuantica, fis-relatividad-especial, fis-fisica-nuclear]
 academic_sources:
   - "Krane, K. S. Introductory Nuclear Physics. Wiley, 1988."
   - "Griffiths, D. Introduction to Elementary Particles, 2ª ed. revisada. Wiley-VCH, 2008."

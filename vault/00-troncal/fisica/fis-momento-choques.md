@@ -363,7 +363,7 @@ Al terminar sabrás:
 - **Seguridad**: reconstrucción de accidentes, diseño de airbags, cascos, zonas de deformación.
 - **Deporte**: golpeo de pelotas, raquetas, artes marciales.
 - **Espacio**: cohetes, maniobras con propulsores, asistencias gravitatorias.
-- **Física de partículas**: en los aceleradores, los choques se analizan con la conservación del momento y de la energía (el tema `fis-fisica-nuclear`).
+- **Física de partículas**: en los aceleradores, los choques se analizan con la conservación del momento y de la energía ([[fis-fisica-nuclear]]).
 
 ## 2. Momento lineal e impulso
 

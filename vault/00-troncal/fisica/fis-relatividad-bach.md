@@ -360,7 +360,7 @@ Al terminar sabrás:
 
 - **GPS**: los relojes de los satélites se corrigen por la relatividad especial y la general.
 - **Física de partículas**: aceleradores, rayos cósmicos, vidas medias de partículas rápidas.
-- **Energía**: $E = mc^2$ explica la energía de las centrales nucleares y de las estrellas (el tema `fis-fisica-nuclear`).
+- **Energía**: $E = mc^2$ explica la energía de las centrales nucleares y de las estrellas ([[fis-fisica-nuclear]]).
 - **Base de la física moderna**: electromagnetismo, física cuántica relativista ([[fis-relatividad-especial]]).
 
 ## 2. Los postulados de Einstein

@@ -444,4 +444,4 @@ la de la mecánica cuántica, pero da exactamente los niveles del hidrógeno.
 
 ## Siguiente
 
-el tema `fis-fisica-nuclear` (el núcleo atómico, la radiactividad y la energía nuclear).
+[[fis-fisica-nuclear]] (el núcleo atómico, la radiactividad y la energía nuclear).
