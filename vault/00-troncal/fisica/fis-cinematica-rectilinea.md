@@ -367,7 +367,7 @@ Al terminar sabrás:
 - **Seguridad vial**: distancias de frenado y de parada, tiempo de reacción.
 - **Deporte y transporte**: tiempos de llegada, adelantamientos, encuentros de trenes o aviones.
 - **Ingeniería**: diseño de ascensores, frenos, trayectorias de robots ([[rob-cinematica]]).
-- **Base de toda la mecánica**: las leyes de Newton explican qué causa la aceleración (el tema `fis-leyes-newton`).
+- **Base de toda la mecánica**: las leyes de Newton explican qué causa la aceleración ([[fis-leyes-newton]]).
 
 ## 2. Posición, desplazamiento y velocidad
 

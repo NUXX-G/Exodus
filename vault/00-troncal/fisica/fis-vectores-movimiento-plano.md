@@ -440,4 +440,4 @@ va a $4$ m/s, se mueve respecto de la orilla a $\sqrt{3^2 + 4^2} = 5$ m/s; cruza
 
 ## Siguiente
 
-[[fis-medida-movimiento]] repasa el bloque; después, el tema `fis-leyes-newton` (las causas del movimiento).
+[[fis-medida-movimiento]] repasa el bloque; después, [[fis-leyes-newton]] (las causas del movimiento).
