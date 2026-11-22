@@ -407,7 +407,7 @@ se dice «peso 70 kilos», pero en física el peso se mide en newtons.
   ascensor que acelera cambia.
 - **Tensión** $\vec T$: la que hace una cuerda tensa, a lo largo de la cuerda; en una cuerda ligera que pasa por una polea ideal es la misma en los dos extremos.
 - **Rozamiento**: la que se opone al deslizamiento entre superficies; se estudia a fondo en [[fis-dinamica-aplicaciones]]. En este nodo se supone despreciable.
-- **Fuerza elástica** de un muelle (ley de Hooke, $F = -kx$), que reaparecerá en el tema `fis-oscilaciones`.
+- **Fuerza elástica** de un muelle (ley de Hooke, $F = -kx$), que reaparecerá en [[fis-oscilaciones]].
 
 > [!practico]
 > Un **diagrama de cuerpo libre** es un dibujo del cuerpo aislado con **todas las fuerzas que actúan sobre él** (y solo esas), como flechas desde el cuerpo. Se dibuja

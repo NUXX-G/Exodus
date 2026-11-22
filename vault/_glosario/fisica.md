@@ -51,7 +51,7 @@ terminos:
     excepto: [con frecuencia, frecuencia absoluta, frecuencia relativa, frecuencia acumulada, frecuencias absolutas, frecuencias relativas, frecuencia de aparición, frecuencias de aparición, frecuencia de palabras, frecuencia de las letras, frecuencia de uso, tabla de frecuencias, tablas de frecuencias, con frecuencias, las frecuencias, frecuencia conjunta, frecuencias conjuntas, frecuencias marginales, distribución de frecuencias, frecuencias acumuladas, polígono de frecuencias]
     llano: "Cuántas veces se repite algo por segundo: una cuerda que vibra 440 veces por segundo da la nota la. Se mide en hercios."
     formal: "$f = 1/T$, inversa del periodo; en una onda, $v = \\lambda f$. $1\\ \\mathrm{Hz} = 1\\ \\mathrm s^{-1}$."
-    nodo: fis-ondas-calor-fluidos
+    nodo: fis-oscilaciones
     tambien: [mat-trigonometria, fis-medida-movimiento, mat-funciones-trigonometricas, fis-vectores-movimiento-plano]
   - termino: longitud de onda
     llano: "La distancia entre dos crestas seguidas de una onda, como entre dos olas consecutivas."

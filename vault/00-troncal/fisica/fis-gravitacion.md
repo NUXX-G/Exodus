@@ -456,4 +456,4 @@ Kepler las obtuvo hacia 1609-1619 a partir de las observaciones de Tycho Brahe, 
 
 ## Siguiente
 
-[[fis-fuerzas-energia]] repasa el bloque; después, el tema `fis-oscilaciones` (movimiento armónico simple).
+[[fis-fuerzas-energia]] repasa el bloque; después, [[fis-oscilaciones]] (movimiento armónico simple).
