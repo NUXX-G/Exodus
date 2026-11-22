@@ -45,7 +45,7 @@ terminos:
     sinonimos: [cantidad de movimiento]
     llano: "La «cantidad de movimiento» de algo: su masa por su velocidad. En un choque, la suma total se conserva."
     formal: "$\\vec p = m\\vec v$; $\\vec F_{\\text{neta}} = d\\vec p/dt$. En un sistema aislado, $\\sum \\vec p$ se conserva."
-    nodo: fis-mecanica-newtoniana
+    nodo: fis-momento-choques
     tambien: [fis-fuerzas-energia, fis-leyes-newton]
   - termino: frecuencia
     excepto: [con frecuencia, frecuencia absoluta, frecuencia relativa, frecuencia acumulada, frecuencias absolutas, frecuencias relativas, frecuencia de aparición, frecuencias de aparición, frecuencia de palabras, frecuencia de las letras, frecuencia de uso, tabla de frecuencias, tablas de frecuencias, con frecuencias, las frecuencias, frecuencia conjunta, frecuencias conjuntas, frecuencias marginales, distribución de frecuencias, frecuencias acumuladas, polígono de frecuencias]

@@ -391,7 +391,7 @@ hacia delante; un cohete expulsa gases hacia atrás y los gases lo empujan hacia
 
 > [!formal] Con rigor: la segunda ley en forma general
 > Newton la enunció en términos de la **cantidad de movimiento** $\vec p = m\vec v$: $\vec F_{\text{neta}} = \frac{d\vec p}{dt}$. Si la masa es constante, $\frac{d\vec p}{dt} = m\frac{d\vec v}{dt} = m\vec a$. La forma con $\vec p$ vale también
-> para sistemas de masa variable (cohetes) y es la que sobrevive en la relatividad (el tema `fis-momento-choques`). Las leyes valen en sistemas inerciales; en uno que acelera aparecen
+> para sistemas de masa variable (cohetes) y es la que sobrevive en la relatividad ([[fis-momento-choques]]). Las leyes valen en sistemas inerciales; en uno que acelera aparecen
 > «fuerzas ficticias» (la que te pega al asiento en una curva). $\blacksquare$
 
 ## 4. Masa y peso

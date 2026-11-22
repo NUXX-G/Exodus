@@ -444,4 +444,4 @@ $\eta = \frac{E_{\text{útil}}}{E_{\text{consumida}}}$, siempre menor que el $10
 
 ## Siguiente
 
-el tema `fis-momento-choques` (momento lineal, impulso y choques).
+[[fis-momento-choques]] (momento lineal, impulso y choques).
