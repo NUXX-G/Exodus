@@ -380,7 +380,7 @@ Al terminar sabrás:
 
 - **Física**: distancia a partir de la velocidad, trabajo, energía, centros de masas ([[fis-medida-movimiento]]).
 - **Geometría**: áreas de regiones curvas y volúmenes de cuerpos de revolución.
-- **Estadística**: en las distribuciones continuas, las proporciones de datos son áreas bajo una curva (el tema `mat-distribucion-normal`).
+- **Estadística**: en las distribuciones continuas, las proporciones de datos son áreas bajo una curva ([[mat-distribucion-normal]]).
 - **Economía y ciencias**: acumulados (producción total, consumo total, dosis total) a partir de ritmos.
 
 ## 2. Primitivas e integral indefinida
@@ -472,4 +472,4 @@ $$
 
 ## Siguiente
 
-[[mat-calculo-2]] repasa y amplía el cálculo integral; en estadística, las integrales miden las áreas bajo la curva de el tema `mat-distribucion-normal`.
+[[mat-calculo-2]] repasa y amplía el cálculo integral; en estadística, las integrales miden las áreas bajo la curva de [[mat-distribucion-normal]].

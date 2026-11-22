@@ -442,4 +442,4 @@ general (para distribuciones concretas suele ser mucho menor) y es la base de la
 
 ## Siguiente
 
-el tema `mat-distribucion-normal` (la distribución continua más importante, y su relación con la binomial).
+[[mat-distribucion-normal]] (la distribución continua más importante, y su relación con la binomial).

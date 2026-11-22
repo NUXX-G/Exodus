@@ -21,5 +21,3 @@ Nodos que mencionan un nodo de tema aún no escrito. Al crear el nodo, sustituir
 | vault/00-troncal/matematicas/mat-funciones-exponencial-logaritmica.md | `prog-algoritmos-complejidad` |
 | vault/00-troncal/matematicas/mat-funciones-trigonometricas.md | `fis-ondas-sonido` |
 | vault/00-troncal/matematicas/mat-derivadas.md | `ia-redes-neuronales` |
-| vault/00-troncal/matematicas/mat-integrales-bachillerato.md | `mat-distribucion-normal` |
-| vault/00-troncal/matematicas/mat-distribucion-binomial.md | `mat-distribucion-normal` |

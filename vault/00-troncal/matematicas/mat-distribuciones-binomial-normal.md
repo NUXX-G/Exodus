@@ -3,7 +3,7 @@ id: mat-distribuciones-binomial-normal
 title: "Distribuciones de probabilidad: binomial, normal e intervalos de confianza"
 area: matematicas
 trunk_level: 7
-prerequisites: [mat-combinatoria-probabilidad-basica, mat-estadistica-bidimensional, mat-funciones-elementales, mat-distribucion-binomial]
+prerequisites: [mat-combinatoria-probabilidad-basica, mat-estadistica-bidimensional, mat-funciones-elementales, mat-distribucion-binomial, mat-distribucion-normal]
 academic_sources:
   - "Caro, R. Matemáticas II, 2.º Bachillerato (LOMLOE), capítulo 12: «Distribuciones de probabilidad», secciones 1.1 (media, varianza y desviación típica), 1.2 (binomial), 1.3 (desigualdad de Chebycheff), 1.4-1.5 (distribuciones continuas y normal), 1.6 (aproximación de la binomial a la normal) y 1.7 (intervalos de confianza). Apuntes Marea Verde, rev. 10/08/2024. https://www.apuntesmareaverde.org.es/grupos/mat/LOMLOE/Bachillerato/BC2%2012%20Distribuciones.pdf (CC BY-NC-SA 3.0)."
   - "Grinstead, C. M.; Snell, J. L. Introduction to Probability, 2.ª ed. American Mathematical Society, 1997, cap. 3, sección 3.2 (distribución binomial), cap. 6 (esperanza y varianza; desigualdad de Chebyshev en 8.1) y cap. 9, sección 9.1 (teorema central del límite para ensayos de Bernoulli). https://math.dartmouth.edu/~prob/prob/prob.pdf"
