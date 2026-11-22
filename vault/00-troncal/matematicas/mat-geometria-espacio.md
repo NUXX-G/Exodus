@@ -3,7 +3,7 @@ id: mat-geometria-espacio
 title: "Geometría del espacio: vectores, rectas, planos, ángulos y distancias"
 area: matematicas
 trunk_level: 7
-prerequisites: [mat-geometria-analitica, mat-algebra-lineal-1, mat-vectores-espacio, mat-rectas-planos-espacio]
+prerequisites: [mat-geometria-analitica, mat-algebra-lineal-1, mat-vectores-espacio, mat-rectas-planos-espacio, mat-geometria-metrica-espacio]
 academic_sources:
   - "Apuntes Marea Verde (LOMLOE). Matemáticas II, 2.º Bachillerato: cap. 4 «Geometría en el espacio - Vectores» (secciones 2-5: vectores, dependencia lineal, productos escalar, vectorial y mixto), cap. 5 «Rectas y planos en el espacio» (secciones 1-3: ecuaciones y posiciones relativas) y cap. 6 «Geometría métrica en el espacio» (secciones 1-4: ángulos, proyecciones, simétricos y distancias). Rev. 10/08/2024. https://www.apuntesmareaverde.org.es/grupos/mat/LOMLOE/Bachillerato/MatematicasIILL.htm (CC BY-NC-SA 3.0)."
   - "Abramson, J. et al. Precálculo, 2.ª ed. (en español). OpenStax, 2022, sección 8.8 («Vectores»). https://openstax.org/books/prec%C3%A1lculo-2ed/pages/8-8-vectores"

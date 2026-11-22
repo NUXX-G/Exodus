@@ -453,4 +453,4 @@ $$
 
 ## Siguiente
 
-el tema `mat-geometria-metrica-espacio` (ángulos, distancias, proyecciones y simétricos).
+[[mat-geometria-metrica-espacio]] (ángulos, distancias, proyecciones y simétricos).
