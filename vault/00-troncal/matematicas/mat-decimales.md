@@ -372,7 +372,7 @@ Al terminar sabrás:
   $10$.
 - **Calculadoras y ordenadores**: muestran decimales, y saber si un resultado es exacto o un redondeo evita errores. Los
   ordenadores tampoco guardan exactamente $0{,}1$ ([[prog-pensamiento-computacional]]).
-- **Ciencias**: los datos experimentales se dan con un número de decimales que indica su precisión (el tema `fis-magnitudes-medida`).
+- **Ciencias**: los datos experimentales se dan con un número de decimales que indica su precisión ([[fis-magnitudes-medida]]).
 
 ## 2. Qué es un número decimal
 

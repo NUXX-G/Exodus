@@ -354,7 +354,7 @@ Al terminar sabrás:
 - **En casa y en la tienda**: recetas en gramos y mililitros, pintura por metros cuadrados, agua por metros cúbicos en la factura,
   la gasolina en litros.
 - **En ciencias**: toda medida física lleva unidad, y un resultado con la unidad equivocada está mal aunque el número sea correcto
-  (el tema `fis-magnitudes-medida`).
+  ([[fis-magnitudes-medida]]).
 - **Errores famosos**: la sonda Mars Climate Orbiter se perdió en 1999 porque un equipo usó unidades inglesas y otro métricas.
 
 ## 2. Magnitudes y el Sistema Internacional

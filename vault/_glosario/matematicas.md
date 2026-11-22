@@ -85,6 +85,7 @@ terminos:
     formal: "Si $P(1)$ es cierta y $P(n) \\Rightarrow P(n+1)$ para todo $n \\ge 1$, entonces $P(n)$ es cierta para todo $n \\ge 1$."
     nodo: mat-logica-demostraciones
   - termino: derivada
+    excepto: [magnitudes derivadas, unidades derivadas]
     sinonimos: [derivadas]
     llano: "Lo rápido que cambia algo en un instante: la velocidad es la derivada de la posición. Gráficamente, la inclinación de la curva en un punto."
     formal: "$f'(a) = \\displaystyle\\lim_{h\\to0}\\frac{f(a+h) - f(a)}{h}$, si el límite existe. Es la pendiente de la recta tangente a la gráfica en $(a, f(a))$."

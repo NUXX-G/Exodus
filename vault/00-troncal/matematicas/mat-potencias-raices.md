@@ -473,7 +473,7 @@ ayuda en la sección 7.
 
 - **Geometría**: el área de un cuadrado es $l^2$ y el volumen de un cubo $l^3$ (de ahí los nombres «cuadrado» y «cubo»).
 - **Ciencia**: la distancia de la Tierra al Sol ($1{,}496 \cdot 10^8$ km) o la masa de un electrón ($9{,}11 \cdot 10^{-31}$ kg) solo se
-  manejan con notación científica (el tema `fis-magnitudes-medida`).
+  manejan con notación científica ([[fis-magnitudes-medida]]).
 - **Crecimiento**: una bacteria que se divide cada hora da $2^{24} \approx 16$ millones en un día; el interés compuesto y los
   virus siguen la misma ley ([[mat-porcentajes-finanzas]]).
 - **Informática**: un byte son $2^3$ bits y un kilobyte binario $2^{10} = 1\,024$ bytes.
